@@ -3,7 +3,7 @@
 
 :root {
   --f-family-headline: "Mak", Arial, sans-serif;
-  --f-family-decorative: "Raleway", Arial, sans-serif;
+  --f-family-main: "Raleway", Arial, sans-serif;
 
   --f-size-body-small: 0.75rem; /* text */
   --f-size-numbers-small: 0.875rem;
@@ -15,7 +15,7 @@
   --f-size-h3: 1.5rem;
   --f-size-h2: 2rem;
   --f-size-h1: 2.25rem;
-  --f-size-h0: 3rem;
+  --f-size-large: 3rem;
 
   --color-white: 254, 254, 254;
   --color-black: 12, 12, 12;
