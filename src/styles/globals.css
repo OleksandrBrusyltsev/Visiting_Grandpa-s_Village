@@ -17,24 +17,16 @@
   --f-size-h1: 2.25rem;
   --f-size-h0: 3rem;
 
-  --color-white: rgb(254, 254, 254);
-  --color-black: rgb(12, 12, 12);
-  --color-base-green: rgb(63, 85, 64);
-  --color-dark-green: rgb(61, 73, 63);
-  --color-natural-dark: rgb(100, 88, 65);
-  --color-nude-70: rgba(194, 191, 183, 0.7);
-  --color-nude-50: rgba(194, 191, 183, 0.5);
-  --color-nude-20: rgba(194, 191, 183, 0.2);
-  --color-natural-orange: rgb(180, 133, 79);
-  --color-orange: rgba(180, 133, 79, 0.4);
-  --color-gray: rgb(97, 97, 97);
-  --color-gray-light: rgb(179, 179, 179);
-  --color-error: rgb(168, 14, 14);
-  --color-calendar-bcg: rgb(239, 235, 231);
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  --color-white: 254, 254, 254;
+  --color-black: 12, 12, 12;
+  --color-total-black: 0, 0, 0;
+  --color-base-green: 63, 85, 64;
+  --color-dark-green: 61, 73, 63;
+  --color-natural-dark: 100, 88, 65;
+  --color-nude: 194, 191, 183;
+  --color-natural-orange: 180, 133, 79;
+  --color-gray: 97, 97, 97;
+  --color-gray-light: 79, 179, 179;
+  --color-error: 168, 14, 14;
+  --color-calendar-bcg: 239, 235, 231;
 }
