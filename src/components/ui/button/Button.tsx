@@ -1,33 +1,32 @@
-import styles from "./Button.module.scss";
+import s from './Button.module.scss';
 
-type ButtonProps = {
-  padding: string;
-  fontSize: string;
-  backgroundColor: string;
-  border: string;
-  color: string;
-  children: React.ReactNode;
-};
+interface ButtonProps {
+  label: string;
+  type?: 'button' | 'submit' | 'reset';
+  size?: 'default' | 'large' | 'small';
+  className?: string;
+  onClick?: () => void;
+  disabled?: boolean;
+}
 
 const Button: React.FC<ButtonProps> = ({
-  padding,
-  fontSize,
-  backgroundColor,
-  border,
-  color,
-  children,
+  label,
+  type = 'button',
+  size = 'default',
+  disabled = false,
+  className = '',
+  onClick,
 }) => {
-  const style = {
-    padding,
-    fontSize,
-    backgroundColor,
-    border,
-    color,
-  };
+  const styles = `${s.button} ${size && s[`button_${size}`]} ${className}`;
 
   return (
-    <button style={style} className={styles.button}>
-      {children}
+    <button
+      type={type}
+      className={styles}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {label}
     </button>
   );
 };

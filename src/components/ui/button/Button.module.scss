@@ -1,0 +1,46 @@
+.button {
+  width: 100%;
+  font-family: var(--f-family-headline);
+  font-size: 1.375rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 97.64%;
+  letter-spacing: -0.00688rem;
+  text-align: center;
+  color: rgb(var(--color-white));
+  background: rgb(var(--color-base-green));
+  border: 1px solid rgb(var(--color-base-green));
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, border 0.3s;
+
+  &:not(:disabled):hover {
+    background: rgb(var(--color-white));
+    color: rgb(var(--color-black));
+    box-shadow: 4px 4px 8px 0px rgba(var(--color-total-black), 0.25);
+  }
+
+  &:not(:disabled):active {
+    color: rgb(var(--color-white));
+    background: rgb(var(--color-natural-orange));
+    border: 1px solid rgb(var(--color-natural-orange));
+    box-shadow: none;
+  }
+
+  &:disabled {
+    filter: blur(2px);
+    cursor: not-allowed;
+  }
+
+  &_default {
+    max-width: fit-content;
+  }
+
+  &_large {
+    max-width: 11.75rem;
+  }
+
+  &_small {
+    max-width: 7.375rem;
+  }
+}
