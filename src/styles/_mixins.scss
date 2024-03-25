@@ -1,0 +1,22 @@
+$breakpoint-mobile-max: 749px;
+$breakpoint-tablet-min: 750px;
+$breakpoint-tablet-max: 950px;
+$breakpoint-laptop-min: 951px;
+
+@mixin media-min($value) {
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+// @mixin media-max($max-width) {
+//   @media (max-width: $max-width) {
+//     @content;
+//   }
+// }
+
+// @mixin media-range($min-width, $max-width) {
+//   @media (min-width: $min-width) and (max-width: $max-width) {
+//     @content;
+//   }
+// }
