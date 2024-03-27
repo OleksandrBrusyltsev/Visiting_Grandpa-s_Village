@@ -1,5 +1,6 @@
-import styles from "../styles/page.module.scss";
+// import styles from "../styles/page.module.scss";
+import WelcomeBlock from "@/components/welcomeBlock/WelcomeBlock";
 
 export default function Home() {
-  return <main></main>;
+  return <main><WelcomeBlock/></main>;
 }

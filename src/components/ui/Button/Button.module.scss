@@ -1,3 +1,6 @@
+@use '../../../styles/mixins' as mixins;
+@use '../../../styles/variables';
+
 .button {
   width: 100%;
   font-family: var(--f-family-headline);
@@ -37,7 +40,11 @@
   }
 
   &_large {
-    max-width: 11.75rem;
+    max-width: 13.125rem;
+
+    @include mixins.media-min(variables.$breakpoint-tablet-min) {
+      max-width: 11.75rem;
+    }
   }
 
   &_small {
