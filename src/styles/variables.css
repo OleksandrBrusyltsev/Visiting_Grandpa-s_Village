@@ -1,0 +1,29 @@
+:root {
+  --f-family-headline: "Mak", Arial, sans-serif;
+  --f-family-main: "Raleway", Arial, sans-serif;
+
+  --f-size-body-small: 0.75rem; /* text */
+  --f-size-numbers-small: 0.875rem;
+  --f-size-numbers-big: 1rem;
+  --f-size-body: 1rem; /* link, body bold, body light */
+  --f-size-button-small: 1.125rem;
+  --f-size-button-big: 1.375rem;
+  --f-size-body-big: 1.5rem;
+  --f-size-h3: 1.5rem;
+  --f-size-h2: 2rem;
+  --f-size-h1: 2.25rem;
+  --f-size-large: 3rem;
+
+  --color-white: 254, 254, 254;
+  --color-black: 12, 12, 12;
+  --color-total-black: 0, 0, 0;
+  --color-base-green: 63, 85, 64;
+  --color-dark-green: 61, 73, 63;
+  --color-natural-dark: 100, 88, 65;
+  --color-nude: 194, 191, 183;
+  --color-natural-orange: 180, 133, 79;
+  --color-gray: 97, 97, 97;
+  --color-gray-light: 79, 179, 179;
+  --color-error: 168, 14, 14;
+  --color-calendar-bcg: 239, 235, 231;
+}
