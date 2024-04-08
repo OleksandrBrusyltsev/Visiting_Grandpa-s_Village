@@ -1,24 +1,27 @@
-@import '../../styles/globals.scss';
+// @import "../../styles/globals.scss";
+@use "../../styles/mixins" as mixins;
+@import "../../styles/variables.scss";
 
 .footer {
   margin-top: 50px;
   width: 100%;
   display: grid;
   justify-items: center;
-  grid-template-areas: 'logo' 'socialMedia' 'contacts' 'copyright';
+  grid-template-areas: "logo" "socialMedia" "contacts" "copyright";
   grid-template-columns: 1fr;
   gap: 2.25rem;
-  background: url('/images/footer-bg.png') no-repeat center/contain rgba(var(--color-nude), 0.5);
+  background: url("/images/footer-bg.png") no-repeat center/contain
+    rgba(var(--color-nude), 0.5);
   padding: 0.5rem 1.5rem 0.875rem;
 
-  @media (min-width: $mobile) {
-    grid-template-areas: 'logo' 'nav' 'contacts' 'socialMedia' 'copyright';
+  @include mixins.media-min($breakpoint-tablet-min) {
+    grid-template-areas: "logo" "nav" "contacts" "socialMedia" "copyright";
     padding: 3.75rem 0 1.563rem;
   }
 
-  @media (min-width: $pc) {
-    max-width: 90rem;
-  }
+  // @include mixins.media-min($breakpoint-laptop-min) {
+  //   max-width: 90rem;
+  // }
 }
 
 .nav {
@@ -27,11 +30,11 @@
   align-items: center;
   gap: 3.125rem;
 
-  @media (min-width: $mobile) {
+  @media (max-width: $breakpoint-mobile-max) {
     margin-top: 1.313rem;
   }
 
-  @media (min-width: $tablet) {
+  @media (min-width: $breakpoint-tablet-min) {
     gap: 6.25rem;
     margin-top: 0;
   }
@@ -57,11 +60,11 @@
   display: grid;
   gap: 1.063rem;
 
-  @media (min-width: $mobile) {
+  @media (min-width: $breakpoint-mobile-max) {
     margin-top: 4.188rem;
   }
 
-  @media (min-width: $tablet) {
+  @media (min-width: $breakpoint-laptop-min) {
     margin-top: 5.438rem;
   }
 
@@ -84,7 +87,7 @@
     transition: font-size 0.3s;
     cursor: pointer;
 
-    @media (min-width: $mobileSmall) {
+    @media (max-width: $breakpoint-mobile-max) {
       font-size: 0.875rem;
     }
 
@@ -103,7 +106,7 @@
   display: flex;
   gap: 1.5rem;
 
-  @media (min-width: $mobile) {
+  @media (max-width: $breakpoint-mobile-max) {
     gap: 2.938rem;
   }
 
