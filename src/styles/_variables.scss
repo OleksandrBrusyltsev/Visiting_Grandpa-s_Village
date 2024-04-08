@@ -1,8 +1,8 @@
 // breakpoints
-$breakpoint-mobile-max: 749px;
-$breakpoint-tablet-min: 750px;
+$breakpoint-mobile-max: 749px; // tablet
+$breakpoint-tablet-min: 750px; // tablet + mobile reverse
 $breakpoint-tablet-max: 950px;
-$breakpoint-laptop-min: 951px;
+$breakpoint-laptop-min: 951px; // laptop
 
 // $pc: 90em; // 1440px ПК, ноутбуки
 // $desktop: 78.75em; // 1260px Ноутбуки, деякі планшети у горизонтальному положенні

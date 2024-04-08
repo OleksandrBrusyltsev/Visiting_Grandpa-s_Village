@@ -1,4 +1,4 @@
-import WelcomeBlock from "@/components/welcomeBlock/WelcomeBlock";
+import WelcomeBlock from "@/components/WelcomeBlock/WelcomeBlock";
 
 export default function Home() {
   return (
