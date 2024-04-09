@@ -2,14 +2,20 @@
   padding: 0px;
   margin: 0px;
   border: 0px;
+  box-sizing: border-box;
+
+  &:before,
+  &:after,
+  &:active {
+    box-sizing: border-box;
+  }
 }
 
 /* !? */
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
+// *:before,
+// *:after {
+//   box-sizing: border-box;
+// }
 
 :active {
   outline: none;
@@ -22,7 +28,7 @@ a:active {
 html,
 body {
   height: 100%;
-  min-width: 360px;
+  /* min-width: 360px; */
 }
 
 input,
