@@ -18,15 +18,11 @@
     grid-template-areas: "logo" "nav" "contacts" "socialMedia" "copyright";
     padding: 3.75rem 0 1.563rem;
   }
-
-  // @include mixins.media-min($breakpoint-laptop-min) {
-  //   max-width: 90rem;
-  // }
 }
 
 .nav {
   grid-area: nav;
-  display: flex;
+  display: none;
   align-items: center;
   gap: 3.125rem;
 
@@ -37,6 +33,7 @@
   @media (min-width: $breakpoint-tablet-min) {
     gap: 6.25rem;
     margin-top: 0;
+    display: flex;
   }
 
   &Item {
@@ -52,6 +49,13 @@
       color: rgb(var(--color-base-green));
       transform: translateY(-4px);
     }
+  }
+}
+
+.logoLaptop {
+  @include mixins.media-min($breakpoint-mobile-max) {
+    width: 277px;
+    height: 135px;
   }
 }
 
