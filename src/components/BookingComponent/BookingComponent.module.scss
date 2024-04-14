@@ -1,7 +1,7 @@
 .bookingForm {
   display: flex;
   justify-content: space-between;
-  width: 791px;
+  width: 705px;
   padding: 10px 30px 10px 30px;
   border-radius: 8px;
   border: 1px solid rgb(var(--color-base-green));
@@ -11,7 +11,6 @@
   font-size: var(--f-size-body);
   margin-bottom: 12px;
 }
-//styleName: Body Light;
 
 .labelWraper {
   display: flex;
@@ -23,6 +22,7 @@
 
 .bookingInput {
   width: 115px;
+  margin-right: 12px;
 }
 .bookingOpenButton {
   position: relative;

@@ -1,0 +1,74 @@
+.calendarWrapper {
+  width: 450px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+
+.currentMonth {
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.calendarPrevButton,
+.calendarNextButton {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: 1px solid red;
+}
+
+.prevIcon,
+.nextIcon {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.daysWrapper {
+  padding: 20px;
+}
+
+.weeksList,
+.daysList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+
+.daysList {
+  margin-bottom: 20px;
+}
+
+.weeksItem,
+.daysItem {
+  color: #333;
+  width: calc(100% / 7);
+  font-size: 1.07rem;
+}
+
+.weeksItem {
+  font-weight: 500;
+  cursor: default;
+}
+
+.daysItem {
+  color: #aaa;
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  margin-top: 30px;
+}
+
+.active {
+  background-color: #9b59b6;
+}
