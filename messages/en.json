@@ -1,5 +1,10 @@
 {
   "Index": {
-    "title": "Hello world!"
+    "title": "en",
+    "description": "en"
+  },
+  "NotFoundPage": {
+    "title": "Page not found",
+    "description": "Page not found."
   }
 }
