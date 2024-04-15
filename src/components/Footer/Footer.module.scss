@@ -1,0 +1,138 @@
+// @import "../../styles/globals.scss";
+@use "../../styles/mixins" as mixins;
+@import "../../styles/variables.scss";
+
+.footer {
+  margin-top: 50px;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  grid-template-areas: "logo" "socialMedia" "contacts" "copyright";
+  grid-template-columns: 1fr;
+  gap: 2.25rem;
+  background: url("/images/footer-bg.png") no-repeat center/contain
+    rgba(var(--color-nude), 0.5);
+  padding: 0.5rem 1.5rem 0.875rem;
+
+  @include mixins.media-min($breakpoint-tablet-min) {
+    grid-template-areas: "logo" "nav" "contacts" "socialMedia" "copyright";
+    padding: 3.75rem 0 1.563rem;
+  }
+
+  // @include mixins.media-min($breakpoint-laptop-min) {
+  //   max-width: 90rem;
+  // }
+}
+
+.nav {
+  grid-area: nav;
+  display: flex;
+  align-items: center;
+  gap: 3.125rem;
+
+  @media (max-width: $breakpoint-mobile-max) {
+    margin-top: 1.313rem;
+  }
+
+  @media (min-width: $breakpoint-tablet-min) {
+    gap: 6.25rem;
+    margin-top: 0;
+  }
+
+  &Item {
+    color: rgb(var(--color-black));
+    font-family: var(--f-family-headline);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: normal;
+    padding: 0.625rem;
+    transition: color 0.3s, transform 0.3s;
+
+    &:hover {
+      color: rgb(var(--color-base-green));
+      transform: translateY(-4px);
+    }
+  }
+}
+
+.contacts {
+  grid-area: contacts;
+  display: grid;
+  gap: 1.063rem;
+
+  @media (min-width: $breakpoint-mobile-max) {
+    margin-top: 4.188rem;
+  }
+
+  @media (min-width: $breakpoint-laptop-min) {
+    margin-top: 5.438rem;
+  }
+
+  &Wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.688rem;
+  }
+
+  &Icon {
+    max-width: 1.5rem;
+    max-height: 1.5rem;
+  }
+
+  &Text {
+    color: rgb(var(--color-black));
+    font-family: var(--f-family-headline);
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: font-size 0.3s;
+    cursor: pointer;
+
+    @media (max-width: $breakpoint-mobile-max) {
+      font-size: 0.875rem;
+    }
+
+    &:hover {
+      color: rgb(var(--color-base-green));
+    }
+
+    &:active {
+      color: rgb(var(--color-natural-orange));
+    }
+  }
+}
+
+.socialMedia {
+  grid-area: socialMedia;
+  display: flex;
+  gap: 1.5rem;
+
+  @media (max-width: $breakpoint-mobile-max) {
+    gap: 2.938rem;
+  }
+
+  &Icon {
+    max-width: 2rem;
+    max-height: 2rem;
+    transition: color 0.3s, stroke 0.3s;
+
+    &:hover {
+      color: transparent;
+      stroke: rgb(var(--color-base-green));
+      stroke-width: 1px;
+    }
+
+    &:active {
+      color: rgb(var(--color-natural-orange));
+      stroke: rgb(var(--color-natural-orange));
+      stroke-width: 0;
+    }
+  }
+}
+
+.copyright {
+  grid-area: copyright;
+  color: rgb(var(--color-black));
+  font-family: var(--f-family-main);
+  font-size: 0.75rem;
+  font-weight: 400;
+}

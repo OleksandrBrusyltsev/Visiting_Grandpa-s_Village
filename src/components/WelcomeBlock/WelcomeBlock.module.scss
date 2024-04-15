@@ -1,0 +1,135 @@
+@use '../../styles/mixins' as mixins;
+@use '../../styles/variables';
+
+.blockWrapper,
+.imageWrapper {
+  position: relative;
+}
+
+.textWrapper,
+.imageWrapper::after,
+.buttonWrapper {
+  position: absolute;
+}
+
+.blockWrapper {
+  margin-top: 1.26rem;
+
+  @include mixins.media-min(variables.$breakpoint-tablet-min) {
+    margin-top: 3.18rem;
+  }
+  @include mixins.media-min(variables.$breakpoint-tablet-max) {
+    margin-top: 3rem;
+  }
+}
+
+.textWrapper {
+  width: 17.25rem;
+  padding: 0.75rem 0rem;
+  background: rgba(194, 191, 183, 0.70);
+  border: 1px solid rgb(var(--color-base-green));
+  border-radius: 0.5rem;
+  font-family: var(--f-family-headline);
+  text-align: center;
+  left: 50%;
+  top: -0.5%;
+  transform: translate(-50%, -50%);
+
+  @include mixins.media-min(variables.$breakpoint-tablet-min) {
+    width: 36rem;
+    padding: 0.6rem 0.6rem;
+    top: -0.5%;
+  }
+  @include mixins.media-min(variables.$breakpoint-tablet-max) {
+    width: 59.2rem;
+    top: 1.5%;
+  }
+
+  & p {
+    font-size: var(--f-size-body-small);
+    line-height: 100%;
+    letter-spacing: -0.00375rem;
+
+    @include mixins.media-min(variables.$breakpoint-tablet-min) {
+      font-size: var(--f-size-h2);
+      color: rgb(var(--color-white));
+      line-height: 110%;
+      letter-spacing: -0.1rem;
+    }
+    @include mixins.media-min(variables.$breakpoint-tablet-max) {
+      font-size: var(--f-size-large);
+      text-transform: uppercase;
+    }
+  }
+}
+
+.imageWrapper {
+  height: 200px;
+  box-shadow: inset 0px -35px 35px 1px rgb(255, 255, 255);
+  overflow: hidden;
+
+  @media screen and (min-width: 426px) {
+    height: 18.75rem;
+  }
+  @include mixins.media-min(variables.$breakpoint-tablet-min) {
+    height: 35.5rem;
+  }
+  @include mixins.media-min(variables.$breakpoint-tablet-max) {
+    height: 39.5rem;
+  }
+}
+
+.imageWrapper::after {
+  content: "";
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+  @include mixins.media-min(variables.$breakpoint-tablet-min) {
+    display: none;
+  }
+}
+
+.image {
+  width: 400px;
+  object-fit: cover;
+  object-position: center 68%;
+  z-index: -1;
+  @include mixins.media-min(variables.$breakpoint-tablet-min) {
+    transform: scale(1.2);
+    width: 100%;
+  }
+  @include mixins.media-min(variables.$breakpoint-tablet-max) {
+    transform: scale(1);
+    object-position: center 55%;
+  }
+}
+
+.buttonWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%, -50%);
+
+  @media screen and (min-width: 425px) {
+    top: 85%;
+  }
+  @include mixins.media-min(variables.$breakpoint-tablet-min) {
+    top: 70%;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop-min) {
+    top: 75%;
+  }
+}
+
+.button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  z-index: 1;
+
+  @include mixins.media-min(variables.$breakpoint-tablet-min) {
+    font-size: 1.375rem;
+  }
+}
