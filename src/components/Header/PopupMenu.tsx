@@ -2,44 +2,25 @@
 
 import Link from "next/link";
 import css from "./PopupMenu.module.scss";
-import { useState } from "react";
-
-const navigationLinks = [
-  {
-    id: 1,
-    link: "",
-    text: "Жити",
-  },
-  { id: 2, link: "", text: "Їсти" },
-  {
-    id: 3,
-    link: "",
-    text: "Байдикувати",
-  },
-  {
-    id: 4,
-    link: "",
-    text: "Спогади",
-  },
-  {
-    id: 5,
-    link: "",
-    text: "Знайти мене",
-  },
-  {
-    id: 6,
-    link: "",
-    text: "Правила перебування",
-  },
-];
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { navigationLinks } from "../../data/header/popupData";
 
 interface PopupMenuProps {
   handlePopup: () => void;
 }
 
 const PopupMenu: React.FC<PopupMenuProps> = ({ handlePopup }) => {
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (menuRef.current) {
+      gsap.fromTo(menuRef.current, { opacity: 0 }, { opacity: 1, duration: 1 });
+    }
+  }, []);
+
   return (
-    <div className={css.backdrop} onClick={handlePopup}>
+    <div ref={menuRef} className={css.backdrop} onClick={handlePopup}>
       <div className={css.popupContainer}>
         <ul className={css.list}>
           {navigationLinks.map(({ id, link, text }) => (

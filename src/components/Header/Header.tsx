@@ -32,7 +32,7 @@ const Header: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-console.log(windowSize)
+
   const handlePopup = () => {
     setVisible(!isVisible);
   };
