@@ -84,3 +84,10 @@
   display: flex;
   gap: 30px;
 }
+
+.mainLogo{
+  @include mixins.media-min(variables.$breakpoint-tablet-min) {
+    width: 277px;
+    height: 135px;
+  }
+}

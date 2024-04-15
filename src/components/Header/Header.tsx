@@ -1,21 +1,38 @@
 "use client";
 
-import { useWindowSize } from "@uidotdev/usehooks";
 import Icon from "../ui/Icon/Icon";
 import css from "./Header.module.scss";
 import Image from "next/image";
 import Button from "../ui/Button/Button";
 import PopupMenu from "./PopupMenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 
 const image = "/images/logo.svg";
 const alt = "Logo main";
 
 const Header: React.FC = () => {
-  const { width } = useWindowSize();
   const [isVisible, setVisible] = useState(false);
 
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== "undefined" ? window.innerWidth : 0,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize((prevState) => ({
+        ...prevState,
+        width: window.innerWidth,
+      }));
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+console.log(windowSize)
   const handlePopup = () => {
     setVisible(!isVisible);
   };
@@ -29,8 +46,9 @@ const Header: React.FC = () => {
         <Image
           src={image}
           alt={alt}
-          width={width && width < 768 ? 144 : 277}
-          height={width && width < 768 ? 80 : 135}
+          width={144}
+          height={80}
+          className={css.mainLogo}
         />
 
         <div className={css.headerBox}>
@@ -52,7 +70,8 @@ const Header: React.FC = () => {
           />
         </div>
       </div>
-      {isVisible ? <PopupMenu handlePopup={handlePopup} /> : <Navigation />}
+      {isVisible && <PopupMenu handlePopup={handlePopup} />}
+      {windowSize.width > 766 ? <Navigation /> : null}
     </>
   );
 };
