@@ -7,55 +7,64 @@ import s from "./Calendar.module.scss";
 const Calendar: React.FC = () => {
   const [currYear, setCurrYear] = useState<number>(new Date().getFullYear());
   const [currMonth, setCurrMonth] = useState<number>(new Date().getMonth());
-  const [date] = useState<Date>(new Date());
 
   const months: string[] = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Січень",
+    "Лютий",
+    "Березень",
+    "Квітень",
+    "Травень",
+    "Червень",
+    "Липень",
+    "Серпень",
+    "Вересень",
+    "Жовтень",
+    "Листопад",
+    "Грудень",
   ];
 
   const renderCalendar = () => {
-    const firstDayofMonth = new Date(currYear, currMonth, 1).getDay(); // getting first day of month
-    const lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting last date of month
+    let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(); // получаем день недели для первого числа месяца
+    let startOffset = firstDayofMonth === 0 ? 6 : firstDayofMonth - 1; // вычисляем смещение от воскресенья до понедельника (0 -> 6, 1 -> 0, ..., 6 -> 5)
+
+    // Сдвигаем первый день месяца на понедельник, если он не приходится на понедельник
+    let firstMondayOfMonth = new Date(currYear, currMonth, 1 - startOffset);
+
+    // Теперь firstMondayOfMonth будет содержать дату, которая соответствует понедельнику первой недели месяца
+
+    const lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // получаем последнее число месяца
     const lastDayofMonth = new Date(
       currYear,
       currMonth,
       lastDateofMonth
-    ).getDay(); // getting last day of month
-    const lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
+    ).getDay(); // получаем последний день недели месяца
+    const lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // получаем последнее число предыдущего месяца
     let liTag = "";
 
-    for (let i = firstDayofMonth; i > 1; i--) {
-      // creating li of previous month last days
+    for (let i = startOffset; i > 0; i--) {
+      // создаем li для последних дней предыдущего месяца
       liTag += `<li class=${s.daysItem}>${lastDateofLastMonth - i + 1}</li>`;
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) {
-      // создаем элементы списка для всех дней текущего месяца и применяем класс daysItem
+      // создаем li для всех дней текущего месяца
       liTag += `<li class=${s.daysItem}>${i}</li>`;
     }
 
-    for (let i = lastDayofMonth; i < 7; i++) {
-      // creating li of next month first days
-      liTag += `<li class=${s.daysItem}>${i - lastDayofMonth + 1}</li>`;
+    if (lastDayofMonth !== 0) {
+      for (let i = lastDayofMonth; i < 7; i++) {
+        // создаем li для первых дней следующего месяца
+        liTag += `<li class=${s.daysItem}>${i - lastDayofMonth + 1}</li>`;
+      }
     }
-    setCurrentDateText(`${months[currMonth]} ${currYear}`); // passing current mon and yr as currentDate text
-    setDaysList(liTag);
+
+    setCurrentDateText(`${months[currMonth]} ${currYear}`); // устанавливаем текущий месяц и год как текст заголовка
+    setDaysList(liTag); // устанавливаем сгенерированный HTML для дней месяца
   };
 
   useEffect(() => {
     renderCalendar();
-  }, []);
+  }, [currMonth, currYear]);
 
   const handlePrevNextClick = (direction: number) => {
     let newMonth = currMonth + direction;
@@ -68,15 +77,17 @@ const Calendar: React.FC = () => {
       newMonth = 0; // Устанавливаем новый месяц на январь
       newYear++; // Увеличиваем текущий год на 1
     }
+    console.log("Current month:", currMonth);
+    console.log("New month:", newMonth, "New year:", newYear);
 
     setCurrMonth(newMonth);
     setCurrYear(newYear);
-
     renderCalendar();
   };
 
   const [currentDateText, setCurrentDateText] = useState<string>("");
-  const [daysList, setDaysList] = useState<string>("");
+    const [daysList, setDaysList] = useState<string>("");
+    
 
   return (
     <div className={s.calendarWrapper}>
@@ -101,13 +112,13 @@ const Calendar: React.FC = () => {
       </header>
       <div className={s.daysWrapper}>
         <ul className={s.weeksList}>
-          <li className={s.weeksItem}>Mon</li>
-          <li className={s.weeksItem}>Tue</li>
-          <li className={s.weeksItem}>Wed</li>
-          <li className={s.weeksItem}>Thu</li>
-          <li className={s.weeksItem}>Fri</li>
-          <li className={s.weeksItem}>Sat</li>
-          <li className={s.weeksItem}>Sun</li>
+          <li className={s.weeksItem}>Пн</li>
+          <li className={s.weeksItem}>Вт</li>
+          <li className={s.weeksItem}>Ср</li>
+          <li className={s.weeksItem}>Чт</li>
+          <li className={s.weeksItem}>Пт</li>
+          <li className={s.weeksItem}>Сб</li>
+          <li className={s.weeksItem}>Нд</li>
         </ul>
         <ul
           className={s.daysList}
