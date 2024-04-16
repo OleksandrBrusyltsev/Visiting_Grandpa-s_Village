@@ -7,30 +7,58 @@ import Calendar from "./Calendar";
 import s from "./BookingComponent.module.scss";
 
 const BookingComponent: React.FC = () => {
-  const [date, setDate] = useState<string>("");
+  const [checkInDate, setCheckInDate] = useState<string>("");
+  const [checkOutDate, setCheckOutDate] = useState<string>("");
+  const [isCalendarСheckIn, setIsCalendarСheckIn] = useState<boolean>(false);
+  const [isCalendarCheckOut, setIsCalendarCheckOut] = useState<boolean>(false);
 
-  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDate(event.target.value);
+ 
+  const toggleCalendarСheckIn = () => {
+    setIsCalendarСheckIn(!isCalendarСheckIn);
+  };
+
+  const toggleCalendarCheckOut = () => {
+    setTimeout(() => {
+      console.log("Toggle Calendar CheckOut", isCalendarCheckOut); // Добавляем логирование
+    }, 0);
+    setIsCalendarCheckOut(!isCalendarCheckOut);
+  };
+
+  console.log("Rendering Calendar CheckOut", isCalendarCheckOut); 
+
+  const handleCheckInDateChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCheckInDate(event.target.value);
+  };
+
+  const handleCheckOutDateChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCheckOutDate(event.target.value);
+  };
+
+  const handleSearch = () => {
+    // Обработка поиска
   };
 
   return (
     <>
-      {" "}
       <form className={s.bookingForm}>
         <div className={s.labelWraper}>
           <label className={s.bookingLabel}>Заїзд</label>
           <div className={s.inputWrapper}>
             <input
               type="text"
-              value={date}
-              onChange={handleDateChange}
+              value={checkInDate}
+              onChange={handleCheckInDateChange}
               placeholder="Выберите дату"
               className={s.bookingInput}
             />
             <button
               type="button"
               className={s.bookingOpenButton}
-              onClick={() => console.log("Календарь открыт")}
+              onClick={toggleCalendarСheckIn}
             >
               <Icon name="icon-down" className={s.downIcon} />
             </button>
@@ -41,14 +69,14 @@ const BookingComponent: React.FC = () => {
           <div className={s.inputWrapper}>
             <input
               type="text"
-              value={date}
-              onChange={handleDateChange}
+              value={checkOutDate}
+              onChange={handleCheckOutDateChange}
               placeholder="Выберите дату"
               className={s.bookingInput}
             />
             <button
               className={s.bookingOpenButton}
-              onClick={() => console.log("Календарь открыт")}
+              onClick={toggleCalendarCheckOut}
             >
               <Icon name="icon-down" className={s.downIcon} />
             </button>
@@ -61,8 +89,6 @@ const BookingComponent: React.FC = () => {
             <input
               className={s.bookingInput}
               type="text"
-              value={date}
-              onChange={handleDateChange}
               placeholder="Дорослі: 2, Діти: 0"
             />
           </div>
@@ -73,9 +99,11 @@ const BookingComponent: React.FC = () => {
           label="Шукати"
           type="submit"
           className={`${s.button} ${s.buttonSearch}`}
+          onClick={handleSearch}
         />
       </form>
-      <Calendar/>
+      {isCalendarСheckIn && <Calendar />}
+      {isCalendarCheckOut && <Calendar />}
     </>
   );
 };
