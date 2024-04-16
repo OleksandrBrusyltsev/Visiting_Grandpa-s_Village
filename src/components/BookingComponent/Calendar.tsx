@@ -39,27 +39,28 @@ const Calendar: React.FC = () => {
       lastDateofMonth
     ).getDay(); // получаем последний день недели месяца
     const lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // получаем последнее число предыдущего месяца
-    let liTag = "";
+
+    let daysArray = [];
 
     for (let i = startOffset; i > 0; i--) {
       // создаем li для последних дней предыдущего месяца
-      liTag += `<li class=${s.daysItem}>${lastDateofLastMonth - i + 1}</li>`;
+      daysArray.push(lastDateofLastMonth - i + 1);
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) {
       // создаем li для всех дней текущего месяца
-      liTag += `<li class=${s.daysItem}>${i}</li>`;
+      daysArray.push(i);
     }
 
     if (lastDayofMonth !== 0) {
       for (let i = lastDayofMonth; i < 7; i++) {
         // создаем li для первых дней следующего месяца
-        liTag += `<li class=${s.daysItem}>${i - lastDayofMonth + 1}</li>`;
+        daysArray.push(i - lastDayofMonth + 1);
       }
     }
 
     setCurrentDateText(`${months[currMonth]} ${currYear}`); // устанавливаем текущий месяц и год как текст заголовка
-    setDaysList(liTag); // устанавливаем сгенерированный HTML для дней месяца
+    setDaysList(daysArray); // устанавливаем сгенерированный HTML для дней месяца
   };
 
   useEffect(() => {
@@ -86,8 +87,9 @@ const Calendar: React.FC = () => {
   };
 
   const [currentDateText, setCurrentDateText] = useState<string>("");
-    const [daysList, setDaysList] = useState<string>("");
-    
+
+  const [daysList, setDaysList] = useState<number[]>([]);
+  console.log(daysList);
 
   return (
     <div className={s.calendarWrapper}>
@@ -120,10 +122,13 @@ const Calendar: React.FC = () => {
           <li className={s.weeksItem}>Сб</li>
           <li className={s.weeksItem}>Нд</li>
         </ul>
-        <ul
-          className={s.daysList}
-          dangerouslySetInnerHTML={{ __html: daysList }}
-        ></ul>
+        <ul className={s.daysList}>
+          {daysList.map((item, index) => (
+            <li key={index} className={s.daysItem}>
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
