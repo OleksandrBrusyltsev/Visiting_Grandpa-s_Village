@@ -2,30 +2,7 @@
 
 import Link from "next/link";
 import css from "./Navigation.module.scss";
-
-const navigationLinks = [
-  {
-    id: 1,
-    link: "",
-    text: "ЖИТИ",
-  },
-  { id: 2, link: "", text: "ЇСТИ" },
-  {
-    id: 3,
-    link: "",
-    text: "БАЙДИКУВАТИ",
-  },
-  {
-    id: 4,
-    link: "",
-    text: "СПОГАДИ",
-  },
-  {
-    id: 5,
-    link: "",
-    text: "ЗНАЙТИ МЕНЕ",
-  },
-];
+import { navigationLinks } from "@/data/header/navigationData";
 
 const Navigation: React.FC = () => {
   return (
