@@ -10,21 +10,26 @@ const BookingComponent: React.FC = () => {
   const [checkInDate, setCheckInDate] = useState<string>("");
   const [checkOutDate, setCheckOutDate] = useState<string>("");
   const [isCalendarСheckIn, setIsCalendarСheckIn] = useState<boolean>(false);
-  const [isCalendarCheckOut, setIsCalendarCheckOut] = useState<boolean>(false);
+  //const [isCalendarCheckOut, setIsCalendarCheckOut] = useState<boolean>(false);
+const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
+// Функция для обновления выбранной даты
+const handleDateSelect = (date: Date | null) => {
+  setSelectedDate(date);
+};
  
   const toggleCalendarСheckIn = () => {
     setIsCalendarСheckIn(!isCalendarСheckIn);
   };
 
-  const toggleCalendarCheckOut = () => {
-    setTimeout(() => {
-      console.log("Toggle Calendar CheckOut", isCalendarCheckOut); // Добавляем логирование
-    }, 0);
-    setIsCalendarCheckOut(!isCalendarCheckOut);
-  };
+  // const toggleCalendarCheckOut = () => {
+  //   setTimeout(() => {
+  //     console.log("Toggle Calendar CheckOut", isCalendarCheckOut); // Добавляем логирование
+  //   }, 0);
+  //   setIsCalendarCheckOut(!isCalendarCheckOut);
+  // };
 
-  console.log("Rendering Calendar CheckOut", isCalendarCheckOut); 
+  
 
   const handleCheckInDateChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -75,8 +80,9 @@ const BookingComponent: React.FC = () => {
               className={s.bookingInput}
             />
             <button
+              type="button"
               className={s.bookingOpenButton}
-              onClick={toggleCalendarCheckOut}
+              onClick={toggleCalendarСheckIn}
             >
               <Icon name="icon-down" className={s.downIcon} />
             </button>
@@ -102,8 +108,7 @@ const BookingComponent: React.FC = () => {
           onClick={handleSearch}
         />
       </form>
-      {isCalendarСheckIn && <Calendar />}
-      {isCalendarCheckOut && <Calendar />}
+      {isCalendarСheckIn && <Calendar onDateSelect={handleDateSelect} />}
     </>
   );
 };
