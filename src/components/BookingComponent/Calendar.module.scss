@@ -49,13 +49,11 @@
 
 .weeksItem,
 .daysItem {
-  color: #333;
   width: calc(100% / 7);
-  font-size: 1.07rem;
 }
 
 .weeksList {
-  padding: 10px;
+  padding: 10px 0px;
 }
 .weeksItem {
   font-family: var(--f-family-main);
@@ -65,13 +63,25 @@
 }
 
 .daysItem {
-  color: #aaa;
-  z-index: 1;
   cursor: pointer;
-  position: relative;
-  margin-top: 30px;
+  padding: 15px;
+  color: rgb(var(--color-total-black));
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-body);
+
+  &:hover {
+    border-radius: 50%;
+    background-color: rgb(var(--color-natural-orange));
+  }
 }
 
-.active {
-  background-color: #9b59b6;
+.lastDaysItem,
+.nextDaysItem {
+  color: rgb(var(--color-gray-light));
+}
+
+.activeDay {
+  border-radius: 50%;
+  color: rgb(var(--color-white));
+  background-color: rgb(var(--color-natural-orange));
 }
