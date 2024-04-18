@@ -7,8 +7,9 @@ import Calendar from "./Calendar";
 import s from "./BookingComponent.module.scss";
 
 const BookingComponent: React.FC = () => {
-  const [checkInDate, setCheckInDate] = useState<string>("");
-  const [checkOutDate, setCheckOutDate] = useState<string>("");
+  const [checkInDate, setCheckInDate] = useState<Date | null>(null);
+  const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
+
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectionStage, setSelectionStage] = useState<
@@ -22,27 +23,28 @@ const BookingComponent: React.FC = () => {
       case "checkIn":
         console.log("Selected Check-In Date:", date);
         console.log("Current Check-Out Date:", checkOutDate);
-        setCheckInDate(formatDate(date));
+        setCheckInDate(date);
         setSelectionStage("checkOut");
         break;
       case "checkOut":
         console.log("Selected Check-Out Date:", date);
         console.log("Current Check-In Date:", checkInDate);
-        if (new Date(formatDate(date)) < new Date(checkInDate)) {
+        if (date < checkInDate!) {
           console.log("Check-Out Date is before Check-In Date.");
           console.log("Updating Check-In Date.");
-          setCheckInDate(formatDate(date));
-          setCheckOutDate(checkInDate);
+          setCheckInDate (date);
+          setCheckOutDate(null);
         } else {
           console.log("Check-Out Date is after or equal to Check-In Date.");
-          setCheckOutDate(formatDate(date));
+          setCheckOutDate(date);
+          setSelectionStage("reset");
         }
-        setSelectionStage("reset");
+        
         break;
       case "reset":
         console.log("Selected Check-In Date (Reset):", date);
-        setCheckInDate(formatDate(date));
-        setCheckOutDate("");
+        setCheckInDate (date);
+        setCheckOutDate(null);
         setSelectionStage("checkOut");
         break;
       default:
@@ -76,7 +78,7 @@ const BookingComponent: React.FC = () => {
           <div className={s.inputWrapper}>
             <input
               type="text"
-              value={checkInDate}
+              value={checkInDate ? formatDate(checkInDate) : ""}
               placeholder="Выберите дату"
               className={s.bookingInput}
               readOnly
@@ -95,7 +97,7 @@ const BookingComponent: React.FC = () => {
           <div className={s.inputWrapper}>
             <input
               type="text"
-              value={checkOutDate}
+              value={checkOutDate ? formatDate(checkOutDate) : ""}
               placeholder="Выберите дату"
               className={s.bookingInput}
               readOnly
