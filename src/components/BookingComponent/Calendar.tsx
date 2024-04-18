@@ -4,9 +4,14 @@ import { useState, useEffect } from "react";
 import Icon from "../ui/Icon/Icon";
 import s from "./Calendar.module.scss";
 
-const Calendar: React.FC = () => {
+interface CalendarProps {
+  onDateSelect: (date: Date | null) => void;
+}
+
+const Calendar: React.FC<CalendarProps> = ({ onDateSelect }) => {
   const [currYear, setCurrYear] = useState<number>(new Date().getFullYear());
   const [currMonth, setCurrMonth] = useState<number>(new Date().getMonth());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const months: string[] = [
     "Січень",
@@ -24,43 +29,38 @@ const Calendar: React.FC = () => {
   ];
 
   const renderCalendar = () => {
-    let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(); // получаем день недели для первого числа месяца
-    let startOffset = firstDayofMonth === 0 ? 6 : firstDayofMonth - 1; // вычисляем смещение от воскресенья до понедельника (0 -> 6, 1 -> 0, ..., 6 -> 5)
+    let firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
+    let startOffset = firstDayofMonth === 0 ? 6 : firstDayofMonth - 1;
 
-    // Сдвигаем первый день месяца на понедельник, если он не приходится на понедельник
-    let firstMondayOfMonth = new Date(currYear, currMonth, 1 - startOffset);
-
-    // Теперь firstMondayOfMonth будет содержать дату, которая соответствует понедельнику первой недели месяца
-
-    const lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // получаем последнее число месяца
+    const lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate();
     const lastDayofMonth = new Date(
       currYear,
       currMonth,
       lastDateofMonth
-    ).getDay(); // получаем последний день недели месяца
-    const lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // получаем последнее число предыдущего месяца
+    ).getDay();
+    const lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
 
     let daysArray = [];
 
     for (let i = startOffset; i > 0; i--) {
-      // создаем li для последних дней предыдущего месяца
-      daysArray.push(lastDateofLastMonth - i + 1);
+      daysArray.push({
+        day: lastDateofLastMonth - i + 1,
+        class: "lastDaysItem",
+      });
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) {
-      // создаем li для всех дней текущего месяца
-      daysArray.push(i);
+      daysArray.push({ day: i, class: "" });
     }
 
     if (lastDayofMonth !== 0) {
       for (let i = lastDayofMonth; i < 7; i++) {
-        // создаем li для первых дней следующего месяца
-        daysArray.push(i - lastDayofMonth + 1);
+        daysArray.push({ day: i - lastDayofMonth + 1, class: "nextDaysItem" });
       }
     }
 
-    setCurrentDateText(`${months[currMonth]} ${currYear}`); // устанавливаем текущий месяц и год как текст заголовка
-    setDaysList(daysArray); // устанавливаем сгенерированный HTML для дней месяца
+    setDaysList(daysArray);
+    setCurrentDateText(`${months[currMonth]} ${currYear}`);
   };
 
   useEffect(() => {
@@ -78,8 +78,6 @@ const Calendar: React.FC = () => {
       newMonth = 0; // Устанавливаем новый месяц на январь
       newYear++; // Увеличиваем текущий год на 1
     }
-    console.log("Current month:", currMonth);
-    console.log("New month:", newMonth, "New year:", newYear);
 
     setCurrMonth(newMonth);
     setCurrYear(newYear);
@@ -88,8 +86,32 @@ const Calendar: React.FC = () => {
 
   const [currentDateText, setCurrentDateText] = useState<string>("");
 
-  const [daysList, setDaysList] = useState<number[]>([]);
-  console.log(daysList);
+  interface DayInfo {
+    day: number;
+    class: string;
+  }
+
+  const [daysList, setDaysList] = useState<DayInfo[]>([]);
+
+  const handleDayClick = (day: number) => {
+    const clickedDate = new Date(currYear, currMonth, day);
+    if (
+      clickedDate.getFullYear() === currYear &&
+      clickedDate.getMonth() === currMonth
+    ) {
+      setSelectedDate(clickedDate);
+      onDateSelect(clickedDate);
+      // Добавляем класс актив к выбранной дате
+      const daysListCopy = [...daysList];
+      const selectedDayIndex = daysList.findIndex(
+        (item) => item.day === clickedDate.getDate()
+      );
+      if (selectedDayIndex !== -1) {
+        daysListCopy[selectedDayIndex].class = "activeDay";
+        setDaysList(daysListCopy);
+      }
+    }
+  };
 
   return (
     <div className={s.calendarWrapper}>
@@ -124,8 +146,12 @@ const Calendar: React.FC = () => {
         </ul>
         <ul className={s.daysList}>
           {daysList.map((item, index) => (
-            <li key={index} className={s.daysItem}>
-              {item}
+            <li
+              key={index}
+              className={`${s.daysItem} ${s[item.class]}`}
+              onClick={() => handleDayClick(item.day)}
+            >
+              {item.day}
             </li>
           ))}
         </ul>

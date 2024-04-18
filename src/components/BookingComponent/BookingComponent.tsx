@@ -9,38 +9,59 @@ import s from "./BookingComponent.module.scss";
 const BookingComponent: React.FC = () => {
   const [checkInDate, setCheckInDate] = useState<string>("");
   const [checkOutDate, setCheckOutDate] = useState<string>("");
-  const [isCalendarСheckIn, setIsCalendarСheckIn] = useState<boolean>(false);
-  //const [isCalendarCheckOut, setIsCalendarCheckOut] = useState<boolean>(false);
-const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectionStage, setSelectionStage] = useState<
+    "checkIn" | "checkOut" | "reset"
+  >("checkIn");
 
-// Функция для обновления выбранной даты
-const handleDateSelect = (date: Date | null) => {
+  const handleDateSelect = (date: Date | null) => {
   setSelectedDate(date);
+  if (date) {
+    switch (selectionStage) {
+      case "checkIn":
+        console.log("Selected Check-In Date:", date);
+        console.log("Current Check-Out Date:", checkOutDate);
+        setCheckInDate(formatDate(date));
+        setSelectionStage("checkOut");
+        break;
+      case "checkOut":
+        console.log("Selected Check-Out Date:", date);
+        console.log("Current Check-In Date:", checkInDate);
+        if (new Date(formatDate(date)) < new Date(checkInDate)) {
+          console.log("Check-Out Date is before Check-In Date.");
+          console.log("Updating Check-In Date.");
+          setCheckInDate(formatDate(date));
+          setCheckOutDate(checkInDate);
+        } else {
+          console.log("Check-Out Date is after or equal to Check-In Date.");
+          setCheckOutDate(formatDate(date));
+        }
+        setSelectionStage("reset");
+        break;
+      case "reset":
+        console.log("Selected Check-In Date (Reset):", date);
+        setCheckInDate(formatDate(date));
+        setCheckOutDate("");
+        setSelectionStage("checkOut");
+        break;
+      default:
+        break;
+    }
+  }
 };
- 
-  const toggleCalendarСheckIn = () => {
-    setIsCalendarСheckIn(!isCalendarСheckIn);
+
+  const formatDate = (date: Date): string => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return date.toLocaleDateString(undefined, options);
   };
 
-  // const toggleCalendarCheckOut = () => {
-  //   setTimeout(() => {
-  //     console.log("Toggle Calendar CheckOut", isCalendarCheckOut); // Добавляем логирование
-  //   }, 0);
-  //   setIsCalendarCheckOut(!isCalendarCheckOut);
-  // };
-
-  
-
-  const handleCheckInDateChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setCheckInDate(event.target.value);
-  };
-
-  const handleCheckOutDateChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setCheckOutDate(event.target.value);
+  const toggleCalendar = () => {
+    setIsCalendarOpen(!isCalendarOpen);
   };
 
   const handleSearch = () => {
@@ -56,14 +77,14 @@ const handleDateSelect = (date: Date | null) => {
             <input
               type="text"
               value={checkInDate}
-              onChange={handleCheckInDateChange}
               placeholder="Выберите дату"
               className={s.bookingInput}
+              readOnly
             />
             <button
               type="button"
               className={s.bookingOpenButton}
-              onClick={toggleCalendarСheckIn}
+              onClick={toggleCalendar}
             >
               <Icon name="icon-down" className={s.downIcon} />
             </button>
@@ -75,14 +96,14 @@ const handleDateSelect = (date: Date | null) => {
             <input
               type="text"
               value={checkOutDate}
-              onChange={handleCheckOutDateChange}
               placeholder="Выберите дату"
               className={s.bookingInput}
+              readOnly
             />
             <button
               type="button"
               className={s.bookingOpenButton}
-              onClick={toggleCalendarСheckIn}
+              onClick={toggleCalendar}
             >
               <Icon name="icon-down" className={s.downIcon} />
             </button>
@@ -108,7 +129,7 @@ const handleDateSelect = (date: Date | null) => {
           onClick={handleSearch}
         />
       </form>
-      {isCalendarСheckIn && <Calendar onDateSelect={handleDateSelect} />}
+      {isCalendarOpen && <Calendar onDateSelect={handleDateSelect} />}
     </>
   );
 };
