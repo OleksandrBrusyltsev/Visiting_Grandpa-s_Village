@@ -4,7 +4,7 @@ import Link from "next/link";
 import css from "./Navigation.module.scss";
 import { navigationLinks } from "@/data/header/navigationData";
 
-const Navigation: React.FC = () => {
+const Navigation = () => {
   return (
     <div className={css.container}>
       <ul className={css.list}>

@@ -5,33 +5,15 @@ import css from "./Header.module.scss";
 import Image from "next/image";
 import Button from "../ui/Button/Button";
 import PopupMenu from "./PopupMenu";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Navigation from "./Navigation";
+import LangBtn from "../LangBtn/LangBtn";
 
 const image = "/images/logo.svg";
 const alt = "Logo main";
 
-const Header: React.FC = () => {
+const Header = () => {
   const [isVisible, setVisible] = useState(false);
-
-  const [windowSize, setWindowSize] = useState({
-    width: typeof window !== "undefined" ? window.innerWidth : 0,
-  });
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize((prevState) => ({
-        ...prevState,
-        width: window.innerWidth,
-      }));
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const handlePopup = () => {
     setVisible(!isVisible);
@@ -43,20 +25,18 @@ const Header: React.FC = () => {
         <button className={css.burgerBtn} onClick={handlePopup}>
           <Icon name={"burger"} className={css.burgerIcon} />
         </button>
-        <Image
-          src={image}
-          alt={alt}
-          width={144}
-          height={80}
-          className={css.mainLogo}
-        />
+        <a href="/">
+          <Image
+            src={image}
+            alt={alt}
+            width={144}
+            height={80}
+            className={css.mainLogo}
+          />
+        </a>
 
         <div className={css.headerBox}>
-          <div className={css.langContainer}>
-            <button className={`${css.langBtn} ${css.active}`}>UA</button>
-            <p>/</p>
-            <button className={css.langBtn}>EN</button>
-          </div>
+          <LangBtn />
 
           <button className={css.userBtn}>
             <Icon name={"user"} className={css.userIcon} />
@@ -71,7 +51,7 @@ const Header: React.FC = () => {
         </div>
       </div>
       {isVisible && <PopupMenu handlePopup={handlePopup} />}
-      {windowSize.width > 766 ? <Navigation /> : null}
+      <Navigation />
     </>
   );
 };
