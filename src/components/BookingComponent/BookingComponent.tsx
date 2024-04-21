@@ -17,41 +17,33 @@ const BookingComponent: React.FC = () => {
   >("checkIn");
 
   const handleDateSelect = (date: Date | null) => {
-  setSelectedDate(date);
-  if (date) {
-    switch (selectionStage) {
-      case "checkIn":
-        console.log("Selected Check-In Date:", date);
-        console.log("Current Check-Out Date:", checkOutDate);
-        setCheckInDate(date);
-        setSelectionStage("checkOut");
-        break;
-      case "checkOut":
-        console.log("Selected Check-Out Date:", date);
-        console.log("Current Check-In Date:", checkInDate);
-        if (date < checkInDate!) {
-          console.log("Check-Out Date is before Check-In Date.");
-          console.log("Updating Check-In Date.");
-          setCheckInDate (date);
+    setSelectedDate(date);
+    if (date) {
+      switch (selectionStage) {
+        case "checkIn":
+          setCheckInDate(date);
+          setSelectionStage("checkOut");
+          break;
+        case "checkOut":
+          if (date < checkInDate!) {
+            setCheckInDate(date);
+            setCheckOutDate(null);
+          } else {
+            setCheckOutDate(date);
+            setSelectionStage("reset");
+          }
+
+          break;
+        case "reset":
+          setCheckInDate(date);
           setCheckOutDate(null);
-        } else {
-          console.log("Check-Out Date is after or equal to Check-In Date.");
-          setCheckOutDate(date);
-          setSelectionStage("reset");
-        }
-        
-        break;
-      case "reset":
-        console.log("Selected Check-In Date (Reset):", date);
-        setCheckInDate (date);
-        setCheckOutDate(null);
-        setSelectionStage("checkOut");
-        break;
-      default:
-        break;
+          setSelectionStage("checkOut");
+          break;
+        default:
+          break;
+      }
     }
-  }
-};
+  };
 
   const formatDate = (date: Date): string => {
     const options: Intl.DateTimeFormatOptions = {
@@ -131,7 +123,13 @@ const BookingComponent: React.FC = () => {
           onClick={handleSearch}
         />
       </form>
-      {isCalendarOpen && <Calendar onDateSelect={handleDateSelect} />}
+      {isCalendarOpen && (
+        <Calendar
+          onDateSelect={handleDateSelect}
+          checkInDate={checkInDate}
+          checkOutDate={checkOutDate}
+        />
+      )}
     </>
   );
 };

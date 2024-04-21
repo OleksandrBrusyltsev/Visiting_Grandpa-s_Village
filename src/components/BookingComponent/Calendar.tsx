@@ -6,9 +6,15 @@ import s from "./Calendar.module.scss";
 
 interface CalendarProps {
   onDateSelect: (date: Date | null) => void;
+  checkInDate: Date | null;
+  checkOutDate: Date | null;
 }
 
-const Calendar: React.FC<CalendarProps> = ({ onDateSelect }) => {
+const Calendar: React.FC<CalendarProps> = ({
+  onDateSelect,
+  checkInDate,
+  checkOutDate,
+}) => {
   const [currYear, setCurrYear] = useState<number>(new Date().getFullYear());
   const [currMonth, setCurrMonth] = useState<number>(new Date().getMonth());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -33,6 +39,7 @@ const Calendar: React.FC<CalendarProps> = ({ onDateSelect }) => {
     let startOffset = firstDayofMonth === 0 ? 6 : firstDayofMonth - 1;
 
     const lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate();
+
     const lastDayofMonth = new Date(
       currYear,
       currMonth,
@@ -46,16 +53,21 @@ const Calendar: React.FC<CalendarProps> = ({ onDateSelect }) => {
       daysArray.push({
         day: lastDateofLastMonth - i + 1,
         class: "lastDaysItem",
+        month: currMonth - 1,
       });
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) {
-      daysArray.push({ day: i, class: "" });
+      daysArray.push({ day: i, class: "", month: currMonth });
     }
 
     if (lastDayofMonth !== 0) {
       for (let i = lastDayofMonth; i < 7; i++) {
-        daysArray.push({ day: i - lastDayofMonth + 1, class: "nextDaysItem" });
+        daysArray.push({
+          day: i - lastDayofMonth + 1,
+          class: "nextDaysItem",
+          month: currMonth + 1,
+        });
       }
     }
 
@@ -64,6 +76,7 @@ const Calendar: React.FC<CalendarProps> = ({ onDateSelect }) => {
   };
 
   useEffect(() => {
+    console.log("Current month:", currMonth);
     renderCalendar();
   }, [currMonth, currYear]);
 
@@ -89,29 +102,59 @@ const Calendar: React.FC<CalendarProps> = ({ onDateSelect }) => {
   interface DayInfo {
     day: number;
     class: string;
+    month: number;
   }
 
   const [daysList, setDaysList] = useState<DayInfo[]>([]);
 
-  const handleDayClick = (day: number) => {
-    const clickedDate = new Date(currYear, currMonth, day);
-    if (
-      clickedDate.getFullYear() === currYear &&
-      clickedDate.getMonth() === currMonth
-    ) {
-      setSelectedDate(clickedDate);
-      onDateSelect(clickedDate);
-      // Добавляем класс актив к выбранной дате
-      const daysListCopy = [...daysList];
-      const selectedDayIndex = daysList.findIndex(
-        (item) => item.day === clickedDate.getDate()
-      );
-      if (selectedDayIndex !== -1) {
-        daysListCopy[selectedDayIndex].class = "activeDay";
-        setDaysList(daysListCopy);
-      }
-    }
+  const handleDayClick = (day: number, month: number) => {
+    const clickedDate = new Date(currYear, month, day);
+    setSelectedDate(clickedDate);
+    onDateSelect(clickedDate);
   };
+
+  const daysListWithActiveClass = daysList.map((item) => {
+    const date = new Date(currYear, item.month, item.day);
+    let classes = [item.class];
+
+    // Если это день заезда, добавляем класс "activeDay"
+    if (checkInDate && date.getTime() === checkInDate.getTime()) {
+      classes.push("activeDay");
+    }
+
+    // Если это день выезда, добавляем класс "activeDay"
+    if (checkOutDate && date.getTime() === checkOutDate.getTime()) {
+      classes.push("activeDay");
+    }
+
+    // Если это день между заездом и выездом, добавляем класс "activePeriod"
+    if (
+      checkInDate &&
+      checkOutDate &&
+      date > checkInDate &&
+      date < checkOutDate
+    ) {
+      classes.push("activePeriod");
+    }
+
+    console.log(classes);
+    return {
+      ...item,
+      class: classes.join(" "),
+    };
+  });
+
+  const getClassNames = (
+    classNames: string,
+    styles: Record<string, string>
+  ) => {
+    return classNames
+      .split(" ")
+      .map((className) => styles[className])
+      .join(" ");
+  };
+
+  console.log(daysListWithActiveClass);
 
   return (
     <div className={s.calendarWrapper}>
@@ -145,15 +188,18 @@ const Calendar: React.FC<CalendarProps> = ({ onDateSelect }) => {
           <li className={s.weeksItem}>Нд</li>
         </ul>
         <ul className={s.daysList}>
-          {daysList.map((item, index) => (
-            <li
-              key={index}
-              className={`${s.daysItem} ${s[item.class]}`}
-              onClick={() => handleDayClick(item.day)}
-            >
-              {item.day}
-            </li>
-          ))}
+          {daysListWithActiveClass.map((item, index) => {
+            const classNames = getClassNames(item.class, s);
+            return (
+              <li
+                key={index}
+                className={`${s.daysItem} ${classNames}`}
+                onClick={() => handleDayClick(item.day, item.month)}
+              >
+                {item.day}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

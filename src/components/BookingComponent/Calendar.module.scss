@@ -85,3 +85,11 @@
   color: rgb(var(--color-white));
   background-color: rgb(var(--color-natural-orange));
 }
+
+.activePeriod {
+  background-color: rgba(180, 133, 79, 0.4);
+  &:hover {
+    border-radius: 0;
+    background-color: rgba(180, 133, 79,0.8);
+  }
+}
