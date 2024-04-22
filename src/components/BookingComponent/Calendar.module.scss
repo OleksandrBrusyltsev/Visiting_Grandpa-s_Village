@@ -55,6 +55,8 @@
 .weeksList {
   padding: 10px 0px;
 }
+
+
 .weeksItem {
   font-family: var(--f-family-main);
   font-size: var(--f-size-body);
@@ -64,6 +66,10 @@
 
 .daysItem {
   cursor: pointer;
+  
+}
+
+.daysItemBox {
   padding: 15px;
   color: rgb(var(--color-total-black));
   font-family: var(--f-family-headline);
@@ -74,6 +80,7 @@
     background-color: rgb(var(--color-natural-orange));
   }
 }
+
 
 .lastDaysItem,
 .nextDaysItem {

@@ -1,5 +1,5 @@
 "use client";
-
+import { ReactNode } from "react";
 import { useState, useEffect } from "react";
 import Icon from "../ui/Icon/Icon";
 import s from "./Calendar.module.scss";
@@ -76,7 +76,7 @@ const Calendar: React.FC<CalendarProps> = ({
   };
 
   useEffect(() => {
-    console.log("Current month:", currMonth);
+    //console.log("Current month:", currMonth);
     renderCalendar();
   }, [currMonth, currYear]);
 
@@ -119,12 +119,12 @@ const Calendar: React.FC<CalendarProps> = ({
 
     // Если это день заезда, добавляем класс "activeDay"
     if (checkInDate && date.getTime() === checkInDate.getTime()) {
-      classes.push("activeDay");
+      classes.push("activeDay", "activeCheckIn");
     }
 
     // Если это день выезда, добавляем класс "activeDay"
     if (checkOutDate && date.getTime() === checkOutDate.getTime()) {
-      classes.push("activeDay");
+      classes.push("activeDay", "activeCheckOut");
     }
 
     // Если это день между заездом и выездом, добавляем класс "activePeriod"
@@ -137,7 +137,7 @@ const Calendar: React.FC<CalendarProps> = ({
       classes.push("activePeriod");
     }
 
-    console.log(classes);
+    //console.log(classes);
     return {
       ...item,
       class: classes.join(" "),
@@ -154,7 +154,7 @@ const Calendar: React.FC<CalendarProps> = ({
       .join(" ");
   };
 
-  console.log(daysListWithActiveClass);
+  //console.log(daysListWithActiveClass);
 
   return (
     <div className={s.calendarWrapper}>
@@ -193,10 +193,12 @@ const Calendar: React.FC<CalendarProps> = ({
             return (
               <li
                 key={index}
-                className={`${s.daysItem} ${classNames}`}
+                className={s.daysItem}
                 onClick={() => handleDayClick(item.day, item.month)}
               >
-                {item.day}
+                <div className={`${s.daysItemBox} ${classNames}`}>
+                  {item.day}
+                </div>
               </li>
             );
           })}
