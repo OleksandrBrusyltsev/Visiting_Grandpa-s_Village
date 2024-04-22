@@ -1,10 +1,10 @@
 import createMiddleware from "next-intl/middleware";
 
 export default createMiddleware({
-  locales: ["ua", "en"],
-  defaultLocale: "ua",
+  locales: ["uk", "en"],
+  defaultLocale: "uk",
 });
 
 export const config = {
-  matcher: ["/", "/(en|ua)/:path*"],
+  matcher: ["/", "/(en|uk)/:path*"],
 };
