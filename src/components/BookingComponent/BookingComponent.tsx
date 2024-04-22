@@ -9,15 +9,12 @@ import s from "./BookingComponent.module.scss";
 const BookingComponent: React.FC = () => {
   const [checkInDate, setCheckInDate] = useState<Date | null>(null);
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
-
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectionStage, setSelectionStage] = useState<
     "checkIn" | "checkOut" | "reset"
   >("checkIn");
 
   const handleDateSelect = (date: Date | null) => {
-    setSelectedDate(date);
     if (date) {
       switch (selectionStage) {
         case "checkIn":
