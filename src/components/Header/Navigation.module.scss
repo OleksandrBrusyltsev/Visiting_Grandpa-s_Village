@@ -1,12 +1,31 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
 .container {
-  margin-top: 16px;
-  margin-bottom: 80px;
+  display: none;
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-top: 16px;
+    margin-bottom: 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .list {
   display: flex;
+  gap: 52px;
   justify-content: space-evenly;
   align-items: center;
+
+  width: 707px;
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 1180px;
+    gap: 170px;
+  }
 }
 
 .item {
