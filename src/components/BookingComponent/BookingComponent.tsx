@@ -82,7 +82,7 @@ const BookingComponent: React.FC = () => {
   };
 
   return (
-    <>
+    <div className={s.bookingComponentContainer}>
       <form className={s.bookingForm}>
         <div className={s.labelWraper}>
           <label className={s.bookingLabel}>Заїзд</label>
@@ -124,7 +124,11 @@ const BookingComponent: React.FC = () => {
         <div className={s.labelWraper}>
           <label className={s.bookingLabel}>Гості</label>
           <div className={s.inputWrapper}>
-            <input className={s.bookingInputGuests} type="text" />
+            <input
+              className={s.bookingInputGuests}
+              type="text"
+              value={`Дорослі: ${adults.toString()}, Діти: ${children.toString()}`}
+            />
             <button
               type="button"
               className={s.bookingOpenButton}
@@ -151,9 +155,15 @@ const BookingComponent: React.FC = () => {
         />
       )}
       {isGuestsFormOpen && (
-        <GuestsForm onGuestsChange={handleGuestsChange} adults={adults} children ={children} setAdults ={setAdults} setChildren = {setChildren} />
+        <GuestsForm
+          onGuestsChange={handleGuestsChange}
+          adults={adults}
+          children={children}
+          setAdults={setAdults}
+          setChildren={setChildren}
+        />
       )}
-    </>
+    </div>
   );
 };
 

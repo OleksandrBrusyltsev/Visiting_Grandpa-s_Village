@@ -21,6 +21,8 @@
 .buttonWrapper {
   display: flex;
   align-items: center;
+  width: 132px;
+  justify-content: space-between;
 }
 .plusButton,
 .minButton {
@@ -48,8 +50,6 @@
   font-family: var(--f-family-headline);
   font-size: 18px;
   color: rgb(var(--color-total-black));
-  margin-right: 16px;
-  margin-left: 16px;
 }
 
 .textFirst,
