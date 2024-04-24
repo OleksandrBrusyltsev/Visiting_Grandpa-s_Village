@@ -2,7 +2,7 @@ export default function NotFoundPage() {
   return (
     <html lang="en">
       <body>
-        <p>NotFound Page</p>
+        <p>NotFoundPage</p>
       </body>
     </html>
   );
