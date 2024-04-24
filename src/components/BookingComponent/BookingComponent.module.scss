@@ -9,21 +9,36 @@
 .bookingLabel {
   font-family: var(--f-family-main);
   font-size: var(--f-size-body);
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .labelWraper {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .inputWrapper {
   display: flex;
 }
 
 .bookingInput {
-  width: 115px;
+  width: 90px;
   margin-right: 12px;
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 700;
+  color: rgb(var(--color-total-black));
 }
+
+.bookingInputGuests {
+  width: 140px;
+  margin-right: 12px;
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 700;
+  color: rgb(var(--color-total-black));
+}
+
 .bookingOpenButton {
   position: relative;
   width: 24px;
