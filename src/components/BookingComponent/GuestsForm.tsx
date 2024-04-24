@@ -1,18 +1,62 @@
 "use client";
+
 import Icon from "../ui/Icon/Icon";
 import s from "./GuestsForm.module.scss";
 
-const GuestsForm: React.FC = () => {
+interface GuestsProps {
+  adults: number;
+  children: number;
+  setAdults: React.Dispatch<React.SetStateAction<number>>;
+  setChildren: React.Dispatch<React.SetStateAction<number>>;
+  onGuestsChange: (adults: number, children: number) => void;
+}
+
+const GuestsForm: React.FC<GuestsProps> = ({
+  onGuestsChange,
+  adults,
+  children,
+  setAdults,
+  setChildren,
+}) => {
+  type GuestType = "adults" | "children";
+  const handleIncrement = (type: GuestType) => {
+    if (type === "adults") {
+      setAdults(adults + 1);
+      onGuestsChange(adults + 1, children); // Передаем обновленные значения взрослых и детей
+    } else if (type === "children") {
+      setChildren(children + 1);
+      onGuestsChange(adults, children + 1); // Передаем обновленные значения взрослых и детей
+    }
+  };
+
+  const handleDecrement = (type: GuestType) => {
+    if (type === "adults" && adults > 1) {
+      setAdults(adults - 1);
+      onGuestsChange(adults - 1, children); // Передаем обновленные значения взрослых и детей
+    } else if (type === "children" && children > 0) {
+      setChildren(children - 1);
+      onGuestsChange(adults, children - 1); // Передаем обновленные значения взрослых и детей
+    }
+  };
+
   return (
     <div className={s.guestsFormContainer}>
       <div className={s.adultWrapper}>
         <h3 className={s.title}>Дорослі</h3>
         <div className={s.buttonWrapper}>
-          <button className={s.minButton} type="button">
+          <button
+            className={s.minButton}
+            type="button"
+            onClick={() => handleDecrement("adults")}
+          >
             <Icon className={s.minIcon} name="icon-min" />
           </button>
-          <p className={s.value}>2</p>
-          <button className={s.plusButton} type="button">
+          <p className={s.value}>{adults}</p>
+          <button
+            className={s.plusButton}
+            type="button"
+            onClick={() => handleIncrement("adults")}
+          >
             <Icon className={s.plusIcon} name="icon-plus" />
           </button>
         </div>
@@ -21,11 +65,19 @@ const GuestsForm: React.FC = () => {
       <div className={s.childWrapper}>
         <h3 className={s.title}>Діти</h3>
         <div className={s.buttonWrapper}>
-          <button className={s.minButton} type="button">
+          <button
+            className={s.minButton}
+            type="button"
+            onClick={() => handleDecrement("children")}
+          >
             <Icon className={s.minIcon} name="icon-min" />
           </button>
-          <p className={s.value}>2</p>
-          <button className={s.plusButton} type="button">
+          <p className={s.value}>{children}</p>
+          <button
+            className={s.plusButton}
+            type="button"
+            onClick={() => handleIncrement("children")}
+          >
             <Icon className={s.plusIcon} name="icon-plus" />
           </button>
         </div>

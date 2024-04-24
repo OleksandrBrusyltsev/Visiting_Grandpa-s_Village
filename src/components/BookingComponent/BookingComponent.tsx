@@ -14,7 +14,17 @@ const BookingComponent: React.FC = () => {
   const [isGuestsFormOpen, setIsGuestsFormOpen] = useState<boolean>(false);
   const [selectionStage, setSelectionStage] = useState<
     "checkIn" | "checkOut" | "reset"
-  >("checkIn");
+    >("checkIn");
+  
+   const [adults, setAdults] = useState(0);
+   const [children, setChildren] = useState(0);
+
+  console.log(adults);
+  console.log(children);
+  const handleGuestsChange = (adults: number, children:number) => {
+    setAdults(adults);
+    setChildren(children);
+  };
 
   const handleDateSelect = (date: Date | null) => {
     if (date) {
@@ -47,20 +57,25 @@ const BookingComponent: React.FC = () => {
   const formatDate = (date: Date): string => {
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
-      month: "long",
+      month: "numeric",
       day: "numeric",
     };
     return date.toLocaleDateString(undefined, options);
   };
 
   const toggleCalendar = () => {
+    if (isGuestsFormOpen) {
+      setIsGuestsFormOpen(false);
+    }
     setIsCalendarOpen(!isCalendarOpen);
   };
 
-    const toggleGuestsForm = () => {
-      setIsGuestsFormOpen(!isGuestsFormOpen);
-    };
-
+  const toggleGuestsForm = () => {
+    if (isCalendarOpen) {
+      setIsCalendarOpen(false);
+    }
+    setIsGuestsFormOpen(!isGuestsFormOpen);
+  };
 
   const handleSearch = () => {
     // Обработка поиска
@@ -75,7 +90,6 @@ const BookingComponent: React.FC = () => {
             <input
               type="text"
               value={checkInDate ? formatDate(checkInDate) : ""}
-              placeholder="Выберите дату"
               className={s.bookingInput}
               readOnly
             />
@@ -94,7 +108,6 @@ const BookingComponent: React.FC = () => {
             <input
               type="text"
               value={checkOutDate ? formatDate(checkOutDate) : ""}
-              placeholder="Выберите дату"
               className={s.bookingInput}
               readOnly
             />
@@ -111,10 +124,7 @@ const BookingComponent: React.FC = () => {
         <div className={s.labelWraper}>
           <label className={s.bookingLabel}>Гості</label>
           <div className={s.inputWrapper}>
-            <input
-              className={s.bookingInput}
-              type="text"
-            />
+            <input className={s.bookingInputGuests} type="text" />
             <button
               type="button"
               className={s.bookingOpenButton}
@@ -141,7 +151,7 @@ const BookingComponent: React.FC = () => {
         />
       )}
       {isGuestsFormOpen && (
-        <GuestsForm/>
+        <GuestsForm onGuestsChange={handleGuestsChange} adults={adults} children ={children} setAdults ={setAdults} setChildren = {setChildren} />
       )}
     </>
   );
