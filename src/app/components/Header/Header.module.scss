@@ -1,5 +1,5 @@
-@use "../../styles/mixins" as mixins;
-@use "../../styles/variables";
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
 
 .container {
   display: flex;
@@ -71,8 +71,8 @@
 }
 
 .active {
-    color: rgb(var(--color-natural-orange));
-  }
+  color: rgb(var(--color-natural-orange));
+}
 
 .headerBtn {
   @include mixins.media-max(variables.$breakpoint-mobile-max) {
@@ -85,7 +85,7 @@
   gap: 30px;
 }
 
-.mainLogo{
+.mainLogo {
   @include mixins.media-min(variables.$breakpoint-tablet-min) {
     width: 277px;
     height: 135px;

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Icon from "../ui/Icon/Icon";
 import s from "./Footer.module.scss";
-import { navLink } from "../../data/footer/data";
+import { navLink } from "../../../data/footer/data";
 
 const image = "/images/logo.svg";
 

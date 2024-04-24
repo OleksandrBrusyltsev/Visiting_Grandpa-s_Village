@@ -1,14 +1,5 @@
-import Header from "@/components/Header/Header";
-import WelcomeBlock from "@/components/WelcomeBlock/WelcomeBlock";
-import AskGrandpa from "../components/AskGrandpa/AskGrandpa";
-import "../styles/globals.scss";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <main>
-      <Header />
-      <WelcomeBlock />
-      <AskGrandpa />
-    </main>
-  );
+export default function RootPage() {
+  redirect("/ua");
 }
