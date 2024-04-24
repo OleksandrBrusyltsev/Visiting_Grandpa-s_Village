@@ -1,0 +1,63 @@
+.guestsFormContainer {
+  width: 390px;
+  padding: 60px 40px;
+  background-color: rgb(var(--color-calendar-bcg));
+  border-radius: 8px;
+  border: 1px solid rgb(var(--color-base-green));
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
+.adultWrapper,
+.childWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.childWrapper {
+  margin-bottom: 48px;
+}
+.buttonWrapper {
+  display: flex;
+  align-items: center;
+}
+.plusButton,
+.minButton {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(12, 12, 12, 1);
+}
+
+.minIcon,
+.plusIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-h3);
+  color: rgb(var(--color-total-black));
+}
+.value {
+  font-family: var(--f-family-headline);
+  font-size: 18px;
+  color: rgb(var(--color-total-black));
+  margin-right: 16px;
+  margin-left: 16px;
+}
+
+.textFirst,
+.textSecond {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  color: rgb(var(--color-total-black));
+}
+.textFirst {
+  margin-bottom: 29px;
+}

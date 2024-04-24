@@ -4,12 +4,14 @@ import { useState } from "react";
 import Icon from "../ui/Icon/Icon";
 import Button from "../ui/Button/Button";
 import Calendar from "./Calendar";
+import GuestsForm from "./GuestsForm";
 import s from "./BookingComponent.module.scss";
 
 const BookingComponent: React.FC = () => {
   const [checkInDate, setCheckInDate] = useState<Date | null>(null);
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
+  const [isGuestsFormOpen, setIsGuestsFormOpen] = useState<boolean>(false);
   const [selectionStage, setSelectionStage] = useState<
     "checkIn" | "checkOut" | "reset"
   >("checkIn");
@@ -54,6 +56,11 @@ const BookingComponent: React.FC = () => {
   const toggleCalendar = () => {
     setIsCalendarOpen(!isCalendarOpen);
   };
+
+    const toggleGuestsForm = () => {
+      setIsGuestsFormOpen(!isGuestsFormOpen);
+    };
+
 
   const handleSearch = () => {
     // Обработка поиска
@@ -107,8 +114,14 @@ const BookingComponent: React.FC = () => {
             <input
               className={s.bookingInput}
               type="text"
-              placeholder="Дорослі: 2, Діти: 0"
             />
+            <button
+              type="button"
+              className={s.bookingOpenButton}
+              onClick={toggleGuestsForm}
+            >
+              <Icon name="icon-down" className={s.downIcon} />
+            </button>
           </div>
         </div>
 
@@ -126,6 +139,9 @@ const BookingComponent: React.FC = () => {
           checkInDate={checkInDate}
           checkOutDate={checkOutDate}
         />
+      )}
+      {isGuestsFormOpen && (
+        <GuestsForm/>
       )}
     </>
   );
