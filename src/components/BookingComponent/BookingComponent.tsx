@@ -14,14 +14,12 @@ const BookingComponent: React.FC = () => {
   const [isGuestsFormOpen, setIsGuestsFormOpen] = useState<boolean>(false);
   const [selectionStage, setSelectionStage] = useState<
     "checkIn" | "checkOut" | "reset"
-    >("checkIn");
-  
-   const [adults, setAdults] = useState(0);
-   const [children, setChildren] = useState(0);
+  >("checkIn");
 
-  console.log(adults);
-  console.log(children);
-  const handleGuestsChange = (adults: number, children:number) => {
+  const [adults, setAdults] = useState(0);
+  const [children, setChildren] = useState(0);
+
+  const handleGuestsChange = (adults: number, children: number) => {
     setAdults(adults);
     setChildren(children);
   };

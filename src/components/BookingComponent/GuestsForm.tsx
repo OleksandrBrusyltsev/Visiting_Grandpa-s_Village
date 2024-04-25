@@ -22,20 +22,20 @@ const GuestsForm: React.FC<GuestsProps> = ({
   const handleIncrement = (type: GuestType) => {
     if (type === "adults") {
       setAdults(adults + 1);
-      onGuestsChange(adults + 1, children); // Передаем обновленные значения взрослых и детей
+      onGuestsChange(adults + 1, children); 
     } else if (type === "children") {
       setChildren(children + 1);
-      onGuestsChange(adults, children + 1); // Передаем обновленные значения взрослых и детей
+      onGuestsChange(adults, children + 1); 
     }
   };
 
   const handleDecrement = (type: GuestType) => {
-    if (type === "adults" && adults > 1) {
+    if (type === "adults" && adults > 0) {
       setAdults(adults - 1);
-      onGuestsChange(adults - 1, children); // Передаем обновленные значения взрослых и детей
+      onGuestsChange(adults - 1, children);
     } else if (type === "children" && children > 0) {
       setChildren(children - 1);
-      onGuestsChange(adults, children - 1); // Передаем обновленные значения взрослых и детей
+      onGuestsChange(adults, children - 1); 
     }
   };
 

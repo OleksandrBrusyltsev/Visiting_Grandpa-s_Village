@@ -76,7 +76,6 @@ const Calendar: React.FC<CalendarProps> = ({
   };
 
   useEffect(() => {
-    //console.log("Current month:", currMonth);
     renderCalendar();
   }, [currMonth, currYear]);
 
@@ -137,7 +136,6 @@ const Calendar: React.FC<CalendarProps> = ({
       classes.push("activePeriod");
     }
 
-    //console.log(classes);
     return {
       ...item,
       class: classes.join(" "),
@@ -153,8 +151,6 @@ const Calendar: React.FC<CalendarProps> = ({
       .map((className) => styles[className])
       .join(" ");
   };
-
-  //console.log(daysListWithActiveClass);
 
   return (
     <div className={s.calendarWrapper}>

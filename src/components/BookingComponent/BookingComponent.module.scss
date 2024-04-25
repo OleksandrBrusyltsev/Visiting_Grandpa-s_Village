@@ -34,6 +34,9 @@
   font-size: var(--f-size-body);
   font-weight: 700;
   color: rgb(var(--color-total-black));
+  &:focus {
+    outline: none;
+  }
 }
 
 .bookingInputGuests {
@@ -43,6 +46,9 @@
   font-size: var(--f-size-body);
   font-weight: 700;
   color: rgb(var(--color-total-black));
+   &:focus {
+    outline: none;
+  }
 }
 
 .bookingOpenButton {
