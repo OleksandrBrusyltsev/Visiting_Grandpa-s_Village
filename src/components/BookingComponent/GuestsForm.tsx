@@ -4,38 +4,38 @@ import Icon from "../ui/Icon/Icon";
 import s from "./GuestsForm.module.scss";
 
 interface GuestsProps {
-  adults: number;
-  children: number;
-  setAdults: React.Dispatch<React.SetStateAction<number>>;
-  setChildren: React.Dispatch<React.SetStateAction<number>>;
+  adultsCount: number;
+  childrenCount: number;
+  setAdultsCount: React.Dispatch<React.SetStateAction<number>>;
+  setChildrenCount: React.Dispatch<React.SetStateAction<number>>;
   onGuestsChange: (adults: number, children: number) => void;
 }
 
 const GuestsForm: React.FC<GuestsProps> = ({
   onGuestsChange,
-  adults,
-  children,
-  setAdults,
-  setChildren,
+  adultsCount,
+  childrenCount,
+  setAdultsCount,
+  setChildrenCount,
 }) => {
   type GuestType = "adults" | "children";
   const handleIncrement = (type: GuestType) => {
     if (type === "adults") {
-      setAdults(adults + 1);
-      onGuestsChange(adults + 1, children); 
+      setAdultsCount(adultsCount + 1);
+      onGuestsChange(adultsCount + 1, childrenCount);
     } else if (type === "children") {
-      setChildren(children + 1);
-      onGuestsChange(adults, children + 1); 
+      setChildrenCount(childrenCount + 1);
+      onGuestsChange(adultsCount, childrenCount + 1);
     }
   };
 
   const handleDecrement = (type: GuestType) => {
-    if (type === "adults" && adults > 0) {
-      setAdults(adults - 1);
-      onGuestsChange(adults - 1, children);
-    } else if (type === "children" && children > 0) {
-      setChildren(children - 1);
-      onGuestsChange(adults, children - 1); 
+    if (type === "adults" && adultsCount > 0) {
+      setAdultsCount(adultsCount - 1);
+      onGuestsChange(adultsCount - 1, childrenCount);
+    } else if (type === "children" && childrenCount > 0) {
+      setChildrenCount(childrenCount - 1);
+      onGuestsChange(adultsCount, childrenCount - 1);
     }
   };
 
@@ -51,7 +51,7 @@ const GuestsForm: React.FC<GuestsProps> = ({
           >
             <Icon className={s.minIcon} name="icon-min" />
           </button>
-          <p className={s.value}>{adults}</p>
+          <p className={s.value}>{adultsCount}</p>
           <button
             className={s.plusButton}
             type="button"
@@ -72,7 +72,7 @@ const GuestsForm: React.FC<GuestsProps> = ({
           >
             <Icon className={s.minIcon} name="icon-min" />
           </button>
-          <p className={s.value}>{children}</p>
+          <p className={s.value}>{childrenCount}</p>
           <button
             className={s.plusButton}
             type="button"

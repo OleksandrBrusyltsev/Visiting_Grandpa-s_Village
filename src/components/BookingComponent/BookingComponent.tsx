@@ -16,12 +16,12 @@ const BookingComponent: React.FC = () => {
     "checkIn" | "checkOut" | "reset"
   >("checkIn");
 
-  const [adults, setAdults] = useState(0);
-  const [children, setChildren] = useState(0);
+  const [adultsCount, setAdultsCount] = useState(0);
+  const [childrenCount, setChildrenCount] = useState(0);
 
   const handleGuestsChange = (adults: number, children: number) => {
-    setAdults(adults);
-    setChildren(children);
+    setAdultsCount(adults);
+    setChildrenCount(children);
   };
 
   const handleDateSelect = (date: Date | null) => {
@@ -125,7 +125,7 @@ const BookingComponent: React.FC = () => {
             <input
               className={s.bookingInputGuests}
               type="text"
-              value={`Дорослі: ${adults.toString()}, Діти: ${children.toString()}`}
+              value={`Дорослі: ${adultsCount.toString()}, Діти: ${childrenCount.toString()}`}
             />
             <button
               type="button"
@@ -155,10 +155,10 @@ const BookingComponent: React.FC = () => {
       {isGuestsFormOpen && (
         <GuestsForm
           onGuestsChange={handleGuestsChange}
-          adults={adults}
-          children={children}
-          setAdults={setAdults}
-          setChildren={setChildren}
+          adultsCount={adultsCount}
+          childrenCount={childrenCount}
+          setAdultsCount={setAdultsCount}
+          setChildrenCount={setChildrenCount}
         />
       )}
     </div>
