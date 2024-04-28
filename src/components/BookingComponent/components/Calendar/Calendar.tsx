@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Icon from "../ui/Icon/Icon";
+import Icon from "../../../ui/Icon/Icon";
 import s from "./Calendar.module.scss";
 
 interface CalendarProps {

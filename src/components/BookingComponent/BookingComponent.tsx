@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Icon from "../ui/Icon/Icon";
 import Button from "../ui/Button/Button";
-import Calendar from "./Calendar";
-import GuestsForm from "./GuestsForm";
+import Calendar from "./components/Calendar/Calendar";
+import GuestsForm from "./components/GuestsForm/GuestsForm";
 import s from "./BookingComponent.module.scss";
 
 const BookingComponent: React.FC = () => {

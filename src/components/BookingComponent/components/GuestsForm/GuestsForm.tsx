@@ -1,6 +1,6 @@
 "use client";
 
-import Icon from "../ui/Icon/Icon";
+import Icon from "../../../ui/Icon/Icon";
 import s from "./GuestsForm.module.scss";
 
 interface GuestsProps {
