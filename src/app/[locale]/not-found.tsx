@@ -1,7 +1,14 @@
-import { useTranslations } from "next-intl";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
 
 export default function NotFoundPage() {
-  useTranslations("NotFoundPage");
-
-  return <p></p>;
+  return (
+    <html lang="en">
+      <body>
+        <Header />
+        <p>NotFound Page</p>
+        <Footer />
+      </body>
+    </html>
+  );
 }

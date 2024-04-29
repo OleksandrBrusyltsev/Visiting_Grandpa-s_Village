@@ -4,7 +4,7 @@ import Link from "next/link";
 import css from "./PopupMenu.module.scss";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { navigationLinks } from "../../../data/header/popupData";
+import { navigationLinks } from "./../../data/header/popupData";
 
 interface PopupMenuProps {
   handlePopup: () => void;
