@@ -22,7 +22,6 @@ const BookingComponent: React.FC = () => {
     "checkIn" | "checkOut" | "reset"
   >("checkIn");
 
-
   const handleDateSelect = (date: Date | null) => {
     if (date) {
       switch (selectionStage) {
@@ -68,14 +67,13 @@ const BookingComponent: React.FC = () => {
     setIsCalendarOpen(!isCalendarOpen);
   };
 
+  const [adultsCount, setAdultsCount] = useState(0);
+  const [childrenCount, setChildrenCount] = useState(0);
 
-   const [adultsCount, setAdultsCount] = useState(0);
-   const [childrenCount, setChildrenCount] = useState(0);
-
-   const handleGuestsChange = (adults: number, children: number) => {
-     setAdultsCount(adults);
-     setChildrenCount(children);
-   };
+  const handleGuestsChange = (adults: number, children: number) => {
+    setAdultsCount(adults);
+    setChildrenCount(children);
+  };
   const toggleGuestsForm = () => {
     if (isCalendarOpen) {
       setIsCalendarOpen(false);
@@ -89,8 +87,8 @@ const BookingComponent: React.FC = () => {
 
   return (
     <div className={s.bookingComponentContainer}>
-      <form className={s.bookingForm}>
-        <div className={s.labelWraper}>
+      <form className={s.bookingForm} onSubmit={handleSearch}>
+        <div className={s.labelWraper} onClick={toggleCalendar}>
           <label className={s.bookingLabel}>Заїзд</label>
           <div className={s.inputWrapper}>
             <input
@@ -99,16 +97,12 @@ const BookingComponent: React.FC = () => {
               className={s.bookingInput}
               readOnly
             />
-            <button
-              type="button"
-              className={s.bookingOpenButton}
-              onClick={toggleCalendar}
-            >
+            <button type="button" className={s.bookingOpenButton}>
               <Icon name="icon-down" className={s.downIcon} />
             </button>
           </div>
         </div>
-        <div className={s.labelWraper}>
+        <div className={s.labelWraper} onClick={toggleCalendar}>
           <label className={s.bookingLabel}>Виїзд</label>
           <div className={s.inputWrapper}>
             <input
@@ -117,17 +111,13 @@ const BookingComponent: React.FC = () => {
               className={s.bookingInput}
               readOnly
             />
-            <button
-              type="button"
-              className={s.bookingOpenButton}
-              onClick={toggleCalendar}
-            >
+            <button type="button" className={s.bookingOpenButton}>
               <Icon name="icon-down" className={s.downIcon} />
             </button>
           </div>
         </div>
 
-        <div className={s.labelWraper}>
+        <div className={s.labelWraper} onClick={toggleGuestsForm}>
           <label className={s.bookingLabel}>Гості</label>
           <div className={s.inputWrapper}>
             <input
@@ -135,11 +125,7 @@ const BookingComponent: React.FC = () => {
               type="text"
               value={`Дорослі: ${adultsCount.toString()}, Діти: ${childrenCount.toString()}`}
             />
-            <button
-              type="button"
-              className={s.bookingOpenButton}
-              onClick={toggleGuestsForm}
-            >
+            <button type="button" className={s.bookingOpenButton}>
               <Icon name="icon-down" className={s.downIcon} />
             </button>
           </div>
@@ -150,7 +136,6 @@ const BookingComponent: React.FC = () => {
           label="Шукати"
           type="submit"
           className={`${s.button} ${s.buttonSearch}`}
-          onClick={handleSearch}
         />
       </form>
       {isCalendarOpen && (
@@ -164,15 +149,14 @@ const BookingComponent: React.FC = () => {
       )}
       {isGuestsFormOpen && (
         <Modal>
-           <GuestsForm
-          onGuestsChange={handleGuestsChange}
-          adultsCount={adultsCount}
-          childrenCount={childrenCount}
-          setAdultsCount={setAdultsCount}
-          setChildrenCount={setChildrenCount}
-        />
+          <GuestsForm
+            onGuestsChange={handleGuestsChange}
+            adultsCount={adultsCount}
+            childrenCount={childrenCount}
+            setAdultsCount={setAdultsCount}
+            setChildrenCount={setChildrenCount}
+          />
         </Modal>
-       
       )}
     </div>
   );

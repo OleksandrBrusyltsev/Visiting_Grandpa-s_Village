@@ -105,16 +105,24 @@ const Calendar: React.FC<CalendarProps> = ({
   }
 
   const [daysList, setDaysList] = useState<DayInfo[]>([]);
-
+  const today = new Date();
+  
   const handleDayClick = (day: number, month: number) => {
     const clickedDate = new Date(currYear, month, day);
-    setSelectedDate(clickedDate);
-    onDateSelect(clickedDate);
+    if (clickedDate >= today) {
+      setSelectedDate(clickedDate);
+      onDateSelect(clickedDate);
+    }
   };
 
   const daysListWithActiveClass = daysList.map((item) => {
     const date = new Date(currYear, item.month, item.day);
     let classes = [item.class];
+
+    // Добавить класс для отключенной даты
+    if (date < today) {
+      classes.push("disabled");
+    }
 
     // Если это день заезда, добавляем класс "activeDay"
     if (checkInDate && date.getTime() === checkInDate.getTime()) {
