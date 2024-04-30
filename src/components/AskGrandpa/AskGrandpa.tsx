@@ -5,7 +5,6 @@ import Icon from "../ui/Icon/Icon";
 import AskIcon from "./icons/AskIcon";
 import TelegramIcon from "./icons/TelegramIcon";
 import CrossIcon from "./icons/CrossIcon";
-// import { gsap } from "gsap";
 import style from "./AskGrandpa.module.scss";
 
 const AskGrandpa: FC = () => {
