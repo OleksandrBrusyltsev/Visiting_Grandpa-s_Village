@@ -8,27 +8,25 @@ import GuestsForm from "./components/GuestsForm/GuestsForm";
 import s from "./BookingComponent.module.scss";
 
 const BookingComponent: React.FC = () => {
-  const [checkInDate, setCheckInDate] = useState<Date | null>(null);
-  const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  const [checkInDate, setCheckInDate] = useState<Date | null>(today);
+  const [checkOutDate, setCheckOutDate] = useState<Date | null>(tomorrow);
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   const [isGuestsFormOpen, setIsGuestsFormOpen] = useState<boolean>(false);
   const [selectionStage, setSelectionStage] = useState<
     "checkIn" | "checkOut" | "reset"
   >("checkIn");
 
-  const [adultsCount, setAdultsCount] = useState(0);
-  const [childrenCount, setChildrenCount] = useState(0);
-
-  const handleGuestsChange = (adults: number, children: number) => {
-    setAdultsCount(adults);
-    setChildrenCount(children);
-  };
 
   const handleDateSelect = (date: Date | null) => {
     if (date) {
       switch (selectionStage) {
         case "checkIn":
           setCheckInDate(date);
+          setCheckOutDate(null);
           setSelectionStage("checkOut");
           break;
         case "checkOut":
@@ -68,6 +66,14 @@ const BookingComponent: React.FC = () => {
     setIsCalendarOpen(!isCalendarOpen);
   };
 
+
+   const [adultsCount, setAdultsCount] = useState(0);
+   const [childrenCount, setChildrenCount] = useState(0);
+
+   const handleGuestsChange = (adults: number, children: number) => {
+     setAdultsCount(adults);
+     setChildrenCount(children);
+   };
   const toggleGuestsForm = () => {
     if (isCalendarOpen) {
       setIsCalendarOpen(false);
