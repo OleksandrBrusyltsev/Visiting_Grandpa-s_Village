@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Button from "../ui/Button/Button";
-import BookingComponent from "../BookingComponent/BookingComponent";
 import s from "./WelcomeBlock.module.scss";
 
 const image = "/images/home/welcomeBlock-70.jpg";
@@ -10,7 +9,7 @@ const WelcomeBlock: React.FC = () => {
   return (
     <>
       {" "}
-      <BookingComponent />
+    
       <div className={s.blockWrapper}>
         <div className={s.textWrapper}>
           <p>Найкращий час для відпочинку - зараз</p>

@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+
 import Icon from "../ui/Icon/Icon";
 import Button from "../ui/Button/Button";
 import Calendar from "./components/Calendar/Calendar";
 import GuestsForm from "./components/GuestsForm/GuestsForm";
+import Modal from "./components/Modal/Modal";
 import s from "./BookingComponent.module.scss";
 
 const BookingComponent: React.FC = () => {
@@ -152,20 +154,25 @@ const BookingComponent: React.FC = () => {
         />
       </form>
       {isCalendarOpen && (
-        <Calendar
-          onDateSelect={handleDateSelect}
-          checkInDate={checkInDate}
-          checkOutDate={checkOutDate}
-        />
+        <Modal>
+          <Calendar
+            onDateSelect={handleDateSelect}
+            checkInDate={checkInDate}
+            checkOutDate={checkOutDate}
+          />
+        </Modal>
       )}
       {isGuestsFormOpen && (
-        <GuestsForm
+        <Modal>
+           <GuestsForm
           onGuestsChange={handleGuestsChange}
           adultsCount={adultsCount}
           childrenCount={childrenCount}
           setAdultsCount={setAdultsCount}
           setChildrenCount={setChildrenCount}
         />
+        </Modal>
+       
       )}
     </div>
   );

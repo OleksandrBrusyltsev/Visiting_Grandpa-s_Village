@@ -20,6 +20,7 @@ export default function RootLayout({
       {/* <body className={inter.className}> */}
       <body>
         {children}
+        <div id="modal-root"></div>
         <Footer />
       </body>
     </html>
