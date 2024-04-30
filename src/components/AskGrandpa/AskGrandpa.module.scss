@@ -1,0 +1,129 @@
+@use "./../../styles/mixins" as mixins;
+@import "./../../styles/variables.scss";
+
+.wrapper,
+.headlineWrapper,
+.askWrapper,
+.telegramButton,
+.iconAsk,
+.iconArrow,
+.iconArrowWrapper {
+  display: flex;
+}
+
+.wrapper {
+  width: 100%;
+  padding-top: 3.4rem;
+  padding-right: 1.5rem;
+  font-family: var(--f-family-headline);
+  justify-content: flex-end;
+}
+
+.headlineWrapper {
+  column-gap: 1.5rem;
+  align-items: center;
+  font-size: 1.25rem;
+  color: rgb(var(--color-base-green));
+
+  @include mixins.media-min($breakpoint-tablet-min) {
+    column-gap: 2.75rem;
+    font-size: 2.25rem;
+  }
+}
+
+.headline {
+  text-transform: capitalize;
+  text-align: center;
+  padding-top: 0.3rem;
+
+  @include mixins.media-min($breakpoint-tablet-min) {
+    padding-top: 0rem;
+  }
+}
+
+.telegramIconsWrapper {
+  height: 7rem;
+}
+
+.askWrapper {
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 2.5rem;
+  position: relative;
+
+  @include mixins.media-min($breakpoint-tablet-min) {
+    height: 150px;
+    row-gap: 5.3rem;
+  }
+}
+
+.askButtonWrapper,
+.askButton,
+.iconAsk {
+  width: 2.75rem;
+  height: 2.5rem;
+}
+
+.askButtonWrapper,
+.askButton,
+.iconAsk {
+  @include mixins.media-min($breakpoint-tablet-min) {
+    width: 2rem;
+    height: 1.87rem;
+  }
+}
+
+.telegramButton {
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  position: absolute;
+  @include mixins.media-min($breakpoint-tablet-min) {
+    right: -5px;
+  }
+}
+
+.iconAsk,
+.iconArrow {
+  justify-content: center;
+  color: rgb(var(--color-base-green));
+  transition: color 0.3s, stroke 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    color: transparent;
+    stroke: rgb(var(--color-base-green));
+    stroke-width: 1px;
+  }
+}
+
+.iconTelegramWrapper {
+  background-color: #2aabee;
+  border-radius: 50%;
+  position: relative;
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.iconTelegram {
+  position: absolute;
+  top: 12px;
+  left: 7px;
+}
+
+.iconArrowWrapper {
+  justify-content: center;
+  width: 2.75rem;
+  @include mixins.media-min($breakpoint-tablet-min) {
+    width: 2rem;
+  }
+}
+
+.iconArrow {
+  max-width: 1.1rem;
+  max-height: 1.5rem;
+}
+
+.hidden {
+  display: none;
+}
