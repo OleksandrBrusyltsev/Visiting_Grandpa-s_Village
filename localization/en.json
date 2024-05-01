@@ -6,5 +6,8 @@
   "NotFoundPage": {
     "title": "Page not found",
     "description": "Page not found."
+  },
+  "Admin": {
+    "title": "Admin"
   }
 }

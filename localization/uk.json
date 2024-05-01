@@ -6,5 +6,8 @@
   "NotFoundPage": {
     "title": "Сторінка не знайдена",
     "description": "Сторінка не знайдена."
+  },
+  "Admin": {
+    "title": "Адмінка"
   }
 }
