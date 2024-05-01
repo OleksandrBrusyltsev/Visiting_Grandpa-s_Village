@@ -1,3 +1,3 @@
 export default function InnerNotFoundPage() {
-  return <p>NotFound Page</p>;
+  return <p>NotFound Inner Page</p>;
 }
