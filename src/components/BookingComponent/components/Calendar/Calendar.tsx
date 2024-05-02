@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Icon from "../../../ui/Icon/Icon";
+import Image from "next/image";
+import IconPrev from "../../../../assets/icons/icon-prev.svg";
+import IconNext from "../../../../assets/icons/icon-next.svg";
 import s from "./Calendar.module.scss";
 
 interface CalendarProps {
@@ -170,14 +172,14 @@ const Calendar: React.FC<CalendarProps> = ({
             className={s.calendarPrevButton}
             onClick={() => handlePrevNextClick(-1)}
           >
-            <Icon name="icon-prev" className={s.prevIcon} />
+            <Image src={IconPrev} alt = "icon-prev"className={s.prevIcon} />
           </button>
           <button
             type="button"
             className={s.calendarNextButton}
             onClick={() => handlePrevNextClick(1)}
           >
-            <Icon name="icon-next" className={s.nextIcon} />
+            <Image src={IconNext} alt="icon-next" className={s.nextIcon} />
           </button>
         </div>
       </header>

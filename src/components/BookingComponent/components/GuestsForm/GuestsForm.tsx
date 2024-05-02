@@ -1,6 +1,7 @@
 "use client";
-
-import Icon from "../../../ui/Icon/Icon";
+import Image from "next/image";
+import IconPlus from "../../../../assets/icons/icon-plus.svg";
+import IconMin from "../../../../assets/icons/icon-min.svg";
 import s from "./GuestsForm.module.scss";
 
 interface GuestsProps {
@@ -49,7 +50,7 @@ const GuestsForm: React.FC<GuestsProps> = ({
             type="button"
             onClick={() => handleDecrement("adults")}
           >
-            <Icon className={s.minIcon} name="icon-min" />
+            <Image src={IconMin} alt="minus" className={s.minIcon} />
           </button>
           <p className={s.value}>{adultsCount}</p>
           <button
@@ -57,7 +58,7 @@ const GuestsForm: React.FC<GuestsProps> = ({
             type="button"
             onClick={() => handleIncrement("adults")}
           >
-            <Icon className={s.plusIcon} name="icon-plus" />
+            <Image src={IconPlus} alt="plus" className={s.plusIcon} />
           </button>
         </div>
       </div>
@@ -70,7 +71,7 @@ const GuestsForm: React.FC<GuestsProps> = ({
             type="button"
             onClick={() => handleDecrement("children")}
           >
-            <Icon className={s.minIcon} name="icon-min" />
+            <Image src={IconMin} alt="minus" className={s.minIcon} />
           </button>
           <p className={s.value}>{childrenCount}</p>
           <button
@@ -78,7 +79,7 @@ const GuestsForm: React.FC<GuestsProps> = ({
             type="button"
             onClick={() => handleIncrement("children")}
           >
-            <Icon className={s.plusIcon} name="icon-plus" />
+            <Image src={IconPlus} alt="plus" className={s.plusIcon} />
           </button>
         </div>
       </div>
