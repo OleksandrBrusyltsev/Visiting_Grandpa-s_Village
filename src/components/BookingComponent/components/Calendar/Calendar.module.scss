@@ -52,7 +52,6 @@
   padding: 10px 0px;
 }
 
-
 .weeksItem {
   font-family: var(--f-family-main);
   font-size: var(--f-size-body);
@@ -62,7 +61,6 @@
 
 .daysItem {
   cursor: pointer;
-  
 }
 
 .daysItemBox {
@@ -76,7 +74,6 @@
     background-color: rgb(var(--color-natural-orange));
   }
 }
-
 
 .lastDaysItem,
 .nextDaysItem {
@@ -93,11 +90,11 @@
   background-color: rgba(180, 133, 79, 0.4);
   &:hover {
     border-radius: 0;
-    background-color: rgba(180, 133, 79,0.8);
+    background-color: rgba(180, 133, 79, 0.8);
   }
 }
 
 .disabled {
-  pointer-events: none; 
-  opacity: 0.5; 
+  pointer-events: none;
+  opacity: 0.5;
 }

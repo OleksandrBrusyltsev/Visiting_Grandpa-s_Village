@@ -1,7 +1,5 @@
 "use client";
-
 import { useState } from "react";
-
 import Icon from "../ui/Icon/Icon";
 import Button from "../ui/Button/Button";
 import Calendar from "./components/Calendar/Calendar";
@@ -139,7 +137,7 @@ const BookingComponent: React.FC = () => {
         />
       </form>
       {isCalendarOpen && (
-        <Modal>
+        <Modal isOpen={isCalendarOpen} type="calendar">
           <Calendar
             onDateSelect={handleDateSelect}
             checkInDate={checkInDate}
@@ -148,7 +146,7 @@ const BookingComponent: React.FC = () => {
         </Modal>
       )}
       {isGuestsFormOpen && (
-        <Modal>
+        <Modal isOpen={isGuestsFormOpen} type="guestsForm">
           <GuestsForm
             onGuestsChange={handleGuestsChange}
             adultsCount={adultsCount}
