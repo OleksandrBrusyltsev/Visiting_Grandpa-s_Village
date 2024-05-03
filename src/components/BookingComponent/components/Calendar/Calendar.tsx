@@ -128,12 +128,12 @@ const Calendar: React.FC<CalendarProps> = ({
 
     // Если это день заезда, добавляем класс "activeDay"
     if (checkInDate && date.getTime() === checkInDate.getTime()) {
-      classes.push("activeDay", "activeCheckIn");
+      classes.push("activeDay");
     }
 
     // Если это день выезда, добавляем класс "activeDay"
     if (checkOutDate && date.getTime() === checkOutDate.getTime()) {
-      classes.push("activeDay", "activeCheckOut");
+      classes.push("activeDay");
     }
 
     // Если это день между заездом и выездом, добавляем класс "activePeriod"
@@ -199,12 +199,10 @@ const Calendar: React.FC<CalendarProps> = ({
             return (
               <li
                 key={index}
-                className={s.daysItem}
+                className={`${s.daysItem} ${classNames}`}
                 onClick={() => handleDayClick(item.day, item.month)}
               >
-                <div className={`${s.daysItemBox} ${classNames}`}>
-                  {item.day}
-                </div>
+                <div>{item.day}</div>
               </li>
             );
           })}
