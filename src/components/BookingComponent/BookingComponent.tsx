@@ -20,6 +20,9 @@ const BookingComponent: FC = () => {
     "checkIn" | "checkOut" | "reset"
   >("checkIn");
 
+  console.log(checkInDate, 'checkInDate')
+  console.log(checkOutDate, 'checkOutDate')
+  
   const handleDateSelect = (date: Date | null) => {
     if (date) {
       switch (selectionStage) {
