@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import Image from "next/image";
 import IconPrev from "../../../../assets/icons/icon-prev.svg";
 import IconNext from "../../../../assets/icons/icon-next.svg";
@@ -12,7 +12,7 @@ interface CalendarProps {
   checkOutDate: Date | null;
 }
 
-const Calendar: React.FC<CalendarProps> = ({
+const Calendar: FC<CalendarProps> = ({
   onDateSelect,
   checkInDate,
   checkOutDate,

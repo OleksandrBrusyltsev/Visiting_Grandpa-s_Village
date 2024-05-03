@@ -1,4 +1,5 @@
 "use client";
+import { FC } from "react";
 import Image from "next/image";
 import IconPlus from "../../../../assets/icons/icon-plus.svg";
 import IconMin from "../../../../assets/icons/icon-min.svg";
@@ -12,7 +13,7 @@ interface GuestsProps {
   onGuestsChange: (adults: number, children: number) => void;
 }
 
-const GuestsForm: React.FC<GuestsProps> = ({
+const GuestsForm: FC<GuestsProps> = ({
   onGuestsChange,
   adultsCount,
   childrenCount,

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, FC } from "react";
 import Icon from "../ui/Icon/Icon";
 import Button from "../ui/Button/Button";
 import Calendar from "./components/Calendar/Calendar";
@@ -7,7 +7,7 @@ import GuestsForm from "./components/GuestsForm/GuestsForm";
 import Modal from "./components/Modal/Modal";
 import s from "./BookingComponent.module.scss";
 
-const BookingComponent: React.FC = () => {
+const BookingComponent: FC = () => {
   const today = new Date();
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
@@ -79,6 +79,7 @@ const BookingComponent: React.FC = () => {
     setIsGuestsFormOpen(!isGuestsFormOpen);
   };
 
+  //setIsCalendarOpen(!isCalendarOpen).
   const handleSearch = () => {
     // Обработка поиска
   };

@@ -1,4 +1,5 @@
 "use client";
+import { FC, ReactNode } from "react";
 import gsap from "gsap";
 import { useLayoutEffect } from "react";
 import s from "./Modal.module.scss";
@@ -6,11 +7,11 @@ import s from "./Modal.module.scss";
 
 interface ModalProps {
   isOpen: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
   type: "calendar" | "guestsForm";
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, children, type }) => {
+const Modal: FC<ModalProps> = ({ isOpen, children, type }) => {
   useLayoutEffect(() => {
     if (isOpen) {
       gsap.fromTo(
