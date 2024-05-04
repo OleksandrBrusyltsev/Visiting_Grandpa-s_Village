@@ -20,9 +20,9 @@ const BookingComponent: FC = () => {
     "checkIn" | "checkOut" | "reset"
   >("checkIn");
 
-  console.log(checkInDate, 'checkInDate')
-  console.log(checkOutDate, 'checkOutDate')
-  
+  console.log(checkInDate, "checkInDate");
+  console.log(checkOutDate, "checkOutDate");
+
   const handleDateSelect = (date: Date | null) => {
     if (date) {
       switch (selectionStage) {
@@ -62,10 +62,8 @@ const BookingComponent: FC = () => {
   };
 
   const toggleCalendar = () => {
-    if (isGuestsFormOpen) {
-      setIsGuestsFormOpen(false);
-    }
     setIsCalendarOpen(!isCalendarOpen);
+    setIsGuestsFormOpen(false);
   };
 
   const [adultsCount, setAdultsCount] = useState(0);
@@ -75,14 +73,11 @@ const BookingComponent: FC = () => {
     setAdultsCount(adults);
     setChildrenCount(children);
   };
-  const toggleGuestsForm = () => {
-    if (isCalendarOpen) {
-      setIsCalendarOpen(false);
-    }
-    setIsGuestsFormOpen(!isGuestsFormOpen);
-  };
 
-  //setIsCalendarOpen(!isCalendarOpen).
+  const toggleGuestsForm = () => {
+    setIsGuestsFormOpen(!isGuestsFormOpen);
+    setIsCalendarOpen(false);
+  };
   const handleSearch = () => {
     // Обработка поиска
   };
@@ -90,7 +85,10 @@ const BookingComponent: FC = () => {
   return (
     <div className={s.bookingComponentContainer}>
       <form className={s.bookingForm} onSubmit={handleSearch}>
-        <div className={s.labelWraper} onClick={toggleCalendar}>
+        <div
+          className={`${s.labelWraper} ${s.labelWrapperCalendar}`}
+          onClick={toggleCalendar}
+        >
           <label className={s.bookingLabel}>Заїзд</label>
           <div className={s.inputWrapper}>
             <input
@@ -104,7 +102,10 @@ const BookingComponent: FC = () => {
             </button>
           </div>
         </div>
-        <div className={s.labelWraper} onClick={toggleCalendar}>
+        <div
+          className={`${s.labelWraper} ${s.labelWrapperCalendar}`}
+          onClick={toggleCalendar}
+        >
           <label className={s.bookingLabel}>Виїзд</label>
           <div className={s.inputWrapper}>
             <input
@@ -119,7 +120,10 @@ const BookingComponent: FC = () => {
           </div>
         </div>
 
-        <div className={s.labelWraper} onClick={toggleGuestsForm}>
+        <div
+          className={`${s.labelWraper} ${s.labelWrapperGuests}`}
+          onClick={toggleGuestsForm}
+        >
           <label className={s.bookingLabel}>Гості</label>
           <div className={s.inputWrapper}>
             <input
@@ -127,9 +131,6 @@ const BookingComponent: FC = () => {
               type="text"
               value={`Дорослі: ${adultsCount.toString()}, Діти: ${childrenCount.toString()}`}
             />
-            <button type="button" className={s.bookingOpenButton}>
-              <Icon name="icon-down" className={s.downIcon} />
-            </button>
           </div>
         </div>
 
