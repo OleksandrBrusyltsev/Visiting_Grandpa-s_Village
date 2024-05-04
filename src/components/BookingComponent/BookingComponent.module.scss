@@ -1,12 +1,18 @@
-@use '../../styles/mixins' as mixins;
-@use '../../styles/variables';
-
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
 
 .bookingComponentContainer {
-  width: 705px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 121px;
+ 
+    display: none;
+  
+
+  @include mixins.media-min(variables.$mobile) {
+    display: block;
+    width: 705px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 121px;
+  }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 791px;
@@ -34,7 +40,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-cursor: pointer;
+  cursor: pointer;
 }
 
 .labelWrapperCalendar {
