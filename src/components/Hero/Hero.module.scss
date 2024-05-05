@@ -1,0 +1,205 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.grandbox1 {
+  padding: 0 24px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  margin-bottom: 12px;
+}
+
+.mainTitle {
+  font-family: var(--f-family-headline);
+  font-weight: 600;
+  font-size: var(--f-size-button-big);
+  line-height: 21.48px;
+  color: rgba(var(--color-base-green), 1);
+}
+
+.text1 {
+  padding: 0 24px;
+  font-family: var(--f-family-main);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.44px;
+  color: rgb(var(--color-black));
+
+  margin-bottom: 12px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.text2 {
+  padding: 0 24px;
+  font-weight: 700;
+  text-align: right;
+  color: rgba(var(--color-base-green), 1);
+}
+
+.imgBox {
+  position: relative;
+  height: 300px;
+
+  margin: 0 auto;
+
+}
+
+.photo1 {
+  z-index: 50;
+  position: absolute;
+}
+
+.illustration1 {
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  z-index: 49;
+}
+
+.line1 {
+  position: absolute;
+  top: 19px;
+  left: 30%;
+  z-index: 48;
+}
+
+.title1 {
+  font-family: var(--f-family-headline);
+  font-weight: 600;
+  font-size: var(--f-size-button-big);
+  line-height: 21.48px;
+  color: rgba(var(--color-base-green), 1);
+}
+
+.grandbox2 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.imgBox2 {
+  position: relative;
+  height: 300px;
+
+  margin: 0 auto;
+
+}
+
+.photo4 {
+  position: absolute;
+  top: 81px;
+  left: 20px;
+  z-index: 50;
+}
+
+.photo2 {
+  position: absolute;
+  left: 148px;
+  z-index: 49;
+}
+
+.photo3 {
+  position: absolute;
+  left: 139px;
+  top: 134px;
+  z-index: 48;
+}
+
+.line2 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 38;
+}
+
+.add {
+  text-align: right;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.imgBox3 {
+  position: relative;
+  height: 300px;
+  z-index: -1;
+
+  margin: 0 auto;
+
+}
+
+.illustration3 {
+  position: absolute;
+  top: -68px;
+  left: 20px;
+  z-index: 50;
+}
+
+.photo7 {
+  position: absolute;
+  top: -6px;
+  right: 0;
+  z-index: 49;
+}
+
+.photo5 {
+  position: absolute;
+  top: 90px;
+  left: 20px;
+  z-index: 48;
+}
+
+.illustration2 {
+  position: absolute;
+  top: 150px;
+  right: 0;
+  z-index: 47;
+}
+
+.line3 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 46;
+}
+
+.add1 {
+  max-width: 300px;
+  padding: 0 20px;
+}
+
+.imgBox4 {
+  position: relative;
+  height: 400px;
+  padding: 0 20px;
+
+  margin: 0 auto;
+}
+
+.grandpa3 {
+  position: absolute;
+  top: 45px;
+}
+
+.photo6 {
+  position: absolute;
+  left: 174px;
+}
+
+.photo8 {
+  position: absolute;
+  top: 196px;
+  left: 87px;
+}
+
+.line4 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
