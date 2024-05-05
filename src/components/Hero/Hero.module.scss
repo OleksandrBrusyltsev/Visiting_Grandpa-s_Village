@@ -38,19 +38,23 @@
   font-weight: 700;
   text-align: right;
   color: rgba(var(--color-base-green), 1);
+  margin-bottom: 20px;
 }
 
 .imgBox {
   position: relative;
   height: 300px;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
-
 }
 
 .photo1 {
   z-index: 50;
   position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .illustration1 {
@@ -86,9 +90,9 @@
 .imgBox2 {
   position: relative;
   height: 300px;
-
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
-
 }
 
 .photo4 {
@@ -128,9 +132,9 @@
   position: relative;
   height: 300px;
   z-index: -1;
-
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
-
 }
 
 .illustration3 {
@@ -177,13 +181,15 @@
   position: relative;
   height: 400px;
   padding: 0 20px;
-
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
 }
 
 .grandpa3 {
   position: absolute;
   top: 45px;
+  left: 0;
 }
 
 .photo6 {
@@ -202,4 +208,8 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: -1;
+}
+
+.svg {
+  z-index: 51;
 }
