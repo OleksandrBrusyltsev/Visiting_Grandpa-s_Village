@@ -14,7 +14,7 @@ interface ModalProps {
 const Modal: FC<ModalProps> = ({ isOpen, children, type }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
-    console.log(isOpen, "isOpen");
+    //console.log(isOpen, "isOpen");
     if (isOpen) {
       gsap.fromTo(
         modalRef.current,

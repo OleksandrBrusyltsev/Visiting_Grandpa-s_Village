@@ -20,9 +20,9 @@ const BookingComponent: FC = () => {
     "checkIn" | "checkOut" | "reset"
   >("checkIn");
 
-  //console.log(checkInDate, "checkInDate");
-  //console.log(checkOutDate, "checkOutDate");
-  console.log(isCalendarOpen, "isCalendarOpen");
+  console.log(checkInDate, "checkInDate");
+  console.log(checkOutDate, "checkOutDate");
+  //console.log(isCalendarOpen, "isCalendarOpen");
 
   const handleDateSelect = (date: Date | null) => {
     if (date) {
