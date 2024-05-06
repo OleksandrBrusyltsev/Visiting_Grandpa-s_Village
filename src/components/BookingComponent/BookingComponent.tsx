@@ -20,8 +20,9 @@ const BookingComponent: FC = () => {
     "checkIn" | "checkOut" | "reset"
   >("checkIn");
 
-  console.log(checkInDate, "checkInDate");
-  console.log(checkOutDate, "checkOutDate");
+  //console.log(checkInDate, "checkInDate");
+  //console.log(checkOutDate, "checkOutDate");
+  console.log(isCalendarOpen, "isCalendarOpen");
 
   const handleDateSelect = (date: Date | null) => {
     if (date) {
@@ -78,6 +79,7 @@ const BookingComponent: FC = () => {
     setIsGuestsFormOpen(!isGuestsFormOpen);
     setIsCalendarOpen(false);
   };
+
   const handleSearch = () => {
     // Обработка поиска
   };
