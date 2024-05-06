@@ -68,9 +68,10 @@
   color: rgb(var(--color-total-black));
   font-family: var(--f-family-headline);
   font-size: var(--f-size-body);
+  border-radius: 50%;
 
   &:hover {
-    border-radius: 50%;
+     border-radius: 50%;
     background-color: rgb(var(--color-natural-orange));
   }
 }
@@ -88,6 +89,7 @@
 
 .activePeriod {
   background-color: rgba(180, 133, 79, 0.4);
+   border-radius: 0;
   &:hover {
     border-radius: 0;
     background-color: rgba(180, 133, 79, 0.8);
