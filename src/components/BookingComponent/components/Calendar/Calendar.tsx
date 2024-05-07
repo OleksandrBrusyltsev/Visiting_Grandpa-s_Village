@@ -108,6 +108,7 @@ const Calendar: FC<CalendarProps> = ({
 
   const [daysList, setDaysList] = useState<DayInfo[]>([]);
   const today = new Date();
+  console.log(today,'today');
   
   const handleDayClick = (day: number, month: number) => {
     const clickedDate = new Date(currYear, month, day);
@@ -151,6 +152,8 @@ const Calendar: FC<CalendarProps> = ({
       class: classes.join(" "),
     };
   });
+
+console.log(daysListWithActiveClass);
 
   const getClassNames = (
     classNames: string,

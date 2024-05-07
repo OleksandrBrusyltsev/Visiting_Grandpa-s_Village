@@ -13,32 +13,35 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ isOpen, children, type }) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  useGSAP(() => {
-    //console.log(isOpen, "isOpen");
-    if (isOpen) {
-      gsap.fromTo(
-        modalRef.current,
-        {
+  useGSAP(
+    () => {
+      console.log(isOpen, "isOpen");
+      if (isOpen) {
+        gsap.fromTo(
+          modalRef.current,
+          {
+            opacity: 0,
+            duration: 0,
+            scale: 0.8,
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.5,
+            ease: "power2.out",
+          }
+        );
+      } else {
+        gsap.to(modalRef.current, {
           opacity: 0,
           duration: 0,
           scale: 0.8,
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
           ease: "power2.out",
-        }
-      );
-    } else {
-      gsap.to(`.${s.modal}`, {
-        opacity: 0,
-        duration: 0,
-        scale: 0.8,
-        ease: "power2.out",
-      });
-    }
-  }, [isOpen]);
+        });
+      }
+    },
+    { dependencies: [isOpen]}
+  );
   return (
     <div className={s.modal} ref={modalRef}>
       {type === "calendar" && <div className={s.calendar}>{children}</div>}
