@@ -1,13 +1,12 @@
-import Footer from "../components/Footer/Footer";
-import Header from "../components/Header/Header";
+"use client";
 
-export default function NotFoundPage() {
+import Error from "next/error";
+
+export default function NotFound() {
   return (
     <html lang="en">
       <body>
-        <Header />
-        <p>NotFound Page</p>
-        <Footer />
+        <Error statusCode={404} />
       </body>
     </html>
   );

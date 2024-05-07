@@ -107,8 +107,13 @@
 
 .iconTelegram {
   position: absolute;
-  top: 12px;
+  top: 11px;
   left: 7px;
+
+  @include mixins.media-min($breakpoint-tablet-min) {
+    top: 2px;
+    left: 7px;
+  }
 }
 
 .iconArrowWrapper {
