@@ -5,6 +5,7 @@ import style from "../AskGrandpa.module.scss";
 
 const AskIcon: FC = () => {
   return <div className={style.iconAsk}>{iconAsk}</div>;
+  // another way - using Icon + sprite
   // return <Icon name="ask" className={style.iconAsk} />;
 };
 
