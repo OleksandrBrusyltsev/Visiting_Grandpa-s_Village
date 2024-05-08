@@ -104,6 +104,5 @@
 
 .disabled {
   pointer-events: none;
-  color: rgba(180, 133, 79);
-  opacity: 0.3;
+  color: rgb(var(--color-gray-light));
 }
