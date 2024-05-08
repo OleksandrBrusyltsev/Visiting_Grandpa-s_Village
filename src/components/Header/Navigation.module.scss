@@ -1,0 +1,24 @@
+.container {
+  margin-top: 16px;
+  margin-bottom: 80px;
+}
+
+.list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.item {
+  color: rgba(var(--color-black), 1);
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-body);
+  font-weight: 400;
+  line-height: normal;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: rgb(var(--color-natural-orange));
+  }
+}
