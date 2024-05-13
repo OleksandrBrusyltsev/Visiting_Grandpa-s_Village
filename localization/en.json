@@ -1,7 +1,8 @@
 {
   "Index": {
     "title": "en",
-    "description": "en"
+    "description": "en",
+    "welcomeBlock": "The best time to rest is now"
   },
   "NotFoundPage": {
     "title": "Page not found",

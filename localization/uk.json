@@ -1,7 +1,8 @@
 {
   "Index": {
     "title": "укр",
-    "description": "укр"
+    "description": "укр",
+    "welcomeBlock": "Найкращий час для відпочинку - зараз"
   },
   "NotFoundPage": {
     "title": "Сторінка не знайдена",
