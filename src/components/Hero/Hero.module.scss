@@ -1,6 +1,10 @@
 @use "../../styles/mixins" as mixins;
 @use "../../styles/variables";
 
+.section {
+  max-width: 600px;
+  margin: 0 auto;
+}
 .grandbox1 {
   padding: 0 24px;
   display: flex;
@@ -43,11 +47,18 @@
 
 .imgBox {
   position: relative;
-  height: 300px;
+  height: 65vw;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+}
+
+.grandpa1 {
+  width: 27vw;
+  height: 26vw;
+  max-width: 172px;
+  max-height: 172px;
 }
 
 .photo1 {
@@ -55,20 +66,18 @@
   position: absolute;
   left: 0;
   top: 0;
+  width: 55vw;
+  height: 45vw;
 }
 
 .illustration1 {
   position: absolute;
   top: 25%;
-  left: 40%;
+  right: 1%;
   z-index: 49;
-}
 
-.line1 {
-  position: absolute;
-  top: 19px;
-  left: 30%;
-  z-index: 48;
+  width: 60vw;
+  height: 55vw;
 }
 
 .title1 {
@@ -82,14 +91,18 @@
 .grandbox2 {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  margin-bottom: 20px;
-  padding: 0 20px;
+  align-items: center;
+  margin-bottom: -20px;
+}
+
+.grandpa2 {
+  width: 28vw;
+  height: 25vw;
 }
 
 .imgBox2 {
   position: relative;
-  height: 300px;
+  height: 80vw;
   display: flex;
   justify-content: center;
   margin: 0 auto;
@@ -99,28 +112,31 @@
   position: absolute;
   top: 81px;
   left: 20px;
-  z-index: 50;
+  z-index: 55;
+
+  width: 45vw;
+  height: 30vw;
 }
 
 .photo2 {
   position: absolute;
-  left: 148px;
+  right: 1%;
   z-index: 49;
+
+  width: 57vw;
+  height: 30vw;
 }
 
 .photo3 {
   position: absolute;
-  left: 139px;
-  top: 134px;
+  right: 1%;
+  top: 35vw;
   z-index: 48;
+  
+  width: 57vw;
+  height: 44vw;
 }
 
-.line2 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 38;
-}
 
 .add {
   text-align: right;
@@ -130,7 +146,7 @@
 
 .imgBox3 {
   position: relative;
-  height: 300px;
+  height: 85vw;
   z-index: -1;
   display: flex;
   justify-content: center;
@@ -139,47 +155,53 @@
 
 .illustration3 {
   position: absolute;
-  top: -68px;
-  left: 20px;
+  top: -20vw;
+  left: 2%;
   z-index: 50;
+
+  width: 50vw;
+  height: 48vw;
 }
 
 .photo7 {
   position: absolute;
-  top: -6px;
   right: 0;
   z-index: 49;
+
+  width: 41vw;
+  height: 41vw;
 }
 
 .photo5 {
   position: absolute;
-  top: 90px;
-  left: 20px;
+  top: 25vw;
+  left: 4%;
   z-index: 48;
+
+  width: 52vw;
+  height: 39vw;
 }
 
 .illustration2 {
   position: absolute;
-  top: 150px;
+  top: 35vw;
   right: 0;
   z-index: 47;
+
+  width: 52vw;
+  height: 52vw;
 }
 
-.line3 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 46;
-}
 
 .add1 {
   max-width: 300px;
   padding: 0 20px;
+  margin-bottom: 20px;
 }
 
 .imgBox4 {
   position: relative;
-  height: 400px;
+  height: 110vw;
   padding: 0 20px;
   display: flex;
   justify-content: center;
@@ -188,28 +210,37 @@
 
 .grandpa3 {
   position: absolute;
-  top: 45px;
+  top: 12vw;
   left: 0;
+
+  width: 39vw;
+  height: 34vw;
+
+  z-index: 48;
 }
 
 .photo6 {
   position: absolute;
-  left: 174px;
+  right: 2vw;
+
+  width: 54vw;
+  height: 45vw;
+
+  z-index: 49;
 }
 
 .photo8 {
   position: absolute;
-  top: 196px;
-  left: 87px;
+  top: 52vw;
+  right: 2vw;
+
+  width: 78vw;
+  height: 50vw;
+
+  z-index: 50;
 }
 
-.line4 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: -1;
-}
 
 .svg {
-  z-index: 51;
+  z-index: 10;
 }
