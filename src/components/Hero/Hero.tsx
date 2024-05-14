@@ -1,27 +1,22 @@
 import css from "./Hero.module.scss";
 import Image from "next/image";
 
-const grandpa1 = "/images/Hero/grandpa1.jpg";
-const grandpa2 = "/images/Hero/grandpa2.jpg";
-const grandpa3 = "/images/Hero/grandpa3.jpg";
+const grandpa1 = "/images/Hero/grandpa1.png";
+const grandpa2 = "/images/Hero/grandpa2.png";
+const grandpa3 = "/images/Hero/grandpa3.png";
 
-const line1 = "/images/Hero/line1.jpg";
-const line2 = "/images/Hero/line2.jpg";
-const line3 = "/images/Hero/line3.jpg";
-const line4 = "/images/Hero/line4.jpg";
+const photo1 = "/images/Hero/photo1.png";
+const photo2 = "/images/Hero/photo2.png";
+const photo3 = "/images/Hero/photo3.png";
+const photo4 = "/images/Hero/photo4.png";
+const photo5 = "/images/Hero/photo5.png";
+const photo6 = "/images/Hero/photo6.png";
+const photo7 = "/images/Hero/photo7.png";
+const photo8 = "/images/Hero/photo8.png";
 
-const photo1 = "/images/Hero/photo1.jpg";
-const photo2 = "/images/Hero/photo2.jpg";
-const photo3 = "/images/Hero/photo3.jpg";
-const photo4 = "/images/Hero/photo4.jpg";
-const photo5 = "/images/Hero/photo5.jpg";
-const photo6 = "/images/Hero/photo6.jpg";
-const photo7 = "/images/Hero/photo7.jpg";
-const photo8 = "/images/Hero/photo8.jpg";
-
-const illustration1 = "/images/Hero/illustration1.jpg";
-const illustration2 = "/images/Hero/illustration2.jpg";
-const illustration3 = "/images/Hero/illustration3.jpg";
+const illustration1 = "/images/Hero/illustration1.png";
+const illustration2 = "/images/Hero/illustration2.png";
+const illustration3 = "/images/Hero/illustration3.png";
 
 const Hero = () => {
   return (
@@ -62,17 +57,11 @@ const Hero = () => {
           height={202}
           className={css.illustration1}
         />
-        {/* <Image
-          src={line1}
-          alt={"line"}
-          width={192}
-          height={265}
-          className={css.line1}
-        /> */}
+
         <svg
           className={css.svg}
-          width="195"
-          height="269"
+          width="192"
+          height="265"
           viewBox="0 0 195 269"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -110,37 +99,31 @@ const Hero = () => {
         <Image
           src={photo4}
           alt={"photo4"}
-          width={145}
-          height={92}
+          width={170}
+          height={110}
           className={css.photo4}
         />
 
         <Image
           src={photo2}
           alt={"photo2"}
-          width={185}
-          height={102}
+          width={215}
+          height={119}
           className={css.photo2}
         />
 
         <Image
           src={photo3}
           alt={"photo3"}
-          width={210}
-          height={138}
+          width={212}
+          height={166}
           className={css.photo3}
         />
-        {/* <Image
-          src={line2}
-          alt={"line2"}
-          width={223}
-          height={268}
-          className={css.line2}
-        /> */}
+
         <svg
           className={css.svg}
-          width="265"
-          height="271"
+          width="262"
+          height="267"
           viewBox="0 0 265 271"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -168,42 +151,36 @@ const Hero = () => {
         <Image
           src={illustration3}
           alt={"illustration3"}
-          width={182}
-          height={160}
+          width={188}
+          height={180}
           className={css.illustration3}
         />
         <Image
           src={photo7}
           alt={"photo7"}
-          width={167}
-          height={170}
+          width={156}
+          height={157}
           className={css.photo7}
         />
         <Image
           src={photo5}
           alt={"photo5"}
-          width={182}
-          height={135}
+          width={193}
+          height={144}
           className={css.photo5}
         />
         <Image
           src={illustration2}
           alt={"illustration2"}
-          width={208}
-          height={195}
+          width={194}
+          height={192}
           className={css.illustration2}
         />
-        {/* <Image
-          src={line3}
-          alt={"line3"}
-          width={319}
-          height={213}
-          className={css.line3}
-        /> */}
+
         <svg
           className={css.svg}
-          width="237"
-          height="340"
+          width="318"
+          height="213"
           viewBox="0 0 237 340"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -231,34 +208,28 @@ const Hero = () => {
           src={grandpa3}
           alt={"grandpa3"}
           width={145}
-          height={148}
+          height={127}
           className={css.grandpa3}
         />
         <Image
           src={photo6}
           alt={"photo6"}
-          width={176}
-          height={150}
+          width={194}
+          height={168}
           className={css.photo6}
         />
         <Image
           src={photo8}
           alt={"photo8"}
-          width={256}
-          height={158}
+          width={290}
+          height={186}
           className={css.photo8}
         />
-        {/* <Image
-          src={line4}
-          alt={"line4"}
-          width={236}
-          height={372}
-          className={css.line4}
-        /> */}
+
         <svg
           className={css.svg} 
-          width="237"
-          height="375"
+          width="235"
+          height="371"
           viewBox="0 0 237 375"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
