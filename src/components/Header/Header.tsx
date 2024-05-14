@@ -9,7 +9,7 @@ import { useState } from "react";
 import Navigation from "./Navigation";
 import LangBtn from "../LangBtn/LangBtn";
 
-const image = "/images/logo.svg";
+const image = "/images/logo-main.svg";
 const alt = "Logo main";
 
 const Header = () => {
