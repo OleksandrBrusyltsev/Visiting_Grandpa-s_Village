@@ -132,6 +132,7 @@ const BookingComponent: FC = () => {
               className={s.bookingInputGuests}
               type="text"
               value={`Дорослі: ${adultsCount.toString()}, Діти: ${childrenCount.toString()}`}
+              readOnly
             />
           </div>
         </div>
