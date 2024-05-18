@@ -48,6 +48,9 @@
 .imgBox {
   position: relative;
   height: 65vw;
+
+  max-height: 373px;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,8 +60,9 @@
 .grandpa1 {
   width: 27vw;
   height: 26vw;
-  max-width: 172px;
-  max-height: 172px;
+
+  max-width: 155px;
+  max-height: 150px;
 }
 
 .photo1 {
@@ -68,6 +72,9 @@
   top: 0;
   width: 55vw;
   height: 45vw;
+
+  max-width: 316px;
+  max-height: 258px;
 }
 
 .illustration1 {
@@ -78,6 +85,9 @@
 
   width: 60vw;
   height: 55vw;
+
+  max-width: 345px;
+  max-height: 316px;
 }
 
 .title1 {
@@ -98,11 +108,17 @@
 .grandpa2 {
   width: 28vw;
   height: 25vw;
+
+  max-width: 161px;
+  max-height: 143px;
 }
 
 .imgBox2 {
   position: relative;
   height: 80vw;
+
+  max-height: 461px;
+
   display: flex;
   justify-content: center;
   margin: 0 auto;
@@ -116,6 +132,9 @@
 
   width: 45vw;
   height: 30vw;
+
+  max-width: 259px;
+  max-height: 173px;
 }
 
 .photo2 {
@@ -125,18 +144,24 @@
 
   width: 57vw;
   height: 30vw;
+
+  max-width: 327px;
+  max-height: 172px;
 }
 
 .photo3 {
   position: absolute;
   right: 1%;
-  top: 35vw;
+  // top: 35vw;
+  bottom: 0;
   z-index: 48;
-  
+
   width: 57vw;
   height: 44vw;
-}
 
+  max-width: 327px;
+  max-height: 253px;
+}
 
 .add {
   text-align: right;
@@ -147,7 +172,10 @@
 .imgBox3 {
   position: relative;
   height: 85vw;
-  z-index: -1;
+
+  max-height: 489px;
+  // width: 320px;
+  // z-index: -1;
   display: flex;
   justify-content: center;
   margin: 0 auto;
@@ -155,12 +183,15 @@
 
 .illustration3 {
   position: absolute;
-  top: -20vw;
+  top: -25%;
   left: 2%;
   z-index: 50;
 
   width: 50vw;
   height: 48vw;
+
+  max-width: 286px;
+  max-height: 276px;
 }
 
 .photo7 {
@@ -170,28 +201,36 @@
 
   width: 41vw;
   height: 41vw;
+
+  max-width: 235px;
+  max-height: 235px;
 }
 
 .photo5 {
   position: absolute;
-  top: 25vw;
+  top: 35%;
   left: 4%;
   z-index: 48;
 
   width: 52vw;
   height: 39vw;
+
+  max-width: 300px;
+  max-height: 225px;
 }
 
 .illustration2 {
   position: absolute;
-  top: 35vw;
+  top: 50%;
   right: 0;
   z-index: 47;
 
   width: 52vw;
   height: 52vw;
-}
 
+  max-width: 300px;
+  max-height: 300px;
+}
 
 .add1 {
   max-width: 300px;
@@ -202,6 +241,9 @@
 .imgBox4 {
   position: relative;
   height: 110vw;
+
+  max-height: 633px;
+
   padding: 0 20px;
   display: flex;
   justify-content: center;
@@ -216,6 +258,9 @@
   width: 39vw;
   height: 34vw;
 
+  max-width: 225px;
+  max-height: 196px;
+
   z-index: 48;
 }
 
@@ -225,6 +270,9 @@
 
   width: 54vw;
   height: 45vw;
+
+  max-width: 310px;
+  max-height: 259px;
 
   z-index: 49;
 }
@@ -237,10 +285,33 @@
   width: 78vw;
   height: 50vw;
 
+  max-width: 449px;
+  max-height: 287px;
+
   z-index: 50;
 }
 
-
 .svg {
   z-index: 10;
+}
+
+.line1Box {
+  padding-left: 25%;
+}
+
+.line2Box {
+  padding-left: 25%;
+}
+
+// .line3Box {
+//   padding-left: 30%;
+// }
+
+.line3 {
+  // padding: 0 24px;
+  width: 94vw;
+  height: 76vw;
+
+  max-width: 540px;
+  max-height: 488px;
 }
