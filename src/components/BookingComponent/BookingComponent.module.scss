@@ -1,0 +1,127 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.bookingComponentContainer {
+  width: 276px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 37px;
+  position: relative;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 708px;
+    margin-bottom: 120px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 791px;
+    margin-left: auto;
+    margin-right: 0;
+    padding-right: 50px;
+  }
+}
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  padding: 16px 30px 16px 30px;
+  border-radius: 8px;
+  border: 1px solid rgb(var(--color-base-green));
+
+  @include mixins.media-min(variables.$mobile) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 30px 10px 30px;
+  }
+}
+.bookingLabel {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  cursor: pointer;
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 12px;
+  }
+}
+
+.labelWraper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+  @include mixins.media-min(variables.$mobile) {
+    flex-direction: column;
+  }
+}
+
+.labelWrapperCalendar {
+  width: 100%;
+  @include mixins.media-min(variables.$mobile) {
+    width: 120px;
+  }
+}
+
+.labelWrapperGuests {
+  width: 100%;
+  @include mixins.media-min(variables.$mobile) {
+    width: 140px;
+  }
+}
+
+.inputWrapper {
+  cursor: pointer;
+  display: flex;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.bookingInput {
+  box-sizing: border-box;
+  margin: 0;
+  width: 95px;
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 700;
+  color: rgb(var(--color-total-black));
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+}
+
+.bookingInputGuests {
+  width: 155px;
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 700;
+  color: rgb(var(--color-total-black));
+  &:focus {
+    outline: none;
+  }
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 160px;
+  }
+}
+
+.bookingOpenButton {
+  position: relative;
+  width: 24px;
+}
+
+.downIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.buttonSearch {
+  font-size: var(--f-size-button-small);
+  padding: 14px 24px;
+}
