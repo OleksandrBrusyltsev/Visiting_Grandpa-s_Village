@@ -13,7 +13,7 @@ const LangBtn = () => {
     startTransition(() => {
       router.replace(`/${nextLocal}`);
     });
-    setActiveButton(nextLocal);
+    // setActiveButton(nextLocal);
   };
 
   useEffect(() => {

@@ -1,5 +1,4 @@
 import "../globals.scss";
-import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 
