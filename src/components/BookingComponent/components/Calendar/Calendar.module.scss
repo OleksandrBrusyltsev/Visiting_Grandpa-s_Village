@@ -1,0 +1,108 @@
+@use "../../../../styles/mixins" as mixins;
+@use "../../../../styles/variables";
+
+.calendarWrapper {
+  width: 100%;
+  padding: 24px;
+}
+
+.calendarHeader {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: 300px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.currentMonth {
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-h3);
+  color: rgb(var(--color-base-green));
+}
+
+.calendarPrevButton,
+.calendarNextButton {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.calendarPrevButton {
+  margin-right: 5px;
+}
+
+.prevIcon,
+.nextIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.weeksList,
+.daysList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+
+.weeksItem,
+.daysItem {
+  width: calc(100% / 7);
+}
+
+.weeksList {
+  padding: 10px 0px;
+}
+
+.weeksItem {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  color: rgb(var(--color-total-black));
+  font-weight: 700;
+}
+
+.daysItem {
+  cursor: pointer;
+  padding: 10px;
+  color: rgb(var(--color-total-black));
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-body);
+  border-radius: 50%;
+
+  &:hover {
+    border-radius: 50%;
+    background-color: rgb(var(--color-natural-orange));
+  }
+  @include mixins.media-min(variables.$mobile) {
+    padding: 15px;
+  }
+}
+
+.lastDaysItem,
+.nextDaysItem {
+  color: rgb(var(--color-gray-light));
+}
+
+.activeDay {
+  border-radius: 50%;
+  color: rgb(var(--color-white));
+  background-color: rgb(var(--color-natural-orange));
+}
+
+.activePeriod {
+  background-color: rgba(180, 133, 79, 0.4);
+  border-radius: 0;
+  &:hover {
+    border-radius: 0;
+    background-color: rgba(180, 133, 79, 0.8);
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  color: rgb(var(--color-gray-light));
+}
