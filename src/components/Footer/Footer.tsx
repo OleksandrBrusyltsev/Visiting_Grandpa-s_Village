@@ -6,7 +6,7 @@ import Icon from "../ui/Icon/Icon";
 import s from "./Footer.module.scss";
 import { navLink } from "./../../data/footer/data";
 
-const image = "/images/logo.svg";
+const image = "/images/logo-main.svg";
 
 const socialMediaLinks = [
   {
