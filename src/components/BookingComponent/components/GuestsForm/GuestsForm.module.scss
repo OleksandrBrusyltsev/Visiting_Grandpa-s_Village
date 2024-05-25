@@ -8,6 +8,14 @@
   padding-right: 20px;
   padding-left: 20px;
 
+  & > p.childDescr {
+    font-family: var(--f-family-main);
+    font-size: var(--f-size-body);
+    color: rgb(var(--color-total-black));
+    &:first-of-type {
+      margin-bottom: 29px;
+    }
+  }
   @include mixins.media-min(variables.$mobile) {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -27,27 +35,28 @@
 .childWrapper {
   margin-bottom: 48px;
 }
+
 .buttonWrapper {
   display: flex;
   align-items: center;
   width: 132px;
   justify-content: space-between;
 }
-.plusButton,
-.minButton {
-  position: relative;
+
+.changeButton {
+  font-family: var(--f-family-main);
+  font-size: 1rem;
+  line-height: 36px;
+  font-weight: 700;
   width: 36px;
   height: 36px;
   border-radius: 50%;
   border: 1px solid rgba(12, 12, 12, 1);
-}
+  color: rgb(var(--color-total-black));
 
-.minIcon,
-.plusIcon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  &:first-of-type {
+    line-height: 25px;
+  }
 }
 
 .title {
@@ -55,18 +64,14 @@
   font-size: var(--f-size-h3);
   color: rgb(var(--color-total-black));
 }
+
 .value {
   font-family: var(--f-family-headline);
   font-size: 18px;
   color: rgb(var(--color-total-black));
 }
 
-.textFirst,
-.textSecond {
-  font-family: var(--f-family-main);
-  font-size: var(--f-size-body);
-  color: rgb(var(--color-total-black));
-}
-.textFirst {
-  margin-bottom: 29px;
+.disabled {
+  border: 1px solid rgb(var(--color-gray-light));
+  color: rgb(var(--color-gray-light));
 }

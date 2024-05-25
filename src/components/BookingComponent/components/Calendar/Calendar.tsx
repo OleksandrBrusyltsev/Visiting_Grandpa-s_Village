@@ -1,16 +1,48 @@
 "use client";
-
 import { useState, useEffect, FC } from "react";
 import Image from "next/image";
+
 import IconPrev from "../../../../assets/icons/icon-prev.svg";
 import IconNext from "../../../../assets/icons/icon-next.svg";
+
 import s from "./Calendar.module.scss";
 
 interface CalendarProps {
-  onDateSelect: (date: Date | null) => void;
+  onDateSelect: (date: Date) => void;
   checkInDate: Date | null;
   checkOutDate: Date | null;
 }
+
+interface DayInfo {
+  day: number;
+  class: string;
+  month: number;
+}
+
+const getClassNames = (
+  classNames: string,
+  styles: Record<string, string>
+) => {
+  return classNames
+    .split(" ")
+    .map((className) => styles[className])
+    .join(" ");
+};
+
+const months: string[] = [
+  "Січень",
+  "Лютий",
+  "Березень",
+  "Квітень",
+  "Травень",
+  "Червень",
+  "Липень",
+  "Серпень",
+  "Вересень",
+  "Жовтень",
+  "Листопад",
+  "Грудень",
+];
 
 const Calendar: FC<CalendarProps> = ({
   onDateSelect,
@@ -19,22 +51,8 @@ const Calendar: FC<CalendarProps> = ({
 }) => {
   const [currYear, setCurrYear] = useState<number>(new Date().getFullYear());
   const [currMonth, setCurrMonth] = useState<number>(new Date().getMonth());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  const months: string[] = [
-    "Січень",
-    "Лютий",
-    "Березень",
-    "Квітень",
-    "Травень",
-    "Червень",
-    "Липень",
-    "Серпень",
-    "Вересень",
-    "Жовтень",
-    "Листопад",
-    "Грудень",
-  ];
+  const [daysList, setDaysList] = useState<DayInfo[]>([]);
 
   const renderCalendar = () => {
     let firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
@@ -72,14 +90,8 @@ const Calendar: FC<CalendarProps> = ({
         });
       }
     }
-
-    setDaysList(daysArray);
-    setCurrentDateText(`${months[currMonth]} ${currYear}`);
+    return daysArray
   };
-
-  useEffect(() => {
-    renderCalendar();
-  }, [currMonth, currYear]);
 
   const handlePrevNextClick = (direction: number) => {
     let newMonth = currMonth + direction;
@@ -98,77 +110,65 @@ const Calendar: FC<CalendarProps> = ({
     renderCalendar();
   };
 
-  const [currentDateText, setCurrentDateText] = useState<string>("");
-
-  interface DayInfo {
-    day: number;
-    class: string;
-    month: number;
-  }
-
-  const [daysList, setDaysList] = useState<DayInfo[]>([]);
-  const today = new Date();
-  console.log(today,'today');
-  
   const handleDayClick = (day: number, month: number) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     const clickedDate = new Date(currYear, month, day);
+    clickedDate.setHours(0, 0, 0, 0);
     if (clickedDate >= today) {
-      setSelectedDate(clickedDate);
       onDateSelect(clickedDate);
     }
   };
 
-  const daysListWithActiveClass = daysList.map((item) => {
-    const date = new Date(currYear, item.month, item.day);
-    let classes = [item.class];
+  useEffect(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-    // Добавить класс для отключенной даты
-    if (date < today) {
-      classes.push("disabled");
-    }
+    const baseDaysList = renderCalendar();
 
-    // Если это день заезда, добавляем класс "activeDay"
-    if (checkInDate && date.getTime() === checkInDate.getTime()) {
-      classes.push("activeDay");
-    }
-
-    // Если это день выезда, добавляем класс "activeDay"
-    if (checkOutDate && date.getTime() === checkOutDate.getTime()) {
-      classes.push("activeDay");
-    }
-
-    // Если это день между заездом и выездом, добавляем класс "activePeriod"
-    if (
-      checkInDate &&
-      checkOutDate &&
-      date > checkInDate &&
-      date < checkOutDate
-    ) {
-      classes.push("activePeriod");
-    }
-
-    return {
-      ...item,
-      class: classes.join(" "),
-    };
-  });
-
-console.log(daysListWithActiveClass);
-
-  const getClassNames = (
-    classNames: string,
-    styles: Record<string, string>
-  ) => {
-    return classNames
-      .split(" ")
-      .map((className) => styles[className])
-      .join(" ");
-  };
-
+    const daysListWithActiveClass = baseDaysList.map((item) => {
+      const date = new Date(currYear, item.month, item.day);
+      date.setHours(0, 0, 0, 0);
+      let classes = [item.class];
+  
+      // Добавить класс для отключенной даты
+      if (date.getTime() < today.getTime()) {
+        classes.push("disabled");
+      }
+  
+      // Если это день заезда, добавляем класс "activeDay"
+      if (checkInDate && date.getTime() == checkInDate.getTime()) {
+        classes.push("checkInDate");
+      }
+  
+      // Если это день выезда, добавляем класс "activeDay"
+      if (checkOutDate && date.getTime() == checkOutDate.getTime()) {
+        classes.push("checkOutDate");
+      }
+  
+      // Если это день между заездом и выездом, добавляем класс "activePeriod"
+      if (
+        checkInDate &&
+        checkOutDate &&
+        date.getTime() >= checkInDate.getTime() &&
+        date.getTime() <= checkOutDate.getTime()
+      ) {
+        classes.push("activePeriod");
+      }
+  
+      return {
+        ...item,
+        class: classes.join(" "),
+      };
+    });
+    setDaysList(daysListWithActiveClass);
+  }, [checkInDate, checkOutDate, currMonth, currYear, renderCalendar]);
+  
   return (
     <div className={s.calendarWrapper}>
       <header className={s.calendarHeader}>
-        <p className={s.currentMonth}>{currentDateText}</p>
+        <p className={s.currentMonth}>{`${months[currMonth]} ${currYear}`}</p>
         <div className="icons">
           <button
             type="button"
@@ -197,7 +197,7 @@ console.log(daysListWithActiveClass);
           <li className={s.weeksItem}>Нд</li>
         </ul>
         <ul className={s.daysList}>
-          {daysListWithActiveClass.map((item, index) => {
+          {daysList.length && daysList.map((item, index) => {
             const classNames = getClassNames(item.class, s);
             return (
               <li
