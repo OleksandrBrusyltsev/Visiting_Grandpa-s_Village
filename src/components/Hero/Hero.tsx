@@ -22,7 +22,9 @@ const Hero = () => {
   return (
     <section className={css.section}>
       <div className={css.grandbox1}>
-        <h1 className={css.mainTitle}>Привіт, мій майбутній відвідувач</h1>
+        <h1 className={`${css.mainTitle} ${css.textBox1}`}>
+          Привіт, мій майбутній відвідувач
+        </h1>
 
         <Image
           src={grandpa1}
@@ -32,29 +34,29 @@ const Hero = () => {
           className={css.grandpa1}
         />
       </div>
-      <p className={css.text1}>
+      <p className={`${css.text1} ${css.textBox1}`}>
         Я - твій <span className={css.bold}>френдлі Дідусь.</span> Сьогодні
         покажу тобі мою затишну домівку, проведу сторінками казкового місця
         сили, тиші та спокою. Я створив цю садибу для тебе, щоб в потрібний
         момент ти міг зупинити думки,насолодитись природою, прислухатись до себе
         та створити нові приємні спогади.
       </p>
-      <p className={css.text2}>
+      <p className={`${css.text2} ${css.textBox1}`}>
         “Слідуй за мною та відчуй історію творіння мого життя.”
       </p>
       <div className={css.imgBox}>
         <Image
           src={photo1}
           alt={"photo"}
-          width={195}
+          width={192}
           height={177}
           className={css.photo1}
         />
         <Image
           src={illustration1}
           alt={"illustration"}
-          width={222}
-          height={202}
+          width={205}
+          height={193}
           className={css.illustration1}
         />
         <div className={css.line1Box}>
@@ -78,8 +80,8 @@ const Hero = () => {
         <Image
           src={grandpa2}
           alt={"grandpa2"}
-          width={103}
-          height={93}
+          width={93}
+          height={103}
           className={css.grandpa2}
         />
         <h2 className={css.title1}>Затишне місце сили </h2>
@@ -88,9 +90,13 @@ const Hero = () => {
         Радий вітати тебе, перший крок до знайомства з моєю садибою зроблено.
         Доторкнись до найтепліших спогадів мого життя, які сплекали{" "}
         <span className={css.bold}>найкраще місце на Землі</span> еко-садибу “На
-        селі у Дідуся”. Мені завжди подобалась природа, я відчуваю її силу та
-        велич. Твоєму Дідусю пощастило народитись серед неймовірної краси:
-        зелені хвойні ліса, надзвичайне{" "}
+        селі у Дідуся”.
+      </p>
+      <p className={css.text1}>
+        {" "}
+        Мені завжди подобалась природа, я відчуваю її силу та велич. Твоєму
+        Дідусю пощастило народитись серед неймовірної краси: зелені хвойні ліса,
+        надзвичайне{" "}
         <span className={css.bold}>блакитне озеро - справжня казка,</span> від
         якої захоплює подих і дивує відвідувачів унікальним кольором води.
       </p>
@@ -109,7 +115,7 @@ const Hero = () => {
           src={photo2}
           alt={"photo2"}
           width={215}
-          height={119}
+          height={118}
           className={css.photo2}
         />
 
@@ -138,12 +144,16 @@ const Hero = () => {
       </div>
 
       <h2 className={`${css.title1} ${css.add}`}>Доторкнись до природи</h2>
+
       <p className={css.text1}>
         Я вирішив ділитись насолодою та емоціями від краси мого краю з іншими.
         Так була створена еко-садиба у селі Олешня. Мій неповторний рідний край
         став натхнення для народження{" "}
         <span className={css.bold}>прекрасного місця сили,</span> затишку та
-        відновлення. Зараз маю аж{" "}
+        відновлення.
+      </p>
+      <p className={css.text1}>
+        Зараз маю аж{" "}
         <span className={css.bold}>8 комфортних та затишних будиночків,</span>{" "}
         щоб приймати гостей. Я створив всі умови, щоб мої відвідувачі почували
         себе щасливими. Я обожнюю бачити посмішки та радість, які можу дарувати
@@ -158,18 +168,18 @@ const Hero = () => {
           className={css.illustration3}
         />
         <Image
-          src={photo7}
+          src={photo6}
           alt={"photo7"}
           width={156}
           height={157}
-          className={css.photo7}
+          className={css.photo5}
         />
         <Image
           src={photo5}
           alt={"photo5"}
           width={193}
           height={144}
-          className={css.photo5}
+          className={css.photo6}
         />
         <Image
           src={illustration2}
@@ -196,13 +206,17 @@ const Hero = () => {
       </div>
 
       <h2 className={`${css.title1} ${css.add1}`}>Тут час збирає спогади</h2>
+
       <p className={css.text1}>
         Я знаю, що сучасний світ насичений стресом та проблемами. Але «На селі у
         Дідуся» не існує цих слів. Природа, свіже повітря, величний ліс та
-        кристально чисте блакитне озеро змусять тебе{" "}
-        <span className={css.bold}>поринути в спокій,</span> зупинити думки та
-        забути про все на світі. Разом ми зможемо{" "}
-        <span className={css.bold}>створити щасливі спогади</span>
+        кристально чисте блакитне озеро змусять тебе
+        <span className={css.bold}> поринути в спокій,</span> зупинити думки та
+        забути про все на світі. <br />
+      </p>
+      <p className={css.text1}>
+        Разом ми зможемо
+        <span className={css.bold}> створити щасливі спогади </span>
         неповторних моментів, які дарують внутрішню насолоду, щастя та відчуття
         цінності кожної хвилинки тут.
       </p>
@@ -215,11 +229,11 @@ const Hero = () => {
           className={css.grandpa3}
         />
         <Image
-          src={photo6}
+          src={photo7}
           alt={"photo6"}
           width={194}
           height={168}
-          className={css.photo6}
+          className={css.photo7}
         />
         <Image
           src={photo8}

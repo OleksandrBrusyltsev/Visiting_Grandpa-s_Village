@@ -2,9 +2,20 @@
 @use "../../styles/variables";
 
 .section {
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.section > .add1 {
+  align-self: inspect($value: flex-start);
+  margin-left: 24px;
+  width: 50vw;
+}
+
 .grandbox1 {
   padding: 0 24px;
   display: flex;
@@ -12,6 +23,17 @@
   justify-content: center;
 
   margin-bottom: 12px;
+
+  @include mixins.media-min(variables.$mobile) {
+    justify-content: flex-start;
+    padding: 0;
+  }
+}
+
+.textBox1 {
+  @include mixins.media-min(variables.$mobile) {
+    width: 362px;
+  }
 }
 
 .mainTitle {
@@ -23,7 +45,7 @@
 }
 
 .text1 {
-  padding: 0 24px;
+  // padding: 0 24px;
   font-family: var(--f-family-main);
   font-weight: 400;
   font-size: 14px;
@@ -31,6 +53,12 @@
   color: rgb(var(--color-black));
 
   margin-bottom: 12px;
+
+  max-width: 87vw;
+
+  @include mixins.media-min(variables.$mobile) {
+    padding: 0;
+  }
 }
 
 .bold {
@@ -43,6 +71,10 @@
   text-align: right;
   color: rgba(var(--color-base-green), 1);
   margin-bottom: 20px;
+
+  @include mixins.media-min(variables.$mobile) {
+    padding: 0;
+  }
 }
 
 .imgBox {
@@ -63,15 +95,24 @@
 
   max-width: 155px;
   max-height: 150px;
+
+  @include mixins.media-min(variables.$mobile) {
+    position: absolute;
+    top: 34px;
+    right: 41px;
+
+    width: 254px;
+    height: 254px;
+  }
 }
 
 .photo1 {
   z-index: 50;
   position: absolute;
-  left: 0;
+  left: -18vw;
   top: 0;
-  width: 55vw;
-  height: 45vw;
+  width: 51vw;
+  height: 47vw;
 
   max-width: 316px;
   max-height: 258px;
@@ -80,11 +121,11 @@
 .illustration1 {
   position: absolute;
   top: 25%;
-  right: 1%;
+  right: -47%;
   z-index: 49;
 
-  width: 60vw;
-  height: 55vw;
+  width: 55vw;
+  height: 52vw;
 
   max-width: 345px;
   max-height: 316px;
@@ -103,11 +144,13 @@
   justify-content: center;
   align-items: center;
   margin-bottom: -20px;
+
+  padding: 0 24px;
 }
 
 .grandpa2 {
-  width: 28vw;
-  height: 25vw;
+  width: 25vw;
+  height: 28vw;
 
   max-width: 161px;
   max-height: 143px;
@@ -126,11 +169,11 @@
 
 .photo4 {
   position: absolute;
-  top: 81px;
-  left: 20px;
+  top: 30%;
+  left: -15%;
   z-index: 55;
 
-  width: 45vw;
+  width: 46svw;
   height: 30vw;
 
   max-width: 259px;
@@ -139,11 +182,11 @@
 
 .photo2 {
   position: absolute;
-  right: 1%;
+  right: -10%;
   z-index: 49;
 
   width: 57vw;
-  height: 30vw;
+  height: 31vw;
 
   max-width: 327px;
   max-height: 172px;
@@ -151,7 +194,7 @@
 
 .photo3 {
   position: absolute;
-  right: 1%;
+  right: -10%;
   // top: 35vw;
   bottom: 0;
   z-index: 48;
@@ -171,7 +214,7 @@
 
 .imgBox3 {
   position: relative;
-  height: 85vw;
+  height: 110vw;
 
   max-height: 489px;
   // width: 320px;
@@ -183,8 +226,8 @@
 
 .illustration3 {
   position: absolute;
-  top: -25%;
-  left: 2%;
+  top: -18%;
+  left: 0;
   z-index: 50;
 
   width: 50vw;
@@ -196,11 +239,11 @@
 
 .photo7 {
   position: absolute;
-  right: 0;
+  right: -12vw;
   z-index: 49;
 
-  width: 41vw;
-  height: 41vw;
+  width: 42vw;
+  height: 42vw;
 
   max-width: 235px;
   max-height: 235px;
@@ -208,12 +251,12 @@
 
 .photo5 {
   position: absolute;
-  top: 35%;
+  top: 50%;
   left: 4%;
   z-index: 48;
 
   width: 52vw;
-  height: 39vw;
+  height: 45vw;
 
   max-width: 300px;
   max-height: 225px;
@@ -221,7 +264,7 @@
 
 .illustration2 {
   position: absolute;
-  top: 50%;
+  top: 75%;
   right: 0;
   z-index: 47;
 
@@ -234,7 +277,7 @@
 
 .add1 {
   max-width: 300px;
-  padding: 0 20px;
+  // padding: 0 20px;
   margin-bottom: 20px;
 }
 
@@ -244,16 +287,16 @@
 
   max-height: 633px;
 
-  padding: 0 20px;
+  // padding: 0 20px;
   display: flex;
-  justify-content: center;
-  margin: 0 auto;
+  // justify-content: center;
+  // margin: 0 auto;
 }
 
 .grandpa3 {
   position: absolute;
-  top: 12vw;
-  left: 0;
+  top: 5vw;
+  left: -15vw;
 
   width: 39vw;
   height: 34vw;
@@ -267,9 +310,10 @@
 .photo6 {
   position: absolute;
   right: 2vw;
+  top: 12vw;
 
   width: 54vw;
-  height: 45vw;
+  height: 40vw;
 
   max-width: 310px;
   max-height: 259px;
@@ -279,8 +323,8 @@
 
 .photo8 {
   position: absolute;
-  top: 52vw;
-  right: 2vw;
+  top: 45vw;
+  right: -12vw;
 
   width: 78vw;
   height: 50vw;
@@ -297,6 +341,7 @@
 
 .line1Box {
   padding-left: 25%;
+  margin-top: 25%;
 }
 
 .line2Box {
