@@ -15,6 +15,12 @@
 
     padding: 0 30px;
   }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    max-width: 1280px;
+    align-items: normal;
+    padding: 0 50px;
+  }
 }
 
 .section > .add1 {
@@ -35,11 +41,18 @@
     justify-content: flex-start;
     padding: 0;
   }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+  }
 }
 
 .textBox1 {
   @include mixins.media-min(variables.$mobile) {
     width: 362px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 515px;
   }
 }
 
@@ -123,15 +136,28 @@
     width: 254px;
     height: 254px;
 
-    max-width: 254px;
-    max-height: 254px;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    top: 120px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 334px;
+    height: 334px;
+
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
 .photo1 {
   z-index: 50;
   position: absolute;
-  // left: -18vw;
+  left: 24px;
   top: 0;
   width: 51vw;
   height: 47vw;
@@ -144,6 +170,18 @@
 
     width: 302px;
     height: 274px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    top: -250px;
+    right: 0;
+    left: auto;
+
+    width: 544px;
+    height: 492px;
 
     max-width: 100%;
     max-height: 100%;
@@ -171,6 +209,20 @@
     max-width: 100%;
     max-height: 100%;
   }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    top: auto;
+    bottom: -150px;
+    right: auto;
+    left: 0;
+    width: 410px;
+    height: 372px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    transform: scale(-1, 1);
+  }
 }
 
 .title1 {
@@ -187,13 +239,28 @@
 }
 
 .textContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   @include mixins.media-min(variables.$mobile) {
     width: 484px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 551px;
+    margin: 0 auto;
+    align-items: flex-end;
   }
 }
 
 .marg {
-  margin-bottom: 32px;
+  margin-bottom: 20px;
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 32px;
+  }
 }
 
 .grandbox2 {
@@ -202,32 +269,53 @@
   align-items: center;
   margin-bottom: -20px;
 
-  padding: 0 24px;
-
   @include mixins.media-min(variables.$mobile) {
     display: block;
     padding: 0;
   }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+  }
 }
 
 .grandpa2 {
+  left: 15px;
+
   width: 25vw;
   height: 28vw;
 
   max-width: 161px;
   max-height: 143px;
 
-  // transform: scale(-1, 1);
+  transform: scale(-1, 1);
+
+  z-index: -1;
 
   @include mixins.media-min(variables.$mobile) {
     position: absolute;
     right: 0;
-
+    left: auto;
     width: 304px;
     height: 302px;
 
     max-width: 100%;
     max-height: 100%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    top: 700px;
+
+    width: 327px;
+    height: 324px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    transform: scale(-1, 1);
   }
 }
 
@@ -237,12 +325,15 @@
 
   max-height: 461px;
   width: 100%;
-  // display: flex;
-  // justify-content: center;
   margin: 0 auto;
 
   @include mixins.media-min(variables.$mobile) {
     height: 600px;
+    max-height: 100%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    height: 1000px;
     max-height: 100%;
   }
 }
@@ -269,6 +360,16 @@
     top: auto;
     bottom: 0;
   }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 556px;
+    height: 354px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    top: 540px;
+  }
 }
 
 .photo2 {
@@ -290,6 +391,14 @@
     max-height: 100%;
 
     left: 0;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 748px;
+    height: 410px;
+
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
@@ -315,6 +424,16 @@
     bottom: auto;
     top: 25%;
   }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 606px;
+    height: 526px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    top: 278px;
+  }
 }
 
 .add {
@@ -335,9 +454,6 @@
 
   max-height: 635px;
   width: 100%;
-  // z-index: -1;
-  // display: flex;
-  // justify-content: center;
   margin: 0 auto;
 }
 
@@ -360,6 +476,20 @@
 
     width: 356px;
     height: 298px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    transform: scale(-1, 1);
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    right: 0;
+    left: auto;
+    top: -400px;
+
+    width: 488px;
+    height: 458px;
 
     max-width: 100%;
     max-height: 100%;
@@ -389,6 +519,18 @@
     left: 0;
     right: auto;
   }
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 668px;
+    height: 668px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    left: 0;
+    right: auto;
+    top: 150px;
+  }
 }
 
 .photo5 {
@@ -411,6 +553,19 @@
 
     width: 345px;
     height: 296px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    right: 0;
+    left: auto;
+    top: auto;
+    bottom: 0;
+
+    width: 499px;
+    height: 430px;
 
     max-width: 100%;
     max-height: 100%;
@@ -443,6 +598,21 @@
 
     transform: scale(-1, 1);
   }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    right: auto;
+    left: 0;
+    top: auto;
+    bottom: -350px;
+
+    width: 506px;
+    height: 498px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    transform: scale(-1, 1);
+  }
 }
 
 .textContainer2 {
@@ -450,6 +620,10 @@
     width: 433px;
 
     margin-left: 40%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 695px;
   }
 }
 
@@ -470,6 +644,11 @@
 
   max-height: 633px;
   width: 100%;
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    height: 1000px;
+    max-height: 100%;
+  }
 }
 
 .grandpa3 {
@@ -488,6 +667,17 @@
   @include mixins.media-min(variables.$mobile) {
     width: 311px;
     height: 248px;
+
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    left: auto;
+    right: 0;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 454px;
+    height: 364px;
 
     max-width: 100%;
     max-height: 100%;
@@ -521,6 +711,18 @@
     max-width: 100%;
     max-height: 100%;
   }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    right: auto;
+    left: 0;
+    top: 74px;
+
+    width: 660px;
+    height: 496px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
 .photo8 {
@@ -547,6 +749,18 @@
     right: 0;
     bottom: 0;
   }
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 550px;
+    height: 352px;
+
+    max-width: 100%;
+    max-height: 100%;
+    top: auto;
+    left: auto;
+    right: 0;
+    bottom: 175px;
+  }
 }
 
 .svg {
@@ -558,10 +772,21 @@
   display: flex;
 
   justify-content: center;
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    justify-content: flex-start;
+  }
 }
 
 .line2Box {
   padding-left: 25%;
+}
+
+.line2 {
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 911px;
+    height: 911px;
+  }
 }
 
 // .line3Box {
@@ -585,6 +810,12 @@
     height: 240px;
     margin-left: 100px;
   }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 291px;
+    height: 351px;
+    margin-left: 100px;
+  }
 }
 
 .line4Box {
@@ -599,5 +830,9 @@
     align-items: flex-start;
 
     width: 415px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 672px;
   }
 }
