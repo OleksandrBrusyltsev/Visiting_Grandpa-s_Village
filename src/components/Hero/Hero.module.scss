@@ -2,12 +2,19 @@
 @use "../../styles/variables";
 
 .section {
+  position: relative;
   max-width: 650px;
   margin: 0 auto;
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @include mixins.media-min(variables.$mobile) {
+    max-width: 768px;
+    align-items: normal;
+
+    padding: 0 30px;
+  }
 }
 
 .section > .add1 {
@@ -42,6 +49,11 @@
   font-size: var(--f-size-button-big);
   line-height: 21.48px;
   color: rgba(var(--color-base-green), 1);
+
+  @include mixins.media-min(variables.$mobile) {
+    font-size: 32px;
+    line-height: 35.2px;
+  }
 }
 
 .text1 {
@@ -58,6 +70,11 @@
 
   @include mixins.media-min(variables.$mobile) {
     padding: 0;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 18.56px;
+
+    margin-bottom: 32px;
   }
 }
 
@@ -74,6 +91,8 @@
 
   @include mixins.media-min(variables.$mobile) {
     padding: 0;
+    font-size: 16px;
+    line-height: 17.6px;
   }
 }
 
@@ -98,11 +117,14 @@
 
   @include mixins.media-min(variables.$mobile) {
     position: absolute;
-    top: 34px;
+    top: 25px;
     right: 41px;
 
     width: 254px;
     height: 254px;
+
+    max-width: 254px;
+    max-height: 254px;
   }
 }
 
@@ -116,6 +138,16 @@
 
   max-width: 316px;
   max-height: 258px;
+
+  @include mixins.media-min(variables.$mobile) {
+    top: 86px;
+
+    width: 302px;
+    height: 274px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
 .illustration1 {
@@ -129,6 +161,16 @@
 
   max-width: 345px;
   max-height: 316px;
+
+  @include mixins.media-min(variables.$mobile) {
+    top: 0;
+
+    width: 354px;
+    height: 321px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
 .title1 {
@@ -137,6 +179,21 @@
   font-size: var(--f-size-button-big);
   line-height: 21.48px;
   color: rgba(var(--color-base-green), 1);
+
+  @include mixins.media-min(variables.$mobile) {
+    font-size: 48px;
+    line-height: 52.8px;
+  }
+}
+
+.textContainer {
+  @include mixins.media-min(variables.$mobile) {
+    width: 484px;
+  }
+}
+
+.marg {
+  margin-bottom: 32px;
 }
 
 .grandbox2 {
@@ -146,6 +203,11 @@
   margin-bottom: -20px;
 
   padding: 0 24px;
+
+  @include mixins.media-min(variables.$mobile) {
+    display: block;
+    padding: 0;
+  }
 }
 
 .grandpa2 {
@@ -154,6 +216,19 @@
 
   max-width: 161px;
   max-height: 143px;
+
+  // transform: scale(-1, 1);
+
+  @include mixins.media-min(variables.$mobile) {
+    position: absolute;
+    right: 0;
+
+    width: 304px;
+    height: 302px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
 .imgBox2 {
@@ -165,6 +240,11 @@
   // display: flex;
   // justify-content: center;
   margin: 0 auto;
+
+  @include mixins.media-min(variables.$mobile) {
+    height: 600px;
+    max-height: 100%;
+  }
 }
 
 .photo4 {
@@ -178,6 +258,17 @@
 
   max-width: 259px;
   max-height: 173px;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 376px;
+    height: 214px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    top: auto;
+    bottom: 0;
+  }
 }
 
 .photo2 {
@@ -190,12 +281,21 @@
 
   max-width: 327px;
   max-height: 172px;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 424px;
+    height: 206px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    left: 0;
+  }
 }
 
 .photo3 {
   position: absolute;
   right: 0;
-  // top: 35vw;
   bottom: 0;
   z-index: 48;
 
@@ -204,12 +304,29 @@
 
   max-width: 327px;
   max-height: 253px;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 402px;
+    height: 348px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    bottom: auto;
+    top: 25%;
+  }
 }
 
 .add {
   text-align: right;
   padding: 0 20px;
   margin-bottom: 20px;
+
+  @include mixins.media-min(variables.$mobile) {
+    text-align: left;
+
+    padding: 0;
+  }
 }
 
 .imgBox3 {
@@ -235,6 +352,20 @@
 
   max-width: 286px;
   max-height: 276px;
+
+  @include mixins.media-min(variables.$mobile) {
+    right: 0;
+    left: auto;
+    top: -50%;
+
+    width: 356px;
+    height: 298px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    transform: scale(-1, 1);
+  }
 }
 
 .photo7 {
@@ -247,6 +378,17 @@
 
   max-width: 235px;
   max-height: 235px;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 434px;
+    height: 434px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    left: 0;
+    right: auto;
+  }
 }
 
 .photo5 {
@@ -260,6 +402,19 @@
 
   max-width: 300px;
   max-height: 225px;
+
+  @include mixins.media-min(variables.$mobile) {
+    right: 0;
+    left: auto;
+    top: auto;
+    bottom: 0;
+
+    width: 345px;
+    height: 296px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
 .illustration2 {
@@ -273,12 +428,40 @@
 
   max-width: 300px;
   max-height: 300px;
+
+  @include mixins.media-min(variables.$mobile) {
+    right: auto;
+    left: 0;
+    top: auto;
+    bottom: -30%;
+
+    width: 322px;
+    height: 318px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    transform: scale(-1, 1);
+  }
+}
+
+.textContainer2 {
+  @include mixins.media-min(variables.$mobile) {
+    width: 433px;
+
+    margin-left: 40%;
+  }
 }
 
 .add1 {
   max-width: 300px;
-  // padding: 0 20px;
+
   margin-bottom: 20px;
+
+  @include mixins.media-min(variables.$mobile) {
+    max-width: 100%;
+    margin-bottom: 36px;
+  }
 }
 
 .imgBox4 {
@@ -287,10 +470,6 @@
 
   max-height: 633px;
   width: 100%;
-  // padding: 0 20px;
-  // display: flex;
-  // justify-content: center;
-  // margin: 0 auto;
 }
 
 .grandpa3 {
@@ -305,6 +484,17 @@
   max-height: 196px;
 
   z-index: 48;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 311px;
+    height: 248px;
+
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    left: auto;
+    right: 0;
+  }
 }
 
 .photo6 {
@@ -319,6 +509,18 @@
   max-height: 259px;
 
   z-index: 49;
+
+  @include mixins.media-min(variables.$mobile) {
+    right: auto;
+    left: 0;
+    top: 0;
+
+    width: 420px;
+    height: 315px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
 .photo8 {
@@ -333,6 +535,18 @@
   max-height: 287px;
 
   z-index: 50;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 370px;
+    height: 236px;
+
+    max-width: 100%;
+    max-height: 100%;
+    top: auto;
+    left: auto;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 .svg {
@@ -355,7 +569,6 @@
 // }
 
 .line3 {
-  // padding: 0 24px;
   width: 94vw;
   height: 76vw;
 
@@ -364,15 +577,27 @@
 }
 
 .line1 {
-  // padding: 0 24px;
   width: 41vw;
   height: 57vw;
 
-  // max-width: 540px;
-  // max-height: 488px;
+  @include mixins.media-min(variables.$mobile) {
+    width: 198px;
+    height: 240px;
+    margin-left: 100px;
+  }
 }
 
 .line4Box {
   display: flex;
   justify-content: center;
+}
+
+.textContainer1 {
+  @include mixins.media-min(variables.$mobile) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 415px;
+  }
 }
