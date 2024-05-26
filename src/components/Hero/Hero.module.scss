@@ -82,10 +82,10 @@
   height: 65vw;
 
   max-height: 373px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
   margin: 0 auto;
 }
 
@@ -109,7 +109,7 @@
 .photo1 {
   z-index: 50;
   position: absolute;
-  left: -18vw;
+  // left: -18vw;
   top: 0;
   width: 51vw;
   height: 47vw;
@@ -121,7 +121,7 @@
 .illustration1 {
   position: absolute;
   top: 25%;
-  right: -47%;
+  right: 0;
   z-index: 49;
 
   width: 55vw;
@@ -161,16 +161,16 @@
   height: 80vw;
 
   max-height: 461px;
-
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  // display: flex;
+  // justify-content: center;
   margin: 0 auto;
 }
 
 .photo4 {
   position: absolute;
   top: 30%;
-  left: -15%;
+  left: 0;
   z-index: 55;
 
   width: 46svw;
@@ -182,7 +182,7 @@
 
 .photo2 {
   position: absolute;
-  right: -10%;
+  right: 0;
   z-index: 49;
 
   width: 57vw;
@@ -194,7 +194,7 @@
 
 .photo3 {
   position: absolute;
-  right: -10%;
+  right: 0;
   // top: 35vw;
   bottom: 0;
   z-index: 48;
@@ -216,11 +216,11 @@
   position: relative;
   height: 110vw;
 
-  max-height: 489px;
-  // width: 320px;
+  max-height: 635px;
+  width: 100%;
   // z-index: -1;
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
   margin: 0 auto;
 }
 
@@ -239,7 +239,7 @@
 
 .photo7 {
   position: absolute;
-  right: -12vw;
+  right: 0;
   z-index: 49;
 
   width: 42vw;
@@ -286,9 +286,9 @@
   height: 110vw;
 
   max-height: 633px;
-
+  width: 100%;
   // padding: 0 20px;
-  display: flex;
+  // display: flex;
   // justify-content: center;
   // margin: 0 auto;
 }
@@ -296,7 +296,7 @@
 .grandpa3 {
   position: absolute;
   top: 5vw;
-  left: -15vw;
+  left: 0;
 
   width: 39vw;
   height: 34vw;
@@ -324,7 +324,7 @@
 .photo8 {
   position: absolute;
   top: 45vw;
-  right: -12vw;
+  right: 0;
 
   width: 78vw;
   height: 50vw;
@@ -340,8 +340,10 @@
 }
 
 .line1Box {
-  padding-left: 25%;
-  margin-top: 25%;
+  // padding-left: 25%;
+  display: flex;
+
+  justify-content: center;
 }
 
 .line2Box {
@@ -359,4 +361,18 @@
 
   max-width: 540px;
   max-height: 488px;
+}
+
+.line1 {
+  // padding: 0 24px;
+  width: 41vw;
+  height: 57vw;
+
+  // max-width: 540px;
+  // max-height: 488px;
+}
+
+.line4Box {
+  display: flex;
+  justify-content: center;
 }
