@@ -52,11 +52,8 @@ const BookingComponent: FC = () => {
 
   const modalRef = useRef<HTMLDivElement | null>(null);
   const startRef = useRef<HTMLDivElement | null>(null);
-  const startRefTitle = useRef<HTMLLabelElement | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
-  const endRefTitle = useRef<HTMLLabelElement | null>(null);
   const guestRef = useRef<HTMLFieldSetElement | null>(null);
-  const guestRefTitle = useRef<HTMLLegendElement | null>(null);
 
   const toggleModal = (val: ChildrenType) => {
 
@@ -91,18 +88,6 @@ const BookingComponent: FC = () => {
       )
     }
   }
-  const {contextSafe} = useGSAP();
-
-  const handleMouseEnter = contextSafe((target: HTMLElement | null) => {
-    // gsap.to(target, { duration: 0.3, scale: 1.07});
-    // gsap.to(target, { duration: 0.3, fontWeight: 400, fontSize: '1.0625rem'});
-  });
-
-  const handleMouseLeave = contextSafe((target: HTMLElement | null) => {
-    // gsap.to(target, { duration: 0.3,  scale: 1  });
-    // gsap.to(target, { duration: 0.3, fontWeight: 300, fontSize: '1rem' });
-  });
-
 
   const handleDateSelect = (date: Date) => {
     if (checkInDate && checkOutDate) {
@@ -173,8 +158,6 @@ const BookingComponent: FC = () => {
         <div
           ref={startRef}
           className={s.dateWrapper}
-          onMouseEnter={() => handleMouseEnter(startRefTitle.current)}
-          onMouseLeave={() => handleMouseLeave(startRefTitle.current)}
           onClick={(e: React.MouseEvent<HTMLDivElement>) => {
             e.preventDefault();
             toggleModal({
@@ -185,7 +168,6 @@ const BookingComponent: FC = () => {
         >
           <label 
             htmlFor='start_date'
-            ref={startRefTitle}
             className={s.dateLabel} >Заїзд</label>
           <input
             type="text"
@@ -196,7 +178,7 @@ const BookingComponent: FC = () => {
             readOnly
             tabIndex={-1}
           />
-          <button type="button" className={`${s.bookingOpenButton}`}>
+          <button type="button" className={`${s.dateOpenButton}`}>
             <Icon name="icon-down" className={buildOpenButtonStyles(startRef.current)} />
             {/* <Icon name="icon-down" className={s.downIcon} /> */}
           </button>
@@ -205,8 +187,6 @@ const BookingComponent: FC = () => {
         <div
           ref={endRef}
           className={s.dateWrapper}
-          onMouseEnter={() => handleMouseEnter(endRefTitle.current)}
-          onMouseLeave={() => handleMouseLeave(endRefTitle.current)}
           onClick={(e: React.MouseEvent<HTMLDivElement>) => {
             e.preventDefault();
             toggleModal({
@@ -217,7 +197,6 @@ const BookingComponent: FC = () => {
         >
           <label 
             htmlFor='end_date'
-            ref={endRefTitle}
             className={s.dateLabel}>Виїзд</label>
           <input
             type="text"
@@ -228,7 +207,7 @@ const BookingComponent: FC = () => {
             readOnly
             tabIndex={-1}
           />
-          <button type="button" className={`${s.bookingOpenButton} `}>
+          <button type="button" className={`${s.dateOpenButton} `}>
             <Icon name="icon-down" className={buildOpenButtonStyles(endRef.current)} />
           </button>
         </div>
@@ -237,8 +216,6 @@ const BookingComponent: FC = () => {
           ref={guestRef}
           className={s.guestWrapper}
           name='guests'
-          onMouseEnter={() => handleMouseEnter(guestRefTitle.current)}
-          onMouseLeave={() => handleMouseLeave(guestRefTitle.current)}
           onClick={(e: React.MouseEvent<HTMLFieldSetElement>) => {
             e.preventDefault();
             toggleModal({
@@ -247,10 +224,10 @@ const BookingComponent: FC = () => {
             });
           }}
         >
-          <p className={s.guestLegend}><legend ref={guestRefTitle}>Гості</legend></p>
-          <label htmlFor='adult_guests' className={s.adultLabel} >Дорослі: 
+          <p className={s.guestLegend}><legend >Гості</legend></p>
+          <label htmlFor='adult_guests' className={s.guestsLabel} >Дорослі: 
             <input
-              className={s.bookingInput}
+              className={s.guestsInput}
               type="text"
               name='adult_guests'
               id='adult_guests'
@@ -259,9 +236,9 @@ const BookingComponent: FC = () => {
               tabIndex={-1}
             />,
           </label>
-          <label htmlFor='children_guests' className={s.childLabel} >Діти: 
+          <label htmlFor='children_guests' className={s.guestsLabel} >Діти: 
             <input
-              className={s.bookingInput}
+              className={s.guestsInput}
               type="text"
               name='children_guests'
               id='children_guests'

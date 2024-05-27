@@ -20,14 +20,13 @@
 
     //temporary styles
     margin: 0 50px 120px auto;
-    // padding-right: 50px;
   }
 }
 
 .bookingForm {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   gap: 32px;
   padding: 16px 25px;
   border-radius: 8px;
@@ -39,8 +38,10 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 30px;
-    height: 80px;
   }
+  // & * {
+  //   outline: 1px solid red;
+  // }
 }
 
 .dateWrapper,
@@ -50,21 +51,25 @@
   & * {
     cursor: pointer;
   }
+  transition: scale 0.4s;
+  will-change: contents;
   @include mixins.media-min(variables.$mobile) {
     &:hover {
+      scale: 1.07;
       .dateLabel,
       .guestLegend {
-        // это забраковали
-        text-shadow: 2px 3px 4px rgb(var(--color-base-green));
-
-        scale: 1.07;
-        // font-size: 1.0625rem;
-        // font-weight: 400;
+        text-shadow: 2px 3px 4px rgba(var(--color-base-green), 0.6);
       }
-      .bookingOpenButton,
+      .dateInput {
+        text-shadow: 2px 2px 8px rgba(var(--color-base-green), 0.4);
+      }
+      .guestsLabel {
+        text-shadow: 2px 2px 8px rgba(var(--color-base-green), 0.6);
+      }
+      .dateOpenButton,
       .guestOpenButton {
+        scale: 1.3;
         color: rgb(var(--color-natural-orange));
-        scale: 1.2;
       }
     }
   }
@@ -111,14 +116,6 @@
 .guestLegend {
   line-height: 1.16;
   font-weight: 300;
-  padding: 2px;
-
-
-
-  will-change: contents;
-  transition: all 0.3s;
-  transform-origin: 50%;
-
   @include mixins.media-max(variables.$mobile) {
     flex: 1 0;
   }
@@ -126,8 +123,7 @@
 .dateLabel {
   @include mixins.media-min(variables.$mobile) {
     grid-area: a;
-    // text-align: end;
-    text-align: center;
+    text-align: end;
 
   }
 }
@@ -139,7 +135,7 @@
 }
 
 .dateInput,
-.bookingInput {
+.guestsInput {
   text-align: end;
   margin: 0;
   font-weight: 700;
@@ -147,7 +143,7 @@
   line-height: 1.1;
   color: rgb(var(--color-total-black));
   background-color: transparent;
-  transition: all 0.3s;
+
   &:focus {
     outline: none;
   }
@@ -163,14 +159,14 @@
   }
 }
 
-.bookingOpenButton,
+.dateOpenButton,
 .guestOpenButton {
   width: 23px;
   height: 23px;
-  transition: scale 0.2s;
-  will-change: transform;
+  transition: scale 0.3s 0.15s;
+  will-change: contents;
 }
-.bookingOpenButton {
+.dateOpenButton {
   align-self: end;
   @include mixins.media-min(variables.$mobile) {
     grid-area: b;
@@ -184,8 +180,7 @@
 
 .upIcon,
 .downIcon {
-  transition: rotate 0.3s, opacity 0.1s 0.2s;
-  will-change: transform;
+  transition: rotate 0.3s, color 0.3s, opacity 0.1s 0.2s;
 }
 
 .upIcon {
@@ -198,19 +193,17 @@
   visibility: hidden;
 }
 
-.adultLabel,
-.childLabel {
+.guestsLabel{
   line-height: 1.1;
   font-weight: 700;
-  &>input {
-    max-width: 20px;
-  }
-}
-.adultLabel {
   grid-area: d;
 }
-.childLabel {
+.guestsLabel:last-of-type {
   grid-area: f;
+}
+
+.guestsInput {
+  max-width: 20px;
 }
 
 .buttonSearch {
@@ -218,14 +211,5 @@
   & > button {
     padding: unset;
     line-height: 44px;
-  }
-}
-//hide sibling non-active down-arrow-button for opening modal with calendar
-@include mixins.media-min(variables.$mobile) {
-  .bookingForm:has(.dateWrapper:hover):not(:has(* .hideIcon)) .dateWrapper:not(.dateWrapper:hover) {
-    .bookingOpenButton {
-      opacity: 0;
-      visibility: hidden;
-    }
   }
 }
