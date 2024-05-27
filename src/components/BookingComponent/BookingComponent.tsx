@@ -1,5 +1,5 @@
 "use client";
-import { useState, FC, useRef, useEffect, FormEventHandler} from "react";
+import { useState, FC, useRef, useEffect, FormEventHandler, ReactNode, ReactElement, useLayoutEffect} from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -32,11 +32,17 @@ const initialState = {
   adultsCount: 1,
   childrenCount: 0
 };
-type ChildrenType = "guests" | "cal" | null
+type ChildrenType = {
+  type: "cal" | "guests" | null,
+  triggerRef?: HTMLDivElement | HTMLFieldSetElement | null
+}
 const BookingComponent: FC = () => {
   
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [activeChild, setActiveChild] = useState<ChildrenType>(null);
+  const [activeChild, setActiveChild] = useState<ChildrenType>({
+    type: null,
+    triggerRef: null
+  });
   
   const [checkInDate, setCheckInDate] = useState<Date | null>(initialState.today);
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(initialState.tomorrow);
@@ -46,41 +52,32 @@ const BookingComponent: FC = () => {
 
   const modalRef = useRef<HTMLDivElement | null>(null);
   const startRef = useRef<HTMLDivElement | null>(null);
+  const startRefTitle = useRef<HTMLLabelElement | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
+  const endRefTitle = useRef<HTMLLabelElement | null>(null);
   const guestRef = useRef<HTMLFieldSetElement | null>(null);
+  const guestRefTitle = useRef<HTMLLegendElement | null>(null);
 
-  const {contextSafe} = useGSAP();
+  const toggleModal = (val: ChildrenType) => {
 
-  const toggleModal = contextSafe((val: ChildrenType) => {
     //open modal and set children
     if(!isModalOpen) {
       setIsModalOpen(!isModalOpen);
       setActiveChild(val);
-      gsap.fromTo(modalRef.current,
-        {scale: 0.8},
-        {
-          autoAlpha: 1,
-          scale: 1,
-          ease: "power2.out"
-        }
-      )
     }
 
     //close the modal and clear children
-    if(isModalOpen && val === activeChild || isModalOpen && !val) {
-      gsap.to(modalRef.current, {
-        autoAlpha: 0,
-        scale: 0.8,
-        ease: "power2.out",
-        onComplete: () => {
-          setIsModalOpen(!isModalOpen);
-          setActiveChild(null);
-        }
-      })
+    if(isModalOpen && val.type === activeChild.type || isModalOpen && !val.type) {
+      setIsModalOpen(!isModalOpen);
+      setActiveChild({type: null, triggerRef: null});
     }
 
     //keep modal and change active child with animation
-    if(isModalOpen && val && val !== activeChild) {
+    else if(
+      isModalOpen && 
+      val.type && 
+      ((activeChild.type === 'cal' && val.type !== activeChild.type) ||
+      val.type !== activeChild.type)) {
       gsap.timeline({defaults: {duration: 0.3, ease: "power2.out"}})
       .to(".animation-wrapper", {
         autoAlpha: 0,
@@ -93,8 +90,20 @@ const BookingComponent: FC = () => {
         }
       )
     }
+  }
+  const {contextSafe} = useGSAP();
+
+  const handleMouseEnter = contextSafe((target: HTMLElement | null) => {
+    // gsap.to(target, { duration: 0.3, scale: 1.07});
+    // gsap.to(target, { duration: 0.3, fontWeight: 400, fontSize: '1.0625rem'});
   });
-  
+
+  const handleMouseLeave = contextSafe((target: HTMLElement | null) => {
+    // gsap.to(target, { duration: 0.3,  scale: 1  });
+    // gsap.to(target, { duration: 0.3, fontWeight: 300, fontSize: '1rem' });
+  });
+
+
   const handleDateSelect = (date: Date) => {
     if (checkInDate && checkOutDate) {
       setCheckInDate(date);
@@ -111,20 +120,18 @@ const BookingComponent: FC = () => {
   useEffect(() => {
     const handleEscExit = (e: KeyboardEvent) => {
       if(e.code === 'Escape' && isModalOpen) {
-        toggleModal(null);
+        toggleModal({type: null, triggerRef: null});
       }
     }
     const handleOutOfModalClick = (e: MouseEvent) => {
       if(!modalRef.current || !endRef.current || !startRef.current || !guestRef.current) return
       
       if(isModalOpen && !modalRef.current.contains(e.target as Node) && 
-          (
-            (activeChild === 'cal' && !guestRef.current.contains(e.target as Node)) ||
-            (activeChild === 'guests' && !endRef.current.contains(e.target as Node) && 
-              !startRef.current.contains(e.target as Node))
-          )
-        ) {
-        toggleModal(null);
+        !guestRef.current.contains(e.target as Node) &&
+        !endRef.current.contains(e.target as Node) && 
+        !startRef.current.contains(e.target as Node)
+      ) {
+        toggleModal({type: null, triggerRef: null});
       }
     }
     document.addEventListener('keydown', handleEscExit);
@@ -133,7 +140,7 @@ const BookingComponent: FC = () => {
       document.removeEventListener('keydown', handleEscExit);
       document.removeEventListener('click', handleOutOfModalClick);
     }
-  },[isModalOpen, toggleModal]);
+  },[toggleModal]);
 
   const resetBooking = () => {
     setAdultsCount(initialState.adultsCount);
@@ -154,19 +161,31 @@ const BookingComponent: FC = () => {
     
   };
 
+  const buildOpenButtonStyles = (curTarget: HTMLDivElement | null) => {
+    if(isModalOpen && activeChild.type === 'cal') {
+      return activeChild.triggerRef === curTarget ? s.upIcon : s.hideIcon
+    } else return s.downIcon
+  };
+
   return (
     <div className={s.bookingComponentContainer}>
       <form className={s.bookingForm} onSubmit={handleSearch}>
         <div
           ref={startRef}
           className={s.dateWrapper}
+          onMouseEnter={() => handleMouseEnter(startRefTitle.current)}
+          onMouseLeave={() => handleMouseLeave(startRefTitle.current)}
           onClick={(e: React.MouseEvent<HTMLDivElement>) => {
             e.preventDefault();
-            toggleModal('cal');
+            toggleModal({
+              type: 'cal',
+              triggerRef: startRef.current
+            });
           }}
         >
           <label 
             htmlFor='start_date'
+            ref={startRefTitle}
             className={s.dateLabel} >Заїзд</label>
           <input
             type="text"
@@ -175,22 +194,30 @@ const BookingComponent: FC = () => {
             value={checkInDate ? checkInDate.toLocaleDateString('uk-UA') : ""}
             className={s.dateInput}
             readOnly
+            tabIndex={-1}
           />
-          <button type="button" className={s.bookingOpenButton}>
-            <Icon name="icon-down" className={s.downIcon} />
+          <button type="button" className={`${s.bookingOpenButton}`}>
+            <Icon name="icon-down" className={buildOpenButtonStyles(startRef.current)} />
+            {/* <Icon name="icon-down" className={s.downIcon} /> */}
           </button>
         </div>
         
         <div
           ref={endRef}
           className={s.dateWrapper}
+          onMouseEnter={() => handleMouseEnter(endRefTitle.current)}
+          onMouseLeave={() => handleMouseLeave(endRefTitle.current)}
           onClick={(e: React.MouseEvent<HTMLDivElement>) => {
             e.preventDefault();
-            toggleModal('cal');
+            toggleModal({
+              type: 'cal',
+              triggerRef: endRef.current
+            });
           }}
         >
           <label 
             htmlFor='end_date'
+            ref={endRefTitle}
             className={s.dateLabel}>Виїзд</label>
           <input
             type="text"
@@ -199,9 +226,10 @@ const BookingComponent: FC = () => {
             value={checkOutDate ? checkOutDate.toLocaleDateString('uk-UA') : ""}
             className={s.dateInput}
             readOnly
+            tabIndex={-1}
           />
-          <button type="button" className={s.bookingOpenButton}>
-            <Icon name="icon-down" className={s.downIcon} />
+          <button type="button" className={`${s.bookingOpenButton} `}>
+            <Icon name="icon-down" className={buildOpenButtonStyles(endRef.current)} />
           </button>
         </div>
 
@@ -209,12 +237,17 @@ const BookingComponent: FC = () => {
           ref={guestRef}
           className={s.guestWrapper}
           name='guests'
+          onMouseEnter={() => handleMouseEnter(guestRefTitle.current)}
+          onMouseLeave={() => handleMouseLeave(guestRefTitle.current)}
           onClick={(e: React.MouseEvent<HTMLFieldSetElement>) => {
             e.preventDefault();
-            toggleModal('guests');
+            toggleModal({
+              type: 'guests',
+              triggerRef: guestRef.current
+            });
           }}
         >
-          <p className={s.guestLegend}><legend >Гості</legend></p>
+          <p className={s.guestLegend}><legend ref={guestRefTitle}>Гості</legend></p>
           <label htmlFor='adult_guests' className={s.adultLabel} >Дорослі: 
             <input
               className={s.bookingInput}
@@ -223,6 +256,7 @@ const BookingComponent: FC = () => {
               id='adult_guests'
               value={adultsCount}
               readOnly
+              tabIndex={-1}
             />,
           </label>
           <label htmlFor='children_guests' className={s.childLabel} >Діти: 
@@ -233,8 +267,12 @@ const BookingComponent: FC = () => {
               id='children_guests'
               value={childrenCount}
               readOnly
+              tabIndex={-1}
             />
           </label>
+          <button type="button" className={`${s.guestOpenButton} `}>
+            <Icon name="icon-down" className={isModalOpen && activeChild.type === 'guests' ? s.upIcon : s.downIcon} />
+          </button>
         </fieldset>
 
         <div className={s.buttonSearch}>
@@ -242,23 +280,24 @@ const BookingComponent: FC = () => {
             size="small"
             label="Шукати"
             type="submit"
+            disabled={!checkOutDate ? true : false}
           />
         </div>
       </form>
-      <Modal ref={modalRef}>
+      <Modal visible={isModalOpen} ref={modalRef}>
         <div className="animation-wrapper">
-          {activeChild === 'cal' && <Calendar
+          {activeChild.type === 'cal' ? <Calendar
             onDateSelect={handleDateSelect}
             checkInDate={checkInDate}
             checkOutDate={checkOutDate}
-          />} 
-          {activeChild === 'guests' &&
+          /> : null} 
+          {activeChild.type === 'guests' ?
           <GuestsForm
             adultsCount={adultsCount}
             childrenCount={childrenCount}
             setAdultsCount={setAdultsCount}
             setChildrenCount={setChildrenCount}
-          />}
+          /> : null}
         </div>
       </Modal>
     </div>

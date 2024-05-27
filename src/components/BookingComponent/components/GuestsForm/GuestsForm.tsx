@@ -20,9 +20,9 @@ const GuestsForm: FC<GuestsProps> = ({
 }) => {
 
   const handleIncrement = (type: GuestType) => {
-    if (type === "adults") {
+    if (type === "adults" && adultsCount < 10) {
       setAdultsCount(adultsCount + 1);
-    } else if (type === "children") {
+    } else if (type === "children" && childrenCount < 10) {
       setChildrenCount(childrenCount + 1);
     }
   };

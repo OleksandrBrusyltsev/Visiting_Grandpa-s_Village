@@ -163,7 +163,7 @@ const Calendar: FC<CalendarProps> = ({
       };
     });
     setDaysList(daysListWithActiveClass);
-  }, [checkInDate, checkOutDate, currMonth, currYear, renderCalendar]);
+  }, [checkInDate, checkOutDate, currMonth, currYear]);
   
   return (
     <div className={s.calendarWrapper}>

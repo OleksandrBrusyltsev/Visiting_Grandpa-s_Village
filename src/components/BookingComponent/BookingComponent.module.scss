@@ -4,11 +4,9 @@
 .bookingComponentContainer {
   width: 276px;
   position: relative;
-    
+
   //temporary styles
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 37px;
+  margin: 0 auto 37px;
 
   @include mixins.media-min(variables.$mobile) {
     width: 708px;
@@ -21,30 +19,17 @@
     width: 791px;
 
     //temporary styles
-    margin-left: auto;
-    margin-right: 0;
-    padding-right: 50px;
-  }
-
-  & input {
-    text-align: end;
-    margin: 0;
-    font-weight: 700;
-    line-height: 1.1;
-    color: rgb(var(--color-total-black));
-
-    &:focus {
-      outline: none;
-    }
+    margin: 0 50px 120px auto;
+    // padding-right: 50px;
   }
 }
 
 .bookingForm {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 32px;
-  padding: 16px 30px;
+  padding: 16px 25px;
   border-radius: 8px;
   border: 1px solid rgb(var(--color-base-green));
   font-family: var(--f-family-main);
@@ -54,110 +39,193 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 30px;
+    height: 80px;
   }
 }
 
 .dateWrapper,
 .guestWrapper {
-  flex: 0 1 auto;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
   width: 100%;
-
-  &, & * {
+  &,
+  & * {
     cursor: pointer;
   }
-
   @include mixins.media-min(variables.$mobile) {
-    width: auto;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
-    gap: 15px 12px;
+    &:hover {
+      .dateLabel,
+      .guestLegend {
+        // это забраковали
+        text-shadow: 2px 3px 4px rgb(var(--color-base-green));
+
+        scale: 1.07;
+        // font-size: 1.0625rem;
+        // font-weight: 400;
+      }
+      .bookingOpenButton,
+      .guestOpenButton {
+        color: rgb(var(--color-natural-orange));
+        scale: 1.2;
+      }
+    }
   }
 }
 
 .dateWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
   @include mixins.media-min(variables.$mobile) {
+    width: auto;
+    display: grid;
+    grid-auto-columns: auto;
+    grid-auto-rows: auto;
     grid-template-areas:
-      "a b"
+      "a ."
       "c b";
+    gap: 12px;
   }
 }
 
 .guestWrapper {
+  display: grid;
+  grid-auto-columns: 1fr 1fr auto;
+  grid-auto-rows: auto;
+  column-gap: 6px;
+  align-items: center;
+  grid-template-areas:
+    "e d g"
+    ". f g";
   @include mixins.media-min(variables.$mobile) {
+    width: auto;
+    grid-auto-columns: auto;
+    grid-auto-rows: auto;
     grid-template-areas:
-      "e e"
-      "d f";
-    gap: 15px 8px;
+      "e e e"
+      "d f g";
+    gap: 12px 8px;
   }
 }
 
 .dateLabel,
 .guestLegend {
   line-height: 1.16;
+  font-weight: 300;
+  padding: 2px;
+
+
+
+  will-change: contents;
+  transition: all 0.3s;
+  transform-origin: 50%;
+
   @include mixins.media-max(variables.$mobile) {
     flex: 1 0;
   }
 }
-
 .dateLabel {
   @include mixins.media-min(variables.$mobile) {
     grid-area: a;
-    text-align: end;
+    // text-align: end;
+    text-align: center;
+
   }
 }
-.dateInput {
-  max-width: 95px;
+.guestLegend {
+  grid-area: e;
+  @include mixins.media-min(variables.$mobile) {
+    text-align: center;
+  }
+}
+
+.dateInput,
+.bookingInput {
+  text-align: end;
+  margin: 0;
+  font-weight: 700;
   letter-spacing: 0.005em;
   line-height: 1.1;
+  color: rgb(var(--color-total-black));
+  background-color: transparent;
+  transition: all 0.3s;
+  &:focus {
+    outline: none;
+  }
+}
 
+.dateInput {
+  text-align: start;
+  max-width: 95px;
   @include mixins.media-min(variables.$mobile) {
+    max-width: 83px;
+    text-align: end;
     grid-area: c;
   }
 }
-.bookingOpenButton {
-  width: 24px;
-  height: 20px;
 
+.bookingOpenButton,
+.guestOpenButton {
+  width: 23px;
+  height: 23px;
+  transition: scale 0.2s;
+  will-change: transform;
+}
+.bookingOpenButton {
+  align-self: end;
   @include mixins.media-min(variables.$mobile) {
     grid-area: b;
     align-self: end;
   }
 }
-
-.guestLegend {
-  
- @include mixins.media-min(variables.$mobile) {
-    grid-area: e;
-    text-align: center;
-  }
+.guestOpenButton {
+  grid-area: g;
+  align-self: center;
 }
-.guestWrapper > .adultLabel,
-.guestWrapper > .childLabel  {
+
+.upIcon,
+.downIcon {
+  transition: rotate 0.3s, opacity 0.1s 0.2s;
+  will-change: transform;
+}
+
+.upIcon {
+  rotate: 180deg;
+  color: rgb(var(--color-natural-orange));
+}
+
+.hideIcon {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.adultLabel,
+.childLabel {
+  line-height: 1.1;
   font-weight: 700;
-  & > input {
+  &>input {
     max-width: 20px;
   }
 }
-.guestWrapper > .adultLabel {
-  @include mixins.media-min(variables.$mobile) {
-    grid-area: d;
-  }
+.adultLabel {
+  grid-area: d;
 }
-.guestWrapper > .childLabel {
-  @include mixins.media-min(variables.$mobile) {
-    grid-area: f;
-  }
+.childLabel {
+  grid-area: f;
 }
 
 .buttonSearch {
   font-size: var(--f-size-button-small);
-  align-self: center;
   & > button {
     padding: unset;
-    line-height: 46px;
+    line-height: 44px;
+  }
+}
+//hide sibling non-active down-arrow-button for opening modal with calendar
+@include mixins.media-min(variables.$mobile) {
+  .bookingForm:has(.dateWrapper:hover):not(:has(* .hideIcon)) .dateWrapper:not(.dateWrapper:hover) {
+    .bookingOpenButton {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 }
