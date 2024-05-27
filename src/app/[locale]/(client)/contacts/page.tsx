@@ -1,6 +1,7 @@
-import { headerUrls } from "../../../../types/header";
+import { HeaderUrls } from "../../../../types/header";
+import ContactsComponent from "../../../../components/ContactsComponent/ContactsComponent"
 
-const urls: headerUrls = {
+const urls: HeaderUrls = {
   en: {
     pathList: ["contacts"],
   },
@@ -18,5 +19,6 @@ export async function generateStaticParams({
 }
 
 export default async function ContactsPage() {
-  return <>ContactsPage</>;
+  return (
+  <ContactsComponent/>)
 }

@@ -1,0 +1,35 @@
+// @use "../../styles/mixins" as mixins;
+// @use "../../styles/variables";
+
+.contactsContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1440px;
+  padding-left: 78px;
+}
+
+.navWrapper {
+  margin-bottom: 44px;
+}
+
+.linkTextWrapper {
+  margin-bottom: 15px;
+}
+
+.linkTextBolt {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 700;
+  line-height: 17.6px;
+}
+
+.linkText {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 300;
+  line-height: 18.56px;
+}
+
+.backLink {
+  display: block;
+}
