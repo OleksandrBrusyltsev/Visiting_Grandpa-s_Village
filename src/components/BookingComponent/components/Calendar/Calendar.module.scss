@@ -52,6 +52,10 @@
 .weeksItem,
 .daysItem {
   width: calc(100% / 7);
+  div {
+    position: relative;
+    z-index: 2;
+  }
 }
 
 .weeksList {
@@ -64,45 +68,73 @@
   color: rgb(var(--color-total-black));
   font-weight: 700;
 }
+.daysList {
 
-.daysItem {
-  cursor: pointer;
-  padding: 10px;
-  color: rgb(var(--color-total-black));
-  font-family: var(--f-family-headline);
-  font-size: var(--f-size-body);
-  border-radius: 50%;
-
-  &:hover {
+  .daysItem {
+    cursor: pointer;
+    padding: 10px;
+    color: rgb(var(--color-total-black));
+    font-family: var(--f-family-headline);
+    font-size: var(--f-size-body);
     border-radius: 50%;
-    background-color: rgb(var(--color-natural-orange));
+
+    &:hover {
+      background-color: rgb(var(--color-natural-orange));
+    }
+
+    @include mixins.media-min(variables.$mobile) {
+      padding: 15px;
+    }
+
+    &.lastDaysItem,
+    &.nextDaysItem {
+      color: rgb(var(--color-gray-light));
+    }
+
+    &.activePeriod {
+      border-radius: 0;
+      background-color: rgba(180, 133, 79, 0.4);
+      &:hover {
+        background-color: rgba(180, 133, 79, 0.8);
+      }
+    }
+
+    &.activePeriod.checkInDate {
+      border-radius: 50% 0 0 50%;
+      &:hover {
+        background-color: rgba(180, 133, 79, 0.4);
+      }
+    }
+
+    &.activePeriod.checkOutDate {
+      border-radius: 0 50% 50% 0;
+      &:hover {
+        background-color: rgba(180, 133, 79, 0.4);
+      }
+    }
+
+    &.checkInDate,
+    &.checkOutDate {
+      background-color: rgba(180, 133, 79, 0.4);
+      color: rgb(var(--color-white));
+      position: relative;
+      z-index: 2;
+      &::before {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 50%;
+        background-color: rgb(var(--color-natural-orange));
+      }
+    }
+    
+    &.disabled {
+      pointer-events: none;
+      color: rgb(var(--color-gray-light));
+    }
   }
-  @include mixins.media-min(variables.$mobile) {
-    padding: 15px;
-  }
-}
-
-.lastDaysItem,
-.nextDaysItem {
-  color: rgb(var(--color-gray-light));
-}
-
-.activeDay {
-  border-radius: 50%;
-  color: rgb(var(--color-white));
-  background-color: rgb(var(--color-natural-orange));
-}
-
-.activePeriod {
-  background-color: rgba(180, 133, 79, 0.4);
-  border-radius: 0;
-  &:hover {
-    border-radius: 0;
-    background-color: rgba(180, 133, 79, 0.8);
-  }
-}
-
-.disabled {
-  pointer-events: none;
-  color: rgb(var(--color-gray-light));
 }
