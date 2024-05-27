@@ -17,7 +17,7 @@ export const navigationLinks = [
     },
     {
       id: 5,
-      link: "",
+      link: "/uk/contacts",
       text: "ЗНАЙТИ МЕНЕ",
     },
   ];
