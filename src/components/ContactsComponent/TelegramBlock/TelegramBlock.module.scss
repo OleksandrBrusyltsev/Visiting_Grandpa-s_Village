@@ -30,7 +30,7 @@
   margin-bottom: 56px;
 }
 
-.telegramTextBolt {
+.telegramTextBold {
   font-weight: 700;
 }
 
@@ -57,6 +57,25 @@
   font-weight: 700;
   line-height: 18.56px;
 }
+
+.telegramIcon {
+    width: 44px;
+    height: 44px;
+    color: rgb(var(--color-dark-green));
+    transition: color 0.3s, stroke 0.3s;
+
+    &:hover {
+      color: transparent;
+      stroke: rgb(var(--color-base-green));
+      stroke-width: 1px;
+    }
+
+    &:active {
+      color: rgb(var(--color-natural-orange));
+      stroke: rgb(var(--color-natural-orange));
+      stroke-width: 0;
+    }
+  }
 
 .telegramIconText {
   font-family: var(--f-family-headline);
