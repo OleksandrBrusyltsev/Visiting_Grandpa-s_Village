@@ -16,7 +16,7 @@ const TelegramBlock: FC = () => {
       </p>
       <div className={s.telegramLinkWrapper}>
         <p className={s.telegramLinkText}>
-          Скористайся, щоб забронювати будиночок, або запитати чат-бот
+          Скористайся, щоб забронювати будиночок, або запитати
         </p>
         <Link href="#" className={s.telegramBotLink}>
           <Icon name="telegram" className={s.telegramIcon} />
