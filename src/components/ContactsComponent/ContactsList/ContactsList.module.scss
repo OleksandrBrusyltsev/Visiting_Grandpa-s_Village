@@ -1,0 +1,39 @@
+.contactsListWrapper {
+  width: 668px;
+  padding: 30px 20px 30px 20px;
+  border-radius: 8px;
+  background-color: rgb(var(--color-nude));
+  margin-left: 70px;
+}
+
+.contactsList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.contactsItemTitle {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 300;
+  line-height: 18.56px;
+  margin-bottom: 16px;
+}
+
+.contactItemText {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.contactItemIcon {
+    margin-right: 10px;
+}
+
+.socialMediaList {
+    gap: 46px;
+    justify-content: center;
+}

@@ -4,7 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import s from "./ContactsComponent.module.scss";
 import IconBack from "../../assets/icons/icon-back.svg";
-import TelegramBotLink from "./TelegramBotLink/TelegtamBotLink";
+import TelegramBotLink from "./TelegramBlock/TelegramBlock";
+import ContactsList from "./ContactsList/ContactsList";
 
 const ContactsComponent:FC = () => {
     return (
@@ -18,7 +19,8 @@ const ContactsComponent:FC = () => {
             <Image src={IconBack} alt="back" className={s.backIcon} />
                 </Link>
             </div>
-            <TelegramBotLink />
+        <TelegramBotLink />
+        <ContactsList/>
       </div>
     );
 };

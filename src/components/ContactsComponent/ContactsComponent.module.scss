@@ -1,11 +1,12 @@
-// @use "../../styles/mixins" as mixins;
-// @use "../../styles/variables";
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
 
 .contactsContainer {
   margin-left: auto;
   margin-right: auto;
   width: 1440px;
-  padding-left: 78px;
+  padding-left: 130px;
+  padding-right: 130px;
 }
 
 .navWrapper {
