@@ -1,0 +1,71 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
+.lake {
+  width: 178px;
+  height: 168px;
+  margin-bottom: 18px;
+}
+
+.faqTitle {
+  width: 222px;
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-h3);
+  color: rgba(var(--color-base-green));
+  font-weight: 600;
+  line-height: 35.15px;
+  margin-bottom: 47px;
+  margin-left: auto;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 340px;
+    font-size: var(--f-size-h1);
+    margin-bottom: 68px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-bottom: 48px;
+  }
+}
+
+.faqWrapper {
+  width: 327px;
+  padding: 16px;
+  background-color: rgba(var(--color-nude, 0.7));
+  border-radius: 8px;
+  border: 1px solid rgba(var(--color-base-green));
+}
+
+.faqList {
+  background-color: rgba(var(--color-gray-light));
+  width: 100%;
+}
+
+.questionWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.questionText {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 700;
+  line-height: 18.56px;
+  max-width: 230px;
+}
+
+.iconButton {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.answerText {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 300;
+  line-height: 18.56px;
+  padding: 0px 16px;
+}
