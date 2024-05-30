@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Icon from "../../ui/Icon/Icon";
 import IconEmail from "../../../assets/icons/icon-email.svg";
-import Grandpa from "../../../../public/images/contacts/grandpa.png"
+import Grandpa from "../../../../public/images/contacts/grandpa.png";
 import IconMap from "../../../assets/icons/icon-map.svg";
 import s from "./ContactsList.module.scss";
 import sFooter from "../../Footer/Footer.module.scss";
@@ -32,10 +32,9 @@ const ContactsList = () => {
   console.log(s.contactItemText);
 
   return (
-  
-     
+    <div className={s.imgWrapper}>
+      <Image className={s.grandpa} src={Grandpa} alt="picture" />
       <div className={s.contactsListWrapper}>
-        <Image className={s.grandpa} src={Grandpa} alt="picture" />
         <ul className={s.contactsList}>
           <li className={s.contactsItem}>
             <p className={s.contactsItemTitle}>Телефон</p>
@@ -89,7 +88,8 @@ const ContactsList = () => {
             </li>
           ))}
         </ul>
-      </div> 
+      </div>
+    </div>
   );
 };
 

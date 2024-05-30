@@ -2,11 +2,13 @@
 @use "../../../styles/variables";
 
 .contactsListWrapper {
-  position: relative;
+  margin-top: -15px;
+  margin-left: auto;
   width: 327px;
   padding: 20px 15px 20px 15px;
   border-radius: 8px;
   background-color: rgb(var(--color-nude));
+  margin-bottom: 29px;
 
   @include mixins.media-min(variables.$mobile) {
     width: 524px;
@@ -22,9 +24,11 @@
 .grandpa {
   width: 121px;
   height: 121px;
-  position: absolute;
-  left: 210px;
-  top: -110px;
+  display: block;
+  margin-left: auto;
+  // position: absolute;
+  // left: 210px;
+  // top: -110px;
 }
 
 .contactsList {

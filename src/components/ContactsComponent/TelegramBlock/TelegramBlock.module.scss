@@ -3,8 +3,7 @@
 
 .telegramWrapper {
   width: 100%;
-  position: relative;
-  margin-bottom: 153px;
+  margin-bottom: 23px;
 
   @include mixins.media-min(variables.$mobile) {
   }
@@ -51,7 +50,7 @@
   font-weight: 300;
   line-height: 19px;
   width: 243px;
-  margin-bottom: 151px;
+  margin-bottom: -70px;
 
   @include mixins.media-min(variables.$mobile) {
     width: 384px;
@@ -68,12 +67,16 @@
 .map {
   width: 179px;
   height: 194px;
-  position: absolute;
-  top: 85px;
-  left: 152px;
+  display: block;
+  margin-left: auto;
+  margin-bottom: 18px;
+  // position: absolute;
+  // top: 85px;
+  // left: 152px;
 }
 
 .telegramLinkWrapper {
+  margin-left: auto;
   width: 327px;
   padding: 14px 12px;
   border-radius: 8px;
@@ -81,13 +84,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 23px;
   
   @include mixins.media-min(variables.$mobile) {
     width: 322px;
   }
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 380px;
+    margin-bottom: 23px;
   }
 }
 
