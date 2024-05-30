@@ -2,33 +2,65 @@
 @use "../../styles/variables";
 
 .contactsContainer {
+  margin-top: 29px;
+  width: 375px;
   margin-left: auto;
   margin-right: auto;
-  width: 1440px;
-  padding-left: 130px;
-  padding-right: 130px;
+  padding-left: 24px;
+  padding-right: 24px;
+
+  @include mixins.media-min(variables.$mobile) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 1280px;
+    padding-left: 130px;
+    padding-right: 130px;
+  }
 }
 
 .navWrapper {
-  margin-bottom: 44px;
+  margin-bottom: 16px;
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-bottom: 44px;
+  }
 }
 
 .linkTextWrapper {
-  margin-bottom: 15px;
+  margin-bottom: 19px;
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 20px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-bottom: 16px;
+  }
 }
 
-.linkTextBolt {
+.linkTextBold {
   font-family: var(--f-family-main);
-  font-size: var(--f-size-body);
+  font-size: 14px;
   font-weight: 700;
   line-height: 17.6px;
+
+  @include mixins.media-min(variables.$mobile) {
+    font-size: var(--f-size-body);
+  }
 }
 
 .linkText {
   font-family: var(--f-family-main);
-  font-size: var(--f-size-body);
+  font-size: 14px;
   font-weight: 300;
   line-height: 18.56px;
+
+   @include mixins.media-min(variables.$mobile) {
+    font-size: var(--f-size-body);
+  }
 }
 
 .backLink {

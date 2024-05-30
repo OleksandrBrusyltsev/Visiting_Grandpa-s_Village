@@ -1,9 +1,30 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
 .contactsListWrapper {
-  width: 668px;
-  padding: 30px 20px 30px 20px;
+  position: relative;
+  width: 327px;
+  padding: 20px 15px 20px 15px;
   border-radius: 8px;
   background-color: rgb(var(--color-nude));
-  margin-left: 70px;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 524px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    padding: 30px 20px 30px 20px;
+    width: 668px;
+    margin-left: 70px;
+  }
+}
+
+.grandpa {
+  width: 121px;
+  height: 121px;
+  position: absolute;
+  left: 210px;
+  top: -110px;
 }
 
 .contactsList {
@@ -22,18 +43,25 @@
 }
 
 .contactItemText {
-  font-size: 18px;
+  font-size: var(--f-size-body);
   font-weight: 600;
   line-height: 18px;
   display: flex;
   align-items: center;
+
+  @include mixins.media-min(variables.$mobile) {
+    font-size: 18px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+  }
 }
 
 .contactItemIcon {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .socialMediaList {
-    gap: 46px;
-    justify-content: center;
+  gap: 46px;
+  justify-content: center;
 }
