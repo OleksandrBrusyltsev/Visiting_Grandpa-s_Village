@@ -2,7 +2,9 @@
 
 import { FC } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Icon from "../../ui/Icon/Icon";
+import Map from "../../../../public/images/contacts/map.png";
 import s from "./TelegramBlock.module.scss";
 
 const TelegramBlock: FC = () => {
@@ -14,6 +16,7 @@ const TelegramBlock: FC = () => {
         <span className={s.telegramTextBold}>&#x20;Telegram-bot&#x20;</span>,
         знаю як ти любиш корисні зручні сервіси.
       </p>
+      <Image src={Map} alt="map" className={s.map} />
       <div className={s.telegramLinkWrapper}>
         <p className={s.telegramLinkText}>
           Скористайся, щоб забронювати будиночок, або запитати
