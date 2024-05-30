@@ -1,2 +1,53 @@
+.house {
+  width: 201px;
+  height: 182px;
+  margin-bottom: 8px;
+  display: block;
+  margin-left: auto;
+}
 
+.routeInfoTitle {
+  width: 164px;
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-h3);
+  color: rgba(var(--color-base-green));
+  font-weight: 600;
+  line-height: 35.15px;
+  margin-bottom: 16px;
+  margin-right: auto;
+}
 
+.routeInfoWrapper {
+  width: 100%;
+  margin-bottom: 45px;
+}
+
+.routeInfoText {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 300;
+  line-height: 18.56px;
+  margin-bottom: 16px;
+}
+
+.textDotWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  width: fit-content;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background-color: rgb(var(--color-black));
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.textDot {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 700;
+  line-height: 18.56px;
+}

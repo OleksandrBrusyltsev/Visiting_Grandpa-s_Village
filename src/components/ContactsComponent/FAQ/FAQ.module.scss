@@ -28,11 +28,12 @@
 }
 
 .faqWrapper {
-  width: 327px;
+  width: 100%;
   padding: 16px;
   background-color: rgba(var(--color-nude, 0.7));
   border-radius: 8px;
   border: 1px solid rgba(var(--color-base-green));
+  margin-bottom: 30px;
 }
 
 .faqList {
