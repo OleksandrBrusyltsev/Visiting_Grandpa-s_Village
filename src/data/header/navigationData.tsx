@@ -12,7 +12,7 @@ export const navigationLinks = [
     },
     {
       id: 4,
-      link: "",
+      link: "uk/memories",
       text: "СПОГАДИ",
     },
     {

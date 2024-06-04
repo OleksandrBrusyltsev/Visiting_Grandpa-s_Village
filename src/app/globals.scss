@@ -32,3 +32,19 @@
   --color-error: 168, 14, 14;
   --color-calendar-bcg: 239, 235, 231;
 }
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-inline: 24px;
+  @include media-min($mobile) {
+    padding-inline: 30px;
+  }
+  @include media-min($breakpoint-laptop) {
+    padding-inline: 50px;
+  }
+  @include media-min($pc) {
+    padding-inline: 130px;
+  }
+}
