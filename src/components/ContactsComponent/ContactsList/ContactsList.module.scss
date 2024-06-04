@@ -12,12 +12,15 @@
 
   @include mixins.media-min(variables.$mobile) {
     width: 524px;
+    margin-right: auto;
+    margin-bottom: 50px;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     padding: 30px 20px 30px 20px;
     width: 668px;
     margin-left: 70px;
+    margin-bottom: 60px;
   }
 }
 
@@ -26,6 +29,19 @@
   height: 121px;
   display: block;
   margin-left: auto;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 174px;
+    height: 174px;
+    margin-left: 385px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 218px;
+    height: 218px;
+    margin-left: 520px;
+  }
+
   // position: absolute;
   // left: 210px;
   // top: -110px;

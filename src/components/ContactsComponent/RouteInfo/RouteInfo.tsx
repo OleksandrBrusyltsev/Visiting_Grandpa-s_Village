@@ -7,8 +7,8 @@ const RouteInfo: FC = () => {
   return (
     <div className={s.imgAndRouteInfoWrapper}>
       <Image src={House} alt="picture" className={s.house} />
-      <h1 className={s.routeInfoTitle}>Як дістатися з Чернігова?</h1>
       <div className={s.routeInfoWrapper}>
+        <h1 className={s.routeInfoTitle}>Як дістатися з Чернігова?</h1>
         <p className={s.routeInfoText}>
           Електричкою до станції Грибова Рудня. Електричка виходить із Чернігова
           до Грибової Рудні двічі на день — о 8:16 ранку та о 21:20 вечора

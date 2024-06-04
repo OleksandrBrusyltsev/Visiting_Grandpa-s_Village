@@ -5,6 +5,17 @@
   width: 178px;
   height: 168px;
   margin-bottom: 18px;
+  @include mixins.media-min(variables.$mobile) {
+    width: 343px;
+    height: 324px;
+    margin-bottom: -150px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 586px;
+    height: 552px;
+    margin-bottom: -460px;
+  }
 }
 
 .faqTitle {
@@ -23,6 +34,7 @@
     margin-bottom: 68px;
   }
   @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 622px;
     margin-bottom: 48px;
   }
 }
@@ -34,6 +46,15 @@
   border-radius: 8px;
   border: 1px solid rgba(var(--color-base-green));
   margin-bottom: 30px;
+  @include mixins.media-min(variables.$mobile) {
+    width: 472px;
+    margin-bottom: 42px;
+    margin-left: auto;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-left: 660px;
+    margin-bottom: 166px;
+  }
 }
 
 .faqList {
@@ -54,6 +75,9 @@
   font-weight: 700;
   line-height: 18.56px;
   max-width: 230px;
+  @include mixins.media-min(variables.$mobile) {
+    max-width: 380px;
+  }
 }
 
 .iconButton {

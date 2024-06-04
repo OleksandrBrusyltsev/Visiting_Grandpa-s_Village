@@ -1,9 +1,55 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
+.imgAndRouteInfoWrapper {
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    margin-bottom: 100px;
+    column-gap: 38px;
+    margin-left: auto;
+    width: 1070px;
+  }
+}
+
 .house {
   width: 201px;
   height: 182px;
   margin-bottom: 8px;
   display: block;
   margin-left: auto;
+  @include mixins.media-min(variables.$mobile) {
+    width: 382px;
+    height: 346px;
+    margin-bottom: 0;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+  }
+}
+
+.routeInfoWrapper {
+  width: 100%;
+  margin-bottom: 45px;
+  @include mixins.media-min(variables.$mobile) {
+    width: 411px;
+    margin-top: -127px;
+    margin-bottom: 163px;
+    margin-right: auto;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0;
+    width: 100%;
+  }
 }
 
 .routeInfoTitle {
@@ -15,11 +61,15 @@
   line-height: 35.15px;
   margin-bottom: 16px;
   margin-right: auto;
-}
-
-.routeInfoWrapper {
-  width: 100%;
-  margin-bottom: 45px;
+  @include mixins.media-min(variables.$mobile) {
+    width: 240px;
+    font-size: var(--f-size-h1);
+    margin-bottom: 24px;
+  }
+  @include mixins.media-min(variables.$mobile) {
+    width: 100%;
+    margin-right: 0;
+  }
 }
 
 .routeInfoText {
@@ -28,6 +78,9 @@
   font-weight: 300;
   line-height: 18.56px;
   margin-bottom: 16px;
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 24px;
+  }
 }
 
 .textDotWrapper {

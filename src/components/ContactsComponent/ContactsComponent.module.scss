@@ -10,14 +10,15 @@
   padding-right: 24px;
 
   @include mixins.media-min(variables.$mobile) {
+    width: 768px;
     padding-left: 30px;
     padding-right: 30px;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 1280px;
-    padding-left: 130px;
-    padding-right: 130px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
 }
 
@@ -25,7 +26,7 @@
   margin-bottom: 16px;
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    margin-bottom: 44px;
+    margin-bottom: 40px;
   }
 }
 
@@ -58,7 +59,7 @@
   font-weight: 300;
   line-height: 18.56px;
 
-   @include mixins.media-min(variables.$mobile) {
+  @include mixins.media-min(variables.$mobile) {
     font-size: var(--f-size-body);
   }
 }
@@ -68,6 +69,6 @@
 }
 
 .googleMap {
-  width: 375px;
-  height: 161px;
+  width: 100%;
+  height: auto;
 }
