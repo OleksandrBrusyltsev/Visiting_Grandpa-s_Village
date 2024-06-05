@@ -7,6 +7,7 @@ interface ButtonProps {
   className?: string;
   onClick?: () => void;
   disabled?: boolean;
+  tabIndex?: number
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -15,6 +16,7 @@ const Button: React.FC<ButtonProps> = ({
   size = "default",
   disabled = false,
   className = "",
+  tabIndex,
   onClick,
 }) => {
   const styles = `${s.button} ${size && s[`button_${size}`]} ${className}`;
@@ -25,6 +27,7 @@ const Button: React.FC<ButtonProps> = ({
       className={styles}
       disabled={disabled}
       onClick={onClick}
+      tabIndex={tabIndex}
     >
       {label}
     </button>
