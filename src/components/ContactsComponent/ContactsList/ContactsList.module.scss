@@ -41,10 +41,6 @@
     height: 218px;
     margin-left: 520px;
   }
-
-  // position: absolute;
-  // left: 210px;
-  // top: -110px;
 }
 
 .contactsList {
@@ -71,9 +67,6 @@
 
   @include mixins.media-min(variables.$mobile) {
     font-size: 18px;
-  }
-
-  @include mixins.media-min(variables.$breakpoint-laptop) {
   }
 }
 

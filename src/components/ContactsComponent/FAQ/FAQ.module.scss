@@ -5,6 +5,7 @@
   width: 178px;
   height: 168px;
   margin-bottom: 18px;
+  
   @include mixins.media-min(variables.$mobile) {
     width: 343px;
     height: 324px;
@@ -46,6 +47,7 @@
   border-radius: 8px;
   border: 1px solid rgba(var(--color-base-green));
   margin-bottom: 30px;
+
   @include mixins.media-min(variables.$mobile) {
     width: 472px;
     margin-bottom: 42px;
@@ -75,6 +77,7 @@
   font-weight: 700;
   line-height: 18.56px;
   max-width: 230px;
+
   @include mixins.media-min(variables.$mobile) {
     max-width: 380px;
   }

@@ -28,9 +28,6 @@ const socialMediaLinks = [
 const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
 
 const ContactsList = () => {
-  console.log(sFooter.contactsText); // Должен выводить сгенерированное имя класса
-  console.log(s.contactItemText);
-
   return (
     <div className={s.imgWrapper}>
       <Image className={s.grandpa} src={Grandpa} alt="picture" />
