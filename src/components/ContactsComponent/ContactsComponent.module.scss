@@ -71,4 +71,13 @@
 .googleMap {
   width: 100%;
   height: auto;
+  margin-bottom: 27px;
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 109px;
+  }
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 141px;
+  }
 }
