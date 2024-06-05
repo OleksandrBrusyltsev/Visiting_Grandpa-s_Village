@@ -13,6 +13,12 @@
     justify-content: flex-end;
     padding: 10px;
     gap: 10px;
+    pointer-events: painted;
+    transition: filter 0.3s, scale 0.3s, box-shadow 0.4s;
+    &:active {
+        filter: grayscale(60%);
+        scale: 0.98
+    }
 }
 
 .imageWrapper {
@@ -46,9 +52,6 @@
 }
 
 @include mixins.media-min(variables.$breakpoint-laptop) {
-    .tmpLink {
-        pointer-events: none;
-    }
     .itemWrapper {
         width: calc((100% - 70px) / 2);
         aspect-ratio: 1.37;
@@ -75,6 +78,10 @@
                 scale: 1;
             }
         }
+        &:active {
+            filter: unset;
+            scale: unset;
+        }
     }
 
     .imageWrapper {
@@ -82,7 +89,7 @@
         width: calc(100% - 40px);
         height: calc(100% - 40px);
         position: absolute;
-        transition: opacity 0.7s, height 1s, filter 0.4s 0.7s;
+        transition: opacity 045s, height 0.6s, filter 0.4s 0.5s;
             
         img {
             object-fit: cover;
@@ -102,12 +109,12 @@
             padding: 30px;
             scale: 0.9;
             opacity: 0;
-            transition: opacity 0.7s 0.4s, scale 0.7s 0.4s;
+            transition: opacity 0.4s 0.3s, scale 0.4s 0.3s;
         }
     }
     .btnWrapper {
         transform: translateY(100px);
         opacity: 0;
-        transition: transform 1s, opacity 0.7s;
+        transition: transform 0.6s, opacity 0.4s;
     }
 }
