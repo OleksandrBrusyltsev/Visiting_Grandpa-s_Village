@@ -17,7 +17,7 @@ const ContactsComponent: FC = () => {
         <div className={s.navWrapper}>
           <div className={s.linkTextWrapper}>
             <span className={s.linkText}>Головна/</span>
-            <span className={s.linkTextBold}>Знайди мене</span>
+            <span className={s.linkTextBold}>Знайти мене</span>
           </div>
           <Link href="/" className={s.backLink}>
             <Image src={IconBack} alt="back" className={s.backIcon} />
