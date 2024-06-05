@@ -16,7 +16,7 @@ export default async function LocaleLayout({
   return (
     <>
       <Header />
-      {children}
+        {children}
       <Footer />
     </>
   );

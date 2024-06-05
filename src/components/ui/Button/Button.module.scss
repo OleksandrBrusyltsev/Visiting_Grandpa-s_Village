@@ -17,10 +17,12 @@
   padding: 1rem;
   transition: background 0.3s, color 0.3s, box-shadow 0.3s, border 0.3s;
 
-  &:not(:disabled):hover {
-    background: rgb(var(--color-white));
-    color: rgb(var(--color-black));
-    box-shadow: 4px 4px 8px 0px rgba(var(--color-total-black), 0.25);
+    @media (hover: hover) {
+      &:not(:disabled):hover {
+      background: transparent;
+      color: rgb(var(--color-black));
+      box-shadow: 4px 4px 8px 0px rgba(var(--color-total-black), 0.25);
+    }
   }
 
   &:not(:disabled):active {
