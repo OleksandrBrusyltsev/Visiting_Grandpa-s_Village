@@ -6,13 +6,13 @@
     max-width: 450px;
     margin: 0 auto;
     background-image: 
-        url('/images/backgrounds/christmasTreesSmall.png'), 
-        url('/images/backgrounds/christmasTreesSmall.png'), 
-        url('/images/backgrounds/christmasTreesSmall.png'), 
-        url('/images/backgrounds/christmasTreesSmall.png'), 
-        url('/images/backgrounds/christmasTreesSmall.png'), 
-        url('/images/backgrounds/christmasTreesSmall.png'), 
-        url('/images/backgrounds/christmasTreesSmall.png');
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png');
     background-repeat: no-repeat;
     background-position: left 125px, 
                         right calc(100% / 1644px * 360px),
@@ -20,7 +20,8 @@
                         left calc(100% / 1644px * 870px),
                         right calc(100% / 1644px * 1120px),
                         left calc(100% / 1644px  * 1330px),
-                        calc(50% - 60px) calc(100% / 1644px * 1600px);
+                        calc(55% - 50px) calc(100% / 1644px * 1600px);
+    background-size: 240px 231px
 }
 
 .hero, 
@@ -28,10 +29,7 @@
     width: 100%;
     max-width: 550px;
     margin: 0 auto;
-    font-family: var(--f-family-headline);
-    color: rgb(var(--color-base-green));
-    font-weight: 600;
-    letter-spacing: -0.005em;
+    @include mixins.mak-green;
 }
 .hero {
     margin-top: 16px;

@@ -254,7 +254,6 @@ const BookingComponent: FC = () => {
 
         <div className={s.buttonSearch}>
           <Button
-            size="small"
             label="Шукати"
             type="submit"
             disabled={!checkOutDate ? true : false}
