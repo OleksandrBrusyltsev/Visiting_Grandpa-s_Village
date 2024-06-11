@@ -74,7 +74,7 @@ export default function HouseItem({data, locale}: Props) {
                     <Icon name="kitchen" className={s.servicesIcon}/>
                 </div>
                 <div className={s.btnWrapper}>
-                    <Button label='Завітати' className={''} onClick={() => push(`${locale}/${pathName}/${name}`)} type='button'/>
+                    <Button label={!!rental_price ? 'Завітати' : 'Дивитись'} className={''} onClick={() => push(`${locale}/${pathName}/${name}`)} type='button'/>
                 </div>
             </div>
             <button className={s.favoriteWrapper} onClick={() => setIsFavorite(!isFavorite)}>

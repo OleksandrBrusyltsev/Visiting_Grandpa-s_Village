@@ -6,20 +6,20 @@
   position: relative;
 
   //temporary styles
-  // margin: 0 auto 37px;
+  margin: 0 auto 37px;
 
   @include mixins.media-min(variables.$mobile) {
     width: 708px;
 
     //temporary styles
-    // margin-bottom: 120px;
+    margin-bottom: 120px;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 791px;
 
     //temporary styles
-    // margin: 0 50px 120px auto;
+    margin: 0 50px 120px auto;
   }
 }
 
@@ -59,9 +59,6 @@
       .dateLabel,
       .guestLegend {
         text-shadow: 2px 3px 4px rgba(var(--color-base-green), 0.6);
-      }
-      .dateInput {
-        text-shadow: 2px 2px 8px rgba(var(--color-base-green), 0.4);
       }
       .guestsLabel {
         text-shadow: 2px 2px 8px rgba(var(--color-base-green), 0.6);
@@ -116,6 +113,7 @@
 .guestLegend {
   line-height: 1.16;
   font-weight: 300;
+  transition: text-shadow 0.4s;
   @include mixins.media-max(variables.$mobile) {
     flex: 1 0;
   }
