@@ -31,7 +31,7 @@ export default async function Memories({}: Props) {
             <Image 
               fill
               alt="Friendly Grandpa" 
-              src="/images/memories/Grandpa1.png" 
+              src="/images/grandpas/Grandpa1.png" 
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>

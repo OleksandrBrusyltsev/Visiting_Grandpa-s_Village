@@ -1,7 +1,7 @@
 export const navigationLinks = [
     {
       id: 1,
-      link: "",
+      link: "uk/houses",
       text: "ЖИТИ",
     },
     { id: 2, link: "", text: "ЇСТИ" },
@@ -12,7 +12,7 @@ export const navigationLinks = [
     },
     {
       id: 4,
-      link: "uk/memories",
+      link: "memories",
       text: "СПОГАДИ",
     },
     {
