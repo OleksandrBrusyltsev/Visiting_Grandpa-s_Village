@@ -60,9 +60,6 @@
       .guestLegend {
         text-shadow: 2px 3px 4px rgba(var(--color-base-green), 0.6);
       }
-      .dateInput {
-        text-shadow: 2px 2px 8px rgba(var(--color-base-green), 0.4);
-      }
       .guestsLabel {
         text-shadow: 2px 2px 8px rgba(var(--color-base-green), 0.6);
       }
@@ -116,6 +113,7 @@
 .guestLegend {
   line-height: 1.16;
   font-weight: 300;
+  transition: text-shadow 0.4s;
   @include mixins.media-max(variables.$mobile) {
     flex: 1 0;
   }
@@ -208,7 +206,9 @@
 
 .buttonSearch {
   font-size: var(--f-size-button-small);
+  width: 7.375rem;
   & > button {
+    max-width: unset;
     padding: unset;
     line-height: 44px;
   }

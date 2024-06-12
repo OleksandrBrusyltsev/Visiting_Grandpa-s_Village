@@ -9,3 +9,10 @@
     @content;
   }
 }
+
+@mixin mak-green {
+  font-family: var(--f-family-headline);
+  color: rgb(var(--color-base-green));
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}

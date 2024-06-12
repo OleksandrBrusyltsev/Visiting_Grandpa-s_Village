@@ -1,3 +1,4 @@
+import { MatchMediaProvider } from "@/context/MatchMediaContext";
 import "../globals.scss";
 import { NextIntlClientProvider } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
@@ -17,9 +18,11 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale}>
-      <html lang={locale}>
-        <body>{children}</body>
-      </html>
+      <MatchMediaProvider>
+        <html lang={locale}>
+          <body>{children}</body>
+        </html>
+      </MatchMediaProvider>
     </NextIntlClientProvider>
   );
 }
