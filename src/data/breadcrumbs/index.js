@@ -10,10 +10,14 @@ export const breadcrumbs = [
       text: "ЖИТИ",
       subNav: 'custom'
     },
-    { id: 2, link: "", text: "ЇСТИ" },
+    { 
+      id: 2, 
+      link: "dishes", 
+      text: "ЇСТИ" 
+    },
     {
       id: 3,
-      link: "",
+      link: "leisure",
       text: "БАЙДИКУВАТИ",
     },
     {

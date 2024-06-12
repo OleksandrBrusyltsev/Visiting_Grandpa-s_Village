@@ -1,23 +1,27 @@
 export const navigationLinks = [
     {
       id: 1,
-      link: "",
+      link: "houses",
       text: "ЖИТИ",
     },
-    { id: 2, link: "", text: "ЇСТИ" },
+    { 
+      id: 2, 
+      link: "dishes", 
+      text: "ЇСТИ" 
+    },
     {
       id: 3,
-      link: "",
+      link: "leisure",
       text: "БАЙДИКУВАТИ",
     },
     {
       id: 4,
-      link: "uk/memories",
+      link: "memories",
       text: "СПОГАДИ",
     },
     {
       id: 5,
-      link: "",
+      link: "contacts",
       text: "ЗНАЙТИ МЕНЕ",
     },
   ];
