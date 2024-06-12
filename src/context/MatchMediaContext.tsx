@@ -1,8 +1,8 @@
 'use client';
 import { createContext, FC } from "react";
-import { useMatchMedia } from "@/hooks/useMatchMedia";
+import { initialValues, useMatchMedia } from "@/hooks/useMatchMedia";
 
-export const MatchMediaContext = createContext<MatchedMediaResult | null>(null);
+export const MatchMediaContext = createContext<MatchedMediaResult>(initialValues);
 
 type Props = {children: React.ReactNode};
 
