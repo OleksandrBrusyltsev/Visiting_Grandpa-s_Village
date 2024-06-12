@@ -6,14 +6,15 @@ const mediaQueries: MediaQueries = {
 	isLaptop: "(min-width: 1280px) and (max-width: 1439px)",
 	isDesktop: "(min-width: 1440px)",
 }
+export const initialValues: MatchedMediaResult = {
+	isMobile: true,
+	isTablet: false,
+	isLaptop: false,
+	isDesktop: false
+}
 
 export const useMatchMedia = () => {
-	const [values, setValues] = useState<MatchedMediaResult>({
-		isMobile: true,
-		isTablet: false,
-		isLaptop: false,
-		isDesktop: false
-	});
+	const [values, setValues] = useState<MatchedMediaResult>(initialValues);
 
 	useLayoutEffect(() => {
 		const updateValues = () => {
