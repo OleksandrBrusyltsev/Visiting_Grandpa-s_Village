@@ -4,7 +4,9 @@
 .contactsListWrapper {
   margin-top: -15px;
   margin-left: auto;
-  width: 327px;
+  margin-right: auto;
+  width: 100%;
+  max-width: 472px;
   padding: 20px 15px 20px 15px;
   border-radius: 8px;
   background-color: rgb(var(--color-nude));
@@ -12,33 +14,41 @@
 
   @include mixins.media-min(variables.$mobile) {
     width: 524px;
-    margin-right: auto;
+    max-width: 524px;
     margin-bottom: 50px;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     padding: 30px 20px 30px 20px;
     width: 668px;
+    max-width: 668px;
     margin-left: 70px;
     margin-bottom: 60px;
   }
 }
 
 .grandpa {
-  width: 121px;
-  height: 121px;
+  width: 38%;
+  max-width: 174px;
+  height: auto;
   display: block;
   margin-left: auto;
 
+  @include mixins.media-min(554px) {
+    margin-left: 310px;
+  }
+
+  @include mixins.media-min(640px) {
+    margin-left: 360px;
+  }
+
   @include mixins.media-min(variables.$mobile) {
-    width: 174px;
-    height: 174px;
     margin-left: 385px;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 218px;
-    height: 218px;
+    height: auto;
     margin-left: 520px;
   }
 }
@@ -59,19 +69,32 @@
 }
 
 .contactItemText {
+  font-family: var(--f-family-headline);
+  color: rgb(var(--color-black));
   font-size: var(--f-size-body);
   font-weight: 600;
   line-height: 18px;
   display: flex;
   align-items: center;
+  transition: font-size 0.3s;
+  cursor: pointer;
 
   @include mixins.media-min(variables.$mobile) {
-    font-size: 18px;
+    font-size: var(--f-size-button-small);
   }
+
+  &:hover {
+      color: rgb(var(--color-base-green));
+    }
+
+    &:active {
+      color: rgb(var(--color-natural-orange));
+    }
 }
 
 .contactItemIcon {
   margin-right: 10px;
+  color:rgb(var(--color-base-green))
 }
 
 .socialMediaList {

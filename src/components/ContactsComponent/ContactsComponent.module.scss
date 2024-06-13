@@ -3,20 +3,19 @@
 
 .contactsContainer {
   margin-top: 29px;
-  width: 375px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 24px;
   padding-right: 24px;
 
   @include mixins.media-min(variables.$mobile) {
-    width: 768px;
     padding-left: 30px;
     padding-right: 30px;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    width: 1280px;
+    max-width: 1440px;
     padding-left: 50px;
     padding-right: 50px;
   }

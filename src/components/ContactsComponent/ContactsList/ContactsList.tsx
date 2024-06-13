@@ -4,8 +4,9 @@ import Icon from "../../ui/Icon/Icon";
 import IconEmail from "../../../assets/icons/icon-email.svg";
 import Grandpa from "../../../../public/images/contacts/grandpa.png";
 import IconMap from "../../../assets/icons/icon-map.svg";
-import s from "./ContactsList.module.scss";
 import sFooter from "../../Footer/Footer.module.scss";
+import s from "./ContactsList.module.scss";
+
 
 const socialMediaLinks = [
   {
@@ -37,7 +38,7 @@ const ContactsList = () => {
             <p className={s.contactsItemTitle}>Телефон</p>
             <Link
               href={`tel:+380931919663`}
-              className={`${sFooter.contactsText} ${s.contactItemText}`}
+              className={s.contactItemText}
             >
               <Icon
                 name="handset"
@@ -50,7 +51,7 @@ const ContactsList = () => {
             <p className={s.contactsItemTitle}>E-mail</p>
             <Link
               href={`mailto:naseliudidusya@gmail.com`}
-              className={`${sFooter.contactsText} ${s.contactItemText}`}
+              className={s.contactItemText}
             >
               <Image
                 src={IconEmail}
@@ -65,7 +66,7 @@ const ContactsList = () => {
             <Link
               href={mapUrl}
               target="_blank"
-              className={`${sFooter.contactsText} ${s.contactItemText}`}
+              className={s.contactItemText}
             >
               <Image
                 src={IconMap}

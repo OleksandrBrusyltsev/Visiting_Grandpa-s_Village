@@ -2,19 +2,25 @@
 @use "../../../styles/variables";
 
 .lake {
-  width: 178px;
-  height: 168px;
+  width: 65%;
+  max-width: 343px;
+  height: auto;
   margin-bottom: 18px;
-  
+
+  @include mixins.media-min(654px) {
+    margin-bottom: -3rem;
+  }
+
   @include mixins.media-min(variables.$mobile) {
-    width: 343px;
-    height: 324px;
+    max-width: 586px;
     margin-bottom: -150px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.media-min(1100px) {
     width: 586px;
-    height: 552px;
+    margin-bottom: -360px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
     margin-bottom: -460px;
   }
 }
@@ -29,8 +35,12 @@
   margin-bottom: 47px;
   margin-left: auto;
 
+  @include mixins.media-min(502px) {
+    margin-left: 50%;
+  }
   @include mixins.media-min(variables.$mobile) {
     width: 340px;
+    margin-left: auto;
     font-size: var(--f-size-h1);
     margin-bottom: 68px;
   }
@@ -42,6 +52,9 @@
 
 .faqWrapper {
   width: 100%;
+  max-width: 472px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 16px;
   background-color: rgba(var(--color-nude, 0.7));
   border-radius: 8px;
@@ -52,7 +65,13 @@
     width: 472px;
     margin-bottom: 42px;
     margin-left: auto;
+    margin-right: 0;
   }
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 100px;
+  }
+
   @include mixins.media-min(variables.$breakpoint-laptop) {
     margin-left: 660px;
     margin-bottom: 166px;

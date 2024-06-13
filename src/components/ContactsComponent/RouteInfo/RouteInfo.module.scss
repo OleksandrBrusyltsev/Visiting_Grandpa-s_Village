@@ -2,7 +2,7 @@
 @use "../../../styles/variables";
 
 .imgAndRouteInfoWrapper {
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.media-min(1000px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
@@ -14,19 +14,23 @@
 }
 
 .house {
-  width: 201px;
-  height: 182px;
+  width: 70%;
+  max-width: 382px;
+  height: auto;
   margin-bottom: 8px;
   display: block;
   margin-left: auto;
 
+  @include mixins.media-min(654px) {
+    margin-bottom: -3rem;
+  }
+
   @include mixins.media-min(variables.$mobile) {
-    width: 382px;
-    height: 346px;
+    max-width: 516px;
     margin-bottom: 0;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.media-min(1000px) {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     width: 100%;
@@ -37,13 +41,23 @@
 
 .routeInfoWrapper {
   width: 100%;
+  max-width: 411px;
   margin-bottom: 45px;
 
   @include mixins.media-min(variables.$mobile) {
-    width: 411px;
     margin-top: -127px;
     margin-bottom: 163px;
     margin-right: auto;
+  }
+
+  @include mixins.media-min(1000px) {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0;
+    width: 100%;
+    max-width: 100%;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
@@ -53,6 +67,7 @@
     margin-bottom: 0px;
     margin-right: 0;
     width: 100%;
+    max-width: 100%;
   }
 }
 
