@@ -1,15 +1,11 @@
 @use "../../../styles/mixins" as mixins;
 @use "../../../styles/variables";
 
-.contactsListWrapper {
-  margin-top: -15px;
+.imgWrapper {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   max-width: 472px;
-  padding: 20px 15px 20px 15px;
-  border-radius: 8px;
-  background-color: rgb(var(--color-nude));
   margin-bottom: 29px;
 
   @include mixins.media-min(variables.$mobile) {
@@ -19,11 +15,22 @@
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    padding: 30px 20px 30px 20px;
     width: 668px;
     max-width: 668px;
-    margin-left: 70px;
+    margin-right: 40%;
     margin-bottom: 60px;
+  }
+}
+
+.contactsListWrapper {
+  margin-top: -15px;
+  width: 100%;
+  padding: 20px 15px 20px 15px;
+  border-radius: 8px;
+  background-color: rgb(var(--color-nude));
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    padding: 30px 20px 30px 20px;
   }
 }
 
@@ -34,22 +41,18 @@
   display: block;
   margin-left: auto;
 
-  @include mixins.media-min(554px) {
-    margin-left: 310px;
-  }
-
-  @include mixins.media-min(640px) {
-    margin-left: 360px;
-  }
-
   @include mixins.media-min(variables.$mobile) {
-    margin-left: 385px;
+    margin-left: 60%;
+  }
+
+  @include mixins.media-min(1000px) {
+    margin-left: 35%;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 218px;
     height: auto;
-    margin-left: 520px;
+    margin-left: 70%;
   }
 }
 
@@ -84,17 +87,17 @@
   }
 
   &:hover {
-      color: rgb(var(--color-base-green));
-    }
+    color: rgb(var(--color-base-green));
+  }
 
-    &:active {
-      color: rgb(var(--color-natural-orange));
-    }
+  &:active {
+    color: rgb(var(--color-natural-orange));
+  }
 }
 
 .contactItemIcon {
   margin-right: 10px;
-  color:rgb(var(--color-base-green))
+  color: rgb(var(--color-base-green));
 }
 
 .socialMediaList {
