@@ -1,20 +1,22 @@
 import React from 'react'
-import Link, {LinkProps} from 'next/link';
+import Link from 'next/link';
 
 import s from './BreadcrumbItem.module.scss';
 
 export type BreadcrumbItemProps = {
-  item: TBreadcrumbItem
+  item: {
+    text: string,
+    href?: string
+  }
 }
 
 export default function BreadcrumbItem({item}: BreadcrumbItemProps) {
-  const {text, link} = item;
+  const {text, href} = item;
   return (
     <>
-      <span className={s.divider}>/</span>
-      {link ? 
-        <li className={s.breadcrumb}><Link href={link!} >{text}</Link></li> :
-        <li className={s.breadcrumbLast}>{text}</li>}
+      {href ? 
+        <li className={s.breadcrumb}><Link href={href}>{text}</Link></li> :
+        <li className={s.breadcrumb}>{text}</li>}
     </>
   )
 }

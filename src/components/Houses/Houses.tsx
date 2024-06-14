@@ -1,28 +1,16 @@
 import Image from 'next/image';
 import { getLocale } from 'next-intl/server';
 
-import {houses} from '@/data/houses';
 import Icon from '../ui/Icon/Icon';
 import HouseItem from './HouseItem';
 import HousesList from './HousesList';
+import { getHouses } from '@/actions/getHouses';
 
 import s from './Houses.module.scss';
 
 type Props = {children: React.ReactNode}
 
-const getHouses = async (): Promise<HouseItem[]> => {
-  // const resp = await fetch('http://someurl');
-  // try {
-  //   if (!resp.ok) {
-  //     throw new Error(resp.statusText);
-  //   }
-  //   const data = await resp.json();
-  //   return data;
-  // } catch (err) {
-  //   console.error(err);
-  // }
-  return new Promise(res => setTimeout(() => res(houses), 1000));
-}
+
 
 export default async function Houses({children}: Props) {
   const data: HouseItem[] = await getHouses();
@@ -51,8 +39,7 @@ export default async function Houses({children}: Props) {
         <div className={s.mapWrapper}>
           <Image 
             fill
-            // alt={locale === "en" ? "Map of Grandpa's houses" : "Карта еко садиби Дідуся"} 
-            alt={"Карта еко садиби Дідуся"} 
+            alt={locale === "en" ? "Map of Grandpa's houses" : "Карта еко садиби Дідуся"} 
             src="/images/backgrounds/illustration-map.png" 
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 30vw"
           />
@@ -68,19 +55,17 @@ export default async function Houses({children}: Props) {
       </div>
 
       <main>
-        {/* <section className={`${s.housesList} container`}> */}
-          <HousesList data={data}>
-            <>
-              <h1 className={s.housesTitle}>Живи тут</h1>
-              <Icon name="ellipse" className={s.titleOutline} />
-              <div className={s.housesWrapper}>
-                {data.map(house => (
-                  <HouseItem data={house} locale={locale} key={house.id}/>
-                ))}
-              </div>
-            </>
-          </HousesList>
-        {/* </section> */}
+        <HousesList data={data}>
+          <>
+            <h1 className={s.housesTitle}>Живи тут</h1>
+            <Icon name="ellipse" className={s.titleOutline} />
+            <div className={s.housesWrapper}>
+              {data.map(house => (
+                <HouseItem data={house} key={house.id}/>
+              ))}
+            </div>
+          </>
+        </HousesList>
       </main>
     </>
   )

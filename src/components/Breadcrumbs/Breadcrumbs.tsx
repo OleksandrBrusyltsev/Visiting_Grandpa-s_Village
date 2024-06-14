@@ -1,88 +1,85 @@
-"use client"
-import React from 'react'
+'use client'
+import React, { useEffect, useMemo, useState } from 'react'
+import { useLocale, useTranslations } from 'next-intl';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 
 import BreadcrumbItem from './BreadcrumbItem';
 import Icon from '../ui/Icon/Icon';
+import { getGallery } from '@/actions/getGallery';
+import { getHouses } from '@/actions/getHouses';
 
 import s from './Breadcrumbs.module.scss';
-import { useParams, usePathname, useRouter } from 'next/navigation';
-
-type BreadcrumbsProps = {items: TBreadcrumbItem[]}
-
-export const breadcrumbs = [
-  {
-    id: 0,
-    link: "",
-    text: "ГОЛОВНА",
-  },
-  {
-    id: 1,
-    link: "houses",
-    text: "ЖИТИ",
-    subNav: 'custom'
-  },
-  { 
-    id: 2, 
-    link: "dishes", 
-    text: "ЇСТИ" 
-  },
-  {
-    id: 3,
-    link: "leisure",
-    text: "БАЙДИКУВАТИ",
-  },
-  {
-    id: 4,
-    link: "memories",
-    text: "СПОГАДИ",
-    subNav: 'custom'
-  },
-  {
-    id: 5,
-    link: "contacts",
-    text: "ЗНАЙТИ МЕНЕ",
-  },
-  {
-    id: 6,
-    link: "booking",
-    text: "ЗАВІТАТИ",
-    subNav: [
-      {
-        id: 1,
-        link: "options",
-        text: "варіанти бронювань",
-      },
-      {
-        id: 2,
-        link: "payment",
-        text: "оплата",
-      },
-      {
-        id: 3,
-        link: "rules",
-        text: "Умови бронювання та правила перебування",
-      }
-    ]
-  },
-];
 
 export default function Breadcrumbs() {
+  const t = useTranslations('Breadcrumbs');
   const params = useParams();
   const pathname = usePathname();
+  const locale = useLocale();
   const {back} = useRouter();
-  console.log(params, pathname);
+
+  const [breadcrumbs, setBreadcrumbs] = useState<Array<{
+    href?: string;
+    text: string;
+  }>>([]);
+
   
-  const items = breadcrumbs;
-  
+  const pathArray = useMemo(() => {
+    const res = pathname.split('/').filter((path) => path !== locale);
+    res[0] = 'home';
+    return res;
+  }, [pathname]);
+
+  useEffect(() => {
+    (async () => {
+      const segmentTranslation: {
+        [key: string]: string
+      } = {};
+
+      for(let key in params) {
+        if(params[key as keyof typeof params]) {
+          let data: GalleryItem[] | HouseItem[] | undefined;
+          if(key === 'chapter') {
+            data = await getGallery();
+          } else if(key === 'house') {
+            data = await getHouses();
+          }
+
+          const name = params[key as keyof typeof params];
+          if(data) {
+            const currentItem = data.filter(item => item.name === name)[0];
+            segmentTranslation[name as string] = currentItem.title.filter(item => item.language === locale)[0]?.text;
+          }
+        }
+      } 
+      
+      const breadcrumbs = pathArray[pathArray.length - 1] !== 'rules' ? pathArray.map((path, index) => {
+        const text = segmentTranslation[path as string] || t(path);
+        const href = (index !== pathArray.length - 1) ? 
+                  `/${locale}/` + pathArray.slice(0, index + 1).filter(p => p !== 'home').join('/') :
+                  '';
+        return {
+          href,
+          text,
+        };
+      }) :
+        [
+          {text: t('rules')}
+        ];
+      setBreadcrumbs(breadcrumbs);
+    })();
+
+  }, [pathname]);
+
+  const isMain = pathArray.length === 1;
+
   return (
-    true ? <div className='container'>
+    !isMain ? <div className='container'>
       <nav className={s.breadcrumbsWrapper}>
-        Breadcrumbs
-        {/* {items.map((item, i) => (<BreadcrumbItem item={item} key={i}/>))} */}
+        { breadcrumbs.map((item, i) => (<BreadcrumbItem item={item} key={i}/>)) }
       </nav>
-      <button 
+      <button
         className={s.arrowBack}
-        onClick={back}
+        onClick={back }
         >
           <Icon name="arrow" className={s.iconArrow} />
       </button>

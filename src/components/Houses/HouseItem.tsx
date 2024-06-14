@@ -2,13 +2,15 @@
 import React, { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
 
 import Icon from '../ui/Icon/Icon';
 import Button from '../ui/Button/Button';
 
 import s from './HouseItem.module.scss';
 
-type Props = {data: HouseItem, locale: string};
+type Props = {data: HouseItem};
+
 const FavoriteIcon  = ({className}: {className: string}) => {
     return (
         <svg className={className} viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,13 +19,15 @@ const FavoriteIcon  = ({className}: {className: string}) => {
     )
 
 }
-export default function HouseItem({data, locale}: Props) {
+export default function HouseItem({data}: Props) {
+    const locale = useLocale();
     const path = usePathname();
     const pathName = path.split('/')[2];
     const {push} = useRouter();
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-    const {description, name, photo, max_adults, max_children, rental_price} = data;
+    const {name, photo, max_adults, max_children, rental_price} = data;
+    const title = data.title.filter(item => item.language === locale)[0].text;
     
     const guestsString = () => {
         if(max_children) return `${max_adults}+${max_children} гостей`
@@ -36,18 +40,18 @@ export default function HouseItem({data, locale}: Props) {
 
     return (
         <div className={s.houseWrapper} >
-            <div className={s.imageWrapper} onClick={() => push(`${locale}/${pathName}/${name}`)}>
+            <div className={s.imageWrapper} onClick={() => push(`/${locale}/${pathName}/${name}`)}>
                 <Image
                     fill
                     src={photo[0]}
-                    alt={description}
+                    alt={title || 'house-photo'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 />
             </div>
-            <div className={s.content} onClick={() => push(`${locale}/${pathName}/${name}`)}>
+            <div className={s.content} onClick={() => push(`/${locale}/${pathName}/${name}`)}>
                 <div className={s.titleWrapper}>
                     <Icon name="house" className={s.houseIcon}/>
-                    <h3 className={s.title}>{description}</h3>
+                    <h3 className={s.title}>{title}</h3>
                 </div>
                 <div className={s.priceWrapper}>
                     {!!rental_price ? 
@@ -74,7 +78,11 @@ export default function HouseItem({data, locale}: Props) {
                     <Icon name="kitchen" className={s.servicesIcon}/>
                 </div>
                 <div className={s.btnWrapper}>
-                    <Button label={!!rental_price ? 'Завітати' : 'Дивитись'} className={''} onClick={() => push(`${locale}/${pathName}/${name}`)} type='button'/>
+                    <Button 
+                        label={!!rental_price ? 'Завітати' : 'Дивитись'} 
+                        className={''} 
+                        onClick={() => push(`/${locale}/${pathName}/${name}`)} 
+                        type='button'/>
                 </div>
             </div>
             <button className={s.favoriteWrapper} onClick={() => setIsFavorite(!isFavorite)}>

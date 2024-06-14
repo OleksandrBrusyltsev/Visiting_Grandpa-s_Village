@@ -1,7 +1,17 @@
 export const gallery = [
     {
         id: 1,
-        title: "Атмосфера",
+        name: 'atmosphere',
+        title: [
+            {
+              language: 'uk',
+              text: "Атмосфера"
+            },
+            {
+              language: 'en',
+              text: "Atmosphere"
+            }
+          ],
         images: [
             {
                 id: 1,
@@ -13,7 +23,17 @@ export const gallery = [
     },
     {
         id: 2,
-        title: "Блакитні озера",
+        name: 'blue-lakes',
+        title: [
+            {
+              language: 'uk',
+              text: "Блакитні озера"
+            },
+            {
+              language: 'en',
+              text: "Blue lakes"
+            }
+          ],
         images: [
             {
                 id: 1,
@@ -25,7 +45,17 @@ export const gallery = [
     },
     {
         id: 1,
-        title: "Територія Садиби",
+        name: 'the-territory-of-the-manor',
+        title: [
+            {
+              language: 'uk',
+              text: "Територія Садиби"
+            },
+            {
+              language: 'en',
+              text: "The territory of the Manor"
+            }
+          ],
         images: [
             {
                 id: 1,
@@ -37,7 +67,17 @@ export const gallery = [
     },
     {
         id: 1,
-        title: "Будиночки",
+        name: 'houses',
+        title: [
+            {
+              language: 'uk',
+              text: "Будиночки",
+            },
+            {
+              language: 'en',
+              text: "Houses"
+            }
+          ],
         images: [
             {
                 id: 1,
@@ -49,7 +89,17 @@ export const gallery = [
     },
     {
         id: 1,
-        title: "Майстер-класи",
+        name: 'master-classes',
+        title: [
+            {
+              language: 'uk',
+              text: "Майстер-класи",
+            },
+            {
+              language: 'en',
+              text: "Master classes"
+            }
+          ],
         images: [
             {
                 id: 1,
@@ -61,7 +111,17 @@ export const gallery = [
     },
     {
         id: 1,
-        title: "Дитячі свята",
+        name: 'childrens-holidays',
+        title: [
+            {
+              language: 'uk',
+              text: "Дитячі свята",
+            },
+            {
+              language: 'en',
+              text: "Children's holidays"
+            }
+          ],
         images: [
             {
                 id: 1,
@@ -71,5 +131,4 @@ export const gallery = [
         ],
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing"
     },
-
 ]

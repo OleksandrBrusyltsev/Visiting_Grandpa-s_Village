@@ -16,7 +16,7 @@ export const navigationLinks = [
     },
     {
       id: 4,
-      link: "memories",
+      link: "gallery",
       text: "СПОГАДИ",
     },
     {

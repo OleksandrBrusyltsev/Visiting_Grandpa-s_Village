@@ -1,7 +1,16 @@
 export const houses = [
   {
-    name: "Hatinka-Dida-Moroza",
-    description: "Хатинка Діда Мороза",
+    name: "hatynka-dida-moroza",
+    title: [
+      {
+        language: 'uk',
+        text: "Хатинка Діда Мороза"
+      },
+      {
+        language: 'en',
+        text: "Hatynka Dida Moroza"
+      }
+    ],
     rental_price: 1200,
     max_adults: 2,
     max_children: 0,
@@ -11,8 +20,17 @@ export const houses = [
     id: 0
   },
   {
-    name: "Svitlytsia",
-    description: "Світлиця",
+    name: "svitlytsia",
+    title: [
+      {
+        language: 'uk',
+        text: "Світлиця"
+      },
+      {
+        language: 'en',
+        text: "Svitlytsia"
+      }
+    ],
     rental_price: 1200,
     max_adults: 2,
     max_children: 1,
@@ -22,8 +40,17 @@ export const houses = [
     id: 1
   },
   {
-    name: "Hatinka-Babky-Izhachky",
-    description: "Хатинка Бабки-Їжачки",
+    name: "hatynka-babky-izhachky",
+    title: [
+      {
+        language: 'uk',
+        text: "Хатинка Бабки-Їжачки"
+      },
+      {
+        language: 'en',
+        text: "Hatynka Babky Izhachky"
+      }
+    ],
     rental_price: 800,
     max_adults: 2,
     max_children: 1,
@@ -33,8 +60,17 @@ export const houses = [
     id: 2
   },
   {
-    name: "Komora-De-Lyuks",
-    description: "Комора Де Люкс",
+    name: "komora-de-lyuks",
+    title: [
+      {
+        language: 'uk',
+        text: "Комора Де Люкс"
+      },
+      {
+        language: 'en',
+        text: "Komora De Lyuks"
+      }
+    ],
     rental_price: 1200,
     max_adults: 2,
     max_children: 1,
@@ -44,8 +80,17 @@ export const houses = [
     id: 3
   },
   {
-    name: "Opochyvalnia",
-    description: "Опочивальня",
+    name: "opochyvalnia",
+    title: [
+      {
+        language: 'uk',
+        text: "Опочивальня"
+      },
+      {
+        language: 'en',
+        text: "Opochyvalnia"
+      }
+    ],
     rental_price: 1200,
     max_adults: 2,
     max_children: 1,
@@ -55,8 +100,17 @@ export const houses = [
     id: 4
   },
   {
-    name: "Hornytsia",
-    description: "Горниця",
+    name: "hornytsia",
+    title: [
+      {
+        language: 'uk',
+        text: "Горниця"
+      },
+      {
+        language: 'en',
+        text: "Hornytsia"
+      }
+    ],
     rental_price: 1200,
     max_adults: 2,
     max_children: 1,
@@ -66,8 +120,17 @@ export const houses = [
     id: 5
   },
   {
-    name: "Maisternia-Hnomiv",
-    description: "Майстерня Гномів",
+    name: "maisternia-hnomiv",
+    title: [
+      {
+        language: 'uk',
+        text: "Майстерня Гномів"
+      },
+      {
+        language: 'en',
+        text: "Maisternia Hnomiv"
+      }
+    ],
     rental_price: 1700,
     max_adults: 5,
     max_children: 0,
@@ -77,8 +140,17 @@ export const houses = [
     id: 6
   },
   {
-    name: "Teremok",
-    description: "Теремок",
+    name: "teremok",
+    title: [
+      {
+        language: 'uk',
+        text: "Теремок"
+      },
+      {
+        language: 'en',
+        text: "Teremok"
+      }
+    ],
     rental_price: 650,
     max_adults: 2,
     max_children: 0,
@@ -88,8 +160,17 @@ export const houses = [
     id: 7
   },
   {
-    name: "Khoromy",
-    description: "Хороми",
+    name: "khoromy",
+    title: [
+      {
+        language: 'uk',
+        text: "Хороми"
+      },
+      {
+        language: 'en',
+        text: "Khoromy"
+      }
+    ],
     rental_price: 0,
     max_adults: 0,
     max_children: 0,
