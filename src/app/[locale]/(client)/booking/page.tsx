@@ -1,11 +1,19 @@
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
-import React from 'react'
 
+export async function generateStaticParams() {
+  return ["uk", "en"].map((locale) => ({ locale }));
+}
 
-export default function Page() {
-  const locale = useLocale();
+export default function Page({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  unstable_setRequestLocale(locale);
   const t = useTranslations('Breadcrumbs');
+
   return (
     <div className='container'>
       <h1 style={{
