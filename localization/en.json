@@ -10,5 +10,17 @@
   },
   "Admin": {
     "title": "Admin"
+  },
+  "Breadcrumbs": {
+    "home": "Home",
+    "houses": "Accommodation",
+    "meals": "Meals",
+    "entertainment": "Entertainment",
+    "gallery": "Gallery",
+    "contacts": "Contacts",
+    "booking": "Booking",
+    "options": "Booking options",
+    "payment": "Payment",
+    "rules": "Booking conditions and rules of stay"
   }
 }

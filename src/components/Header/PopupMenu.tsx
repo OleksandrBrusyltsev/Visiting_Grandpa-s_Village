@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useLocale } from "next-intl";
 import css from "./PopupMenu.module.scss";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
@@ -12,6 +13,7 @@ interface PopupMenuProps {
 
 const PopupMenu: React.FC<PopupMenuProps> = ({ handlePopup }) => {
   const menuRef = useRef<HTMLDivElement>(null);
+  const locale = useLocale();
 
   useEffect(() => {
     if (menuRef.current) {
@@ -25,7 +27,7 @@ const PopupMenu: React.FC<PopupMenuProps> = ({ handlePopup }) => {
         <ul className={css.list}>
           {navigationLinks.map(({ id, link, text }) => (
             <li key={id} className={css.item}>
-              <Link href={link}>{text}</Link>
+              <Link href={`/${locale}/${link}`}>{text}</Link>
             </li>
           ))}
           <li className={css.item}>

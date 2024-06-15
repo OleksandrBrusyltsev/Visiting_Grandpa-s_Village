@@ -1,5 +1,5 @@
 "use client";
-import { useState, FC, useRef, useEffect, FormEventHandler, ReactNode, ReactElement, useLayoutEffect} from "react";
+import { useState, FC, useRef, useEffect, FormEventHandler} from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 

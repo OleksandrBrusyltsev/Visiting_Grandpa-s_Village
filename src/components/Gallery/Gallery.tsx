@@ -1,26 +1,19 @@
 import Image from "next/image"
-import {gallery} from '@/data/gallery/gallery.js'
-import s from './Memories.module.scss';
+import Link from "next/link";
+import { getLocale } from "next-intl/server";
+
 import GalleryItem from "./GalleryItem";
 import Button from "../ui/Button/Button";
 import Icon from "../ui/Icon/Icon";
+import { getGallery } from "@/actions/getGallery";
+
+import s from './Gallery.module.scss';
 
 type Props = {}
-const getMemories = async (): Promise<GalleryItem[]> => {
-  // const resp = await fetch('http://someurl');
-  // try {
-  //   if (!resp.ok) {
-  //     throw new Error(resp.statusText);
-  //   }
-  //   const data = await resp.json();
-  //   return data;
-  // } catch (err) {
-  //   console.error(err);
-  // }
-  return new Promise(res => setTimeout(() => res(gallery), 1000));
-}
-export default async function Memories({}: Props) {
-  const data: GalleryItem[] = await getMemories();
+
+export default async function Gallery({}: Props) {
+  const data: GalleryItem[] = await getGallery();
+  const locale = await getLocale();
   return (
     <div className={s.backgroundImages}>
       <section className={s.hero}>
@@ -49,11 +42,13 @@ export default async function Memories({}: Props) {
             <Icon name="cloud" />
           </div>
           <p className={s.slogan}>А далі створимо нові щасливі спогади разом.</p>
-          <Button 
-            label="Завітати"
-            type={"button"}
-            className={s.btnCallToAction}
-          />
+          <Link href={`/${locale}/booking`}>
+            <Button 
+              label="Завітати"
+              type={"button"}
+              className={s.btnCallToAction}
+            />
+          </Link>
         </div>
       </main>
     </div>

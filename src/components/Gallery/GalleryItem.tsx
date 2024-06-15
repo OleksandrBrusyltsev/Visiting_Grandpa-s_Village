@@ -1,8 +1,9 @@
 "use client"
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useLocale } from "next-intl";
 
 import Button from '../ui/Button/Button';
 
@@ -13,11 +14,17 @@ type Props = {data: GalleryItem};
 gsap.registerPlugin(useGSAP);      
 
 export default function GalleryItem({data}: Props) {
-  const {title, images} = data;
+  const locale = useLocale();
+  const path = usePathname();
+  const pathName = path.split('/')[2];
+
+  const {name, images} = data;
+  const title = data.title.filter(item => item.language === locale)[0]?.text;
+  
   const router = useRouter();
-  const handleClickItem = () => router.push(`/ua/gallery/${title}`);
+  const handleClickItem = () => router.push(`/${locale}/${pathName}/${name}`);
+  
   return (
-    
       <div 
         className={s.itemWrapper} 
         tabIndex={0}
