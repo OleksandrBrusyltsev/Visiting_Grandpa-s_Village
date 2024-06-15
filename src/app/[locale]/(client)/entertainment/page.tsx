@@ -22,7 +22,7 @@ export default function Page({
         fontWeight: 'bold',
         textAlign: 'center',
         color: '#000000',
-      }}>Сторінка {t('leisure')}</h1>
+      }}>Сторінка {t('entertainment')}</h1>
     </div>
   )
 }

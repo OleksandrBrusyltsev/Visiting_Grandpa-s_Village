@@ -6,12 +6,12 @@ export const navigationLinks = [
     },
     { 
       id: 2, 
-      link: "dishes", 
+      link: "meals", 
       text: "ЇСТИ" 
     },
     {
       id: 3,
-      link: "leisure",
+      link: "entertainment",
       text: "БАЙДИКУВАТИ",
     },
     {

@@ -22,7 +22,7 @@ export default function Page({
         fontWeight: 'bold',
         textAlign: 'center',
         color: '#000000',
-      }}>Сторінка {t('dishes')}</h1>
+      }}>Сторінка {t('meals')}</h1>
     </div>
   )
 }

@@ -4,10 +4,10 @@ export const navigationLinks = [
       link: "houses",
       text: "Жити",
     },
-    { id: 2, link: "dishes", text: "Їсти" },
+    { id: 2, link: "meals", text: "Їсти" },
     {
       id: 3,
-      link: "leisure",
+      link: "entertainment",
       text: "Байдикувати",
     },
     {

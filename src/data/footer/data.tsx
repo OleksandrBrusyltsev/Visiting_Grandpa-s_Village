@@ -7,12 +7,12 @@ export const navLink = [
   {
     id: 2,
     label: "Їсти",
-    link: "dishes",
+    link: "meals",
   },
   {
     id: 3,
     label: "Байдикувати",
-    link: "leisure",
+    link: "entertainment",
   },
   {
     id: 4,
