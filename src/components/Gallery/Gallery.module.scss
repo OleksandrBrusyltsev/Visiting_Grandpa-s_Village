@@ -1,0 +1,302 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+
+.backgroundImages {
+    max-width: 450px;
+    margin: 0 auto;
+    background-image: 
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png');
+    background-repeat: no-repeat;
+    background-position: left 125px, 
+                        right calc(100% / 1644px * 360px),
+                        left calc(100% / 1644px * 540px),
+                        left calc(100% / 1644px * 870px),
+                        right calc(100% / 1644px * 1120px),
+                        left calc(100% / 1644px  * 1330px),
+                        calc(55% - 50px) calc(100% / 1644px * 1600px);
+    background-size: 240px 231px
+}
+
+.hero, 
+.main {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+    @include mixins.mak-green;
+}
+.hero {
+    margin-top: 16px;
+}
+.main {
+    margin-top: 26px;
+}
+.heroWrapper {
+    position: relative;
+}
+
+.descr1 {
+    max-width: 75%;
+    font-size: var(--f-size-body-big);
+    line-height: 97.64%;
+}
+
+.descr2 {
+    text-align: center;
+    padding-left: 29px;
+    font-size: 20px;
+    line-height: 1.1;
+    margin-top: 40px;
+}
+
+.grandpa {
+    position: absolute;
+    top: -37px;
+    right: -10px;
+    width: 142px;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
+.noBreak {
+    white-space: nowrap;
+}
+
+.memoriesGallery {
+    position: relative;
+    &::after {
+        content: '';
+        background-image: url('/images/backgrounds/curve-375-1.svg'),
+                        url('/images/backgrounds/curve-375-2.svg');
+        background-position: 13px top, 
+                            11px bottom;
+        background-size: 87% auto, 92% auto;
+        background-repeat: no-repeat;
+        position: absolute;
+        z-index: -1;
+        top: -4px;
+        left: 0px;
+        right: 0px; 
+        bottom: -32px;
+    }
+}
+
+.callToClick {
+    font-size: 14px;
+    line-height: 97.64%;
+    width: 178px;
+}
+
+.desktopOnly {
+    display: none;
+}
+
+.mobileOnly {
+    display: inline;
+}
+
+.galleryWrapper {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.callToAction {
+    text-align: end;
+}
+
+.slogan {
+    font-size: var(--f-size-body);
+    line-height: 1;
+    max-width: 220px;
+    margin: 50px 0 30px auto;
+}
+
+.btnCallToAction {
+    max-width: 297px;
+    padding-block: 11.5px;
+}
+
+.cloud {
+    display: none;
+}
+
+@include mixins.media-min(variables.$mobile) {
+    .backgroundImages {
+        margin: unset;
+        max-width: unset;
+        background-image: 
+            url('/images/backgrounds/christmasTrees.png'), 
+            url('/images/backgrounds/christmasTrees.png'), 
+            url('/images/backgrounds/christmasTrees.png'),
+            url('/images/backgrounds/christmasTrees.png'),;
+        background-repeat: no-repeat;
+        background-position: 110px 200px,
+                            80% calc(100% / 1500px * 550px),
+                            12% calc(100% / 1500px * 960px),
+                            calc(50% + 100px * (100vw / 768px)) calc(100% / 1500px * 1415px);
+    }
+
+    .hero,
+    .main {
+        max-width: unset;
+    }
+    .main {
+        margin-top: 90px;
+    }
+    .descr1 {
+        max-width: 370px;
+        margin: 0 auto 0 14vw;
+        font-size: var(--f-size-h2);
+        line-height: 1.1;
+    }
+
+    .descr2 {
+        margin: 60px auto 0 calc(21vw + (100vw - 768px) / 3);
+        font-size: var(--f-size-h2);
+        padding-left: 0;
+        text-align: unset;
+    }
+
+    .grandpa {
+        width: 252px;
+        right: calc((100vw - 768px) / 3);
+        top: -41px;
+    }
+    
+    .memoriesGallery {
+        &::after {
+            background-image: url('/images/backgrounds/curve-768.svg');
+            background-size: 100% 100%;
+            background-position: unset; 
+            top: -60px;
+            left: 0px;
+            right: 0px; 
+            bottom: -96px;
+        }
+    }
+    
+    .callToClick {
+        font-size: 20px;
+        width: unset;
+    }
+
+    .galleryWrapper {
+        gap: 50px 30px;
+        margin-top: 50px;
+    }
+
+    .callToAction {
+        position: relative;
+    }
+
+    .slogan {
+        font-size: var(--f-size-body-big);
+        line-height: 1.1;
+        margin-block: 132px 40px;
+        max-width: unset;
+    }
+    .cloud {
+        display: block;
+        position: absolute;
+        top: -132px;
+        right: 0px;
+        width: 529px;
+        aspect-ratio: 2.02;
+        z-index: -1;
+    }
+}
+
+@include mixins.media-min(variables.$breakpoint-laptop) {
+
+    .backgroundImages {
+        background-image: 
+            url('/images/backgrounds/christmasTrees.png'), 
+            url('/images/backgrounds/christmasTrees.png'), 
+            url('/images/backgrounds/christmasTrees.png'),
+            url('/images/backgrounds/christmasTrees.png'),
+            url('/images/backgrounds/christmasTrees.png');
+        background-repeat: no-repeat;
+        background-position: 43% 200px,
+                            80% calc(100% / 2050px * 620px),
+                            30% calc(100% / 2050px * 800px),
+                            23% calc(100% / 2050px * 1350px),
+                            55% calc(100% / 2050px * 1700px);
+    }
+
+    .desktopOnly {
+        display: inline;
+    }
+    .hero {
+        margin-top: 42px;
+    }
+    .main {
+        margin-top: 117px;
+    }
+    .mobileOnly {
+        display: none;
+    }
+
+    .descr1 {
+        margin: unset;
+        padding-left: 110px;
+        max-width: 736px;
+    }
+
+    .descr2 {
+        padding-left: 330px;
+        font-size: var(--f-size-large);
+        text-align: left;
+        margin: 60px 0 0;
+    }
+
+    .grandpa {
+        width: 315px;
+        top: -32px;
+        right: calc((100vw - 1280px) / 3);
+    }
+
+    .callToClick {
+        margin-left: 110px;
+    }
+
+    .memoriesGallery {
+        &::after {
+            background-image: url('/images/backgrounds/curve-1280.svg');
+            background-size: contain;
+            top: -71px;
+            left: 38px;
+            right: 0px; 
+            bottom: -47px;
+        }
+    }
+
+    .galleryWrapper {
+        gap: 100px 70px;
+        margin-top: 44px;
+    }
+
+    .slogan {
+        font-size: var(--f-size-h2);
+        margin-block: 105px 60px;
+    }
+    .cloud {
+        width: 787px;
+        top: -141px;
+    }
+}
+
+
+@include mixins.media-min(variables.$pc) {
+    .grandpa {
+        right: 0;
+    }
+}

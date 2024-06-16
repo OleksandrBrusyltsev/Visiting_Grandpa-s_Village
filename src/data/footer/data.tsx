@@ -2,26 +2,26 @@ export const navLink = [
   {
     id: 1,
     label: "Жити",
-    link: "./life",
+    link: "houses",
   },
   {
     id: 2,
     label: "Їсти",
-    link: "./",
+    link: "meals",
   },
   {
     id: 3,
     label: "Байдикувати",
-    link: "./",
+    link: "entertainment",
   },
   {
     id: 4,
     label: "Спогади",
-    link: "./",
+    link: "gallery",
   },
   {
     id: 5,
     label: "Знайти мене ",
-    link: "./",
+    link: "contacts",
   },
 ];

@@ -1,6 +1,6 @@
 // @import "../../styles/globals.scss";
-@use "../../styles/mixins" as mixins;
-@import "../../styles/variables.scss";
+@use "./../../styles/mixins" as mixins;
+@import "./../../styles/variables.scss";
 
 .footer {
   margin-top: 50px;
@@ -63,6 +63,7 @@
   grid-area: contacts;
   display: grid;
   gap: 1.063rem;
+  color: rgb(var(--color-base-green));
 
   @media (min-width: $breakpoint-mobile-max) {
     margin-top: 4.188rem;
@@ -109,6 +110,7 @@
   grid-area: socialMedia;
   display: flex;
   gap: 1.5rem;
+  color: rgb(var(--color-base-green));
 
   @media (max-width: $breakpoint-mobile-max) {
     gap: 2.938rem;
@@ -118,7 +120,6 @@
     max-width: 2rem;
     max-height: 2rem;
     transition: color 0.3s, stroke 0.3s;
-
     &:hover {
       color: transparent;
       stroke: rgb(var(--color-base-green));

@@ -1,0 +1,23 @@
+@use "../../../../styles/mixins" as mixins;
+@use "../../../../styles/variables";
+
+.modal {
+  width: 330px;
+  min-height: 300px;
+  background-color: rgb(var(--color-calendar-bcg));
+  border-radius: 8px;
+  border: 1px solid rgb(var(--color-base-green));
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  z-index: 100;
+  left: -10%;
+  opacity: 0;
+  visibility: hidden;
+  scale: 0.8;
+
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 400px;
+    left: 0%;
+  }
+}

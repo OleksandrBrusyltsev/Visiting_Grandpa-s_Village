@@ -8,13 +8,17 @@ import PopupMenu from "./PopupMenu";
 import { useState } from "react";
 import Navigation from "./Navigation";
 import LangBtn from "../LangBtn/LangBtn";
+import { useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
+import Link from "next/link";
 
-const image = "/images/logo.svg";
+const image = "/images/logo-main.svg";
 const alt = "Logo main";
 
 const Header = () => {
   const [isVisible, setVisible] = useState(false);
-
+  const {push} = useRouter();
+  const locale = useLocale();
   const handlePopup = () => {
     setVisible(!isVisible);
   };
@@ -25,7 +29,7 @@ const Header = () => {
         <button className={css.burgerBtn} onClick={handlePopup}>
           <Icon name={"burger"} className={css.burgerIcon} />
         </button>
-        <a href="/">
+        <Link href={`/${locale}`}>
           <Image
             src={image}
             alt={alt}
@@ -33,7 +37,7 @@ const Header = () => {
             height={80}
             className={css.mainLogo}
           />
-        </a>
+        </Link>
 
         <div className={css.headerBox}>
           <LangBtn />
@@ -47,6 +51,7 @@ const Header = () => {
             type={"button"}
             size={"large"}
             className={css.headerBtn}
+            onClick={() => push(`/${locale}/booking`)}
           />
         </div>
       </div>

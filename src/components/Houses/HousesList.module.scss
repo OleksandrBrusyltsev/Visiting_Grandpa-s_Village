@@ -1,0 +1,22 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.housesList {
+    margin-top: 40px;
+    padding-top: 55px;
+    position: relative;
+    @include mixins.mak-green;
+    padding-bottom: 175px;
+
+    @include mixins.media-min(variables.$mobile) {
+        padding-top: 0;
+        margin-top: 92px;
+        padding-bottom: 175px;
+    }
+
+    @include mixins.media-min(variables.$breakpoint-laptop) {
+        padding-top: 140px;
+        margin-top: 40px;
+        padding-bottom: 252px;
+    }
+}
