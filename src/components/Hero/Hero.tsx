@@ -237,7 +237,7 @@ const Hero = () => {
           <span className={css.bold}>блакитне озеро - справжня казка,</span> від
           якої захоплює подих і дивує відвідувачів унікальним кольором води.
         </p>
-        <p className={css.text2}>"Кожен гість - мій привід посміхнутися."</p>
+        <p className={css.text2}>&#34; Кожен гість - мій привід посміхнутися.&#34;</p>
       </div>
       <div className={css.imgBox2}>
         <div ref={photo4Animation}>

@@ -40,7 +40,11 @@
   &:hover,
   &:active,
   &:focus {
-    color: rgb(var(--color-natural-orange));
+    color: rgb(var(--color-base-green));
     transform: translateY(3px);
+  }
+
+  &:active{
+    color: rgb(var(--color-natural-orange));
   }
 }

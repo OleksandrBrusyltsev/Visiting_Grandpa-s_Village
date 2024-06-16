@@ -21,11 +21,11 @@
   font-weight: 600;
   line-height: normal;
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: rgb(var(--color-natural-orange));
-  }
+  // &:hover,
+  // &:active,
+  // &:focus {
+  //   // color: rgb(var(--color-natural-orange));
+  // }
 }
 .active {
   color: rgb(var(--color-natural-orange));

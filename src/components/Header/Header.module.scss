@@ -42,8 +42,11 @@
   margin: auto;
 
   &:hover,
-  &:active,
   &:focus {
+    color: rgb(var(--color-base-green));
+  }
+
+  &:active {
     color: rgb(var(--color-natural-orange));
   }
 }
