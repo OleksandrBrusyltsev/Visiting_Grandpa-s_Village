@@ -2,7 +2,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import WelcomeBlock from "../../../components/WelcomeBlock/WelcomeBlock";
 import AskGrandpa from "../../../components/AskGrandpa/AskGrandpa";
-import BookingComponent from "@/components/BookingComponent/BookingComponent";
+
 import Hero from "@/components/Hero/Hero";
 
 export async function generateStaticParams() {
@@ -25,7 +25,6 @@ export default function Home({
         // margin: '80px auto 120px'
       }}> */}
         <Hero />
-        {/* <BookingComponent /> */}
       {/* </div> */}
       <WelcomeBlock text={t("welcomeBlock")} />
       <AskGrandpa />
