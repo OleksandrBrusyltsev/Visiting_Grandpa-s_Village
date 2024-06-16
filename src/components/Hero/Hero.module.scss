@@ -12,7 +12,7 @@
   @include mixins.media-min(variables.$mobile) {
     max-width: 768px;
     align-items: normal;
-
+    margin-top: 40px;
     padding: 0 30px;
   }
 
@@ -199,6 +199,7 @@
 
   max-width: 345px;
   max-height: 316px;
+  transform: scale(-1, 1);
 
   @include mixins.media-min(variables.$mobile) {
     top: 0;
@@ -235,6 +236,7 @@
   @include mixins.media-min(variables.$mobile) {
     font-size: 48px;
     line-height: 52.8px;
+    text-transform: uppercase;
   }
 }
 
@@ -272,6 +274,8 @@
   @include mixins.media-min(variables.$mobile) {
     display: block;
     padding: 0;
+
+    margin-top: 40px;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
@@ -304,6 +308,7 @@
 
     max-width: 100%;
     max-height: 100%;
+    transform: none;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
@@ -468,6 +473,7 @@
 
   max-width: 286px;
   max-height: 276px;
+  transform: scale(-1, 1);
 
   @include mixins.media-min(variables.$mobile) {
     right: 0;
@@ -480,7 +486,7 @@
     max-width: 100%;
     max-height: 100%;
 
-    transform: scale(-1, 1);
+    transform: none;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
@@ -520,7 +526,7 @@
     right: auto;
   }
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 668px;
     height: 668px;
 
@@ -583,6 +589,7 @@
 
   max-width: 300px;
   max-height: 300px;
+  transform: scale(-1, 1);
 
   @include mixins.media-min(variables.$mobile) {
     right: auto;
@@ -596,7 +603,7 @@
     max-width: 100%;
     max-height: 100%;
 
-    transform: scale(-1, 1);
+    transform: none;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
@@ -628,7 +635,7 @@
 }
 
 .add1 {
-  max-width: 300px;
+  max-width: 200px;
 
   margin-bottom: 20px;
 
@@ -750,7 +757,7 @@
     bottom: 0;
   }
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 550px;
     height: 352px;
 
@@ -834,5 +841,12 @@
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 672px;
+  }
+}
+
+.calendarBox{
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    display: flex;
+    justify-content: flex-end;
   }
 }

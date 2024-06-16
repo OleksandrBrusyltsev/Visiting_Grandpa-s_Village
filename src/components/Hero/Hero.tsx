@@ -1,5 +1,6 @@
 import css from "./Hero.module.scss";
 import Image from "next/image";
+import BookingComponent from "../BookingComponent/BookingComponent";
 
 const grandpa1 = "/images/Hero/grandpa1.png";
 const grandpa2 = "/images/Hero/grandpa2.png";
@@ -74,6 +75,9 @@ const Hero = () => {
             />
           </svg>
         </div>
+      </div>
+      <div className={css.calendarBox}>
+        <BookingComponent />
       </div>
 
       <div className={css.grandbox2}>
@@ -222,7 +226,7 @@ const Hero = () => {
           та забути про все на світі. <br />
         </p>
         <p className={css.text1}>
-          Разом ми зможемо
+          Разом ми зможемоь
           <span className={css.bold}> створити щасливі спогади </span>
           неповторних моментів, які дарують внутрішню насолоду, щастя та
           відчуття цінності кожної хвилинки тут.

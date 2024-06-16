@@ -10,6 +10,9 @@
   height: 100px;
   background-color: rgba(var(--color-nude), 0.5);
 
+  max-width: 1440px;
+  margin: 0 auto;
+
   @include mixins.media-min(variables.$breakpoint-tablet-min) {
     padding: 10px 30px;
 

@@ -13,6 +13,8 @@
 }
 
 .blockWrapper {
+  max-width: 1440px;
+  margin: 0 auto;
   margin-top: 1.26rem;
 
   @include mixins.media-min(variables.$breakpoint-tablet-min) {
