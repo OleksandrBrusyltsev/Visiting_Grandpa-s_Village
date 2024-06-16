@@ -1,6 +1,7 @@
 import css from "./Hero.module.scss";
 import Image from "next/image";
 import BookingComponent from "../BookingComponent/BookingComponent";
+import { relative } from "path";
 
 const grandpa1 = "/images/Hero/grandpa1.png";
 const grandpa2 = "/images/Hero/grandpa2.png";
@@ -30,8 +31,8 @@ const Hero = () => {
         <Image
           src={grandpa1}
           alt={"GrandPa"}
-          width={99}
-          height={99}
+          width={334}
+          height={334}
           className={css.grandpa1}
         />
       </div>
@@ -49,15 +50,15 @@ const Hero = () => {
         <Image
           src={photo1}
           alt={"photo"}
-          width={192}
-          height={177}
+          width={544}
+          height={492}
           className={css.photo1}
         />
         <Image
           src={illustration1}
           alt={"illustration"}
-          width={205}
-          height={193}
+          width={410}
+          height={372}
           className={css.illustration1}
         />
         <div className={css.line1Box}>
@@ -81,13 +82,15 @@ const Hero = () => {
       </div>
 
       <div className={css.grandbox2}>
-        <Image
-          src={grandpa2}
-          alt={"grandpa2"}
-          width={93}
-          height={103}
-          className={css.grandpa2}
-        />
+        <div className={css.imgMask}>
+          <Image
+            src={grandpa2}
+            alt={"grandpa2"}
+            width={327}
+            height={324}
+            className={css.grandpa2}
+          />
+        </div>
         <h2 className={`${css.title1} ${css.textContainer} ${css.marg}`}>
           Затишне місце сили{" "}
         </h2>
@@ -113,24 +116,24 @@ const Hero = () => {
         <Image
           src={photo4}
           alt={"photo4"}
-          width={170}
-          height={110}
+          width={556}
+          height={354}
           className={css.photo4}
         />
 
         <Image
           src={photo2}
           alt={"photo2"}
-          width={215}
-          height={118}
+          width={748}
+          height={410}
           className={css.photo2}
         />
 
         <Image
           src={photo3}
           alt={"photo3"}
-          width={212}
-          height={166}
+          width={606}
+          height={526}
           className={css.photo3}
         />
         <div className={css.line2Box}>
@@ -173,29 +176,29 @@ const Hero = () => {
         <Image
           src={illustration3}
           alt={"illustration3"}
-          width={188}
-          height={180}
+          width={488}
+          height={458}
           className={css.illustration3}
         />
         <Image
           src={photo6}
           alt={"photo7"}
-          width={156}
-          height={157}
+          width={499}
+          height={430}
           className={css.photo5}
         />
         <Image
           src={photo5}
           alt={"photo5"}
-          width={193}
-          height={144}
+          width={660}
+          height={496}
           className={css.photo6}
         />
         <Image
           src={illustration2}
           alt={"illustration2"}
-          width={194}
-          height={192}
+          width={506}
+          height={498}
           className={css.illustration2}
         />
         <div className={css.line3Box}>
@@ -236,22 +239,22 @@ const Hero = () => {
         <Image
           src={grandpa3}
           alt={"grandpa3"}
-          width={145}
-          height={127}
+          width={453}
+          height={364}
           className={css.grandpa3}
         />
         <Image
           src={photo7}
           alt={"photo6"}
-          width={194}
-          height={168}
+          width={668}
+          height={668}
           className={css.photo7}
         />
         <Image
           src={photo8}
           alt={"photo8"}
-          width={290}
-          height={186}
+          width={550}
+          height={352}
           className={css.photo8}
         />
         <div className={css.line4Box}>
