@@ -49,7 +49,7 @@ const Header = () => {
           <Button
             label={"Завітати"}
             type={"button"}
-            size={"large"}
+            size={"header"}
             className={css.headerBtn}
             onClick={() => push(`/${locale}/booking`)}
           />
