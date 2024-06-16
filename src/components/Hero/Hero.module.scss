@@ -301,7 +301,7 @@
 
   @include mixins.media-min(variables.$mobile) {
     position: absolute;
-    right: 0;
+    right: 30px;
     left: auto;
     width: 304px;
     height: 302px;
@@ -419,6 +419,8 @@
   max-width: 327px;
   max-height: 253px;
 
+
+
   @include mixins.media-min(variables.$mobile) {
     width: 402px;
     height: 348px;
@@ -460,7 +462,6 @@
   max-height: 635px;
   width: 100%;
   margin: 0 auto;
-
 }
 
 .illustration3 {
@@ -623,25 +624,32 @@
   }
 }
 
-.imgMask{
+.imgMask {
   position: relative;
   z-index: -1;
+  @include mixins.media-min(variables.$mobile) {
+    position: inherit;
+    z-index: 0;
+  }
 }
 
-
 .imgMask::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 40%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
   pointer-events: none;
+  @include mixins.media-min(variables.$mobile) {
+    display: none;
+  }
 }
-
-
-
 
 .textContainer2 {
   @include mixins.media-min(variables.$mobile) {
@@ -808,26 +816,51 @@
 }
 
 .line2Box {
-  padding-left: 25%;
+  display: flex;
+  justify-content: center;
+
+  @include mixins.media-min(variables.$mobile) {
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    padding-left: 25%;
+  }
 }
 
 .line2 {
+  max-height: 265px;
+  max-width: 265px;
+  @include mixins.media-min(variables.$mobile) {
+    max-height: 540px;
+    max-width: 540px;
+  }
+
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 911px;
     height: 911px;
   }
 }
 
-// .line3Box {
-//   padding-left: 30%;
-// }
+.line3Box {
+  display: flex;
+  justify-content: center;
+  transform: rotate(-16deg);
+  @include mixins.media-min(variables.$mobile) {
+    transform: none;
+  }
+}
 
 .line3 {
   width: 94vw;
   height: 76vw;
 
-  max-width: 540px;
-  max-height: 488px;
+  max-width: 975px;
+
+  z-index: 46;
+
+  @include mixins.media-min(variables.$mobile) {
+    max-height: 433px;
+  }
 }
 
 .line1 {
@@ -852,6 +885,14 @@
   justify-content: center;
 }
 
+.line4 {
+  width: 236px;
+  height: 372px;
+  @include mixins.media-min(variables.$mobile) {
+    width: 550px;
+  }
+}
+
 .textContainer1 {
   @include mixins.media-min(variables.$mobile) {
     display: flex;
@@ -866,9 +907,19 @@
   }
 }
 
-.calendarBox{
+.calendarBox {
   @include mixins.media-min(variables.$breakpoint-laptop) {
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+.box1Ref {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include mixins.media-min(variables.$mobile) {
+    display: block;
   }
 }

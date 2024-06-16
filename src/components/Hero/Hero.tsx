@@ -1,7 +1,12 @@
+"use client";
+
 import css from "./Hero.module.scss";
 import Image from "next/image";
 import BookingComponent from "../BookingComponent/BookingComponent";
-import { relative } from "path";
+
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 const grandpa1 = "/images/Hero/grandpa1.png";
 const grandpa2 = "/images/Hero/grandpa2.png";
@@ -21,81 +26,203 @@ const illustration2 = "/images/Hero/illustration2.png";
 const illustration3 = "/images/Hero/illustration3.png";
 
 const Hero = () => {
+  const box1Ref = useRef<HTMLDivElement>(null);
+  const photo1Animation = useRef<HTMLDivElement>(null);
+  const illustration1Animation = useRef<HTMLDivElement>(null);
+
+  const box2Ref = useRef<HTMLDivElement>(null);
+  const box3Ref = useRef<HTMLDivElement>(null);
+  const photo4Animation = useRef<HTMLDivElement>(null);
+  const photo3Animation = useRef<HTMLDivElement>(null);
+  const photo2Animation = useRef<HTMLDivElement>(null);
+  const line2Animation = useRef<HTMLDivElement>(null);
+
+  const box4Ref = useRef<HTMLDivElement>(null);
+  const box5Ref = useRef<HTMLDivElement>(null);
+  const box6Ref = useRef<HTMLDivElement>(null);
+  const box7Ref = useRef<HTMLDivElement>(null);
+  const photo7Animation = useRef<HTMLDivElement>(null);
+  const photo8Animation = useRef<HTMLDivElement>(null);
+  const grandpa3Animation = useRef<HTMLDivElement>(null);
+
+  let mm = gsap.matchMedia();
+
+  gsap.registerPlugin(useGSAP);
+
+  useGSAP(() => {
+    mm.add("(min-width: 768px)", () => {
+      // desktop setup code here...
+    });
+
+    mm.add("(max-width: 767px)", () => {
+      gsap.fromTo(
+        box1Ref.current,
+        { x: -767 },
+        { x: 0, clearProps: "transform" }
+      );
+      gsap.fromTo(
+        photo1Animation.current,
+        { x: -767 },
+        { x: 0, duration: 1, clearProps: "transform" }
+      );
+      gsap.fromTo(
+        illustration1Animation.current,
+        { x: 767 },
+        { x: 0, duration: 1, clearProps: "transform" }
+      );
+
+      gsap.from(box2Ref.current, {
+        x: -767,
+        duration: 1,
+        clearProps: "transform",
+      });
+      gsap.from(box3Ref.current, {
+        x: -767,
+        duration: 1,
+        clearProps: "transform",
+      });
+      gsap.from(photo4Animation.current, {
+        x: -767,
+        duration: 1,
+        clearProps: "transform",
+      });
+      gsap.from(photo3Animation.current, {
+        x: -767,
+        duration: 1,
+        clearProps: "transform",
+      });
+      gsap.from(photo2Animation.current, {
+        x: 767,
+        duration: 1,
+        clearProps: "transform",
+      });
+      gsap.from(line2Animation.current, {
+        y: 3000,
+        duration: 1,
+        clearProps: "transform",
+      });
+
+      gsap.from(box4Ref.current, {
+        x: -767,
+        duration: 1,
+        clearProps: "transform",
+      });
+      gsap.from(box5Ref.current, {
+        x: -767,
+        duration: 1,
+        clearProps: "transform",
+      });
+      gsap.from(box6Ref.current, {
+        x: 767,
+        duration: 1,
+        clearProps: "transform",
+      });
+      gsap.from(box7Ref.current, {
+        x: 767,
+        duration: 1,
+        clearProps: "transform",
+      });
+
+      gsap.from(photo7Animation.current, {
+        x: 767,
+        duration: 1,
+        clearProps: "transform",
+      });
+      gsap.from(photo8Animation.current, {
+        x: -767,
+        duration: 1,
+        clearProps: "transform",
+      });
+      gsap.from(grandpa3Animation.current, {
+        x: -767,
+        duration: 1,
+        clearProps: "transform",
+      });
+    });
+  }, {});
+
   return (
     <section className={css.section}>
-      <div className={css.grandbox1}>
-        <h1 className={`${css.mainTitle} ${css.textBox1}`}>
-          Привіт, мій майбутній відвідувач
-        </h1>
+      <div className={css.box1Ref} ref={box1Ref}>
+        <div className={css.grandbox1}>
+          <h1 className={`${css.mainTitle} ${css.textBox1}`}>
+            Привіт, мій майбутній відвідувач
+          </h1>
 
-        <Image
-          src={grandpa1}
-          alt={"GrandPa"}
-          width={334}
-          height={334}
-          className={css.grandpa1}
-        />
+          <Image
+            src={grandpa1}
+            alt={"GrandPa"}
+            width={334}
+            height={334}
+            className={css.grandpa1}
+          />
+        </div>
+        <p className={`${css.text1} ${css.textBox1}`}>
+          Я - твій <span className={css.bold}>френдлі Дідусь.</span> Сьогодні
+          покажу тобі мою затишну домівку, проведу сторінками казкового місця
+          сили, тиші та спокою. Я створив цю садибу для тебе, щоб в потрібний
+          момент ти міг зупинити думки,насолодитись природою, прислухатись до
+          себе та створити нові приємні спогади.
+        </p>
+        <p className={`${css.text2} ${css.textBox1}`}>
+          “Слідуй за мною та відчуй історію творіння мого життя.”
+        </p>
       </div>
-      <p className={`${css.text1} ${css.textBox1}`}>
-        Я - твій <span className={css.bold}>френдлі Дідусь.</span> Сьогодні
-        покажу тобі мою затишну домівку, проведу сторінками казкового місця
-        сили, тиші та спокою. Я створив цю садибу для тебе, щоб в потрібний
-        момент ти міг зупинити думки,насолодитись природою, прислухатись до себе
-        та створити нові приємні спогади.
-      </p>
-      <p className={`${css.text2} ${css.textBox1}`}>
-        “Слідуй за мною та відчуй історію творіння мого життя.”
-      </p>
       <div className={css.imgBox}>
-        <Image
-          src={photo1}
-          alt={"photo"}
-          width={544}
-          height={492}
-          className={css.photo1}
-        />
-        <Image
-          src={illustration1}
-          alt={"illustration"}
-          width={410}
-          height={372}
-          className={css.illustration1}
-        />
-        <div className={css.line1Box}>
-          <svg
-            className={`${css.svg} ${css.line1}`}
-            width="192"
-            height="265"
-            viewBox="0 0 195 269"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0.431764 267C0.431764 267.736 1.02872 268.333 1.7651 268.333C2.50148 268.333 3.09843 267.736 3.09843 267C3.09843 266.264 2.50148 265.667 1.7651 265.667C1.02872 265.667 0.431764 266.264 0.431764 267ZM99.4135 128.901L99.3839 128.653L99.4135 128.901ZM191.667 2C191.667 2.73638 192.264 3.33333 193 3.33333C193.736 3.33333 194.333 2.73638 194.333 2C194.333 1.26362 193.736 0.666667 193 0.666667C192.264 0.666667 191.667 1.26362 191.667 2ZM2.01321 266.969C0.893455 257.898 -0.672243 226.525 11.0104 195.88C22.6861 165.253 47.5908 135.35 99.4432 129.15L99.3839 128.653C47.3147 134.88 22.2727 164.933 10.5432 195.702C-1.17917 226.451 0.391685 257.914 1.51698 267.031L2.01321 266.969ZM99.4432 129.15C138.517 124.477 161.99 108.814 175.681 86.2251C189.361 63.6535 193.25 34.2033 193.25 2H192.75C192.75 34.1805 188.86 63.5155 175.253 85.9659C161.658 108.399 138.337 123.995 99.3839 128.653L99.4432 129.15Z"
-              fill="#3F5540"
-            />
-          </svg>
+        <div ref={photo1Animation}>
+          <Image
+            src={photo1}
+            alt={"photo"}
+            width={544}
+            height={492}
+            className={css.photo1}
+          />
+        </div>
+
+        <div ref={illustration1Animation}>
+          <Image
+            src={illustration1}
+            alt={"illustration"}
+            width={410}
+            height={372}
+            className={css.illustration1}
+          />
+          <div className={css.line1Box}>
+            <svg
+              className={`${css.svg} ${css.line1}`}
+              width="201"
+              height="246"
+              viewBox="0 0 201 246"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.565852 243C0.565852 244.473 1.75976 245.667 3.23252 245.667C4.70528 245.667 5.89919 244.473 5.89919 243C5.89919 241.527 4.70528 240.333 3.23252 240.333C1.75976 240.333 0.565852 241.527 0.565852 243ZM96.6382 107.467L96.5814 106.97L96.6382 107.467ZM187.717 3C187.717 4.47276 188.911 5.66667 190.384 5.66667C191.857 5.66667 193.05 4.47276 193.05 3C193.05 1.52724 191.857 0.333333 190.384 0.333333C188.911 0.333333 187.717 1.52724 187.717 3ZM3.72807 242.933C1.00947 222.684 2.02618 191.46 14.8395 164.045C27.6376 136.662 52.2105 113.055 96.6951 107.963L96.5814 106.97C51.7234 112.104 26.8663 135.951 13.9336 163.621C1.01613 191.26 0.00123632 222.69 2.73697 243.067L3.72807 242.933ZM96.6951 107.963C138.484 103.18 169.399 92.1539 186.185 74.6548C194.591 65.8919 199.449 55.5106 200.348 43.5085C201.246 31.5162 198.189 17.9419 190.834 2.78175L189.934 3.21825C197.237 18.2715 200.231 31.6673 199.35 43.4339C198.47 55.1907 193.719 65.3571 185.464 73.9625C168.928 91.2003 138.311 102.194 96.5814 106.97L96.6951 107.963Z"
+                fill="#3F5540"
+              />
+            </svg>
+          </div>
         </div>
       </div>
       <div className={css.calendarBox}>
         <BookingComponent />
       </div>
 
-      <div className={css.grandbox2}>
-        <div className={css.imgMask}>
+      <div className={`${css.grandbox2} `} ref={box2Ref}>
+        <div className={`${css.imgMask}`}>
           <Image
             src={grandpa2}
             alt={"grandpa2"}
             width={327}
             height={324}
-            className={css.grandpa2}
+            className={`${css.grandpa2}`}
           />
         </div>
         <h2 className={`${css.title1} ${css.textContainer} ${css.marg}`}>
           Затишне місце сили{" "}
         </h2>
       </div>
-      <div className={css.textContainer}>
+      <div className={`${css.textContainer}`} ref={box3Ref}>
         <p className={css.text1}>
           Радий вітати тебе, перший крок до знайомства з моєю садибою зроблено.
           Доторкнись до найтепліших спогадів мого життя, які сплекали{" "}
@@ -113,47 +240,51 @@ const Hero = () => {
         <p className={css.text2}>"Кожен гість - мій привід посміхнутися."</p>
       </div>
       <div className={css.imgBox2}>
-        <Image
-          src={photo4}
-          alt={"photo4"}
-          width={556}
-          height={354}
-          className={css.photo4}
-        />
-
-        <Image
-          src={photo2}
-          alt={"photo2"}
-          width={748}
-          height={410}
-          className={css.photo2}
-        />
-
-        <Image
-          src={photo3}
-          alt={"photo3"}
-          width={606}
-          height={526}
-          className={css.photo3}
-        />
-        <div className={css.line2Box}>
+        <div ref={photo4Animation}>
+          <Image
+            src={photo4}
+            alt={"photo4"}
+            width={556}
+            height={354}
+            className={`${css.photo4}`}
+          />
+        </div>
+        <div ref={photo2Animation}>
+          <Image
+            src={photo2}
+            alt={"photo2"}
+            width={748}
+            height={410}
+            className={`${css.photo2}`}
+          />
+        </div>
+        <div ref={photo3Animation}>
+          <Image
+            src={photo3}
+            alt={"photo3"}
+            width={606}
+            height={526}
+            className={`${css.photo3}`}
+          />
+        </div>
+        <div className={css.line2Box} ref={line2Animation}>
           <svg
             className={`${css.svg} ${css.line2}`}
-            width="262"
-            height="267"
-            viewBox="0 0 265 271"
+            width="920"
+            height="920"
+            viewBox="0 0 920 920"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M27.6664 1.5C27.6664 2.23638 28.2634 2.83333 28.9997 2.83333C29.7361 2.83333 30.3331 2.23638 30.3331 1.5C30.3331 0.76362 29.7361 0.166667 28.9997 0.166667C28.2634 0.166667 27.6664 0.76362 27.6664 1.5ZM107 156.5L107.047 156.745L107.058 156.743L107.069 156.74L107 156.5ZM261.666 269C261.666 269.736 262.263 270.333 262.999 270.333C263.736 270.333 264.333 269.736 264.333 269C264.333 268.264 263.736 267.667 262.999 267.667C262.263 267.667 261.666 268.264 261.666 269ZM28.8345 1.31238C-4.77145 30.905 -5.82887 73.7417 11.8051 107.172C29.4363 140.597 65.7838 164.678 107.047 156.745L106.952 156.255C65.9542 164.136 29.8011 140.217 12.2473 106.939C-5.30377 73.6655 -4.23054 31.095 29.165 1.68762L28.8345 1.31238ZM107.069 156.74C166.555 139.592 246.876 176.02 262.753 269.042L263.246 268.958C247.319 175.644 166.704 139.029 106.93 156.26L107.069 156.74Z"
+              d="M0.333333 3C0.333333 4.47276 1.52724 5.66667 3 5.66667C4.47276 5.66667 5.66667 4.47276 5.66667 3C5.66667 1.52724 4.47276 0.333333 3 0.333333C1.52724 0.333333 0.333333 1.52724 0.333333 3ZM382.885 503.037L382.965 503.531L382.984 503.528L383.003 503.523L382.885 503.037ZM914.333 917C914.333 918.473 915.527 919.667 917 919.667C918.473 919.667 919.667 918.473 919.667 917C919.667 915.527 918.473 914.333 917 914.333C915.527 914.333 914.333 915.527 914.333 917ZM2.50023 3.01517C5.17382 91.1123 12.308 230.501 62.7407 340.73C87.9618 395.854 124.026 443.718 175.805 474.219C227.59 504.724 295.038 517.829 382.965 503.531L382.804 502.544C295.061 516.812 227.858 503.721 176.312 473.358C124.76 442.991 88.8144 395.314 63.6501 340.314C13.3122 230.293 6.17381 91.097 3.49977 2.98483L2.50023 3.01517ZM383.003 503.523C510.223 472.502 626.615 491.836 719.682 560.914C812.758 629.999 882.569 748.888 916.51 917.099L917.49 916.901C883.516 748.529 813.61 629.386 720.278 560.111C626.936 490.828 510.228 471.472 382.766 502.552L383.003 503.523Z"
               fill="#3F5540"
             />
           </svg>
         </div>
       </div>
 
-      <div className={css.textContainer1}>
+      <div className={css.textContainer1} ref={box4Ref}>
         <h2 className={`${css.title1} ${css.add}`}>Доторкнись до природи</h2>
 
         <p className={css.text1}>
@@ -173,52 +304,56 @@ const Hero = () => {
       </div>
 
       <div className={css.imgBox3}>
-        <Image
-          src={illustration3}
-          alt={"illustration3"}
-          width={488}
-          height={458}
-          className={css.illustration3}
-        />
-        <Image
-          src={photo6}
-          alt={"photo7"}
-          width={499}
-          height={430}
-          className={css.photo5}
-        />
-        <Image
-          src={photo5}
-          alt={"photo5"}
-          width={660}
-          height={496}
-          className={css.photo6}
-        />
-        <Image
-          src={illustration2}
-          alt={"illustration2"}
-          width={506}
-          height={498}
-          className={css.illustration2}
-        />
+        <div ref={box5Ref}>
+          <Image
+            src={illustration3}
+            alt={"illustration3"}
+            width={488}
+            height={458}
+            className={css.illustration3}
+          />
+          <Image
+            src={photo6}
+            alt={"photo6"}
+            width={499}
+            height={430}
+            className={css.photo5}
+          />
+        </div>
+        <div ref={box6Ref}>
+          <Image
+            src={photo5}
+            alt={"photo5"}
+            width={660}
+            height={496}
+            className={css.photo6}
+          />
+          <Image
+            src={illustration2}
+            alt={"illustration2"}
+            width={506}
+            height={498}
+            className={css.illustration2}
+          />
+        </div>
         <div className={css.line3Box}>
           <svg
             className={`${css.svg} ${css.line3}`}
-            width="237"
-            height="340"
-            viewBox="0 0 237 340"
+            width="865"
+            height="644"
+            viewBox="0 0 865 644"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M214.845 2.6671C215.213 3.30482 216.028 3.52332 216.666 3.15513C217.304 2.78693 217.522 1.97148 217.154 1.33376C216.786 0.696032 215.971 0.477532 215.333 0.845727C214.695 1.21392 214.477 2.02938 214.845 2.6671ZM58.8449 339.167C59.2131 339.804 60.0285 340.023 60.6662 339.655C61.304 339.287 61.5225 338.471 61.1543 337.833C60.7861 337.196 59.9706 336.977 59.3329 337.345C58.6952 337.714 58.4767 338.529 58.8449 339.167ZM215.77 2.09964C220.851 13.851 226.902 27.5755 231.007 42.1068C235.112 56.6374 237.264 71.9563 234.561 86.8921C229.16 116.729 204.347 145.164 136.553 162.681L136.678 163.165C204.562 145.625 229.602 117.094 235.053 86.9812C237.775 71.9424 235.604 56.5409 231.488 41.9709C227.373 27.4015 221.307 13.6453 216.229 1.90121L215.77 2.09964ZM136.553 162.681C102.626 171.447 74.0473 180.932 51.9673 191.703C29.8922 202.471 14.2827 214.538 6.33627 228.483C-1.62077 242.448 -1.8735 258.258 6.68087 276.445C15.2293 294.62 32.5763 315.18 59.8363 338.689L60.1628 338.311C32.9234 314.819 15.6378 294.314 7.13331 276.233C-1.36526 258.164 -1.0913 242.529 6.7707 228.731C14.6433 214.915 30.1452 202.904 52.1865 192.152C74.223 181.403 102.765 171.927 136.678 163.165L136.553 162.681Z"
+              d="M856.918 3.58505C857.241 5.02184 858.668 5.92434 860.105 5.60083C861.542 5.27732 862.445 3.85032 862.121 2.41353C861.798 0.976736 860.371 0.0742417 858.934 0.397752C857.497 0.721262 856.594 2.14826 856.918 3.58505ZM0.899883 641.086C1.22339 642.523 2.65039 643.425 4.08718 643.102C5.52397 642.778 6.42646 641.351 6.10296 639.915C5.77945 638.478 4.35245 637.575 2.91566 637.899C1.47887 638.222 0.57638 639.649 0.899883 641.086ZM859.021 3.04099C864.28 65.8763 872.571 150.091 828.775 218.299C785.009 286.459 689.097 338.796 485.504 337.5L485.498 338.5C689.223 339.796 785.575 287.429 829.617 218.839C873.628 150.296 865.27 65.7142 860.018 2.95759L859.021 3.04099ZM485.504 337.5C281.825 336.204 166.549 365.825 99.509 418.886C32.4415 471.969 13.7558 548.427 3.0048 640.442L3.99805 640.558C14.7456 548.573 33.4011 472.485 100.13 419.67C166.886 366.833 281.86 337.204 485.498 338.5L485.504 337.5Z"
               fill="#3F5540"
             />
           </svg>
         </div>
       </div>
 
-      <div className={css.textContainer2}>
+      <div className={css.textContainer2} ref={box7Ref}>
         <h2 className={`${css.title1} ${css.add1}`}>Тут час збирає спогади</h2>
 
         <p className={css.text1}>
@@ -236,29 +371,35 @@ const Hero = () => {
         </p>
       </div>
       <div className={css.imgBox4}>
-        <Image
-          src={grandpa3}
-          alt={"grandpa3"}
-          width={453}
-          height={364}
-          className={css.grandpa3}
-        />
-        <Image
-          src={photo7}
-          alt={"photo6"}
-          width={668}
-          height={668}
-          className={css.photo7}
-        />
-        <Image
-          src={photo8}
-          alt={"photo8"}
-          width={550}
-          height={352}
-          className={css.photo8}
-        />
+        <div ref={grandpa3Animation}>
+          <Image
+            src={grandpa3}
+            alt={"grandpa3"}
+            width={453}
+            height={364}
+            className={css.grandpa3}
+          />
+        </div>
+        <div ref={photo7Animation}>
+          <Image
+            src={photo7}
+            alt={"photo7"}
+            width={668}
+            height={668}
+            className={css.photo7}
+          />
+        </div>
+        <div ref={photo8Animation}>
+          <Image
+            src={photo8}
+            alt={"photo8"}
+            width={550}
+            height={352}
+            className={css.photo8}
+          />
+        </div>
         <div className={css.line4Box}>
-          <svg
+          {/* <svg
             className={css.svg}
             width="235"
             height="371"
@@ -268,6 +409,20 @@ const Hero = () => {
           >
             <path
               d="M21.666 2C21.666 2.73638 22.2629 3.33333 22.9993 3.33333C23.7357 3.33333 24.3327 2.73638 24.3327 2C24.3327 1.26362 23.7357 0.666667 22.9993 0.666667C22.2629 0.666667 21.666 1.26362 21.666 2ZM137 117L136.934 117.241L137 117ZM220.5 273L220.312 272.835L220.307 272.841L220.303 272.846L220.5 273ZM45.6667 373.5C45.6667 374.236 46.2636 374.833 47 374.833C47.7364 374.833 48.3333 374.236 48.3333 373.5C48.3333 372.764 47.7364 372.167 47 372.167C46.2636 372.167 45.6667 372.764 45.6667 373.5ZM22.8407 1.80678C10.9498 11.5699 3.3604 21.3002 0.891256 31.0178C-1.5832 40.7563 1.09594 50.4335 9.62855 60.0443C18.1528 69.6457 32.5285 79.1947 53.4861 88.7157C74.4476 98.2385 102.013 107.741 136.934 117.241L137.066 116.759C102.158 107.263 74.6213 97.7682 53.6929 88.2605C32.7606 78.751 18.4586 69.2371 10.0025 59.7123C1.55467 50.1971 -1.04923 40.6851 1.37586 31.1409C3.80624 21.5759 11.299 11.9301 23.158 2.19322L22.8407 1.80678ZM136.934 117.241C202.113 134.972 227.278 168.911 234.005 200.864C237.371 216.852 236.125 232.36 232.945 245.119C229.763 257.885 224.652 267.875 220.312 272.835L220.688 273.165C225.098 268.125 230.237 258.053 233.43 245.24C236.625 232.421 237.879 216.836 234.495 200.761C227.722 168.589 202.387 134.528 137.066 116.759L136.934 117.241ZM220.303 272.846C209.816 286.302 184.978 308.677 153.501 329.055C122.025 349.433 83.9396 367.795 46.9635 373.253L47.0365 373.747C84.1121 368.275 122.267 349.872 153.772 329.475C185.276 309.079 210.163 286.669 220.697 273.154L220.303 272.846Z"
+              fill="#3F5540"
+            />
+          </svg> */}
+
+          <svg
+            className={`${css.svg} ${css.line4}`}
+            width="804"
+            height="726"
+            viewBox="0 0 804 726"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0.80013 3.5C0.80013 4.97276 1.99404 6.16667 3.4668 6.16667C4.93956 6.16667 6.13346 4.97276 6.13346 3.5C6.13346 2.02724 4.93956 0.833333 3.4668 0.833333C1.99404 0.833333 0.80013 2.02724 0.80013 3.5ZM685.467 501L685.861 501.307L685.866 501.301L685.467 501ZM318.8 722.5C318.8 723.973 319.994 725.167 321.467 725.167C322.94 725.167 324.133 723.973 324.133 722.5C324.133 721.027 322.94 719.833 321.467 719.833C319.994 719.833 318.8 721.027 318.8 722.5ZM3.09873 3.83842C58.403 63.9881 252.815 172.911 588.532 128.496L588.401 127.504C252.918 171.889 58.8639 63.0119 3.83486 3.16158L3.09873 3.83842ZM588.532 128.496C672.393 117.401 726.976 126.253 760.048 147.883C793.076 169.484 804.755 203.904 802.63 244.261C800.504 284.636 784.559 330.889 762.407 375.997C740.259 421.096 711.927 465.011 685.067 500.699L685.866 501.301C712.756 465.572 741.124 421.604 763.305 376.438C785.481 331.279 801.492 284.885 803.629 244.314C805.766 203.725 794.013 168.902 760.595 147.046C727.22 125.218 672.34 116.399 588.401 127.504L588.532 128.496ZM685.072 500.693C660.52 532.236 612.856 581.177 549.692 625.428C486.529 669.679 407.893 709.22 321.394 722.005L321.54 722.995C408.241 710.18 487.022 670.554 550.266 626.247C613.511 581.94 661.247 532.93 685.861 501.307L685.072 500.693Z"
               fill="#3F5540"
             />
           </svg>
