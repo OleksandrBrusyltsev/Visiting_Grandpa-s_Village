@@ -145,7 +145,7 @@
     <path d="M6.1692 7.57199L13.4266 3.26067C14.1268 2.84471 15.0332 3.13225 15.3655 3.8758L17.4984 8.64766" stroke="#3F5540" stroke-width="1.5" stroke-linecap="round"/>
   </symbol>
 
-  <symbol viewBox="0 0 253 74" fill="none" xmlns="http://www.w3.org/2000/svg" id="ellipse">
+  <symbol viewBox="0 0 253 74" fill="none" xmlns="http://www.w3.org/2000/svg" id="ellipse" preserveAspectRatio='none'>
     <path d="M44.1531 65.3437C82.3833 72.5557 171.767 81.1114 223.458 57.6376C275.15 34.1639 244.997 16.0449 223.458 9.9196C185.013 -0.157536 95.9485 -7.35002 37.3685 20.8859C-19.8158 48.4491 2.90744 60.9967 21.861 62.6763" stroke="#3F5540"/>
   </symbol>
 

@@ -1,0 +1,381 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.hero {
+    @include mixins.mak-green;
+    position: relative;
+}
+.heroTitle {
+    margin-top: 16px;
+    font-size: var(--f-size-h3);
+    width: 83%;
+
+    .firstPart {
+        display: block;
+        width: 80%;
+        @media (min-width: 470px) {
+            display: contents;
+        }
+    }
+    @media (min-width: 470px) {
+        width: 70%;
+
+        .firstPart {
+            display: contents;
+        }
+    }
+}
+.question {
+    margin-top: 16px;
+    font-size: var(--f-size-h1);
+    line-height: 1.1;
+    text-align: end;
+    text-transform: uppercase;
+    padding-right: clamp(0px, calc((100% - 327px) / 3), 20%);
+}
+.answer {
+    margin-top: 32px;
+    font-size: var(--f-size-body);
+    text-align: center;
+}
+.grandpaWrapper {
+    top: -45px;
+    right: -10px;
+    position: absolute;
+    width: 150px;
+    aspect-ratio: 1;
+    z-index: -2;
+
+    &::before {
+        position: absolute;
+        content: '';
+        background-repeat: no-repeat;
+        top: -18px;
+        left: -50px;
+        width: 180px;
+        aspect-ratio: 1.125;
+        background-image: url('/images/backgrounds/christmasTrees.png');
+        background-size: contain;
+        z-index: -1;
+    }
+    &::after {
+        position: absolute;
+        content: '';
+        background-repeat: no-repeat;
+
+        background-image: url('/images/backgrounds/christmasTrees.png'), 
+        url('/images/backgrounds/christmasTrees.png');
+        width: 180px;
+        height: 210px;
+        top: -8px;
+        left: -30px;
+        background-size: 180px 170px, 180px 170px;
+        background-position: right 10px top, center bottom;
+        z-index: -1;
+        transform: scaleX(-1);
+    }
+}
+.backgroundCurve {
+    position: absolute;
+    top: 0;
+    bottom: calc(180px * 100vw / 375px);
+    left: 0;
+    right: 0;
+    background-image: url('/images/backgrounds/curve-375-entertainment.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    z-index: -1;
+}
+.main {
+    position: relative;
+    margin-top: 14px;
+    padding-top: calc(76px * 100vw / 375px);
+}
+.entertainmentGroup {
+    list-style: none;
+}
+.entertainmentList {
+    & > .entertainmentGroup:nth-child(1) {
+        & > *:nth-child(2) {
+            margin-top: 8px;
+        }
+    }
+    & > .entertainmentGroup:nth-child(2) {
+            margin-top: calc(123px * 100vw / 375px);
+        & > *:nth-child(2) {
+            margin-top: 16px;
+        }
+        & > *:nth-child(3) {
+            margin-top: -7px;
+        }
+    }
+    & > .entertainmentGroup:nth-child(3) {
+        margin-top: calc(130px * 100vw / 375px);;
+        & > *:nth-child(2) {
+            margin-top: -10px;
+        }
+        & > *:nth-child(3) {
+            margin-top: 16px;
+        }
+    }
+    & > .entertainmentGroup:nth-child(4) {
+            margin-top: calc(120px * 100vw / 375px);
+            & > *:nth-child(2) {
+                margin-top: 16px;
+            }
+            & > *:nth-child(3) {
+                margin-top: 5px;
+            }
+    }
+    & > .entertainmentGroup:nth-child(5) {
+            margin-top: calc(105px * 100vw / 375px);
+            & > *:nth-child(3) {
+                margin-top: -10px;
+            }
+    }
+    & > .entertainmentGroup:nth-child(6) {
+            margin-top: calc(125px * 100vw / 375px);
+            & > *:nth-child(2) {
+                margin-top: 15px;
+            }
+            & > *:nth-child(3) {
+                margin-top: 15px;
+            }
+    }
+}
+.entertainmentImgWrapper {
+    width: clamp(194px, 60%, 346px);
+    aspect-ratio: 1.01;
+    position: relative;
+}
+.entertainmentImgWrapper.left {
+    margin-inline: 0 auto;
+
+}
+.entertainmentImgWrapper.right {
+    margin-inline: auto 0;
+
+}
+.treesWrapper {
+    position: relative;
+    margin-top: 65px;
+    width: clamp(230px, 61%, 400px);
+    aspect-ratio: 1.15;
+}
+@include mixins.media-min(variables.$mobile) {
+    .heroTitle {
+        margin-left: 10.5%;
+        font-size: var(--f-size-h2);
+        width: 65%;
+    }
+    .question {
+        padding-left: clamp(21%, calc((100% - 707px) / 3), 500px);
+        margin-top: 70px;
+        font-size: var(--f-size-large);
+        text-align: start;
+    }
+    .answer {
+        margin-top: 50px;
+        font-size: var(--f-size-h1);
+        text-align: end;
+        padding-right: calc(100vw / 768 * 108 );
+    }
+    .grandpaWrapper {
+        top: unset;
+        bottom: 98px;
+        right: 20px;
+        width: clamp(240px, 34%, 270px);
+    
+        &::before {
+            top: unset;
+            bottom: 0;
+            left: -140px;
+            width: clamp(285px, 120%, 330px);
+            background-size: contain;
+        }
+        &::after {
+            background-image: url('/images/backgrounds/christmasTrees.png');
+            width: clamp(285px, 120%, 330px);
+            aspect-ratio: 1.125;
+            top: unset;
+            bottom: -60px;
+            left: -20px;
+            background-size: contain;
+            background-position: center;
+            transform: unset;
+        }
+    }
+    .main {
+        margin-top: 50px;
+        padding-top: clamp(133px, calc(133px * 100vw / 768px), 180px);
+    }
+    .backgroundCurve {
+        bottom: 310px;
+        background-image: url('/images/backgrounds/curve-768-entertainment.svg');
+    }
+    .entertainmentList {
+        & > .entertainmentGroup:nth-child(1) {
+            & > *:nth-child(2) {
+                margin-top: calc(-100px * 100vw / 768px);
+            }
+            & > *:nth-child(3) {
+                margin-top: calc(-50px * 100vw / 768px);
+            }
+        }
+        & > .entertainmentGroup:nth-child(2) {
+                margin-top: calc(50px * 100vw / 768px);
+            & > *:nth-child(2) {
+                margin-top: 0px;
+            }
+            & > *:nth-child(3) {
+                margin-top: calc(-80px * 100vw / 768px);
+            }
+        }
+        & > .entertainmentGroup:nth-child(3) {
+            margin-top: calc(100px * 100vw / 768px);
+            & > *:nth-child(2) {
+                margin-top: calc(20px * 100vw / 768px);
+            }
+            & > *:nth-child(3) {
+                margin-top: calc(-20px * 100vw / 768px);
+            }
+        }
+        & > .entertainmentGroup:nth-child(4) {
+            margin-top: calc(120px * 100vw / 768px);
+                & > *:nth-child(2) {
+                    margin-top: 0;
+                }
+                & > *:nth-child(3) {
+                    margin-top: calc(-60px * 100vw / 768px);
+                }
+        }
+        & > .entertainmentGroup:nth-child(5) {
+            margin-top: calc(30px * 100vw / 768px);
+                & > *:nth-child(2) {
+                    margin-top: 0px;
+                }
+                & > *:nth-child(3) {
+                    margin-top: 0px;
+                }
+        }
+        & > .entertainmentGroup:nth-child(6) {
+            margin-top: calc(100px * 100vw / 768px);
+                & > *:nth-child(2) {
+                    margin-top: calc(23px * 100vw / 768px);
+                }
+                & > *:nth-child(3) {
+                    margin-top: calc(-120px * 100vw / 768px);
+                }
+        }
+    }
+    .entertainmentImgWrapper {
+        width: clamp(346px, 49%, 510px);
+        aspect-ratio: 1.01;
+    }
+    .treesWrapper {
+        width: clamp(400px, 57%, 512px);
+        margin-top: 40px;
+    }
+}
+@include mixins.media-min(variables.$breakpoint-laptop) {
+    .heroTitle {
+        margin-left: 9.3%;
+        width: 72%;
+    }
+    .question {
+        padding-inline: 18.65% 0;
+        font-size: var(--f-size-large);
+    }
+    .answer {
+        text-align: start;
+        padding-inline: 28% 0;
+    }
+    .grandpaWrapper {
+        bottom: -10px;
+        right: 45px;
+        width: 310px;
+    
+        &::before {
+            bottom: 0;
+            left: -140px;
+            width: 360px;
+        }
+        &::after {
+            width: 360px;
+            bottom: -60px;
+            left: -20px;
+        }
+    }
+    .backgroundCurve {
+        bottom: 275px;
+        background-image: url('/images/backgrounds/curve-1280-entertainment.svg');
+    }
+    .main {
+        margin-top: 24px;
+        padding-top: 120px;
+    }
+    .entertainmentList {
+        & > .entertainmentGroup:nth-child(1) {
+            & > *:nth-child(2) {
+                margin-top: -135px;
+            }
+            & > *:nth-child(3) {
+                margin-top: -290px;
+            }
+        }
+        & > .entertainmentGroup:nth-child(2) {
+                margin-top: 60px;
+            & > *:nth-child(2) {
+                margin-top: -170px;
+            }
+            & > *:nth-child(3) {
+                margin-top: -310px;
+            }
+        }
+        & > .entertainmentGroup:nth-child(3) {
+            margin-top: 130px;
+            & > *:nth-child(2) {
+                margin-top: 0px;
+            }
+            & > *:nth-child(3) {
+                margin-top: -290px;
+            }
+        }
+        & > .entertainmentGroup:nth-child(4) {
+                margin-top: 35px;
+                & > *:nth-child(2) {
+                    margin-top: 30px;
+                }
+                & > *:nth-child(3) {
+                    margin-top: -310px;
+                }
+        }
+        & > .entertainmentGroup:nth-child(5) {
+                margin-top: 90px;
+                & > *:nth-child(2) {
+                    margin-top: -60px;
+                }
+                & > *:nth-child(3) {
+                    margin-top: -260px;
+                }
+        }
+        & > .entertainmentGroup:nth-child(6) {
+                margin-top: 20px;
+                & > *:nth-child(2) {
+                    margin-top: 20px;
+                }
+                & > *:nth-child(3) {
+                    margin-top: -310px;
+                }
+        }
+    }
+    .entertainmentImgWrapper {
+        width: 510px;
+        aspect-ratio: 0.97;
+    }
+    .treesWrapper {
+        width: 512px;
+        margin-top: -85px;
+    }
+}
