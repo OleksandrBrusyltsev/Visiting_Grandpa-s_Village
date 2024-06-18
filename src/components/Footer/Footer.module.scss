@@ -31,11 +31,14 @@
   }
 
   @media (min-width: $breakpoint-tablet-min) {
-    gap: 6.25rem;
     margin-top: 0;
     display: flex;
   }
-
+  
+@media (min-width: $breakpoint-laptop) {
+    gap: 7.1rem;
+  }
+  
   &Item {
     color: rgb(var(--color-black));
     font-family: var(--f-family-headline);
