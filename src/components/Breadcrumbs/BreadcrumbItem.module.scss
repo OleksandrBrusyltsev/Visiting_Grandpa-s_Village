@@ -1,0 +1,32 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.breadcrumb {
+    list-style: none;
+    position: relative;
+    font-family: var(--f-family-main);
+    font-size: (--f-size-body-small);
+    line-height: 1.16;
+    letter-spacing: 0.005em;
+    color: rgb(var(--color-black));
+    &:not(:last-of-type)::after {
+        position: absolute;
+        content: '/';
+        top: 0;
+        right: -15px;
+    }
+}
+.breadcrumb:last-of-type {
+    font-weight: 700;
+}
+
+@include mixins.media-min(variables.$mobile) {
+    .breadcrumb {
+        font-size: (--f-size-body);
+        &:not(:last-of-type)::after {
+            right: -17px;
+        }
+    }
+}
+@include mixins.media-min(variables.$breakpoint-laptop) {
+}

@@ -15,10 +15,16 @@ export default function Home({
 }) {
   unstable_setRequestLocale(locale);
   const t = useTranslations("Index");
-
   return (
     <main>
-      <BookingComponent />
+      <div className="container"
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        margin: '80px auto 120px'
+      }}>
+        <BookingComponent />
+      </div>
       <WelcomeBlock text={t("welcomeBlock")} />
       <AskGrandpa />
     </main>

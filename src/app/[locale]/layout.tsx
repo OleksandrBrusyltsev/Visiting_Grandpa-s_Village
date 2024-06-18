@@ -1,6 +1,7 @@
+import { MatchMediaProvider } from "@/context/MatchMediaContext";
 import "../globals.scss";
 import { NextIntlClientProvider } from "next-intl";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { getMessages, unstable_setRequestLocale } from "next-intl/server";
 
 export function generateStaticParams() {
   return ["uk", "en"].map((locale) => ({ locale }));
@@ -14,12 +15,16 @@ export default async function LocaleLayout({
   params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
-
+  const messages = await getMessages();
   return (
-    <NextIntlClientProvider locale={locale}>
-      <html lang={locale}>
-        <body>{children}</body>
-      </html>
-    </NextIntlClientProvider>
+    <html lang={locale}>
+      <body>
+        <NextIntlClientProvider messages={messages}>
+          <MatchMediaProvider>
+            {children}
+          </MatchMediaProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

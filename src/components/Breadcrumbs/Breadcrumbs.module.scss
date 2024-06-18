@@ -1,0 +1,28 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.breadcrumbsWrapper {
+    margin-top: 29px;
+    display: flex;
+    gap: 20px;
+    @include mixins.media-min(variables.$mobile) {
+        margin-top: 40px;
+        gap: 25px;
+    }
+    @include mixins.media-min(variables.$breakpoint-laptop) {
+        margin-top: 36px;
+    }
+}
+.arrowBack {
+    margin-top: 19px;
+    width: 24px;
+    height: 24px;
+    rotate: -90deg;
+    color: rgb(var(--color-dark-green));
+    @include mixins.media-min(variables.$mobile) {
+        margin-top: 20px;
+    }
+    @include mixins.media-min(variables.$breakpoint-laptop) {
+        margin-top: 16px;
+    }
+}

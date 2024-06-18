@@ -1,5 +1,5 @@
 "use client";
-import { useState, FC, useRef, useEffect, FormEventHandler, ReactNode, ReactElement, useLayoutEffect} from "react";
+import { useState, FC, useRef, useEffect, FormEventHandler} from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -254,7 +254,6 @@ const BookingComponent: FC = () => {
 
         <div className={s.buttonSearch}>
           <Button
-            size="small"
             label="Шукати"
             type="submit"
             disabled={!checkOutDate ? true : false}
