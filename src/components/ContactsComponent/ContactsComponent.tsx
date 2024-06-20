@@ -14,7 +14,7 @@ const ContactsComponent: FC = () => {
   return (
     <>
       <div className={s.contactsContainer}>
-        <div className={s.navWrapper}>
+        {/* <div className={s.navWrapper}>
           <div className={s.linkTextWrapper}>
             <span className={s.linkText}>Головна/</span>
             <span className={s.linkTextBold}>Знайти мене</span>
@@ -22,7 +22,7 @@ const ContactsComponent: FC = () => {
           <Link href="/" className={s.backLink}>
             <Image src={IconBack} alt="back" className={s.backIcon} />
           </Link>
-        </div>
+        </div> */}
         <TelegramBotLink />
         <ContactsList />
         <FAQ />
