@@ -90,6 +90,7 @@
 .main {
     position: relative;
     margin-top: 14px;
+    margin-bottom: 62px;
     padding-top: calc(76px * 100vw / 375px);
 }
 .entertainmentGroup {
@@ -208,6 +209,7 @@
     }
     .main {
         margin-top: 50px;
+        margin-bottom: 137px;
         padding-top: clamp(133px, calc(133px * 100vw / 768px), 180px);
     }
     .backgroundCurve {
@@ -313,6 +315,7 @@
     }
     .main {
         margin-top: 24px;
+        margin-bottom: 25px;
         padding-top: 120px;
     }
     .entertainmentList {
