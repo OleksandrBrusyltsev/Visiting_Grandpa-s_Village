@@ -26,11 +26,19 @@ const ContactsComponent: FC = () => {
         <TelegramBotLink />
         <ContactsList />
         <FAQ />
-        <RouteInfo/>
+        <RouteInfo />
       </div>
-      <Link href="https://www.google.com/maps/place/%D0%9D%D0%B0+%D1%81%D0%B5%D0%BB%D1%96+%D1%83+%D0%94%D1%96%D0%B4%D1%83%D1%81%D1%8F/@51.9628026,31.1596513,17z/data=!3m1!4b1!4m9!3m8!1s0x46d502a972adef5f:0xd2021628aff7a3c7!5m2!4m1!1i2!8m2!3d51.9628026!4d31.1622262!16s%2Fg%2F11g8ph1fsl?authuser=0&entry=ttu">
-        <Image className={s.googleMap} src={GoogleMap} alt="google-map" />
-      </Link>
+      <section className={s.googleMapSection}>
+        <iframe
+          width="100%"
+          height="600"
+          frameBorder="0"
+          scrolling="no"
+          src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F%20%D0%9F%D0%B5%D1%80%D1%88%D0%BE%D1%82%D1%80%D0%B0%D0%B2%D0%BD%D0%B5%D0%B2%D0%B0,%205,%20%D0%9E%D0%BB%D0%B5%D1%88%D0%BD%D1%8F,%20%D0%A7%D0%B5%D1%80%D0%BD%D1%96%D0%B3%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,%2015030+(Grandpa's%20Village)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+        >
+          <a href="https://www.gps.ie/">gps systems</a>
+        </iframe>
+      </section>
     </>
   );
 };
