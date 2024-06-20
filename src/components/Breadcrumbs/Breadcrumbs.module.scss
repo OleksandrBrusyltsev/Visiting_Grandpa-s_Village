@@ -15,8 +15,8 @@
 }
 .arrowBack {
     margin-top: 19px;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     rotate: -90deg;
     color: rgb(var(--color-dark-green));
     @include mixins.media-min(variables.$mobile) {

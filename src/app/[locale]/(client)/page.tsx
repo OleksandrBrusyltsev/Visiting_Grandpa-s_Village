@@ -1,7 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import WelcomeBlock from "../../../components/WelcomeBlock/WelcomeBlock";
-import AskGrandpa from "../../../components/AskGrandpa/AskGrandpa";
 import BookingComponent from "@/components/BookingComponent/BookingComponent";
 
 export async function generateStaticParams() {
@@ -26,7 +25,6 @@ export default function Home({
         <BookingComponent />
       </div>
       <WelcomeBlock text={t("welcomeBlock")} />
-      <AskGrandpa />
     </main>
   );
 }
