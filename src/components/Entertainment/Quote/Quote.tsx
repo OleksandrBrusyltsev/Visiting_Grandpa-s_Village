@@ -14,6 +14,7 @@ export default function Quote({title, text, position}: Props) {
         </h2>
         <Icon name="ellipse" className={s.titleOutline} />
       </div>
+        {/* eslint-disable-next-line react/no-unescaped-entities */ }
       <div className={s.quoteText}>{text}</div>
     </hgroup>
   )
