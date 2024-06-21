@@ -43,6 +43,8 @@
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-top: 40px;
+    margin-bottom: 36px;
   }
 }
 
@@ -119,6 +121,10 @@
   // align-items: center;
   // justify-content: center;
   margin: 0 auto;
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    max-height: 500px;
+  }
 }
 
 .grandpa1 {
@@ -141,7 +147,7 @@
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    top: 120px;
+    top: 150px;
     right: auto;
     left: 50%;
     transform: translateX(-50%);
@@ -176,7 +182,7 @@
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    top: -250px;
+    top: -300px;
     right: 0;
     left: auto;
 
@@ -212,8 +218,9 @@
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
+    z-index: 49;
     top: auto;
-    bottom: -150px;
+    bottom: -50px;
     right: auto;
     left: 0;
     width: 410px;
@@ -222,7 +229,8 @@
     max-width: 100%;
     max-height: 100%;
 
-    transform: scale(-1, 1);
+    transform: none
+    
   }
 }
 
@@ -282,7 +290,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 150px;
+    margin-top: 0px;
+    
   }
 }
 
@@ -312,7 +321,7 @@
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    top: 700px;
+    top: 930px;
 
     width: 327px;
     height: 324px;
@@ -630,6 +639,10 @@
   @include mixins.media-min(variables.$mobile) {
     position: inherit;
     z-index: 0;
+
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+
   }
 }
 
@@ -909,8 +922,9 @@
 
 .calendarBox {
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    display: flex;
-    justify-content: flex-end;
+    position: absolute;
+    right: 50px;
+    top: 600px;
   }
 }
 
