@@ -9,7 +9,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
 
-const grandpa1 = "/images/Hero/grandpa1.png";
+const grandpa1 = "https://i.ibb.co/6W6b8zB/grandpa1.png";
 const grandpa2 = "/images/Hero/grandpa2.png";
 const grandpa3 = "/images/Hero/grandpa3.png";
 
