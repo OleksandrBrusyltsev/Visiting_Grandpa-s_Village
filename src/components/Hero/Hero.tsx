@@ -22,7 +22,6 @@ const photo6 = "/images/Hero/photo6.png";
 const photo7 = "/images/Hero/photo7.png";
 const photo8 = "/images/Hero/photo8.png";
 
-
 const illustration1 = "/images/Hero/illustration1.png";
 const illustration2 = "/images/Hero/illustration2.png";
 const illustration3 = "/images/Hero/illustration3.png";
