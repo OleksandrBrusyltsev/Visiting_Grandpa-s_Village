@@ -56,7 +56,7 @@ const Hero = () => {
       gsap.fromTo(
         box1Ref.current,
         { x: -767 },
-        { x: 0, clearProps: "transform" }
+        { x: 0, duration: 1, clearProps: "transform" }
       );
       gsap.fromTo(
         photo1Animation.current,
