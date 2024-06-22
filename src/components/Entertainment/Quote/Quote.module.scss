@@ -1,0 +1,127 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
+.quoteWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.quoteTitle {
+    position: relative;
+    display: inline-block;
+    min-width: 150px;
+    text-align: center;
+
+    h2 {
+        text-transform: uppercase;
+        @include mixins.mak-green;
+        line-height: 1.1;
+        font-size: clamp(20px, calc(20px * 100vw / 375px), 40px);
+        padding: 20px 20px 15px 25px;
+        display: inline-block;
+    }
+    &::before {
+        position: absolute;
+        content: '';
+        top: calc(-130px * 100vw / 375px);
+        background-image: url('/images/backgrounds/christmasTrees.png');
+        width: calc(184px * 100vw / 375px);
+        aspect-ratio: 1.15;
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+   .titleOutline {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+.quoteText {
+    font-family: var(--f-family-main);
+    font-weight: 700;
+    font-size: var(--f-size-numbers-small);
+    font-size: clamp(14px, calc(14px * 100vw / 375px), 16px);
+    line-height: 16.4px;
+    color: rgb(var(--color-base-green));
+    width: 76%;
+}
+.quoteWrapper.left {
+    .quoteTitle::before {
+        left: -20px;
+    }
+}
+.quoteWrapper.right {
+    align-items: flex-end;
+    .quoteTitle::before {
+        right: 0;
+    }
+}
+
+@include mixins.media-min(variables.$mobile) {
+    .quoteWrapper {
+        gap: 40px;
+    }
+    
+    .quoteTitle {
+        min-width: 270px;
+        h2 {
+            font-size: clamp(40px, calc(40px * 100vw / 768px), 48px);
+            padding: 40px 25px 35px 50px;
+        }
+        &::before {
+            top: clamp(-237px, calc(-190px * 100vw / 768px), -190px);
+            width: clamp(280px, calc(280px * 100vw / 768px), 350px);
+        }
+    }
+    .quoteText {
+        font-size: var(--f-size-body);
+        line-height: 1.1;
+        width: 54%;
+    }
+    .left {
+        .quoteTitle::before {
+            left: -40px;
+        }
+    }
+    .right {
+        align-items: flex-end;
+        .quoteTitle::before {
+            right: -20px;
+        }
+    }
+}
+@include mixins.media-min(variables.$breakpoint-laptop) {
+    .quoteTitle {
+        min-width: 380px;
+        h2 {
+            font-size: var(--f-size-large);
+            padding: 50px 25px 50px 60px;
+        }
+        &::before {
+            top: -190px;
+            width: 350px;
+        }
+    }
+    .quoteText {
+        font-size: var(--f-size-body);
+        width: unset;
+    }
+    .quoteWrapper.left {
+        margin-left: 110px;
+
+        .quoteTitle::before {
+            left: -120px;
+        }
+    }
+    .quoteWrapper.right {
+        align-items: flex-end;
+        .quoteTitle::before {
+            top: -240px;
+            right: -20px;
+        }
+    }
+}
