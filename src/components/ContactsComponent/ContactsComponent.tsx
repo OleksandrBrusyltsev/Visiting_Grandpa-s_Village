@@ -20,18 +20,15 @@ const ContactsComponent: FC = () => {
       googleMapWrapper.current,
       {
         y: "-100%",
-        opacity:0
+        opacity: 0,
       },
       {
         scrollTrigger: {
           trigger: googleMapWrapper.current,
-          markers: true,
           start: "bottom 80%",
-         
-         
         },
         y: "0%",
-        opacity:1,
+        opacity: 1,
         duration: 1,
         clearProps: "transform",
       }

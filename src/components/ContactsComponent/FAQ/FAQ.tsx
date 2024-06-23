@@ -21,20 +21,20 @@ const FAQ: FC = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
-  gsap.fromTo(
-    lake.current,
-    {
-      x: "-100%",
-    },
-    {
-      scrollTrigger: {
-        trigger: lake.current,
+    gsap.fromTo(
+      lake.current,
+      {
+        x: "-100%",
       },
-      x: "0%",
-      duration: 1,
-      clearProps: "transform",
-    }
-  );
+      {
+        scrollTrigger: {
+          trigger: lake.current,
+        },
+        x: "0%",
+        duration: 1,
+        clearProps: "transform",
+      }
+    );
     gsap.fromTo(
       faqTitle.current,
       {
@@ -63,16 +63,15 @@ const FAQ: FC = () => {
         clearProps: "transform",
       }
     );
-})
+  });
 
-
-const toggleAnswer = (index: number) => {
-  if (openIndices.includes(index)) {
-    setOpenIndices(openIndices.filter((i) => i !== index));
-  } else {
-    setOpenIndices([...openIndices, index]);
-  }
-};
+  const toggleAnswer = (index: number) => {
+    if (openIndices.includes(index)) {
+      setOpenIndices(openIndices.filter((i) => i !== index));
+    } else {
+      setOpenIndices([...openIndices, index]);
+    }
+  };
 
   return (
     <div className={s.imgAndFaqWrapper}>

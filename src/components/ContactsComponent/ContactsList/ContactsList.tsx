@@ -34,25 +34,36 @@ const ContactsList = () => {
   const grandpa = useRef<HTMLImageElement>(null);
   const contactsListWrapper = useRef<HTMLDivElement>(null);
 
-  let mm = gsap.matchMedia();
   useGSAP(() => {
+    const mm = gsap.matchMedia();
+
     gsap.fromTo(
       grandpa.current,
       { x: "-100%" },
       { x: "0%", duration: 1, clearProps: "transform" }
     );
+
     mm.add("(min-width: 1000px)", () => {
-      gsap.fromTo(
+      const desktopAnimation = gsap.fromTo(
         grandpa.current,
-        { y: "-300%", x: "0%" },
+        { y: "-200%", x: "0%" },
         { y: "0%", x: "0%", duration: 1, clearProps: "transform" }
       );
+
+      return () => {
+        desktopAnimation.reverse();
+      };
     });
+
     gsap.fromTo(
       contactsListWrapper.current,
       { x: "100%" },
       { x: "0%", duration: 1, clearProps: "transform" }
     );
+
+    return () => {
+      mm.revert();
+    };
   });
 
   return (

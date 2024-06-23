@@ -11,7 +11,6 @@ const urls: HeaderUrls = {
 };
 
 export async function generateStaticParams({
-
   params: { locale },
 }: {
   params: { locale: string };
