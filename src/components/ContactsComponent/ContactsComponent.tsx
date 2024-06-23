@@ -12,25 +12,31 @@ import s from "./ContactsComponent.module.scss";
 
 const ContactsComponent: FC = () => {
   const googleMapWrapper = useRef<HTMLDivElement>(null);
-
+  const googleMap = useRef<HTMLDivElement>(null);
   gsap.registerPlugin(ScrollTrigger);
 
- useGSAP(() => {
-   gsap.fromTo(
-     googleMapWrapper.current,
-     {
-       y: "-300%",
-     },
-     {
-       scrollTrigger: {
-         trigger: googleMapWrapper.current,
-       },
-       y: "0%",
-       duration: 1,
-       clearProps: "transform",
-     }
-   );
- });
+  useGSAP(() => {
+    gsap.fromTo(
+      googleMapWrapper.current,
+      {
+        y: "-100%",
+        opacity:0
+      },
+      {
+        scrollTrigger: {
+          trigger: googleMapWrapper.current,
+          markers: true,
+          start: "bottom 80%",
+         
+         
+        },
+        y: "0%",
+        opacity:1,
+        duration: 1,
+        clearProps: "transform",
+      }
+    );
+  });
 
   return (
     <>
@@ -42,6 +48,7 @@ const ContactsComponent: FC = () => {
       </div>
       <div className={s.googleMapWrapper} ref={googleMapWrapper}>
         <iframe
+          className={s.googleMap}
           width="100%"
           height="600"
           frameBorder="0"
