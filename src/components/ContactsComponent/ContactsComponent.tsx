@@ -1,16 +1,37 @@
 "use client";
 import { FC } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import IconBack from "../../assets/icons/icon-back.svg";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import { ScrollTrigger } from "gsap/all";
 import TelegramBotLink from "./TelegramBlock/TelegramBlock";
 import ContactsList from "./ContactsList/ContactsList";
 import FAQ from "./FAQ/FAQ";
 import RouteInfo from "./RouteInfo/RouteInfo";
-import GoogleMap from "../../../public/images/contacts/google-map.jpg";
 import s from "./ContactsComponent.module.scss";
 
 const ContactsComponent: FC = () => {
+  const googleMapWrapper = useRef<HTMLDivElement>(null);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+ useGSAP(() => {
+   gsap.fromTo(
+     googleMapWrapper.current,
+     {
+       y: "-300%",
+     },
+     {
+       scrollTrigger: {
+         trigger: googleMapWrapper.current,
+       },
+       y: "0%",
+       duration: 1,
+       clearProps: "transform",
+     }
+   );
+ });
+
   return (
     <>
       <div className={s.contactsContainer}>
@@ -19,7 +40,7 @@ const ContactsComponent: FC = () => {
         <FAQ />
         <RouteInfo />
       </div>
-      <section className={s.googleMapSection}>
+      <div className={s.googleMapWrapper} ref={googleMapWrapper}>
         <iframe
           width="100%"
           height="600"
@@ -29,7 +50,7 @@ const ContactsComponent: FC = () => {
         >
           <a href="https://www.gps.ie/">gps systems</a>
         </iframe>
-      </section>
+      </div>
     </>
   );
 };

@@ -21,55 +21,11 @@
   }
 }
 
-.navWrapper {
-  margin-bottom: 16px;
-
-  @include mixins.media-min(variables.$breakpoint-laptop) {
-    margin-bottom: 40px;
-  }
-}
-
-.linkTextWrapper {
-  margin-bottom: 19px;
-
-  @include mixins.media-min(variables.$mobile) {
-    margin-bottom: 20px;
-  }
-
-  @include mixins.media-min(variables.$breakpoint-laptop) {
-    margin-bottom: 16px;
-  }
-}
-
-.linkTextBold {
-  font-family: var(--f-family-main);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 17.6px;
-
-  @include mixins.media-min(variables.$mobile) {
-    font-size: var(--f-size-body);
-  }
-}
-
-.linkText {
-  font-family: var(--f-family-main);
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 18.56px;
-
-  @include mixins.media-min(variables.$mobile) {
-    font-size: var(--f-size-body);
-  }
-}
-
-.backLink {
-  display: block;
-}
-
-.googleMap {
+.googleMapWrapper {
+  overflow: hidden;
+  position: relative;
   width: 100%;
-  height: auto;
+  height: 600px;
   margin-bottom: 27px;
 
   @include mixins.media-min(variables.$mobile) {

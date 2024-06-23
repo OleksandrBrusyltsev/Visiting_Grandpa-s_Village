@@ -1,13 +1,53 @@
 import { FC } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
 import House from "../../../../public/images/contacts/house.png";
 import s from "./RouteInfo.module.scss";
 
 const RouteInfo: FC = () => {
+  const house = useRef<HTMLImageElement>(null);
+  const routeInfoWrapper = useRef<HTMLDivElement>(null);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  useGSAP(() => {
+    gsap.fromTo(
+      house.current,
+      {
+        x: "100%",
+      },
+      {
+        scrollTrigger: {
+          trigger: house.current,
+        },
+        x: "0%",
+        duration: 1,
+        clearProps: "transform",
+      }
+    );
+    gsap.fromTo(
+      routeInfoWrapper.current,
+      {
+        x: "-100%",
+      },
+      {
+        scrollTrigger: {
+          trigger: routeInfoWrapper.current,
+        },
+        x: "0%",
+        duration: 1,
+        clearProps: "transform",
+      }
+    );
+  });
+
   return (
     <div className={s.imgAndRouteInfoWrapper}>
-      <Image src={House} alt="picture" className={s.house} />
-      <div className={s.routeInfoWrapper}>
+      <Image src={House} alt="picture" className={s.house} ref={house} />
+      <div className={s.routeInfoWrapper} ref={routeInfoWrapper}>
         <h1 className={s.routeInfoTitle}>Як дістатися з Чернігова?</h1>
         <p className={s.routeInfoText}>
           Електричкою до станції Грибова Рудня. Електричка виходить із Чернігова
