@@ -1,0 +1,173 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
+.telegramTitle {
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-h3);
+  color: rgba(var(--color-base-green));
+  font-weight: 600;
+  line-height: 35.15px;
+  margin-bottom: 20px;
+
+  @include mixins.media-min(variables.$mobile) {
+    font-size: var(--f-size-h1);
+    margin-left: 112px;
+    margin-bottom: -55px;
+  }
+
+  @include mixins.media-min(1000px) {
+    margin-bottom: -7rem;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-bottom: -10rem;
+  }
+}
+
+.telegramWrapper {
+  width: 100%;
+  margin-bottom: 23px;
+
+  @include mixins.media-min(variables.$mobile) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    grid-template-rows: auto auto auto;
+    row-gap: 49px;
+    margin-bottom: 0px;
+  }
+
+  @include mixins.media-min(1000px) {
+    margin-bottom: -5rem;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    column-gap: 170px;
+    margin-bottom: -8rem;
+  }
+}
+
+.telegramText {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 300;
+  line-height: 19px;
+  width: 85%;
+  max-width: 384px;
+  margin-bottom: -3rem;
+
+  @include mixins.media-min(654px) {
+    margin-bottom: -7rem;
+  }
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 100%;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    margin-bottom: 0;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 384px;
+  }
+}
+
+.telegramTextBold {
+  font-weight: 700;
+}
+
+.map {
+  width: 65%;
+  max-width: 346px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-bottom: 18px;
+
+  @include mixins.media-min(654px) {
+    margin-bottom: -2rem;
+  }
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 346px;
+    grid-column: 2 / 3;
+    grid-row: 1 / 4;
+    justify-self: start;
+    margin-bottom: 0;
+  }
+
+  @include mixins.media-min(1000px) {
+    width: 420px;
+    max-width: 420px;
+    margin-bottom: -3rem;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 508px;
+    min-width: 508px;
+  }
+}
+
+.telegramLinkWrapper {
+  max-width: 327px;
+  padding: 14px 12px;
+  border-radius: 8px;
+  border: 1px solid rgb(var(--color-black));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 100%;
+    max-width: 380px;
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 384px;
+    margin-bottom: 23px;
+    margin-left: auto;
+  }
+}
+
+.telegramBotLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.telegramLinkText {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 700;
+  line-height: 18.56px;
+}
+
+.telegramIcon {
+  width: 44px;
+  height: 44px;
+  color: rgb(var(--color-dark-green));
+  transition: color 0.3s, stroke 0.3s;
+
+  &:hover {
+    color: transparent;
+    stroke: rgb(var(--color-base-green));
+    stroke-width: 1px;
+  }
+
+  &:active {
+    color: rgb(var(--color-natural-orange));
+    stroke: rgb(var(--color-natural-orange));
+    stroke-width: 0;
+  }
+}
+
+.telegramIconText {
+  font-family: var(--f-family-headline);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+  white-space: nowrap;
+  margin-top: 8px;
+}
