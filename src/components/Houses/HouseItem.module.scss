@@ -40,12 +40,12 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    .houseIcon{
+        width: 26px;
+        height: 26px;
+    }
 }
     
-.houseIcon{
-    width: 26px;
-    height: 26px;
-}
 .title{
     padding-top: 2px;
     font-size: var(--f-size-h3);
@@ -56,10 +56,10 @@
     align-items: center;
     justify-content: flex-end;
     gap: 6px;
-}
-.pocketIcon{
-    width: 24px;
-    height: 24px;
+    .pocketIcon{
+        width: 24px;
+        height: 24px;
+    }
 }
 
 .guestsWrapper{
@@ -67,10 +67,10 @@
     display: flex;
     align-items: center;
     gap: 5px;
-}
-.guestsIcon{
-    width: 22px;
-    height: 20px;
+    .guestsIcon{
+        width: 22px;
+        height: 20px;
+    }
 }
 .guests,
 .price {
@@ -86,10 +86,10 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
-}
-.servicesIcon{
-    width: 24px;
-    height: 24px;
+    .servicesIcon{
+        width: 24px;
+        height: 24px;
+    }
 }
 .btnWrapper{
     grid-area: btn;
