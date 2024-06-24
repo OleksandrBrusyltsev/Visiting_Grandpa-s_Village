@@ -1,28 +1,27 @@
-import { useTranslations } from 'next-intl';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { HeaderUrls } from "../../../../types/header";
+import ContactsComponent from "../../../../components/ContactsComponent/ContactsComponent";
 
-export async function generateStaticParams() {
-  return ["uk", "en"].map((locale) => ({ locale }));
-}
+const urls: HeaderUrls = {
+  en: {
+    pathList: ["contacts"],
+  },
+  uk: {
+    pathList: ["contacts"],
+  },
+};
 
-export default function Page({
+export async function generateStaticParams({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  unstable_setRequestLocale(locale);
-  const t = useTranslations('Breadcrumbs');
+  return (urls[locale]?.pathList || []).map((item) => ({ slug: item }));
+}
 
+export default async function ContactsPage() {
   return (
-    <div className='container'>
-      <h1 style={{
-        marginTop: 20,
-        marginBottom: 20,
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        color: '#000000',
-      }}>Сторінка {t('contacts')}</h1>
-    </div>
-  )
+    <>
+      <ContactsComponent />
+    </>
+  );
 }
