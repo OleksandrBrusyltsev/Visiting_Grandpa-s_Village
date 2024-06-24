@@ -1,0 +1,59 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.textDecor {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  color: rgb(var(--color-base-green));
+  font-family: var(--f-family-main);
+  font-weight: 700;
+}
+
+.arrowWrapper {
+  display: flex;
+  justify-content: flex-end;
+  height: 25px;
+  margin-top: 16px;
+  color: rgb(var(--color-base-green));
+
+  & svg {
+    width: 95px;
+  }
+}
+
+.headline {
+  margin-top: 30px;
+  font-size: 24px;
+  color: rgb(var(--color-base-green));
+  font-family: var(--f-family-headline);
+}
+
+.text {
+  margin-top: 14px;
+  font-size: 14px;
+  font-family: var(--f-family-main);
+
+  & span {
+    display: block;
+    padding-top: 14px;
+  }
+}
+
+.servicesWrapper {
+  grid-area: services;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  .servicesIcon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.iconBath {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
