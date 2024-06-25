@@ -3,15 +3,15 @@
 @import "./../../styles/variables.scss";
 
 .footer {
-  margin-top: 50px;
   width: 100%;
   display: grid;
   justify-items: center;
   grid-template-areas: "logo" "socialMedia" "contacts" "copyright";
   grid-template-columns: 1fr;
   gap: 2.25rem;
-  background: url("/images/footer-bg.png") no-repeat center/contain
+  background: url('/images/backgrounds/footer-bg-375.png') no-repeat center/cover
     rgba(var(--color-nude), 0.5);
+  background-blend-mode: soft-light;
   padding: 0.5rem 1.5rem 0.875rem;
 
   max-width: 1440px;
@@ -21,22 +21,30 @@
     grid-template-areas: "logo" "nav" "contacts" "socialMedia" "copyright";
     padding: 3.75rem 0 1.563rem;
   }
+  @include mixins.media-min($mobile) {
+    background-image: url('/images/backgrounds/footer-bg-768.png');
+  }
+  @include mixins.media-min($breakpoint-laptop) {
+    background-image: url('/images/backgrounds/footer-bg-1280.png');
+  }
 }
 
 .nav {
   grid-area: nav;
   display: none;
   align-items: center;
-  gap: 3.125rem;
-
+  
   @media (max-width: $breakpoint-mobile-max) {
     margin-top: 1.313rem;
   }
 
-  @media (min-width: $breakpoint-tablet-min) {
-    gap: 6.25rem;
+  @media (min-width: $mobile) {
+    gap: calc(51px * 100vw / 768px);
     margin-top: 0;
     display: flex;
+  }
+  @media (min-width: $breakpoint-laptop) {
+    gap: 6.25rem;
   }
 
   &Item {
@@ -118,8 +126,7 @@
   @media (max-width: $breakpoint-mobile-max) {
     gap: 2.938rem;
   }
-
-  &Icon {
+  .socialMediaIcon {
     max-width: 2rem;
     max-height: 2rem;
     transition: color 0.3s, stroke 0.3s;

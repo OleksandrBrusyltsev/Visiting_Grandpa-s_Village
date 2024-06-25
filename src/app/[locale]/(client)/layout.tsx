@@ -1,7 +1,10 @@
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import Footer from "../../../components/Footer/Footer";
 import Header from "../../../components/Header/Header";
+import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
+
 import "../../globals.scss";
+
 // import type { Metadata } from "next";
 
 // export const metadata: Metadata = {
@@ -19,6 +22,7 @@ export default async function LocaleLayout({
       <Header />
       <Breadcrumbs />
         {children}
+      <AskGrandpa />
       <Footer />
     </>
   );

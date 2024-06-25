@@ -1,0 +1,109 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
+.imgWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 472px;
+  margin-bottom: 29px;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 524px;
+    max-width: 524px;
+    margin-bottom: 50px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 668px;
+    max-width: 668px;
+    margin-right: 40%;
+    margin-bottom: 60px;
+  }
+}
+
+.contactsListWrapper {
+  margin-top: -15px;
+  width: 100%;
+  padding: 20px 15px 20px 15px;
+  border-radius: 8px;
+  background-color: rgb(var(--color-nude));
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    padding: 30px 20px 30px 20px;
+  }
+}
+
+.grandpa {
+  width: 38%;
+  max-width: 174px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-left: 60%;
+  }
+
+  @include mixins.media-min(1000px) {
+    margin-left: 35%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 218px;
+    height: auto;
+    margin-left: 70%;
+  }
+}
+
+.contactsList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.contactsItemTitle {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 300;
+  line-height: 18.56px;
+  margin-bottom: 16px;
+}
+
+.contactItemText {
+  font-family: var(--f-family-headline);
+  color: rgb(var(--color-black));
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  transition: font-size 0.3s;
+  cursor: pointer;
+
+  @include mixins.media-min(375px) {
+    font-size: var(--f-size-body);
+  }
+  @include mixins.media-min(variables.$mobile) {
+    font-size: var(--f-size-button-small);
+  }
+
+  &:hover {
+    color: rgb(var(--color-base-green));
+  }
+
+  &:active {
+    color: rgb(var(--color-natural-orange));
+  }
+}
+
+.contactItemIcon {
+  margin-right: 10px;
+  color: rgb(var(--color-base-green));
+}
+
+.socialMediaList {
+  gap: 46px;
+  justify-content: center;
+}

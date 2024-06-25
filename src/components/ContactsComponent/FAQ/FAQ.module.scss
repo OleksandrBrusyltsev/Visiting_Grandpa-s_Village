@@ -1,0 +1,123 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
+.lake {
+  width: 65%;
+  max-width: 343px;
+  height: auto;
+  margin-bottom: 18px;
+
+  @include mixins.media-min(654px) {
+    margin-bottom: -3rem;
+  }
+
+  @include mixins.media-min(variables.$mobile) {
+    max-width: 586px;
+    margin-bottom: -150px;
+  }
+
+  @include mixins.media-min(900px) {
+    margin-bottom: -360px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-bottom: -460px;
+  }
+}
+
+.faqTitle {
+  width: 222px;
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-h3);
+  color: rgba(var(--color-base-green));
+  font-weight: 600;
+  line-height: 35.15px;
+  margin-bottom: 47px;
+  margin-left: auto;
+
+  @include mixins.media-min(502px) {
+    margin-left: 50%;
+  }
+  @include mixins.media-min(variables.$mobile) {
+    width: 340px;
+    margin-left: auto;
+    font-size: var(--f-size-h1);
+    margin-bottom: 68px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 622px;
+    margin-bottom: 48px;
+  }
+}
+
+.faqWrapper {
+  width: 100%;
+  max-width: 472px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 16px;
+  background-color: rgba(var(--color-nude, 0.7));
+  border-radius: 8px;
+  border: 1px solid rgba(var(--color-base-green));
+  margin-bottom: 30px;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 472px;
+    margin-bottom: 42px;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 100px;
+  }
+
+  @include mixins.media-min(900px) {
+    width: 45%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 472px;
+    margin-left: 660px;
+    margin-bottom: 166px;
+  }
+}
+
+.faqList {
+  background-color: rgba(var(--color-gray-light));
+  width: 100%;
+}
+
+.questionWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.questionText {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 700;
+  line-height: 18.56px;
+  max-width: 230px;
+
+  @include mixins.media-min(variables.$mobile) {
+    max-width: 380px;
+  }
+}
+
+.iconButton {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.answerText {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 300;
+  line-height: 18.56px;
+  padding: 0px 16px;
+}

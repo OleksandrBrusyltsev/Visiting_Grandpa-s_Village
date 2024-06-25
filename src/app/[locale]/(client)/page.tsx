@@ -27,7 +27,6 @@ export default function Home({
         <Hero />
       {/* </div> */}
       <WelcomeBlock text={t("welcomeBlock")} />
-      <AskGrandpa />
     </main>
   );
 }
