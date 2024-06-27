@@ -1,0 +1,112 @@
+@use '../../styles/mixins' as mixins;
+@use '../../styles/variables';
+
+.mealsWrapper {
+    overflow: hidden;
+}
+.heroWrapper {
+    margin-top: 16px;
+    @include mixins.mak-green;
+    position: relative;
+}
+.title {
+    font-size: clamp(24px, calc(24px * 100vw / 375px), 48px);
+    text-align: end;
+    width: 92.7%;
+    margin-inline: auto 0;
+}
+.heroImage {
+    position: relative;
+    width: 64%;
+    aspect-ratio: 1.25;
+}
+.callToEatWrapper {
+    position: absolute;
+    width: clamp(113px, calc(113px * 100vw / 375px), 202px);
+    bottom: 36%;
+    left: 79%;
+    text-align: center;
+}
+.callToEat {
+    display: inline-block;
+    font-size: clamp(var(--f-size-numbers-small), calc(14px * 100vw / 375px), var(--f-size-h3));
+    line-height: 1.3;
+    padding: calc(12px * 100vw / 375px) 
+            calc(8px * 100vw / 375px) 
+            calc(9px * 100vw / 375px)
+            calc(18px * 100vw / 375px);
+}
+.callToEatOutline {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.heroCurve {
+    position: absolute;
+    bottom: -3%;
+    right: -40px;
+    width: 67%;
+    height: 55%;
+    rotate: -39deg;
+}
+.main {
+    margin-top: 100px;
+}
+@include mixins.media-min(variables.$mobile) {
+    .title {
+        width: 650px;
+    }
+    .heroImage {
+        width: 58%;
+        aspect-ratio: 1.3;
+        img {
+            inset: -5% 0 0 !important;
+        }
+    }
+    .title {
+        text-transform: uppercase;
+    }
+    .heroCurve {
+        bottom: 20%;
+        right: -5%;
+        width: 38%;
+        height: 32%;
+        rotate: -39deg;
+    }
+    .callToEatWrapper {
+        width: 202px;
+        bottom: 50%;
+    }
+    .callToEat {
+        font-size: var(--f-size-h3);
+        line-height: 1.1;
+        padding: calc(12px * 100vw / 768px) 
+                calc(8px * 100vw / 768px) 
+                calc(9px * 100vw / 768px)
+                calc(18px * 100vw / 768px);
+    }
+    .main {
+        margin-top: 184px;
+    }
+}
+@include mixins.media-min(variables.$breakpoint-laptop) {
+    .title {
+        width: 804px;
+    }
+    .heroImage {
+        width: 58%;
+        img {
+            inset: -10% 0 0 !important;
+        }
+    }
+    .heroCurve {
+        rotate: -24deg;
+        right: -20px;
+        bottom: 20%;
+        height: 38%;
+        width: 40%;
+    }
+    .main {
+        margin-top: 128px;
+    }
+}

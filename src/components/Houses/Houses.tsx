@@ -41,7 +41,7 @@ export default async function Houses({children}: Props) {
             fill
             alt={locale === "en" ? "Map of Grandpa's houses" : "Карта еко садиби Дідуся"} 
             src="/images/backgrounds/illustration-map.png" 
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 30vw"
+            sizes="100vw"
           />
          
         </div>

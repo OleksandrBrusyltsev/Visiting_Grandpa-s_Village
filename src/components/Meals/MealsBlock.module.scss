@@ -1,0 +1,185 @@
+@use '../../styles/mixins' as mixins;
+@use '../../styles/variables';
+
+.mealsBlockWrapper {
+    font-family: var(--f-family-main);
+    position: relative;
+    
+    * {
+        // outline: 1px solid red;
+    }
+}
+.mealsTitle {
+    text-transform: uppercase;
+    @include mixins.mak-green;
+    font-size: clamp(var( --f-size-h3), calc(24px * 100vw / 375px), var( --f-size-large));
+}
+.mealsDescriptionWrapper {
+    font-size: var(--f-size-body);
+    line-height: 1.16;
+    position: relative;
+    
+    //exceptional case: position ===1
+    .mainPhoto {
+        // margin-left: -10px;
+        margin-top: calc(160px - 160 * (100vw - 375px) / 375);
+        shape-outside: padding-box;;
+        border-radius: 50%;
+        float: right;
+        position: relative;
+        width: clamp(162px, 35%, 250px);
+        // width: 162px;
+        aspect-ratio: 1;
+        &:before {
+            width: clamp(97px, 68%, 173px);
+            right: unset;
+            left: 0;
+        }
+    }
+}
+.mealsDescription {
+    
+}
+.mainPhoto {
+    &:before {
+        // width: 68%;
+        aspect-ratio: 1.16;
+        transform: scaleX(-1);
+        content: "";
+        position: absolute;
+        right: -7%;
+        top: -32%;
+        z-index: -1;
+        background-image: url("/images/backgrounds/christmasTrees.png");
+        background-position: right top;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    img {
+        object-fit: contain;
+    }
+}
+.mealsBlockWrapper:nth-of-type(1) {
+
+    .mealsDescriptionWrapper {
+        width: 74%;
+        margin-top: min(calc(110px * 100vw / 375px), 150px);
+        margin-left: auto;
+        // padding-left: 85px;
+    }
+    .mainPhoto {
+        position: absolute;
+        width: clamp(172px, 52%, 275px);
+        // width: 172px;
+        aspect-ratio: 1.12;
+        // top: -8%;
+        top: calc(-34px - 27 * (100vw - 375px) / 375 );
+        right: 0;
+        &:before {
+            // width: clamp(97px, 68%, 173px);
+            width: 97px;
+        }
+    }
+    .topPhoto {
+        position: absolute;
+        width: clamp(67px, 20.5%, 100px);    
+        // width: 67px;    
+        aspect-ratio: 0.88;
+        top: calc(28px * 100vw / 375px);
+        // top: 28px;
+        left: 26%;
+        // left: 85px;
+    }
+    .bottomPhoto {
+        position: absolute;
+        position: absolute;
+        width: clamp(78px, 24%, 120px);      
+        // width: 78px;    
+        aspect-ratio: 0.80;
+        top: calc(94px * 100vw / 375px);
+        // top: 94px;
+        left: 0;
+    }
+    .mealsCurve {
+        position: absolute;
+        color: rgb(var(--color-base-green));
+        rotate: 5deg;
+        // transform: scaleX(-1);
+        left: 18%;
+        // top: 106%;
+        // bottom: -155px;
+        width: 35%;
+        // height: auto;
+        bottom: calc(-130px * 100vw / 375px);
+        // width: 50%;
+        height: calc(140px * 100vw / 375px);
+    }
+}
+
+.mealsBlockWrapper:nth-of-type(2) {
+    margin-top: min(calc(150px * 100vw / 375px), 250px);
+    .mealsDescription {
+        
+    }
+    .mealsDescriptionWrapper {
+        .mealsDescription:not(:last-child) {
+            margin-bottom: 10px;
+        }
+        margin-top: calc(40px * 100vw / 375px);
+    }
+    .topPhoto {
+        position: absolute;
+        width: clamp(132px, 40%, 150px);  
+        // width: 132px;
+        aspect-ratio: 1.13;
+        top: calc(-72px * 100vw / 375px);
+        top: -72px;
+        right: 0;
+    }
+    .bottomPhoto {
+        position: absolute;
+        position: absolute;
+        width: clamp(90px, 27.5%, 120px);    
+        aspect-ratio: 1.125;
+        bottom: -80px;
+        bottom: -110px;
+        left: 15%;
+    }
+    .mealsCurve {
+        position: absolute;
+        color: rgb(var(--color-base-green));
+        rotate: -30deg;
+        // transform: scaleX(-1);
+        right: 20%;
+        // top: 106%;
+        bottom: calc(-110px * 100vw / 375px);
+        width: 50%;
+        height: calc(70px * 100vw / 375px);
+    }
+}
+.mealsBlockWrapper:nth-of-type(3) {
+    margin-top: min(calc(148px * 100vw / 375px), 270px);
+    .mealsDescription {
+        
+    }
+    .mealsDescriptionWrapper {
+    }
+    .mainPhoto {
+
+    }
+    .topPhoto {
+
+    }
+    .bottomPhoto {
+  
+    }
+    .mealsCurve {
+    
+    }
+}
+@include mixins.media-min(variables.$mobile) {
+
+}
+@include mixins.media-min(variables.$breakpoint-laptop) {
+    
+}
