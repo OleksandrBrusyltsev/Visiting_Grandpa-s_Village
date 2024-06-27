@@ -83,19 +83,19 @@ const Hero = () => {
       gsap.fromTo(
         box1Ref.current,
         { x: -767, opacity: 0 },
-        { x: 0, opacity: 1, duration: 2,clearProps: "transform" }
+        { x: 0, opacity: 1, duration: 1,clearProps: "transform" }
       );
 
       gsap.fromTo(
         box99Ref.current,
         { x: -767, opacity: 0 },
-        { x: 0, opacity: 1, duration: 2,clearProps: "transform" }
+        { x: 0, opacity: 1, duration: 1,clearProps: "transform" }
       );
 
       gsap.fromTo(
         photo1Animation.current,
         { x: 767, opacity: 0 },
-        { x: 0, opacity: 1,duration: 2, clearProps: "transform" }
+        { x: 0, opacity: 1,duration: 1, clearProps: "transform" }
       );
       gsap.fromTo(
         illustration1Animation.current,
@@ -279,7 +279,7 @@ const Hero = () => {
       gsap.fromTo(
         grandpa1Ref.current,
         { y: -767, opacity: 0 },
-        { y: 0, opacity: 1, duration: 2, clearProps: "transform" }
+        { y: 0, opacity: 1, duration: 1.75, clearProps: "transform" }
       );
     });
 
@@ -287,18 +287,18 @@ const Hero = () => {
       gsap.fromTo(
         box1Ref.current,
         { x: -767, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
+        { x: 0, opacity: 1, duration: 1.75, clearProps: "transform" }
       );
 
       gsap.fromTo(
         box99Ref.current,
         { x: -767, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
+        { x: 0, opacity: 1, duration: 1.75, clearProps: "transform" }
       );
       gsap.fromTo(
         photo1Animation.current,
         { x: -767, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
+        { x: 0, opacity: 1, duration: 1.75, clearProps: "transform" }
       );
       gsap.fromTo(
         illustration1Animation.current,
