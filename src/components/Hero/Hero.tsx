@@ -13,7 +13,7 @@ const grandpa1 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517241/
 const grandpa2 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517243/zpoyooazmets2seyguqz.png";
 const grandpa3 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517244/ptfpy5qrmul4gp7rqyig.png";
 
-const photo1 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517252/feygdkr1nsavjijqfvev.png";
+const photo1 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719519363/uykbyov6dfqg7l8y4nqs.png";
 const photo2 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517254/vabkzmgjxulunh6ensko.png";
 const photo3 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517256/vphb1xcb7kfiukhdzhyi.png";
 const photo4 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517258/me0fyp6j4tjivb1ssccs.png";
