@@ -9,22 +9,22 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
 
-const grandpa1 = "https://i.ibb.co/6W6b8zB/grandpa1.png";
-const grandpa2 = "/images/Hero/grandpa2.png";
-const grandpa3 = "/images/Hero/grandpa3.png";
+const grandpa1 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517241/oz1wa2kj9szz2pdrsuvr.png";
+const grandpa2 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517243/zpoyooazmets2seyguqz.png";
+const grandpa3 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517244/ptfpy5qrmul4gp7rqyig.png";
 
-const photo1 = "/images/Hero/photo1.png";
-const photo2 = "/images/Hero/photo2.png";
-const photo3 = "/images/Hero/photo3.png";
-const photo4 = "/images/Hero/photo4.png";
-const photo5 = "/images/Hero/photo5.png";
-const photo6 = "/images/Hero/photo6.png";
-const photo7 = "/images/Hero/photo7.png";
-const photo8 = "/images/Hero/photo8.png";
+const photo1 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517252/feygdkr1nsavjijqfvev.png";
+const photo2 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517254/vabkzmgjxulunh6ensko.png";
+const photo3 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517256/vphb1xcb7kfiukhdzhyi.png";
+const photo4 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517258/me0fyp6j4tjivb1ssccs.png";
+const photo5 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517260/udrqaty7pym66qiptr39.png";
+const photo6 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719518897/ksb5igjwlm7vkra4u6ch.png";
+const photo7 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517262/ung2oa7akmof2djrca1h.png";
+const photo8 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517264/msuaplscazyib1ggynbr.png";
 
-const illustration1 = "/images/Hero/illustration1.png";
-const illustration2 = "/images/Hero/illustration2.png";
-const illustration3 = "/images/Hero/illustration3.png";
+const illustration1 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517246/kdb4jt6xrg0oihmxg9jo.png";
+const illustration2 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517248/rsyiks4v7smodddac55g.png";
+const illustration3 = "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517250/bsy7q5as5cqhbed5uu9v.png";
 
 const Hero = () => {
   const box1Ref = useRef<HTMLDivElement>(null);
