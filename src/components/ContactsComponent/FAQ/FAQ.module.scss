@@ -1,6 +1,10 @@
 @use "../../../styles/mixins" as mixins;
 @use "../../../styles/variables";
 
+.imgAndFaqWrapper {
+  position: relative;
+}
+
 .lake {
   width: 65%;
   max-width: 343px;
@@ -51,25 +55,18 @@
 }
 
 .faqWrapper {
+  position: absolute;
+  z-index: 10;
   width: 100%;
   max-width: 472px;
-  margin-left: auto;
-  margin-right: auto;
   padding: 16px;
-  background-color: #D3D1CB;
+  background-color: #d3d1cb;
   border-radius: 8px;
   border: 1px solid rgba(var(--color-base-green));
   margin-bottom: 30px;
 
   @include mixins.media-min(variables.$mobile) {
     width: 472px;
-    margin-bottom: 42px;
-    margin-left: auto;
-    margin-right: 0;
-  }
-
-  @include mixins.media-min(variables.$mobile) {
-    margin-bottom: 100px;
   }
 
   @include mixins.media-min(900px) {
@@ -78,13 +75,11 @@
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 472px;
-    margin-left: 660px;
-    margin-bottom: 166px;
   }
 }
 
 .faqList {
-  background-color: #C8C5BD;
+  background-color: #c8c5bd;
   width: 100%;
 }
 
@@ -100,10 +95,10 @@
   font-size: var(--f-size-body);
   font-weight: 700;
   line-height: 18.56px;
-  max-width: 230px;
+  width: 85%;
 
-  @include mixins.media-min(variables.$mobile) {
-    max-width: 380px;
+  @include mixins.media-min(375px) {
+    width: 90%;
   }
 }
 

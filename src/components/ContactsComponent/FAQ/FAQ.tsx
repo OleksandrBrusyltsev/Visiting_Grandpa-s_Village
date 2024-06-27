@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -17,6 +17,7 @@ const FAQ: FC = () => {
   const lake = useRef<HTMLImageElement>(null);
   const faqTitle = useRef<HTMLHeadingElement>(null);
   const faqWrapper = useRef<HTMLDivElement>(null);
+  const imgAndFaqWrapper = useRef<HTMLDivElement>(null);
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -73,12 +74,37 @@ const FAQ: FC = () => {
     }
   };
 
+  useEffect(() => {
+    const updateMarginBottom = () => {
+      if (faqWrapper.current && imgAndFaqWrapper.current) {
+        const faqHeight = faqWrapper.current.offsetHeight;
+        const additionalMargin = faqHeight * 0.15;
+        imgAndFaqWrapper.current.style.marginBottom = `${
+          faqHeight + additionalMargin
+        }px`;
+      }
+    };
+
+    const resizeObserver = new ResizeObserver(updateMarginBottom);
+    if (faqWrapper.current) {
+      resizeObserver.observe(faqWrapper.current);
+    }
+
+    // Initial call to set margin-bottom
+    updateMarginBottom();
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
   return (
-    <div className={s.imgAndFaqWrapper}>
+    <div className={s.imgAndFaqWrapper} ref={imgAndFaqWrapper}>
       <Image src={Lake} alt="picture" className={s.lake} ref={lake} />
       <h1 className={s.faqTitle} ref={faqTitle}>
         Частіше за все Дідуся запитують
       </h1>
+
       <div className={s.faqWrapper} ref={faqWrapper}>
         <ul className={s.faqList}>
           {faqData.map((item, index) => (
