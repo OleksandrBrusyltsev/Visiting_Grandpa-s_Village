@@ -28,8 +28,18 @@ const illustration3 = "/images/Hero/illustration3.png";
 
 const Hero = () => {
   const box1Ref = useRef<HTMLDivElement>(null);
+  const line1Ref = useRef<HTMLDivElement>(null);
+  const calendarRef = useRef<HTMLDivElement>(null);
+  const line4Animation = useRef<HTMLDivElement>(null);
+
+  const grandpaRef = useRef<HTMLImageElement>(null);
+  const photo5Ref = useRef<HTMLImageElement>(null);
+  const photo6Ref = useRef<HTMLImageElement>(null);
+  const illustration3Ref = useRef<HTMLImageElement>(null);
+  const illustration2Ref = useRef<HTMLImageElement>(null);
+
   const photo1Animation = useRef<HTMLImageElement>(null);
-  const illustration1Animation = useRef<HTMLDivElement>(null);
+  const illustration1Animation = useRef<HTMLImageElement>(null);
 
   const box2Ref = useRef<HTMLDivElement>(null);
   const box3Ref = useRef<HTMLDivElement>(null);
@@ -39,12 +49,13 @@ const Hero = () => {
   const line2Animation = useRef<HTMLDivElement>(null);
 
   const box4Ref = useRef<HTMLDivElement>(null);
-  const box5Ref = useRef<HTMLDivElement>(null);
+
   const box6Ref = useRef<HTMLDivElement>(null);
   const box7Ref = useRef<HTMLDivElement>(null);
   const photo7Animation = useRef<HTMLImageElement>(null);
   const photo8Animation = useRef<HTMLImageElement>(null);
   const grandpa3Animation = useRef<HTMLImageElement>(null);
+  const grandpa1Ref = useRef<HTMLImageElement>(null);
 
   let mm = gsap.matchMedia();
 
@@ -55,61 +66,105 @@ const Hero = () => {
       // desktop setup code here...
       gsap.fromTo(
         box1Ref.current,
-        { x: -767 },
-        { x: 0, duration: 1, clearProps: "transform" }
+        { x: -767, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
       );
       gsap.fromTo(
         photo1Animation.current,
-        { x: -767 },
-        { x: 0, duration: 1, clearProps: "transform" }
+        { x: 767, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
       );
       gsap.fromTo(
         illustration1Animation.current,
-        { x: 767 },
-        { x: 0, duration: 1, clearProps: "transform" }
+        { x: -767, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
       );
 
       gsap.fromTo(
         box2Ref.current,
         {
-          x: -767,
+          x: 767,
+          opacity: 0,
         },
         {
           scrollTrigger: {
             trigger: box2Ref.current,
           },
           x: 0,
+          opacity: 1,
           duration: 1,
           clearProps: "transform",
         }
       );
       gsap.from(box3Ref.current, {
         scrollTrigger: box3Ref.current,
-        x: -767,
+        x: 767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
+
+      gsap.from(grandpaRef.current, {
+        scrollTrigger: grandpaRef.current,
+        x: 767,
+        opacity: 0,
+        duration: 1,
+        clearProps: "transform",
+      });
+
+      gsap.from(line1Ref.current, {
+        // scrollTrigger: line1Ref.current,
+        y: 3000,
+        opacity: 0,
+        duration: 1,
+        clearProps: "transform",
+      });
+
       gsap.from(photo4Animation.current, {
         scrollTrigger: photo4Animation.current,
         x: -767,
+        opacity: 0,
+
         duration: 1,
         clearProps: "transform",
       });
+
+      gsap.from(calendarRef.current, {
+        scrollTrigger: calendarRef.current,
+        x: 767,
+        opacity: 0,
+
+        duration: 1,
+        clearProps: "transform",
+      });
+
       gsap.from(photo3Animation.current, {
         scrollTrigger: photo3Animation.current,
-        x: -767,
+        x: 767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(photo2Animation.current, {
         scrollTrigger: photo2Animation.current,
-        x: 767,
+        x: -767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
+
+      gsap.from(photo5Ref.current, {
+        scrollTrigger: photo5Ref.current,
+        x: -767,
+        opacity: 0,
+        duration: 1,
+        clearProps: "transform",
+      });
+
       gsap.from(line2Animation.current, {
         scrollTrigger: line2Animation.current,
-        y: 3000,
+        y: -1000,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
@@ -117,44 +172,83 @@ const Hero = () => {
       gsap.from(box4Ref.current, {
         scrollTrigger: box4Ref.current,
         x: -767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
-      gsap.from(box5Ref.current, {
-        scrollTrigger: box5Ref.current,
+      gsap.from(photo6Ref.current, {
+        scrollTrigger: photo6Ref.current,
+        x: 767,
+        opacity: 0,
+        duration: 1,
+        clearProps: "transform",
+      });
+
+      gsap.from(illustration3Ref.current, {
+        scrollTrigger: illustration3Ref.current,
+        x: 767,
+        opacity: 0,
+        duration: 1,
+        clearProps: "transform",
+      });
+
+      gsap.from(illustration2Ref.current, {
+        scrollTrigger: illustration2Ref.current,
         x: -767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
+
       gsap.from(box6Ref.current, {
         scrollTrigger: box6Ref.current,
         x: 767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(box7Ref.current, {
         scrollTrigger: box7Ref.current,
         x: 767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
 
       gsap.from(photo7Animation.current, {
         scrollTrigger: photo7Animation.current,
-        x: 767,
+        x: -767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(photo8Animation.current, {
         scrollTrigger: photo8Animation.current,
-        x: -767,
+        x: 767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(grandpa3Animation.current, {
         scrollTrigger: grandpa3Animation.current,
-        x: -767,
+        x: 767,
+        opacity: 0,
         duration: 1,
+        clearProps: "transform",
+      });
+
+      gsap.from(line4Animation.current, {
+        scrollTrigger: line4Animation.current,
+        x: 767,
+        opacity: 0,
+        duration: 1,
+        clearProps: "transform",
+      });
+
+      gsap.from(grandpa1Ref.current, {
+        scrollTrigger: grandpa1Ref.current,
+        y: -3000,
+        opacity: 0,
         clearProps: "transform",
       });
     });
@@ -162,33 +256,32 @@ const Hero = () => {
     mm.add("(max-width: 767px)", () => {
       gsap.fromTo(
         box1Ref.current,
-        { x: -767 },
-        { x: 0, clearProps: "transform" }
+        { x: -767, opacity: 0 },
+        { x: 0, opacity: 1, clearProps: "transform" }
       );
       gsap.fromTo(
         photo1Animation.current,
-        { x: -767 },
-        { x: 0, duration: 1, clearProps: "transform" }
+        { x: -767, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
       );
       gsap.fromTo(
         illustration1Animation.current,
-        { x: 767 },
-        { x: 0, duration: 1, clearProps: "transform" }
+        { x: -767, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
       );
 
       gsap.fromTo(
         box2Ref.current,
         {
           x: -767,
+          opacity: 0,
         },
         {
           scrollTrigger: {
             trigger: box2Ref.current,
-            start: "bottom",
-            end: "bottom",
-            markers: true,
           },
           x: 0,
+          opacity: 0,
           duration: 1,
           clearProps: "transform",
         }
@@ -196,74 +289,111 @@ const Hero = () => {
       gsap.from(box3Ref.current, {
         scrollTrigger: box3Ref.current,
         x: -767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(photo4Animation.current, {
         scrollTrigger: photo4Animation.current,
         x: -767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(photo3Animation.current, {
         scrollTrigger: photo3Animation.current,
         x: -767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(photo2Animation.current, {
         scrollTrigger: photo2Animation.current,
         x: 767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(line2Animation.current, {
         scrollTrigger: line2Animation.current,
         y: 3000,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
 
       gsap.from(box4Ref.current, {
-        // scrollTrigger: box4Ref.current,
+        scrollTrigger: box4Ref.current,
         x: -767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
-      gsap.from(box5Ref.current, {
-        // scrollTrigger: box5Ref.current,
+      // gsap.from(box5Ref.current, {
+      //   scrollTrigger: box5Ref.current,
+      //   x: -767,
+      //   opacity: 0,
+      //   duration: 1,
+      //   clearProps: "transform",
+      // });
+
+      gsap.from(illustration3Ref.current, {
+        scrollTrigger: illustration3Ref.current,
         x: -767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
-      gsap.from(box6Ref.current, {
-        // scrollTrigger: box6Ref.current,
+
+      gsap.from(photo5Ref.current, {
+        scrollTrigger: photo5Ref.current,
         x: 767,
+        opacity: 0,
+        duration: 1,
+        clearProps: "transform",
+      });
+
+      gsap.from(photo6Ref.current, {
+        scrollTrigger: photo6Ref.current,
+        x: 767,
+        opacity: 0,
+        duration: 1,
+        clearProps: "transform",
+      });
+
+      gsap.from(box6Ref.current, {
+        scrollTrigger: box6Ref.current,
+        x: 767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(box7Ref.current, {
-        // scrollTrigger: box7Ref.current,
+        scrollTrigger: box7Ref.current,
         x: 767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
 
       gsap.from(photo7Animation.current, {
-        // scrollTrigger: photo7Animation.current,
+        scrollTrigger: photo7Animation.current,
         x: 767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(photo8Animation.current, {
-        // scrollTrigger: photo8Animation.current,
+        scrollTrigger: photo8Animation.current,
         x: -767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(grandpa3Animation.current, {
-        // scrollTrigger: grandpa3Animation.current,
+        scrollTrigger: grandpa3Animation.current,
         x: -767,
+        opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
@@ -284,6 +414,7 @@ const Hero = () => {
             width={334}
             height={334}
             className={css.grandpa1}
+            ref={grandpa1Ref}
           />
         </div>
         <p className={`${css.text1} ${css.textBox1}`}>
@@ -307,32 +438,31 @@ const Hero = () => {
           ref={photo1Animation}
         />
 
-        <div ref={illustration1Animation}>
-          <Image
-            src={illustration1}
-            alt={"illustration"}
-            width={410}
-            height={372}
-            className={css.illustration1}
-          />
-          <div className={css.line1Box}>
-            <svg
-              className={`${css.svg} ${css.line1}`}
-              width="201"
-              height="246"
-              viewBox="0 0 201 246"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0.565852 243C0.565852 244.473 1.75976 245.667 3.23252 245.667C4.70528 245.667 5.89919 244.473 5.89919 243C5.89919 241.527 4.70528 240.333 3.23252 240.333C1.75976 240.333 0.565852 241.527 0.565852 243ZM96.6382 107.467L96.5814 106.97L96.6382 107.467ZM187.717 3C187.717 4.47276 188.911 5.66667 190.384 5.66667C191.857 5.66667 193.05 4.47276 193.05 3C193.05 1.52724 191.857 0.333333 190.384 0.333333C188.911 0.333333 187.717 1.52724 187.717 3ZM3.72807 242.933C1.00947 222.684 2.02618 191.46 14.8395 164.045C27.6376 136.662 52.2105 113.055 96.6951 107.963L96.5814 106.97C51.7234 112.104 26.8663 135.951 13.9336 163.621C1.01613 191.26 0.00123632 222.69 2.73697 243.067L3.72807 242.933ZM96.6951 107.963C138.484 103.18 169.399 92.1539 186.185 74.6548C194.591 65.8919 199.449 55.5106 200.348 43.5085C201.246 31.5162 198.189 17.9419 190.834 2.78175L189.934 3.21825C197.237 18.2715 200.231 31.6673 199.35 43.4339C198.47 55.1907 193.719 65.3571 185.464 73.9625C168.928 91.2003 138.311 102.194 96.5814 106.97L96.6951 107.963Z"
-                fill="#3F5540"
-              />
-            </svg>
-          </div>
+        <Image
+          src={illustration1}
+          alt={"illustration"}
+          width={410}
+          height={372}
+          className={css.illustration1}
+          ref={illustration1Animation}
+        />
+        <div className={css.line1Box} ref={line1Ref}>
+          <svg
+            className={`${css.svg} ${css.line1}`}
+            width="201"
+            height="246"
+            viewBox="0 0 201 246"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0.565852 243C0.565852 244.473 1.75976 245.667 3.23252 245.667C4.70528 245.667 5.89919 244.473 5.89919 243C5.89919 241.527 4.70528 240.333 3.23252 240.333C1.75976 240.333 0.565852 241.527 0.565852 243ZM96.6382 107.467L96.5814 106.97L96.6382 107.467ZM187.717 3C187.717 4.47276 188.911 5.66667 190.384 5.66667C191.857 5.66667 193.05 4.47276 193.05 3C193.05 1.52724 191.857 0.333333 190.384 0.333333C188.911 0.333333 187.717 1.52724 187.717 3ZM3.72807 242.933C1.00947 222.684 2.02618 191.46 14.8395 164.045C27.6376 136.662 52.2105 113.055 96.6951 107.963L96.5814 106.97C51.7234 112.104 26.8663 135.951 13.9336 163.621C1.01613 191.26 0.00123632 222.69 2.73697 243.067L3.72807 242.933ZM96.6951 107.963C138.484 103.18 169.399 92.1539 186.185 74.6548C194.591 65.8919 199.449 55.5106 200.348 43.5085C201.246 31.5162 198.189 17.9419 190.834 2.78175L189.934 3.21825C197.237 18.2715 200.231 31.6673 199.35 43.4339C198.47 55.1907 193.719 65.3571 185.464 73.9625C168.928 91.2003 138.311 102.194 96.5814 106.97L96.6951 107.963Z"
+              fill="#3F5540"
+            />
+          </svg>
         </div>
       </div>
-      <div className={css.calendarBox}>
+      <div className={css.calendarBox} ref={calendarRef}>
         <BookingComponent />
       </div>
 
@@ -344,6 +474,7 @@ const Hero = () => {
             width={327}
             height={324}
             className={`${css.grandpa2}`}
+            ref={grandpaRef}
           />
         </div>
         <h2 className={`${css.title1} ${css.textContainer} ${css.marg}`}>
@@ -434,38 +565,40 @@ const Hero = () => {
       </div>
 
       <div className={css.imgBox3}>
-        <div ref={box5Ref}>
-          <Image
-            src={illustration3}
-            alt={"illustration3"}
-            width={488}
-            height={458}
-            className={css.illustration3}
-          />
-          <Image
-            src={photo6}
-            alt={"photo6"}
-            width={499}
-            height={430}
-            className={css.photo5}
-          />
-        </div>
-        <div ref={box6Ref}>
-          <Image
-            src={photo5}
-            alt={"photo5"}
-            width={660}
-            height={496}
-            className={css.photo6}
-          />
-          <Image
-            src={illustration2}
-            alt={"illustration2"}
-            width={506}
-            height={498}
-            className={css.illustration2}
-          />
-        </div>
+        <Image
+          src={illustration3}
+          alt={"illustration3"}
+          width={488}
+          height={458}
+          className={css.illustration3}
+          ref={illustration3Ref}
+        />
+        <Image
+          src={photo6}
+          alt={"photo6"}
+          width={499}
+          height={430}
+          className={css.photo5}
+          ref={photo6Ref}
+        />
+
+        <Image
+          src={photo5}
+          alt={"photo5"}
+          width={660}
+          height={496}
+          className={css.photo6}
+          ref={photo5Ref}
+        />
+        <Image
+          src={illustration2}
+          alt={"illustration2"}
+          width={506}
+          height={498}
+          className={css.illustration2}
+          ref={illustration2Ref}
+        />
+
         <div className={css.line3Box}>
           <svg
             className={`${css.svg} ${css.line3}`}
@@ -526,21 +659,7 @@ const Hero = () => {
           className={css.photo8}
           ref={photo8Animation}
         />
-        <div className={css.line4Box}>
-          {/* <svg
-            className={css.svg}
-            width="235"
-            height="371"
-            viewBox="0 0 237 375"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M21.666 2C21.666 2.73638 22.2629 3.33333 22.9993 3.33333C23.7357 3.33333 24.3327 2.73638 24.3327 2C24.3327 1.26362 23.7357 0.666667 22.9993 0.666667C22.2629 0.666667 21.666 1.26362 21.666 2ZM137 117L136.934 117.241L137 117ZM220.5 273L220.312 272.835L220.307 272.841L220.303 272.846L220.5 273ZM45.6667 373.5C45.6667 374.236 46.2636 374.833 47 374.833C47.7364 374.833 48.3333 374.236 48.3333 373.5C48.3333 372.764 47.7364 372.167 47 372.167C46.2636 372.167 45.6667 372.764 45.6667 373.5ZM22.8407 1.80678C10.9498 11.5699 3.3604 21.3002 0.891256 31.0178C-1.5832 40.7563 1.09594 50.4335 9.62855 60.0443C18.1528 69.6457 32.5285 79.1947 53.4861 88.7157C74.4476 98.2385 102.013 107.741 136.934 117.241L137.066 116.759C102.158 107.263 74.6213 97.7682 53.6929 88.2605C32.7606 78.751 18.4586 69.2371 10.0025 59.7123C1.55467 50.1971 -1.04923 40.6851 1.37586 31.1409C3.80624 21.5759 11.299 11.9301 23.158 2.19322L22.8407 1.80678ZM136.934 117.241C202.113 134.972 227.278 168.911 234.005 200.864C237.371 216.852 236.125 232.36 232.945 245.119C229.763 257.885 224.652 267.875 220.312 272.835L220.688 273.165C225.098 268.125 230.237 258.053 233.43 245.24C236.625 232.421 237.879 216.836 234.495 200.761C227.722 168.589 202.387 134.528 137.066 116.759L136.934 117.241ZM220.303 272.846C209.816 286.302 184.978 308.677 153.501 329.055C122.025 349.433 83.9396 367.795 46.9635 373.253L47.0365 373.747C84.1121 368.275 122.267 349.872 153.772 329.475C185.276 309.079 210.163 286.669 220.697 273.154L220.303 272.846Z"
-              fill="#3F5540"
-            />
-          </svg> */}
-
+        <div className={css.line4Box} ref={line4Animation}>
           <svg
             className={`${css.svg} ${css.line4}`}
             width="804"
