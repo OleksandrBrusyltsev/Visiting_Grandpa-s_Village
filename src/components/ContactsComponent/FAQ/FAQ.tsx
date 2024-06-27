@@ -75,28 +75,45 @@ const FAQ: FC = () => {
   };
 
   useEffect(() => {
-    const updateMarginBottom = () => {
-      if (faqWrapper.current && imgAndFaqWrapper.current) {
-        const faqHeight = faqWrapper.current.offsetHeight;
-        const additionalMargin = faqHeight * 0.15;
-        imgAndFaqWrapper.current.style.marginBottom = `${
-          faqHeight + additionalMargin
-        }px`;
+    // Обновление марджина при изменении высоты faqWrapper
+    const updateMargin = () => {
+      const screenWidth = window.innerWidth;
+      const breakpoint = 768; // Ширина экрана, начиная с которой будет применяться CSS
+
+      if (imgAndFaqWrapper.current) {
+        if (screenWidth < breakpoint) {
+          if (faqWrapper.current) {
+            const faqHeight = faqWrapper.current.offsetHeight;
+            const additionalMargin = 60; // Добавление 40 пикселей
+            imgAndFaqWrapper.current.style.marginBottom = `${
+              faqHeight + additionalMargin
+            }px`;
+          }
+        } else {
+          // Сбросить марджин, если ширина экрана больше или равна breakpoint
+          imgAndFaqWrapper.current.style.marginBottom = "";
+        }
       }
     };
 
-    const resizeObserver = new ResizeObserver(updateMarginBottom);
+    // Вызов функции обновления марджина при монтировании компонента
+    updateMargin();
+
+    // Вызов функции обновления марджина при изменении контента
+    const observer = new MutationObserver(updateMargin);
     if (faqWrapper.current) {
-      resizeObserver.observe(faqWrapper.current);
+      observer.observe(faqWrapper.current, { childList: true, subtree: true });
     }
 
-    // Initial call to set margin-bottom
-    updateMarginBottom();
+    // Обновление марджина при изменении размера окна
+    window.addEventListener("resize", updateMargin);
 
+    // Очистка наблюдателя и обработчика событий при размонтировании компонента
     return () => {
-      resizeObserver.disconnect();
+      observer.disconnect();
+      window.removeEventListener("resize", updateMargin);
     };
-  }, []);
+  },[]);
 
   return (
     <div className={s.imgAndFaqWrapper} ref={imgAndFaqWrapper}>

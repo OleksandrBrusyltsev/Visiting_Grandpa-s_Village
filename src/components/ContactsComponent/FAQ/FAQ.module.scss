@@ -3,6 +3,15 @@
 
 .imgAndFaqWrapper {
   position: relative;
+  @include mixins.media-min(variables.$mobile) {
+        margin-bottom: 450px;
+  }
+   @include mixins.media-min(900px) {
+        margin-bottom: 500px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-bottom: 600px;
+  }
 }
 
 .lake {
@@ -66,6 +75,7 @@
   margin-bottom: 30px;
 
   @include mixins.media-min(variables.$mobile) {
+    right: 0;
     width: 472px;
   }
 
