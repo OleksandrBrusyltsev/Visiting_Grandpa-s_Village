@@ -42,6 +42,8 @@ const illustration3 =
 
 const Hero = () => {
   const box1Ref = useRef<HTMLDivElement>(null);
+  const box99Ref = useRef<HTMLDivElement>(null);
+
   const line1Ref = useRef<HTMLDivElement>(null);
   const calendarRef = useRef<HTMLDivElement>(null);
   const line4Animation = useRef<HTMLDivElement>(null);
@@ -81,17 +83,24 @@ const Hero = () => {
       gsap.fromTo(
         box1Ref.current,
         { x: -767, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
+        { x: 0, opacity: 1, duration: 2,clearProps: "transform" }
       );
+
+      gsap.fromTo(
+        box99Ref.current,
+        { x: -767, opacity: 0 },
+        { x: 0, opacity: 1, duration: 2,clearProps: "transform" }
+      );
+
       gsap.fromTo(
         photo1Animation.current,
         { x: 767, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
+        { x: 0, opacity: 1,duration: 2, clearProps: "transform" }
       );
       gsap.fromTo(
         illustration1Animation.current,
         { x: -767, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
+        { x: 0, opacity: 1, clearProps: "transform" }
       );
 
       gsap.fromTo(
@@ -128,9 +137,9 @@ const Hero = () => {
 
       gsap.from(line1Ref.current, {
         // scrollTrigger: line1Ref.current,
-        y: 3000,
+        y: 1000,
         opacity: 0,
-        duration: 1,
+        // duration: 1,
         clearProps: "transform",
       });
 
@@ -259,20 +268,32 @@ const Hero = () => {
         clearProps: "transform",
       });
 
-      gsap.from(grandpa1Ref.current, {
-        scrollTrigger: grandpa1Ref.current,
-        y: -2000,
-        duration: 1.5,
-        opacity: 0,
-        clearProps: "transform",
-      });
+      // gsap.from(grandpa1Ref.current, {
+      //   scrollTrigger: grandpa1Ref.current,
+      //   y: -767,
+      //   duration: 1,
+      //   opacity: 0,
+      //   clearProps: "transform",
+      // });
+
+      gsap.fromTo(
+        grandpa1Ref.current,
+        { y: -767, opacity: 0 },
+        { y: 0, opacity: 1, duration: 2, clearProps: "transform" }
+      );
     });
 
     mm.add("(max-width: 767px)", () => {
       gsap.fromTo(
         box1Ref.current,
         { x: -767, opacity: 0 },
-        { x: 0, opacity: 1, clearProps: "transform" }
+        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
+      );
+
+      gsap.fromTo(
+        box99Ref.current,
+        { x: -767, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
       );
       gsap.fromTo(
         photo1Animation.current,
@@ -417,31 +438,32 @@ const Hero = () => {
 
   return (
     <section className={css.section}>
-      <div className={css.box1Ref} ref={box1Ref}>
-        <div className={css.grandbox1}>
+      <div className={css.box1Ref}>
+        <div className={css.grandbox1} ref={box1Ref}>
           <h1 className={`${css.mainTitle} ${css.textBox1}`}>
             Привіт, мій майбутній відвідувач
           </h1>
-
-          <Image
-            src={grandpa1}
-            alt={"GrandPa"}
-            width={334}
-            height={334}
-            className={css.grandpa1}
-            ref={grandpa1Ref}
-          />
         </div>
-        <p className={`${css.text1} ${css.textBox1}`}>
-          Я - твій <span className={css.bold}>френдлі Дідусь.</span> Сьогодні
-          покажу тобі мою затишну домівку, проведу сторінками казкового місця
-          сили, тиші та спокою. Я створив цю садибу для тебе, щоб в потрібний
-          момент ти міг зупинити думки,насолодитись природою, прислухатись до
-          себе та створити нові приємні спогади.
-        </p>
-        <p className={`${css.text2} ${css.textBox1}`}>
-          “Слідуй за мною та відчуй історію творіння мого життя.”
-        </p>
+        <Image
+          src={grandpa1}
+          alt={"GrandPa"}
+          width={334}
+          height={334}
+          className={css.grandpa1}
+          ref={grandpa1Ref}
+        />
+        <div ref={box99Ref}>
+          <p className={`${css.text1} ${css.textBox1}`}>
+            Я - твій <span className={css.bold}>френдлі Дідусь.</span> Сьогодні
+            покажу тобі мою затишну домівку, проведу сторінками казкового місця
+            сили, тиші та спокою. Я створив цю садибу для тебе, щоб в потрібний
+            момент ти міг зупинити думки,насолодитись природою, прислухатись до
+            себе та створити нові приємні спогади.
+          </p>
+          <p className={`${css.text2} ${css.textBox1}`}>
+            “Слідуй за мною та відчуй історію творіння мого життя.”
+          </p>
+        </div>
       </div>
       <div className={css.imgBox}>
         <Image
@@ -649,7 +671,6 @@ const Hero = () => {
         </p>
       </div>
       <div className={css.imgBox4}>
-        
         <Image
           src={grandpa3}
           alt={"grandpa3"}
