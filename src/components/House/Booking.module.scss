@@ -1,0 +1,64 @@
+.bookingWrapper {
+  // position: absolute;
+  width: 100%;
+  margin-top: 146px;
+  padding: 40px 24px;
+  border-radius: 8px;
+  background-color: rgb(var(--color-nude), 0.7);
+  font-family: var(--f-family-headline);
+  font-size: 22px;
+  line-height: 97.6%;
+  border: 1px solid rgba(var(--color-base-green));
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-between;
+}
+
+.priceWrapper,
+.guestsWrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+}
+
+.iconPrice {
+  width: 16px;
+  height: 16px;
+}
+
+.iconGuests {
+  width: 21px;
+  height: 19px;
+}
+
+.textPrice,
+.textGuests {
+  display: flex;
+  align-items: center;
+}
+
+.timeWrapper {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  & div {
+    display: flex;
+    column-gap: 16px;
+
+    & p:first-child {
+      color: rgba(var(--color-base-green));
+    }
+  }
+}
+
+.buttonWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}

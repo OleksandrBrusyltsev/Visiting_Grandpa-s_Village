@@ -4,6 +4,7 @@ type Props = { params: { house: string } };
 
 export default function Page({ params }: Props) {
   const { house } = params;
+
   return (
     <div className="container">
       <h1
@@ -18,7 +19,7 @@ export default function Page({ params }: Props) {
       >
         Сторінка будиночку: {house}
       </h1>
-      <House />
+      <House id={house} />
     </div>
   );
 }

@@ -1,14 +1,26 @@
-// import Image from "next/image";
-// import {gallery} from '@/data/gallery/gallery.js'
-import s from "./House.module.scss";
-// import GalleryItem from "./GalleryItem";
+import { getLocale } from "next-intl/server";
+import { getHouses } from "@/actions/getHouses";
+import Image from "next/image";
+import Booking from "./Booking";
 // import Button from "../ui/Button/Button";
+import s from "./House.module.scss";
 import Icon from "../ui/Icon/Icon";
 
-type Props = {};
+type Props = { id: string };
 
-export default async function House({}: Props) {
-  // const data: GalleryItem[] = await getMemories();
+export default async function House({ id }: Props) {
+  const locale = await getLocale();
+  const data: HouseItem[] = await getHouses();
+  const house = data.find((item) => item.name === id);
+  // console.log(house);
+
+  if (!house) {
+    return <p>House not found</p>;
+  }
+
+  const { name, rental_price, max_adults } = house;
+  const title = house.title.filter((item) => item.language === locale)[0].text;
+  console.log(house);
 
   return (
     <section className={s.backgroundImages}>
@@ -21,12 +33,16 @@ export default async function House({}: Props) {
 
       {/* slider */}
       <div
-        style={{ width: "329px", height: "270px", border: "1px solid black" }}
+        style={{
+          height: "270px",
+          border: "1px solid black",
+          marginTop: "21px",
+        }}
       ></div>
       {/* slider */}
 
       <div className={s.textWrapper}>
-        <h1 className={s.headline}>Хатинка Діда Мороза</h1>
+        <h1 className={s.headline}>{title}</h1>
         <p className={s.text}>
           <span>
             Запрошую тебе в чарівну хатинку Діда Мороза. Це місце, де в
@@ -52,45 +68,74 @@ export default async function House({}: Props) {
             проведеним в Еко-садибі “На селі у Дідуся”.
           </span>
         </p>
+        <div className={s.servicesWrapper}>
+          <div className={s.iconWrapper}>
+            <Icon name="house-bath" className={s.servicesIcon} />
+          </div>
+          <div className={s.iconWrapper}>
+            <Icon name="house-tv" className={s.servicesIcon} />
+          </div>
+          <div className={s.iconWrapper}>
+            <Icon name="house-car" className={s.servicesIcon} />
+          </div>
+          <div className={s.iconWrapper}>
+            <Icon name="house-pan" className={s.servicesIcon} />
+          </div>
+        </div>
       </div>
-
-      <div className={s.servicesWrapper}>
-        <Icon name="bath" className={s.servicesIcon} />
-        <Icon name="tv" className={s.servicesIcon} />
-        <Icon name="parking" className={s.servicesIcon} />
-        <Icon name="kitchen" className={s.servicesIcon} />
+      <div className={s.imageDecorWrapper}>
+        <div className={s.imageDecor}>
+          <Image
+            // fill
+            width={188}
+            height={144}
+            alt="house decor"
+            src="/images/houses/house/house-decor.png"
+            // sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 30vw"
+            className={s.image}
+          />
+        </div>
       </div>
+      <Booking price={rental_price} guests={max_adults} />
 
-      <div className={s.hero}>
+      {/* ! */}
+      {/* ! */}
+      <section className={`${s.hero}`}>
         <div className={s.heroWrapper}>
-          {/* <p className={s.descr2}>
-            &quot;Побудував я Хатинку Діда Мороза тут.&quot;
-          </p> */}
-          {/* <div className={s.grandpa}>
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          <p className={s.descr2}>"Побудував я Хатинку Діда Мороза тут."</p>
+          <div className={s.grandpa}>
             <Image
               fill
               alt="Friendly Grandpa"
-              src="/images/memories/Grandpa1.png"
+              src="/images/grandpas/Grandpa1.png"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-          </div> */}
+          </div>
+          <Icon name="curve-house" className={s.curve} />
+          {/* <Icon name="curve-houses" className={s.curve} /> */}
         </div>
-      </div>
-      <div className={s.main}>
-        <div className={s.callToAction}>
-          {/* <div className={s.cloud}>
-            <Icon name="cloud" />
-          </div> */}
-          <p className={s.slogan}>
-            А далі створимо нові щасливі спогади разом.
-          </p>
-          {/* <Button
-            label="Забронювати"
-            type={"button"}
-            className={s.btnCallToAction}
-          /> */}
+      </section>
+      <section className={s.map}>
+        <div className={s.mapWrapper}>
+          <Image
+            fill
+            alt={
+              locale === "en"
+                ? "Map of Grandpa's houses"
+                : "Карта еко садиби Дідуся"
+            }
+            src="/images/backgrounds/illustration-map.png"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 30vw"
+          />
         </div>
-      </div>
+        <div className={s.cloudBackground}>
+          <Icon name="house-cloud" className={s.cloud} />
+          {/* <Icon name="pin" className={s.cloud} /> */}
+        </div>
+      </section>
+      {/* ! */}
+      {/* ! */}
     </section>
   );
 }
