@@ -1,12 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 import Icon from "../../ui/Icon/Icon";
 import IconEmail from "../../../assets/icons/icon-email.svg";
 import Grandpa from "../../../../public/images/contacts/grandpa.png";
 import IconMap from "../../../assets/icons/icon-map.svg";
 import sFooter from "../../Footer/Footer.module.scss";
 import s from "./ContactsList.module.scss";
-
 
 const socialMediaLinks = [
   {
@@ -29,17 +31,49 @@ const socialMediaLinks = [
 const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
 
 const ContactsList = () => {
+  const grandpa = useRef<HTMLImageElement>(null);
+  const contactsListWrapper = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const mm = gsap.matchMedia();
+
+    gsap.fromTo(
+      grandpa.current,
+      { x: "-100%" },
+      { x: "0%", duration: 1, clearProps: "transform" }
+    );
+
+    mm.add("(min-width: 1000px)", () => {
+      const desktopAnimation = gsap.fromTo(
+        grandpa.current,
+        { y: "-200%", x: "0%" },
+        { y: "0%", x: "0%", duration: 1, clearProps: "transform" }
+      );
+
+      return () => {
+        desktopAnimation.reverse();
+      };
+    });
+
+    gsap.fromTo(
+      contactsListWrapper.current,
+      { x: "100%" },
+      { x: "0%", duration: 1, clearProps: "transform" }
+    );
+
+    return () => {
+      mm.revert();
+    };
+  });
+
   return (
     <div className={s.imgWrapper}>
-      <Image className={s.grandpa} src={Grandpa} alt="picture" />
-      <div className={s.contactsListWrapper}>
+      <Image className={s.grandpa} src={Grandpa} alt="picture" ref={grandpa} />
+      <div className={s.contactsListWrapper} ref={contactsListWrapper}>
         <ul className={s.contactsList}>
           <li className={s.contactsItem}>
             <p className={s.contactsItemTitle}>Телефон</p>
-            <Link
-              href={`tel:+380931919663`}
-              className={s.contactItemText}
-            >
+            <Link href={`tel:+380931919663`} className={s.contactItemText}>
               <Icon
                 name="handset"
                 className={`${sFooter.contactsIcon} ${s.contactItemIcon}`}
@@ -63,11 +97,7 @@ const ContactsList = () => {
           </li>
           <li className={s.contactsItem}>
             <p className={s.contactsItemTitle}>Адреса</p>
-            <Link
-              href={mapUrl}
-              target="_blank"
-              className={s.contactItemText}
-            >
+            <Link href={mapUrl} target="_blank" className={s.contactItemText}>
               <Image
                 src={IconMap}
                 alt="map"

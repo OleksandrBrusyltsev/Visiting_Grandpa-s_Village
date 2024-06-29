@@ -74,7 +74,7 @@
 .contactItemText {
   font-family: var(--f-family-headline);
   color: rgb(var(--color-black));
-  font-size: var(--f-size-body);
+  font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   display: flex;
@@ -82,6 +82,9 @@
   transition: font-size 0.3s;
   cursor: pointer;
 
+  @include mixins.media-min(375px) {
+    font-size: var(--f-size-body);
+  }
   @include mixins.media-min(variables.$mobile) {
     font-size: var(--f-size-button-small);
   }

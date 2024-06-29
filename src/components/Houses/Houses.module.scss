@@ -167,14 +167,16 @@
     .cloud {
         transform: scale(-1, 1);
     }
-    .curve {
-        display: block;
-        position: absolute;
-        bottom: -152px;
-        left: 12.7%;
-        width: calc((100vw - 768px) / 8 + 143px);
-        height: 173px;
-        transform: scale(-1, 1);
+    .heroWrapper {
+        .curve {
+            display: block;
+            position: absolute;
+            bottom: -152px;
+            left: 12.7%;
+            width: calc((100vw - 768px) / 8 + 143px);
+            height: 173px;
+            transform: scale(-1, 1);
+        }
     }
     .bookingForm {
         margin-top: 60px;
@@ -236,14 +238,16 @@
     .cloud {
         transform: scale(1, 1);
     }
-    .curve {
-        width: 219px;
-        height: 265px;
-        bottom: unset;
-        top: 385px;
-        left: unset;
-        right: calc((100vw - 1280px) / 2 + 116px);
-        transform: unset;
+    .heroWrapper {
+        .curve {
+            width: 219px;
+            height: 265px;
+            bottom: unset;
+            top: 385px;
+            left: unset;
+            right: calc((100vw - 1280px) / 2 + 116px);
+            transform: unset;
+        }
     }
     .bookingForm {
         margin-top: 141px;
@@ -267,7 +271,9 @@
     .grandpa {
         right: 0;
     }
-    .curve {
-        right: 116px;
+    .heroWrapper {
+        .curve {
+            right: 116px;
+        }
     }
 }

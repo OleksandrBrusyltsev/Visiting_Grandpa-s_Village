@@ -1,134 +1,155 @@
 @use "./../../styles/mixins" as mixins;
 @import "./../../styles/variables.scss";
 
-.wrapper,
-.headlineWrapper,
 .askWrapper,
-.telegramButton,
-.iconAsk,
-.iconArrow,
-.iconArrowWrapper {
+.headlineWrapper,
+.telegramButtons {
   display: flex;
-}
-
-.wrapper {
-  width: 100%;
-  padding-top: 3.4rem;
-  padding-right: 1.5rem;
-  font-family: var(--f-family-headline);
-  justify-content: flex-end;
-}
-
-.headlineWrapper {
-  column-gap: 1.5rem;
-  align-items: center;
-  font-size: 1.25rem;
-  color: rgb(var(--color-base-green));
-
-  @include mixins.media-min($breakpoint-tablet-min) {
-    column-gap: 2.75rem;
-    font-size: 2.25rem;
-  }
-}
-
-.headline {
-  text-transform: capitalize;
-  text-align: center;
-  padding-top: 0.3rem;
-
-  @include mixins.media-min($breakpoint-tablet-min) {
-    padding-top: 0rem;
-  }
-}
-
-.telegramIconsWrapper {
-  height: 7rem;
 }
 
 .askWrapper {
   flex-direction: column;
   align-items: flex-end;
-  row-gap: 2.5rem;
-  position: relative;
-
-  @include mixins.media-min($breakpoint-tablet-min) {
-    height: 150px;
-    row-gap: 5.3rem;
+  margin-bottom: 40px;
+  row-gap: 1.5rem;
+  transition: row-gap 0.3s;
+  @include mixins.media-min($mobile) {
+    margin-bottom: 100px;
+    row-gap: 5rem;
   }
 }
 
-.askButtonWrapper,
-.askButton,
-.iconAsk {
-  width: 2.75rem;
-  height: 2.5rem;
-}
-
-.askButtonWrapper,
-.askButton,
-.iconAsk {
-  @include mixins.media-min($breakpoint-tablet-min) {
-    width: 2rem;
-    height: 1.87rem;
-  }
-}
-
-.telegramButton {
-  flex-direction: column;
-  align-items: center;
-  row-gap: 10px;
-  position: absolute;
-  @include mixins.media-min($breakpoint-tablet-min) {
-    right: -5px;
-  }
-}
-
-.iconAsk,
-.iconArrow {
-  justify-content: center;
+.headlineWrapper {
+  padding-right: 5.5rem;
   color: rgb(var(--color-base-green));
-  transition: color 0.3s, stroke 0.3s;
-  cursor: pointer;
+  align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+  @include mixins.media-min($mobile) {
+    padding-right: 5.25rem;
+  }
+}
+
+.headline {
+  font-family: var(--f-family-headline);
+  text-transform: capitalize;
+  font-size: 1.25rem;
+  line-height: 3rem;
+  @include mixins.media-min($mobile) {
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+  }
+}
+
+.askButton{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3rem;
+  height: 3rem;
+  color: rgb(var(--color-base-green));
+  transition: color 0.3s, stroke 0.3s, opacity 0.5s;
 
   &:hover {
     color: transparent;
     stroke: rgb(var(--color-base-green));
-    stroke-width: 1px;
+    stroke-width: 2;
+    scale: 103%;
+    circle {
+      fill: rgb(var(--color-base-green));
+    }
+  }
+  @include mixins.media-min($mobile) {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  .askIcon {
+    width: 2.75rem;
+    height: 2.75rem;
+    @include mixins.media-min($mobile) {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
   }
 }
 
-.iconTelegramWrapper {
+
+.telegramButtons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.5s;
+}
+
+.telegramButton {
+  width: 3rem;
+  height: 3rem;
   background-color: #2aabee;
   border-radius: 50%;
-  position: relative;
-  width: 2.75rem;
-  height: 2.75rem;
-}
-
-.iconTelegram {
-  position: absolute;
-  top: 11px;
-  left: 7px;
-
-  @include mixins.media-min($breakpoint-tablet-min) {
-    top: 2px;
-    left: 7px;
+  padding: 12.5px 13px 12px 9px;
+  .telegramIcon {
+    width: 26px;
+    height: 22px;
+  }
+  
+  @include mixins.media-min($mobile) {
+    width: 2.75rem;
+    height: 2.75rem; 
+    padding: 11.5px 13px 12px 7px;
   }
 }
 
-.iconArrowWrapper {
-  justify-content: center;
-  width: 2.75rem;
-  @include mixins.media-min($breakpoint-tablet-min) {
-    width: 2rem;
+.closeButton {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+}
+
+.arrowUpButton {
+  text-align: center;
+  color: rgb(var(--color-dark-green));
+  width: 3rem;
+  height: 3rem;
+  @include mixins.media-min($mobile) {
+    width: 2.75rem;
+    height: 2.75rem; 
+  }
+  .arrowIcon {
+    width: 1.75rem;
+    height: 1.75rem;
   }
 }
 
-.iconArrow {
-  max-width: 1.1rem;
-  max-height: 1.5rem;
+.showAskButton {
+  @include mixins.media-max($mobile) {
+    &.askWrapper {
+      row-gap: 1.5rem;
+    }
+  }
+  .askButton {
+    opacity: 1;
+    visibility: visible;
+  }
+  .telegramButtons {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
-
-.hidden {
-  display: none;
+.showTelegramButton {
+  @include mixins.media-max($mobile) {
+    &.askWrapper {
+      row-gap: 3rem;
+    }
+  }
+  .telegramButtons {
+    opacity: 1;
+    visibility: visible;
+  }
+  .askButton {
+    opacity: 0;
+    visibility: hidden;
+  }
 }

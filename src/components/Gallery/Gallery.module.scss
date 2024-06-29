@@ -4,7 +4,7 @@
 
 .backgroundImages {
     max-width: 450px;
-    margin: 0 auto;
+    margin: 0 auto 89px;
     background-image: 
         url('/images/backgrounds/christmasTrees.png'), 
         url('/images/backgrounds/christmasTrees.png'), 
@@ -132,6 +132,7 @@
 @include mixins.media-min(variables.$mobile) {
     .backgroundImages {
         margin: unset;
+        margin-bottom: 106px;
         max-width: unset;
         background-image: 
             url('/images/backgrounds/christmasTrees.png'), 
@@ -219,6 +220,7 @@
 @include mixins.media-min(variables.$breakpoint-laptop) {
 
     .backgroundImages {
+        margin-bottom: 142px;
         background-image: 
             url('/images/backgrounds/christmasTrees.png'), 
             url('/images/backgrounds/christmasTrees.png'), 
