@@ -4,16 +4,14 @@ import { getLocale } from 'next-intl/server';
 import Icon from '../ui/Icon/Icon';
 import HouseItem from './HouseItem';
 import HousesList from './HousesList';
-import { getHouses } from '@/actions/getHouses';
 
 import s from './Houses.module.scss';
 
-type Props = {children: React.ReactNode}
+type Props = {items: HouseItem[], children: React.ReactNode}
 
 
 
-export default async function Houses({children}: Props) {
-  const data: HouseItem[] = await getHouses();
+export default async function Houses({items, children}: Props) {
   const locale = await getLocale();
 
   return (
@@ -41,7 +39,7 @@ export default async function Houses({children}: Props) {
             fill
             alt={locale === "en" ? "Map of Grandpa's houses" : "Карта еко садиби Дідуся"} 
             src="/images/backgrounds/illustration-map.png" 
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 30vw"
+            sizes="100vw"
           />
          
         </div>
@@ -55,12 +53,14 @@ export default async function Houses({children}: Props) {
       </div>
 
       <main>
-        <HousesList data={data}>
+        <HousesList data={items}>
           <>
-            <h1 className={s.housesTitle}>Живи тут</h1>
-            <Icon name="ellipse" className={s.titleOutline} />
+            <div className={s.housesTitle}>
+              <h1>Живи тут</h1>
+              <Icon name="ellipse" className={s.titleOutline} />
+            </div>
             <div className={s.housesWrapper}>
-              {data.map(house => (
+              {items.map(house => (
                 <HouseItem data={house} key={house.id}/>
               ))}
             </div>
