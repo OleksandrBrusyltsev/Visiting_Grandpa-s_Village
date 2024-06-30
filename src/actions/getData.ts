@@ -2,6 +2,7 @@
 import {gallery} from '@/data/gallery/gallery.js'
 import {houses} from '@/data/houses';
 import {meals} from '@/data/meals';
+import {entertainments} from '@/data/entertainments';
 
 export const getData = async <T>(url: string): Promise<T> => {
   // const resp = await fetch(url);
@@ -17,11 +18,12 @@ export const getData = async <T>(url: string): Promise<T> => {
   
   // tmp fake data
   const data: {
-    [key: string]: GalleryItem[] | HouseItem[] | MealsItem[];
+    [key: string]: GalleryItem[] | HouseItem[] | MealsItem[] | EntertainmentItem[];
   } = {
     gallery,
     houses,
     meals,
+    entertainments
   }
   return new Promise(res => setTimeout(() => res(data[url] as T), 100));
 }
