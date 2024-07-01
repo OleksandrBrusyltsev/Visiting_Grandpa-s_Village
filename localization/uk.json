@@ -1,0 +1,26 @@
+{
+  "Index": {
+    "title": "укр",
+    "description": "укр",
+    "welcomeBlock": "Найкращий час для відпочинку - зараз"
+  },
+  "NotFoundPage": {
+    "title": "Сторінка не знайдена",
+    "description": "Сторінка не знайдена."
+  },
+  "Admin": {
+    "title": "Адмінка"
+  },
+  "Breadcrumbs": {
+    "home": "Головна",
+    "houses": "Жити",
+    "meals": "Їсти",
+    "entertainment": "Байдикувати",
+    "gallery": "Спогади",
+    "contacts": "Знайти мене",
+    "booking": "Завітати",
+    "options": "Варіанти бронювань",
+    "payment": "Оплата",
+    "rules": "Умови бронювання та правила перебування"
+  }
+}

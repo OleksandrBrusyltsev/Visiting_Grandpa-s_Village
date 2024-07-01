@@ -1,0 +1,211 @@
+@use '../../styles/variables';
+@use '../../styles/mixins';
+
+.houseWrapper {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    @include mixins.mak-green;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.59;
+    img {
+        object-fit: cover;
+    }
+}
+.content {
+    background-color: rgba(var(--color-nude), 0.7);
+    padding: 15px 8px 14px;
+    display: grid;
+    grid-auto-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    grid-template-areas:
+      "title title"
+      "services services"
+      "guests price"
+      "btn btn";
+    row-gap: 15px;
+}
+.titleWrapper{
+    grid-area: title;
+    padding-block: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .houseIcon{
+        width: 26px;
+        height: 26px;
+    }
+}
+    
+.title{
+    padding-top: 2px;
+    font-size: var(--f-size-h3);
+}
+.priceWrapper{
+    grid-area: price;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    .pocketIcon{
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.guestsWrapper{
+    grid-area: guests;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    .guestsIcon{
+        width: 22px;
+        height: 20px;
+    }
+}
+.guests,
+.price {
+    padding-top: 2px;
+    letter-spacing: normal;
+    color: rgb(var(--color-black));
+    font-size: var(--f-size-numbers-small);
+    line-height: 17px;
+}
+.servicesWrapper{
+    grid-area: services;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    .servicesIcon{
+        width: 24px;
+        height: 24px;
+    }
+}
+.btnWrapper{
+    grid-area: btn;
+    text-align: center;
+    button {
+        max-width: 210px;
+        padding: 12px 0;
+        font-size: var(--f-size-button-small);
+    }
+}
+.favoriteWrapper{
+    position: absolute;
+    top: 8px;
+    right: 7px;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(var(--color-natural-orange));
+    background-color: rgba(var(--color-nude), 0.7);
+    transition: color 0.3s;
+
+    @media (hover: none) {
+        &:not(:has(> .isFavorite)):active {
+            color: rgb(var(--color-base-green));
+        }
+    }
+    @media (hover: hover) {
+        &:not(:has(> .isFavorite)):hover {
+            color: rgb(var(--color-base-green));
+        }
+    }
+}
+.favoriteIcon{
+    width: 20px;
+    height: 18px;
+    path {
+        transition: fill 0.3s, stroke 0.3s;
+    }
+}
+.isFavorite {
+    path {
+        stroke: currentColor;
+        fill: currentColor;
+    }
+}
+@include mixins.media-min(variables.$mobile) {
+    .houseWrapper {
+        width: calc((100% - 29px) / 2);
+        max-width: unset;
+    }
+    .imageWrapper {
+        aspect-ratio: 1.215;
+    }
+    .content {
+        margin-top: -18px;
+        padding: 24px 8px 20px;
+        display: grid;
+        grid-auto-rows: auto;
+        grid-template-areas:
+          "title title"
+          "guests price"
+          "services btn";
+        row-gap: 19px;
+        z-index: 1;
+    }
+    .titleWrapper{
+        padding-block: 0px;
+        gap: 8px;
+    }
+    .priceWrapper{
+    }
+    .guestsWrapper{
+        gap: 7px;
+    }
+    .servicesWrapper{
+        justify-content: flex-start;
+        gap: 8px;
+    }
+    .btnWrapper{
+        text-align: end;
+        button {    
+            max-width: 118px;
+            padding-block: 14px;
+        }
+    }
+    .favoriteWrapper{
+        top: 10px;
+        right: 10px;
+    }
+}
+@include mixins.media-min(variables.$breakpoint-laptop) {
+    .houseWrapper {
+        width: calc((100% - 62px) / 2);
+    }
+    .imageWrapper {
+        aspect-ratio: 1.377;
+    }
+    .content {
+        margin-top: -18px;
+        padding-inline: 14px;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+          "title title price"
+          "guests services btn";
+    }
+    
+    .servicesWrapper{
+        justify-content: center;
+    }
+    .favoriteWrapper{
+        top: 11px;
+        right: 11px;
+    }
+}
+@include mixins.media-min(variables.$pc) {
+
+}

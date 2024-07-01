@@ -4,9 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Icon from "../ui/Icon/Icon";
 import s from "./Footer.module.scss";
-import { navLink } from "../../data/footer/data";
+import { navLink } from "./../../data/footer/data";
+import { useLocale } from "next-intl";
 
-const image = "/images/logo.svg";
+const image = "/images/logo-main.svg";
 
 const socialMediaLinks = [
   {
@@ -24,7 +25,7 @@ const socialMediaLinks = [
 
 export default function Footer() {
   const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
-
+  const locale = useLocale();
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -47,7 +48,7 @@ export default function Footer() {
       <ul className={s.nav}>
         {navLink.map(({ id, label, link }) => (
           <li key={id} className={s.navItem}>
-            <Link href={link}>{label}</Link>
+            <Link href={`/${locale}/${link}`}>{label}</Link>
           </li>
         ))}
       </ul>

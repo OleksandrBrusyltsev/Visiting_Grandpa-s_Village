@@ -1,0 +1,38 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.contactsContainer {
+  margin-top: 29px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+
+  @include mixins.media-min(variables.$mobile) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    max-width: 1440px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+.googleMapWrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 600px;
+  margin-bottom: 27px;
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 109px;
+  }
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 141px;
+  }
+}

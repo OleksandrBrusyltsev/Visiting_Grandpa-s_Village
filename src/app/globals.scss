@@ -1,7 +1,7 @@
-@import "./_reset.scss";
-@import "./fonts.scss";
-@import "./_mixins.scss";
-@import "./_variables.scss";
+@import "../styles/reset";
+@import "../styles/fonts.scss";
+@import "../styles/mixins";
+@import "../styles/variables";
 
 :root {
   --f-family-headline: "Mak", Arial, sans-serif;
@@ -28,7 +28,23 @@
   --color-nude: 194, 191, 183;
   --color-natural-orange: 180, 133, 79;
   --color-gray: 97, 97, 97;
-  --color-gray-light: 79, 179, 179;
+  --color-gray-light: 179, 179, 179;
   --color-error: 168, 14, 14;
   --color-calendar-bcg: 239, 235, 231;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-inline: 24px;
+  @include media-min($mobile) {
+    padding-inline: 30px;
+  }
+  @include media-min($breakpoint-laptop) {
+    padding-inline: 50px;
+  }
+  @include media-min($pc) {
+    padding-inline: 130px;
+  }
 }
