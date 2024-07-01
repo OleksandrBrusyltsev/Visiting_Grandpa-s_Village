@@ -107,6 +107,8 @@
   color: rgba(var(--color-base-green), 1);
   margin-bottom: 20px;
 
+  font-family: var(--f-family-main);
+
   @include mixins.media-min(variables.$mobile) {
     padding: 0;
     font-size: 16px;
