@@ -118,7 +118,11 @@
   left: 50%;
   top: 80%;
   transform: translate(-50%, -50%);
-
+  & > a {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
   @media screen and (min-width: 425px) {
     top: 85%;
   }

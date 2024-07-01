@@ -83,19 +83,19 @@ const Hero = () => {
       gsap.fromTo(
         box1Ref.current,
         { x: -767, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1,clearProps: "transform" }
+        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
       );
 
       gsap.fromTo(
         box99Ref.current,
         { x: -767, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1,clearProps: "transform" }
+        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
       );
 
       gsap.fromTo(
         photo1Animation.current,
         { x: 767, opacity: 0 },
-        { x: 0, opacity: 1,duration: 1, clearProps: "transform" }
+        { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
       );
       gsap.fromTo(
         illustration1Animation.current,
@@ -285,6 +285,12 @@ const Hero = () => {
 
     mm.add("(max-width: 767px)", () => {
       gsap.fromTo(
+        grandpa1Ref.current,
+        { x: -767, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1.75, clearProps: "transform" }
+      );
+
+      gsap.fromTo(
         box1Ref.current,
         { x: -767, opacity: 0 },
         { x: 0, opacity: 1, duration: 1.75, clearProps: "transform" }
@@ -452,6 +458,7 @@ const Hero = () => {
           className={css.grandpa1}
           ref={grandpa1Ref}
         />
+
         <div ref={box99Ref}>
           <p className={`${css.text1} ${css.textBox1}`}>
             Я - твій <span className={css.bold}>френдлі Дідусь.</span> Сьогодні

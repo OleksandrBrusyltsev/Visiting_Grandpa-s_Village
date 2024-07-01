@@ -5,8 +5,8 @@ import { useParams, usePathname, useRouter } from 'next/navigation';
 
 import BreadcrumbItem from './BreadcrumbItem';
 import Icon from '../ui/Icon/Icon';
-import { getGallery } from '@/actions/getGallery';
-import { getHouses } from '@/actions/getHouses';
+import { getData } from '@/actions/getData';
+
 
 import s from './Breadcrumbs.module.scss';
 
@@ -39,9 +39,9 @@ export default function Breadcrumbs() {
         if(params[key as keyof typeof params]) {
           let data: GalleryItem[] | HouseItem[] | undefined;
           if(key === 'chapter') {
-            data = await getGallery();
+            data = await getData('gallery');
           } else if(key === 'house') {
-            data = await getHouses();
+            data = await getData('houses');
           }
 
           const name = params[key as keyof typeof params];

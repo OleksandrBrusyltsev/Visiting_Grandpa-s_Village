@@ -5,14 +5,12 @@ import { getLocale } from "next-intl/server";
 import GalleryItem from "./GalleryItem";
 import Button from "../ui/Button/Button";
 import Icon from "../ui/Icon/Icon";
-import { getGallery } from "@/actions/getGallery";
 
 import s from "./Gallery.module.scss";
 
-type Props = {};
+type Props = {items: GalleryItem[]}
 
-export default async function Gallery({}: Props) {
-  const data: GalleryItem[] = await getGallery();
+export default async function Gallery({items}: Props) {
   const locale = await getLocale();
   return (
     <div className={s.backgroundImages}>
@@ -42,9 +40,7 @@ export default async function Gallery({}: Props) {
             подивитись більше
           </h1>
           <div className={s.galleryWrapper}>
-            {data.map((item, i) => (
-              <GalleryItem data={item} key={i} />
-            ))}
+            {items.map((item, i) => (<GalleryItem data={item} key={i}/>))}
           </div>
         </section>
         <div className={s.callToAction}>
