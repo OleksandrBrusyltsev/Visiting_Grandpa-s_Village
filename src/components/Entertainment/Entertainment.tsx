@@ -33,7 +33,7 @@ export default function Entertainment({items}: Props) {
                             <Image src={images[0]} alt={props.title} fill />
                         </div>
                         <div className={`${s.entertainmentImgWrapper} ${(i+1) % 2 ? s.left : s.right}`}>
-                            <Image src={images[0]} alt={props.title} fill />
+                            <Image src={images[1]} alt={props.title} fill />
                         </div>
                     </li>
                     )

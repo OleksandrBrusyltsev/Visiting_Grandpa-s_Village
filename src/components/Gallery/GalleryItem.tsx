@@ -1,20 +1,20 @@
 "use client"
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { useLocale } from "next-intl";
 
 import Button from '../ui/Button/Button';
 
 import s from './GalleryItem.module.scss';
+import { forwardRef } from "react";
 
 type Props = {data: GalleryItem};
 
 gsap.registerPlugin(useGSAP);      
 
-export default function GalleryItem({data}: Props) {
-  const locale = useLocale();
+const GalleryItem = forwardRef<HTMLDivElement, Props>(function GalleryItem({data}, ref) {
+  const {locale} = useParams();
   const path = usePathname();
   const pathName = path.split('/')[2];
 
@@ -30,6 +30,7 @@ export default function GalleryItem({data}: Props) {
         tabIndex={0}
         onKeyDown={(e) => (e.code === 'Enter' || e.code === 'NumpadEnter') && handleClickItem()}
         onClick={handleClickItem}
+        ref={ref}
       >
         <div className={s.imageWrapper} >
           <Image 
@@ -51,4 +52,5 @@ export default function GalleryItem({data}: Props) {
       </div>
     
   )
-}
+})
+export default GalleryItem;

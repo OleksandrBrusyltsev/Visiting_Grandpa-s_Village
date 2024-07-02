@@ -11,9 +11,13 @@ import LangBtn from "../LangBtn/LangBtn";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import Link from "next/link";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+import gsap from "gsap";
 
 const image = "/images/logo-main.svg";
 const alt = "Logo main";
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const Header = () => {
   const [isVisible, setVisible] = useState(false);

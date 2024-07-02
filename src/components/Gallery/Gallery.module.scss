@@ -67,24 +67,22 @@
 .noBreak {
     white-space: nowrap;
 }
-
-.memoriesGallery {
+.memoriesGallery{
     position: relative;
-    &::after {
-        content: '';
-        background-image: url('/images/backgrounds/curve-375-1.svg'),
-                        url('/images/backgrounds/curve-375-2.svg');
-        background-position: 13px top, 
-                            11px bottom;
-        background-size: 87% auto, 92% auto;
-        background-repeat: no-repeat;
-        position: absolute;
-        z-index: -1;
-        top: -4px;
-        left: 0px;
-        right: 0px; 
-        bottom: -32px;
-    }
+}
+.backgroundCurve {
+    position: absolute;
+    top: -4px;
+    left: 0px;
+    right: 0px; 
+    bottom: -32px;
+    background-image: url('/images/backgrounds/curve-375-1.svg'),
+    url('/images/backgrounds/curve-375-2.svg');
+    background-position: 13px top, 
+            11px bottom;
+    background-size: 87% auto, 92% auto;
+    background-repeat: no-repeat;
+    z-index: -1;
 }
 
 .callToClick {
@@ -173,16 +171,14 @@
         top: -41px;
     }
     
-    .memoriesGallery {
-        &::after {
-            background-image: url('/images/backgrounds/curve-768.svg');
-            background-size: 100% 100%;
-            background-position: unset; 
-            top: -60px;
-            left: 0px;
-            right: 0px; 
-            bottom: -96px;
-        }
+    .backgroundCurve {
+        background-image: url('/images/backgrounds/curve-768.svg');
+        background-size: 100% 100%;
+        background-position: unset; 
+        top: -60px;
+        left: 0px;
+        right: 0px; 
+        bottom: -96px;
     }
     
     .callToClick {
@@ -271,15 +267,13 @@
         margin-left: 110px;
     }
 
-    .memoriesGallery {
-        &::after {
-            background-image: url('/images/backgrounds/curve-1280.svg');
-            background-size: contain;
-            top: -71px;
-            left: 38px;
-            right: 0px; 
-            bottom: -47px;
-        }
+    .backgroundCurve {
+        background-image: url('/images/backgrounds/curve-1280.svg');
+        background-size: contain;
+        top: -71px;
+        left: 38px;
+        right: 0px; 
+        bottom: -47px;
     }
 
     .galleryWrapper {
