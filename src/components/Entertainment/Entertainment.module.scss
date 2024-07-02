@@ -96,6 +96,15 @@
 .entertainmentGroup {
     list-style: none;
 }
+.quoteText {
+    font-family: var(--f-family-main);
+    font-weight: 700;
+    font-size: var(--f-size-numbers-small);
+    font-size: clamp(14px, calc(14px * 100vw / 375px), 16px);
+    line-height: 16.4px;
+    color: rgb(var(--color-base-green));
+    width: 76%;
+}
 .entertainmentList {
     & > .entertainmentGroup:nth-child(1) {
         & > *:nth-child(2) {
@@ -152,11 +161,9 @@
 }
 .entertainmentImgWrapper.left {
     margin-inline: 0 auto;
-
 }
 .entertainmentImgWrapper.right {
     margin-inline: auto 0;
-
 }
 .treesWrapper {
     position: relative;
@@ -215,6 +222,11 @@
     .backgroundCurve {
         bottom: 310px;
         background-image: url('/images/backgrounds/curve-768-entertainment.svg');
+    }
+    .quoteText {
+        font-size: var(--f-size-body);
+        line-height: 1.1;
+        width: 54%;
     }
     .entertainmentList {
         & > .entertainmentGroup:nth-child(1) {
@@ -317,6 +329,10 @@
         margin-top: 24px;
         margin-bottom: 25px;
         padding-top: 120px;
+    }
+    .quoteText {
+        font-size: var(--f-size-body);
+        width: unset;
     }
     .entertainmentList {
         & > .entertainmentGroup:nth-child(1) {

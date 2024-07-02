@@ -12,6 +12,7 @@
 .quoteTitle {
     position: relative;
     min-width: 150px;
+    text-align: center;
 
     h2 {
         text-transform: uppercase;
@@ -37,15 +38,15 @@
         left: 0;
     }
 }
-.quoteText {
-    font-family: var(--f-family-main);
-    font-weight: 700;
-    font-size: var(--f-size-numbers-small);
-    font-size: clamp(14px, calc(14px * 100vw / 375px), 16px);
-    line-height: 16.4px;
-    color: rgb(var(--color-base-green));
-    width: 76%;
-}
+// .quoteText {
+//     font-family: var(--f-family-main);
+//     font-weight: 700;
+//     font-size: var(--f-size-numbers-small);
+//     font-size: clamp(14px, calc(14px * 100vw / 375px), 16px);
+//     line-height: 16.4px;
+//     color: rgb(var(--color-base-green));
+//     width: 76%;
+// }
 .quoteWrapper.left {
     .quoteTitle::before {
         left: -20px;
@@ -74,11 +75,11 @@
             width: clamp(280px, calc(280px * 100vw / 768px), 350px);
         }
     }
-    .quoteText {
-        font-size: var(--f-size-body);
-        line-height: 1.1;
-        width: 54%;
-    }
+    // .quoteText {
+    //     font-size: var(--f-size-body);
+    //     line-height: 1.1;
+    //     width: 54%;
+    // }
     .left {
         .quoteTitle::before {
             left: -40px;
@@ -103,10 +104,10 @@
             width: 350px;
         }
     }
-    .quoteText {
-        font-size: var(--f-size-body);
-        width: unset;
-    }
+    // .quoteText {
+    //     font-size: var(--f-size-body);
+    //     width: unset;
+    // }
     .quoteWrapper.left {
         margin-left: 110px;
 

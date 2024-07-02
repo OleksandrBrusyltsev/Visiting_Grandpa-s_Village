@@ -35,7 +35,7 @@ export default  function Houses({items, children}: Props) {
       x: -300,
       y: 200
     }, '<')
-    .from([`.${s.descr2}`, `.${s.grandpa}`, `.${s.grandpa}`, `.${s.curve}`], {
+    .from([`.${s.descr2}`, `.${s.grandpa}`, `.${s.curve}`], {
       x: 300
     }, '<')
 
@@ -86,9 +86,9 @@ export default  function Houses({items, children}: Props) {
       }
       if(isNotMobile) {
         ScrollTrigger.batch(housesRef.current, {
-          batchMax: 2,   
+          batchMax: 4,   
           onEnter: batch => mainTimeline.fromTo(batch, {
-            x: i => i%2 ? 200 : -200,
+            x: -200,
             autoAlpha: 0, 
           }, {
             x: 0,
