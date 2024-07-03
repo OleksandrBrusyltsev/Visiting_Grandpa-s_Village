@@ -25,7 +25,7 @@ export default  function Houses({items, children}: Props) {
         opacity: 0,
         ease: "power1.out",
         duration: 1.2,
-        clearProps: "all",
+        clearProps: 'all'
       }
     })
     .from(`.${s.descr1}`, {
@@ -40,10 +40,12 @@ export default  function Houses({items, children}: Props) {
     }, '<')
 
     //booking component and houses list title animation
-    const mainTimeline = gsap.timeline({scrollTrigger: {
-      trigger: `.${s.bookingForm}`,
-      start: "top 70%",
-    }})
+    const mainTimeline = gsap.timeline({
+        scrollTrigger: {
+        trigger: `.${s.bookingForm}`,
+        start: "top 90%",
+      }
+    })
     .from(`.${s.bookingForm}`, {
       scale: 0.9,
       duration: 1,
@@ -80,6 +82,8 @@ export default  function Houses({items, children}: Props) {
             scrollTrigger: {
               trigger: h,
               start: 'top 80%',
+              end: "bottom start",
+              // markers: true
             }
           })
         })
@@ -88,7 +92,7 @@ export default  function Houses({items, children}: Props) {
         ScrollTrigger.batch(housesRef.current, {
           batchMax: 4,   
           onEnter: batch => mainTimeline.fromTo(batch, {
-            x: -200,
+            x: i => i%2 ? 200 : -200,
             autoAlpha: 0, 
           }, {
             x: 0,
@@ -98,6 +102,7 @@ export default  function Houses({items, children}: Props) {
             ease: 'power1.out'
           }),
           start: 'top 80%',
+          end: "bottom start",
           once: true
         });
       }

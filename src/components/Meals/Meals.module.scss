@@ -2,7 +2,6 @@
 @use '../../styles/variables';
 
 .mealsWrapper {
-    overflow: hidden;
     padding-bottom: 164px;
 }
 .heroWrapper {
@@ -13,7 +12,7 @@
         position: absolute;
         width: min((295px - 101 * (767px - 100vw) / 392), 295px);
         bottom: min((66px - 66 * (767px - 100vw) / 392), 66px);
-        right: 0;
+        right: -23px;
         height: min((167px - 57 * (767px - 100vw) / 392), 167px);
         rotate: -39deg;
     }
@@ -61,7 +60,7 @@
             bottom: min((96px - 30 * (1279px - 100vw) / 511), 96px);
             right: 0;
             height: min((231px - 94 * (1279px - 100vw) / 511), 231px);
-            rotate: -24deg;
+            rotate: -39deg;
         }
     }
     .title {

@@ -2,7 +2,6 @@
 import Image from 'next/image';
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from 'gsap/all';
 
 import Quote from './Quote/Quote';
 
@@ -15,6 +14,7 @@ export default function Entertainment({items}: Props) {
     const aniRef = useRef<Array<Array<HTMLDivElement>>>([[]]);
 
     useGSAP(() => {
+        
         //hero block animation
         gsap.timeline({
           defaults: {
@@ -33,37 +33,50 @@ export default function Entertainment({items}: Props) {
           y: -100
         }, '>-0.3')
         .from([`.${s.grandpaWrapper}`], {
-          }, )
-        .from(`.${s.backgroundCurve}`, {
-            scale: 0.9,
-            duration: 1
-        }, ">-0.5");
+          }, );
+
+        //big curve animation
+        gsap.timeline({
+        defaults: {
+            ease: "power1.out",
+        }, scrollTrigger: {
+            trigger: `.${s.backgroundCurve}`,
+            start: "top 50%",
+            end: "bottom 90%",
+            once: true,
+            scrub: 10
+        },
+        }).from(`.${s.backgroundCurve}`, {
+            clipPath: "inset(0% 0% 100% 0%)"
+        });
 
         //entertainment list animation
         aniRef.current.forEach((e, i) => {
-           gsap.timeline({defaults: {
-                opacity: 0,
-                duration: 1,
-                ease: "power1.out",
-            },
-            scrollTrigger: {
-                trigger: e[0],
-                start: "top 80%",
-            }})
-                .from(e[0], {
-                    x: i % 2 ? 200 : -200,
-                })
-                .from(e[1], {})
-                .from(e[2], {
-                    scale: 0.8,
-                    x: i % 2 ? -100 : 100,
-                    y: -100,
-                }, ">-0.3")
-                .from(e[3], {
-                    scale: 0.8,
-                    x: i % 2 ? 100 : -100,
-                    y: -100,
-                }, ">-0.3")
+           gsap.timeline({
+                defaults: {
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power1.out",
+                },
+                scrollTrigger: {
+                    trigger: e[0],
+                    start: "top 80%",
+                }
+            })
+            .from(e[0], {
+                x: i % 2 ? 200 : -200,
+            })
+            .from(e[1], {})
+            .from(e[2], {
+                scale: 0.8,
+                x: i % 2 ? -100 : 100,
+                y: -100,
+            }, ">-0.5")
+            .from(e[3], {
+                scale: 0.8,
+                x: i % 2 ? 100 : -100,
+                y: -100,
+            }, ">-0.5")
         })
     });
 
