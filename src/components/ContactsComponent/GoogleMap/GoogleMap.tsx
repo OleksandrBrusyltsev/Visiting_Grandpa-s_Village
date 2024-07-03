@@ -15,7 +15,7 @@ const GoogleMap = () => {
 
   return (
     <APIProvider apiKey={apiKey}>
-      <div style={{ height: "100vh", width: "100%" }}>
+      <div style={{ height: "547px", width: "100%" }}>
         <Map
           defaultCenter={position}
           zoom={17}
