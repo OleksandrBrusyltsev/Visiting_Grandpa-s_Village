@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import Icon from "../../ui/Icon/Icon";
@@ -34,14 +35,37 @@ const ContactsList = () => {
   const grandpa = useRef<HTMLImageElement>(null);
   const contactsListWrapper = useRef<HTMLDivElement>(null);
 
+  gsap.registerPlugin(ScrollTrigger);
+
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
     gsap.fromTo(
       grandpa.current,
-      { x: "-100%" },
-      { x: "0%", duration: 1, clearProps: "transform" }
+      { x: "-300%" },
+      {
+        scrollTrigger: {
+          trigger: grandpa.current,
+          markers: true,
+          start: "bottom 80%",
+        },
+        x: "0%",
+        duration: 1,
+        clearProps: "transform",
+      }
     );
+
+    mm.add("(min-width: 450px)", () => {
+      gsap.fromTo(
+        grandpa.current,
+        { x: "-100%" },
+        {
+          x: "0%",
+          duration: 1,
+          clearProps: "transform",
+        }
+      );
+    });
 
     mm.add("(min-width: 1000px)", () => {
       const desktopAnimation = gsap.fromTo(
@@ -58,9 +82,26 @@ const ContactsList = () => {
     gsap.fromTo(
       contactsListWrapper.current,
       { x: "100%" },
-      { x: "0%", duration: 1, clearProps: "transform" }
+      {
+        scrollTrigger: {
+          trigger: contactsListWrapper.current,
+        },
+        x: "0%",
+        duration: 1,
+        clearProps: "transform",
+      }
     );
-
+    mm.add("(min-width: 450px)", () => {
+      gsap.fromTo(
+        contactsListWrapper.current,
+        { x: "100%" },
+        {
+          x: "0%",
+          duration: 1,
+          clearProps: "transform",
+        }
+      );
+    });
     return () => {
       mm.revert();
     };
