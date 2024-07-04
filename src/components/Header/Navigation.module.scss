@@ -30,14 +30,21 @@
 
 .item {
   color: rgba(var(--color-black), 1);
-  font-family: var(--f-family-headline);
+  font-family: var(--f-family-main);
   font-size: var(--f-size-body);
   font-weight: 400;
   line-height: normal;
 
+  transition: transform 0.3s ease, color 0.3s ease;
+
   &:hover,
   &:active,
   &:focus {
+    color: rgb(var(--color-base-green));
+    transform: translateY(3px);
+  }
+
+  &:active{
     color: rgb(var(--color-natural-orange));
   }
 }
