@@ -1,3 +1,5 @@
+import { getData } from '@/actions/getData';
+import Meals from '@/components/Meals/Meals';
 import { useTranslations } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
 
@@ -5,24 +7,16 @@ export async function generateStaticParams() {
   return ["uk", "en"].map((locale) => ({ locale }));
 }
 
-export default function Page({
+export default async function Page({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
-  const t = useTranslations('Breadcrumbs');
-
+  const items = await getData<MealsItem[]>('meals');
   return (
     <div className='container'>
-      <h1 style={{
-        marginTop: 20,
-        marginBottom: 20,
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        color: '#000000',
-      }}>Сторінка {t('meals')}</h1>
+      <Meals items={items}/>
     </div>
   )
 }

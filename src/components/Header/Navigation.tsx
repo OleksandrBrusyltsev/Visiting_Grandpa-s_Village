@@ -7,8 +7,10 @@ import css from "./Navigation.module.scss";
 
 import { navigationLinks } from "@/data/header/navigationData";
 
+
 const Navigation = () => {
   const locale = useLocale();
+
   return (
     <div className={css.container}>
       <ul className={css.list}>

@@ -3,7 +3,7 @@ import s from "./Button.module.scss";
 interface ButtonProps {
   label: string;
   type?: "button" | "submit" | "reset";
-  size?: "default" | "large" | "small";
+  size?: "default" | "large" | "small" |"header";
   className?: string;
   onClick?: () => void;
   disabled?: boolean;
