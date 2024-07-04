@@ -40,23 +40,26 @@ const ContactsList = () => {
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
-    gsap.fromTo(
-      grandpa.current,
-      { x: "-300%" },
-      {
-        scrollTrigger: {
-          trigger: grandpa.current,
-          markers: true,
-          start: "bottom 80%",
-        },
-        x: "0%",
-        duration: 1,
-        clearProps: "transform",
-      }
-    );
+    const baseAnimation = gsap.context(() => {
+      gsap.fromTo(
+        grandpa.current,
+        { x: "-300%" },
+        {
+          scrollTrigger: {
+            trigger: grandpa.current,
+            markers: true,
+            start: "bottom 80%",
+          },
+          x: "0%",
+          duration: 1,
+          clearProps: "transform",
+        }
+      );
+    });
 
     mm.add("(min-width: 450px)", () => {
-      gsap.fromTo(
+      baseAnimation.revert(); // Удаляем базовую анимацию
+      const anim450 = gsap.fromTo(
         grandpa.current,
         { x: "-100%" },
         {
@@ -65,21 +68,30 @@ const ContactsList = () => {
           clearProps: "transform",
         }
       );
-    });
-
-    mm.add("(min-width: 1000px)", () => {
-      const desktopAnimation = gsap.fromTo(
-        grandpa.current,
-        { y: "-200%", x: "0%" },
-        { y: "0%", x: "0%", duration: 1, clearProps: "transform" }
-      );
 
       return () => {
-        desktopAnimation.reverse();
+        anim450.kill(); // Удаляем анимацию при изменении ширины экрана
       };
     });
 
-    gsap.fromTo(
+    mm.add("(min-width: 1000px)", () => {
+      const anim1000 = gsap.fromTo(
+        grandpa.current,
+        { y: "-200%", x: "0%" },
+        {
+          y: "0%",
+          x: "0%",
+          duration: 1,
+          clearProps: "transform",
+        }
+      );
+
+      return () => {
+        anim1000.kill(); // Удаляем анимацию при изменении ширины экрана
+      };
+    });
+
+    const contactsListAnimation = gsap.fromTo(
       contactsListWrapper.current,
       { x: "100%" },
       {
@@ -91,8 +103,10 @@ const ContactsList = () => {
         clearProps: "transform",
       }
     );
+
     mm.add("(min-width: 450px)", () => {
-      gsap.fromTo(
+      contactsListAnimation.revert(); // Удаляем базовую анимацию
+      const animContacts450 = gsap.fromTo(
         contactsListWrapper.current,
         { x: "100%" },
         {
@@ -101,9 +115,14 @@ const ContactsList = () => {
           clearProps: "transform",
         }
       );
+
+      return () => {
+        animContacts450.kill(); // Удаляем анимацию при изменении ширины экрана
+      };
     });
+
     return () => {
-      mm.revert();
+      mm.revert(); // Удаляем все media queries
     };
   });
 
