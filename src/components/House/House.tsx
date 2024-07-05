@@ -1,17 +1,18 @@
 import { getLocale } from "next-intl/server";
-import { getHouses } from "@/actions/getHouses";
+import { getData } from "@/actions/getData";
 import Image from "next/image";
 import Booking from "./Booking";
 // import Button from "../ui/Button/Button";
 // import Slider from "./Slider";
 import s from "./House.module.scss";
 import Icon from "../ui/Icon/Icon";
+import Houses from "@/components/Houses/Houses";
 
 type Props = { id: string };
 
 export default async function House({ id }: Props) {
   const locale = await getLocale();
-  const data: HouseItem[] = await getHouses();
+  const data: HouseItem[] = await getData<HouseItem[]>("houses");
   const house = data.find((item) => item.name === id);
   // console.log(house);
 
@@ -93,7 +94,7 @@ export default async function House({ id }: Props) {
           <p className={s.description}>
             &quot;Побудував я Хатинку Діда Мороза тут.&quot;
           </p>
-          {/* <Icon name="curve-house" className={s.curve} /> */}
+          <Icon name="curve-house" className={s.curve} />
           <div className={s.grandpa}>
             <Image
               fill
@@ -104,8 +105,8 @@ export default async function House({ id }: Props) {
           </div>
         </div>
       </div>
-      <section className={s.map}>
-        <div className={s.mapWrapper}>
+      <div className={s.mapWrapper}>
+        <div className={s.map}>
           <Image
             fill
             alt={
@@ -113,14 +114,22 @@ export default async function House({ id }: Props) {
                 ? "Map of Grandpa's houses"
                 : "Карта еко садиби Дідуся"
             }
-            src="/images/backgrounds/illustration-map.png"
+            // src="/images/backgrounds/illustration-map.png"
+            src="/images/houses/house/illustration-map.png"
+            className={s.mapImage}
           />
         </div>
-        {/* <div className={s.cloudBackground}> */}
-        {/* <Icon name="house-cloud" className={s.cloud} /> */}
-        {/* <Icon name="pin" className={s.cloud} /> */}
-        {/* </div> */}
-      </section>
+        <div className={s.cloudBackground}>
+          <Icon name="house-cloud" className={s.cloud} />
+        </div>
+        <div className={s.pin}>
+          <Image
+            fill
+            alt={locale === "en" ? "pin" : "мітка"}
+            src="/images/houses/house/Shape.png"
+          />
+        </div>
+      </div>
     </section>
   );
 }
