@@ -88,17 +88,19 @@
 }
 
 .housesTitle {
-    text-transform: uppercase;
-    text-align: center;
-    line-height: 1.1;
-    font-size: var(--f-size-h2);
+    position: relative;
+    padding: 20px 20px 15px 25px;
+    h1 {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: var(--f-size-h2);
+        line-height: 1.1;
+    }
 }
 .titleOutline {
     position: absolute;
-    top: 25px;
-    left: calc(50% - 125px);
-    width: 251px;
-    height: 72px;
+    top: 0;
+    left: 0;
 }
 .housesWrapper {
     margin-top: 60px;

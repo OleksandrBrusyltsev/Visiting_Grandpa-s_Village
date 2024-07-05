@@ -21,7 +21,7 @@
       &:not(:disabled):hover {
       background: transparent;
       color: rgb(var(--color-black));
-      box-shadow: 4px 4px 8px 0px rgba(var(--color-total-black), 0.25);
+      box-shadow: 2px 2px 5px 1px rgba(var(--color-total-black), 0.1);
     }
   }
 
@@ -52,4 +52,12 @@
   &_small {
     max-width: 7.375rem;
   }
+
+  &_header {
+    width: 188px;
+  }
+}
+
+.headerBtn{
+  width: 188px;
 }

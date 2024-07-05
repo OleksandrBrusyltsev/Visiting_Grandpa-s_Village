@@ -11,6 +11,9 @@
   height: 100px;
   background-color: rgba(var(--color-nude), 0.5);
 
+  max-width: 1440px;
+  margin: 0 auto;
+
   @include mixins.media-min(variables.$breakpoint-tablet-min) {
     padding: 10px 30px;
 
@@ -40,8 +43,11 @@
   margin: auto;
 
   &:hover,
-  &:active,
   &:focus {
+    color: rgb(var(--color-base-green));
+  }
+
+  &:active {
     color: rgb(var(--color-natural-orange));
   }
 }
@@ -76,6 +82,7 @@
 
 .headerBox {
   display: flex;
+  align-items: center;
   gap: 30px;
 }
 
