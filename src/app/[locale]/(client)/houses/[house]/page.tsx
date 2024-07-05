@@ -7,7 +7,7 @@ export default function Page({ params }: Props) {
 
   return (
     <div className="container">
-      <h1
+      {/* <h1
         style={{
           marginTop: 20,
           marginBottom: 20,
@@ -18,7 +18,7 @@ export default function Page({ params }: Props) {
         }}
       >
         Сторінка будиночку: {house}
-      </h1>
+      </h1> */}
       <House id={house} />
     </div>
   );

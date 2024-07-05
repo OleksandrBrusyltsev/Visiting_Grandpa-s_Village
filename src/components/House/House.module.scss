@@ -1,6 +1,17 @@
 @use "../../styles/mixins" as mixins;
 @use "../../styles/variables";
 
+.sectionWrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.arrowBlockWrapper {
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    display: none;
+  }
+}
+
 .textDecor {
   display: flex;
   justify-content: flex-end;
@@ -22,120 +33,221 @@
   }
 }
 
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  // max-width: 1180px;
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 114px;
+  }
+}
+
+.textWrapper {
+  padding-left: 0px;
+  padding-right: 0px;
+  @media (min-width: 376px) and (max-width: 767px) {
+    padding-left: calc(0px + 34 * (100vw - 376px) / 391);
+    padding-right: calc(0px + 80 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    padding-left: 34px;
+    padding-right: 80px;
+  }
+  @media (min-width: 1000px) {
+    width: 516px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
 .headline {
   margin-top: 30px;
   font-size: 24px;
   color: rgb(var(--color-base-green));
   font-family: var(--f-family-headline);
+
+  @media (min-width: 376px) and (max-width: 1279px) {
+    margin-top: calc(30px + 50 * (100vw - 376px) / 904);
+    font-size: calc(24px + 12 * (100vw - 376px) / 904);
+  }
+
+  @media (min-width: 1280px) {
+    margin-top: 80px;
+    font-size: 36px;
+  }
 }
 
 .text {
-  margin-top: 14px;
+  margin-top: 24px;
   font-size: 14px;
   font-family: var(--f-family-main);
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    font-size: calc(14px + 2 * (100vw - 376px) / 391);
+  }
+
+  @media (min-width: 376px) and (max-width: 1279px) {
+    margin-top: calc(24px + 47 * (100vw - 376px) / 904);
+  }
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (min-width: 1280px) {
+    margin-top: 71px;
+  }
 
   & span {
     display: block;
     padding-top: 14px;
   }
+  & span:first-child {
+    padding-top: 0px;
+  }
 }
 
 .servicesWrapper {
-  // grid-area: services;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
   margin-top: 37px;
-  .servicesIcon {
+  column-gap: 16px;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    margin-top: calc(37px + 3 * (100vw - 376px) / 391);
+  }
+
+  @media (min-width: 768px) {
+    margin-top: 40px;
+    justify-content: flex-start;
+  }
+
+  @media (min-width: 1000px) {
+    justify-content: flex-end;
+  }
+
+  @media (min-width: 769px) and (max-width: 1279px) {
+    margin-top: calc(40px + 46 * (100vw - 769px) / 510);
+  }
+
+  @media (min-width: 1280px) {
+    margin-top: 86px;
+  }
+
+  & .iconWrapper {
     width: 59px;
     height: 50px;
+    background-color: rgba(var(--color-nude), 0.3);
+    border-radius: 8px;
+
+    @media (min-width: 376px) and (max-width: 767px) {
+      width: calc(59px + 3 * (100vw - 376px) / 391);
+      height: calc(50px + 15 * (100vw - 376px) / 391);
+    }
+
+    @media (min-width: 768px) {
+      width: 63px;
+      height: 65px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    @media (min-width: 769px) and (max-width: 1279px) {
+      width: calc(63px + 23 * (100vw - 769px) / 510);
+      height: calc(65px + 25 * (100vw - 769px) / 510);
+    }
+
+    @media (min-width: 1280px) {
+      width: 86px;
+      height: 90px;
+    }
+  }
+
+  & .servicesIcon {
+    padding: 5px;
+
+    @media (min-width: 768px) {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
   }
 }
 
-// .iconBath {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-
-.iconWrapper {
-  background-color: rgba(var(--color-nude), 0.3);
-  border-radius: 8px;
-}
-
-.imageDecorWrapper {
-  position: relative;
-  width: 100%;
-  // height: 207px;
+// TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
+.heroSectionWrapper {
+  // position: relative;
   display: flex;
-  justify-content: flex-end;
-}
-
-.imageDecor {
-  width: 228px;
-  position: absolute;
-  // top: 5px;
-  z-index: -1;
-  img {
-    object-fit: contain;
-  }
-  &::after {
-    position: absolute;
-    display: flex;
-    // justify-content: flex-end;
-    width: 238px;
-    height: 216px;
-    // transform: scaleX(-1);
-    content: "";
-    // position: absolute;
-    right: -18px;
-    bottom: -188px;
-    // z-index: -1;
-    background-image: url("/images/houses/house/trees-decor.png");
-    // background-position: right bottom;
-    background-repeat: no-repeat;
-    background-size: contain;
-    // filter: blur(2px);
-  }
-}
-
-.image {
-  display: block;
-  width: 188px;
-  height: 144px;
-  position: absolute;
-  top: 45px;
-  right: 35px;
-}
-
-// .imageDecor {
-//   position: absolute;
-//   top: 0px;
-//   width: 228px;
-//   height: 206px;
-// display: flex;
-// justify-content: flex-end;
-// }
-
-// !
-.hero {
+  // flex-direction: column;
+  justify-content: center;
   margin-top: 93px;
-  // overflow-x: clip;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    margin-top: calc(93px + 40 * (100vw - 376px) / 391);
+  }
+
+  @media (min-width: 768px) {
+    margin-top: 133px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    margin-top: calc(133px - 60 * (100vw - 769px) / 510);
+  }
+
+  @media (min-width: 1280px) {
+    margin-top: 73px;
+  }
 }
-.heroWrapper {
+
+.hero {
+  width: 327px;
   position: relative;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    width: calc(327px + 326 * (100vw - 376px) / 391);
+  }
+
+  @media (min-width: 768px) {
+    width: 653px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    width: calc(769px + 527 * (100vw - 376px) / 510);
+  }
+
+  @media (min-width: 1280px) {
+    width: 1180px;
+  }
 }
-.descr2 {
-  margin-top: calc(6px + (100vw - 375px) / 18);
+
+.description {
+  position: absolute;
   font-family: var(--f-family-main);
   color: rgb(var(--color-base-green));
   font-size: 12px;
   line-height: 14px;
   font-weight: 700;
+  width: 240px;
+  left: 0px;
   text-align: center;
-  padding-right: calc(25.2% + (100vw - 375px) / 3);
+  line-height: 110%;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    font-size: calc(12px + 6 * (100vw - 376px) / 391);
+    left: calc(0px + 110 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    font-size: 16px;
+    left: 110px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    left: calc(110px + 415 * (100vw - 769px) / 510);
+  }
+  @media (min-width: 1280px) {
+    left: 525px;
+  }
 }
+
 .grandpa {
   width: 120px;
   height: 110px;
@@ -159,12 +271,26 @@
     background-position: right bottom;
     background-repeat: no-repeat;
     background-size: contain;
+
+    @media (min-width: 376px) and (max-width: 767px) {
+      width: calc(180px + 26 * (100vw - 376px) / 391);
+    }
+    @media (min-width: 768px) {
+      width: 206px;
+      right: 10px;
+      bottom: -167px;
+    }
   }
 }
+// TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
+
 .map {
   width: 100%;
-  margin: 137px auto 0;
+  margin-top: 137px;
+  // margin: 137px auto 0;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 .mapWrapper {
   // width: 95.7%;
@@ -172,6 +298,14 @@
   position: relative;
   top: 0;
   // left: 2.15%;
+  width: 327px;
+  @media (min-width: 376px) and (max-width: 767px) {
+    width: calc(327px + 200 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    width: 527px;
+  }
+
   img {
     object-fit: contain;
   }
@@ -188,12 +322,12 @@
   width: calc(100% + 25px);
   height: 233px;
 }
-// .cloud {
-//   transform: scaleY(-1);
-// }
-// .curve {
-//   display: none;
-// }
+.cloud {
+  transform: scaleY(-1);
+}
+.curve {
+  display: none;
+}
 
 .heroWrapper {
   .curve {
@@ -209,15 +343,15 @@
 }
 
 @include mixins.media-min(variables.$mobile) {
-  .hero {
-    margin-top: 40px;
-  }
-  .descr2 {
-    margin-top: 57px;
-    font-size: var(--f-size-body);
-    line-height: 1.1;
-    padding-right: 25%;
-  }
+  // .hero {
+  //   margin-top: 40px;
+  // }
+  // .description {
+  //   margin-top: 57px;
+  //   font-size: var(--f-size-body);
+  //   line-height: 1.1;
+  //   padding-right: 25%;
+  // }
   .grandpa {
     width: 209px;
     height: 239px;
@@ -232,12 +366,12 @@
   .map {
     margin-top: 197px;
   }
-  .mapWrapper {
-    width: 66%;
-    aspect-ratio: 1.87;
-    top: 0;
-    left: 17%;
-  }
+  // .mapWrapper {
+  //   width: 66%;
+  //   aspect-ratio: 1.87;
+  //   top: 0;
+  //   left: 17%;
+  // }
   .cloudBackground {
     position: absolute;
     top: -82px;
@@ -258,26 +392,22 @@
       background-size: contain;
     }
   }
-  // .cloud {
-  //   transform: scale(-1, 1);
-  // }
-  // .heroWrapper {
-  //   .curve {
-  //     display: block;
-  //     position: absolute;
-  //     bottom: -152px;
-  //     left: 12.7%;
-  //     width: calc((100vw - 768px) / 8 + 143px);
-  //     height: 114px;
-  //     transform: scale(-1, 1);
-  //   }
-  // }
+  .cloud {
+    transform: scale(-1, 1);
+  }
+  .heroWrapper {
+    .curve {
+      display: block;
+      position: absolute;
+      bottom: -152px;
+      left: 12.7%;
+      width: calc((100vw - 768px) / 8 + 143px);
+      height: 114px;
+      transform: scale(-1, 1);
+    }
+  }
 }
 @include mixins.media-min(variables.$breakpoint-laptop) {
-  .descr2 {
-    margin-top: 40px;
-    padding-right: calc((100vw - 1180px) / 2 - 50px + 234px);
-  }
   .grandpa {
     width: 314px;
     height: 361px;
@@ -309,32 +439,32 @@
       z-index: 0;
     }
   }
-  .cloud {
-    transform: scale(1, 1);
-  }
-  .heroWrapper {
-    .curve {
-      width: 219px;
-      height: 265px;
-      bottom: unset;
-      top: 385px;
-      left: unset;
-      right: calc((100vw - 1280px) / 2 + 116px);
-      transform: unset;
-    }
-  }
+  // .cloud {
+  //   transform: scale(1, 1);
+  // }
+  // .heroWrapper {
+  //   .curve {
+  //     width: 219px;
+  //     height: 265px;
+  //     bottom: unset;
+  //     top: 385px;
+  //     left: unset;
+  //     right: calc((100vw - 1280px) / 2 + 116px);
+  //     transform: unset;
+  //   }
+  // }
 }
-@include mixins.media-min(variables.$pc) {
-  .descr2 {
-    padding-right: 234px;
-  }
-  .grandpa {
-    right: 0;
-  }
-  .heroWrapper {
-    .curve {
-      right: 116px;
-    }
-  }
-}
+// @include mixins.media-min(variables.$pc) {
+//   .description {
+//     padding-right: 234px;
+//   }
+//   .grandpa {
+//     right: 0;
+//   }
+//   .heroWrapper {
+//     .curve {
+//       right: 116px;
+//     }
+//   }
+// }
 // !
