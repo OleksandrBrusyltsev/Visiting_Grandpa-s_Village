@@ -69,9 +69,10 @@ export default  function Houses({items, children}: Props) {
         gsap.set(h, {autoAlpha: 0});
       });
       if(isMobile) {
+      
         housesRef.current.forEach((h, i) => {
           gsap.fromTo(h, {
-            x: i%2 ? 200 : -200,
+            x: i%2 ? 100 : -100,
             autoAlpha: 0, 
           }, {
             x: 0,
@@ -83,7 +84,6 @@ export default  function Houses({items, children}: Props) {
               trigger: h,
               start: 'top 80%',
               end: "bottom start",
-              // markers: true
             }
           })
         })
@@ -92,13 +92,12 @@ export default  function Houses({items, children}: Props) {
         ScrollTrigger.batch(housesRef.current, {
           batchMax: 4,   
           onEnter: batch => mainTimeline.fromTo(batch, {
-            x: i => i%2 ? 200 : -200,
+            x: i => i%2 ? 100 : -100,
             autoAlpha: 0, 
           }, {
             x: 0,
             autoAlpha: 1,
             duration: 0.8,
-            // delay: 0.1,
             ease: 'power1.out'
           }),
           start: 'top 80%',
@@ -110,7 +109,7 @@ export default  function Houses({items, children}: Props) {
   })
 
   return (
-    <>
+    <div className={s.houses}>
       <section className={`${s.hero} container`}>
         <div className={s.heroWrapper}>
           <p className={s.descr1}>Маю багато казкових будиночків та хатинок, можеш вибрати будь-який варіант на свій смак.</p>
@@ -162,6 +161,6 @@ export default  function Houses({items, children}: Props) {
           </>
         </HousesList>
       </main>
-    </>
+    </div>
   )
 }

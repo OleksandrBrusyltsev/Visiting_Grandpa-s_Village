@@ -15,8 +15,6 @@ export default async function Page({
   unstable_setRequestLocale(locale);
   const items = await getData<EntertainmentItem[]>('entertainments');
   return (
-    <div className='container'>
-      <Entertainment items={items}/>
-    </div>
+    <Entertainment items={items}/>
   )
 }

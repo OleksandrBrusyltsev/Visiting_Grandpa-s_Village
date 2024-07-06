@@ -3,6 +3,12 @@
 
 .mealsWrapper {
     padding-bottom: 164px;
+    @media (hover: none) {
+        overflow-x: clip;
+    }
+    @media (min-width: 1024px) {
+        overflow-x: clip;
+    }
 }
 .heroWrapper {
     margin-top: 16px;

@@ -7,8 +7,6 @@ export default async function Page({}: Props) {
   const items = await getData<GalleryItem[]>('gallery');
 
   return (
-    <div className="container">
-      <Gallery items={items}/>
-    </div>
+    <Gallery items={items}/>
   )
 }

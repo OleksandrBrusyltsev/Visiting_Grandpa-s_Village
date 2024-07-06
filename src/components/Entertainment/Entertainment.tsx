@@ -14,13 +14,13 @@ export default function Entertainment({items}: Props) {
     const aniRef = useRef<Array<Array<HTMLDivElement>>>([[]]);
 
     useGSAP(() => {
-        
+  
         //hero block animation
         gsap.timeline({
           defaults: {
             autoAlpha: 0,
             ease: "power1.out",
-            duration: 0.6
+            duration: 0.5
           }
         })
         .from(`.${s.answer}`, {
@@ -35,20 +35,27 @@ export default function Entertainment({items}: Props) {
         .from([`.${s.grandpaWrapper}`], {
           }, );
 
-        //big curve animation
-        gsap.timeline({
-        defaults: {
-            ease: "power1.out",
-        }, scrollTrigger: {
-            trigger: `.${s.backgroundCurve}`,
-            start: "top 50%",
-            end: "bottom 90%",
-            once: true,
-            scrub: 10
-        },
-        }).from(`.${s.backgroundCurve}`, {
-            clipPath: "inset(0% 0% 100% 0%)"
-        });
+          const mm = gsap.matchMedia();
+          mm.add({
+            isMobile: '(max-width: 767px)',
+            isNotMobile: '(min-width: 768px)',
+          }, (context) => {
+            const {isMobile, isNotMobile} = context.conditions as gsap.Conditions;
+              //big curve animation
+              gsap.timeline({
+              defaults: {
+                  ease: "power1.out",
+              }, scrollTrigger: {
+                  trigger: `.${s.backgroundCurve}`,
+                  start: "top 70%",
+                  end: "bottom 40%",
+                  once: true,
+                  scrub: isMobile ? 10 : 15,
+              },
+              }).from(`.${s.backgroundCurve}`, {
+                  clipPath: "inset(0% 0% 100% 0%)"
+              });
+          })
 
         //entertainment list animation
         aniRef.current.forEach((e, i) => {
@@ -60,29 +67,29 @@ export default function Entertainment({items}: Props) {
                 },
                 scrollTrigger: {
                     trigger: e[0],
-                    start: "top 80%",
+                    start: "top 90%",
                 }
             })
             .from(e[0], {
-                x: i % 2 ? 200 : -200,
+                x: i % 2 ? 100 : -100,
             })
             .from(e[1], {})
             .from(e[2], {
-                scale: 0.8,
-                x: i % 2 ? -100 : 100,
-                y: -100,
+                scale: 0.9,
+                x: i % 2 ? -50 : 50,
+                y: -50,
             }, ">-0.5")
             .from(e[3], {
-                scale: 0.8,
-                x: i % 2 ? 100 : -100,
-                y: -100,
+                scale: 0.9,
+                x: i % 2 ? 50 : -50,
+                y: -50,
             }, ">-0.5")
         })
     });
 
     return (
         <>
-            <section className={s.hero}>
+            <section className={`${s.hero} container`}>
                 {/* <h1 className={s.heroTitle} suppressHydrationWarning> */}
                 <h1 className={s.heroTitle} >
                     <span className={s.firstPart}>Мистецтво Відпочинку&nbsp;- не&nbsp;завжди означає&nbsp;Дію,</span> навчись нічого не&nbsp;робити, а&nbsp;просто насолодись тишею та&nbsp;спокоєм.
@@ -97,7 +104,7 @@ export default function Entertainment({items}: Props) {
                         fill/>
                 </div>
             </section>
-            <main className={s.main}>
+            <main className={`${s.main} container`}>
                 <ul className={s.entertainmentList}>
                     {items.map(({images, text,  ...props}, i) => (
                         <li className={s.entertainmentGroup} key={i}>

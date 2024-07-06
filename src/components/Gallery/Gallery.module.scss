@@ -1,27 +1,34 @@
 @use "../../styles/mixins" as mixins;
 @use "../../styles/variables";
 
-
+.overflowContainer {
+    @media (hover: none) {
+        overflow-x: hidden;
+    }
+    @media (min-width: 1024px) {
+        overflow-x: hidden;
+    }
+}
 .backgroundImages {
     max-width: 450px;
     margin: 0 auto 89px;
     background-image: 
-        url('/images/backgrounds/christmasTrees.png'), 
-        url('/images/backgrounds/christmasTrees.png'), 
-        url('/images/backgrounds/christmasTrees.png'), 
-        url('/images/backgrounds/christmasTrees.png'), 
-        url('/images/backgrounds/christmasTrees.png'), 
-        url('/images/backgrounds/christmasTrees.png'), 
-        url('/images/backgrounds/christmasTrees.png');
+    url('/images/backgrounds/christmasTrees.png'), 
+    url('/images/backgrounds/christmasTrees.png'), 
+    url('/images/backgrounds/christmasTrees.png'), 
+    url('/images/backgrounds/christmasTrees.png'), 
+    url('/images/backgrounds/christmasTrees.png'), 
+    url('/images/backgrounds/christmasTrees.png'), 
+    url('/images/backgrounds/christmasTrees.png');
     background-repeat: no-repeat;
     background-position: left 125px, 
-                        right calc(100% / 1644px * 360px),
-                        left calc(100% / 1644px * 540px),
-                        left calc(100% / 1644px * 870px),
-                        right calc(100% / 1644px * 1120px),
-                        left calc(100% / 1644px  * 1330px),
-                        calc(55% - 50px) calc(100% / 1644px * 1600px);
-    background-size: 240px 231px
+    right calc(100% / 1644px * 360px),
+    left calc(100% / 1644px * 540px),
+    left calc(100% / 1644px * 870px),
+    right calc(100% / 1644px * 1120px),
+    left calc(100% / 1644px  * 1330px),
+    calc(55% - 50px) calc(100% / 1644px * 1600px);
+    background-size: 240px 231px;
 }
 
 .hero, 
@@ -202,7 +209,7 @@
         max-width: unset;
     }
     .cloud {
-        color: rgb(179, 161, 137);
+        color: rgba(179, 161, 137, 0.5);
         display: block;
         position: absolute;
         top: -132px;
@@ -230,7 +237,6 @@
                             23% calc(100% / 2050px * 1350px),
                             55% calc(100% / 2050px * 1700px);
     }
-
     .desktopOnly {
         display: inline;
     }
