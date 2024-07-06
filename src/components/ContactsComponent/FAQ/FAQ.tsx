@@ -18,6 +18,7 @@ const FAQ: FC = () => {
   const faqTitle = useRef<HTMLHeadingElement>(null);
   const faqWrapper = useRef<HTMLDivElement>(null);
   const imgAndFaqWrapper = useRef<HTMLDivElement>(null);
+   const answerRefs = useRef<(HTMLParagraphElement | null)[]>([]);
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -66,13 +67,22 @@ const FAQ: FC = () => {
     );
   });
 
-  const toggleAnswer = (index: number) => {
-    if (openIndices.includes(index)) {
-      setOpenIndices(openIndices.filter((i) => i !== index));
-    } else {
-      setOpenIndices([...openIndices, index]);
-    }
-  };
+    const toggleAnswer = (index: number) => {
+      if (openIndices.includes(index)) {
+        gsap.to(answerRefs.current[index], {
+          height: 0,
+          duration: 0.3,
+          onComplete: () =>
+            setOpenIndices(openIndices.filter((i) => i !== index)),
+        });
+      } else {
+        setOpenIndices([...openIndices, index]);
+        if (answerRefs.current[index]) {
+          gsap.set(answerRefs.current[index], { height: "auto" });
+          gsap.from(answerRefs.current[index], { height: 0, duration: 0.5 });
+        }
+      }
+    };
 
   useEffect(() => {
     // Обновление марджина при изменении высоты faqWrapper
@@ -113,7 +123,7 @@ const FAQ: FC = () => {
       observer.disconnect();
       window.removeEventListener("resize", updateMargin);
     };
-  },[]);
+  }, []);
 
   return (
     <div className={s.imgAndFaqWrapper} ref={imgAndFaqWrapper}>
@@ -126,13 +136,12 @@ const FAQ: FC = () => {
         <ul className={s.faqList}>
           {faqData.map((item, index) => (
             <li key={index} className={s.faqItem}>
-              <div className={s.questionWrapper}>
+              <div
+                className={s.questionWrapper}
+                onClick={() => toggleAnswer(index)}
+              >
                 <p className={s.questionText}>{item.question}</p>
-                <button
-                  type="button"
-                  className={s.iconButton}
-                  onClick={() => toggleAnswer(index)}
-                >
+                <button type="button" className={s.iconButton}>
                   <Image
                     src={openIndices.includes(index) ? UpIcon : DownIcon}
                     alt={openIndices.includes(index) ? "close" : "open"}
@@ -140,9 +149,16 @@ const FAQ: FC = () => {
                   />
                 </button>
               </div>
-              {openIndices.includes(index) && (
+              <div
+                className={s.answerWrapper}
+                ref={(el) => (answerRefs.current[index] = el)}
+                style={{
+                  height: openIndices.includes(index) ? "auto" : 0,
+                  overflow: "hidden",
+                }}
+              >
                 <p className={s.answerText}>{item.answer}</p>
-              )}
+              </div>
             </li>
           ))}
         </ul>
