@@ -11,7 +11,7 @@ export const houses = [
         text: "Hatynka Dida Moroza"
       }
     ],
-    rental_price: 1200,
+    rental_price: 1300,
     max_adults: 2,
     max_children: 0,
     photo: [
@@ -31,7 +31,7 @@ export const houses = [
         text: "Svitlytsia"
       }
     ],
-    rental_price: 1200,
+    rental_price: 1300,
     max_adults: 2,
     max_children: 1,
     photo: [
@@ -51,7 +51,7 @@ export const houses = [
         text: "Hatynka Babky Izhachky"
       }
     ],
-    rental_price: 800,
+    rental_price: 950,
     max_adults: 2,
     max_children: 1,
     photo: [
@@ -71,7 +71,7 @@ export const houses = [
         text: "Komora De Lyuks"
       }
     ],
-    rental_price: 1200,
+    rental_price: 1300,
     max_adults: 2,
     max_children: 1,
     photo: [
@@ -91,7 +91,7 @@ export const houses = [
         text: "Opochyvalnia"
       }
     ],
-    rental_price: 1200,
+    rental_price: 1300,
     max_adults: 2,
     max_children: 1,
     photo: [
@@ -111,7 +111,7 @@ export const houses = [
         text: "Hornytsia"
       }
     ],
-    rental_price: 1200,
+    rental_price: 1300,
     max_adults: 2,
     max_children: 1,
     photo: [
@@ -131,7 +131,7 @@ export const houses = [
         text: "Maisternia Hnomiv"
       }
     ],
-    rental_price: 1700,
+    rental_price: 1800,
     max_adults: 5,
     max_children: 0,
     photo: [
@@ -151,7 +151,7 @@ export const houses = [
         text: "Teremok"
       }
     ],
-    rental_price: 650,
+    rental_price: 750,
     max_adults: 2,
     max_children: 0,
     photo: [
