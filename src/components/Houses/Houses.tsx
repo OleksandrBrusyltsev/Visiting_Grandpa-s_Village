@@ -78,7 +78,6 @@ export default  function Houses({items, children}: Props) {
             x: 0,
             autoAlpha: 1,
             duration: 0.8,
-            // delay: 0.1,
             ease: 'power1.out',
             scrollTrigger: {
               trigger: h,

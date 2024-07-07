@@ -86,6 +86,8 @@
     display: none;
 }
 .bookingForm {
+    position: relative;
+    z-index: 100;
     margin-top: 77px;
     & > * {
         margin: 0 auto;

@@ -15,7 +15,7 @@ export const houses = [
     max_adults: 2,
     max_children: 0,
     photo: [
-      "/images/houses/Did-Moroz.jpg"
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345875/ivo9lsgtpu8sdxgfexje.jpg"
     ],
     id: 0
   },
@@ -35,7 +35,7 @@ export const houses = [
     max_adults: 2,
     max_children: 1,
     photo: [
-      "/images/houses/Svitlytsia.jpg"
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345880/lsltjnm01dbek1jb05od.jpg"
     ],
     id: 1
   },
@@ -55,7 +55,7 @@ export const houses = [
     max_adults: 2,
     max_children: 1,
     photo: [
-      "/images/houses/Hatinka-Babky-Izhachky.jpg"
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345875/ydij7hsodfgc8yvlnil6.jpg"
     ],
     id: 2
   },
@@ -75,7 +75,7 @@ export const houses = [
     max_adults: 2,
     max_children: 1,
     photo: [
-      "/images/houses/Komora-De-Lyuks.jpg"
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg"
     ],
     id: 3
   },
@@ -95,7 +95,7 @@ export const houses = [
     max_adults: 2,
     max_children: 1,
     photo: [
-      "/images/houses/Opochyvalnia.jpg"
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345879/oe1zuqlg9k5mg36vqy0n.jpg"
     ],
     id: 4
   },
@@ -115,7 +115,7 @@ export const houses = [
     max_adults: 2,
     max_children: 1,
     photo: [
-      "/images/houses/Hornytsia.jpg"
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg"
     ],
     id: 5
   },
@@ -135,7 +135,7 @@ export const houses = [
     max_adults: 5,
     max_children: 0,
     photo: [
-      "/images/houses/Maisternia-Hnomiv.jpg"
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345878/zkesaqmdsfsk2ofwzy4n.jpg"
     ],
     id: 6
   },
@@ -155,7 +155,7 @@ export const houses = [
     max_adults: 2,
     max_children: 0,
     photo: [
-      "/images/houses/Teremok.jpg"
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345881/esdertz6nrzd0kucpsgr.jpg"
     ],
     id: 7
   },
@@ -175,7 +175,7 @@ export const houses = [
     max_adults: 0,
     max_children: 0,
     photo: [
-      "/images/houses/Khoromy.jpg"
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/czorzi3frevroezpzv45.jpg"
     ],
     id: 8
   } 

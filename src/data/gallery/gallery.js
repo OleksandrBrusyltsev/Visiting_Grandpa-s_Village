@@ -15,7 +15,7 @@ export const gallery = [
         images: [
             {
                 id: 1,
-                src: "/images/memories/fireplace.jpg",
+                src: "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345882/cqftcdp7m99m6qotuoff.jpg",
                 description: "Awesome fireplace"
             },
         ],
@@ -37,7 +37,7 @@ export const gallery = [
         images: [
             {
                 id: 1,
-                src: "/images/memories/lake.jpg",
+                src: "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345884/uqnxxyg64ixkxymtnea0.jpg",
                 description: "Cool Lake"
             },
         ],
@@ -59,7 +59,7 @@ export const gallery = [
         images: [
             {
                 id: 1,
-                src: "/images/memories/dog.jpg",
+                src: "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345881/vnhqi26pnvywoft07nfg.jpg",
                 description: "Lonely dog"
             },
         ],
@@ -81,7 +81,7 @@ export const gallery = [
         images: [
             {
                 id: 1,
-                src: "/images/memories/houses.jpg",
+                src: "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345882/er32qu4vgekguhihzmyo.jpg",
                 description: "Cozy houses"
             },
         ],
@@ -103,7 +103,7 @@ export const gallery = [
         images: [
             {
                 id: 1,
-                src: "/images/memories/potter.jpg",
+                src: "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345884/y4wjgwvqxdgsqgsqen79.jpg",
                 description: "ottery production"
             },
         ],
@@ -125,7 +125,7 @@ export const gallery = [
         images: [
             {
                 id: 1,
-                src: "/images/memories/koliadnyky.jpg",
+                src: "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345883/l52xzi4ysenxczkayph4.jpg",
                 description: "Funny clowns"
             },
         ],
