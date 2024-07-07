@@ -47,7 +47,6 @@ const ContactsList = () => {
         {
           scrollTrigger: {
             trigger: grandpa.current,
-            markers: true,
             start: "bottom 80%",
           },
           x: "0%",

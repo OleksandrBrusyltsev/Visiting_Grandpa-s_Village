@@ -18,9 +18,8 @@ const nextConfig = {
     ],
   },
   env: {
-    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:
-      process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-    NEXT_PUBLIC_MAP_ADI: process.env.NEXT_PUBLIC_MAP_ADI,
+    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
+    MAP_ADI: process.env.MAP_ADI,
   },
 };
 
