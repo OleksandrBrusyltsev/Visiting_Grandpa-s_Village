@@ -1,11 +1,10 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { ScrollTrigger } from "gsap/all";
 import faqData from "./faqData.json";
 import Lake from "../../../../public/images/contacts/lake.png";
 import DownIcon from "../../../assets/icons/icon-down.svg";
@@ -17,8 +16,8 @@ const FAQ: FC = () => {
   const lake = useRef<HTMLImageElement>(null);
   const faqTitle = useRef<HTMLHeadingElement>(null);
   const faqWrapper = useRef<HTMLDivElement>(null);
-
-  gsap.registerPlugin(ScrollTrigger);
+  const imgAndFaqWrapper = useRef<HTMLDivElement>(null);
+  const answerRefs = useRef<(HTMLParagraphElement | null)[]>([]);
 
   useGSAP(() => {
     gsap.fromTo(
@@ -67,29 +66,79 @@ const FAQ: FC = () => {
 
   const toggleAnswer = (index: number) => {
     if (openIndices.includes(index)) {
-      setOpenIndices(openIndices.filter((i) => i !== index));
+      gsap.to(answerRefs.current[index], {
+        height: 0,
+        duration: 0.3,
+        onComplete: () =>
+          setOpenIndices(openIndices.filter((i) => i !== index)),
+      });
     } else {
       setOpenIndices([...openIndices, index]);
+      if (answerRefs.current[index]) {
+        gsap.set(answerRefs.current[index], { height: "auto" });
+        gsap.from(answerRefs.current[index], { height: 0, duration: 0.5 });
+      }
     }
   };
 
+  useEffect(() => {
+    // Обновление марджина при изменении высоты faqWrapper
+    const updateMargin = () => {
+      const screenWidth = window.innerWidth;
+      const breakpoint = 768; // Ширина экрана, начиная с которой будет применяться CSS
+
+      if (imgAndFaqWrapper.current) {
+        if (screenWidth < breakpoint) {
+          if (faqWrapper.current) {
+            const faqHeight = faqWrapper.current.offsetHeight;
+            const additionalMargin = 60; // Добавление 40 пикселей
+            imgAndFaqWrapper.current.style.marginBottom = `${
+              faqHeight + additionalMargin
+            }px`;
+          }
+        } else {
+          // Сбросить марджин, если ширина экрана больше или равна breakpoint
+          imgAndFaqWrapper.current.style.marginBottom = "";
+        }
+      }
+    };
+
+    // Вызов функции обновления марджина при монтировании компонента
+    updateMargin();
+
+    // Вызов функции обновления марджина при изменении контента
+    const observer = new MutationObserver(updateMargin);
+    if (faqWrapper.current) {
+      observer.observe(faqWrapper.current, { childList: true, subtree: true });
+    }
+
+    // Обновление марджина при изменении размера окна
+    window.addEventListener("resize", updateMargin);
+
+    // Очистка наблюдателя и обработчика событий при размонтировании компонента
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateMargin);
+    };
+  }, []);
+
   return (
-    <div className={s.imgAndFaqWrapper}>
+    <div className={s.imgAndFaqWrapper} ref={imgAndFaqWrapper}>
       <Image src={Lake} alt="picture" className={s.lake} ref={lake} />
       <h1 className={s.faqTitle} ref={faqTitle}>
         Частіше за все Дідуся запитують
       </h1>
+
       <div className={s.faqWrapper} ref={faqWrapper}>
         <ul className={s.faqList}>
           {faqData.map((item, index) => (
             <li key={index} className={s.faqItem}>
-              <div className={s.questionWrapper}>
+              <div
+                className={s.questionWrapper}
+                onClick={() => toggleAnswer(index)}
+              >
                 <p className={s.questionText}>{item.question}</p>
-                <button
-                  type="button"
-                  className={s.iconButton}
-                  onClick={() => toggleAnswer(index)}
-                >
+                <button type="button" className={s.iconButton}>
                   <Image
                     src={openIndices.includes(index) ? UpIcon : DownIcon}
                     alt={openIndices.includes(index) ? "close" : "open"}
@@ -97,9 +146,16 @@ const FAQ: FC = () => {
                   />
                 </button>
               </div>
-              {openIndices.includes(index) && (
+              <div
+                className={s.answerWrapper}
+                ref={(el) => (answerRefs.current[index] = el)}
+                style={{
+                  height: openIndices.includes(index) ? "auto" : 0,
+                  overflow: "hidden",
+                }}
+              >
                 <p className={s.answerText}>{item.answer}</p>
-              )}
+              </div>
             </li>
           ))}
         </ul>
