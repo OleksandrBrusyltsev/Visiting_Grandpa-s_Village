@@ -3,7 +3,6 @@ import { FC } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { ScrollTrigger } from "gsap/all";
 import TelegramBotLink from "./TelegramBlock/TelegramBlock";
 import ContactsList from "./ContactsList/ContactsList";
 import FAQ from "./FAQ/FAQ";
@@ -13,8 +12,7 @@ import s from "./ContactsComponent.module.scss";
 
 const ContactsComponent: FC = () => {
   const googleMapWrapper = useRef<HTMLDivElement>(null);
-  gsap.registerPlugin(ScrollTrigger);
-
+ 
   useGSAP(() => {
     gsap.fromTo(
       googleMapWrapper.current,

@@ -5,7 +5,6 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { ScrollTrigger } from "gsap/all";
 import faqData from "./faqData.json";
 import Lake from "../../../../public/images/contacts/lake.png";
 import DownIcon from "../../../assets/icons/icon-down.svg";
@@ -18,9 +17,7 @@ const FAQ: FC = () => {
   const faqTitle = useRef<HTMLHeadingElement>(null);
   const faqWrapper = useRef<HTMLDivElement>(null);
   const imgAndFaqWrapper = useRef<HTMLDivElement>(null);
-   const answerRefs = useRef<(HTMLParagraphElement | null)[]>([]);
-
-  gsap.registerPlugin(ScrollTrigger);
+  const answerRefs = useRef<(HTMLParagraphElement | null)[]>([]);
 
   useGSAP(() => {
     gsap.fromTo(
@@ -67,22 +64,22 @@ const FAQ: FC = () => {
     );
   });
 
-    const toggleAnswer = (index: number) => {
-      if (openIndices.includes(index)) {
-        gsap.to(answerRefs.current[index], {
-          height: 0,
-          duration: 0.3,
-          onComplete: () =>
-            setOpenIndices(openIndices.filter((i) => i !== index)),
-        });
-      } else {
-        setOpenIndices([...openIndices, index]);
-        if (answerRefs.current[index]) {
-          gsap.set(answerRefs.current[index], { height: "auto" });
-          gsap.from(answerRefs.current[index], { height: 0, duration: 0.5 });
-        }
+  const toggleAnswer = (index: number) => {
+    if (openIndices.includes(index)) {
+      gsap.to(answerRefs.current[index], {
+        height: 0,
+        duration: 0.3,
+        onComplete: () =>
+          setOpenIndices(openIndices.filter((i) => i !== index)),
+      });
+    } else {
+      setOpenIndices([...openIndices, index]);
+      if (answerRefs.current[index]) {
+        gsap.set(answerRefs.current[index], { height: "auto" });
+        gsap.from(answerRefs.current[index], { height: 0, duration: 0.5 });
       }
-    };
+    }
+  };
 
   useEffect(() => {
     // Обновление марджина при изменении высоты faqWrapper
