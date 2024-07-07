@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react'
+import React, { forwardRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
@@ -19,7 +19,7 @@ const FavoriteIcon  = ({className}: {className: string}) => {
     )
 
 }
-export default function HouseItem({data}: Props) {
+const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem({data}, ref) {
     const locale = useLocale();
     const path = usePathname();
     const pathName = path.split('/')[2];
@@ -39,7 +39,7 @@ export default function HouseItem({data}: Props) {
     }
 
     return (
-        <div className={s.houseWrapper} >
+        <div className={s.houseWrapper} ref={ref}>
             <div className={s.imageWrapper} onClick={() => push(`/${locale}/${pathName}/${name}`)}>
                 <Image
                     fill
@@ -90,4 +90,6 @@ export default function HouseItem({data}: Props) {
             </button>
         </div>
     )
-}
+})
+
+export default HouseItem; 
