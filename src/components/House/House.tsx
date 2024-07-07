@@ -3,10 +3,10 @@ import { getData } from "@/actions/getData";
 import Image from "next/image";
 import Booking from "./Booking";
 // import Button from "../ui/Button/Button";
-// import Slider from "./Slider";
+import Swiper from "./Swiper";
 import s from "./House.module.scss";
 import Icon from "../ui/Icon/Icon";
-import Houses from "@/components/Houses/Houses";
+// import Houses from "@/components/Houses/Houses";
 
 type Props = { id: string };
 
@@ -20,7 +20,7 @@ export default async function House({ id }: Props) {
     return <p>House not found</p>;
   }
 
-  const { name, rental_price, max_adults } = house;
+  const { swiper, rental_price, max_adults } = house;
   const title = house.title.filter((item) => item.language === locale)[0].text;
   // console.log(house);
 
@@ -34,15 +34,15 @@ export default async function House({ id }: Props) {
           <Icon name="arrow-house-small" />
         </div>
       </div>
-      {/* <Slider /> */}
 
-      <div
+      <Swiper pictures={swiper} />
+      {/* <div
         style={{
           height: "550px",
           border: "1px solid black",
           // margin: "21px 40px 0px",
         }}
-      ></div>
+      ></div> */}
 
       <div className={s.contentWrapper}>
         <div className={s.textWrapper}>
@@ -89,6 +89,7 @@ export default async function House({ id }: Props) {
         </div>
         <Booking price={rental_price} guests={max_adults} />
       </div>
+
       <div className={s.heroSectionWrapper}>
         <div className={s.hero}>
           <p className={s.description}>
@@ -105,6 +106,7 @@ export default async function House({ id }: Props) {
           </div>
         </div>
       </div>
+
       <div className={s.mapWrapper}>
         <div className={s.map}>
           <Image
@@ -114,7 +116,6 @@ export default async function House({ id }: Props) {
                 ? "Map of Grandpa's houses"
                 : "Карта еко садиби Дідуся"
             }
-            // src="/images/backgrounds/illustration-map.png"
             src="/images/houses/house/illustration-map.png"
             className={s.mapImage}
           />
