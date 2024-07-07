@@ -10,7 +10,7 @@ import {
 const GoogleMap = () => {
   const position = { lat: 51.96278, lng: 31.1626 };
   const apiKey =
-    process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "YOUR_DEFAULT_API_KEY";
+    process.env.GOOGLE_MAPS_API_KEY || "YOUR_DEFAULT_API_KEY";
   const [open, setOpen] = useState<boolean>(false);
 
   return (
@@ -20,7 +20,7 @@ const GoogleMap = () => {
           defaultCenter={position}
           zoom={17}
           center={position}
-          mapId={process.env.NEXT_PUBLIC_MAP_ADI}
+          mapId={process.env.MAP_ADI}
         >
           <AdvancedMarker position={position} onClick={() => setOpen(true)}>
             <Pin
