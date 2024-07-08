@@ -2,8 +2,8 @@
   width: 17px;
   height: 24px;
   position: absolute;
-  top: var(--top);
-  left: var(--left);
+  top: var(--top-small);
+  left: var(--left-small);
 
   @media (min-width: 376px) and (max-width: 767px) {
     top: calc(
