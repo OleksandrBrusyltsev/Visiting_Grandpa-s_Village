@@ -1,0 +1,83 @@
+.gallery {
+  display: none;
+
+  @media (min-width: 769px) {
+    width: 100%;
+    height: 548px;
+    column-gap: 3%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 13px;
+  }
+}
+
+.imageWrapper:nth-child(1) {
+  width: 53%;
+  height: 548px;
+  position: relative;
+}
+.imageWrapper:nth-child(2) {
+  width: 44%;
+  height: 298px;
+  position: relative;
+}
+.imageWrapper:nth-child(3) {
+  width: 44%;
+  height: 237px;
+  position: relative;
+}
+
+.swiperMobile {
+  @media (min-width: 769px) {
+    display: none;
+  }
+}
+
+.swiperLaptopWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.swiperLaptop {
+  display: none;
+  @media (min-width: 769px) {
+    display: block;
+    // width: 70%;
+    width: 1136px;
+    height: 600px;
+    position: absolute;
+    top: -25px;
+    z-index: 6;
+  }
+}
+
+.overlay {
+  display: none;
+
+  @media screen and (min-width: 769px) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(212, 210, 204, 70%);
+    z-index: 5;
+  }
+}
+
+.swiperButtonPrevCustom {
+  position: absolute;
+  width: 78px;
+  height: 78px;
+}
+
+.swiperButtonNextCustom {
+  position: absolute;
+  right: 0;
+  width: 78px;
+  height: 78px;
+}

@@ -1,22 +1,21 @@
 import Image from "next/image";
-import Button from "../ui/Button/Button";
-import Icon from "../ui/Icon/Icon";
+import Button from "../../ui/Button/Button";
+import Icon from "../../ui/Icon/Icon";
 import s from "./Booking.module.scss";
 
-type Props = { price: number; guests: number };
+type Props = { price: number; guests: number; photoDecor: string };
 
-export default async function Booking({ price, guests }: Props) {
+export default async function Booking({ price, guests, photoDecor }: Props) {
   return (
     <section className={s.sectionWrapper}>
       <div className={s.imageDecorWrapper}>
         <div className={s.imageDecor}>
           <Image
-            // fill
             width={188}
             height={144}
             alt="house decor"
-            src="/images/houses/house/house-decor.svg"
-            // sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 30vw"
+            // src="/images/houses/house/house-decor.svg"
+            src={photoDecor}
             className={s.image}
           />
         </div>
@@ -40,16 +39,12 @@ export default async function Booking({ price, guests }: Props) {
             </div>
             <div>
               <p>Час виїзду:</p>
-              <p>14:00</p>
+              <p>12:00</p>
             </div>
           </div>
         </div>
         <div className={s.buttonWrapper}>
-          <Button
-            label={"Забронювати"}
-            // onClick={() => )}
-            type="button"
-          />
+          <Button label={"Забронювати"} type="button" />
         </div>
       </div>
     </section>

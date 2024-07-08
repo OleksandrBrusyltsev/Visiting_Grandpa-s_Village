@@ -1,4 +1,3 @@
-// global.d.ts
 declare namespace JSX {
   interface IntrinsicElements {
     "swiper-container": React.DetailedHTMLProps<
@@ -7,7 +6,7 @@ declare namespace JSX {
     > & {
       init?: string;
       "slides-per-view"?: string;
-      navigation?: string;
+      navigation?: string | { prevEl: string; nextEl: string };
       pagination?: string;
     };
     "swiper-slide": React.DetailedHTMLProps<

@@ -33,6 +33,19 @@
   }
 }
 
+.galleryWrapper {
+  // width: 329px;
+  position: relative;
+  margin-top: 21px;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    margin-top: calc(21px + 9 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    margin-top: 30px;
+  }
+}
+
 .contentWrapper {
   display: flex;
   flex-direction: column;
@@ -100,11 +113,11 @@
     margin-top: 71px;
   }
 
-  & span {
+  & p {
     display: block;
     padding-top: 14px;
   }
-  & span:first-child {
+  & p:first-child {
     padding-top: 0px;
   }
 }
@@ -270,7 +283,6 @@
   @media (min-width: 769px) and (max-width: 1279px) {
     width: calc(236px + 97 * (100vw - 769px) / 510);
     height: calc(239px + 95 * (100vw - 769px) / 510);
-    // right: calc(0px - 18 * (100vw - 769px) / 510);
     right: calc(25px - 20 * (100vw - 769px) / 510);
     top: calc(-40px - 80 * (100vw - 769px) / 510);
   }
@@ -278,7 +290,6 @@
   @media (min-width: 1280px) {
     width: 334px;
     height: 334px;
-    // right: 100px;
     right: -5px;
     top: -120px;
   }
@@ -290,7 +301,6 @@
     position: absolute;
     right: -30px;
     bottom: -105px;
-    // background-image: url("/images/backgrounds/house-trees.png");
     background-image: url("/images/houses/house/house-trees.png");
     background-position: right bottom;
     background-repeat: no-repeat;
@@ -443,31 +453,31 @@
   }
 }
 
-.pin {
-  width: 17px;
-  height: 24px;
-  position: absolute;
-  top: 45px;
-  left: 130px;
+// .pin {
+//   width: 17px;
+//   height: 24px;
+//   position: absolute;
+//   top: 45px;
+//   left: 130px;
 
-  @media (min-width: 376px) and (max-width: 767px) {
-    top: calc(45px + 45 * (100vw - 376px) / 391);
-    left: calc(130px + 170 * (100vw - 376px) / 391);
-  }
-  @media (min-width: 768px) {
-    top: 90px;
-    left: 300px;
-  }
-  @media (min-width: 769px) and (max-width: 1279px) {
-    width: calc(17px + 10 * (100vw - 769px) / 510);
-    height: calc(24px + 13 * (100vw - 769px) / 510);
-    top: calc(90px + 50 * (100vw - 769px) / 510);
-    left: calc(300px + 200 * (100vw - 769px) / 510);
-  }
-  @media (min-width: 1280px) {
-    width: 27px;
-    height: 37px;
-    top: 140px;
-    left: 500px;
-  }
-}
+//   @media (min-width: 376px) and (max-width: 767px) {
+//     top: calc(45px + 45 * (100vw - 376px) / 391);
+//     left: calc(130px + 170 * (100vw - 376px) / 391);
+//   }
+//   @media (min-width: 768px) {
+//     top: 90px;
+//     left: 300px;
+//   }
+//   @media (min-width: 769px) and (max-width: 1279px) {
+//     width: calc(17px + 10 * (100vw - 769px) / 510);
+//     height: calc(24px + 13 * (100vw - 769px) / 510);
+//     top: calc(90px + 50 * (100vw - 769px) / 510);
+//     left: calc(300px + 200 * (100vw - 769px) / 510);
+//   }
+//   @media (min-width: 1280px) {
+//     width: 27px;
+//     height: 37px;
+//     top: 140px;
+//     left: 500px;
+//   }
+// }

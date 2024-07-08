@@ -1,12 +1,12 @@
 import { getLocale } from "next-intl/server";
 import { getData } from "@/actions/getData";
 import Image from "next/image";
-import Booking from "./Booking";
-// import Button from "../ui/Button/Button";
-import Swiper from "./Swiper";
-import s from "./House.module.scss";
+import Booking from "./Booking/Booking";
+import Gallery from "./Gallery/Gallery";
+import Pin from "./Pin/Pin";
 import Icon from "../ui/Icon/Icon";
-// import Houses from "@/components/Houses/Houses";
+import MarkdownPreview from "../../data/houses/MarkdownPreview";
+import s from "./House.module.scss";
 
 type Props = { id: string };
 
@@ -14,18 +14,17 @@ export default async function House({ id }: Props) {
   const locale = await getLocale();
   const data: HouseItem[] = await getData<HouseItem[]>("houses");
   const house = data.find((item) => item.name === id);
-  // console.log(house);
 
   if (!house) {
     return <p>House not found</p>;
   }
 
-  const { swiper, rental_price, max_adults } = house;
+  const { swiper, rental_price, max_adults, photoDecor, text, coordinates } =
+    house;
   const title = house.title.filter((item) => item.language === locale)[0].text;
-  // console.log(house);
 
   return (
-    <section className={s.sectionWrapper}>
+    <div className={s.sectionWrapper}>
       <div className={s.arrowBlockWrapper}>
         <p className={s.textDecor}>
           &quot;Гортай, щоб побачити більше фото.&quot;
@@ -35,42 +34,15 @@ export default async function House({ id }: Props) {
         </div>
       </div>
 
-      <Swiper pictures={swiper} />
-      {/* <div
-        style={{
-          height: "550px",
-          border: "1px solid black",
-          // margin: "21px 40px 0px",
-        }}
-      ></div> */}
+      <div className={s.galleryWrapper}>
+        <Gallery pictures={swiper} />
+      </div>
 
       <div className={s.contentWrapper}>
         <div className={s.textWrapper}>
           <h1 className={s.headline}>{title}</h1>
           <p className={s.text}>
-            <span>
-              Запрошую тебе в чарівну хатинку Діда Мороза. Це місце, де в
-              справжній казці зливаються екологічність та відпочинок в
-              комфортних умовах. В Хатинці є все, що потрібно : ванна кімната з
-              душем та туалетом, холодильник і телевізор.
-            </span>
-            <span>
-              Наша хатинка розташована серед природи, в обіймах пишних ялинок та
-              зелених дерев. Фасад оформлений натуральними матеріалами,
-              включаючи дерево та природні складники. Декорування відображає
-              традиційний стиль українського села, що приваблює як маленьких так
-              і великих гостей.
-            </span>
-            <span>
-              Усередині хатинки тебе чекає затишне приміщення, розраховане на 2
-              людей. Там кожна деталь наповнена моєю турботою.{" "}
-            </span>
-            <span>
-              В зимовий період Хатинка Дідуся наповнюється особливо теплою
-              атмосферою, бо я придумав створити в середині Баньку, щоб мої
-              відвідувачі змогли розслабитись та сповна насолодитись часом,
-              проведеним в Еко-садибі “На селі у Дідуся”.
-            </span>
+            <MarkdownPreview markdown={text} />
           </p>
           <div className={s.servicesWrapper}>
             <div className={s.iconWrapper}>
@@ -87,7 +59,11 @@ export default async function House({ id }: Props) {
             </div>
           </div>
         </div>
-        <Booking price={rental_price} guests={max_adults} />
+        <Booking
+          price={rental_price}
+          guests={max_adults}
+          photoDecor={photoDecor}
+        />
       </div>
 
       <div className={s.heroSectionWrapper}>
@@ -123,14 +99,21 @@ export default async function House({ id }: Props) {
         <div className={s.cloudBackground}>
           <Icon name="house-cloud" className={s.cloud} />
         </div>
-        <div className={s.pin}>
-          <Image
-            fill
-            alt={locale === "en" ? "pin" : "мітка"}
-            src="/images/houses/house/Shape.png"
-          />
-        </div>
+        <Pin
+          top={coordinates.top}
+          left={coordinates.left}
+          topSmall={coordinates.topSmall}
+          leftSmall={coordinates.leftSmall}
+          topSmallDifference={coordinates.topSmallDifference}
+          leftSmallDifference={coordinates.leftSmallDifference}
+          topMedium={coordinates.topMedium}
+          leftMedium={coordinates.leftMedium}
+          topMediumDifference={coordinates.topMediumDifference}
+          leftMediumDifference={coordinates.leftMediumDifference}
+          topLarge={coordinates.topLarge}
+          leftLarge={coordinates.leftLarge}
+        />
       </div>
-    </section>
+    </div>
   );
 }

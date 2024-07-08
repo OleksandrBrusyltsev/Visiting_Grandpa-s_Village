@@ -59,13 +59,28 @@ swiper-container {
   @include media-min($breakpoint-tablet-min) {
     height: 550px;
   }
+  @include media-min($breakpoint-laptop-min) {
+    height: 600px;
+    width: 1136px;
+  }
 }
 
 swiper-slide {
   border-radius: 8%;
+
+  @media (min-width: 769px) {
+    & img {
+      left: 115px !important;
+      width: 900px !important;
+    }
+  }
 }
 
-swiper-button-next,
-swiper-button-prev {
-  z-index: 100;
-}
+// swiper-container::part(button-prev),
+// swiper-container::part(button-next) {
+//   color: white;
+//   width: 50px;
+//   height: 50px;
+//   background-color: rgb(var(--color-base-green));
+//   border-radius: 50%;
+// }

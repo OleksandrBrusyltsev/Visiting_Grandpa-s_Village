@@ -1,0 +1,36 @@
+.pin {
+  width: 17px;
+  height: 24px;
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    top: calc(
+      var(--top-small) + var(--top-small-difference) * (100vw - 376px) / 391
+    );
+    left: calc(
+      var(--left-small) + var(--left-small-difference) * (100vw - 376px) / 391
+    );
+  }
+  @media (min-width: 768px) {
+    top: var(--top-medium);
+    left: var(--left-medium);
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    width: calc(17px + 10 * (100vw - 769px) / 510);
+    height: calc(24px + 13 * (100vw - 769px) / 510);
+    top: calc(
+      var(--top-medium) + var(--top-medium-difference) * (100vw - 769px) / 510
+    );
+    left: calc(
+      var(--left-medium) + var(--left-medium-difference) * (100vw - 769px) / 510
+    );
+  }
+  @media (min-width: 1280px) {
+    width: 27px;
+    height: 37px;
+    top: var(--top-large);
+    left: var(--left-large);
+  }
+}
