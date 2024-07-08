@@ -14,12 +14,14 @@ export const houses = [
     rental_price: 1300,
     max_adults: 2,
     max_children: 0,
-    photo: ["/images/houses/Did-Moroz.jpg"],
     photoDecor: "/images/houses/house/house-decor-hatynka-dida-moroza.svg",
     swiper: [
       "/images/houses/house/hatynka-dida-moroza/hatynka-dida-moroza-1-1.png",
       "/images/houses/house/hatynka-dida-moroza/hatynka-dida-moroza-2-1.png",
       "/images/houses/house/hatynka-dida-moroza/hatynka-dida-moroza-3-1.png",
+    ],
+    photo: [
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345875/ivo9lsgtpu8sdxgfexje.jpg",
     ],
     text: `Запрошую тебе в чарівну **хатинку Діда Мороза**. Це місце, де в справжній казці зливаються екологічність та відпочинок в комфортних умовах. В Хатинці є все, що потрібно: **ванна кімната з душем та туалетом, холодильник і телевізор.**\n\n Наша хатинка розташована серед природи, в обіймах пишних ялинок та зелених дерев. Фасад оформлений **натуральними матеріалами**, включаючи дерево та природні складники. Декорування відображає **традиційний стиль українського села**, що приваблює як маленьких так і великих гостей.\n\n Усередині хатинки тебе чекає затишне приміщення, розраховане на **2 людей**. Там кожна деталь наповнена моєю турботою.\n\n В зимовий період Хатинка Дідуся наповнюється особливо теплою атмосферою, бо я придумав створити в середині **Баньку**, щоб мої відвідувачі змогли розслабитись та сповна насолодитись часом, проведеним в Еко-садибі “На селі у Дідуся”.`,
     id: 0,
@@ -48,15 +50,17 @@ export const houses = [
         text: "Svitlytsia",
       },
     ],
-    rental_price: 1200,
+    rental_price: 1300,
     max_adults: 2,
     max_children: 1,
-    photo: ["/images/houses/Svitlytsia.jpg"],
     photoDecor: "/images/houses/house/house-decor-svitlytsia.svg",
     swiper: [
       "/images/houses/house/svitlytsia/svitlytsia-1.png",
       "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
       "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+    ],
+    photo: [
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345880/lsltjnm01dbek1jb05od.jpg",
     ],
     text: `Запрошую тебе в унікальну оселю "Світлиця" у нашій Еко-садибі "На селі у Дідуся". Це місце, де затишок і екологічність переплітаються з комфортом, створюючи неповторну атмосферу справжньої казки для наших гостей.\n\n В "Світлиці" є все, що потрібно для приємного відпочинку: зручна спальня для двох осіб, повністю обладнана ванна кімната з душем та туалетом, холодильник і телевізор. Кожна деталь внутрішнього приміщення пронизана моєю турботою про гостей.\n\n Розташована "Світлиця" серед буйного зеленого лісу та величних ялин, що надає нашій садибі неповторності. Фасад виконаний з натуральних матеріалів - дерева та інших природних елементів, що підкреслює її органічність та злагодженість з природою.\n\n Декор "Світлиці" відображає традиційний український стиль, який приваблює і дітей, і дорослих своєю автентичністю та затишком.\n\n Особливо у зимовий період "Світлиця" сповнюється теплою атмосферою. Я вирішив здивувати наших гостей, створивши в середині справжню баньку, де можна розслабитись і насолодитись моментом відпочинку після насиченого дня.\n\n Запрошую тебе відвідати "Світлицю" у нашій Еко-садибі "На селі у Дідуся", де кожен момент стає особливим, а кожен гість - цінним членом нашої родини.`,
     id: 1,
@@ -85,10 +89,12 @@ export const houses = [
         text: "Hatynka Babky Izhachky",
       },
     ],
-    rental_price: 800,
+    rental_price: 950,
     max_adults: 2,
     max_children: 1,
-    photo: ["/images/houses/Hatinka-Babky-Izhachky.jpg"],
+    photo: [
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345875/ydij7hsodfgc8yvlnil6.jpg",
+    ],
     id: 2,
   },
   {
@@ -103,10 +109,12 @@ export const houses = [
         text: "Komora De Lyuks",
       },
     ],
-    rental_price: 1200,
+    rental_price: 1300,
     max_adults: 2,
     max_children: 1,
-    photo: ["/images/houses/Komora-De-Lyuks.jpg"],
+    photo: [
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
+    ],
     id: 3,
   },
   {
@@ -121,10 +129,12 @@ export const houses = [
         text: "Opochyvalnia",
       },
     ],
-    rental_price: 1200,
+    rental_price: 1300,
     max_adults: 2,
     max_children: 1,
-    photo: ["/images/houses/Opochyvalnia.jpg"],
+    photo: [
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345879/oe1zuqlg9k5mg36vqy0n.jpg",
+    ],
     id: 4,
   },
   {
@@ -139,10 +149,12 @@ export const houses = [
         text: "Hornytsia",
       },
     ],
-    rental_price: 1200,
+    rental_price: 1300,
     max_adults: 2,
     max_children: 1,
-    photo: ["/images/houses/Hornytsia.jpg"],
+    photo: [
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
+    ],
     id: 5,
   },
   {
@@ -157,10 +169,12 @@ export const houses = [
         text: "Maisternia Hnomiv",
       },
     ],
-    rental_price: 1700,
+    rental_price: 1800,
     max_adults: 5,
     max_children: 0,
-    photo: ["/images/houses/Maisternia-Hnomiv.jpg"],
+    photo: [
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345878/zkesaqmdsfsk2ofwzy4n.jpg",
+    ],
     id: 6,
   },
   {
@@ -175,10 +189,12 @@ export const houses = [
         text: "Teremok",
       },
     ],
-    rental_price: 650,
+    rental_price: 750,
     max_adults: 2,
     max_children: 0,
-    photo: ["/images/houses/Teremok.jpg"],
+    photo: [
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345881/esdertz6nrzd0kucpsgr.jpg",
+    ],
     id: 7,
   },
   {
@@ -196,7 +212,9 @@ export const houses = [
     rental_price: 0,
     max_adults: 0,
     max_children: 0,
-    photo: ["/images/houses/Khoromy.jpg"],
+    photo: [
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/czorzi3frevroezpzv45.jpg",
+    ],
     id: 8,
   },
 ];

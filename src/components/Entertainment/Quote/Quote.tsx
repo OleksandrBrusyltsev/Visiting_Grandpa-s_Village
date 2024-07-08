@@ -1,21 +1,27 @@
+import React, { forwardRef } from 'react'
+
 import Icon from '@/components/ui/Icon/Icon';
+
 import s from './Quote.module.scss';
 
-import React from 'react'
+type Props = {title: string, position: "left" | "right", children: React.ReactNode}
 
-type Props = {title: string, text: string, position: "left" | "right"}
-
-export default function Quote({title, text, position}: Props) {
+const Quote = forwardRef<HTMLDivElement, Props>(function Quote({title, position, children}, ref) {
   return (
-    <hgroup className={`${s.quoteWrapper} ${position === 'right' ? s.right : s.left}`} key={title}>
-      <div className={s.quoteTitle}>
+    <hgroup 
+      className={`${s.quoteWrapper} ${position === 'right' ? s.right : s.left}`} 
+      key={title}>
+      <div 
+        className={s.quoteTitle}
+        ref={ref}>
         <h2>
           {title}
         </h2>
         <Icon name="ellipse" className={s.titleOutline} />
       </div>
-        {/* eslint-disable-next-line react/no-unescaped-entities */ }
-      <div className={s.quoteText}>{text}</div>
+      {children}
     </hgroup>
   )
-}
+});
+
+export default Quote;

@@ -1,9 +1,10 @@
 "use client"
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { useLocale } from "next-intl";
+import { forwardRef, useContext } from "react";
+import { MatchMediaContext } from "@/context/MatchMediaContext";
 
 import Button from '../ui/Button/Button';
 
@@ -13,11 +14,11 @@ type Props = {data: GalleryItem};
 
 gsap.registerPlugin(useGSAP);      
 
-export default function GalleryItem({data}: Props) {
-  const locale = useLocale();
+const GalleryItem = forwardRef<HTMLDivElement, Props>(function GalleryItem({data}, ref) {
+  const {locale} = useParams();
   const path = usePathname();
   const pathName = path.split('/')[2];
-
+  const {isMobile, isTablet} = useContext(MatchMediaContext);
   const {name, images} = data;
   const title = data.title.filter(item => item.language === locale)[0]?.text;
   
@@ -30,6 +31,7 @@ export default function GalleryItem({data}: Props) {
         tabIndex={0}
         onKeyDown={(e) => (e.code === 'Enter' || e.code === 'NumpadEnter') && handleClickItem()}
         onClick={handleClickItem}
+        ref={ref}
       >
         <div className={s.imageWrapper} >
           <Image 
@@ -44,11 +46,12 @@ export default function GalleryItem({data}: Props) {
         </div>
         <div className={s.btnWrapper} >
           <Button 
-            label='Переглянути' 
+            label={isMobile || isTablet ? title : 'Переглянути'} 
             type='button' 
             tabIndex={-1} />
         </div>
       </div>
     
   )
-}
+})
+export default GalleryItem;

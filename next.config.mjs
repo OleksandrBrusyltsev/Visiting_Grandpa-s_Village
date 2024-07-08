@@ -1,4 +1,7 @@
 import createNextIntlPlugin from "next-intl/plugin";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -13,6 +16,10 @@ const nextConfig = {
         port: "",
       },
     ],
+  },
+  env: {
+    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
+    MAP_ADI: process.env.MAP_ADI,
   },
 };
 

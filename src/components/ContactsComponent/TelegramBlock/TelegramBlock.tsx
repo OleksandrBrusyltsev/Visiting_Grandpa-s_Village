@@ -6,7 +6,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import Icon from "../../ui/Icon/Icon";
+import IconTelegram from "../../../assets/icons/icon-telegram.svg";
 import Map from "../../../../public/images/contacts/map.png";
 import s from "./TelegramBlock.module.scss";
 
@@ -55,8 +55,11 @@ const TelegramBlock: FC = () => {
           <p className={s.telegramLinkText}>
             Скористайся, щоб забронювати будиночок, або запитати
           </p>
-          <Link href="#" className={s.telegramBotLink}>
-            <Icon name="telegram" className={s.telegramIcon} />
+          <Link
+            href="https://t.me/VisitingGrandpasVillage_Operator"
+            className={s.telegramBotLink}
+          >
+            <Image src={IconTelegram} alt="telegram" className={s.telegramIcon} />
             <p className={s.telegramIconText}>Чат-Бот</p>
           </Link>
         </div>

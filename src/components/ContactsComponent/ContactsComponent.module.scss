@@ -8,6 +8,13 @@
   margin-right: auto;
   padding-left: 24px;
   padding-right: 24px;
+  
+  @media (hover: none) {
+        overflow-x: hidden;
+    }
+    @media (min-width: 1024px) {
+        overflow-x: hidden;
+    }
 
   @include mixins.media-min(variables.$mobile) {
     padding-left: 30px;
@@ -25,14 +32,17 @@
   overflow: hidden;
   position: relative;
   width: 100%;
-  height: 600px;
-  margin-bottom: 27px;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 547px;
+  margin-bottom: 81px;
 
   @include mixins.media-min(variables.$mobile) {
-    margin-bottom: 109px;
+    margin-bottom: 163px;
   }
 
-  @include mixins.media-min(variables.$mobile) {
-    margin-bottom: 141px;
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-bottom: 195px;
   }
 }

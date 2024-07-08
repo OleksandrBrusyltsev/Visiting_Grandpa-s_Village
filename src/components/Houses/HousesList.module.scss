@@ -15,7 +15,7 @@
     }
 
     @include mixins.media-min(variables.$breakpoint-laptop) {
-        margin-top: 18px;
+        margin-top: 180px;
         padding-bottom: 252px;
     }
 }

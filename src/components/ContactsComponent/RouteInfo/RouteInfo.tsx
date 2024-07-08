@@ -2,7 +2,6 @@ import { FC } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
 import House from "../../../../public/images/contacts/house.png";
 import s from "./RouteInfo.module.scss";
@@ -10,8 +9,6 @@ import s from "./RouteInfo.module.scss";
 const RouteInfo: FC = () => {
   const house = useRef<HTMLImageElement>(null);
   const routeInfoWrapper = useRef<HTMLDivElement>(null);
-
-  gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
     gsap.fromTo(
