@@ -48,38 +48,41 @@ const FAQ: FC = () => {
         clearProps: "transform",
       }
     );
-    gsap.fromTo(
-      faqWrapper.current,
-      {
-        x: "100%",
-      },
-      {
-        scrollTrigger: {
-          trigger: faqWrapper.current,
-          markers: true,
-        },
-        x: "0%",
-        duration: 1,
-        clearProps: "transform",
-      }
-    );
+   gsap.fromTo(
+     faqWrapper.current,
+     {
+       x: "100%",
+       autoAlpha: 0,
+     },
+     {
+       scrollTrigger: {
+         trigger: faqWrapper.current,
+         markers: true,
+       },
+       x: "0%",
+       autoAlpha: 1,
+       duration: 1,
+       clearProps: "transform,opacity,visibility",
+       onComplete: () => ScrollTrigger.refresh(),
+     }
+   );
   });
 
   const toggleAnswer = (index: number) => {
-    // if (openIndices.includes(index)) {
-    //   gsap.to(answerRefs.current[index], {
-    //     height: 0,
-    //     duration: 0.3,
-    //     onComplete: () =>
-    //       setOpenIndices(openIndices.filter((i) => i !== index)),
-    //   });
-    // } else {
-    //   setOpenIndices([...openIndices, index]);
-    //   if (answerRefs.current[index]) {
-    //     gsap.set(answerRefs.current[index], { height: "auto" });
-    //     gsap.from(answerRefs.current[index], { height: 0, duration: 0.5 });
-    //   }
-    // }
+    if (openIndices.includes(index)) {
+      gsap.to(answerRefs.current[index], {
+        height: 0,
+        duration: 0.3,
+        onComplete: () =>
+          setOpenIndices(openIndices.filter((i) => i !== index)),
+      });
+    } else {
+      setOpenIndices([...openIndices, index]);
+      if (answerRefs.current[index]) {
+        gsap.set(answerRefs.current[index], { height: "auto" });
+        gsap.from(answerRefs.current[index], { height: 0, duration: 0.5 });
+      }
+    }
   };
 
   useEffect(() => {
