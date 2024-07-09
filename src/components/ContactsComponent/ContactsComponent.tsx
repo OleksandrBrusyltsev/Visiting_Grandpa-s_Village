@@ -39,7 +39,7 @@ const ContactsComponent: FC = () => {
         <TelegramBotLink />
         <ContactsList />
         {/* <FAQ /> */}
-        <RouteInfo />
+        {/* <RouteInfo /> */}
       </div>
       <div className={s.googleMapWrapper} ref={googleMapWrapper}>
         <GoogleMap />
