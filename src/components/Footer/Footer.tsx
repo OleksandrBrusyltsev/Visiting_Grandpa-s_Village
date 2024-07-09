@@ -77,7 +77,7 @@ export default function Footer() {
           </li>
         ))}
       </ul>
-      <p className={s.copyright}>© 2023 Еко-садиба “На селі у Дідуся”</p>
+      <p className={s.copyright}>© 2024 Еко-садиба “На селі у Дідуся”</p>
     </footer>
   );
 }
