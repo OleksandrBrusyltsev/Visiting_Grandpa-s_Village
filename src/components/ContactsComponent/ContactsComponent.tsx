@@ -37,9 +37,9 @@ const ContactsComponent: FC = () => {
     <>
       <div className={s.contactsContainer}>
         <TelegramBotLink />
-        <ContactsList />
+        {/* <ContactsList /> */}
         {/* <FAQ /> */}
-        <RouteInfo />
+        {/* <RouteInfo /> */}
       </div>
       <div className={s.googleMapWrapper} ref={googleMapWrapper}>
         <GoogleMap />
