@@ -56,6 +56,7 @@ const FAQ: FC = () => {
       {
         scrollTrigger: {
           trigger: faqWrapper.current,
+          markers: true,
         },
         x: "0%",
         duration: 1,
