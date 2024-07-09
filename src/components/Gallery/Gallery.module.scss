@@ -51,11 +51,12 @@
 .descr1 {
     max-width: 75%;
     font-size: var(--f-size-body-big);
-    line-height: 97.64%;
+    line-height: 1.1;
 }
 
 .descr2 {
     text-align: center;
+    text-transform: uppercase;
     padding-left: 29px;
     font-size: 20px;
     line-height: 1.1;
@@ -94,7 +95,7 @@
 
 .callToClick {
     font-size: 14px;
-    line-height: 97.64%;
+    line-height: 1.4;
     width: 178px;
 }
 
@@ -162,7 +163,6 @@
         max-width: 370px;
         margin: 0 auto 0 14vw;
         font-size: var(--f-size-h2);
-        line-height: 1.1;
     }
 
     .descr2 {
