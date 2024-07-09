@@ -1,0 +1,91 @@
+@use '../../styles/mixins' as mixins;
+@use '../../styles/variables';
+
+.wrapper {
+    flex-grow: 1;
+    @include mixins.mak-green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-block: 50px;
+    @media (hover: none) {
+        overflow-x: clip;
+    }
+    @media (min-width: 1024px) {
+        overflow-x: clip;
+    }
+}
+.title {
+    text-transform: uppercase;
+    width: clamp(208px, 64%, 415px);
+    align-self: end;
+    font-size: clamp(var(--f-size-h3), calc(24 * 100vw / 375), var(--f-size-h2));
+    z-index: 1;
+}
+.description {
+    font-size: clamp(128px, calc(128 * 100vw / 375), 250px);
+    padding-block: 46px;
+    position: relative;
+    display: flex;
+    &::before {
+        position: absolute;
+        content: '';
+        top: clamp(-195px, calc(-76 * 100vw / 375), -76px);
+        left: clamp(-50px, calc(-30 * 100vw / 375), -30px);
+        background-image: url('/images/backgrounds/christmasTrees.png');
+        width: calc(240px * 100vw / 375px);
+        aspect-ratio: 1.15;
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: contain;
+        z-index: -1;
+    }
+    & > .number:nth-child(2) {
+        position: relative;
+        & > .grandpa {
+            position: absolute;
+            content: '';
+            top: 16.23%;
+            left: 9.091%;
+            background-image: url('/images/grandpas/Grandpa3.png');
+            width: 83.84%;
+            aspect-ratio: 0.886;
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: -1;
+        }
+    }
+}
+.home {
+    display: inherit;
+}
+
+@include mixins.media-min(variables.$mobile) {
+    .wrapper {
+        padding-block: 75px;
+    }
+    .title {
+        width: clamp(415px, 59%, 630px);
+        font-size: clamp(var(--f-size-h2), calc(250 * 100vw / 768), var(--f-size-large));
+    }
+    .description {
+        font-size: clamp(250px, calc(250 * 100vw / 768), 300px);
+        margin-block: 48px 64px;
+        &::before {
+            top: clamp(-250px, calc(-195px * 100vw / 768px), -195px);
+            left: clamp(-150px, calc(-50 * 100vw / 768), -50px);
+            width: clamp(440px, calc(440px * 100vw / 768px), 555px);
+        }
+        
+    }
+}
+@include mixins.media-min(variables.$breakpoint-laptop) {
+    .description {
+        margin-block: 66px;
+        &::before {
+            left: clamp(-170px, calc(-150 * 100vw / 768), -150px);
+        }
+    }
+}

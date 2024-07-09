@@ -1,6 +1,13 @@
-import { useTranslations } from "next-intl";
+import Footer from "@/components/Footer/Footer";
+import Header from "@/components/Header/Header";
+import NotFound from "@/components/NotFound/NotFound";
 
 export default function NotFoundPage() {
-  const t = useTranslations("NotFoundPage");
-  return <h1>{t("title")}</h1>;
+  return   (
+    <div style={{display: 'flex', flexDirection: 'column', minHeight: '100%'}}>
+      <Header />
+      <NotFound />
+      <Footer />
+    </div>
+  )
 }

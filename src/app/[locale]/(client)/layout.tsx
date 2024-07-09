@@ -3,7 +3,8 @@ import Footer from "../../../components/Footer/Footer";
 import Header from "../../../components/Header/Header";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 
-import "../../globals.scss";
+// import "../../globals.scss";
+import Navigation from "@/components/Header/Navigation";
 
 // import type { Metadata } from "next";
 
@@ -20,6 +21,7 @@ export default async function LocaleLayout({
   return (
     <>
       <Header />
+      <Navigation />
       <Breadcrumbs />
         {children}
       <AskGrandpa />
