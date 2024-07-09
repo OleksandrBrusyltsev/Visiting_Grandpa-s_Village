@@ -19,55 +19,68 @@ const FAQ: FC = () => {
   const imgAndFaqWrapper = useRef<HTMLDivElement>(null);
   const answerRefs = useRef<(HTMLParagraphElement | null)[]>([]);
 
-  useGSAP(() => {
-    gsap.fromTo(
-      lake.current,
-      {
-        x: "-100%",
-      },
-      {
-        scrollTrigger: {
-          trigger: lake.current,
-        },
-        x: "0%",
-        duration: 1,
-        clearProps: "transform",
-      }
-    );
-    gsap.fromTo(
-      faqTitle.current,
-      {
-        x: "100%",
-      },
-      {
-        scrollTrigger: {
-          trigger: faqTitle.current,
-        },
-        x: "0%",
-        duration: 1,
-        clearProps: "transform",
-      }
-    );
-   gsap.fromTo(
-     faqWrapper.current,
-     {
-       x: "100%",
-       autoAlpha: 0,
-     },
-     {
-       scrollTrigger: {
-         trigger: faqWrapper.current,
-         markers: true,
-       },
-       x: "0%",
-       autoAlpha: 1,
-       duration: 1,
-       clearProps: "transform,opacity,visibility",
-       onComplete: () => ScrollTrigger.refresh(),
-     }
-   );
-  });
+ useEffect(() => {
+   gsap.registerPlugin(ScrollTrigger);
 
+   const animateElements = () => {
+     gsap.fromTo(
+       lake.current,
+       {
+         x: "-100%",
+       },
+       {
+         scrollTrigger: {
+           trigger: lake.current,
+         },
+         x: "0%",
+         duration: 1,
+         clearProps: "transform",
+       }
+     );
+     gsap.fromTo(
+       faqTitle.current,
+       {
+         x: "100%",
+       },
+       {
+         scrollTrigger: {
+           trigger: faqTitle.current,
+         },
+         x: "0%",
+         duration: 1,
+         clearProps: "transform",
+       }
+     );
+     gsap.fromTo(
+       faqWrapper.current,
+       {
+         x: "100%",
+         autoAlpha: 0,
+       },
+       {
+         scrollTrigger: {
+           trigger: faqWrapper.current,
+           markers: true,
+         },
+         x: "0%",
+         autoAlpha: 1,
+         duration: 1,
+         clearProps: "transform,opacity,visibility",
+         onComplete: () => ScrollTrigger.refresh(),
+       }
+     );
+   };
+
+   if (document.readyState === "complete") {
+     animateElements();
+   } else {
+     window.addEventListener("load", animateElements);
+   }
+
+   return () => {
+     window.removeEventListener("load", animateElements);
+   };
+ }, []);
   const toggleAnswer = (index: number) => {
     if (openIndices.includes(index)) {
       gsap.to(answerRefs.current[index], {
