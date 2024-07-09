@@ -66,20 +66,20 @@ const FAQ: FC = () => {
   });
 
   const toggleAnswer = (index: number) => {
-    if (openIndices.includes(index)) {
-      gsap.to(answerRefs.current[index], {
-        height: 0,
-        duration: 0.3,
-        onComplete: () =>
-          setOpenIndices(openIndices.filter((i) => i !== index)),
-      });
-    } else {
-      setOpenIndices([...openIndices, index]);
-      if (answerRefs.current[index]) {
-        gsap.set(answerRefs.current[index], { height: "auto" });
-        gsap.from(answerRefs.current[index], { height: 0, duration: 0.5 });
-      }
-    }
+    // if (openIndices.includes(index)) {
+    //   gsap.to(answerRefs.current[index], {
+    //     height: 0,
+    //     duration: 0.3,
+    //     onComplete: () =>
+    //       setOpenIndices(openIndices.filter((i) => i !== index)),
+    //   });
+    // } else {
+    //   setOpenIndices([...openIndices, index]);
+    //   if (answerRefs.current[index]) {
+    //     gsap.set(answerRefs.current[index], { height: "auto" });
+    //     gsap.from(answerRefs.current[index], { height: 0, duration: 0.5 });
+    //   }
+    // }
   };
 
   useEffect(() => {
