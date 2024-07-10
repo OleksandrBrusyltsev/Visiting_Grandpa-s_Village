@@ -1,9 +1,6 @@
+import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
 import Icon from "../../ui/Icon/Icon";
 import IconEmail from "../../../assets/icons/icon-email.svg";
 import Grandpa from "../../../../public/images/contacts/grandpa.png";
@@ -31,104 +28,24 @@ const socialMediaLinks = [
 
 const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
 
-const ContactsList = () => {
-  const grandpa = useRef<HTMLImageElement>(null);
-  const contactsListWrapper = useRef<HTMLDivElement>(null);
+type ContactsListProps = {
+  grandpaRef: React.RefObject<HTMLImageElement>;
+  contactsListWrapperRef: React.RefObject<HTMLDivElement>;
+};
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  useGSAP(() => {
-    const mm = gsap.matchMedia();
-
-    const baseAnimation = gsap.context(() => {
-      gsap.fromTo(
-        grandpa.current,
-        { x: "-300%" },
-        {
-          scrollTrigger: {
-            trigger: grandpa.current,
-            start: "bottom 80%",
-          },
-          x: "0%",
-          duration: 1,
-          clearProps: "transform",
-        }
-      );
-    });
-
-    mm.add("(min-width: 450px)", () => {
-      baseAnimation.revert(); // Удаляем базовую анимацию
-      const anim450 = gsap.fromTo(
-        grandpa.current,
-        { x: "-100%" },
-        {
-          x: "0%",
-          duration: 1,
-          clearProps: "transform",
-        }
-      );
-
-      return () => {
-        anim450.kill(); // Удаляем анимацию при изменении ширины экрана
-      };
-    });
-
-    mm.add("(min-width: 1000px)", () => {
-      const anim1000 = gsap.fromTo(
-        grandpa.current,
-        { y: "-200%", x: "0%" },
-        {
-          y: "0%",
-          x: "0%",
-          duration: 1,
-          clearProps: "transform",
-        }
-      );
-
-      return () => {
-        anim1000.kill(); // Удаляем анимацию при изменении ширины экрана
-      };
-    });
-
-    const contactsListAnimation = gsap.fromTo(
-      contactsListWrapper.current,
-      { x: "100%" },
-      {
-        scrollTrigger: {
-          trigger: contactsListWrapper.current,
-        },
-        x: "0%",
-        duration: 1,
-        clearProps: "transform",
-      }
-    );
-
-    mm.add("(min-width: 450px)", () => {
-      contactsListAnimation.revert(); // Удаляем базовую анимацию
-      const animContacts450 = gsap.fromTo(
-        contactsListWrapper.current,
-        { x: "100%" },
-        {
-          x: "0%",
-          duration: 1,
-          clearProps: "transform",
-        }
-      );
-
-      return () => {
-        animContacts450.kill(); // Удаляем анимацию при изменении ширины экрана
-      };
-    });
-
-    return () => {
-      mm.revert(); // Удаляем все media queries
-    };
-  });
-
+const ContactsList: FC<ContactsListProps> = ({
+  grandpaRef,
+  contactsListWrapperRef,
+}) => {
   return (
     <div className={s.imgWrapper}>
-      <Image className={s.grandpa} src={Grandpa} alt="picture" ref={grandpa} />
-      <div className={s.contactsListWrapper} ref={contactsListWrapper}>
+      <Image
+        className={s.grandpa}
+        src={Grandpa}
+        alt="picture"
+        ref={grandpaRef}
+      />
+      <div className={s.contactsListWrapper} ref={contactsListWrapperRef}>
         <ul className={s.contactsList}>
           <li className={s.contactsItem}>
             <p className={s.contactsItemTitle}>Телефон</p>
