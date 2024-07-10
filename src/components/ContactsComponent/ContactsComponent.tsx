@@ -168,24 +168,23 @@ const ContactsComponent: FC = () => {
         scrollTrigger: {
           trigger: routeInfoWrapper.current,
           markers: true,
-          start: "bottom 50%",
         },
         x: "0%",
       }
     );
 
-    // animateElement(
-    //   googleMapWrapper.current,
-    //   { y: "-100%", opacity: 0 },
-    //   {
-    //     scrollTrigger: {
-    //       trigger: googleMapWrapper.current,
-    //       start: "bottom 80%",
-    //     },
-    //     y: "0%",
-    //     opacity: 1,
-    //   }
-    // );
+    animateElement(
+      googleMapWrapper.current,
+      { y: "-100%", opacity: 0 },
+      {
+        scrollTrigger: {
+          trigger: googleMapWrapper.current,
+          start: "bottom 80%",
+        },
+        y: "0%",
+        opacity: 1,
+      }
+    );
 
     return () => {
       mm.revert();
@@ -208,9 +207,9 @@ const ContactsComponent: FC = () => {
         <FAQ lakeRef={lake} faqTitleRef={faqTitle} faqWrapperRef={faqWrapper} />
         <RouteInfo houseRef={house} routeInfoWrapperRef={routeInfoWrapper} />
       </div>
-      {/* <div className={s.googleMapWrapper} ref={googleMapWrapper}>
+      <div className={s.googleMapWrapper} ref={googleMapWrapper}>
         <GoogleMap />
-      </div> */}
+      </div>
     </>
   );
 };
