@@ -32,161 +32,161 @@ const ContactsComponent: FC = () => {
   // Create refs for googleMapWrapper element
   const googleMapWrapper = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const mm = gsap.matchMedia();
+  // useGSAP(() => {
+  //   const mm = gsap.matchMedia();
 
-    const commonAnimationProps = {
-      duration: 1,
-      clearProps: "transform",
-    };
+  //   const commonAnimationProps = {
+  //     duration: 1,
+  //     clearProps: "transform",
+  //   };
 
-    const animateElement = (
-      element: HTMLElement | null,
-      fromVars: gsap.TweenVars,
-      toVars: gsap.TweenVars
-    ) => {
-      if (element) {
-        return gsap.fromTo(element, fromVars, {
-          ...toVars,
-          ...commonAnimationProps,
-        });
-      }
-    };
+  //   const animateElement = (
+  //     element: HTMLElement | null,
+  //     fromVars: gsap.TweenVars,
+  //     toVars: gsap.TweenVars
+  //   ) => {
+  //     if (element) {
+  //       return gsap.fromTo(element, fromVars, {
+  //         ...toVars,
+  //         ...commonAnimationProps,
+  //       });
+  //     }
+  //   };
 
-    // TelegramBlock animations
-    animateElement(telegramTitle.current, { x: "-100%" }, { x: "0%" });
-    animateElement(telegramText.current, { x: "-100%" }, { x: "0%" });
-    animateElement(map.current, { x: "100%" }, { x: "0%" });
-    animateElement(telegramLinkWrapper.current, { x: "-100%" }, { x: "0%" });
+  //   // TelegramBlock animations
+  //   animateElement(telegramTitle.current, { x: "-100%" }, { x: "0%" });
+  //   animateElement(telegramText.current, { x: "-100%" }, { x: "0%" });
+  //   animateElement(map.current, { x: "100%" }, { x: "0%" });
+  //   animateElement(telegramLinkWrapper.current, { x: "-100%" }, { x: "0%" });
 
-    const grandpaBaseAnimation = animateElement(
-      grandpa.current,
-      { x: "-300%" },
-      {
-        scrollTrigger: {
-          trigger: grandpa.current,
-          start: "bottom 80%",
-        },
-        x: "0%",
-      }
-    );
+  //   const grandpaBaseAnimation = animateElement(
+  //     grandpa.current,
+  //     { x: "-300%" },
+  //     {
+  //       scrollTrigger: {
+  //         trigger: grandpa.current,
+  //         start: "bottom 80%",
+  //       },
+  //       x: "0%",
+  //     }
+  //   );
 
-    const contactsListBaseAnimation = animateElement(
-      contactsListWrapper.current,
-      { x: "100%" },
-      {
-        scrollTrigger: {
-          trigger: contactsListWrapper.current,
-        },
-        x: "0%",
-      }
-    );
+  //   const contactsListBaseAnimation = animateElement(
+  //     contactsListWrapper.current,
+  //     { x: "100%" },
+  //     {
+  //       scrollTrigger: {
+  //         trigger: contactsListWrapper.current,
+  //       },
+  //       x: "0%",
+  //     }
+  //   );
 
-    mm.add("(min-width: 450px)", () => {
-      if (grandpaBaseAnimation) grandpaBaseAnimation.kill();
-      const grandpaAnimation450 = animateElement(
-        grandpa.current,
-        { x: "-100%" },
-        { x: "0%" }
-      );
+  //   mm.add("(min-width: 450px)", () => {
+  //     if (grandpaBaseAnimation) grandpaBaseAnimation.kill();
+  //     const grandpaAnimation450 = animateElement(
+  //       grandpa.current,
+  //       { x: "-100%" },
+  //       { x: "0%" }
+  //     );
 
-      if (contactsListBaseAnimation) contactsListBaseAnimation.kill();
-      const contactsListAnimation450 = animateElement(
-        contactsListWrapper.current,
-        { x: "100%" },
-        { x: "0%" }
-      );
+  //     if (contactsListBaseAnimation) contactsListBaseAnimation.kill();
+  //     const contactsListAnimation450 = animateElement(
+  //       contactsListWrapper.current,
+  //       { x: "100%" },
+  //       { x: "0%" }
+  //     );
 
-      return () => {
-        if (grandpaAnimation450) grandpaAnimation450.kill();
-        if (contactsListAnimation450) contactsListAnimation450.kill();
-      };
-    });
+  //     return () => {
+  //       if (grandpaAnimation450) grandpaAnimation450.kill();
+  //       if (contactsListAnimation450) contactsListAnimation450.kill();
+  //     };
+  //   });
 
-    mm.add("(min-width: 1000px)", () => {
-      const grandpaAnimation1000 = animateElement(
-        grandpa.current,
-        { y: "-200%", x: "0%" },
-        { y: "0%", x: "0%" }
-      );
+  //   mm.add("(min-width: 1000px)", () => {
+  //     const grandpaAnimation1000 = animateElement(
+  //       grandpa.current,
+  //       { y: "-200%", x: "0%" },
+  //       { y: "0%", x: "0%" }
+  //     );
 
-      return () => {
-        if (grandpaAnimation1000) grandpaAnimation1000.kill();
-      };
-    });
+  //     return () => {
+  //       if (grandpaAnimation1000) grandpaAnimation1000.kill();
+  //     };
+  //   });
 
-    animateElement(
-      lake.current,
-      { x: "-100%" },
-      {
-        scrollTrigger: {
-          trigger: lake.current,
-        },
-        x: "0%",
-      }
-    );
+  //   animateElement(
+  //     lake.current,
+  //     { x: "-100%" },
+  //     {
+  //       scrollTrigger: {
+  //         trigger: lake.current,
+  //       },
+  //       x: "0%",
+  //     }
+  //   );
 
-    animateElement(
-      faqTitle.current,
-      { x: "100%" },
-      {
-        scrollTrigger: {
-          trigger: faqTitle.current,
-        },
-        x: "0%",
-      }
-    );
+  //   animateElement(
+  //     faqTitle.current,
+  //     { x: "100%" },
+  //     {
+  //       scrollTrigger: {
+  //         trigger: faqTitle.current,
+  //       },
+  //       x: "0%",
+  //     }
+  //   );
 
-    animateElement(
-      faqWrapper.current,
-      { x: "100%" },
-      {
-        scrollTrigger: {
-          trigger: faqWrapper.current,
-        },
-        x: "0%",
-      }
-    );
+  //   animateElement(
+  //     faqWrapper.current,
+  //     { x: "100%" },
+  //     {
+  //       scrollTrigger: {
+  //         trigger: faqWrapper.current,
+  //       },
+  //       x: "0%",
+  //     }
+  //   );
 
-    animateElement(
-      house.current,
-      { x: "100%" },
-      {
-        scrollTrigger: {
-          trigger: house.current,
-        },
-        x: "0%",
-      }
-    );
+  //   animateElement(
+  //     house.current,
+  //     { x: "100%" },
+  //     {
+  //       scrollTrigger: {
+  //         trigger: house.current,
+  //       },
+  //       x: "0%",
+  //     }
+  //   );
 
-    animateElement(
-      routeInfoWrapper.current,
-      { x: "-100%" },
-      {
-        scrollTrigger: {
-          trigger: routeInfoWrapper.current,
-        },
-        x: "0%",
-      }
-    );
+  //   animateElement(
+  //     routeInfoWrapper.current,
+  //     { x: "-100%" },
+  //     {
+  //       scrollTrigger: {
+  //         trigger: routeInfoWrapper.current,
+  //       },
+  //       x: "0%",
+  //     }
+  //   );
 
-    animateElement(
-      googleMapWrapper.current,
-      { y: "-100%", opacity: 0 },
-      {
-        scrollTrigger: {
-          trigger: googleMapWrapper.current,
-          start: "bottom 80%",
-        },
-        y: "0%",
-        opacity: 1,
-      }
-    );
+  //   animateElement(
+  //     googleMapWrapper.current,
+  //     { y: "-100%", opacity: 0 },
+  //     {
+  //       scrollTrigger: {
+  //         trigger: googleMapWrapper.current,
+  //         start: "bottom 80%",
+  //       },
+  //       y: "0%",
+  //       opacity: 1,
+  //     }
+  //   );
 
-    return () => {
-      mm.revert();
-    };
-  });
+  //   return () => {
+  //     mm.revert();
+  //   };
+  // });
 
   return (
     <>
