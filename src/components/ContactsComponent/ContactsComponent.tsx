@@ -171,18 +171,18 @@ const ContactsComponent: FC = () => {
       }
     );
 
-    animateElement(
-      googleMapWrapper.current,
-      { y: "-100%", opacity: 0 },
-      {
-        scrollTrigger: {
-          trigger: googleMapWrapper.current,
-          start: "bottom 80%",
-        },
-        y: "0%",
-        opacity: 1,
-      }
-    );
+    // animateElement(
+    //   googleMapWrapper.current,
+    //   { y: "-100%", opacity: 0 },
+    //   {
+    //     scrollTrigger: {
+    //       trigger: googleMapWrapper.current,
+    //       start: "bottom 80%",
+    //     },
+    //     y: "0%",
+    //     opacity: 1,
+    //   }
+    // );
 
     return () => {
       mm.revert();
@@ -205,7 +205,7 @@ const ContactsComponent: FC = () => {
         <FAQ lakeRef={lake} faqTitleRef={faqTitle} faqWrapperRef={faqWrapper} />
         <RouteInfo houseRef={house} routeInfoWrapperRef={routeInfoWrapper} />
       </div>
-      <GoogleMap googleMapWrapperRef={googleMapWrapper} />
+      {/* <GoogleMap googleMapWrapperRef={googleMapWrapper} /> */}
     </>
   );
 };
