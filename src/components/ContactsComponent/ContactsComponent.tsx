@@ -165,6 +165,7 @@ const ContactsComponent: FC = () => {
       {
         scrollTrigger: {
           trigger: routeInfoWrapper.current,
+          markers: true
         },
         x: "0%",
       }
