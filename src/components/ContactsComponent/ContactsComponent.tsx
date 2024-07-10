@@ -8,6 +8,8 @@ import FAQ from "./FAQ/FAQ";
 import RouteInfo from "./RouteInfo/RouteInfo";
 import GoogleMap from "./GoogleMap/GoogleMap";
 import s from "./ContactsComponent.module.scss";
+import { start } from "repl";
+import { BARREL_OPTIMIZATION_PREFIX } from "next/dist/shared/lib/constants";
 
 const ContactsComponent: FC = () => {
   // Create refs for TelegramBlock elements
@@ -165,7 +167,8 @@ const ContactsComponent: FC = () => {
       {
         scrollTrigger: {
           trigger: routeInfoWrapper.current,
-          markers: true
+          markers: true,
+          start: "bottom 50%",
         },
         x: "0%",
       }
