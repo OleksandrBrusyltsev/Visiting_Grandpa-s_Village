@@ -1,0 +1,19 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
+.googleMapWrapper {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 547px;
+  margin-bottom: 81px;
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 163px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-bottom: 195px;
+  }
+}

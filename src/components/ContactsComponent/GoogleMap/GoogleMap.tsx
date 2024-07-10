@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState, FC } from "react";
 import {
   APIProvider,
   Map,
-   AdvancedMarker,
+  AdvancedMarker,
   Pin,
   InfoWindow,
 } from "@vis.gl/react-google-maps";
+import s from "./GoogleMap.module.scss";
 
-const GoogleMap = () => {
+type GoogleMapProps = {
+  googleMapWrapperRef: React.RefObject<HTMLDivElement>;
+};
+
+const GoogleMap: FC<GoogleMapProps> = ({ googleMapWrapperRef }) => {
   const position = { lat: 51.96278, lng: 31.1626 };
   const apiKey =
     process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "YOUR_DEFAULT_API_KEY";
@@ -15,7 +20,10 @@ const GoogleMap = () => {
 
   return (
     <APIProvider apiKey={apiKey}>
-      <div style={{ height: "547px", width: "100%" }}>
+      <div
+        ref={googleMapWrapperRef}
+        className={s.googleMapWrapper}
+      >
         <Map
           defaultCenter={position}
           zoom={17}

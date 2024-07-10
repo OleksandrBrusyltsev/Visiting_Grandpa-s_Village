@@ -8,8 +8,6 @@ import FAQ from "./FAQ/FAQ";
 import RouteInfo from "./RouteInfo/RouteInfo";
 import GoogleMap from "./GoogleMap/GoogleMap";
 import s from "./ContactsComponent.module.scss";
-import { start } from "repl";
-import { BARREL_OPTIMIZATION_PREFIX } from "next/dist/shared/lib/constants";
 
 const ContactsComponent: FC = () => {
   // Create refs for TelegramBlock elements
@@ -207,9 +205,7 @@ const ContactsComponent: FC = () => {
         <FAQ lakeRef={lake} faqTitleRef={faqTitle} faqWrapperRef={faqWrapper} />
         <RouteInfo houseRef={house} routeInfoWrapperRef={routeInfoWrapper} />
       </div>
-      <div className={s.googleMapWrapper} ref={googleMapWrapper}>
-        <GoogleMap />
-      </div>
+      <GoogleMap googleMapWrapperRef={googleMapWrapper} />
     </>
   );
 };
