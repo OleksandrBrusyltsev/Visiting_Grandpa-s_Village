@@ -20,7 +20,7 @@
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    margin-bottom: -5rem;
+    margin-bottom: -4rem;
   }
 }
 
