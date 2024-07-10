@@ -15,7 +15,7 @@ const socialMediaLinks = [
     link: "https://www.facebook.com/ecousadba.in.ua/",
     icon: "facebook",
   },
-  { id: 2, link: "https://t.me/VisitingGrandpasVillageBot", icon: "telegram" },
+  { id: 2, link: "https://t.me/VisitingGrandpasVillage_Operator", icon: "telegram" },
   {
     id: 3,
     link: "https://www.instagram.com/ecousadba.in.ua/",
@@ -77,7 +77,7 @@ export default function Footer() {
           </li>
         ))}
       </ul>
-      <p className={s.copyright}>© 2023 Еко-садиба “На селі у Дідуся”</p>
+      <p className={s.copyright}>© 2024 Еко-садиба “На селі у Дідуся”</p>
     </footer>
   );
 }
