@@ -41,9 +41,9 @@ const ContactsComponent: FC = () => {
         <FAQ />
         <RouteInfo />
       </div>
-      {/* <div className={s.googleMapWrapper} ref={googleMapWrapper}>
+      <div className={s.googleMapWrapper} ref={googleMapWrapper}>
         <GoogleMap />
-      </div> */}
+      </div>
     </>
   );
 };
