@@ -12,15 +12,15 @@
   @include mixins.media-min(variables.$mobile) {
     font-size: var(--f-size-h1);
     margin-left: 112px;
-    margin-bottom: -55px;
+    
   }
 
   @include mixins.media-min(1000px) {
-    margin-bottom: -7rem;
+    margin-bottom: -2rem;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    margin-bottom: -10rem;
+    margin-bottom: -5rem;
   }
 }
 
@@ -32,7 +32,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: start;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto auto auto;
     row-gap: 49px;
     margin-bottom: 0px;
   }
@@ -90,7 +90,7 @@
   @include mixins.media-min(variables.$mobile) {
     width: 346px;
     grid-column: 2 / 3;
-    grid-row: 1 / 4;
+    grid-row: 1 / 5;
     justify-self: start;
     margin-bottom: 0;
   }
