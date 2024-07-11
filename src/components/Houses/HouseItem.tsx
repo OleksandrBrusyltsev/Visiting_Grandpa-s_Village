@@ -2,7 +2,7 @@
 import React, { forwardRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import Icon from "../ui/Icon/Icon";
 import Button from "../ui/Button/Button";
@@ -34,12 +34,13 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
   ref
 ) {
   const locale = useLocale();
+  const t = useTranslations('HouseItem');
   const path = usePathname();
   const pathName = path.split("/")[2];
   const { push } = useRouter();
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-  const { name, photo, max_adults, max_children, rental_price } = data;
+  const { name, photo, max_adults, max_children, rooms, rental_price } = data;
   const title = data.title.filter((item) => item.language === locale)[0].text;
 
   const guestsString = () => {
@@ -79,18 +80,18 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
           {!!rental_price ? (
             <>
               <Icon name="pocket" className={s.pocketIcon} />
-              <span className={s.price}>{rental_price} грн/ніч</span>
+              <span className={s.price}>{t('rateBase', {price: rental_price})}</span>
             </>
           ) : null}
         </div>
         <div className={s.guestsWrapper}>
-          {!!rental_price ? (
+          {rooms.length ? (
+            <span className={s.guests}>Кількість номерів: 4</span>
+          ) : (
             <>
               <Icon name="guests" className={s.guestsIcon} />
               <span className={s.guests}>{guestsString()}</span>
             </>
-          ) : (
-            <span className={s.guests}>Кількість номерів: 4</span>
           )}
         </div>
         <div className={s.servicesWrapper}>

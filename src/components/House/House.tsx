@@ -19,7 +19,7 @@ export default async function House({ id }: Props) {
     return <p>House not found</p>;
   }
 
-  const { swiper, rental_price, max_adults, photoDecor, text, coordinates } =
+  const { swiper, rental_price, max_adults, max_children, photoDecor, text, coordinates, price_addons, rooms } =
     house;
   const title = house.title.filter((item) => item.language === locale)[0].text;
 
@@ -59,11 +59,15 @@ export default async function House({ id }: Props) {
             </div>
           </div>
         </div>
-        <Booking
+        {rooms.length ? null : 
+          <Booking
           price={rental_price}
+          priceAddons={price_addons}
+          rooms={rooms}
           guests={max_adults}
-          photoDecor={photoDecor}
-        />
+          addons={max_children}
+          photoDecor={photoDecor}/>
+        }
       </div>
 
       <div className={s.heroSectionWrapper}>
