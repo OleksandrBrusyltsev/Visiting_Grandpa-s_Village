@@ -12,8 +12,13 @@ export const houses = [
       },
     ],
     rental_price: 1300,
+
+    // for booking component on the house page: {adult: number,child: number,} - if elsewhere except of Horomy rooms max_children > 0
+    price_addons: false, 
+
     max_adults: 2,
     max_children: 0,
+    rooms: [],
     photoDecor: "/images/houses/house/house-decor-hatynka-dida-moroza.svg",
     swiper: [
       "/images/houses/house/hatynka-dida-moroza/hatynka-dida-moroza-1-1.png",
@@ -51,8 +56,13 @@ export const houses = [
       },
     ],
     rental_price: 1300,
+    price_addons: {
+      adult: 200,
+      child: 150,
+    },
     max_adults: 2,
     max_children: 1,
+    rooms: [],
     photoDecor: "/images/houses/house/house-decor-svitlytsia.svg",
     swiper: [
       "/images/houses/house/svitlytsia/svitlytsia-1.png",
@@ -90,8 +100,13 @@ export const houses = [
       },
     ],
     rental_price: 950,
+    price_addons: {
+      adult: 200,
+      child: 150,
+    },
     max_adults: 2,
     max_children: 1,
+    rooms: [],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345875/ydij7hsodfgc8yvlnil6.jpg",
     ],
@@ -110,8 +125,13 @@ export const houses = [
       },
     ],
     rental_price: 1300,
+    price_addons: {
+      adult: 200,
+      child: 150,
+    },
     max_adults: 2,
     max_children: 1,
+    rooms: [],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
     ],
@@ -130,8 +150,13 @@ export const houses = [
       },
     ],
     rental_price: 1300,
+    price_addons: {
+      adult: 200,
+      child: 150,
+    },
     max_adults: 2,
     max_children: 1,
+    rooms: [],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345879/oe1zuqlg9k5mg36vqy0n.jpg",
     ],
@@ -150,8 +175,13 @@ export const houses = [
       },
     ],
     rental_price: 1300,
+    price_addons: {
+      adult: 200,
+      child: 150,
+    },
     max_adults: 2,
     max_children: 1,
+    rooms: [],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
     ],
@@ -170,8 +200,13 @@ export const houses = [
       },
     ],
     rental_price: 1800,
+    price_addons: {
+      adult: 200,
+      child: 150,
+    },
     max_adults: 5,
     max_children: 0,
+    rooms: [],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345878/zkesaqmdsfsk2ofwzy4n.jpg",
     ],
@@ -190,8 +225,10 @@ export const houses = [
       },
     ],
     rental_price: 750,
+    price_addons: false,
     max_adults: 2,
     max_children: 0,
+    rooms: [],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345881/esdertz6nrzd0kucpsgr.jpg",
     ],
@@ -210,8 +247,78 @@ export const houses = [
       },
     ],
     rental_price: 0,
+    price_addons: {
+      adult: 200,
+      child: 150,
+    },
     max_adults: 0,
     max_children: 0,
+    rooms: [{
+      name: "teremok",
+      title: [
+        {
+          language: "uk",
+          text: "Теремок",
+        },
+        {
+          language: "en",
+          text: "Teremok",
+        },
+      ],
+      rental_price: 750,
+      price_addons: false,
+      max_adults: 2,
+      max_children: 0,
+      rooms: [],
+      photo: [
+        "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345881/esdertz6nrzd0kucpsgr.jpg",
+      ],
+      id: 7,
+    },
+    {
+      name: "teremok",
+      title: [
+        {
+          language: "uk",
+          text: "Теремок",
+        },
+        {
+          language: "en",
+          text: "Teremok",
+        },
+      ],
+      rental_price: 750,
+      price_addons: false,
+      max_adults: 2,
+      max_children: 0,
+      rooms: [],
+      photo: [
+        "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345881/esdertz6nrzd0kucpsgr.jpg",
+      ],
+      id: 7,
+    },
+    {
+      name: "teremok",
+      title: [
+        {
+          language: "uk",
+          text: "Теремок",
+        },
+        {
+          language: "en",
+          text: "Teremok",
+        },
+      ],
+      rental_price: 750,
+      price_addons: false,
+      max_adults: 2,
+      max_children: 0,
+      rooms: [],
+      photo: [
+        "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345881/esdertz6nrzd0kucpsgr.jpg",
+      ],
+      id: 7,
+    }],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/czorzi3frevroezpzv45.jpg",
     ],

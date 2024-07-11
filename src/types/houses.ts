@@ -6,8 +6,13 @@ type HouseItem = {
     text: string;
   }[];
   rental_price: number;
+  price_addons: boolean | {
+    adult: number;
+    child: number;
+  };
   max_adults: number;
   max_children: number;
+  rooms: HouseItem[] | [];
   photo: string[];
   photoDecor: string;
   swiper: string[];

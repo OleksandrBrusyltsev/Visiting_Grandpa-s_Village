@@ -1,11 +1,13 @@
+@use '../../../styles/mixins' as mixins;
+@use '../../../styles/variables';
+
 .sectionWrapper {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   @media (min-width: 1000px) {
-    width: 520px;
+    // width: 520px;
     align-items: flex-start;
   }
 }
@@ -100,49 +102,57 @@
 }
 
 .bookingWrapper {
-  width: 327px;
+  // width: 327px;
   margin-top: 146px;
-  padding: 40px 24px;
   border-radius: 8px;
   background-color: rgb(var(--color-nude), 0.7);
   font-family: var(--f-family-headline);
   font-size: 22px;
   line-height: 97.6%;
   border: 1px solid rgba(var(--color-base-green));
+  display: flex;
+  flex-direction: column;
+  &.simple {
+    gap: 30px;
+    padding: 40px 24px;
+  }
+  &.addons {
+    gap: 36px;
+    padding: 48px 60px;
+  }
 
   @media (min-width: 376px) and (max-width: 767px) {
     margin-top: calc(146px + 25 * (100vw - 376px) / 391);
-    width: calc(327px + 90 * (100vw - 376px) / 391);
+    // width: calc(327px + 90 * (100vw - 376px) / 391);
   }
 
   @media (min-width: 768px) {
     margin-top: 171px;
-    width: 417px;
+    min-width: 417px;
   }
 }
-
-.info {
-  display: flex;
-  flex-direction: column;
-  height: 150px;
-  justify-content: space-between;
-}
-
 .priceWrapper,
 .guestsWrapper {
   display: flex;
   align-items: center;
   column-gap: 6px;
+  flex-grow: 1;
+  .iconPrice {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .iconGuests {
+    width: 21px;
+    height: 19px;
+  }
 }
 
-.iconPrice {
-  width: 20px;
-  height: 20px;
-}
-
-.iconGuests {
-  width: 21px;
-  height: 19px;
+.addonsTitle {
+  font-size: var( --f-size-numbers-small);
+  font-family: var(--f-family-headline);
+  color: rgb(var(--color-gray));
+  text-align: center;
 }
 
 .textPrice,
@@ -150,12 +160,20 @@
   display: flex;
   align-items: center;
 }
+.textTotal {
+  text-align: center;
+  .total {
+    color: rgb(var(--color-gray));
+    margin-left: 24px;
+  }
+}
 
 .timeWrapper {
-  height: 50px;
+  // height: 50px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 14px;
   & div {
     display: flex;
     column-gap: 16px;
@@ -170,5 +188,5 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 32px;
+  // margin-top: 32px;
 }
