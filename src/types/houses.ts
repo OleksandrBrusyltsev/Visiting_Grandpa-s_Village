@@ -14,12 +14,12 @@ type HouseItem = {
   max_children: number;
   rooms: HouseItem[] | [];
   photo: string[];
-  photoDecor?: string;
-  swiper?: string[];
-  text?: string;
-  coordinates?: {
-    top?: number;
-    left?: number;
+  photoDecor: string;
+  swiper: string[];
+  text: string;
+  coordinates: {
+    top: number;
+    left: number;
     topSmall: number;
     leftSmall: number;
     topSmallDifference: number;
