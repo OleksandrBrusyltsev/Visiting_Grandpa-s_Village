@@ -2,29 +2,16 @@
 @use "../../styles/variables";
 
 .contactsContainer {
-  margin-top: 29px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
-  
+  margin-top: 16px;
+
   @media (hover: none) {
-        overflow-x: hidden;
-    }
-    @media (min-width: 1024px) {
-        overflow-x: hidden;
-    }
-
-  @include mixins.media-min(variables.$mobile) {
-    padding-left: 30px;
-    padding-right: 30px;
+    overflow-x: hidden;
   }
-
+  @media (min-width: 1024px) {
+    overflow-x: hidden;
+  }
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    max-width: 1440px;
-    padding-left: 50px;
-    padding-right: 50px;
+    margin-top: 40px;
   }
 }
 

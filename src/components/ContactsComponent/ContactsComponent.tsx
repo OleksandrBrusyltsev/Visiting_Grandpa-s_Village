@@ -33,164 +33,119 @@ const ContactsComponent: FC = () => {
   const googleMapWrapper = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const mm = gsap.matchMedia();
-
-    const commonAnimationProps = {
-      duration: 1,
-      clearProps: "transform",
-    };
-
-    const animateElement = (
-      element: HTMLElement | null,
-      fromVars: gsap.TweenVars,
-      toVars: gsap.TweenVars
-    ) => {
-      if (element) {
-        return gsap.fromTo(element, fromVars, {
-          ...toVars,
-          ...commonAnimationProps,
-        });
-      }
-    };
+    gsap.defaults({autoAlpha: 0, duration: 0.7});
 
     // TelegramBlock animations
-    animateElement(telegramTitle.current, { x: "-100%" }, { x: "0%" });
-    animateElement(telegramText.current, { x: "-100%" }, { x: "0%" });
-    animateElement(map.current, { x: "100%" }, { x: "0%" });
-    animateElement(telegramLinkWrapper.current, { x: "-100%" }, { x: "0%" });
-
-    const grandpaBaseAnimation = animateElement(
-      grandpa.current,
-      { x: "-300%" },
+    gsap.timeline({defaults: {x: -200}})
+      .from(telegramTitle.current, {})
+      .from(telegramText.current, {}, ">-0.5")
+      .from(map.current, {
+        x: 200,
+        duration: 1
+      }, 0)
+      .from(telegramLinkWrapper.current, {}, ">-0.5")
+    
+    // contactsList animation
+    gsap.timeline({
+      defaults: {
+        duration: 0.5,
+      },
+      scrollTrigger: {
+        trigger: contactsListWrapper.current,
+        start: "top 80%",
+      }
+    })
+      .from(grandpa.current, {
+        scale: 0.9,
+        y: -100,
+      })
+      .from(contactsListWrapper.current, {
+        clipPath: "inset(0% 0% 100% 0%)",
+      })
+      
+    const mm = gsap.matchMedia();
+    mm.add(
       {
-        scrollTrigger: {
-          trigger: grandpa.current,
-          start: "bottom 80%",
-        },
-        x: "0%",
+        isMobile: "(max-width: 999px)",
+        isNotMobile: "(min-width: 1000px)",
+      },
+      (context) => {
+        const { isMobile, isNotMobile } = context.conditions as gsap.Conditions;
+
+        if (isMobile) {
+          // FAQ animation
+          gsap.from(lake.current, {
+            x: -200,
+            scrollTrigger: {
+              trigger:  lake.current,
+              start: "top 80%",
+            }
+          })
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: faqTitle.current,
+              start: "top 80%",
+            }
+          })
+            .from(faqTitle.current, {y: -100})
+            .from(faqWrapper.current, {
+              y: -100,
+            }, ">-0.3");
+        }
+
+        if (isNotMobile) {
+          // FAQ animation
+          gsap.timeline({
+            scrollTrigger: {
+              trigger:  lake.current,
+              start: "top 80%",
+            }
+          })
+            .from(lake.current, {x: -200})
+            .from(faqTitle.current, {
+              x: 200,
+            }, "<")
+            .from(faqWrapper.current, {
+              x: 200,
+            }, ">-0.3");
+        }
       }
     );
-
-    const contactsListBaseAnimation = animateElement(
-      contactsListWrapper.current,
-      { x: "100%" },
-      {
-        scrollTrigger: {
-          trigger: contactsListWrapper.current,
-        },
-        x: "0%",
+    
+    // RouteInfo animation
+    gsap.from(house.current, {
+      x: 200,
+      scrollTrigger: {
+        trigger: house.current,
+        start: "top 80%",
       }
-    );
-
-    mm.add("(min-width: 450px)", () => {
-      if (grandpaBaseAnimation) grandpaBaseAnimation.kill();
-      const grandpaAnimation450 = animateElement(
-        grandpa.current,
-        { x: "-100%" },
-        { x: "0%" }
-      );
-
-      if (contactsListBaseAnimation) contactsListBaseAnimation.kill();
-      const contactsListAnimation450 = animateElement(
-        contactsListWrapper.current,
-        { x: "100%" },
-        { x: "0%" }
-      );
-
-      return () => {
-        if (grandpaAnimation450) grandpaAnimation450.kill();
-        if (contactsListAnimation450) contactsListAnimation450.kill();
-      };
     });
 
-    mm.add("(min-width: 1000px)", () => {
-      const grandpaAnimation1000 = animateElement(
-        grandpa.current,
-        { y: "-200%", x: "0%" },
-        { y: "0%", x: "0%" }
-      );
-
-      return () => {
-        if (grandpaAnimation1000) grandpaAnimation1000.kill();
-      };
+    gsap.from(routeInfoWrapper.current, {
+      x: -100,
+      scrollTrigger: {
+        trigger: routeInfoWrapper.current,
+        start: "top 80%",
+      }
+    });
+    
+    // GoogleMap animation
+    gsap.from(googleMapWrapper.current, {
+      y: 200,
+      scrollTrigger: {
+        trigger: googleMapWrapper.current,
+        start: "top 70%",
+        markers: true
+      },
+      clearProps: "transform",
     });
 
-    animateElement(
-      lake.current,
-      { x: "-100%" },
-      {
-        scrollTrigger: {
-          trigger: lake.current,
-        },
-        x: "0%",
-      }
-    );
-
-    animateElement(
-      faqTitle.current,
-      { x: "100%" },
-      {
-        scrollTrigger: {
-          trigger: faqTitle.current,
-        },
-        x: "0%",
-      }
-    );
-
-    animateElement(
-      faqWrapper.current,
-      { x: "100%" },
-      {
-        scrollTrigger: {
-          trigger: faqWrapper.current,
-        },
-        x: "0%",
-      }
-    );
-
-    animateElement(
-      house.current,
-      { x: "100%" },
-      {
-        scrollTrigger: {
-          trigger: house.current,
-        },
-        x: "0%",
-      }
-    );
-
-    animateElement(
-      routeInfoWrapper.current,
-      { x: "-100%" },
-      {
-        scrollTrigger: {
-          trigger: routeInfoWrapper.current,
-        },
-        x: "0%",
-      }
-    );
-
-    animateElement(
-      googleMapWrapper.current,
-      { y: "-100%", opacity: 0 },
-      {
-        scrollTrigger: {
-          trigger: googleMapWrapper.current,
-          start: "bottom 80%",
-        },
-        y: "0%",
-        opacity: 1,
-      }
-    );
-
-    return () => {
-      mm.revert();
-    };
   });
 
   return (
     <>
-      <div className={s.contactsContainer}>
+      <div className={`${s.contactsContainer} container`}>
         <TelegramBotLink
           telegramTitleRef={telegramTitle}
           telegramTextRef={telegramText}
