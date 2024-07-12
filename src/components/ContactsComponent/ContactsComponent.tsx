@@ -33,14 +33,18 @@ const ContactsComponent: FC = () => {
   const googleMapWrapper = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.defaults({autoAlpha: 0, duration: 0.7});
 
     // TelegramBlock animations
-    gsap.timeline({defaults: {x: -200}})
+    gsap.timeline({defaults: {
+      x: -200, 
+      opacity: 0,
+      duration: 0.7
+    }})
       .from(telegramTitle.current, {})
       .from(telegramText.current, {}, ">-0.5")
       .from(map.current, {
         x: 200,
+        opacity: 0,
         duration: 1
       }, 0)
       .from(telegramLinkWrapper.current, {}, ">-0.5")
@@ -49,6 +53,7 @@ const ContactsComponent: FC = () => {
     gsap.timeline({
       defaults: {
         duration: 0.5,
+        opacity: 0,
       },
       scrollTrigger: {
         trigger: contactsListWrapper.current,
@@ -61,6 +66,7 @@ const ContactsComponent: FC = () => {
       })
       .from(contactsListWrapper.current, {
         clipPath: "inset(0% 0% 100% 0%)",
+        duration: 0.7
       })
       
     const mm = gsap.matchMedia();
@@ -76,6 +82,8 @@ const ContactsComponent: FC = () => {
           // FAQ animation
           gsap.from(lake.current, {
             x: -200,
+            opacity: 0,
+            duration: 0.7,
             scrollTrigger: {
               trigger:  lake.current,
               start: "top 80%",
@@ -83,6 +91,10 @@ const ContactsComponent: FC = () => {
           })
 
           gsap.timeline({
+            defaults: {
+              opacity: 0,
+              duration: 0.7,
+            },
             scrollTrigger: {
               trigger: faqTitle.current,
               start: "top 80%",
@@ -97,6 +109,10 @@ const ContactsComponent: FC = () => {
         if (isNotMobile) {
           // FAQ animation
           gsap.timeline({
+            defaults: {
+              opacity: 0,
+              duration: 0.7,
+            },
             scrollTrigger: {
               trigger:  lake.current,
               start: "top 80%",
@@ -116,6 +132,8 @@ const ContactsComponent: FC = () => {
     // RouteInfo animation
     gsap.from(house.current, {
       x: 200,
+      opacity: 0,
+      duration: 0.7,
       scrollTrigger: {
         trigger: house.current,
         start: "top 80%",
@@ -124,6 +142,8 @@ const ContactsComponent: FC = () => {
 
     gsap.from(routeInfoWrapper.current, {
       x: -100,
+      opacity: 0,
+      duration: 0.7,
       scrollTrigger: {
         trigger: routeInfoWrapper.current,
         start: "top 80%",
@@ -133,10 +153,11 @@ const ContactsComponent: FC = () => {
     // GoogleMap animation
     gsap.from(googleMapWrapper.current, {
       y: 200,
+      autoAlpha: 0,
+      duration: 0.7,
       scrollTrigger: {
         trigger: googleMapWrapper.current,
-        start: "top 70%",
-        markers: true
+        start: "top 80%",
       },
       clearProps: "transform",
     });
