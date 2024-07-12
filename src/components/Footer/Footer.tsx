@@ -57,7 +57,7 @@ export default function Footer() {
         <div className={s.contactsWrap}>
           <Icon name="map" className={s.contactsIcon} />
           <Link href={mapUrl} target="_blank" className={s.contactsText}>
-            Україна, Чернігівська область, с. Олешня, вулиця Озерна 5
+            Україна, Чернігівська область, с. Олешня, вул. Озерна 5
           </Link>
         </div>
         <div className={s.contactsWrap}>
