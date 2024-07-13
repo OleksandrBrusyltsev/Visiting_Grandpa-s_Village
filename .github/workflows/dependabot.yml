@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "00:00"
+    groups:
+      all-actions:
+        patterns: [ "*" ]
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "00:00"
+    groups:
+      scss:
+        patterns:
+          - "node-sass"
+          - "sass"
+
+
+git config --global user.name "Oleksandr Brusyltsev"
+git config --global user.email "brusiltsev1@gmail.com"
