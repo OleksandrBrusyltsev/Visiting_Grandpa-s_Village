@@ -26,7 +26,10 @@ const PopupMenu: React.FC<PopupMenuProps> = ({ handlePopup }) => {
       <div className={css.popupContainer}>
         <ul className={css.list}>
           {navigationLinks.map(({ id, link, text }) => (
-            <li key={id} className={css.item}>
+            <li
+              key={id}
+              className={`${css.item} ${id === 6 ? css.hiddenMobile : ""}`}
+            >
               <Link href={`/${locale}/${link}`} className={css.itemLink}>
                 {text}
               </Link>
