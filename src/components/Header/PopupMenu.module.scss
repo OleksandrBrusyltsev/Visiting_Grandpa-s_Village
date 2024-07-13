@@ -40,14 +40,14 @@
   font-size: var(--f-size-body);
   font-weight: 600;
   line-height: normal;
-  padding-top: 16px;
-}
+  margin-top: 16px;
 
-.item:focus-within,
-.item:hover,
-.item:active {
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
+  &:not(:last-child):hover,
+  &:not(:last-child):focus,
+  &:not(:last-child):active {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
 }
 
 .itemLink {
@@ -87,8 +87,6 @@
   color: rgb(var(--color-total-black));
 }
 
-
 .hiddenMobile {
   display: none;
 }
-
