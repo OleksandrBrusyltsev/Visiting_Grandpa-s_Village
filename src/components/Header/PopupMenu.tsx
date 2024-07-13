@@ -27,13 +27,15 @@ const PopupMenu: React.FC<PopupMenuProps> = ({ handlePopup }) => {
         <ul className={css.list}>
           {navigationLinks.map(({ id, link, text }) => (
             <li key={id} className={css.item}>
-              <Link href={`/${locale}/${link}`}>{text}</Link>
+              <Link href={`/${locale}/${link}`} className={css.itemLink}>
+                {text}
+              </Link>
             </li>
           ))}
           <li className={css.item}>
             <div className={css.langContainer}>
               <button className={`${css.langBtn} ${css.active}`}>UA</button>
-              <p>/</p>
+              <span className={css.flash}>/</span>
               <button className={css.langBtn}>EN</button>
             </div>
           </li>
