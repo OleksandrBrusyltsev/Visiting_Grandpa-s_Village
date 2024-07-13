@@ -33,12 +33,15 @@ const Header = () => {
     <>
       <div className={css.fullsizeBackground}>
         <div className={css.container}>
-          <button className={css.burgerBtn} onClick={handlePopup}>
-            <Image
-              src={Burger}
-              alt="icon-open-menu"
-              className={css.burgerIcon}
-            />
+          <button
+            className={`${css.burgerBtn} ${isVisible ? css.active : ""}`}
+            onClick={handlePopup}
+          >
+            <div className={css.burgerIcon}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </button>
           <Link href={`/${locale}`} className={css.linkLogo}>
             <Image

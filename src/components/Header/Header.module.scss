@@ -26,16 +26,16 @@
   }
 }
 
-.burgerIcon {
-  width: 100%;
-  height: auto;
+// .burgerIcon {
+//   width: 100%;
+//   height: auto;
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: rgb(var(--color-natural-orange));
-  }
-}
+//   &:hover,
+//   &:active,
+//   &:focus {
+//     color: rgb(var(--color-natural-orange));
+//   }
+// }
 
 .userIcon {
   width: 100%;
@@ -55,12 +55,46 @@
   width: 28px;
   cursor: pointer;
   align-items: center;
-  color: rgb(var(--color-base-green));
   padding-bottom: 10px;
 
   @include mixins.media-min(variables.$breakpoint-tablet-min) {
     display: none;
   }
+}
+
+.burgerIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 24px;
+  height: 24px;
+}
+
+.burgerIcon span {
+  background-color:rgb(var(--color-base-green));
+  border-radius: 2px;
+  height: 3px;
+  width: 24px;
+  transition: all 0.3s ease;
+}
+
+.burgerBtn.active .burgerIcon span:nth-child(1) {
+  background-color:rgb(var(--color-natural-orange));
+  transform: rotate(45deg);
+  position: relative;
+  top: 8px;
+}
+
+.burgerBtn.active .burgerIcon span:nth-child(2) {
+  background-color:rgb(var(--color-natural-orange));
+  opacity: 0;
+}
+
+.burgerBtn.active .burgerIcon span:nth-child(3) {
+  background-color:rgb(var(--color-natural-orange));
+  transform: rotate(-45deg);
+  position: relative;
+  top: -8px;
 }
 
 .userBtn {
