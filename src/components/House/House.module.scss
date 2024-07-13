@@ -2,8 +2,7 @@
 @use "../../styles/variables";
 
 .sectionWrapper {
-  max-width: 1180px;
-  margin: 0 auto;
+
 }
 
 .arrowBlockWrapper {
@@ -45,6 +44,121 @@
     margin-top: 30px;
   }
 }
+.apartmentGalleryWrapper  {
+  display: grid;
+  grid-template-areas: 
+  "image";
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+
+  .imageWrapper {
+    position: relative;
+    grid-area: image;
+    aspect-ratio: 1.515;
+  }
+  .grandpaQuote,
+  .imageDecor,
+  .imageGrandpa,
+  .cloud {
+    display: none;
+  }
+   
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    grid-template-columns: 66% auto;
+    column-gap: 20px;
+    row-gap: 0;
+    grid-template-areas: 
+      "image quote"
+      "image grandpa"
+      "image decor";
+      
+    .grandpaQuote {
+      display: initial;
+      grid-area: quote;
+      flex-grow: 1;
+      align-self: center;
+      font-family: var(--f-family-main);
+      font-size: 16px;
+      font-weight: 700;
+      color: rgb(var(--color-base-green));
+    }
+    .imageGrandpa {
+      display: initial;
+      position: relative;
+      justify-self: end;
+      width: 50%;
+      aspect-ratio: 0.902;
+      grid-area: grandpa;
+      flex-grow: 1;
+      align-self: end;
+      &::before, 
+      &::after {
+        position: absolute;
+        content: '';
+        background-image: url('/images/backgrounds/christmasTrees.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 220px;
+        aspect-ratio: 1;
+        top: 30px;
+        left: -97px;
+        z-index: -1;
+      }
+      &::after {
+        background-image: url('/images/backgrounds/christmasTrees.png'), 
+          url('/images/backgrounds/christmasTrees.png');
+        background-position: right top, right -20px top 100px;
+        aspect-ratio: 0.5;
+        top: 0px;
+        left: unset;
+        right: -80px;
+      }
+    }
+    .imageDecor {
+      width: 100%;
+      display: initial;
+      position: relative;
+      aspect-ratio: 1.87;
+      grid-area: decor;
+      flex-grow: 1;
+      align-self: start;
+      &::before, 
+      &::after {
+        position: absolute;
+        content: '';
+        background-image: url('/images/backgrounds/christmasTrees.png');
+        width: 220px;
+        aspect-ratio: 1;
+        background-repeat: no-repeat;
+        background-size: contain;
+        bottom: 50px;
+        left: -20px;
+      }
+      &::after {
+        left: unset;
+        bottom: 0;
+        right: -20px;
+      }
+    }
+    .cloud {
+      color: rgba(179, 161, 137, 0.2);
+      display: block;
+      position: absolute;
+      bottom: -70px;
+      right: 0px;
+      width: 460px;
+      aspect-ratio: 1.33;
+      z-index: -5;
+
+    }
+  }
+  @include mixins.media-min(variables.$pc) {
+    .cloud {
+      right: 75px;
+    }
+  }
+}
+
 
 .contentWrapper {
   display: flex;
@@ -188,6 +302,38 @@
     }
   }
 }
+.apartment {
+  padding-left: 0;
+  @include mixins.media-min(variables.$mobile) {
+    padding-left: 110px;
+  }
+}
+
+.roomsTitle {
+  align-self: flex-start;
+  margin-top: 50px;
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-h3);
+  color: rgb(var(--color-total-black));
+}
+.roomsWrapper {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px 0;
+
+  @include mixins.media-min(variables.$mobile) {
+    gap: 55px 29px;
+    justify-content: flex-start;
+    padding-bottom: 100px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    gap: 71px 62px;
+    padding-bottom: 150px;
+  }
+}
 
 .heroSectionWrapper {
   display: flex;
@@ -228,6 +374,43 @@
 
   @media (min-width: 1280px) {
     width: 1180px;
+  }
+  .curve {
+    width: 83px;
+    height: 91px;
+    display: block;
+    position: absolute;
+    bottom: -140px;
+    left: 110px;
+  
+    @media (min-width: 376px) and (max-width: 767px) {
+      width: calc(83px + 7 * (100vw - 376px) / 391);
+      height: calc(91px + 14 * (100vw - 376px) / 391);
+      bottom: calc(-140px - 35 * (100vw - 376px) / 391);
+      left: calc(110px + 150 * (100vw - 376px) / 391);
+    }
+    @media (min-width: 768px) {
+      width: 90px;
+      height: 105px;
+      bottom: -175px;
+      left: 260px;
+      rotate: (0deg);
+    }
+    @media (min-width: 1000px) {
+      rotate: (15deg);
+    }
+    @media (min-width: 769px) and (max-width: 1279px) {
+      width: calc(90px + 56 * (100vw - 769px) / 510);
+      height: calc(105px + 42 * (100vw - 769px) / 510);
+      bottom: calc(-175px - 20 * (100vw - 769px) / 510);
+      left: calc(260px + 370 * (100vw - 769px) / 510);
+    }
+    @media (min-width: 1280px) {
+      width: 146px;
+      height: 147px;
+      bottom: -195px;
+      left: 630px;
+    }
   }
 }
 
@@ -334,43 +517,7 @@
   }
 }
 
-.curve {
-  width: 83px;
-  height: 91px;
-  display: block;
-  position: absolute;
-  bottom: -140px;
-  left: 110px;
 
-  @media (min-width: 376px) and (max-width: 767px) {
-    width: calc(83px + 7 * (100vw - 376px) / 391);
-    height: calc(91px + 14 * (100vw - 376px) / 391);
-    bottom: calc(-140px - 35 * (100vw - 376px) / 391);
-    left: calc(110px + 150 * (100vw - 376px) / 391);
-  }
-  @media (min-width: 768px) {
-    width: 90px;
-    height: 105px;
-    bottom: -175px;
-    left: 260px;
-    rotate: (0deg);
-  }
-  @media (min-width: 1000px) {
-    rotate: (15deg);
-  }
-  @media (min-width: 769px) and (max-width: 1279px) {
-    width: calc(90px + 56 * (100vw - 769px) / 510);
-    height: calc(105px + 42 * (100vw - 769px) / 510);
-    bottom: calc(-175px - 20 * (100vw - 769px) / 510);
-    left: calc(260px + 370 * (100vw - 769px) / 510);
-  }
-  @media (min-width: 1280px) {
-    width: 146px;
-    height: 147px;
-    bottom: -195px;
-    left: 630px;
-  }
-}
 
 .mapWrapper {
   margin-top: 155px;

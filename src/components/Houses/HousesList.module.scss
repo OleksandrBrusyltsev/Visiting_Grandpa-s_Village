@@ -2,20 +2,17 @@
 @use "../../styles/variables";
 
 .housesList {
-    margin-top: 95px;
     position: relative;
     @include mixins.mak-green;
-    padding-bottom: 175px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
     @include mixins.media-min(variables.$mobile) {
-        margin-top: 92px;
-        padding-bottom: 175px;
+        
     }
 
     @include mixins.media-min(variables.$breakpoint-laptop) {
-        margin-top: 180px;
-        padding-bottom: 252px;
+        
     }
 }
