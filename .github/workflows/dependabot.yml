@@ -6,6 +6,7 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "00:00"
+    target-branch: "develop"
     groups:
       all-actions:
         patterns: [ "*" ]
@@ -15,12 +16,9 @@ updates:
     schedule:
       interval: "daily"
       time: "00:00"
+    target-branch: "develop"
     groups:
       scss:
         patterns:
           - "node-sass"
           - "sass"
-
-
-git config --global user.name "Oleksandr Brusyltsev"
-git config --global user.email "brusiltsev1@gmail.com"
