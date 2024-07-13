@@ -63,7 +63,7 @@ const BookingComponent: FC = () => {
       setActiveChild(val);
     }
 
-    //close the modal and clear children
+    //close the modal and clear children // //
     if(isModalOpen && val.type === activeChild.type || isModalOpen && !val.type) {
       setIsModalOpen(!isModalOpen);
       setActiveChild({type: null, triggerRef: null});
