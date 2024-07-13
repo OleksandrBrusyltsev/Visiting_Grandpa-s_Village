@@ -1,21 +1,23 @@
 "use client";
 
-import Icon from "../ui/Icon/Icon";
-import css from "./Header.module.scss";
-import Image from "next/image";
-import Button from "../ui/Button/Button";
-import PopupMenu from "./PopupMenu";
 import { useState } from "react";
-import LangBtn from "../LangBtn/LangBtn";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import Link from "next/link";
+import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
+import Icon from "../ui/Icon/Icon";
+import Button from "../ui/Button/Button";
+import PopupMenu from "./PopupMenu";
+import LangBtn from "../LangBtn/LangBtn";
+import Burger from "../../assets/icons/icon-burger.svg"
+import css from "./Header.module.scss";
 
 const image = "/images/logo-main.svg";
 const alt = "Logo main";
+
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const Header = () => {
@@ -32,9 +34,13 @@ const Header = () => {
       <div className={css.fullsizeBackground}>
         <div className={css.container}>
           <button className={css.burgerBtn} onClick={handlePopup}>
-            <Icon name={"burger"} className={css.burgerIcon} />
+            <Image
+              src={Burger}
+              alt="icon-open-menu"
+              className={css.burgerIcon}
+            />
           </button>
-          <Link href={`/${locale}`}>
+          <Link href={`/${locale}`} className={css.linkLogo}>
             <Image
               src={image}
               alt={alt}
