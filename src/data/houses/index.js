@@ -532,7 +532,7 @@ export const houses = [
         },
       },
     ],
-    photoDecor: "/images/houses/house/house-decor-svitlytsia.svg",
+    photoDecor: "/images/houses/house/house-decor-khoromy.svg",
     swiper: [
       "/images/houses/house/svitlytsia/svitlytsia-1.png",
       "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",

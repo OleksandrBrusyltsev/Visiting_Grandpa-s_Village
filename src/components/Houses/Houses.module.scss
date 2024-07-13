@@ -95,6 +95,7 @@
 }
 
 .housesTitle {
+    margin-top: 95px;
     position: relative;
     padding: 20px 20px 15px 25px;
     h1 {
@@ -115,6 +116,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 30px 0;
+    padding-bottom: 175px;
 }
 
 @include mixins.media-min(variables.$mobile) {
@@ -189,6 +191,7 @@
         margin-top: 60px;
     }
     .housesTitle {
+        margin-top: 92px;
         font-size: var(--f-size-large);
     }
     .titleOutline {
@@ -198,6 +201,7 @@
         margin-top: 82px;
         gap: 55px 29px;
         justify-content: flex-start;
+        padding-bottom: 175px;
     }
 }
 @include mixins.media-min(variables.$breakpoint-laptop) {
@@ -257,9 +261,13 @@
     .bookingForm {
         margin-top: 141px;
     }
+    .housesTitle {
+        margin-top: 180px;
+    }
     .housesWrapper {
         margin-top: 80px;
         gap: 71px 62px;
+        padding-bottom: 252px;
     }
 }
 @include mixins.media-min(variables.$pc) {
