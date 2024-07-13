@@ -3,9 +3,9 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "monday"
+      interval: "daily"
       time: "00:00"
+      minutes: 1
     target-branch: "develop"
     groups:
       all-actions:
@@ -16,6 +16,7 @@ updates:
     schedule:
       interval: "daily"
       time: "00:00"
+      minutes: 1
     target-branch: "develop"
     groups:
       scss:
