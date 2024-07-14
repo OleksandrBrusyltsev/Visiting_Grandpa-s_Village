@@ -5,7 +5,7 @@ import s from "./HeroSection.module.scss";
 
 const HeroSection: FC = () => {
   return (
-    <div className={`${s.heroSectionWrapper} container`}>
+    <div className={`${s.heroSectionWrapper}`}>
       <div className={s.hero}>
         <p className={s.description}>
           &quot;Побудував я Хатинку Діда Мороза тут.&quot;

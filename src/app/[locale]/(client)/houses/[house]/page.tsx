@@ -6,6 +6,8 @@ export default function Page({ params }: Props) {
   const { house } = params;
 
   return (
-    <House id={house} />
+    <div className="container">
+      <House id={house} />
+    </div>
   );
 }

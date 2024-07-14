@@ -1,5 +1,5 @@
-@use '../../../styles/mixins' as mixins;
-@use '../../../styles/variables';
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
 
 .sectionWrapper {
   position: relative;
@@ -42,7 +42,7 @@
     width: 238px;
     height: 216px;
     content: "";
-    right: -8%;
+    right: -6%;
     bottom: 8%;
     background-image: url("../../../assets/house/trees-decor.png");
     background-repeat: no-repeat;
@@ -141,7 +141,7 @@
     width: 20px;
     height: 20px;
   }
-  
+
   .iconGuests {
     width: 21px;
     height: 19px;
@@ -149,7 +149,7 @@
 }
 
 .addonsTitle {
-  font-size: var( --f-size-numbers-small);
+  font-size: var(--f-size-numbers-small);
   font-family: var(--f-family-headline);
   color: rgb(var(--color-gray));
   text-align: center;

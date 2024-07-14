@@ -39,7 +39,7 @@ export default async function House({ id }: Props) {
   return (
     <div className={s.sectionWrapper}>
       {rooms.length ? null : (
-        <div className={`${s.arrowBlockWrapper} container`}>
+        <div className={`${s.arrowBlockWrapper}`}>
           <p className={s.textDecor}>
             &quot;Гортай, щоб побачити більше фото.&quot;
           </p>
@@ -49,50 +49,48 @@ export default async function House({ id }: Props) {
         </div>
       )}
 
-      <div className={`${s.galleryWrapper} container`}>
-        {rooms.length ? (
-          <div className={s.apartmentGalleryWrapper}>
-            <div className={s.imageWrapper}>
-              <Image
-                fill
-                alt={title}
-                src={photo[0]}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-
-            <p className={s.grandpaQuote}>
-              &quot;Дивись, які гарні Хороми маю&quot;
-            </p>
-
-            <div className={s.imageGrandpa}>
-              <Image
-                fill
-                alt="grandpa"
-                src="/images/grandpas/Grandpa2.png"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-
-            <div className={s.imageDecor}>
-              <Image
-                fill
-                alt="house decor"
-                src={photoDecor}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-
-            <div className={s.cloud}>
-              <Icon name="house-cloud-decor" />
-            </div>
+      {rooms.length ? (
+        <div className={s.apartmentGalleryWrapper}>
+          <div className={s.imageWrapper}>
+            <Image
+              fill
+              alt={title}
+              src={photo[0]}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
-        ) : (
-          <Gallery pictures={swiper} />
-        )}
-      </div>
 
-      <div className={`${s.contentWrapper} container`}>
+          <p className={s.grandpaQuote}>
+            &quot;Дивись, які гарні Хороми маю&quot;
+          </p>
+
+          <div className={s.imageGrandpa}>
+            <Image
+              fill
+              alt="grandpa"
+              src="/images/grandpas/Grandpa2.png"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+
+          <div className={s.imageDecor}>
+            <Image
+              fill
+              alt="house decor"
+              src={photoDecor}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+
+          <div className={s.cloud}>
+            <Icon name="house-cloud-decor" />
+          </div>
+        </div>
+      ) : (
+        <Gallery pictures={swiper} />
+      )}
+
+      <div className={`${s.contentWrapper}`}>
         <div className={`${s.textWrapper}  ${rooms.length ? s.apartment : ""}`}>
           <h1 className={s.headline}>{title}</h1>
           <p className={s.text}>

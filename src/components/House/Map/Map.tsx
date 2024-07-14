@@ -22,7 +22,7 @@ type Props = {
 
 const Map: FC<Props> = ({ locale, coordinates }) => {
   return (
-    <div className={`${s.mapWrapper} container`}>
+    <div className={`${s.mapWrapper}`}>
       <div className={s.map}>
         <Image
           fill

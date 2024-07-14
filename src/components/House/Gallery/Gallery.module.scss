@@ -1,7 +1,7 @@
 .galleryWrapper {
   position: relative;
-  margin-top: 21px;
   cursor: pointer;
+  margin-top: 21px;
 
   @media (min-width: 376px) and (max-width: 767px) {
     margin-top: calc(21px + 9 * (100vw - 376px) / 391);
