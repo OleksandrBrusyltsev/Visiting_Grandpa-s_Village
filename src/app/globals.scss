@@ -67,20 +67,17 @@ swiper-container {
 
 swiper-slide {
   border-radius: 8%;
-
-  @media (min-width: 769px) {
+  @media (min-width: 1280px) {
     & img {
-      left: 115px !important;
+      left: 118px !important;
       width: 900px !important;
     }
   }
 }
 
-// swiper-container::part(button-prev),
-// swiper-container::part(button-next) {
-//   color: white;
-//   width: 50px;
-//   height: 50px;
-//   background-color: rgb(var(--color-base-green));
-//   border-radius: 50%;
-// }
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  color: rgb(var(--color-base-green));
+  width: 50px;
+  height: 50px;
+}
