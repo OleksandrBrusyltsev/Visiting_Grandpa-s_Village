@@ -6,7 +6,6 @@ import Image from "next/image";
 import Button from "../ui/Button/Button";
 import PopupMenu from "./PopupMenu";
 import { useState } from "react";
-import Navigation from "./Navigation";
 import LangBtn from "../LangBtn/LangBtn";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
@@ -109,7 +108,6 @@ const Header = () => {
         </div>
       </div>
       {isVisible && <PopupMenu handlePopup={handlePopup} />}
-      <Navigation />
     </>
   );
 };

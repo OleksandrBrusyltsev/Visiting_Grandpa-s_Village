@@ -40,7 +40,8 @@
   height: auto;
   display: block;
   margin-left: auto;
-
+  position: relative;
+  z-index: 10;
   @include mixins.media-min(variables.$mobile) {
     margin-left: 60%;
   }

@@ -5,7 +5,7 @@
     "welcomeBlock": "The best time to rest is now"
   },
   "NotFoundPage": {
-    "title": "Page not found",
+    "title": "something went wrong, sorry",
     "description": "Page not found."
   },
   "Admin": {
@@ -44,5 +44,9 @@
     "childGuestAddons": "child of 3-12 y.o. ({rate} hrn)",
     "visit": "Visit",
     "book": "Book"
+  },
+  "UI": {
+    "visit": "Visit",
+    "home": "Home Page"
   }
 }
