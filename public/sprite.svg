@@ -190,6 +190,10 @@
   <symbol viewBox="0 0 94 8" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" id="arrow-house-small">
     <path d="M0.333333 4C0.333333 5.47276 1.52724 6.66667 3 6.66667C4.47276 6.66667 5.66667 5.47276 5.66667 4C5.66667 2.52724 4.47276 1.33333 3 1.33333C1.52724 1.33333 0.333333 2.52724 0.333333 4ZM93.3536 4.35355C93.5488 4.15828 93.5488 3.8417 93.3536 3.64644L90.1716 0.464458C89.9763 0.269196 89.6597 0.269196 89.4645 0.464459C89.2692 0.659721 89.2692 0.976303 89.4645 1.17157L92.2929 3.99999L89.4645 6.82842C89.2692 7.02368 89.2692 7.34026 89.4645 7.53553C89.6597 7.73079 89.9763 7.73079 90.1716 7.53553L93.3536 4.35355ZM3 4.5L93 4.49999L93 3.49999L3 3.5L3 4.5Z" fill="#3F5540"/>
   </symbol>
+  <symbol viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" id="house-gallery-cross">
+    <path d="M2 2L28 28" stroke="#3F5540" stroke-width="3" stroke-linecap="round"/>
+    <path d="M28 2L2 28" stroke="#3F5540" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
 
   
   <!-- <symbol viewBox="0 0 181 118" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" id="curve-house">

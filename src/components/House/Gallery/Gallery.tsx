@@ -1,6 +1,7 @@
 "use client";
 import { FC, useState } from "react";
 import Image from "next/image";
+import Icon from "../../ui/Icon/Icon";
 import Swiper from "./Swiper/Swiper";
 import s from "./Gallery.module.scss";
 
@@ -25,6 +26,11 @@ const Gallery: FC<GalleryType> = ({ pictures }) => {
   return (
     <div className={s.galleryWrapper}>
       {isSwiperOpen && <div className={s.overlay} onClick={toggleMenu}></div>}
+      {isSwiperOpen && (
+        <div className={s.cross} onClick={toggleMenu}>
+          <Icon name="house-gallery-cross" />
+        </div>
+      )}
       <div className={s.gallery} onClick={toggleMenu}>
         {pictures.map((item, index) => (
           <div

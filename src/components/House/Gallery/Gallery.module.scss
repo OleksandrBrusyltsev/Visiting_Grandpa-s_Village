@@ -26,6 +26,15 @@
   }
 }
 
+.cross {
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  z-index: 7;
+  right: 100px;
+  top: -70px;
+}
+
 .gallery {
   display: none;
 

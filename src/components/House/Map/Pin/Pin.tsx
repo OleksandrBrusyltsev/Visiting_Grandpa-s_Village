@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Image from "next/image";
-import PinProps from "../../../types/pin";
+import PinProps from "../../../../types/pin";
 import styles from "./Pin.module.scss";
 
 const Pin: FC<PinProps> = ({
