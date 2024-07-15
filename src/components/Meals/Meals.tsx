@@ -10,6 +10,7 @@ import { MatchMediaContext } from '@/context/MatchMediaContext';
 
 import s from './Meals.module.scss';
 import sBlock from './MealsBlock.module.scss';
+import { ScrollTrigger } from 'gsap/all';
 
 type Props = {items: MealsItem[]}
 
@@ -138,6 +139,7 @@ export default function Meals({items}: Props) {
                 x: -200,
             }, "<")
         });
+        ScrollTrigger.refresh(true);
     });
 
     return (

@@ -56,7 +56,7 @@ export default  function Houses({items, children}: Props) {
       y: -50,
       duration: 0.8,
       opacity: 0,
-    }, ">-0.5")
+    }, ">-0.8")
 
     //houses list animation
     const mm = gsap.matchMedia();
@@ -89,15 +89,15 @@ export default  function Houses({items, children}: Props) {
       }
       if(isNotMobile) {
         ScrollTrigger.batch(housesRef.current, {
-          batchMax: 4,   
+          batchMax: 2,   
           onEnter: batch => mainTimeline.fromTo(batch, {
             x: i => i%2 ? 100 : -100,
             autoAlpha: 0, 
           }, {
             x: 0,
             autoAlpha: 1,
-            duration: 0.8,
-            ease: 'power1.out'
+            duration: 0.6,
+            ease: 'power1.out',
           }),
           start: 'top 80%',
           end: "bottom start",
@@ -105,6 +105,7 @@ export default  function Houses({items, children}: Props) {
         });
       }
     });
+    ScrollTrigger.refresh(true);
   })
 
   return (

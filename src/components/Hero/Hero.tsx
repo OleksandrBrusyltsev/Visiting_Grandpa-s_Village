@@ -440,6 +440,7 @@ const Hero = () => {
         clearProps: "transform",
       });
     });
+    ScrollTrigger.refresh(true);
   }, {});
 
   return (
