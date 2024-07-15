@@ -56,12 +56,16 @@ swiper-container {
   @media (min-width: 376px) and (max-width: 767px) {
     height: calc(270px + 280 * (100vw - 376px) / 391);
   }
-  @include media-min($breakpoint-tablet-min) {
+
+  @media (min-width: 768px) {
     height: 550px;
   }
-  @include media-min($breakpoint-laptop-min) {
-    height: 600px;
+  @media (min-width: 769px) and (max-width: 1279px) {
+    height: calc(550px + 50 * (100vw - 769px) / 510);
+  }
+  @media (min-width: 1280px) {
     width: 1136px;
+    height: 600px;
   }
 }
 
@@ -71,6 +75,7 @@ swiper-slide {
     & img {
       left: 118px !important;
       width: 900px !important;
+      object-fit: cover;
     }
   }
 }

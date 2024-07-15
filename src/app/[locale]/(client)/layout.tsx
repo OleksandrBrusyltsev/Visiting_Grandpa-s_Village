@@ -23,7 +23,7 @@ export default async function LocaleLayout({
       <Header />
       <Navigation />
       <Breadcrumbs />
-        {children}
+      {children}
       <AskGrandpa />
       <Footer />
     </>
