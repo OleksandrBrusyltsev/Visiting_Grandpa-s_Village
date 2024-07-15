@@ -7,6 +7,7 @@ import Quote from './Quote/Quote';
 
 import s from './Entertainment.module.scss';
 import { useRef } from 'react';
+import { ScrollTrigger } from 'gsap/all';
 
 type Props = {items: EntertainmentItem[]}
 
@@ -84,7 +85,8 @@ export default function Entertainment({items}: Props) {
                 x: i % 2 ? 50 : -50,
                 y: -50,
             }, ">-0.5")
-        })
+        });
+        ScrollTrigger.refresh(true);
     });
 
     return (
