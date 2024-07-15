@@ -1,23 +1,48 @@
-version: 2
-updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "00:00"
-    groups:
-      all-actions:
-        patterns: [ "*" ]
+name: Weekly GitHub Actions Update
 
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "daily"
-      time: "00:00"
-    groups:
-      scss:
-        patterns:
-          - "node-sass"
-          - "sass"
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  push:
+    branches:
+      - develop
 
+jobs:
+  update-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: develop
+
+      - name: Update GitHub Actions
+        uses: dependabot/dependabot-core@main
+        with:
+          package-ecosystem: 'github-actions'
+          directory: '/'
+          schedule-interval: 'weekly'
+          schedule-day: 'monday'
+          schedule-time: '00:00'
+          groups: all-actions
+          patterns: '*'
+
+  update-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: develop
+
+      - name: Update npm Packages
+        uses: dependabot/dependabot-core@main
+        with:
+          package-ecosystem: 'npm'
+          directory: '/'
+          schedule-interval: 'daily'
+          schedule-time: '00:00'
+          groups: scss
+          patterns:
+            - 'node-sass'
+            - 'sass'
