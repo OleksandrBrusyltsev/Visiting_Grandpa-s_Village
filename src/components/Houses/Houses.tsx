@@ -11,10 +11,11 @@ import HouseItem from './HouseItem';
 import HousesList from './HousesList';
 
 import s from './Houses.module.scss';
+import BookingComponent from '../BookingComponent/BookingComponent';
 
-type Props = {items: HouseItem[], children: React.ReactNode}
+type Props = {items: HouseItem[]}
 
-export default  function Houses({items, children}: Props) {
+export default  function Houses({items}: Props) {
   const {locale} = useParams();
   const housesRef = useRef<Array<HTMLDivElement>>([]);
   
@@ -48,15 +49,14 @@ export default  function Houses({items, children}: Props) {
     })
     .from(`.${s.bookingForm}`, {
       scale: 0.9,
-      duration: 1,
+      duration: 0.8,
       opacity: 0,
-      delay: 0.2
     })
     .from(`.${s.housesTitle}`, {
       y: -50,
       duration: 0.8,
       opacity: 0,
-    }, ">-0.8")
+    }, ">-0.5")
 
     //houses list animation
     const mm = gsap.matchMedia();
@@ -77,7 +77,7 @@ export default  function Houses({items, children}: Props) {
           }, {
             x: 0,
             autoAlpha: 1,
-            duration: 0.8,
+            duration: 0.6,
             ease: 'power1.out',
             scrollTrigger: {
               trigger: h,
@@ -91,14 +91,14 @@ export default  function Houses({items, children}: Props) {
         ScrollTrigger.batch(housesRef.current, {
           batchMax: 2,   
           onEnter: batch => mainTimeline.fromTo(batch, {
-            x: i => i%2 ? 100 : -100,
+            x: i => i%2 ? 200 : -200,
             autoAlpha: 0, 
           }, {
             x: 0,
             autoAlpha: 1,
             duration: 0.6,
             ease: 'power1.out',
-          }),
+          }, ">-0.2"),
           start: 'top 80%',
           end: "bottom start",
           once: true
@@ -143,7 +143,7 @@ export default  function Houses({items, children}: Props) {
       </section>
     
       <div className={`${s.bookingForm} container`}>
-          {children}
+        <BookingComponent />
       </div>
 
       <main>
