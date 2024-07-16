@@ -101,7 +101,7 @@
 }
 
 .text2 {
-  padding: 0 24px;
+  // padding: 0 24px;
   font-weight: 700;
   text-align: right;
   color: rgba(var(--color-base-green), 1);
@@ -114,6 +114,10 @@
     font-size: 16px;
     line-height: 17.6px;
   }
+}
+
+.boxForAlign{
+  margin-left: auto;
 }
 
 .imgBox {
@@ -260,7 +264,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   @include mixins.media-min(variables.$mobile) {
     width: 484px;
   }
@@ -460,6 +464,7 @@
   text-align: right;
   padding: 0 20px;
   margin-bottom: 20px;
+  margin-left: auto;
 
   @include mixins.media-min(variables.$mobile) {
     text-align: left;
@@ -480,7 +485,7 @@
 .illustration3 {
   position: absolute;
   top: -18%;
-  left: 0;
+  left: 12px;
   z-index: 50;
 
   width: 50vw;
@@ -680,6 +685,7 @@
 }
 
 .add1 {
+  margin-left: 24px;
   max-width: 200px;
 
   margin-bottom: 20px;
@@ -872,6 +878,7 @@
   max-width: 975px;
 
   z-index: 46;
+  overflow: hidden;
 
   @include mixins.media-min(variables.$mobile) {
     max-height: 433px;
@@ -909,6 +916,9 @@
 }
 
 .textContainer1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   @include mixins.media-min(variables.$mobile) {
     display: flex;
     flex-direction: column;

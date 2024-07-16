@@ -80,6 +80,14 @@ const Hero = () => {
   useGSAP(() => {
     mm.add("(min-width: 768px)", () => {
       // desktop setup code here...
+      gsap.timeline({
+        defaults: {
+            autoAlpha: 0,
+            ease: "power1.out",
+            duration: 1,
+        }
+        })
+      
       gsap.fromTo(
         box1Ref.current,
         { x: -767, opacity: 0 },
@@ -136,11 +144,13 @@ const Hero = () => {
       });
 
       gsap.from(line1Ref.current, {
-        // scrollTrigger: line1Ref.current,
-        y: 1000,
-        opacity: 0,
-        // duration: 1,
-        clearProps: "transform",
+        scrollTrigger: {
+          trigger: line1Ref.current,
+          start: 'top 40%',
+      },
+        autoAlpha: 1,
+        clipPath: "inset(0% 0% 0% 100%)",
+        duration: 1,
       });
 
       gsap.from(photo4Animation.current, {
@@ -184,12 +194,14 @@ const Hero = () => {
         clearProps: "transform",
       });
 
-      gsap.from(line2Animation.current, {
-        scrollTrigger: line2Animation.current,
-        y: -1000,
-        opacity: 0,
-        duration: 1,
-        clearProps: "transform",
+      gsap.from(line2Animation.current,  {
+        scrollTrigger: {
+          trigger: line2Animation.current,
+          start: 'top 40%',
+      },
+        autoAlpha: 1,
+        clipPath: "inset(0% 100% 0% 0%)",
+        duration: 2,
       });
 
       gsap.from(box4Ref.current, {
@@ -260,21 +272,25 @@ const Hero = () => {
         clearProps: "transform",
       });
 
-      gsap.from(line4Animation.current, {
-        scrollTrigger: line4Animation.current,
-        x: 767,
-        opacity: 0,
-        duration: 1,
-        clearProps: "transform",
+      gsap.from(line4Animation.current,  {
+        scrollTrigger: {
+          trigger: line4Animation.current,
+          start: 'top 40%',
+      },
+        autoAlpha: 1,
+        clipPath: "inset(0% 0% 0% 100%)",
+        duration: 2,
       });
 
-      // gsap.from(grandpa1Ref.current, {
-      //   scrollTrigger: grandpa1Ref.current,
-      //   y: -767,
-      //   duration: 1,
-      //   opacity: 0,
-      //   clearProps: "transform",
-      // });
+      gsap.from(`.${css.line3Box}`,  {
+        scrollTrigger: {
+          trigger: `.${css.line3Box}`,
+          start: 'top 40%',
+      },
+        autoAlpha: 1,
+        clipPath: "inset(0% 0% 0% 100%)",
+        duration: 2,
+      });
 
       gsap.fromTo(
         grandpa1Ref.current,
@@ -282,106 +298,139 @@ const Hero = () => {
         { y: 0, opacity: 1, duration: 1.75, clearProps: "transform" }
       );
     });
+//////////////////////////////////////////////////////////
+
 
     mm.add("(max-width: 767px)", () => {
+      gsap.timeline({
+        defaults: {
+            autoAlpha: 0,
+            ease: "power1.out",
+            duration: 1,
+        }
+        })
       gsap.fromTo(
         grandpa1Ref.current,
-        { x: -767, opacity: 0 },
+        { x: -200, opacity: 0 },
         { x: 0, opacity: 1, duration: 1.75, clearProps: "transform" }
       );
+
+      gsap.from(line4Animation.current,  {
+        scrollTrigger: {
+          trigger: line4Animation.current,
+          start: 'top 70%',
+      },
+        autoAlpha: 1,
+        clipPath: "inset(0% 0% 0% 100%)",
+        duration: 2,
+      });
 
       gsap.fromTo(
         box1Ref.current,
-        { x: -767, opacity: 0 },
+        { x: -200, opacity: 0 },
         { x: 0, opacity: 1, duration: 1.75, clearProps: "transform" }
       );
 
+      gsap.from(line1Ref.current, {
+        scrollTrigger: {
+          trigger: line1Ref.current,
+          start: 'top 70%',
+      },
+        autoAlpha: 1,
+        clipPath: "inset(0% 0% 0% 100%)",
+        duration: 2,
+      });
+
       gsap.fromTo(
         box99Ref.current,
-        { x: -767, opacity: 0 },
+        { x: -200, opacity: 0 },
         { x: 0, opacity: 1, duration: 1.75, clearProps: "transform" }
       );
       gsap.fromTo(
         photo1Animation.current,
-        { x: -767, opacity: 0 },
+        { x: -200, opacity: 0 },
         { x: 0, opacity: 1, duration: 1.75, clearProps: "transform" }
       );
       gsap.fromTo(
         illustration1Animation.current,
-        { x: -767, opacity: 0 },
+        { x: 200, opacity: 0 },
         { x: 0, opacity: 1, duration: 1, clearProps: "transform" }
       );
 
-      gsap.fromTo(
+      gsap.from(
         box2Ref.current,
         {
-          x: -767,
+          scrollTrigger: box2Ref.current,
+          x: -200,
           opacity: 0,
-        },
-        {
-          scrollTrigger: {
-            trigger: box2Ref.current,
-          },
-          x: 0,
-          opacity: 0,
-          duration: 1,
           clearProps: "transform",
-        }
+        },
+        // {
+        //   
+        //   x: 0,
+        //   opacity: 0,
+        //   duration: 1,
+        // }
       );
       gsap.from(box3Ref.current, {
         scrollTrigger: box3Ref.current,
-        x: -767,
+        x: -200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(photo4Animation.current, {
         scrollTrigger: photo4Animation.current,
-        x: -767,
+        x: -200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(photo3Animation.current, {
         scrollTrigger: photo3Animation.current,
-        x: -767,
+        x: -200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(photo2Animation.current, {
         scrollTrigger: photo2Animation.current,
-        x: 767,
+        x: 200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
-      gsap.from(line2Animation.current, {
-        scrollTrigger: line2Animation.current,
-        y: 3000,
-        opacity: 0,
-        duration: 1,
-        clearProps: "transform",
+      gsap.from(line2Animation.current,  {
+        scrollTrigger: {
+          trigger: line2Animation.current,
+          start: 'top 70%',
+      },
+        autoAlpha: 1,
+        clipPath: "inset(0% 100% 0% 0%)",
+        duration: 2,
+      });
+
+      gsap.from(`.${css.line3Box}`,  {
+        scrollTrigger: {
+          trigger: `.${css.line3Box}`,
+          start: 'top 70%',
+      },
+        autoAlpha: 1,
+        clipPath: "inset(0% 0% 0% 100%)",
+        duration: 2,
       });
 
       gsap.from(box4Ref.current, {
         scrollTrigger: box4Ref.current,
-        x: -767,
+        x: -200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
-      // gsap.from(box5Ref.current, {
-      //   scrollTrigger: box5Ref.current,
-      //   x: -767,
-      //   opacity: 0,
-      //   duration: 1,
-      //   clearProps: "transform",
-      // });
 
       gsap.from(illustration3Ref.current, {
         scrollTrigger: illustration3Ref.current,
-        x: -767,
+        x: -200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
@@ -389,7 +438,7 @@ const Hero = () => {
 
       gsap.from(photo5Ref.current, {
         scrollTrigger: photo5Ref.current,
-        x: 767,
+        x: 200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
@@ -397,7 +446,15 @@ const Hero = () => {
 
       gsap.from(photo6Ref.current, {
         scrollTrigger: photo6Ref.current,
-        x: 767,
+        x: -200,
+        opacity: 0,
+        duration: 1,
+        clearProps: "transform",
+      });
+
+      gsap.from(illustration2Ref.current, {
+        scrollTrigger: illustration2Ref.current,
+        x: 200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
@@ -405,14 +462,14 @@ const Hero = () => {
 
       gsap.from(box6Ref.current, {
         scrollTrigger: box6Ref.current,
-        x: 767,
+        x: 200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(box7Ref.current, {
         scrollTrigger: box7Ref.current,
-        x: 767,
+        x: 200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
@@ -420,21 +477,21 @@ const Hero = () => {
 
       gsap.from(photo7Animation.current, {
         scrollTrigger: photo7Animation.current,
-        x: 767,
+        x: 200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(photo8Animation.current, {
         scrollTrigger: photo8Animation.current,
-        x: -767,
+        x: -200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
       });
       gsap.from(grandpa3Animation.current, {
         scrollTrigger: grandpa3Animation.current,
-        x: -767,
+        x: -200,
         opacity: 0,
         duration: 1,
         clearProps: "transform",
@@ -541,7 +598,7 @@ const Hero = () => {
           <span className={css.bold}>блакитне озеро - справжня казка,</span> від
           якої захоплює подих і дивує відвідувачів унікальним кольором води.
         </p>
-        <p className={css.text2}>
+        <p className={`${css.text2} ${css.boxForAlign}`} >
           &#34; Кожен гість - мій привід посміхнутися.&#34;
         </p>
       </div>
