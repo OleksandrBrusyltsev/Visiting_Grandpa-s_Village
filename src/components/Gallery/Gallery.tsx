@@ -92,6 +92,7 @@ export default function Gallery({items}: Props) {
         });
       }
     });
+    ScrollTrigger.refresh(true);
   });
   
   return (

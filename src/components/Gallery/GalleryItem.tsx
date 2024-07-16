@@ -12,8 +12,6 @@ import s from './GalleryItem.module.scss';
 
 type Props = {data: GalleryItem};
 
-gsap.registerPlugin(useGSAP);      
-
 const GalleryItem = forwardRef<HTMLDivElement, Props>(function GalleryItem({data}, ref) {
   const {locale} = useParams();
   const path = usePathname();
