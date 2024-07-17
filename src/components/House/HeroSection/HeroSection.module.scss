@@ -108,7 +108,7 @@
     height: 200px;
     content: "";
     position: absolute;
-    right: -30px;
+    right: -24px;
     bottom: -105px;
     background-image: url("/images/houses/house/house-trees.png");
     background-position: right bottom;
@@ -119,19 +119,19 @@
       width: calc(180px + 26 * (100vw - 376px) / 391);
       height: calc(206px + 20 * (100vw - 376px) / 391);
       // right: calc(-30px + 13 * (100vw - 376px) / 391);
-      right: -30px;
+      right: -24px;
       bottom: calc(-105px - 30 * (100vw - 376px) / 391);
     }
     @media (min-width: 768px) {
       width: 206px;
       height: 226px;
-      right: -30px;
+      right: -24px;
       bottom: -135px;
     }
     @media (min-width: 769px) and (max-width: 1279px) {
       width: calc(206px + 162 * (100vw - 769px) / 510);
       height: calc(226px + 179 * (100vw - 769px) / 510);
-      right: calc(-30px + 5 * (100vw - 769px) / 510);
+      right: calc(-24px - 1 * (100vw - 769px) / 510);
       bottom: calc(-135px - 215 * (100vw - 769px) / 510);
     }
     @media (min-width: 1280px) {

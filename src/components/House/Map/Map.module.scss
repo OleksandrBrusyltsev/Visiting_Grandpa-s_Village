@@ -44,7 +44,7 @@
 }
 
 .cloudBackground {
-  width: 375px;
+  // width: 375px;
   height: 233px;
   position: absolute;
   top: -25px;
@@ -52,7 +52,9 @@
   z-index: -1;
   transform: scaleY(-1);
   filter: blur(22px);
-
+  @media (min-width: 375px) {
+    width: 375px;
+  }
   @media (min-width: 376px) and (max-width: 767px) {
     transform: scaleY(+1);
     width: calc(375px + 328 * (100vw - 376px) / 391);
