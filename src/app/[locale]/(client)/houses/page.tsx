@@ -3,7 +3,7 @@ import BookingComponent from "@/components/BookingComponent/BookingComponent";
 import Houses from "@/components/Houses/Houses";
 
 export default async function Page() {
-  const items = await getData<HouseItem[]>('houses');
+  const items = await getData<HouseItem[]>("houses");
 
   return (
     <>
@@ -11,5 +11,5 @@ export default async function Page() {
         <BookingComponent />
       </Houses>
     </>
-  )
+  );
 }
