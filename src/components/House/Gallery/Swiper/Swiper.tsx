@@ -27,6 +27,8 @@ const Swiper: FC<SwiperType> = ({ pictures, isSwiperOpen }) => {
               slides-per-view="1"
               navigation={nav}
               space-between={30}
+              // @ts-ignore
+              loop="true"
             >
               {pictures.map((item) => (
                 <swiper-slide key={item}>
