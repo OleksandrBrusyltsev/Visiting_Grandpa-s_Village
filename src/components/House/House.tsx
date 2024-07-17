@@ -4,7 +4,7 @@ import Image from "next/image";
 import Booking from "./Booking/Booking";
 import Gallery from "./Gallery/Gallery";
 import Icon from "../ui/Icon/Icon";
-import MarkdownPreview from "../../data/houses/MarkdownPreview";
+import MarkdownPreview from "../../functions/MarkdownPreview";
 import s from "./House.module.scss";
 import HouseItem from "../Houses/HouseItem";
 import HousesList from "../Houses/HousesList";
