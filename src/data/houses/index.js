@@ -156,9 +156,10 @@ export const houses = [
     photoDecor: "/images/houses/house/decor/komora-de-lyuks.svg",
     // fake
     swiper: [
-      "/images/houses/house/svitlytsia/svitlytsia-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+      "/images/houses/house/komora-de-lyuks/komora-de-lyuks-1.png",
+      "/images/houses/house/komora-de-lyuks/komora-de-lyuks-2.png",
+      "/images/houses/house/komora-de-lyuks/komora-de-lyuks-3.png",
+      "/images/houses/house/komora-de-lyuks/komora-de-lyuks-4.png",
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
@@ -201,9 +202,10 @@ export const houses = [
     photoDecor: "/images/houses/house/decor/opochyvalnia.svg",
     // fake
     swiper: [
-      "/images/houses/house/svitlytsia/svitlytsia-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+      "/images/houses/house/opochyvalnia/opochyvalnia-1.png",
+      "/images/houses/house/opochyvalnia/opochyvalnia-2.png",
+      "/images/houses/house/opochyvalnia/opochyvalnia-3.png",
+      "/images/houses/house/opochyvalnia/opochyvalnia-4.png",
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345879/oe1zuqlg9k5mg36vqy0n.jpg",
@@ -246,9 +248,11 @@ export const houses = [
     photoDecor: "/images/houses/house/decor/hornytsia.svg",
     // fake
     swiper: [
-      "/images/houses/house/svitlytsia/svitlytsia-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+      "/images/houses/house/hornytsia/hornytsia-1.png",
+      "/images/houses/house/hornytsia/hornytsia-2.png",
+      "/images/houses/house/hornytsia/hornytsia-3.png",
+      "/images/houses/house/hornytsia/hornytsia-4.png",
+      "/images/houses/house/hornytsia/hornytsia-5.png",
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
@@ -291,9 +295,11 @@ export const houses = [
     photoDecor: "/images/houses/house/decor/maisternia-hnomiv.svg",
     // fake
     swiper: [
-      "/images/houses/house/svitlytsia/svitlytsia-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+      "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-1.png",
+      "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-2.png",
+      "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-3.png",
+      "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-4.png",
+      "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-5.png",
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345878/zkesaqmdsfsk2ofwzy4n.jpg",
@@ -333,9 +339,10 @@ export const houses = [
     photoDecor: "/images/houses/house/decor/teremok.svg",
     // fake
     swiper: [
-      "/images/houses/house/svitlytsia/svitlytsia-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+      "/images/houses/house/teremok/teremok-1.png",
+      "/images/houses/house/teremok/teremok-2.png",
+      "/images/houses/house/teremok/teremok-3.png",
+      "/images/houses/house/teremok/teremok-4.png",
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345881/esdertz6nrzd0kucpsgr.jpg",

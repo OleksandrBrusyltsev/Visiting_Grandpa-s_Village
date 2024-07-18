@@ -107,18 +107,32 @@
   border-radius: 8px;
   background-color: rgb(var(--color-nude), 0.7);
   font-family: var(--f-family-headline);
-  font-size: 22px;
+  font-size: 16px;
   line-height: 97.6%;
   border: 1px solid rgba(var(--color-base-green));
   display: flex;
   flex-direction: column;
+  @media (min-width: 376px) {
+    font-size: 18px;
+  }
+  @media (min-width: 768px) {
+    font-size: 22px;
+  }
+
   &.simple {
     gap: 30px;
     padding: 40px 24px;
   }
   &.addons {
     gap: 36px;
-    padding: 48px 60px;
+    padding: 10px 10px;
+
+    @media (min-width: 376px) {
+      padding: 30px 30px;
+    }
+    @media (min-width: 768px) {
+      padding: 48px 60px;
+    }
   }
 
   @media (min-width: 376px) and (max-width: 767px) {
