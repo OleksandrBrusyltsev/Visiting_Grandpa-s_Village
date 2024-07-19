@@ -173,7 +173,7 @@ const Hero = () => {
         //ДОТОРКНИСЬ ДО ПРИРОДИ
         gsap.timeline({
           defaults: {
-            duration: 1,
+            duration: 0.7,
             clearProps: "transform",
             opacity: 0,
           },
@@ -240,7 +240,6 @@ const Hero = () => {
           x: -100
         }, "<").from(line4Animation.current,  {
           clipPath: "inset(0% 0% 100% 0%)",
-          duration: 1,
           scale: 1,
           opacity: 1,
         })
@@ -270,13 +269,13 @@ const Hero = () => {
         gsap.timeline({
           defaults: {
             ease: "power1.out",
+            duration: 0.8,
           },
           scrollTrigger: {
             trigger: line1Ref.current,
             start: 'top 60%',
         }}).from(line1Ref.current, {
           clipPath: "inset(0% 0% 100% 0%)",
-          duration: 1,
         })
         //booking
         .from(calendarRef.current, {
@@ -286,13 +285,14 @@ const Hero = () => {
         .from(
           [photo1Animation.current, illustration1Animation.current],
           { y: 30, 
-            opacity: 0, 
+            opacity: 0,
+            duration: 0.5
           }
         );
 
       //Затишне місце
         gsap.timeline({defaults: {
-          duration: 1,
+          duration: 0.8,
           ease: "power1.out",
           opacity: 0,
         },
@@ -325,14 +325,14 @@ const Hero = () => {
         .from(line2Animation.current,  {
           clipPath: "inset(0% 100% 0% 0%)",
           opacity: 1,
-          duration: 1.5,
+          duration: 1,
         }, ">-1");
 
         //ДОТОРКНИСЬ ДО ПРИРОДИ
         gsap.timeline({
           defaults: {
             opacity: 0,
-            duration: 1,
+            duration: 0.6,
           },
           scrollTrigger: {
             trigger: box4Ref.current,
@@ -345,7 +345,7 @@ const Hero = () => {
        //Иллюстрации под ДОТОРКНИСЬ ДО ПРИРОДИ
         gsap.timeline({
           defaults: {
-            duration: 1,
+            duration: 0.8,
           },
           scrollTrigger: {
             trigger: photo5Ref.current,
@@ -364,7 +364,7 @@ const Hero = () => {
         //ЧАС ЗБИРАТИ СПОГАДИ
         gsap.timeline({
           defaults: {
-            duration: 1,
+            duration: 0.6,
           },
           scrollTrigger: {
             trigger: box7Ref.current,
@@ -389,6 +389,7 @@ const Hero = () => {
           }
         }).from(grandpa3Animation.current, {
           x: 200,
+          duration: 0.8
         }).from(photo7Animation.current, {
           x: 200,
           y: -20,
@@ -398,8 +399,8 @@ const Hero = () => {
           scale: 0.5,
         }, "<").from(line4Animation.current,  {
           clipPath: "inset(0% 0% 100% 0%)",
-          duration: 1,
-          opacity: 1
+          opacity: 1,
+          duration: 0.8
         })
       }
 
@@ -507,27 +508,26 @@ const Hero = () => {
         //иллюстрации под ДОТОРКНИСЬ + ЗБИРАТИ СПОГАДИ
         gsap.timeline({
           defaults: {
-            duration: 0.8,
+          opacity: 0,
+          duration: 0.8,
           },
           scrollTrigger: {
             trigger: photo5Ref.current,
             start: 'top 60%',
           }
         }).from(photo6Ref.current, {
-          opacity: 0,
           y: -100
         }).from(photo5Ref.current, {
-          opacity: 0,
           y: -50,
           x: 100
         }, ">-0.4").from(`.${css.line3Box}`,  {
           clipPath: "inset(0% 0% 0% 100%)",
         }).from(illustration2Ref.current, {
-          opacity: 0,
-          duration: 0.5,
-        }).from(box7Ref.current, {
+          duration: 0.5
+        })
+        .from(box7Ref.current, {
           clipPath: "inset(0% 100% 0% 0%)",
-          duration: 1,
+          opacity: 1,
         });
         
         //иллюстрации под ЗБИРАТИ СПОГАДИ
@@ -551,7 +551,7 @@ const Hero = () => {
           opacity: 0,
         }, "<").from(line4Animation.current,  {
           clipPath: "inset(0% 0% 100% 0%)",
-          duration: 1.5,
+          duration: 1,
         });
       }
     });
