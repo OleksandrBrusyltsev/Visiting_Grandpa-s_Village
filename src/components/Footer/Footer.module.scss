@@ -9,8 +9,8 @@
   grid-template-areas: "logo" "socialMedia" "contacts" "copyright";
   grid-template-columns: 1fr;
   gap: 2.25rem;
-  background: url('/images/backgrounds/footer-bg-375.png') no-repeat center/cover
-    rgba(var(--color-nude), 0.5);
+  background: url("/images/backgrounds/footer-bg-375.png") no-repeat
+    center/cover rgba(var(--color-nude), 0.5);
   background-blend-mode: soft-light;
   padding: 0.5rem 1.5rem 0.875rem;
 
@@ -19,10 +19,10 @@
     padding: 3.75rem 0 1.563rem;
   }
   @include mixins.media-min($mobile) {
-    background-image: url('/images/backgrounds/footer-bg-768.png');
+    background-image: url("/images/backgrounds/footer-bg-768.png");
   }
   @include mixins.media-min($breakpoint-laptop) {
-    background-image: url('/images/backgrounds/footer-bg-1280.png');
+    background-image: url("/images/backgrounds/footer-bg-1280.png");
   }
 }
 
@@ -30,7 +30,7 @@
   grid-area: nav;
   display: none;
   align-items: center;
-  
+
   @media (max-width: $breakpoint-mobile-max) {
     margin-top: 1.313rem;
   }
@@ -47,7 +47,7 @@
   &Item {
     color: rgb(var(--color-black));
     font-family: var(--f-family-headline);
-    font-size: 0.875rem;
+    font-size: 18px;
     font-weight: 600;
     line-height: normal;
     padding: 0.625rem;
@@ -68,6 +68,9 @@
 }
 
 .contacts {
+  width: 100%;
+  margin-left: 75%;
+
   grid-area: contacts;
   display: grid;
   gap: 1.063rem;
@@ -93,19 +96,25 @@
   }
 
   &Text {
+    display: inline-block;
     color: rgb(var(--color-black));
     font-family: var(--f-family-headline);
-    font-size: 0.75rem;
+    font-size: 16px;
     font-weight: 600;
-    transition: font-size 0.3s;
     cursor: pointer;
 
+    transition: transform 0.3s ease, font-size 0.3s ease;
+    transform-origin: left center;
+
     @media (max-width: $breakpoint-mobile-max) {
-      font-size: 0.875rem;
+      font-size: 18px;
     }
 
     &:hover {
       color: rgb(var(--color-base-green));
+
+      transform: scaleX(1.2);
+      font-size: 20px;
     }
 
     &:active {
