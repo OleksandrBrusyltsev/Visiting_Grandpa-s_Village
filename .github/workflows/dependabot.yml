@@ -1,48 +1,33 @@
-name: Weekly GitHub Actions Update
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "00:00"
+    target-branch: "develop"
 
-on:
-  schedule:
-    - cron: '0 0 * * 1'
-  push:
-    branches:
-      - develop
+  - package-ecosystem: "npm"
+    directory: "/react-app"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "00:00"
+    target-branch: "develop"
 
-jobs:
-  update-actions:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          ref: develop
+  - package-ecosystem: "npm"
+    directory: "/nextjs-app"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "00:00"
+    target-branch: "develop"
 
-      - name: Update GitHub Actions
-        uses: dependabot/dependabot-core@main
-        with:
-          package-ecosystem: 'github-actions'
-          directory: '/'
-          schedule-interval: 'weekly'
-          schedule-day: 'monday'
-          schedule-time: '00:00'
-          groups: all-actions
-          patterns: '*'
-
-  update-npm:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          ref: develop
-
-      - name: Update npm Packages
-        uses: dependabot/dependabot-core@main
-        with:
-          package-ecosystem: 'npm'
-          directory: '/'
-          schedule-interval: 'daily'
-          schedule-time: '00:00'
-          groups: scss
-          patterns:
-            - 'node-sass'
-            - 'sass'
+  - package-ecosystem: "npm"
+    directory: "/nestjs-app"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "00:00"
+    target-branch: "develop"
