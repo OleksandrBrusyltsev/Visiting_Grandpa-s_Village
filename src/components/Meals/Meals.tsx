@@ -32,39 +32,41 @@ export default function Meals({items}: Props) {
     const {isMobile} = useContext(MatchMediaContext);
 
     useGSAP(() => {
-        //hero block animation
-        gsap.timeline({
-        defaults: {
-            autoAlpha: 0,
-            ease: "power1.out",
-            duration: 1,
-        }
-        })
-        .from(`.${s.title}`, {
-            y: -100,
-        })
-        .from(`.${s.heroImage}`, {
-            x: -200
-        }, '>-0.5')
-        .from([`.${s.callToEat}`], {
-            duration: 0.5,
-            x: -30,
-            y: 10,
-            scale: 0.9
-        }, '>-0.5');
+       
 
         //meals blocks animation
         const mm = gsap.matchMedia();
         mm.add({
             isMobile: '(max-width: 767px)',
             isNotMobile: '(min-width: 768px)'
-          }, (context) => {
+        }, (context) => {
             const {isMobile, isNotMobile} = context.conditions as gsap.Conditions;
             
+             //hero block animation
+            gsap.timeline({
+                defaults: {
+                    autoAlpha: 0,
+                    ease: "power1.out",
+                    duration: isNotMobile ? 1 : 0.7,
+                }
+            })
+            .from(`.${s.title}`, {
+                y: isNotMobile ? -100 : -50,
+            })
+            .from(`.${s.heroImage}`, {
+                x: isNotMobile ? -200 : -100,
+            }, isNotMobile ? '>-0.5' : '>-0.3')
+            .from([`.${s.callToEat}`], {
+                duration: 0.5,
+                x: -30,
+                y: 10,
+                scale: 0.9
+            }, isNotMobile ? '>-0.5' : '>-0.3');
+
             gsap.timeline({defaults: {
                 autoAlpha: 0,
                 ease: "power1.out",
-                duration: 1
+                duration: isNotMobile ? 1 : 0.7
             },
                 scrollTrigger: {
                     trigger: `.${s.heroCurve}`,
@@ -77,19 +79,19 @@ export default function Meals({items}: Props) {
                 duration: 0.5,
                 delay: isMobile ? 1 : 0
             }).from(title(1), {
-                x: -200,
-                y: -100,
+                x: isNotMobile ? -200 : -100,
+                y: isNotMobile ? -100 : -70,
             }).from(mPhoto(1), {
-                x: 200,
+                x: isNotMobile ? 200 : 100,
             }, "<").from([tPhoto(1), bPhoto(1)], {
-                x: -200,
+                x: isNotMobile ? -200 : -100,
             }, "<").from(descr(1), {
-                y: 100,
+                y: isNotMobile ? 100 : 50,
             }, "<");
 
             gsap.timeline({defaults: {
                 ease: "power1.out",
-                duration: 1
+                duration: isNotMobile ? 1 : 0.7
             },
                 scrollTrigger: {
                     trigger: curve(1),
@@ -103,10 +105,10 @@ export default function Meals({items}: Props) {
                 y: -50
             }).from(descr(2), {
                 autoAlpha: 0,
-                x: isMobile ? -200 : 200,
+                x: isMobile ? -100 : 200,
             }, ">-0.3").from(mPhoto(2), {
                 autoAlpha: 0,
-                x: isNotMobile ? -200 : 200,
+                x: isNotMobile ? -200 : 100,
             }, "<").from([tPhoto(2), bPhoto(2)], {
                 autoAlpha: 0,
                 stagger: 0.3
@@ -114,7 +116,7 @@ export default function Meals({items}: Props) {
 
             gsap.timeline({defaults: {
                 ease: "power1.out",
-                duration: 1
+                duration: isNotMobile ? 1 : 0.7
             },
                 scrollTrigger: {
                     trigger: curve(2),
@@ -129,14 +131,14 @@ export default function Meals({items}: Props) {
             })
             .from(descr(3), {
                 autoAlpha: 0,
-                y: -100,
-            }, ">-0.7")
+                y: isNotMobile ? -100 : -50,
+            }, isNotMobile ? '>-0.7' : '>-0.4')
             .from(mPhoto(3), {
                 autoAlpha: 0,
-                x: 200,
+                x: isNotMobile ? 200 : 100,
             }, ">-0.3").from([tPhoto(3), bPhoto(3)], {
                 autoAlpha: 0,
-                x: -200,
+                x: isNotMobile ? -200 : -100,
             }, "<")
         });
         ScrollTrigger.refresh(true);
