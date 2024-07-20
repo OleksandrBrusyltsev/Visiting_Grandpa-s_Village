@@ -356,6 +356,7 @@ const Hero = () => {
           opacity: 0,
         }).from(`.${css.line3Box}`,  {
           clipPath: "inset(0% 0% 0% 100%)",
+          duration: 1
         }, "<").from(photo6Ref.current, {
           x: 200,
           opacity: 0,
@@ -400,7 +401,6 @@ const Hero = () => {
         }, "<").from(line4Animation.current,  {
           clipPath: "inset(0% 0% 100% 0%)",
           opacity: 1,
-          duration: 0.8
         })
       }
 
@@ -479,6 +479,7 @@ const Hero = () => {
          //путевая линия
         .from(line2Animation.current,  {
           clipPath: "inset(0% 100% 0% 0%)",
+          duration: 1.5
         });
         gsap.from(photo4Animation.current, {
           x: -200,
@@ -522,6 +523,8 @@ const Hero = () => {
           x: 100
         }, ">-0.4").from(`.${css.line3Box}`,  {
           clipPath: "inset(0% 0% 0% 100%)",
+          duration: 1.5,
+          opacity: 1
         }).from(illustration2Ref.current, {
           duration: 0.5
         })
@@ -551,7 +554,7 @@ const Hero = () => {
           opacity: 0,
         }, "<").from(line4Animation.current,  {
           clipPath: "inset(0% 0% 100% 0%)",
-          duration: 1,
+          duration: 1.5,
         });
       }
     });
