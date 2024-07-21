@@ -1,50 +1,39 @@
-import React, { useState, useEffect, useTransition } from "react";
-import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
-import css from "./LangBtn.module.scss";
+import React, { useState, useEffect, useTransition } from 'react'
+import { useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
 
 const LangBtn = () => {
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
-  const localActive = useLocale();
-  const [activeButton, setActiveButton] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition()
+  const router = useRouter()
+  const localActive = useLocale()
+  const [activeButton, setActiveButton] = useState<string | null>(null)
 
   const changeLanguageHandler = (nextLocal: string) => {
     startTransition(() => {
-      router.replace(`/${nextLocal}`);
-    });
+      router.replace(`/${nextLocal}`)
+    })
     // setActiveButton(nextLocal);
-  };
+  }
 
   useEffect(() => {
-    setActiveButton(localActive);
-  }, [localActive]);
+    setActiveButton(localActive)
+  }, [localActive])
 
   return (
-    <div className={css.langContainer}>
+    <div>
       <button
         disabled={isPending}
         value="uk"
-        className={
-          activeButton === "uk" ? `${css.langBtn} ${css.active}` : css.langBtn
-        }
-        onClick={() => changeLanguageHandler("uk")}
+        onClick={() => changeLanguageHandler('uk')}
       >
         UA
       </button>
-      <p>/</p>
-      <button
-        disabled={isPending}
-        value="en"
-        className={
-          activeButton === "en" ? `${css.langBtn} ${css.active}` : css.langBtn
-        }
-        onClick={() => changeLanguageHandler("en")}
-      >
+      <span>/</span>
+      <button disabled={isPending} onClick={() => changeLanguageHandler('en')}>
         EN
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default LangBtn;
+export default LangBtn
