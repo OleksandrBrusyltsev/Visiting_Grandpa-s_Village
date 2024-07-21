@@ -23,17 +23,38 @@ const Header = () => {
   return (
     <header className="bg-[#C2BFB7]/75">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-[20px] py-[14px]">
+        <div className="block lg:hidden">
+          <div
+            onClick={handlePopup}
+            className={
+              isVisible
+                ? 'tham-active tham tham-e-squeeze tham-w-6'
+                : 'tham tham-e-squeeze tham-w-6'
+            }
+          >
+            <div className="tham-box">
+              <div className="tham-inner" />
+            </div>
+          </div>
+        </div>
         <Link href={`/${locale}`}>
           <Image src={logo} alt={'logo'} width={277} height={135} />
         </Link>
         <div className="flex items-center gap-[30px]">
-          <LangBtn />
+          <LangBtn className="hidden lg:block" />
           <Link href="/">
-            <Image src={cabinet} alt={'logo'} width={24} height={24} />
+            <Image
+              src={cabinet}
+              alt={'logo'}
+              width={24}
+              height={24}
+              className="duration-300 hover:scale-110 hover:shadow-lg"
+            />
           </Link>
+
           <Link
             href={`/${locale}/booking`}
-            className="font-headline w-[188px] rounded-[15px] bg-[#3F5540] p-[16px] text-center text-[22px] font-semibold text-white transition-transform duration-300 hover:scale-105 hover:bg-[#4E7052]"
+            className="font-headline hidden w-[188px] rounded-[15px] bg-[#3F5540] p-[16px] text-center text-[22px] font-semibold text-white duration-300 hover:scale-105 hover:bg-[#4E7052] lg:block"
           >
             Завітати
           </Link>
