@@ -11,84 +11,184 @@ import HouseItem from "./HouseItem";
 import HousesList from "./HousesList";
 
 import s from "./Houses.module.scss";
-import BookingComponent from "../BookingComponent/BookingComponent";
 
-// type Props = { items: HouseItem[] }
 type Props = {
   items: HouseItem[];
   children?: React.ReactNode;
 };
 
-export default function Houses({ items }: Props) {
+export default function Houses({ items, children }: Props) {
   const { locale } = useParams();
   const housesRef = useRef<Array<HTMLDivElement>>([]);
 
   useGSAP(() => {
-    //hero block animation
-    gsap
-      .timeline({
-        defaults: {
-          opacity: 0,
-          ease: "power1.out",
-          duration: 1.2,
-          clearProps: "all",
-        },
-      })
-      .from(`.${s.descr1}`, {
-        y: -200,
-      })
-      .from(
-        `.${s.map}`,
-        {
-          x: -300,
-          y: 200,
-        },
-        "<"
-      )
-      .from(
-        [`.${s.descr2}`, `.${s.grandpa}`, `.${s.curve}`],
-        {
-          x: 300,
-        },
-        "<"
-      );
-
-    //booking component and houses list title animation
-    const mainTimeline = gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: `.${s.bookingForm}`,
-          start: "top 90%",
-        },
-      })
-      .from(`.${s.bookingForm}`, {
-        scale: 0.9,
-        duration: 0.8,
-        opacity: 0,
-      })
-      .from(
-        `.${s.housesTitle}`,
-        {
-          y: -50,
-          duration: 0.8,
-          opacity: 0,
-        },
-        ">-0.5"
-      );
-
-    //houses list animation
     const mm = gsap.matchMedia();
     mm.add(
       {
         isMobile: "(max-width: 767px)",
-        isNotMobile: "(min-width: 768px)",
+        isTablet: "(min-width: 768px) and (max-width: 1279px)",
+        isDesktop: "(min-width: 1280px)",
       },
       (context) => {
-        const { isMobile, isNotMobile } = context.conditions as gsap.Conditions;
+        const { isMobile, isTablet, isDesktop } =
+          context.conditions as gsap.Conditions;
+
         housesRef.current.forEach((h) => {
           gsap.set(h, { autoAlpha: 0 });
         });
+
+        //booking component and houses list title animation
+        const mainTimeline = gsap.timeline({
+          defaults: {
+            opacity: 0,
+            duration: isMobile ? 0.7 : isTablet ? 0.8 : 1,
+          },
+          scrollTrigger: {
+            trigger: `.${s.bookingForm}`,
+            start: "top 90%",
+          },
+        });
+
+        //hero block animation
+        if (isTablet) {
+          gsap
+            .timeline({
+              defaults: {
+                opacity: 0,
+                ease: "power1.out",
+                duration: 0.8,
+                clearProps: "all",
+              },
+            })
+            .from(`.${s.descr1}`, {
+              y: -100,
+            })
+            .from(
+              [`.${s.descr2}`, `.${s.grandpa}`],
+              {
+                x: 200,
+              },
+              "<"
+            )
+            //curve + map animation
+            .from(
+              `.${s.curve}`,
+              {
+                clipPath: "inset(0% 0% 100% 0%)",
+                opacity: 1,
+              },
+              ">-0.4"
+            )
+            .from(`.${s.map}`, {
+              y: 200,
+            });
+
+          //booking component and houses list title animation
+          mainTimeline
+            .from(`.${s.bookingForm}`, {
+              scale: 0.9,
+            })
+            .from(
+              `.${s.housesTitle}`,
+              {
+                y: -50,
+                duration: 0.8,
+              },
+              ">-0.8"
+            );
+        }
+
+        //hero block animation
+        if (isDesktop) {
+          gsap
+            .timeline({
+              defaults: {
+                opacity: 0,
+                ease: "power1.out",
+                duration: 1.2,
+                clearProps: "all",
+              },
+            })
+            .from(`.${s.descr1}`, {
+              y: -100,
+              duration: 1,
+            })
+            .from(
+              `.${s.map}`,
+              {
+                x: -300,
+                y: 200,
+              },
+              "<"
+            )
+            .from(
+              [`.${s.descr2}`, `.${s.grandpa}`],
+              {
+                x: 300,
+              },
+              "<"
+            );
+
+          //booking component and houses list title animation
+          mainTimeline
+            .from(`.${s.curve}`, {
+              clipPath: "inset(0% 0% 100% 0%)",
+              opacity: 1,
+            })
+            .from(`.${s.bookingForm}`, {
+              scale: 0.9,
+              delay: 0.2,
+            })
+            .from(
+              `.${s.housesTitle}`,
+              {
+                y: -50,
+                duration: 0.8,
+              },
+              ">-0.8"
+            );
+        }
+
+        //hero block animation + houses list animation
         if (isMobile) {
+          gsap
+            .timeline({
+              defaults: {
+                opacity: 0,
+                ease: "power1.out",
+                duration: 0.8,
+                clearProps: "all",
+              },
+            })
+            .from(`.${s.descr1}`, {
+              y: -150,
+            })
+            .from(
+              `.${s.map}`,
+              {
+                x: -150,
+                y: 150,
+              },
+              "<"
+            )
+            .from(
+              [`.${s.descr2}`, `.${s.grandpa}`],
+              {
+                x: 150,
+              },
+              "<"
+            );
+
+          //booking component and houses list title animation
+          mainTimeline
+            .from(`.${s.bookingForm}`, {
+              y: 100,
+              scale: 0.9,
+            })
+            .from(`.${s.housesTitle}`, {
+              y: 100,
+            });
+
           housesRef.current.forEach((h, i) => {
             gsap.fromTo(
               h,
@@ -99,7 +199,7 @@ export default function Houses({ items }: Props) {
               {
                 x: 0,
                 autoAlpha: 1,
-                duration: 0.6,
+                duration: 0.8,
                 ease: "power1.out",
                 scrollTrigger: {
                   trigger: h,
@@ -110,14 +210,16 @@ export default function Houses({ items }: Props) {
             );
           });
         }
-        if (isNotMobile) {
+
+        //houses list animation
+        if (isTablet || isDesktop) {
           ScrollTrigger.batch(housesRef.current, {
             batchMax: 2,
             onEnter: (batch) =>
               mainTimeline.fromTo(
                 batch,
                 {
-                  x: (i) => (i % 2 ? 200 : -200),
+                  x: (i) => (i % 2 ? 100 : -100),
                   autoAlpha: 0,
                 },
                 {
@@ -125,8 +227,7 @@ export default function Houses({ items }: Props) {
                   autoAlpha: 1,
                   duration: 0.6,
                   ease: "power1.out",
-                },
-                ">-0.2"
+                }
               ),
             start: "top 80%",
             end: "bottom start",
@@ -178,9 +279,7 @@ export default function Houses({ items }: Props) {
         </div>
       </section>
 
-      <div className={`${s.bookingForm} container`}>
-        <BookingComponent />
-      </div>
+      <div className={`${s.bookingForm} container`}>{children}</div>
 
       <main>
         <HousesList data={items}>
