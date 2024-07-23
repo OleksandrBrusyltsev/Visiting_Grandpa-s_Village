@@ -2,6 +2,7 @@
   "Index": {
     "title": "en",
     "description": "en",
+    "visit": "Visit",
     "welcomeBlock": "The best time to rest is now"
   },
   "NotFoundPage": {
@@ -22,7 +23,7 @@
     "options": "Booking options",
     "payment": "Payment",
     "rules": "Booking conditions and rules of stay"
-  }, 
+  },
   "UI": {
     "visit": "Visit",
     "home": "Home Page"

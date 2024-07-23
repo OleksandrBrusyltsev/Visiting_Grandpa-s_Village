@@ -1,9 +1,10 @@
-import "../../../globals.scss";
+import '../../../globals.scss'
+import { ReactNode } from 'react'
 
 export default async function LocaleLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode
 }) {
-  return children;
+  return children
 }

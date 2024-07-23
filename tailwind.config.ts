@@ -10,9 +10,11 @@ const config: Config = {
     extend: {
       fontFamily: {
         headline: ['"Mak"', 'Arial', 'sans-serif'],
+        raleway: ['"Raleway"', 'sans-serif'],
       },
     },
   },
   plugins: [require('tailwind-hamburgers')],
 }
+
 export default config
