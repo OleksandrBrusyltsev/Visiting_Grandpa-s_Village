@@ -196,6 +196,7 @@
     .galleryWrapper {
         gap: 50px 30px;
         margin-top: 50px;
+        justify-content: flex-start;
     }
 
     .callToAction {
@@ -217,6 +218,22 @@
         width: 529px;
         aspect-ratio: 2.02;
         z-index: -1;
+    }
+    @media (hover: hover) {
+        .desktopOnly {
+            display: inline;
+        }
+        .mobileOnly {
+            display: none;
+        }
+    }
+    @media (hover: none) {
+        .desktopOnly {
+            display: none;
+        }
+        .mobileOnly {
+            display: inline;
+        }
     }
 }
 

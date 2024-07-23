@@ -1,19 +1,15 @@
 import React from 'react'
 
+import { getData } from "@/actions/getData";
+import GalleryItemPage from '@/components/GalleryItemPage/GalleryItemPage';
+
 type Props = {params: { chapter: string }}
 
-export default function Page({params}: Props) {
-    const {chapter} = params;
+export default async function Page({params}: Props) {
+  const {chapter} = params;
+  const items = await getData<GalleryItem[]>('gallery', chapter);
+
   return (
-    <div className='container'>
-      <h1 style={{
-        marginTop: 20,
-        marginBottom: 20,
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        color: '#000000',
-      }}>Сторінка {chapter}</h1>
-    </div>
+    <GalleryItemPage items={items} />
   )
 }

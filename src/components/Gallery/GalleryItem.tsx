@@ -17,11 +17,11 @@ const GalleryItem = forwardRef<HTMLDivElement, Props>(function GalleryItem({data
   const path = usePathname();
   const pathName = path.split('/')[2];
   const {isMobile, isTablet} = useContext(MatchMediaContext);
-  const {name, images} = data;
-  const title = data.title.filter(item => item.language === locale)[0]?.text;
+  const {name, cover} = data;
+  const title = data.title.filter(item => item.language === locale)[0].text;
   
-  const router = useRouter();
-  const handleClickItem = () => router.push(`/${locale}/${pathName}/${name}`);
+  const {push} = useRouter();
+  const handleClickItem = () => push(`/${locale}/${pathName}/${name}`);
   
   return (
       <div 
@@ -34,9 +34,9 @@ const GalleryItem = forwardRef<HTMLDivElement, Props>(function GalleryItem({data
         <div className={s.imageWrapper} >
           <Image 
             className={s.itemImage} 
-            src={images[0].src} 
-            alt={images[0].description} 
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            src={cover[0].src} 
+            alt={cover[0].description} 
+            sizes="(max-width: 768px) 100vw, 50vw"
             fill/>
         </div>
         <div className={s.titleWrapper}>
