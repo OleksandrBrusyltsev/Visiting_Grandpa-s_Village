@@ -20,11 +20,6 @@ export const navigationLinksUn = [
     link: 'contacts',
     text: 'Знайти мене',
   },
-  {
-    id: 6,
-    link: 'booking/rules',
-    text: 'Правила перебування',
-  },
 ]
 
 export const navigationLinksEn = [
@@ -48,10 +43,5 @@ export const navigationLinksEn = [
     id: 5,
     link: 'contacts',
     text: 'Find me',
-  },
-  {
-    id: 6,
-    link: 'booking/rules',
-    text: 'House rules',
   },
 ]
