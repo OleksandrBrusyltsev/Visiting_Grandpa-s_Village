@@ -39,9 +39,6 @@
     justify-content: space-between;
     padding: 10px 30px;
   }
-  // & * {
-  //   outline: 1px solid red;
-  // }
 }
 
 .dateWrapper,
@@ -54,12 +51,14 @@
   transition: transform 0.3s;
   will-change: contents;
   @include mixins.media-min(variables.$mobile) {
-    &:hover {
-      transform: translateY(-4px);
-      .dateOpenButton,
-      .guestOpenButton {
-        scale: 1.3;
-        color: rgb(var(--color-natural-orange));
+    @media (hover: hover) {
+      &:hover {
+        transform: translateY(-4px);
+        .dateOpenButton,
+        .guestOpenButton {
+          scale: 1.3;
+          color: rgb(var(--color-natural-orange));
+        }
       }
     }
   }
@@ -157,6 +156,8 @@
 }
 .dateOpenButton {
   align-self: end;
+  color: rgb(var(--color-total-black));
+
   @include mixins.media-min(variables.$mobile) {
     grid-area: b;
     align-self: end;
@@ -165,6 +166,7 @@
 .guestOpenButton {
   grid-area: g;
   align-self: center;
+  color: rgb(var(--color-total-black));
 }
 
 .upIcon,
@@ -174,7 +176,11 @@
 
 .upIcon {
   rotate: 180deg;
+}
+.guestOpenButton:has(>.upIcon),
+.dateOpenButton:has(>.upIcon) {
   color: rgb(var(--color-natural-orange));
+  scale: 1.3;
 }
 
 .hideIcon {

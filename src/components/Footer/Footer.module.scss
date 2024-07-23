@@ -47,7 +47,7 @@
   &Item {
     color: rgb(var(--color-black));
     font-family: var(--f-family-headline);
-    font-size: 18px;
+    font-size: 18px;//
     font-weight: 600;
     line-height: normal;
     padding: 0.625rem;
@@ -68,9 +68,6 @@
 }
 
 .contacts {
-  width: 100%;
-  margin-left: 75%;
-
   grid-area: contacts;
   display: grid;
   gap: 1.063rem;
@@ -83,11 +80,16 @@
   @media (min-width: $breakpoint-laptop-min) {
     margin-top: 5.438rem;
   }
-
+  @media (min-width: 1024px) {
+    width: 100%;
+  }
   &Wrap {
     display: flex;
     align-items: center;
     gap: 0.688rem;
+    @media (min-width: 1024px) {
+      padding-left: 30%;
+    }
   }
 
   &Icon {
@@ -96,25 +98,22 @@
   }
 
   &Text {
-    display: inline-block;
     color: rgb(var(--color-black));
     font-family: var(--f-family-headline);
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-
-    transition: transform 0.3s ease, font-size 0.3s ease;
-    transform-origin: left center;
+    transition: font-size 0.4s ease;
 
     @media (max-width: $breakpoint-mobile-max) {
       font-size: 18px;
     }
 
-    &:hover {
-      color: rgb(var(--color-base-green));
-
-      transform: scaleX(1.2);
-      font-size: 20px;
+    @media (hover: hover) {
+      &:hover {
+        color: rgb(var(--color-base-green));
+        font-size: 105%;
+      }
     }
 
     &:active {

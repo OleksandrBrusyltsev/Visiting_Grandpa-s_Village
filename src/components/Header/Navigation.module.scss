@@ -38,13 +38,18 @@
   transition: transform 0.3s ease, color 0.3s ease;
 
   &:hover,
-  &:active,
   &:focus {
     color: rgb(var(--color-base-green));
     transform: translateY(3px);
+    font-weight: 700;
   }
 
   &:active{
     color: rgb(var(--color-natural-orange));
+    font-weight: 700;
   }
+}
+
+.active {
+  font-weight: 700;
 }

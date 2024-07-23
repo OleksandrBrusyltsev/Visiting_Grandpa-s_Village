@@ -21,6 +21,8 @@ export default async function Page({
   params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
+
   const items = await getData<MealsItem[]>("meals");
+
   return <Meals items={items} />;
 }

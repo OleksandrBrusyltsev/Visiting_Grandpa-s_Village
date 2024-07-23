@@ -15,13 +15,13 @@
 .blockWrapper {
   max-width: 1440px;
   margin: 0 auto;
-  margin-top: 1.26rem;
+  margin-block: 50px 64px;
 
-  @include mixins.media-min(variables.$breakpoint-tablet-min) {
-    margin-top: 3.18rem;
+  @include mixins.media-min(variables.$mobile) {
+    margin-block: 120px 78px;
   }
-  @include mixins.media-min(variables.$breakpoint-tablet-max) {
-    margin-top: 3rem;
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-block: 130px 88px;
   }
 }
 
