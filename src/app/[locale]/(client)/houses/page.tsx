@@ -1,9 +1,9 @@
-import { getData } from "@/actions/getData";
-import BookingComponent from "@/components/BookingComponent/BookingComponent";
-import Houses from "@/components/Houses/Houses";
+import { getData } from '@/actions/getData'
+import BookingComponent from '@/components/BookingComponent/BookingComponent'
+import Houses from '@/components/Houses/Houses'
 
 export default async function Page() {
-  const items = await getData<HouseItem[]>('houses');
+  const items = await getData<HouseItem[]>('houses')
 
   return (
     <>

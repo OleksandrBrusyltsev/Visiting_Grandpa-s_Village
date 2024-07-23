@@ -1,21 +1,20 @@
-import { unstable_setRequestLocale } from "next-intl/server";
-import { useTranslations } from "next-intl";
-import WelcomeBlock from "../../../components/WelcomeBlock/WelcomeBlock";
-import AskGrandpa from "../../../components/AskGrandpa/AskGrandpa";
+import { unstable_setRequestLocale } from 'next-intl/server'
+import { useTranslations } from 'next-intl'
+import WelcomeBlock from '../../../components/WelcomeBlock/WelcomeBlock'
 
-import Hero from "@/components/Hero/Hero";
+import Hero from '@/components/Hero/Hero'
 
 export async function generateStaticParams() {
-  return ["uk", "en"].map((locale) => ({ locale }));
+  return ['uk', 'en'].map((locale) => ({ locale }))
 }
 
 export default function Home({
   params: { locale },
 }: {
-  params: { locale: string };
+  params: { locale: string }
 }) {
-  unstable_setRequestLocale(locale);
-  const t = useTranslations("Index");
+  unstable_setRequestLocale(locale)
+  const t = useTranslations('Index')
   return (
     <main>
       {/* <div className="container"
@@ -24,9 +23,9 @@ export default function Home({
         // justifyContent: 'center',
         // margin: '80px auto 120px'
       }}> */}
-        <Hero />
+      <Hero />
       {/* </div> */}
-      <WelcomeBlock text={t("welcomeBlock")} />
+      <WelcomeBlock text={t('welcomeBlock')} />
     </main>
-  );
+  )
 }

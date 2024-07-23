@@ -1,18 +1,17 @@
-import { getData } from '@/actions/getData'
-import Meals from '@/components/Meals/Meals'
-import { useTranslations } from 'next-intl'
 import { unstable_setRequestLocale } from 'next-intl/server'
+import { useTranslations } from 'next-intl'
 
 export async function generateStaticParams() {
   return ['uk', 'en'].map((locale) => ({ locale }))
 }
 
-export default async function Page({
+export default function Admin({
   params: { locale },
 }: {
   params: { locale: string }
 }) {
   unstable_setRequestLocale(locale)
-  const items = await getData<MealsItem[]>('meals')
-  return <Meals items={items} />
+  const t = useTranslations('Admin')
+
+  return <main>admin</main>
 }

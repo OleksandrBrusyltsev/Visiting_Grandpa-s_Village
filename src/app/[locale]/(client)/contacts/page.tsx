@@ -1,21 +1,21 @@
-import { HeaderUrls } from "../../../../types/header";
-import ContactsComponent from "../../../../components/ContactsComponent/ContactsComponent";
+import { HeaderUrls } from '../../../../types/header'
+import ContactsComponent from '../../../../components/ContactsComponent/ContactsComponent'
 
 const urls: HeaderUrls = {
   en: {
-    pathList: ["contacts"],
+    pathList: ['contacts'],
   },
   uk: {
-    pathList: ["contacts"],
+    pathList: ['contacts'],
   },
-};
+}
 
 export async function generateStaticParams({
   params: { locale },
 }: {
-  params: { locale: string };
+  params: { locale: string }
 }) {
-  return (urls[locale]?.pathList || []).map((item) => ({ slug: item }));
+  return (urls[locale]?.pathList || []).map((item) => ({ slug: item }))
 }
 
 export default async function ContactsPage() {
@@ -23,5 +23,5 @@ export default async function ContactsPage() {
     <>
       <ContactsComponent />
     </>
-  );
+  )
 }

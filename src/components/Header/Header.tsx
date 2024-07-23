@@ -1,124 +1,131 @@
-"use client";
+'use client'
+import { useState } from 'react'
+import { useLocale, useTranslations } from 'next-intl'
+import Link from 'next/link'
+import Image from 'next/image'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/all'
+import gsap from 'gsap'
+import MobMenu from './MobMenu'
+import LangBtn from '../LangBtn/LangBtn'
+import cabinet from '@/assets/icons/cabinet.svg'
+const logo = '/images/logo-main.svg'
+import { navigationLinksUn, navigationLinksEn } from '@/data/header/popupData'
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
-import Link from "next/link";
-import Image from "next/image";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/all";
-import gsap from "gsap";
-import Icon from "../ui/Icon/Icon";
-import Button from "../ui/Button/Button";
-import PopupMenu from "./PopupMenu";
-import LangBtn from "../LangBtn/LangBtn";
-import Burger from "../../assets/icons/icon-burger.svg"
-import css from "./Header.module.scss";
-
-const image = "/images/logo-main.svg";
-const alt = "Logo main";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const Header = () => {
-  const [isVisible, setVisible] = useState(false);
-  const { push } = useRouter();
-  const locale = useLocale();
-  const handlePopup = () => {
-    setVisible(!isVisible);
-  };
-  const [isHovered, setIsHovered] = useState(false);
+  const locale = useLocale()
+  const { contextSafe } = useGSAP()
+  const t = useTranslations()
+
+  const navigationLinks =
+    locale === 'uk' ? navigationLinksUn : navigationLinksEn
+
+  const [isVisible, setVisible] = useState(false)
+
+  const handlePopup = contextSafe(() => {
+    if (isVisible) {
+      gsap.to('.inner_wrapper_menu', {
+        scale: 0,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'back.in(1.7)',
+        onComplete: () => {
+          gsap.to('.wrapper_menu', {
+            display: 'none',
+            duration: 0.1,
+            opacity: 0,
+            onComplete: () => setVisible(false),
+          })
+        },
+      })
+    } else {
+      setVisible(true)
+      gsap.to('.wrapper_menu', {
+        opacity: 1,
+        position: 'absolute',
+        display: 'flex',
+      })
+      gsap.fromTo(
+        '.inner_wrapper_menu',
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' },
+      )
+    }
+  })
 
   return (
-    <>
-      <div className={css.fullsizeBackground}>
-        <div className={css.container}>
-          <button
-            className={`${css.burgerBtn} ${isVisible ? css.active : ""}`}
-            onClick={handlePopup}
-          >
-            <div className={css.burgerIcon}>
-              <span></span>
-              <span></span>
-              <span></span>
+    <header>
+      <div className="bg-[#C2BFB7]/75">
+        <div className="mx-auto flex max-w-[1400px] items-end justify-between px-[20px] py-[14px] lg:items-center">
+          <div className="block lg:hidden">
+            <div
+              onClick={handlePopup}
+              className={
+                isVisible
+                  ? 'tham tham-active tham-e-squeeze tham-w-6'
+                  : 'tham tham-e-squeeze tham-w-8'
+              }
+            >
+              <div className="tham-box">
+                <div className="tham-inner bg-[#3F5540]" />
+              </div>
             </div>
-          </button>
-          <Link href={`/${locale}`} className={css.linkLogo}>
+          </div>
+          <Link href={`/${locale}`}>
             <Image
-              src={image}
-              alt={alt}
-              width={144}
-              height={80}
-              className={css.mainLogo}
+              src={logo}
+              alt={'logo'}
+              width={277}
+              height={135}
+              className="h-[90px] w-[144px] lg:h-[135px] lg:w-[277px]"
             />
           </Link>
+          <div className="flex items-center gap-[30px]">
+            <LangBtn className="hidden lg:block" />
+            <Link href="/">
+              <Image
+                src={cabinet}
+                alt={'logo'}
+                width={28}
+                height={28}
+                className="duration-300 hover:scale-110"
+              />
+            </Link>
 
-          <div className={css.headerBox}>
-            <LangBtn />
-
-            <button
-              className={css.userBtn}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+            <Link
+              href={`/${locale}/booking`}
+              className="hidden w-[188px] rounded-[15px] bg-[#3F5540] p-[16px] text-center font-headline text-[22px] font-semibold text-white duration-300 hover:scale-105 hover:bg-[#4E7052] lg:block"
             >
-              {isHovered ? (
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 28 28"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M19.3337 6.8C19.3337 5.52696 18.7717 4.30606 17.7715 3.40588C16.7713 2.50571 15.4148 2 14.0003 2C12.5858 2 11.2294 2.50571 10.2292 3.40588C9.22897 4.30606 8.66699 5.52696 8.66699 6.8V9.2C8.66699 10.473 9.22897 11.6939 10.2292 12.5941C11.2294 13.4943 12.5858 14 14.0003 14C15.4148 14 16.7713 13.4943 17.7715 12.5941C18.7717 11.6939 19.3337 10.473 19.3337 9.2V6.8Z"
-                    stroke="#3F5540"
-                    strokeWidth="3"
-                    strokeMiterlimit="10"
-                  />
-                  <path
-                    d="M2 25.9996C4.02667 21.0556 8.66667 17.5996 14 17.5996C19.3333 17.5996 23.9733 21.0556 26 25.9996"
-                    stroke="#3F5540"
-                    strokeWidth="3"
-                    strokeMiterlimit="10"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 28 28"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M19.3337 6.8C19.3337 5.52696 18.7717 4.30606 17.7715 3.40588C16.7713 2.50571 15.4148 2 14.0003 2C12.5858 2 11.2294 2.50571 10.2292 3.40588C9.22897 4.30606 8.66699 5.52696 8.66699 6.8V9.2C8.66699 10.473 9.22897 11.6939 10.2292 12.5941C11.2294 13.4943 12.5858 14 14.0003 14C15.4148 14 16.7713 13.4943 17.7715 12.5941C18.7717 11.6939 19.3337 10.473 19.3337 9.2V6.8Z"
-                    stroke="#3F5540"
-                    strokeWidth="2"
-                    strokeMiterlimit="10"
-                  />
-                  <path
-                    d="M2 25.9996C4.02667 21.0556 8.66667 17.5996 14 17.5996C19.3333 17.5996 23.9733 21.0556 26 25.9996"
-                    stroke="#3F5540"
-                    strokeWidth="2"
-                    strokeMiterlimit="10"
-                  />
-                </svg>
-              )}
-            </button>
-
-            <Button
-              label={"Завітати"}
-              type={"button"}
-              size={"header"}
-              className={css.headerBtn}
-              onClick={() => push(`/${locale}/booking`)}
-            />
+              {t('Index.visit')}
+            </Link>
           </div>
+          <MobMenu
+            navigationLinks={navigationLinks}
+            handlePopup={handlePopup}
+            isVisible={isVisible}
+          />
         </div>
       </div>
-      {isVisible && <PopupMenu handlePopup={handlePopup} />}
-    </>
-  );
-};
+      <ul className="mx-auto hidden max-w-[1400px] items-end justify-between px-[30px] py-[14px] lg:flex lg:items-center">
+        {navigationLinks.map(({ id, link, text }) => (
+          <li
+            key={id}
+            className="group relative font-raleway text-[16px] uppercase"
+          >
+            <Link
+              href={`/${locale}/${link}`}
+              className="color-[#0C0C0C] inline-block font-normal text-black duration-300 group-hover:scale-110"
+            >
+              {text}
+            </Link>
+            <span className="mt-1 block h-0.5 w-0 bg-[#C2BFB7] transition-all duration-300 ease-in-out group-hover:w-full"></span>
+          </li>
+        ))}
+      </ul>
+    </header>
+  )
+}
 
-export default Header;
+export default Header

@@ -1,25 +1,25 @@
-import s from "./Button.module.scss";
+import s from './Button.module.scss'
 
 interface ButtonProps {
-  label: string;
-  type?: "button" | "submit" | "reset";
-  size?: "default" | "large" | "small" |"header";
-  className?: string;
-  onClick?: () => void;
-  disabled?: boolean;
+  label: string
+  type?: 'button' | 'submit' | 'reset'
+  size?: 'default' | 'large' | 'small' | 'header'
+  className?: string
+  onClick?: () => void
+  disabled?: boolean
   tabIndex?: number
 }
 
 const Button: React.FC<ButtonProps> = ({
   label,
-  type = "button",
-  size = "default",
+  type = 'button',
+  size = 'default',
   disabled = false,
-  className = "",
+  className = '',
   tabIndex,
   onClick,
 }) => {
-  const styles = `${s.button} ${size && s[`button_${size}`]} ${className}`;
+  const styles = `${s.button} ${size && s[`button_${size}`]} ${className}`
 
   return (
     <button
@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
     >
       {label}
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

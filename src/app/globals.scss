@@ -1,4 +1,7 @@
-@import "../styles/reset";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "../styles/fonts.scss";
 @import "../styles/mixins";
 @import "../styles/variables";
