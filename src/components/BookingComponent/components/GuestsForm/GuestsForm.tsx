@@ -1,16 +1,16 @@
 // "use client";
-import { FC } from "react";
+import { FC } from 'react'
 
-import s from "./GuestsForm.module.scss";
+import s from './GuestsForm.module.scss'
 
 interface GuestsProps {
-  adultsCount: number;
-  childrenCount: number;
-  setAdultsCount: React.Dispatch<React.SetStateAction<number>>;
-  setChildrenCount: React.Dispatch<React.SetStateAction<number>>;
+  adultsCount: number
+  childrenCount: number
+  setAdultsCount: React.Dispatch<React.SetStateAction<number>>
+  setChildrenCount: React.Dispatch<React.SetStateAction<number>>
 }
 
-type GuestType = "adults" | "children";
+type GuestType = 'adults' | 'children'
 
 const GuestsForm: FC<GuestsProps> = ({
   adultsCount,
@@ -18,22 +18,21 @@ const GuestsForm: FC<GuestsProps> = ({
   setAdultsCount,
   setChildrenCount,
 }) => {
-
   const handleIncrement = (type: GuestType) => {
-    if (type === "adults" && adultsCount < 10) {
-      setAdultsCount(adultsCount + 1);
-    } else if (type === "children" && childrenCount < 10) {
-      setChildrenCount(childrenCount + 1);
+    if (type === 'adults' && adultsCount < 10) {
+      setAdultsCount(adultsCount + 1)
+    } else if (type === 'children' && childrenCount < 10) {
+      setChildrenCount(childrenCount + 1)
     }
-  };
+  }
 
   const handleDecrement = (type: GuestType) => {
-    if (type === "adults" && adultsCount > 1) {
-      setAdultsCount(adultsCount - 1);
-    } else if (type === "children" && childrenCount > 0) {
-      setChildrenCount(childrenCount - 1);
+    if (type === 'adults' && adultsCount > 1) {
+      setAdultsCount(adultsCount - 1)
+    } else if (type === 'children' && childrenCount > 0) {
+      setChildrenCount(childrenCount - 1)
     }
-  };
+  }
 
   return (
     <div className={s.guestsFormContainer}>
@@ -43,7 +42,7 @@ const GuestsForm: FC<GuestsProps> = ({
           <button
             className={`${s.changeButton} ${adultsCount === 1 ? s.disabled : ''}`}
             type="button"
-            onClick={() => handleDecrement("adults")}
+            onClick={() => handleDecrement('adults')}
           >
             -
           </button>
@@ -51,7 +50,7 @@ const GuestsForm: FC<GuestsProps> = ({
           <button
             className={s.changeButton}
             type="button"
-            onClick={() => handleIncrement("adults")}
+            onClick={() => handleIncrement('adults')}
           >
             +
           </button>
@@ -64,7 +63,7 @@ const GuestsForm: FC<GuestsProps> = ({
           <button
             className={`${s.changeButton} ${childrenCount === 0 ? s.disabled : ''}`}
             type="button"
-            onClick={() => handleDecrement("children")}
+            onClick={() => handleDecrement('children')}
           >
             -
           </button>
@@ -72,9 +71,9 @@ const GuestsForm: FC<GuestsProps> = ({
           <button
             className={s.changeButton}
             type="button"
-            onClick={() => handleIncrement("children")}
+            onClick={() => handleIncrement('children')}
           >
-           +
+            +
           </button>
         </div>
       </div>
@@ -83,10 +82,10 @@ const GuestsForm: FC<GuestsProps> = ({
       </p>
       <p className={s.childDescr}>
         Діти віком від 3-х до 12-ти, з наданням окремого місця, тарифікуються за
-        дитячим тарифом - 150 грн/ніч.{" "}
+        дитячим тарифом - 150 грн/ніч.{' '}
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default GuestsForm;
+export default GuestsForm

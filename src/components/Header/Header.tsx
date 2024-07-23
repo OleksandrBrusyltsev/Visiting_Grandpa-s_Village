@@ -112,7 +112,7 @@ const Header = () => {
         {navigationLinks.map(({ id, link, text }) => (
           <li
             key={id}
-            className="font-raleway group relative text-[16px] uppercase"
+            className="group relative font-raleway text-[16px] uppercase"
           >
             <Link
               href={`/${locale}/${link}`}

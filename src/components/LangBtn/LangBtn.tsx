@@ -21,7 +21,7 @@ const LangBtn = ({ className }: any) => {
 
   return (
     <div
-      className={`${className} font-headline flex items-center space-x-2 text-[16px]`}
+      className={`${className} flex items-center space-x-2 font-headline text-[16px]`}
     >
       <button
         disabled={isPending}

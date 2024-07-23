@@ -1,18 +1,18 @@
-"use client";
+'use client'
 
-import { FC } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import IconTelegram from "../../../assets/icons/icon-telegram.svg";
-import Map from "../../../../public/images/contacts/map.png";
-import s from "./TelegramBlock.module.scss";
+import { FC } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import IconTelegram from '../../../assets/icons/icon-telegram.svg'
+import Map from '../../../../public/images/contacts/map.png'
+import s from './TelegramBlock.module.scss'
 
 type TelegramBlockProps = {
-  telegramTitleRef: React.RefObject<HTMLHeadingElement>;
-  telegramTextRef: React.RefObject<HTMLParagraphElement>;
-  mapRef: React.RefObject<HTMLImageElement>;
-  telegramLinkWrapperRef: React.RefObject<HTMLDivElement>;
-};
+  telegramTitleRef: React.RefObject<HTMLHeadingElement>
+  telegramTextRef: React.RefObject<HTMLParagraphElement>
+  mapRef: React.RefObject<HTMLImageElement>
+  telegramLinkWrapperRef: React.RefObject<HTMLDivElement>
+}
 
 const TelegramBlock: FC<TelegramBlockProps> = ({
   telegramTitleRef,
@@ -50,7 +50,7 @@ const TelegramBlock: FC<TelegramBlockProps> = ({
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default TelegramBlock;
+export default TelegramBlock

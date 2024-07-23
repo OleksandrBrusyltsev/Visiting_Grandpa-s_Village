@@ -1,37 +1,37 @@
-import { FC } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import Icon from "../../ui/Icon/Icon";
-import IconEmail from "../../../assets/icons/icon-email.svg";
-import Grandpa from "../../../../public/images/contacts/grandpa.png";
-import IconMap from "../../../assets/icons/icon-map.svg";
-import sFooter from "../../Footer/Footer.module.scss";
-import s from "./ContactsList.module.scss";
+import { FC } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import Icon from '../../ui/Icon/Icon'
+import IconEmail from '../../../assets/icons/icon-email.svg'
+import Grandpa from '../../../../public/images/contacts/grandpa.png'
+import IconMap from '../../../assets/icons/icon-map.svg'
+import sFooter from '../../Footer/Footer.module.scss'
+import s from './ContactsList.module.scss'
 
 const socialMediaLinks = [
   {
     id: 1,
-    link: "https://www.facebook.com/ecousadba.in.ua/",
-    icon: "facebook",
+    link: 'https://www.facebook.com/ecousadba.in.ua/',
+    icon: 'facebook',
   },
   {
     id: 2,
-    link: "https://t.me/VisitingGrandpasVillageBot",
-    icon: "telegram",
+    link: 'https://t.me/VisitingGrandpasVillageBot',
+    icon: 'telegram',
   },
   {
     id: 3,
-    link: "https://www.instagram.com/ecousadba.in.ua/",
-    icon: "instagram",
+    link: 'https://www.instagram.com/ecousadba.in.ua/',
+    icon: 'instagram',
   },
-];
+]
 
-const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
+const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`
 
 type ContactsListProps = {
-  grandpaRef: React.RefObject<HTMLImageElement>;
-  contactsListWrapperRef: React.RefObject<HTMLDivElement>;
-};
+  grandpaRef: React.RefObject<HTMLImageElement>
+  contactsListWrapperRef: React.RefObject<HTMLDivElement>
+}
 
 const ContactsList: FC<ContactsListProps> = ({
   grandpaRef,
@@ -94,7 +94,7 @@ const ContactsList: FC<ContactsListProps> = ({
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ContactsList;
+export default ContactsList

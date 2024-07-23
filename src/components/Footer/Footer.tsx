@@ -1,37 +1,41 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import Link from "next/link";
-import Icon from "../ui/Icon/Icon";
-import s from "./Footer.module.scss";
-import { navLink } from "./../../data/footer/data";
-import { useLocale } from "next-intl";
+import Image from 'next/image'
+import Link from 'next/link'
+import Icon from '../ui/Icon/Icon'
+import s from './Footer.module.scss'
+import { navLink } from './../../data/footer/data'
+import { useLocale } from 'next-intl'
 
-const image = "/images/logo-main.svg";
+const image = '/images/logo-main.svg'
 
 const socialMediaLinks = [
   {
     id: 1,
-    link: "https://www.facebook.com/ecousadba.in.ua/",
-    icon: "facebook",
+    link: 'https://www.facebook.com/ecousadba.in.ua/',
+    icon: 'facebook',
   },
-  { id: 2, link: "https://t.me/VisitingGrandpasVillage_Operator", icon: "telegram" },
+  {
+    id: 2,
+    link: 'https://t.me/VisitingGrandpasVillage_Operator',
+    icon: 'telegram',
+  },
   {
     id: 3,
-    link: "https://www.instagram.com/ecousadba.in.ua/",
-    icon: "instagram",
+    link: 'https://www.instagram.com/ecousadba.in.ua/',
+    icon: 'instagram',
   },
-];
+]
 
 export default function Footer() {
-  const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
-  const locale = useLocale();
+  const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`
+  const locale = useLocale()
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
-    });
-  };
+      behavior: 'smooth',
+    })
+  }
 
   return (
     <footer className={s.footer}>
@@ -79,5 +83,5 @@ export default function Footer() {
       </ul>
       <p className={s.copyright}>© 2024 Еко-садиба “На селі у Дідуся”</p>
     </footer>
-  );
+  )
 }

@@ -1,15 +1,15 @@
-import Image from "next/image";
-import Button from "../ui/Button/Button";
-import WelcomeBlockType from "../../types/welcomeBlock";
-import style from "./WelcomeBlock.module.scss";
-import Link from "next/link";
-import { useLocale } from "next-intl";
+import Image from 'next/image'
+import Button from '../ui/Button/Button'
+import WelcomeBlockType from '../../types/welcomeBlock'
+import style from './WelcomeBlock.module.scss'
+import Link from 'next/link'
+import { useLocale } from 'next-intl'
 
-const image = "/images/home/welcomeBlock-70.jpg";
-const alt = "Landscape picture";
+const image = '/images/home/welcomeBlock-70.jpg'
+const alt = 'Landscape picture'
 
 const WelcomeBlock: React.FC<WelcomeBlockType> = ({ text }) => {
-  const locale = useLocale();
+  const locale = useLocale()
   return (
     <div className={style.blockWrapper}>
       <div className={style.textWrapper}>
@@ -30,7 +30,7 @@ const WelcomeBlock: React.FC<WelcomeBlockType> = ({ text }) => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default WelcomeBlock;
+export default WelcomeBlock

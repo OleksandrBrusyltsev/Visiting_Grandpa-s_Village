@@ -1,12 +1,12 @@
-import { FC } from "react";
-import Image from "next/image";
-import House from "../../../../public/images/contacts/house.png";
-import s from "./RouteInfo.module.scss";
+import { FC } from 'react'
+import Image from 'next/image'
+import House from '../../../../public/images/contacts/house.png'
+import s from './RouteInfo.module.scss'
 
 type RouteInfoProps = {
-  houseRef: React.RefObject<HTMLImageElement>;
-  routeInfoWrapperRef: React.RefObject<HTMLDivElement>;
-};
+  houseRef: React.RefObject<HTMLImageElement>
+  routeInfoWrapperRef: React.RefObject<HTMLDivElement>
+}
 const RouteInfo: FC<RouteInfoProps> = ({ houseRef, routeInfoWrapperRef }) => {
   return (
     <div className={s.imgAndRouteInfoWrapper}>
@@ -28,7 +28,7 @@ const RouteInfo: FC<RouteInfoProps> = ({ houseRef, routeInfoWrapperRef }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RouteInfo;
+export default RouteInfo
