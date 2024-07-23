@@ -79,7 +79,10 @@ const ContactsList: FC<ContactsListProps> = ({
                 alt="map"
                 className={`${sFooter.contactsIcon} ${s.contactItemIcon}`}
               />
-              Україна, Чернігівська область, с. Олешня, вул. Першотравнева 5
+              <div className={s.adressWrapper}>
+                <p>Україна, Чернігівська область, с. Олешня,</p>{' '}
+                <p>вул. Першотравнева 5</p>
+              </div>
             </Link>
           </li>
         </ul>
