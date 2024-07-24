@@ -5,6 +5,7 @@ import Icon from "../../ui/Icon/Icon";
 import IconEmail from "../../../assets/icons/icon-email.svg";
 import Grandpa from "../../../../public/images/contacts/grandpa.png";
 import IconMap from "../../../assets/icons/icon-map.svg";
+import IconTel from "../../../assets/icons/icon-tel.svg";
 import sFooter from "../../Footer/Footer.module.scss";
 import s from "./ContactsList.module.scss";
 
@@ -50,11 +51,12 @@ const ContactsList: FC<ContactsListProps> = ({
           <li className={s.contactsItem}>
             <p className={s.contactsItemTitle}>Телефон</p>
             <Link href={`tel:+380931919663`} className={s.contactItemText}>
-              <Icon
-                name="handset"
+              <Image
+                src= {IconTel}
+                alt="handset"
                 className={`${sFooter.contactsIcon} ${s.contactItemIcon}`}
               />
-              +38 (093) 191 96 63
+              + 38 (093) 191 96 63
             </Link>
           </li>
           <li className={s.contactsItem}>
