@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Icon from "../../ui/Icon/Icon";
 import IconEmail from "../../../assets/icons/icon-email.svg";
-import Grandpa from "../../../../public/images/contacts/grandpa.png";
+import Grandpa from "../../../../public/images/grandpas/Grandpa1.png";
 import IconMap from "../../../assets/icons/icon-map.svg";
 import IconTel from "../../../assets/icons/icon-tel.svg";
 import sFooter from "../../Footer/Footer.module.scss";
