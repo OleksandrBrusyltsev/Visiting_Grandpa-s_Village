@@ -73,11 +73,12 @@ export default function GalleryItemPage({items}: Props) {
                     },
                     ease: 'power1.out',
                 }),
-                start: 'top 70%',
+                start: 'top 90%',
                 end: 'bottom start',
                 once: true
             });
-        })
+        });
+        ScrollTrigger.refresh(true);
     });
 
     return (

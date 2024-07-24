@@ -68,13 +68,13 @@
     width: clamp(142px, calc(252px - 110 * (767px - 100vw) / 392), 252px);
     aspect-ratio: 1;
     img {
-        object-fit: contain;
+        // object-fit: contain;
     }
 }
 .callToClick {
     font-size: 14px;
     line-height: 1.4;
-    padding-left: clamp(0px, calc(0px + 74 * (100vw - 375px) / 392), 74px);
+    padding-left: clamp(24px, calc(24px + 80 * (100vw - 375px) / 392), 104px);
     position: relative;
     .curve {
         display: block;
@@ -113,6 +113,10 @@
 }
 .callToAction {
     text-align: end;
+    .btnCallToAction {
+        max-width: 297px;
+        padding-block: 11.5px;
+    }
 }
 .slogan {
     font-size: var(--f-size-body);
@@ -120,10 +124,7 @@
     max-width: 220px;
     margin: 50px 0 30px auto;
 }
-.btnCallToAction {
-    max-width: 297px;
-    padding-block: 11.5px;
-}
+
 .cloud {
     display: none;
 }
@@ -151,7 +152,7 @@
         width: clamp(172px, calc(252px - 80 * (100vw - 768px) / 511), 252px);
     }
     .callToClick {
-        padding-left: clamp(74px, calc(74px + 366 * (100vw - 768px) / 511), 440px);
+        padding-left: clamp(104px, calc(104px + 386 * (100vw - 768px) / 511), 490px);
         font-size: 20px;
         .curve {
             left: 76%;
