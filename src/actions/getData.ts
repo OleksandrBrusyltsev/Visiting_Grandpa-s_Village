@@ -14,14 +14,14 @@ export const getData = async <T>(url: string, slug?: string): Promise<T> => {
 
   //type guards 
   function isGalleryItemArray(arr: any[]): arr is GalleryItem[] {
-    return arr.length > 0 && 'title' in arr[0]; 
+    return arr.length > 0 && 'name' in arr[0]; 
   }
   
   function isHouseItemArray(arr: any[]): arr is HouseItem[] {
-    return arr.length > 0 && 'title' in arr[0]; 
+    return arr.length > 0 && 'name' in arr[0]; 
   }
   
-  // if (slug && (isGalleryItemArray(data[url]) || isHouseItemArray(data[url]))) {
+  // if (slug && (isGalleryItemArray(resp) || isHouseItemArray(resp))) {
   //   return data.filter(item => item.name === slug)
   // }
   //   return data;
@@ -39,11 +39,18 @@ export const getData = async <T>(url: string, slug?: string): Promise<T> => {
     entertainments
   };
 
+  const currentData = data[url];
   
-  if (slug && (isGalleryItemArray(data[url]) || isHouseItemArray(data[url]))) {
-    const result = data[url].filter(item => item.name === slug)
-    return new Promise(res => setTimeout(() => res(result as T), 100));
-  }
+  if (slug) {
+    if (isGalleryItemArray(currentData)) {
+      const result = currentData.filter(item => item.name === slug);
+      return new Promise(res => setTimeout(() => res(result as T), 100));
+    }
 
+    if (isHouseItemArray(currentData)) {
+      const result = currentData.filter(item => item.name === slug);
+      return new Promise(res => setTimeout(() => res(result as T), 100));
+    }
+  } 
   return new Promise(res => setTimeout(() => res(data[url] as T), 100));
 }
