@@ -1,7 +1,7 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import WelcomeBlock from "../../../components/WelcomeBlock/WelcomeBlock";
-import AskGrandpa from "../../../components/AskGrandpa/AskGrandpa";
+// import AskGrandpa from "../../../components/AskGrandpa/AskGrandpa";
 
 import Hero from "@/components/Hero/Hero";
 
@@ -24,7 +24,7 @@ export default function Home({
         // justifyContent: 'center',
         // margin: '80px auto 120px'
       }}> */}
-        <Hero />
+      <Hero />
       {/* </div> */}
       <WelcomeBlock text={t("welcomeBlock")} />
     </main>

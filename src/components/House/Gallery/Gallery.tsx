@@ -17,7 +17,7 @@ const Gallery: FC<GalleryType> = ({ pictures }) => {
   };
 
   const small =
-    pictures.length === 5
+    pictures.length >= 5
       ? s.small__5
       : pictures.length === 4
       ? s.small__4

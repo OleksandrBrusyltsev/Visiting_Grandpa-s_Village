@@ -29,6 +29,7 @@ export default async function House({ id }: Props) {
     max_adults,
     max_children,
     photoDecor,
+    treesDecor,
     text,
     coordinates,
     price_addons,
@@ -73,17 +74,20 @@ export default async function House({ id }: Props) {
             />
           </div>
 
-          <div className={s.imageDecor}>
+          <div
+            className={s.imageDecor}
+            style={
+              {
+                "--background-image-url": `url(${treesDecor})`,
+              } as React.CSSProperties
+            }
+          >
             <Image
               fill
               alt="house decor"
               src={photoDecor}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-          </div>
-
-          <div className={s.cloud}>
-            <Icon name="house-cloud-decor" />
           </div>
         </div>
       ) : (
@@ -121,6 +125,7 @@ export default async function House({ id }: Props) {
             guests={max_adults}
             addons={max_children}
             photoDecor={photoDecor}
+            treesDecor={treesDecor}
           />
         )}
       </div>

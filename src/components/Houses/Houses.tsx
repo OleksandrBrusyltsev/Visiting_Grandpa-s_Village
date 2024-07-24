@@ -5,7 +5,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
-
+import BookingComponent from "../BookingComponent/BookingComponent";
 import Icon from "../ui/Icon/Icon";
 import HouseItem from "./HouseItem";
 import HousesList from "./HousesList";
@@ -14,10 +14,9 @@ import s from "./Houses.module.scss";
 
 type Props = {
   items: HouseItem[];
-  children?: React.ReactNode;
 };
 
-export default function Houses({ items, children }: Props) {
+export default function Houses({ items }: Props) {
   const { locale } = useParams();
   const housesRef = useRef<Array<HTMLDivElement>>([]);
 
@@ -279,7 +278,9 @@ export default function Houses({ items, children }: Props) {
         </div>
       </section>
 
-      <div className={`${s.bookingForm} container`}>{children}</div>
+      <div className={`${s.bookingForm} container`}>
+        <BookingComponent />
+      </div>
 
       <main>
         <HousesList data={items}>

@@ -44,7 +44,8 @@
     content: "";
     right: -6%;
     bottom: 8%;
-    background-image: url("../../../assets/house/trees-decor.png");
+    // background-image: url("../../../assets/house/trees-decor.png");
+    background-image: var(--background-image-url);
     background-repeat: no-repeat;
     background-size: contain;
     filter: blur(1px);

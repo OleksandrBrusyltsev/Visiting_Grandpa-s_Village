@@ -12,6 +12,7 @@ type Props = {
   guests: number;
   addons: number;
   photoDecor: string;
+  treesDecor: string;
   priceAddons:
     | boolean
     | {
@@ -81,6 +82,7 @@ export default function Booking({
   guests,
   addons,
   photoDecor,
+  treesDecor,
   priceAddons,
   rooms,
 }: Props) {
@@ -107,12 +109,18 @@ export default function Booking({
   return (
     <section className={s.sectionWrapper}>
       <div className={s.imageDecorWrapper}>
-        <div className={s.imageDecor}>
+        <div
+          className={s.imageDecor}
+          style={
+            {
+              "--background-image-url": `url(${treesDecor})`,
+            } as React.CSSProperties
+          }
+        >
           <Image
             width={188}
             height={144}
             alt="house decor"
-            // src="/images/houses/house/house-decor.svg"
             src={photoDecor}
             className={s.image}
           />
