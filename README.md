@@ -1,4 +1,26 @@
+# Visiting Grandpa's Village
+
+<div style="width: 200px; height: 200px; background-color: lightgrey; animation: zoom 4s infinite;">
+    <img src="https://visiting-grandpa-s-village.vercel.app/_next/image?url=%2Fimages%2Fgrandpas%2FGrandpa1.png&w=1080&q=75" alt="Grandpa" style="width: 100%; height: 100%;">
+</div>
+
+<style>
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+</style>
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
 
 ## Getting Started
 
