@@ -16,11 +16,10 @@
   }
 
   @include mixins.media-min(1000px) {
-   
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    margin-bottom: -4rem;
+    margin-bottom: 6rem;
   }
 }
 
@@ -42,8 +41,10 @@
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    column-gap: 170px;
-    margin-bottom: -8rem;
+    column-gap: 182px;
+    position: absolute;
+    top: 200px;
+    width: 1180px;
   }
 }
 
@@ -91,7 +92,6 @@
     width: 346px;
     grid-column: 2 / 3;
     grid-row: 1 / 4;
-    justify-self: start;
     margin-bottom: 0;
   }
 
@@ -104,6 +104,7 @@
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 508px;
     min-width: 508px;
+    margin-right: auto;
   }
 }
 
