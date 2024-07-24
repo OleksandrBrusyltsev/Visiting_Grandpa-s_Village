@@ -1,33 +1,13 @@
-version: 2
-updates:
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "00:00"
-    target-branch: "develop"
-
-  - package-ecosystem: "npm"
-    directory: "/react-app"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "00:00"
-    target-branch: "develop"
-
-  - package-ecosystem: "npm"
-    directory: "/nextjs-app"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "00:00"
-    target-branch: "develop"
-
-  - package-ecosystem: "npm"
-    directory: "/nestjs-app"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "00:00"
-    target-branch: "develop"
+name:
+  version: 2
+  updates:
+    - package-ecosystem: 'npm'
+      directory: '/'
+      schedule:
+        interval: 'daily'
+      target-branch: 'develop'
+      open-pull-requests-limit: 10
+      commit-message:
+        prefix: 'deps'
+        include:
+          prefix-development-only: true
