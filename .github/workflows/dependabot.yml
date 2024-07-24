@@ -1,13 +1,12 @@
-name:
-  version: 2
-  updates:
-    - package-ecosystem: 'npm'
-      directory: '/'
-      schedule:
-        interval: 'daily'
-      target-branch: 'develop'
-      open-pull-requests-limit: 10
-      commit-message:
-        prefix: 'deps'
-        include:
-          prefix-development-only: true
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'minute'
+    target-branch: 'develop'
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: 'deps'
+      include:
+        prefix-development-only: true
