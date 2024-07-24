@@ -31,6 +31,10 @@ body {
   /* min-width: 360px; */
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 input,
 button,
 textarea {
