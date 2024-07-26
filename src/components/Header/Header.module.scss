@@ -85,7 +85,7 @@
   background-color:rgb(var(--color-natural-orange));
   transform: rotate(45deg);
   position: relative;
-  top: 8px;
+  top: 9.33px;
 }
 
 .burgerBtn.active .burgerIcon span:nth-child(2) {
@@ -97,7 +97,7 @@
   background-color:rgb(var(--color-natural-orange));
   transform: rotate(-45deg);
   position: relative;
-  top: -8px;
+  top: -9.33px;
 }
 
 .userBtn {
