@@ -6,23 +6,27 @@
 }
 
 .container {
+  // min-width: 375px;
   width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding: 10px 24px;
+  gap: 50px;
+  padding: 6px 17.5px;
   height: 100px;
   max-width: 1440px;
   margin: 0 auto;
 
   @include mixins.media-min(variables.$breakpoint-tablet-min) {
-    padding: 10px 30px;
+    min-width: 768px;
+    padding: 6px 30px;
     height: 160px;
     align-items: center;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    padding: 10px 80px;
+    min-width: 1280px;
+    padding: 6px 80px;
   }
 }
 

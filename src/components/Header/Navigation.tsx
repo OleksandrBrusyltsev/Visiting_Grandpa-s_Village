@@ -20,7 +20,7 @@ const Navigation = () => {
         {navigationLinks.map(({ id, link, text }) => (
           <li
             key={id}
-            className={`${css.item} ${pathname === `/${locale}/${link}` ? css.active : ''}`}
+            className={`${css.item} ${pathname.startsWith(`/${locale}/${link}`) ? css.active : ''}`}
           >
             <Link href={`/${locale}/${link}`}>{text}</Link>
           </li>
