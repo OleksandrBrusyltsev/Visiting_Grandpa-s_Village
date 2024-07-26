@@ -19,6 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100vw;
     max-width: 1900px;
     .close {
         position: absolute;
@@ -36,12 +37,9 @@
 
     @media (orientation: portrait) and (hover: none) {
         height: 60dvh;
-        width: 100vw;
     }
     @media (orientation: landscape) and (hover: none) {
         height: 90dvh;
-        width: 100vw;
-
     }
     
     @include mixins.media-min(variables.$mobile) {

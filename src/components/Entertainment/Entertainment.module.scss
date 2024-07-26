@@ -12,21 +12,6 @@
     margin-top: 16px;
     font-size: var(--f-size-h3);
     width: 83%;
-
-    .firstPart {
-        display: block;
-        width: 80%;
-        @media (min-width: 470px) {
-            display: contents;
-        }
-    }
-    @media (min-width: 470px) {
-        width: 70%;
-
-        .firstPart {
-            display: contents;
-        }
-    }
 }
 .question {
     margin-top: 16px;
@@ -42,12 +27,12 @@
     text-align: center;
 }
 .grandpaWrapper {
-    top: -45px;
-    right: -10px;
-    position: absolute;
+    float: right;
+    position: relative;
+    margin-right: -12px;
+    z-index: -2;
     width: 150px;
     aspect-ratio: 1;
-    z-index: -2;
 
     &::before {
         position: absolute;
@@ -199,6 +184,8 @@
         top: unset;
         bottom: 98px;
         right: 20px;
+        position: absolute;
+        float: unset;
         width: clamp(240px, 34%, 270px);
     
         &::before {
