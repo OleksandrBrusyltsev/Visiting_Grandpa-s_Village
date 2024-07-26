@@ -70,15 +70,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 
 .burgerIcon span {
   background-color:rgb(var(--color-base-green));
-  border-radius: 2px;
-  height: 3px;
-  width: 24px;
+  height: 2.4px;
+  width: 28px;
   transition: transform 0.5s ease, opacity 0.2s ease;
 }
 
