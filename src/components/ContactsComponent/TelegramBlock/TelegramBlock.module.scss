@@ -43,7 +43,7 @@
   @include mixins.media-min(variables.$breakpoint-laptop) {
     column-gap: 182px;
     position: absolute;
-    top: 200px;
+    top: 250px;
     width: 1180px;
   }
 }
@@ -126,7 +126,7 @@
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    width: 384px;
+    max-width: 384px;
     margin-bottom: 23px;
     margin-left: auto;
   }
