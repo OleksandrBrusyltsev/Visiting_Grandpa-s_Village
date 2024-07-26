@@ -14,12 +14,19 @@ const socialMediaLinks = [
     id: 1,
     link: "https://www.facebook.com/ecousadba.in.ua/",
     icon: "facebook",
+    ariaLabel: "link to facebook",
   },
-  { id: 2, link: "https://t.me/VisitingGrandpasVillage_Operator", icon: "telegram" },
+  {
+    id: 2,
+    link: "https://t.me/VisitingGrandpasVillage_Operator",
+    icon: "telegram",
+    ariaLabel: "link to telegram",
+  },
   {
     id: 3,
     link: "https://www.instagram.com/ecousadba.in.ua/",
     icon: "instagram",
+    ariaLabel: "link to instagram",
   },
 ];
 
@@ -69,9 +76,9 @@ export default function Footer() {
       </div>
 
       <ul className={s.socialMedia}>
-        {socialMediaLinks.map(({ link, icon, id }) => (
+        {socialMediaLinks.map(({ link, icon, id, ariaLabel }) => (
           <li key={id}>
-            <Link href={link} target="_blank">
+            <Link href={link} target="_blank" aria-label={ariaLabel}>
               <Icon name={icon} className={s.socialMediaIcon} />
             </Link>
           </li>

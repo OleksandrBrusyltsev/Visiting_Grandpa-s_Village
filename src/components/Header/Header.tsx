@@ -36,6 +36,7 @@ const Header = () => {
           <button
             className={`${css.burgerBtn} ${isVisible ? css.active : ""}`}
             onClick={handlePopup}
+            aria-label="menu button"
           >
             <div className={css.burgerIcon}>
               <span></span>
@@ -60,6 +61,7 @@ const Header = () => {
               className={css.userBtn}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
+              aria-label="user button"
             >
               {isHovered ? (
                 <svg
