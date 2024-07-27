@@ -40,11 +40,9 @@ const TelegramBlock: FC<TelegramBlockProps> = ({
             href="https://t.me/VisitingGrandpasVillage_Operator"
             className={s.telegramBotLink}
           >
-            <Image
-              src={IconTelegram}
-              alt="telegram"
-              className={s.telegramIcon}
-            />
+            <svg className={s.telegramIcon}>
+              <use xlinkHref="/sprite.svg#telegram" />
+            </svg>
             <p className={s.telegramIconText}>Чат-Бот</p>
           </Link>
         </div>

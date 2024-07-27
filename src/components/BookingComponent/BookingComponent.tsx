@@ -161,94 +161,124 @@ const BookingComponent: FC = () => {
           onClick={(e: React.MouseEvent<HTMLDivElement>) => {
             e.preventDefault();
             toggleModal({
-              type: 'cal',
-              triggerRef: startRef.current
+              type: "cal",
+              triggerRef: startRef.current,
             });
           }}
         >
-          <label 
-            htmlFor='start_date'
-            className={s.dateLabel} >Заїзд</label>
+          <label htmlFor="start_date" className={s.dateLabel}>
+            Заїзд
+          </label>
           <input
             type="text"
-            name='start_date'
-            id='start_date'
-            value={checkInDate ? checkInDate.toLocaleDateString('uk-UA') : ""}
+            name="start_date"
+            id="start_date"
+            value={checkInDate ? checkInDate.toLocaleDateString("uk-UA") : ""}
             className={s.dateInput}
             readOnly
             tabIndex={-1}
           />
-          <button type="button" className={`${s.dateOpenButton}`}>
-            <Icon name="icon-down" className={buildOpenButtonStyles(startRef.current)} />
+          <button
+            type="button"
+            className={`${s.dateOpenButton}`}
+            aria-label="toggle calendar"
+          >
+            <Icon
+              name="icon-down"
+              className={buildOpenButtonStyles(startRef.current)}
+            />
             {/* <Icon name="icon-down" className={s.downIcon} /> */}
           </button>
         </div>
-        
+
         <div
           ref={endRef}
           className={s.dateWrapper}
           onClick={(e: React.MouseEvent<HTMLDivElement>) => {
             e.preventDefault();
             toggleModal({
-              type: 'cal',
-              triggerRef: endRef.current
+              type: "cal",
+              triggerRef: endRef.current,
             });
           }}
         >
-          <label 
-            htmlFor='end_date'
-            className={s.dateLabel}>Виїзд</label>
+          <label htmlFor="end_date" className={s.dateLabel}>
+            Виїзд
+          </label>
           <input
             type="text"
-            name='end_date'
-            id='end_date'
-            value={checkOutDate ? checkOutDate.toLocaleDateString('uk-UA') : ""}
+            name="end_date"
+            id="end_date"
+            value={checkOutDate ? checkOutDate.toLocaleDateString("uk-UA") : ""}
             className={s.dateInput}
             readOnly
             tabIndex={-1}
           />
-          <button type="button" className={`${s.dateOpenButton} `}>
-            <Icon name="icon-down" className={buildOpenButtonStyles(endRef.current)} />
+          <button
+            type="button"
+            className={`${s.dateOpenButton} `}
+            aria-label="toggle calendar"
+          >
+            <Icon
+              name="icon-down"
+              className={buildOpenButtonStyles(endRef.current)}
+            />
           </button>
         </div>
 
         <fieldset
           ref={guestRef}
           className={s.guestWrapper}
-          name='guests'
+          name="guests"
           onClick={(e: React.MouseEvent<HTMLFieldSetElement>) => {
             e.preventDefault();
             toggleModal({
-              type: 'guests',
-              triggerRef: guestRef.current
+              type: "guests",
+              triggerRef: guestRef.current,
             });
           }}
         >
-          <p className={s.guestLegend}><legend >Гості</legend></p>
-          <label htmlFor='adult_guests' className={s.guestsLabel} >Дорослі: 
+          <p className={s.guestLegend}>
+            <legend>Гості</legend>
+          </p>
+          <label htmlFor="adult_guests" className={s.guestsLabel}>
+            Дорослі:
             <input
               className={s.guestsInput}
               type="text"
-              name='adult_guests'
-              id='adult_guests'
+              name="adult_guests"
+              id="adult_guests"
               value={adultsCount}
               readOnly
               tabIndex={-1}
-            />,
+            />
+            ,
           </label>
-          <label htmlFor='children_guests' className={s.guestsLabel} >Діти: 
+          <label htmlFor="children_guests" className={s.guestsLabel}>
+            Діти:
             <input
               className={s.guestsInput}
               type="text"
-              name='children_guests'
-              id='children_guests'
+              name="children_guests"
+              id="children_guests"
               value={childrenCount}
               readOnly
               tabIndex={-1}
             />
           </label>
-          <button type="button" className={`${s.guestOpenButton} `}>
-            <Icon name="icon-down" className={isModalOpen && activeChild.type === 'guests' ? s.upIcon : s.downIcon} />
+          <button
+            type="button"
+            className={`${s.guestOpenButton} `}
+            aria-label="toggle guests form"
+          >
+            <Icon
+              name="icon-down"
+              className={
+                isModalOpen && activeChild.type === "guests"
+                  ? s.upIcon
+                  : s.downIcon
+              }
+            />
           </button>
         </fieldset>
 
@@ -262,18 +292,21 @@ const BookingComponent: FC = () => {
       </form>
       <Modal visible={isModalOpen} ref={modalRef}>
         <div className="animation-wrapper">
-          {activeChild.type === 'cal' ? <Calendar
-            onDateSelect={handleDateSelect}
-            checkInDate={checkInDate}
-            checkOutDate={checkOutDate}
-          /> : null} 
-          {activeChild.type === 'guests' ?
-          <GuestsForm
-            adultsCount={adultsCount}
-            childrenCount={childrenCount}
-            setAdultsCount={setAdultsCount}
-            setChildrenCount={setChildrenCount}
-          /> : null}
+          {activeChild.type === "cal" ? (
+            <Calendar
+              onDateSelect={handleDateSelect}
+              checkInDate={checkInDate}
+              checkOutDate={checkOutDate}
+            />
+          ) : null}
+          {activeChild.type === "guests" ? (
+            <GuestsForm
+              adultsCount={adultsCount}
+              childrenCount={childrenCount}
+              setAdultsCount={setAdultsCount}
+              setChildrenCount={setChildrenCount}
+            />
+          ) : null}
         </div>
       </Modal>
     </div>

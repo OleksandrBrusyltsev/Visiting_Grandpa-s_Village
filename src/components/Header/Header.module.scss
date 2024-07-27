@@ -6,23 +6,27 @@
 }
 
 .container {
+  // min-width: 375px;
   width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding: 10px 24px;
+  gap: 50px;
+  padding: 6px 17.5px;
   height: 100px;
   max-width: 1440px;
   margin: 0 auto;
 
   @include mixins.media-min(variables.$breakpoint-tablet-min) {
-    padding: 10px 30px;
+    min-width: 768px;
+    padding: 6px 30px;
     height: 160px;
     align-items: center;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    padding: 10px 80px;
+    min-width: 1280px;
+    padding: 6px 80px;
   }
 }
 
@@ -66,15 +70,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 
 .burgerIcon span {
   background-color:rgb(var(--color-base-green));
-  border-radius: 2px;
-  height: 3px;
-  width: 24px;
+  height: 2px;
+  width: 28px;
   transition: transform 0.5s ease, opacity 0.2s ease;
 }
 
@@ -82,7 +85,7 @@
   background-color:rgb(var(--color-natural-orange));
   transform: rotate(45deg);
   position: relative;
-  top: 8px;
+  top: 9.33px;
 }
 
 .burgerBtn.active .burgerIcon span:nth-child(2) {
@@ -94,7 +97,7 @@
   background-color:rgb(var(--color-natural-orange));
   transform: rotate(-45deg);
   position: relative;
-  top: -8px;
+  top: -9.33px;
 }
 
 .userBtn {

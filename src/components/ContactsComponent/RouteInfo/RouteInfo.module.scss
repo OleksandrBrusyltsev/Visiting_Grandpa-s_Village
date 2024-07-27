@@ -25,11 +25,11 @@
   }
 
   @include mixins.media-min(variables.$mobile) {
-    max-width: 516px;
     margin-bottom: 0;
   }
 
   @include mixins.media-min(1000px) {
+    max-width: 516px;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     width: 100%;

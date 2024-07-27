@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import WelcomeBlock from "../../../components/WelcomeBlock/WelcomeBlock";
 import AskGrandpa from "../../../components/AskGrandpa/AskGrandpa";
 
 import Hero from "@/components/Hero/Hero";
+
+export const metadata: Metadata = {
+  title: 'Відпочинок на Блакитних озерах Чернігівщини | "На селі у Дідуся"',
+  description:
+    'Відпочинок на Блакитних озерах Чернігівщини | "На селі у Дідуся"',
+};
 
 export async function generateStaticParams() {
   return ["uk", "en"].map((locale) => ({ locale }));
@@ -24,7 +31,7 @@ export default function Home({
         // justifyContent: 'center',
         // margin: '80px auto 120px'
       }}> */}
-        <Hero />
+      <Hero />
       {/* </div> */}
       <WelcomeBlock text={t("welcomeBlock")} />
     </main>
