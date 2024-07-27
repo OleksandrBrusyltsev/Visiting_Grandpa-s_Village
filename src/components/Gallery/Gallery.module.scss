@@ -3,7 +3,7 @@
 
 .overflowContainer {
     @media (hover: none) {
-        overflow-x: hidden;
+        overflow-x: clip;
     }
     @media (min-width: 1024px) {
         overflow-x: hidden;
@@ -117,6 +117,10 @@
 
 .callToAction {
     text-align: end;
+    .btnCallToAction {
+        max-width: 297px;
+        padding-block: 11.5px;
+    }
 }
 
 .slogan {
@@ -126,10 +130,7 @@
     margin: 50px 0 30px auto;
 }
 
-.btnCallToAction {
-    max-width: 297px;
-    padding-block: 11.5px;
-}
+
 
 .cloud {
     display: none;

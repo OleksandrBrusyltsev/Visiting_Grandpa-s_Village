@@ -27,7 +27,8 @@ export default function GalleryItemPageList({ children }: Props) {
             bgImgImage = '',
             verticalOffsetImg = isMobile ? 150 : isTablet ? 200 : 100;
          
-            const blockHeight = listRef.current.clientHeight;
+            //компенсация отрицательного паддинга в css для galleryBlock -  - (isMobile ? 40 : 50)
+            const blockHeight = listRef.current.clientHeight - (isMobile ? 40 : 50); 
             const offsetV = isMobile ? 0.2 : 0.1;//смещение вертикального отступа для правой колонки ёлок, доля от verticalOffsetImg
             const offsetH = isMobile ? ' -20%' : ' 20%';
             let leftOffsetV: number, rightOffsetV: number;
@@ -47,7 +48,7 @@ export default function GalleryItemPageList({ children }: Props) {
             }
 
             if(totalLines%1 >= 0.5) {
-                bgPosImg += `, right bottom -20px`;
+                bgPosImg += `, right bottom`;
                 bgSizeImg += ', '  + `${imgSize[0]}px ${imgSize[1]}px`;
                 bgImgImage += ', '  + _img;
             }

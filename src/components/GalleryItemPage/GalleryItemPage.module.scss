@@ -36,12 +36,13 @@
 }
 .hero {
     margin-top: 16px;
+    position: relative;
 }
 .main {
     margin-top: 81px;
 }
 .heroTitle {
-    max-width: 90%;
+    max-width: 80%;
     padding-left: clamp(0px, calc(0px + 74 * (100vw - 375px) / 392), 74px);
     font-size: var(--f-size-body-big);
     position: relative;
@@ -59,22 +60,31 @@
     }
 }
 .grandpaWrapper {
-    margin-top: clamp(-50px, calc(-50px + 140 * (767px - 100vw) / 392), 90px);
-    float: right;
-    margin-right: -10px;
-    shape-outside: padding-box;
-    border-radius: 50% 50% 0% 0%;
-    position: relative;
-    width: clamp(142px, calc(252px - 110 * (767px - 100vw) / 392), 252px);
+    position: absolute;
+    right: -10px;
+    bottom: -50px;
+    width: clamp(142px, calc(232px - 90 * (767px - 100vw) / 392), 232px);
     aspect-ratio: 1;
     img {
         object-fit: contain;
+    }
+    &::before {
+        position: absolute;
+        content: '';
+        top: calc(-60px + 28 * (100vw - 375px) / 392);
+        left: -19%;
+        width: clamp(210px, calc(210px + 160 * (100vw - 375px) / 392), 370px);
+        aspect-ratio: 1.094;
+        background-image: url('/images/backgrounds/christmasTrees.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        z-index: -1;
     }
 }
 .callToClick {
     font-size: 14px;
     line-height: 1.4;
-    padding-left: clamp(0px, calc(0px + 74 * (100vw - 375px) / 392), 74px);
+    padding-left: clamp(24px, calc(24px + 80 * (100vw - 375px) / 392), 104px);
     position: relative;
     .curve {
         display: block;
@@ -136,6 +146,7 @@
         margin-top: 36px;
     }
     .heroTitle {
+        max-width: 90%;  
         padding-left: clamp(74px, calc(74px + 146 * (100vw - 768px) / 511), 220px);
         font-size: var(--f-size-h2);
         line-height: 1.1;
@@ -146,12 +157,20 @@
         }
     }
     .grandpaWrapper {
+        float: right;
+        margin-right: -10px;
+        shape-outside: padding-box;
+        border-radius: 50% 50% 0% 0%;
+        position: relative;
         margin-right: clamp(0px, calc(0px + 29 * (100vw - 768px) / 511), 29px);
         margin-top: clamp(-86px, calc(-50px - 36 * (100vw - 768px) / 511), -50px);
         width: clamp(172px, calc(252px - 80 * (100vw - 768px) / 511), 252px);
+        &::before {
+            position: unset;
+        }
     }
     .callToClick {
-        padding-left: clamp(74px, calc(74px + 366 * (100vw - 768px) / 511), 440px);
+        padding-left: clamp(104px, calc(104px + 386 * (100vw - 768px) / 511), 490px);
         font-size: 20px;
         .curve {
             left: 76%;

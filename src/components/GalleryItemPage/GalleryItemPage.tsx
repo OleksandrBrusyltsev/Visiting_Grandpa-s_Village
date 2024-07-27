@@ -116,7 +116,7 @@ export default function GalleryItemPage({items}: Props) {
                                             <Image 
                                                 src={img.src} 
                                                 alt={img.description} 
-                                                sizes="33vw"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 35vw, 25vw"
                                                 fill/>
                                         </div>
                                     </li>
