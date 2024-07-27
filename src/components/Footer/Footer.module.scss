@@ -10,13 +10,13 @@
   grid-template-columns: 1fr;
   gap: 2.25rem;
   background: url("/images/backgrounds/footer-bg-375.png") no-repeat
-    center/cover rgba(var(--color-nude), 0.5);
+    center/cover rgb(var(--color-nude));
   background-blend-mode: soft-light;
-  padding: 0.5rem 1.5rem 0.875rem;
+  padding: 1.25rem 1.5rem 0.875rem;
 
   @include mixins.media-min($breakpoint-tablet-min) {
     grid-template-areas: "logo" "nav" "contacts" "socialMedia" "copyright";
-    padding: 3.75rem 0 1.563rem;
+    padding: 3.75rem 0 1.5rem;
   }
   @include mixins.media-min($mobile) {
     background-image: url("/images/backgrounds/footer-bg-768.png");
@@ -47,7 +47,7 @@
   &Item {
     color: rgb(var(--color-black));
     font-family: var(--f-family-headline);
-    font-size: 18px;//
+    font-size: 18px;
     font-weight: 600;
     line-height: normal;
     padding: 0.625rem;
@@ -105,9 +105,9 @@
     cursor: pointer;
     transition: font-size 0.4s ease;
 
-    @media (max-width: $breakpoint-mobile-max) {
-      font-size: 18px;
-    }
+    // @media (max-width: $breakpoint-mobile-max) {
+    //   font-size: 18px;
+    // }
 
     @media (hover: hover) {
       &:hover {
@@ -153,6 +153,7 @@
   grid-area: copyright;
   color: rgb(var(--color-black));
   font-family: var(--f-family-main);
-  font-size: 0.75rem;
+  font-size: 14px;
+  line-height: 16.4px;
   font-weight: 400;
 }
