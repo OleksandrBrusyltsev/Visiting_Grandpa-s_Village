@@ -244,10 +244,6 @@ export const gallery = [
             { id: 8, src: 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1721834785/dmfiqfgzzrgp8o7pijlr.png', description: 'cozy houses photo 8' },
             { id: 9, src: 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1721834786/oyoa8enrer3x9klwp8g1.jpg', description: 'cozy houses photo 9' },
             { id: 10, src: 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1721834787/vbkzzlcrdbnbxwuxyqad.jpg', description: 'cozy houses photo 10' },
-            { id: 101, src: '/images/IMG_9749.jpg', description: 'cozy houses photo 101' },
-
-
-            
             { id: 11, src: 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1721834788/psqcvpusfdg5nkgtqyw3.jpg', description: 'cozy houses photo 11' },
             { id: 12, src: 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1721834789/fenlc8zsxx8i4utwtgmf.jpg', description: 'cozy houses photo 12' },
             { id: 13, src: 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1721834790/hfkuhev9watbrjgpdhmt.jpg', description: 'cozy houses photo 13' },
