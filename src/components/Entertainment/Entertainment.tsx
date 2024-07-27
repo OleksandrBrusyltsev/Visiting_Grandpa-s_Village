@@ -92,12 +92,6 @@ export default function Entertainment({items}: Props) {
     return (
         <>
             <section className={`${s.hero} container`}>
-                {/* <h1 className={s.heroTitle} suppressHydrationWarning> */}
-                <h1 className={s.heroTitle} >
-                    <span className={s.firstPart}>Мистецтво Відпочинку&nbsp;- не&nbsp;завжди означає&nbsp;Дію,</span> навчись нічого не&nbsp;робити, а&nbsp;просто насолодись тишею та&nbsp;спокоєм.
-                </h1>
-                <p className={s.question}>Як саме?</p>
-                <p className={s.answer}>Дідусь покаже тобі</p>
                 <div className={s.grandpaWrapper}>
                     <Image 
                         src={'/images/grandpas/Grandpa1.png'} 
@@ -105,6 +99,11 @@ export default function Entertainment({items}: Props) {
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         fill/>
                 </div>
+                <h1 className={s.heroTitle} >
+                    Мистецтво Відпочинку - не завжди означає Дію, навчись нічого не робити, а просто насолодись тишею та спокоєм.
+                </h1>
+                <p className={s.question}>Як саме?</p>
+                <p className={s.answer}>Дідусь покаже тобі</p>
             </section>
             <main className={`${s.main} container`}>
                 <ul className={s.entertainmentList}>

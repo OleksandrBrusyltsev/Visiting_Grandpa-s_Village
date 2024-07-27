@@ -87,9 +87,8 @@
     .mealsDescriptionWrapper {
         margin-top: calc(40px * 100vw / 375px);
         .mainPhoto {
-            margin-top: calc(160px - 160 * (100vw - 375px) / 392);
-            shape-outside: padding-box;
-            border-radius: 50%;
+            // margin-top: calc(160px - 160 * (100vw - 375px) / 392);
+            // shape-outside: circle(50% at 50% 50%) content-box;
             float: right;
             position: relative;
             width: clamp(162px, 35%, 250px);
@@ -137,9 +136,8 @@
     .mealsDescriptionWrapper {
         margin-top: calc(240px - 120 * (767px - 100vw) / 392);
         .mainPhoto {
-            margin-top: calc(-138px + 96 * (767px - 100vw) / 392);
-            shape-outside: padding-box;
-            border-radius: 50%;
+            // margin-top: calc(-138px + 96 * (767px - 100vw) / 392);
+            // shape-outside: circle(50% at 50% 50%) content-box;
             float: right;
             position: relative;
             width: clamp(188px, 35%, 255px);

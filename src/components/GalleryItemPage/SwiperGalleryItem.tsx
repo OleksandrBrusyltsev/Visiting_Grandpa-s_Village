@@ -1,5 +1,5 @@
 'use client';
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Keyboard, Pagination, Navigation } from 'swiper/modules';
@@ -15,7 +15,7 @@ import './SwiperGalleryItem.scss';
 type Props = Pick<GalleryItem, 'gallery'> & {initialSlide: number};
 
 export default function SwiperGalleryItem({gallery, initialSlide}: Props) {
-    const {isMobile, isTablet} = useContext(MatchMediaContext);
+    const {isMobile} = useContext(MatchMediaContext);
     return (
         <>
          <Swiper
@@ -37,7 +37,13 @@ export default function SwiperGalleryItem({gallery, initialSlide}: Props) {
                 gallery.map(item => (
                     <SwiperSlide key={item.id}>
                         <div className="imageWrapper">
-                          <Image quality={100} src={item.src} alt={item.description} fill style={{objectFit: isMobile || isTablet ? 'contain' : 'cover'}} />
+                          <Image 
+                          src={item.src} 
+                          sizes='(max-width: 1280px) 100vw, (max-width: 1440px) 80vw, 70vw'
+                          placeholder='blur'
+                          blurDataURL={'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8dOXMfwAIZQNzt0gGRgAAAABJRU5ErkJggg=='}
+                          alt={item.description} fill 
+                          />
                         </div>
                     </SwiperSlide>
                 ))

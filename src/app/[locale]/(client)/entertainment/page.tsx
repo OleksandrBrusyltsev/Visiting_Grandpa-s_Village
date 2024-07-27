@@ -9,9 +9,9 @@ export const metadata: Metadata = {
     "Майстер-класи з народних промислів, кулінарні задоволення, командні квести та багато іншого чекають на вас в еко-садибі | «На селі у Дідуся». Біля Блакитних озер Чернігівської області.",
 };
 
-export async function generateStaticParams() {
-  return ["uk", "en"].map((locale) => ({ locale }));
-}
+// export async function generateStaticParams() {
+//   return ["uk", "en"].map((locale) => ({ locale }));
+// }
 
 export default async function Page({
   params: { locale },

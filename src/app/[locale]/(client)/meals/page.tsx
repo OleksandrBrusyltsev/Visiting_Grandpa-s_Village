@@ -11,9 +11,9 @@ export const metadata: Metadata = {
     "Еко-садиба «На селі у Дідуся!!! » ОЛЕШНЯ, БЛАКИТНІ ОЗЕРА Харчування за попереднім замовленням по меню.",
 };
 
-export async function generateStaticParams() {
-  return ["uk", "en"].map((locale) => ({ locale }));
-}
+// export async function generateStaticParams() {
+//   return ["uk", "en"].map((locale) => ({ locale }));
+// }
 
 export default async function Page({
   params: { locale },
