@@ -29,4 +29,4 @@ export const entertainments = [
         text: '“Не шукай важких відповідей, просто насолоджуйся простотою щасливих моментів.”',
         images: ['/images/entertainment/11.png','/images/entertainment/12.png']
     }
-];
+]; 
