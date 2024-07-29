@@ -17,8 +17,8 @@
     "next-intl": "^3.11.1",
     "react": "^18",
     "react-dom": "^18",
-    "remarkable": "^2.0.1",
-    "swiper": "^11.1.4"
+    "sharp": "^0.33.4",
+    "swiper": "^11.1.7"
   },
   "devDependencies": {
     "@types/node": "^20",

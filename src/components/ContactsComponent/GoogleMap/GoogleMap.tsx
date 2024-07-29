@@ -7,7 +7,8 @@ import {
   InfoWindow,
 } from "@vis.gl/react-google-maps";
 import s from "./GoogleMap.module.scss";
-
+import Image from "next/image";
+import grandpa from '../../../../public/images/grandpas/Grandpa1.png';
 type GoogleMapProps = {
   googleMapWrapperRef: React.RefObject<HTMLDivElement>;
 };
@@ -26,8 +27,7 @@ const GoogleMap: FC<GoogleMapProps> = ({ googleMapWrapperRef }) => {
       >
         <Map
           defaultCenter={position}
-          zoom={17}
-          center={position}
+          defaultZoom={17}
           mapId={process.env.NEXT_PUBLIC_MAP_ADI}
         >
           <AdvancedMarker position={position} onClick={() => setOpen(true)}>
@@ -41,7 +41,9 @@ const GoogleMap: FC<GoogleMapProps> = ({ googleMapWrapperRef }) => {
 
           {open && (
             <InfoWindow position={position} onCloseClick={() => setOpen(false)}>
-              <p>Welcome to sadyba!</p>
+              <Image src={grandpa} alt="grandpa" width={75} height={75} style={{transform: 'translateX(50%)'}}/>
+              <p style={{fontSize: 16}}>Welcome to Sadyba!</p>
+
             </InfoWindow>
           )}
         </Map>

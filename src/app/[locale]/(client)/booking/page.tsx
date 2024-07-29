@@ -2,9 +2,9 @@ import { useTranslations } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 
-export async function generateStaticParams() {
-  return ["uk", "en"].map((locale) => ({ locale }));
-}
+// export async function generateStaticParams() {
+//   return ["uk", "en"].map((locale) => ({ locale }));
+// }
 
 export default function Page({
   params: { locale },

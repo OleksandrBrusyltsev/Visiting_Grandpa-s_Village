@@ -6,11 +6,6 @@
   position: relative;
 }
 
-.textWrapper,
-.imageWrapper::after,
-.buttonWrapper {
-  position: absolute;
-}
 
 .blockWrapper {
   max-width: 1440px;
@@ -26,120 +21,77 @@
 }
 
 .textWrapper {
-  width: 17.25rem;
-  padding: 0.75rem 0rem;
+  width: calc(100vw - 40px);
+  padding: 0.75rem 1rem;
   background: rgba(194, 191, 183, 0.7);
   border: 1px solid rgb(var(--color-base-green));
   border-radius: 0.5rem;
   font-family: var(--f-family-headline);
   text-align: center;
-  left: 50%;
-  top: -0.5%;
-  transform: translate(-50%, -50%);
-
-  @include mixins.media-min(variables.$breakpoint-tablet-min) {
-    width: 36rem;
-    padding: 0.6rem 0.6rem;
-    top: -0.5%;
+  margin: 0 auto;
+  transform: translateY(50%);
+  max-width: 36rem;
+  @include mixins.media-min(variables.$mobile) {
+    width: calc(100vw - 190px);
+    padding: 0.6rem clamp(16px, calc(16px + 24 * (100vw - 768px) / 511), 40px);
+    max-width: 60rem;
   }
-  @include mixins.media-min(variables.$breakpoint-tablet-max) {
-    width: 59.2rem;
-    top: 1.5%;
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: calc(100vw - 320px);
+    padding: 0.6rem 2rem;
+    max-width: 66rem;
   }
-
+  @include mixins.media-min(variables.$pc) {
+    width: calc(100vw - 380px);
+  }
   & p {
-    font-size: var(--f-size-body-small);
+    font-size: clamp(14px, calc(32px - 18 * (767px - 100vw) / 392), 32px);
     line-height: 100%;
-    letter-spacing: -0.00375rem;
 
-    @include mixins.media-min(variables.$breakpoint-tablet-min) {
-      font-size: var(--f-size-h2);
+    @include mixins.media-min(variables.$mobile) {
       color: rgb(var(--color-white));
       line-height: 110%;
-      letter-spacing: -0.1rem;
+      letter-spacing: -0.005em;
+      font-size: clamp(32px, calc(48px - 16 * (1279px - 100vw) / 511), 48px);
     }
-    @include mixins.media-min(variables.$breakpoint-tablet-max) {
-      font-size: var(--f-size-large);
+    @include mixins.media-min(variables.$breakpoint-laptop) {
       text-transform: uppercase;
     }
   }
 }
 
 .imageWrapper {
-  height: 200px;
+  width: 100%;
   box-shadow: inset 0px -35px 35px 1px rgb(255, 255, 255);
   overflow: hidden;
-
-  @media screen and (min-width: 426px) {
-    height: 18.75rem;
-  }
-  @include mixins.media-min(variables.$breakpoint-tablet-min) {
-    height: 35.5rem;
-  }
-  @include mixins.media-min(variables.$breakpoint-tablet-max) {
-    height: 39.5rem;
-  }
-}
-
-.imageWrapper::after {
-  content: "";
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0),
-    rgb(255, 255, 255)
-  );
-  @include mixins.media-min(variables.$breakpoint-tablet-min) {
-    display: none;
+  height: clamp(193px, calc(567px - 374 * (767px - 100vw) / 392), 567px);
+  display: flex;
+  flex-direction: column-reverse;
+  @include mixins.media-min(variables.$mobile) {
+    height: clamp(567px, calc(635px - 68 * (1279px - 100vw) / 511), 635px);
   }
 }
 
 .image {
-  width: 400px;
-  object-fit: cover;
-  object-position: center 68%;
   z-index: -1;
-  @include mixins.media-min(variables.$breakpoint-tablet-min) {
-    transform: scale(1.2);
-    width: 100%;
-  }
-  @include mixins.media-min(variables.$breakpoint-tablet-max) {
-    transform: scale(1);
-    object-position: center 55%;
-  }
+  image-rendering: crisp-edges;
 }
 
 .buttonWrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  left: 50%;
-  top: 80%;
-  transform: translate(-50%, -50%);
+  margin-bottom: clamp(5px, calc(5px + 105 * (100vw - 375px) / 392), 110px);
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: clamp(110px, calc(110px + 15 * (100vw - 768px) / 511), 125px);
+  }
+ 
   & > a {
     width: 100%;
     display: block;
     text-align: center;
   }
-  @media screen and (min-width: 425px) {
-    top: 85%;
-  }
-  @include mixins.media-min(variables.$breakpoint-tablet-min) {
-    top: 70%;
-  }
-  @include mixins.media-min(variables.$breakpoint-laptop-min) {
-    top: 75%;
-  }
 }
 
 .button {
   padding: 0.75rem;
-  font-size: 1rem;
+  font-size: clamp(16px, calc(16px + 6 * (100vw - 375px) / 392), 22px);
   z-index: 1;
-
-  @include mixins.media-min(variables.$breakpoint-tablet-min) {
-    font-size: 1.375rem;
-  }
 }
