@@ -103,7 +103,7 @@ export default function Gallery({items}: Props) {
               <p className={s.descr1}>
                 Люблю згадувати всі щасливі моменти,{" "}
                 <span className={s.noBreak}>що відбулись</span>{" "}
-                <span className={s.noBreak}>“На Селі у Дудуся”</span>
+                <span className={s.noBreak}>“На Селі у Дідуся”</span>
               </p>
               <p className={s.descr2}>Згадаєш зі мною?</p>
               <div className={s.grandpa}>
