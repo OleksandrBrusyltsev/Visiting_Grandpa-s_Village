@@ -106,6 +106,7 @@
 }
 
 .bookingWrapper {
+  width: 300px;
   margin-top: 146px;
   border-radius: 8px;
   background-color: rgb(var(--color-nude), 0.7);
@@ -115,7 +116,8 @@
   border: 1px solid rgba(var(--color-base-green));
   display: flex;
   flex-direction: column;
-  @media (min-width: 376px) {
+  @media (min-width: 375px) {
+    width: 327px;
     font-size: 18px;
   }
   @media (min-width: 768px) {
