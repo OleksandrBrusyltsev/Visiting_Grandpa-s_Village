@@ -50,34 +50,8 @@
 }
 
 swiper-container {
-  height: 270px;
+  height: 100%;
   border-radius: 8%;
-
-  @media (min-width: 376px) and (max-width: 767px) {
-    height: calc(270px + 280 * (100vw - 376px) / 391);
-  }
-
-  @media (min-width: 768px) {
-    height: 550px;
-  }
-  @media (min-width: 769px) and (max-width: 1279px) {
-    height: calc(550px + 50 * (100vw - 769px) / 510);
-  }
-  @media (min-width: 1280px) {
-    width: 1136px;
-    height: 600px;
-  }
-}
-
-swiper-slide {
-  border-radius: 8%;
-  @media (min-width: 1280px) {
-    & img {
-      left: 118px !important;
-      width: 900px !important;
-      object-fit: cover;
-    }
-  }
 }
 
 swiper-container::part(button-prev),

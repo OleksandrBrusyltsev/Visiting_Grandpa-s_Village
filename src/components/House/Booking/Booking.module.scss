@@ -7,7 +7,6 @@
   flex-direction: column;
   align-items: center;
   @media (min-width: 1000px) {
-    // width: 520px;
     align-items: flex-start;
   }
 }
@@ -31,6 +30,9 @@
     width: 441px;
     height: 400px;
   }
+  @media (min-width: 1280px) {
+    left: 125px;
+  }
 
   z-index: -1;
   img {
@@ -44,7 +46,6 @@
     content: "";
     right: -6%;
     bottom: 8%;
-    // background-image: url("../../../assets/house/trees-decor.png");
     background-image: var(--background-image-url);
     background-repeat: no-repeat;
     background-size: contain;
@@ -56,7 +57,8 @@
     }
 
     @media (min-width: 768px) {
-      width: 561px;
+      // width: 561px;
+      width: 491px;
       height: 519px;
       bottom: 3%;
       right: -7%;
@@ -68,7 +70,7 @@
       right: calc(-7% - 33% * (100vw - 769px) / 510);
     }
     @media (min-width: 1280px) {
-      bottom: 6%;
+      bottom: -45px;
     }
   }
 }
@@ -98,12 +100,12 @@
   }
 
   @media (min-width: 1280px) {
-    top: 5px;
+    top: 50px;
+    left: 5px;
   }
 }
 
 .bookingWrapper {
-  // width: 327px;
   margin-top: 146px;
   border-radius: 8px;
   background-color: rgb(var(--color-nude), 0.7);
@@ -123,6 +125,9 @@
   &.simple {
     gap: 30px;
     padding: 40px 24px;
+    @media (min-width: 768px) {
+      margin-top: 276px;
+    }
   }
   &.addons {
     gap: 36px;
@@ -138,11 +143,10 @@
 
   @media (min-width: 376px) and (max-width: 767px) {
     margin-top: calc(146px + 25 * (100vw - 376px) / 391);
-    // width: calc(327px + 90 * (100vw - 376px) / 391);
   }
 
   @media (min-width: 768px) {
-    margin-top: 171px;
+    margin-top: 250px;
     min-width: 417px;
   }
 }
@@ -203,5 +207,4 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  // margin-top: 32px;
 }

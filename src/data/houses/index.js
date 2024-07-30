@@ -62,7 +62,7 @@ export const houses = [
       child: 150,
     },
     max_adults: 2,
-    max_children: 1,
+    max_children: 0,
     rooms: [],
     photoDecor: "/images/houses/house/decor/svitlytsia.svg",
     treesDecor: "/images/houses/house/svitlytsia/trees-decor.png",
@@ -103,7 +103,7 @@ export const houses = [
         text: "Hatynka Babky Izhachky (summer version)",
       },
     ],
-    rental_price: 950,
+    rental_price: 900,
     price_addons: {
       adult: 200,
       child: 150,

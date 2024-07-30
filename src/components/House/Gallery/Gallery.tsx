@@ -1,8 +1,10 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useState, useContext, useRef } from "react";
 import Image from "next/image";
-import Icon from "../../ui/Icon/Icon";
 import Swiper from "./Swiper/Swiper";
+import Modal from "@/components/ui/Modal/Modal";
+import SwiperMobile from "./SwiperMobile/SwiperMobile";
+import { MatchMediaContext } from "@/context/MatchMediaContext";
 import s from "./Gallery.module.scss";
 
 interface GalleryType {
@@ -11,9 +13,20 @@ interface GalleryType {
 
 const Gallery: FC<GalleryType> = ({ pictures }) => {
   const [isSwiperOpen, setSwiperOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setSwiperOpen((isSwiperOpen) => !isSwiperOpen);
+  const [firstSlide, setFirstSlide] = useState<number>(0);
+  const { isTablet, isMobile } = useContext(MatchMediaContext);
+  const swiperElRef = useRef<any>(null);
+  const toggleSwiper = (i: number) => {
+    setSwiperOpen(!isSwiperOpen);
+    setFirstSlide(i);
+  };
+  const handleKeyboardToggle = (
+    e: React.KeyboardEvent<HTMLDivElement>,
+    index: number
+  ) => {
+    if ((e.code === "Enter" || e.code === "NumpadEnter") && !isSwiperOpen) {
+      toggleSwiper(index);
+    }
   };
 
   const small =
@@ -25,17 +38,14 @@ const Gallery: FC<GalleryType> = ({ pictures }) => {
 
   return (
     <div className={s.galleryWrapper}>
-      {isSwiperOpen && <div className={s.overlay} onClick={toggleMenu}></div>}
-      {isSwiperOpen && (
-        <div className={s.cross} onClick={toggleMenu}>
-          <Icon name="house-gallery-cross" />
-        </div>
-      )}
-      <div className={s.gallery} onClick={toggleMenu}>
+      <div className={s.gallery}>
         {pictures.map((item, index) => (
           <div
             key={item}
             className={`${s.imageWrapper} ${index === 0 ? s.large : small}`}
+            onClick={() => toggleSwiper(index)}
+            onKeyDown={(e) => handleKeyboardToggle(e, index)}
+            tabIndex={0}
           >
             <Image
               fill
@@ -50,7 +60,19 @@ const Gallery: FC<GalleryType> = ({ pictures }) => {
         ))}
       </div>
 
-      <Swiper pictures={pictures} isSwiperOpen={isSwiperOpen} />
+      {isMobile || isTablet ? (
+        <SwiperMobile pictures={pictures} />
+      ) : (
+        isSwiperOpen && (
+          <Modal isOpen={isSwiperOpen} onClose={() => setSwiperOpen(false)}>
+            <Swiper
+              pictures={pictures}
+              isSwiperOpen={isSwiperOpen}
+              initialSlide={firstSlide}
+            />
+          </Modal>
+        )
+      )}
     </div>
   );
 };

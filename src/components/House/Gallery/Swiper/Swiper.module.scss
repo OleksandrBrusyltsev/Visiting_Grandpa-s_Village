@@ -1,10 +1,3 @@
-.swiperMobile {
-  // is using in connection with useMatchMedia settings: isTablet: "(min-width: 768px) and (max-width: 1279px)"
-  @media (min-width: 1280px) {
-    display: none;
-  }
-}
-
 .swiperLaptopWrapper {
   width: 100%;
   display: flex;
@@ -13,18 +6,13 @@
 
 .swiperLaptop {
   display: none;
-  // is using in connection with useMatchMedia settings: isTablet: "(min-width: 768px) and (max-width: 1279px)"
   @media (min-width: 1280px) {
     display: block;
-    width: 95%;
-    // width: 1136px;
-    height: 600px;
+    width: 100%;
+    height: 100%;
     position: absolute;
-    top: -25px;
+    top: 0px;
     z-index: 6;
-  }
-  @media (min-width: 1180px) {
-    width: 1136px;
   }
 }
 

@@ -29,7 +29,6 @@
 .textDecor {
   display: flex;
   justify-content: flex-end;
-  // margin-top: 20px;
   color: rgb(var(--color-base-green));
   font-family: var(--f-family-main);
   font-weight: 700;
@@ -94,28 +93,6 @@
       grid-area: grandpa;
       flex-grow: 1;
       align-self: end;
-      // &::before,
-      // &::after {
-      //   position: absolute;
-      //   content: "";
-      //   background-image: url("/images/backgrounds/christmasTrees.png");
-      //   background-repeat: no-repeat;
-      //   background-size: contain;
-      //   width: 220px;
-      //   aspect-ratio: 1;
-      //   top: 30px;
-      //   left: -97px;
-      //   z-index: -1;
-      // }
-      // &::after {
-      //   background-image: url("/images/backgrounds/christmasTrees.png"),
-      //     url("/images/backgrounds/christmasTrees.png");
-      //   background-position: right top, right -20px top 100px;
-      //   aspect-ratio: 0.5;
-      //   top: 0px;
-      //   left: unset;
-      //   right: -80px;
-      // }
     }
     .imageDecor {
       width: 100%;
@@ -158,11 +135,8 @@
 .contentWrapper {
   display: flex;
   flex-direction: column;
-  // max-width: 1180px;
   @media (min-width: 1000px) {
     flex-direction: row;
-    justify-content: space-between;
-    column-gap: 114px;
   }
 }
 
@@ -216,9 +190,11 @@
 
   @media (min-width: 768px) {
     font-size: 16px;
+    padding-right: 50px;
   }
 
   @media (min-width: 1280px) {
+    width: 516px;
     margin-top: 71px;
   }
 
@@ -244,6 +220,7 @@
 
   @media (min-width: 768px) {
     margin-top: 40px;
+    padding-right: 50px;
     justify-content: flex-start;
   }
 
@@ -256,7 +233,8 @@
   }
 
   @media (min-width: 1280px) {
-    margin-top: 86px;
+    margin-top: 50px;
+    padding-right: 80px;
   }
 
   & .iconWrapper {
@@ -289,7 +267,7 @@
   }
 
   & .servicesIcon {
-    padding: 5px;
+    padding: 18px;
 
     @media (min-width: 768px) {
       padding-top: 0px;
