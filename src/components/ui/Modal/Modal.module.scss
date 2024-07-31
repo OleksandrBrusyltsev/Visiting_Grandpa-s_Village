@@ -19,31 +19,34 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
+    // width: 100vw;
     max-width: 1900px;
     .close {
         position: absolute;
         top: -3rem;
         right: 0;
         font-size: 3rem;
+        line-height: 1.5rem;
         color: rgb(var(--color-base-green));
         padding: 0.5rem;
         z-index: 10;
-        @include mixins.media-min(variables.$breakpoint-laptop) {
-            top: -5rem;
+        @include mixins.media-min(variables.$mobile) {
+            top: -4rem;
+            right: -4rem;
             font-size: 4rem;
+            line-height: 2rem;
         }
     }
 
     @media (orientation: portrait) and (hover: none) {
-        height: 60dvh;
+        max-height: 60dvh;
     }
     @media (orientation: landscape) and (hover: none) {
-        height: 90dvh;
+        max-height: 90dvh;
     }
     
     @include mixins.media-min(variables.$mobile) {
-        height: 80vh;
-        width: 90vw;
+        max-height: 80vh;
+        // width: 90vw;
     }
 }

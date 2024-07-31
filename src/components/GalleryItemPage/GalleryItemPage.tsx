@@ -14,6 +14,7 @@ import Modal from '../ui/Modal/Modal';
 
 import s from './GalleryItemPage.module.scss';
 import { ScrollTrigger } from 'gsap/all';
+import { MatchMediaContext } from '@/context/MatchMediaContext';
 
 type Props = {items: GalleryItem[]}
 
@@ -24,7 +25,7 @@ export default function GalleryItemPage({items}: Props) {
     const {description, gallery} = items[0];
     const quote = description.filter(d => d.language === locale)[0].text;
     const galleryRef = useRef<Array<HTMLLIElement>>([]);
-
+    const {isMobile} = useContext(MatchMediaContext);
     const toggleSwiper = (i: number) => {
         setIsOpenSwiper(!isOpenSwiper);
         setFirstSlide(i);
@@ -34,10 +35,6 @@ export default function GalleryItemPage({items}: Props) {
             toggleSwiper(i);
         }
     }
-    
-    useEffect(() => {
-        document.body.style.overflow = isOpenSwiper ? 'hidden' : 'initial';
-    }, [isOpenSwiper]);
 
     useGSAP(() => {
         const mm = gsap.matchMedia();
@@ -140,9 +137,17 @@ export default function GalleryItemPage({items}: Props) {
                     </div>
                 </main>
             </div>
-            {isOpenSwiper && <Modal isOpen={isOpenSwiper} onClose={() => setIsOpenSwiper(false)}>
-                <SwiperGalleryItem gallery={gallery} initialSlide={firstSlide}/>
-            </Modal>}
+            {isOpenSwiper && 
+                <Modal 
+                    isOpen={isOpenSwiper} 
+                    onClose={() => setIsOpenSwiper(false)}
+                    wrapperStyles={{
+                        width: isMobile ? '100vw' : '90vw',
+                        height: '100dvh',
+                    }}
+                    >
+                    <SwiperGalleryItem gallery={gallery} initialSlide={firstSlide}/>
+                </Modal>}
         </>
     )
 }
