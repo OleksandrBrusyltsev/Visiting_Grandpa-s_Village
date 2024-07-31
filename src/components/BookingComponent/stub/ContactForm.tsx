@@ -25,17 +25,17 @@ const validatePhone = (phone: string) => {
 export default function ContactForm({order}: Props) {
     const contactFormRef = useRef<HTMLDivElement | null>(null);
     const formRef = useRef<HTMLFormElement | null>(null);
-    const grecaptchaRef = useRef<typeof window | null>(null);
+    // const grecaptchaRef = useRef<typeof window | null>(null);
 
-    useEffect(() => {
-      const onloadCallback = () => {
-        grecaptchaRef.current = window;
-      };
+    // useEffect(() => {
+    //   const onloadCallback = () => {
+    //     grecaptchaRef.current = window;
+    //   };
   
-      if (window) {
-        onloadCallback();
-      }
-    }, []);
+    //   if (window) {
+    //     onloadCallback();
+    //   }
+    // }, []);
 
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -49,22 +49,23 @@ export default function ContactForm({order}: Props) {
             return
         }
         
-        if (!grecaptchaRef.current?.grecaptcha) return;
-        const captureResponse = grecaptchaRef.current.grecaptcha.getResponse();
-        if (captureResponse.length === 0) {
-            alert('Перевірка reCaptcha не завершена');
-            return;
-        }
-        formData = {...formData, ...order, captureResponse};
+        // if (!grecaptchaRef.current?.grecaptcha) return;
+        // const captureResponse = grecaptchaRef.current.grecaptcha.getResponse();
+        // if (captureResponse.length === 0) {
+        //     alert('Перевірка reCaptcha не завершена');
+        //     return;
+        // }
+        // formData = {...formData, ...order, captureResponse};
+        formData = {...formData, ...order};
         console.log(formData);
         
         formRef.current?.requestSubmit();
         try {
             await telegramAction(formData);
-          } catch (error) {
+        } catch (error) {
             alert(`Помилка відправлення даних в бот Telegram: ${error}`);
             return;
-          }
+        }
 
         //reset form    
         (e.currentTarget as HTMLFormElement).reset();
