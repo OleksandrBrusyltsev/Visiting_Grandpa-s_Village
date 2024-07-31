@@ -23,12 +23,12 @@ export async function telegramAction(data: any) {
                     Телефон: ${data.phone.replace(/[^+\d]/g, '')},
                     Повідомлення: ${data.message}`;
     
-    const validationResult = await recapchaValidation(data?.recapchaResponse);
+    // const validationResult = await recapchaValidation(data?.recapchaResponse);
 
-    if (!validationResult?.ok) {
-        console.log(validationResult?.message);
-        return
-    }
+    // if (!validationResult?.ok) {
+    //     console.log(validationResult?.message);
+    //     return
+    // }
 
     for(let user of tgUserId) {
         await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
