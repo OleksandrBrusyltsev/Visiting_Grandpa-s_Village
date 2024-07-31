@@ -126,25 +126,27 @@ export default function Booking({
           />
         </div>
       </div>
-      <div className={`${s.bookingWrapper} ${addons ? s.addons : s.simple}`}>
+      {/* <div className={`${s.bookingWrapper} ${addons ? s.addons : s.simple}`}> */}
+      <div className={`${s.bookingWrapper} ${s.simple}`}>
         <div className={s.priceWrapper}>
           <div className={s.iconPrice}>
             <Icon name="price-houses" />
           </div>
           <p className={s.textPrice}>
-            {priceAddons
+            {/* {priceAddons
               ? t("rateBaseExt", { price, guests })
-              : t("rateBase", { price })}
+              : t("rateBase", { price })} */}
+            {t("rateBase", { price })}
           </p>
         </div>
 
-        {addons ? (
+        {/* {addons ? (
           <p className={s.addonsTitle}>
             {t("additionalGuests", { guests: addons })}
           </p>
-        ) : null}
+        ) : null} */}
 
-        {addons ? (
+        {/* {addons ? (
           <>
             <GuestsBlock
               adults={adultsCount}
@@ -171,7 +173,13 @@ export default function Booking({
             </div>
             <p className={s.textGuests}>{t("guests", { guests })}</p>
           </div>
-        )}
+        )} */}
+        <div className={s.guestsWrapper}>
+          <div className={s.iconGuests}>
+            <Icon name="guests-houses" />
+          </div>
+          <p className={s.textGuests}>{t("guests", { guests })}</p>
+        </div>
 
         <div className={s.timeWrapper}>
           <div>

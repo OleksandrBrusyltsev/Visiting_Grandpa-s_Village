@@ -1,7 +1,6 @@
 "use client";
-import { FC, useRef, useEffect, useContext } from "react";
+import { FC, useRef } from "react";
 import Image from "next/image";
-import { MatchMediaContext } from "@/context/MatchMediaContext";
 import s from "./SwiperMobile.module.scss";
 import { register } from "swiper/element/bundle";
 register();
