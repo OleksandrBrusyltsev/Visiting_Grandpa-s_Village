@@ -1,0 +1,309 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.sectionWrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+  margin-top: 20px;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    margin-top: calc(20px - 12 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    margin-top: 8px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    margin-top: calc(8px + 28 * (100vw - 769px) / 510);
+  }
+  @media (min-width: 1280px) {
+    margin-top: 36px;
+  }
+}
+
+.arrowBlockWrapper {
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    display: none;
+  }
+}
+
+.textDecor {
+  display: flex;
+  justify-content: flex-end;
+  color: rgb(var(--color-base-green));
+  font-family: var(--f-family-main);
+  font-weight: 700;
+}
+
+.arrowWrapper {
+  display: flex;
+  justify-content: flex-end;
+  height: 10px;
+  margin-top: 16px;
+  color: rgb(var(--color-base-green));
+
+  & svg {
+    width: 90px;
+  }
+}
+
+.apartmentGalleryWrapper {
+  display: grid;
+  grid-template-areas: "image";
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+
+  .imageWrapper {
+    position: relative;
+    grid-area: image;
+    aspect-ratio: 1.515;
+  }
+  .grandpaQuote,
+  .imageDecor,
+  .imageGrandpa,
+  .cloud {
+    display: none;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    grid-template-columns: 66% auto;
+    column-gap: 20px;
+    row-gap: 0;
+    grid-template-areas:
+      "image quote"
+      "image grandpa"
+      "image decor";
+
+    .grandpaQuote {
+      display: initial;
+      grid-area: quote;
+      flex-grow: 1;
+      align-self: center;
+      font-family: var(--f-family-main);
+      font-size: 16px;
+      font-weight: 700;
+      color: rgb(var(--color-base-green));
+      padding-left: 20px;
+    }
+    .imageGrandpa {
+      display: initial;
+      position: relative;
+      justify-self: end;
+      width: 50%;
+      aspect-ratio: 0.902;
+      grid-area: grandpa;
+      flex-grow: 1;
+      align-self: end;
+    }
+    .imageDecor {
+      width: 100%;
+      display: initial;
+      position: relative;
+      aspect-ratio: 1.87;
+      grid-area: decor;
+      flex-grow: 1;
+      align-self: start;
+      &::after {
+        position: absolute;
+        content: "";
+        background-image: var(--background-image-url);
+        width: 125%;
+        aspect-ratio: 1;
+        background-repeat: no-repeat;
+        background-size: contain;
+        bottom: -90px;
+        left: -25px;
+      }
+    }
+    .cloud {
+      color: rgba(179, 161, 137, 0.2);
+      display: block;
+      position: absolute;
+      bottom: 20px;
+      right: 90px;
+      width: 460px;
+      aspect-ratio: 1.33;
+      z-index: -5;
+    }
+  }
+  @include mixins.media-min(variables.$pc) {
+    .cloud {
+      right: 75px;
+    }
+  }
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 1000px) {
+    flex-direction: row;
+  }
+}
+
+.textWrapper {
+  padding-left: 0px;
+  padding-right: 0px;
+  @media (min-width: 376px) and (max-width: 767px) {
+    padding-left: calc(0px + 34 * (100vw - 376px) / 391);
+    padding-right: calc(0px + 80 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    padding-left: 34px;
+    padding-right: 80px;
+  }
+  @media (min-width: 1000px) {
+    width: 617px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.headline {
+  margin-top: 30px;
+  font-size: 24px;
+  color: rgb(var(--color-base-green));
+  font-family: var(--f-family-headline);
+
+  @media (min-width: 376px) and (max-width: 1279px) {
+    margin-top: calc(30px + 50 * (100vw - 376px) / 904);
+    font-size: calc(24px + 12 * (100vw - 376px) / 904);
+  }
+
+  @media (min-width: 1280px) {
+    margin-top: 80px;
+    font-size: 36px;
+  }
+}
+
+.text {
+  margin-top: 24px;
+  font-size: 14px;
+  font-family: var(--f-family-main);
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    font-size: calc(14px + 2 * (100vw - 376px) / 391);
+  }
+
+  @media (min-width: 376px) and (max-width: 1279px) {
+    margin-top: calc(24px + 47 * (100vw - 376px) / 904);
+  }
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    padding-right: 50px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 516px;
+    margin-top: 71px;
+  }
+
+  & p {
+    display: block;
+    padding-top: 14px;
+  }
+  & p:first-child {
+    padding-top: 0px;
+  }
+}
+
+.servicesWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 37px;
+  column-gap: 16px;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    margin-top: calc(37px + 3 * (100vw - 376px) / 391);
+  }
+
+  @media (min-width: 768px) {
+    margin-top: 40px;
+    padding-right: 50px;
+    justify-content: flex-start;
+  }
+
+  @media (min-width: 1000px) {
+    justify-content: flex-end;
+  }
+
+  @media (min-width: 769px) and (max-width: 1279px) {
+    margin-top: calc(40px + 46 * (100vw - 769px) / 510);
+  }
+
+  @media (min-width: 1280px) {
+    margin-top: 50px;
+    padding-right: 80px;
+  }
+
+  & .iconWrapper {
+    width: 59px;
+    height: 50px;
+    background-color: rgba(var(--color-nude), 0.3);
+    border-radius: 8px;
+
+    @media (min-width: 376px) and (max-width: 767px) {
+      width: calc(59px + 3 * (100vw - 376px) / 391);
+      height: calc(50px + 15 * (100vw - 376px) / 391);
+    }
+
+    @media (min-width: 768px) {
+      width: 63px;
+      height: 65px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    @media (min-width: 769px) and (max-width: 1279px) {
+      width: calc(63px + 23 * (100vw - 769px) / 510);
+      height: calc(65px + 25 * (100vw - 769px) / 510);
+    }
+
+    @media (min-width: 1280px) {
+      width: 86px;
+      height: 90px;
+    }
+  }
+
+  & .servicesIcon {
+    padding: 18px;
+
+    @media (min-width: 768px) {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+}
+.apartment {
+  padding-left: 0;
+  @include mixins.media-min(variables.$mobile) {
+    padding-left: 110px;
+  }
+}
+
+.roomsTitle {
+  align-self: flex-end;
+  margin-top: 50px;
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-h3);
+  color: rgb(var(--color-total-black));
+}
+.roomsWrapper {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px 0;
+
+  @include mixins.media-min(variables.$mobile) {
+    gap: 55px 29px;
+    justify-content: flex-start;
+    padding-bottom: 100px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    gap: 71px 62px;
+    padding-bottom: 150px;
+  }
+}

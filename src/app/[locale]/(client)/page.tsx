@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import WelcomeBlock from "../../../components/WelcomeBlock/WelcomeBlock";
-import AskGrandpa from "../../../components/AskGrandpa/AskGrandpa";
+// import AskGrandpa from "../../../components/AskGrandpa/AskGrandpa";
 
 import Hero from "@/components/Hero/Hero";
 
