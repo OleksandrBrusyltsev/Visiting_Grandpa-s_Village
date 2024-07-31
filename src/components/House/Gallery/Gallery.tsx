@@ -64,7 +64,14 @@ const Gallery: FC<GalleryType> = ({ pictures }) => {
         <SwiperMobile pictures={pictures} />
       ) : (
         isSwiperOpen && (
-          <Modal isOpen={isSwiperOpen} onClose={() => setSwiperOpen(false)}>
+          <Modal
+            isOpen={isSwiperOpen}
+            onClose={() => setSwiperOpen(false)}
+            wrapperStyles={{
+              width: isMobile ? "100vw" : "90vw",
+              height: "100dvh",
+            }}
+          >
             <Swiper
               pictures={pictures}
               isSwiperOpen={isSwiperOpen}

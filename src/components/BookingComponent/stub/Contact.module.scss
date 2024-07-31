@@ -1,0 +1,152 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
+.wrapper {
+    width: 100%;
+    max-width: 604px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px 25px;
+    gap: 46px;
+    isolation: isolate;
+    background: #D0CEC7;
+    border: 2px solid #3F5540;
+    border-radius: 8px;
+    font-family: var(--f-family-main);
+    position: relative;
+    overflow: hidden;
+        &::before {
+            position: absolute;
+            content: '';
+            background-repeat: no-repeat;
+            top: 0;
+            left: 0;
+            width: min(calc(360 * (604px - 100%)), 360px);
+            aspect-ratio: 0.95;
+            background-image: url('/images/grandpas/Grandpa4.png'), url('/images/backgrounds/christmasTrees.png');
+            background-size: 162px 174px, 360px 379px;
+            background-position: top left, top -100px left -114px;
+            z-index: -1;
+        }
+        &::after {
+            position: absolute;
+            content: '';
+            background-repeat: no-repeat;
+            bottom: 124px;
+            right: 0;
+            width: min(calc(360 * (604px - 100%)), 360px);
+            aspect-ratio: 0.91;
+            background-image: url('/images/backgrounds/christmasTrees.png');
+            background-size: contain;
+            z-index: -1;
+        }
+    @include mixins.media-min(variables.$mobile) {
+        padding: 35px 100px;
+    }
+    .title {
+        text-align: center;
+        font-size: var(--f-size-h3);
+        color: rgb(var(--color-base-green));
+        letter-spacing: 0.005em;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+    .form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        
+        .label, .label > * {
+            display: block;
+            width: 100%;
+            font-size: var(--f-size-body);
+        }
+        .label span {
+            font-weight: 700;
+        }
+        .label:last-of-type > .input {
+            padding: 16px 10px;
+        }
+        .input{
+            margin-top: 8px;
+            padding: 8px 10px;
+            background-color: #FAFAFA;
+            border: 1px solid #B3B3B3;
+            border-radius: 6px;
+            max-width: 100%;
+            outline: none;
+            &::placeholder {
+                color: rgba(97, 97, 97, 0.8);
+            }
+            
+        }
+        .recaptcha {
+            align-self: center;
+            margin-top: 22px;
+        }
+        .btn {
+            max-width: 100%;
+            margin-top: 22px;
+        }
+    }
+    .altContacts {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-left: 46px;
+        margin-top: -14px;
+        gap: 20px;
+    }
+    .altContact {
+        font-weight: 700;
+        font-size: var(--f-size-body);
+        line-height: 1.1;
+        color: rgb(var(--color-black));
+        letter-spacing: 0.005em;
+        align-items: center;
+        .telegramIcon {
+            width: 32px;
+            height: 32px;
+            color: rgb(var(--color-dark-green));
+            transition: color 0.3s, stroke 0.3s;
+            margin-left: 1rem;
+          
+            @media (hover: hover) {
+                &:hover {
+                    color: transparent;
+                    stroke: rgb(var(--color-base-green));
+                    stroke-width: 1px;
+                }
+            }
+          
+            &:active {
+              color: rgb(var(--color-natural-orange));
+              stroke: rgb(var(--color-natural-orange));
+              stroke-width: 0;
+            }
+          }
+    }
+    .altContact:first-of-type {
+        text-align: center;
+    }
+    .altContact:last-of-type {
+        display: flex;
+        align-items: center;
+        margin-top: -6px;
+
+    }
+    .phone {
+        line-height: 1.21;
+        font-size: var(--f-size-body);
+        font-family: var(--f-family-inter);
+        text-decoration: underline;
+        color: rgb(var(--color-base-green));
+        margin-inline: 10px 6px;
+        &:active {
+            color: rgb(var(--color-natural-orange));
+        }
+    }
+}

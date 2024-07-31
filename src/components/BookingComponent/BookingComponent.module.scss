@@ -5,21 +5,12 @@
   width: 276px;
   position: relative;
 
-  //temporary styles
-  // margin: 0 auto 37px;
-
   @include mixins.media-min(variables.$mobile) {
     width: 708px;
-
-    //temporary styles
-    // margin-bottom: 120px;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 791px;
-
-    //temporary styles
-    // margin: 0 50px 120px auto;
   }
 }
 

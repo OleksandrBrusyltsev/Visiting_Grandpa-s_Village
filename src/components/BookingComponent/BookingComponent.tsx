@@ -8,8 +8,10 @@ import Button from "../ui/Button/Button";
 import Calendar from "./components/Calendar/Calendar";
 import GuestsForm from "./components/GuestsForm/GuestsForm";
 import Modal from "./components/Modal/Modal";
+import StubModal from "../ui/Modal/Modal";
 
 import s from "./BookingComponent.module.scss";
+import ContactForm from "./stub/ContactForm";
 
 gsap.registerPlugin(useGSAP);      
 
@@ -36,6 +38,13 @@ type ChildrenType = {
   type: "cal" | "guests" | null,
   triggerRef?: HTMLDivElement | HTMLFieldSetElement | null
 }
+
+//temporary stub logic
+export type OrderType = {
+  startDate: string | undefined,
+  endDate: string | undefined,
+  guests: number,
+}
 const BookingComponent: FC = () => {
   
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -54,6 +63,27 @@ const BookingComponent: FC = () => {
   const startRef = useRef<HTMLDivElement | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
   const guestRef = useRef<HTMLFieldSetElement | null>(null);
+  
+
+
+  //temporary stub logic -->
+  const [isStubModalOpen, setIsStubModalOpen] = useState<boolean>(false);
+  const [order, setOrder] = useState<OrderType>({
+    startDate: checkInDate?.toLocaleDateString("uk-UA"),
+    endDate: checkOutDate?.toLocaleDateString("uk-UA"),
+    guests: adultsCount + childrenCount
+  });
+  const toggleStub = () => setIsStubModalOpen(!isStubModalOpen);
+  useEffect(() => {
+    setOrder({
+      startDate: checkInDate?.toLocaleDateString("uk-UA"),
+        endDate: checkOutDate?.toLocaleDateString("uk-UA"),
+        guests: adultsCount + childrenCount
+    }); 
+  }, [checkInDate, checkOutDate, adultsCount, childrenCount]);
+//<--end temporary stub logic
+
+
 
   const toggleModal = (val: ChildrenType) => {
 
@@ -127,6 +157,7 @@ const BookingComponent: FC = () => {
     }
   },[toggleModal]);
 
+
   const resetBooking = () => {
     setAdultsCount(initialState.adultsCount);
     setChildrenCount(initialState.childrenCount);
@@ -139,10 +170,10 @@ const BookingComponent: FC = () => {
     const data = Object.fromEntries(new FormData(e.currentTarget));
     
     // Обработка поиска
-    new Promise((resolve, reject) =>  setTimeout(() => {
-      console.log(data);
-      resolve(null);
-    }, 2000)).finally(() => resetBooking());
+    // new Promise((resolve, reject) =>  setTimeout(() => {
+    //   console.log(data);
+    //   resolve(null);
+    // }, 2000)).finally(() => resetBooking());
     
   };
 
@@ -187,7 +218,6 @@ const BookingComponent: FC = () => {
               name="icon-down"
               className={buildOpenButtonStyles(startRef.current)}
             />
-            {/* <Icon name="icon-down" className={s.downIcon} /> */}
           </button>
         </div>
 
@@ -287,6 +317,7 @@ const BookingComponent: FC = () => {
             label="Шукати"
             type="submit"
             disabled={!checkOutDate ? true : false}
+            onClick={toggleStub}
           />
         </div>
       </form>
@@ -309,6 +340,13 @@ const BookingComponent: FC = () => {
           ) : null}
         </div>
       </Modal>
+      <StubModal isOpen={isStubModalOpen} onClose={() => {
+          resetBooking();//tmp logic for stub
+          setIsStubModalOpen(false);
+        }
+      }>
+        <ContactForm order={order}/>
+      </StubModal>
     </div>
   );
 };
