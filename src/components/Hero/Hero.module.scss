@@ -16,7 +16,7 @@
     padding: 0 30px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {    
+  @include mixins.media-min(variables.$breakpoint-laptop) {
     max-width: 1280px;
     align-items: normal;
     margin-top: 40px;
@@ -32,7 +32,7 @@
   }
   @media (min-width: 1024px) {
     overflow-x: clip;
-  } 
+  }
 }
 
 .section > .add1 {
@@ -116,13 +116,13 @@
   }
 }
 
-.boxForAlign{
+.boxForAlign {
   margin-left: auto;
 }
 
 .imgBox {
   position: relative;
-  height: calc((100vw - 48px)/ 327 * 273);
+  height: calc((100vw - 48px) / 327 * 273);
   max-height: 480px;
 
   width: 100%;
@@ -135,7 +135,6 @@
   @include mixins.media-min(variables.$breakpoint-laptop) {
     max-height: 500px;
     margin-top: unset;
-
   }
 }
 
@@ -327,7 +326,17 @@
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     top: 750px;
+    right: 50px;
+    width: 327px;
+    height: 324px;
 
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @include mixins.media-min(variables.$pc) {
+    top: 750px;
+    right: 160px;
     width: 327px;
     height: 324px;
 
@@ -399,7 +408,6 @@
     width: 748px;
     height: 410px;
     top: 54px;
-
   }
 }
 
@@ -570,7 +578,7 @@
 .illustration2 {
   position: absolute;
   top: clamp(-239px, calc(-259px + 139 * (767px - 100vw) / 392), -120px);
-  right: clamp(-35px, calc(-35px + 35 *  (767px - 100vw) / 392), 0px);
+  right: clamp(-35px, calc(-35px + 35 * (767px - 100vw) / 392), 0px);
 
   z-index: -1;
 
@@ -779,7 +787,7 @@
 
 .line1Box {
   padding-left: 33.6%;
-  
+
   @include mixins.media-min(variables.$mobile) {
     padding-left: unset;
     display: flex;
@@ -911,10 +919,11 @@
 }
 
 .calendarBox {
-  @include mixins.media-min(variables.$breakpoint-laptop) {
-    position: absolute;
-    right: 50px;
-    top: 600px;
+  position: absolute;
+  top: 600px;
+  right: 50px;
+  @include mixins.media-min(variables.$pc) {
+    right: 180px;
   }
 }
 
