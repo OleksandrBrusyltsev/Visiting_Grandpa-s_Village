@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
-    "@react-google-maps/api": "^2.19.3",
     "@vis.gl/react-google-maps": "^1.1.0",
     "dotenv": "^16.4.5",
     "gsap": "^3.12.5",
