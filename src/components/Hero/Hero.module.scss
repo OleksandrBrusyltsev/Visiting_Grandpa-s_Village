@@ -82,7 +82,7 @@
 .text1 {
   font-family: var(--f-family-main);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 16.44px;
   color: rgb(var(--color-black));
   margin-bottom: 12px;
@@ -102,6 +102,7 @@
 }
 
 .text2 {
+  font-size: 16px;
   font-weight: 700;
   text-align: right;
   color: rgba(var(--color-base-green), 1);
