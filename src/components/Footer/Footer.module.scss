@@ -6,7 +6,7 @@
   width: 100%;
   display: grid;
   justify-items: center;
-  grid-template-areas: "logo" "socialMedia" "contacts" "copyright";
+  grid-template-areas: "logo" "socialMedia" "contacts" "copyrightBox";
   grid-template-columns: 1fr;
   gap: 2.25rem;
   background: url("/images/backgrounds/footer-bg-375.png") no-repeat
@@ -15,7 +15,7 @@
   padding: 1.25rem 1.5rem 0.875rem;
 
   @include mixins.media-min($breakpoint-tablet-min) {
-    grid-template-areas: "logo" "nav" "contacts" "socialMedia" "copyright";
+    grid-template-areas: "logo" "nav" "contacts" "socialMedia" "copyrightBox";
     padding: 3.75rem 0 1.5rem;
   }
   @include mixins.media-min($mobile) {
@@ -156,4 +156,30 @@
   font-size: 14px;
   line-height: 16.4px;
   font-weight: 400;
+}
+
+.copyrightBox {
+  grid-area: copyrightBox;
+
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  justify-self: stretch;
+  gap: 20px;
+
+  @media (min-width: $breakpoint-tablet-min) {
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0;
+  }
+}
+
+.text{
+  text-decoration: underline;
+  color: rgb(var(--color-base-green));
+
+  @media (min-width: $breakpoint-tablet-min) {
+  color: black;
+  }
 }
