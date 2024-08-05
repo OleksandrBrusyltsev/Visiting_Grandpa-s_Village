@@ -919,10 +919,12 @@
 }
 
 .calendarBox {
-  position: absolute;
+
   top: 600px;
   right: 50px;
+
   @include mixins.media-min(variables.$pc) {
+    position: absolute;
     right: 180px;
   }
 }
