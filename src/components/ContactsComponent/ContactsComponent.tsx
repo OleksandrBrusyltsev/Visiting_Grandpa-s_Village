@@ -34,42 +34,52 @@ const ContactsComponent: FC = () => {
   const googleMapWrapper = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-
     // TelegramBlock animations
-    gsap.timeline({defaults: {
-      x: -200, 
-      opacity: 0,
-      duration: 0.7
-    }})
+    gsap
+      .timeline({
+        defaults: {
+          x: -200,
+          opacity: 0,
+          duration: 0.7,
+        },
+      })
       .from(telegramTitle.current, {})
       .from(telegramText.current, {}, ">-0.5")
-      .from(map.current, {
-        x: 200,
-        opacity: 0,
-        duration: 1
-      }, 0)
-      .from(telegramLinkWrapper.current, {}, ">-0.5")
-    
+      .from(
+        map.current,
+        {
+          x: 200,
+          opacity: 0,
+          duration: 1,
+        },
+        0
+      )
+      .from(telegramLinkWrapper.current, {}, ">-0.5");
+
     // contactsList animation
-    gsap.timeline({
-      defaults: {
-        duration: 0.5,
-        opacity: 0,
-      },
-      scrollTrigger: {
-        trigger: contactsListWrapper.current,
-        start: "top 80%",
-      }
-    })
+    gsap
+      .timeline({
+        defaults: {
+          duration: 0.5,
+          opacity: 0,
+          clearProps: "transform",
+        },
+        scrollTrigger: {
+          trigger: contactsListWrapper.current,
+          start: "top 80%",
+        },
+      })
       .from(grandpa.current, {
         scale: 0.9,
         y: -100,
+        clearProps: "transform",
       })
       .from(contactsListWrapper.current, {
         clipPath: "inset(0% 0% 100% 0%)",
-        duration: 0.7
-      })
-      
+        duration: 0.7,
+        clearProps: "transform",
+      });
+
     const mm = gsap.matchMedia();
     mm.add(
       {
@@ -86,50 +96,66 @@ const ContactsComponent: FC = () => {
             opacity: 0,
             duration: 0.7,
             scrollTrigger: {
-              trigger:  lake.current,
+              trigger: lake.current,
               start: "top 80%",
-            }
-          })
-
-          gsap.timeline({
-            defaults: {
-              opacity: 0,
-              duration: 0.7,
             },
-            scrollTrigger: {
-              trigger: faqTitle.current,
-              start: "top 80%",
-            }
-          })
-            .from(faqTitle.current, {y: -100})
-            .from(faqWrapper.current, {
-              y: -100,
-            }, ">-0.3");
+          });
+
+          gsap
+            .timeline({
+              defaults: {
+                opacity: 0,
+                duration: 0.7,
+              },
+              scrollTrigger: {
+                trigger: faqTitle.current,
+                start: "top 80%",
+              },
+            })
+            .from(faqTitle.current, { y: -100 })
+            .from(
+              faqWrapper.current,
+              {
+                y: -100,
+              },
+              ">-0.3"
+            );
+          ScrollTrigger.refresh(true);
         }
 
         if (isNotMobile) {
           // FAQ animation
-          gsap.timeline({
-            defaults: {
-              opacity: 0,
-              duration: 0.7,
-            },
-            scrollTrigger: {
-              trigger:  lake.current,
-              start: "top 80%",
-            }
-          })
-            .from(lake.current, {x: -200})
-            .from(faqTitle.current, {
-              x: 200,
-            }, "<")
-            .from(faqWrapper.current, {
-              x: 200,
-            }, ">-0.3");
+          gsap
+            .timeline({
+              defaults: {
+                opacity: 0,
+                duration: 0.7,
+              },
+              scrollTrigger: {
+                trigger: lake.current,
+                start: "top 80%",
+              },
+            })
+            .from(lake.current, { x: -200 })
+            .from(
+              faqTitle.current,
+              {
+                x: 200,
+              },
+              "<"
+            )
+            .from(
+              faqWrapper.current,
+              {
+                x: 200,
+              },
+              ">-0.3"
+            );
+          ScrollTrigger.refresh(true);
         }
       }
     );
-    
+
     // RouteInfo animation
     gsap.from(house.current, {
       x: 200,
@@ -138,7 +164,7 @@ const ContactsComponent: FC = () => {
       scrollTrigger: {
         trigger: house.current,
         start: "top 80%",
-      }
+      },
     });
 
     gsap.from(routeInfoWrapper.current, {
@@ -148,9 +174,9 @@ const ContactsComponent: FC = () => {
       scrollTrigger: {
         trigger: routeInfoWrapper.current,
         start: "top 80%",
-      }
+      },
     });
-    
+
     // GoogleMap animation
     gsap.from(googleMapWrapper.current, {
       y: 200,
