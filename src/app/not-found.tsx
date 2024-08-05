@@ -1,5 +1,12 @@
 "use client";
+import { Metadata } from "next";
 import { useRouter } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Сторінка не знайдена - 404",
+  description:
+    "Сторінка, яку ви шукаєте, не знайдена. Поверніться на головну сторінку або скористайтеся навігацією.",
+};
 
 export default function NotFound() {
   const router = useRouter();

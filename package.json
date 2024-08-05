@@ -17,8 +17,8 @@
     "next-intl": "^3.11.1",
     "react": "^18",
     "react-dom": "^18",
-    "remarkable": "^2.0.1",
     "react-input-mask": "^3.0.0-alpha.2",
+    "remarkable": "^2.0.1",
     "sharp": "^0.33.4",
     "swiper": "^11.1.7"
   },

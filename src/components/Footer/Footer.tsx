@@ -84,7 +84,15 @@ export default function Footer() {
           </li>
         ))}
       </ul>
-      <p className={s.copyright}>© 2024 Еко-садиба “На селі у Дідуся”</p>
+      <div className={`${s.copyrightBox}`}>
+        <p className={s.copyright}>© 2024 Еко-садиба “На селі у Дідуся”</p>
+        <Link
+          href={`/${locale}/booking/rules`}
+          className={`${s.copyright} ${s.text}`}
+        >
+          Умови бронювання та правила перебування
+        </Link>
+      </div>
     </footer>
   );
 }
