@@ -28,6 +28,12 @@ const socialMediaLinks = [
     icon: "instagram",
     ariaLabel: "link to instagram",
   },
+  {
+    id: 4,
+    link: "https://www.linkedin.com/company/grandpa-s-village/",
+    icon: "linkedin",
+    ariaLabel: "link to linkedin",
+  },
 ];
 
 export default function Footer() {

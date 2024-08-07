@@ -143,7 +143,6 @@ export default function GalleryItemPage({items}: Props) {
                     onClose={() => setIsOpenSwiper(false)}
                     wrapperStyles={{
                         width: isMobile ? '100vw' : '90vw',
-                        height: '100dvh',
                     }}
                     >
                     <SwiperGalleryItem gallery={gallery} initialSlide={firstSlide}/>

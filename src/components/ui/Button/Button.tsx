@@ -1,6 +1,6 @@
 import s from "./Button.module.scss";
 
-interface ButtonProps {
+export interface ButtonProps {
   label: string;
   type?: "button" | "submit" | "reset";
   size?: "default" | "large" | "small" |"header";

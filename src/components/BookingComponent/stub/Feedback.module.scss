@@ -1,0 +1,91 @@
+.wrapper {
+    width: 427px;
+    display: none;
+    position: relative;
+    background-color: rgb(var(--color-nude));
+    border-radius: 8px;
+    isolation: isolate;
+    border: 1px solid rgb(var(--color-base-green));
+    padding-block: 24px 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    text-align: center;
+    
+    .title,
+    .subTitle {
+        font-weight: 600;
+        letter-spacing: -0.005em;
+        font-family: var(--f-family-headline);
+        color: rgb(var(--color-black));
+    }
+    .title {
+        font-size: 36px;
+        line-height: 35.15px;
+        margin-bottom: 10px;
+    }
+    .subTitle {
+        font-size: 22px;
+        line-height: 21.48px;
+        margin-bottom: 24px;
+    }
+    .description {
+        width: 320px;
+        font-family: var(--f-family-main);
+        color: rgb(var(--color-base-green));
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.005em;
+        margin-bottom: 32px;
+    }
+    .mainBtn {
+        padding-block: 11.5px;
+    }
+
+    .closeBtn {
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        font-weight: 700;
+        color: rgb(var(--color-base-green));
+        font-size: 50px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+}
+.success::before {
+    position: absolute;
+    content: '';
+    background-repeat: no-repeat;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url('/images/backgrounds/christmasTrees.png'), url('/images/backgrounds/christmasTrees.png');
+    background-position: top -90px left -80px, bottom -70px right -95px;
+    background-size: 260px 300px, 260px 300px;
+    z-index: -1;
+}
+.error {
+    .title {
+        width: 300px;
+    }
+    &::before {
+        position: absolute;
+        content: '';
+        background-repeat: no-repeat;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background-image: url('/images/backgrounds/christmasTrees.png'), url('/images/backgrounds/christmasTrees.png');
+        background-position: top -95px left -80px, bottom -25px right -125px;
+        background-size: 320px 350px, 320px 350px;
+        z-index: -1;
+    }
+}

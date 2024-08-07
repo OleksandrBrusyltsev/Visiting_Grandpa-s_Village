@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { createPortal } from 'react-dom';
@@ -10,15 +10,26 @@ import s from './Modal.module.scss';
 type Props = {
     children: React.ReactNode;
     isOpen: boolean;
-    onClose: () => void;
+    onClose?: () => void;
+    inner?: boolean;
     wrapperStyles?: React.CSSProperties
 }
-
-export default function Modal({ children, isOpen, onClose, wrapperStyles }: Props) {
-    
+export type ModalHandle = {
+    assignedClose: () => void;
+}
+// export default function Modal({ children, isOpen, onClose, inner, wrapperStyles }: Props) {
+const Modal = forwardRef<ModalHandle, Props>(function Modal({children, isOpen, onClose, inner = true, wrapperStyles}, ref) {    
     const body = typeof document !== "undefined" ? document.querySelector('body') : null;
     const modalRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
+    
+    useImperativeHandle(ref, () => {
+        return {
+            assignedClose() {
+                handleClose();
+          }
+        };
+      }, []);
 
     //appearance animation
     const { contextSafe } = useGSAP(() => {
@@ -36,7 +47,7 @@ export default function Modal({ children, isOpen, onClose, wrapperStyles }: Prop
     }, [isOpen]);
     
     //close animation
-    const handleClose = contextSafe(() => {
+    const handleClose = onClose ? contextSafe(() => {
         if(modalRef.current && contentRef.current) {
             gsap.timeline({
                 defaults: {
@@ -48,7 +59,7 @@ export default function Modal({ children, isOpen, onClose, wrapperStyles }: Prop
                 onComplete: () => onClose()
             }, ">-0.2");
         }
-    })
+    }) : () => {};
 
     //handling exit on outside click
     const closeOnEsc = (event: KeyboardEvent) => {
@@ -82,8 +93,9 @@ export default function Modal({ children, isOpen, onClose, wrapperStyles }: Prop
     return createPortal(<div className={s.overlay} ref={modalRef} id='overlay'>
         <div className={s.modalContent} ref={contentRef} style={{...wrapperStyles}}>
             {children}
-            <button className={s.close} onClick={handleClose}>&times;</button>
+            {inner && <button className={s.close} onClick={handleClose}>&times;</button>}
         </div>
     </div>, body)
-}
+})
  
+export default Modal;

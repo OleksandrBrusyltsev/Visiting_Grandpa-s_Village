@@ -135,6 +135,7 @@
     max-width: 2rem;
     max-height: 2rem;
     transition: color 0.3s, stroke 0.3s;
+    // vector-effect: non-scaling-stroke;
     &:hover {
       color: transparent;
       stroke: rgb(var(--color-base-green));

@@ -1,6 +1,7 @@
 'use server';
+import { BotResponseStateType } from '@/components/BookingComponent/BookingComponent';
 import {tgUserId} from '../data/admin/tgUserId';
-import recapchaValidation from './recapchaValidation';
+import recaptchaValidation from './recaptchaValidation';
 
 function getCurrentDateTime() {
     const now = new Date();
@@ -23,30 +24,51 @@ export async function telegramAction(data: any) {
                     Телефон: ${data.phone.replace(/[^+\d]/g, '')},
                     Повідомлення: ${data.message}`;
     
-    // const validationResult = await recapchaValidation(data?.recapchaResponse);
+    const validationResult = await recaptchaValidation(data?.recaptchaResponse);
 
-    // if (!validationResult?.ok) {
-    //     console.log(validationResult?.message);
-    //     return
-    // }
-
+    if (!validationResult?.ok) {
+        console.log(validationResult?.message);
+        return
+    }
+    const commonResp: BotResponseStateType[] = [];
     for(let user of tgUserId) {
-        await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                chat_id: user.chatId,
-                text: message,
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Message sent:', data);
-        })
-        .catch(error => {
-            console.error('Error sending message:', error);
-        });
+       try { 
+            if(user.chatId) {
+                await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: user.chatId,
+                        text: message,
+                    })
+                });
+                commonResp.push({
+                    status: true,
+                    message: "Найближчим часом з вами зв’яжеться помічник Дідуся для уточнення бронювання"
+                });
+            }
+        } catch (error) {
+            commonResp.push({
+                status: false,
+                message: "Повторіть спробу ще раз"
+            }); 
+        }      
+    }
+    // return commonResp.some(item => item.status) ? 
+    //     {
+    //         status: true,
+    //         message: "Найближчим часом з вами зв’яжеться помічник Дідуся для уточнення бронювання"
+    //     } : 
+    //     {
+    //         status: false, message: "Повторіть спробу ще раз"
+    //     }
+    return Math.floor(Math.random() * 10) > 5 ? {
+        status: true,
+        message: "Найближчим часом з вами зв’яжеться помічник Дідуся для уточнення бронювання"
+    } : 
+    {
+        status: false, message: "Повторіть спробу ще раз"
     }
 }
