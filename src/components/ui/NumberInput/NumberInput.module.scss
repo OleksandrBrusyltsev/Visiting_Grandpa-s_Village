@@ -1,0 +1,53 @@
+.inputWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.buttonWrapper {
+  flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    width: 132px;
+    justify-content: space-between;
+}
+
+.changeButton {
+    font-family: var(--f-family-main);
+    font-size: 1rem;
+    line-height: 36px;
+    font-weight: 700;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(12, 12, 12, 1);
+    color: rgb(var(--color-total-black));
+    transition: box-shadow 0.3s, transform 0.2s, background-color 0.2s;  
+  
+    &:first-of-type {
+      line-height: 25px;
+    }
+  
+    &:not(.disabled):hover {
+      box-shadow: 3px 3px 15px rgba(var(--color-base-green), 0.5),
+                  -1px -1px 5px rgba(var(--color-base-green), 0.2);
+    }
+  
+    &:not(.disabled):active {
+      transform: scale(1.1); 
+      background-color: rgba(var(--color-base-green), 0.2);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+.value {
+    flex: 1 0;
+    text-align: center;
+    font-family: var(--f-family-headline);
+    font-size: 18px;
+    color: rgb(var(--color-total-black));
+  }
+  
+.disabled {
+    border: 1px solid rgb(var(--color-gray-light));
+    color: rgb(var(--color-gray-light));
+}

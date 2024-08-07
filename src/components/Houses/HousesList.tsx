@@ -72,7 +72,6 @@ export default function HousesList({children, data}: Props) {
             const baseCardHeight = window.innerWidth >= 1280 ? 560 : 493;
             //quantity of the line patterns
             const totalLines = Math.round(listRef.current.clientHeight / bgSize); 
-
             const v = listRef.current.clientHeight / baseBlockHeight;
                      
             //  positions, images and sizes of the line pattern background
@@ -90,7 +89,7 @@ export default function HousesList({children, data}: Props) {
             
             if (data.length <= 4) {
                 bgPosImg = `, right top, left -5% top ${baseCardHeight * v}px, center top ${450 * v}px, right 5% top ${300 * v}px`;
-                bgSizeImg = `${imgSize}, ${imgSize}, ${bigImgSize}, ${imgSize}`;
+                bgSizeImg = `, ${imgSize}, ${imgSize}, ${bigImgSize}, ${imgSize}`;
             } else {
                 for(let i = 1; i < data.length / 2 + 1; i++) {
                     if (i === 1) {
@@ -111,7 +110,6 @@ export default function HousesList({children, data}: Props) {
                 }
             }
         }
-             
         listRef.current.style.backgroundSize =  bgSizePattern + bgSizeImg;
         listRef.current.style.backgroundRepeat = 'no-repeat';
         listRef.current.style.backgroundPosition = bgPosPattern + bgPosImg;

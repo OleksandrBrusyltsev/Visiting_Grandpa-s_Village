@@ -1,0 +1,82 @@
+.mapWrapper {
+  margin-top: 155px;
+  margin-bottom: 54px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    margin-top: calc(155px + 42 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    margin-top: 197px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    margin-top: calc(197px + 90 * (100vw - 769px) / 510);
+  }
+  @media (min-width: 1280px) {
+    margin-top: 287px;
+  }
+}
+
+.map {
+  position: relative;
+  width: 327px;
+  height: 100%;
+  aspect-ratio: 1.795;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    width: calc(327px + 200 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    width: 527px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    width: calc(527px + 288 * (100vw - 769px) / 510);
+  }
+  @media (min-width: 1280px) {
+    width: 815px;
+  }
+}
+
+.mapImage {
+  object-fit: contain;
+}
+
+.cloudBackground {
+  width: 375px;
+  height: 233px;
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  z-index: -1;
+  transform: scaleY(-1);
+  filter: blur(22px);
+  @media (min-width: 375px) {
+    width: 375px;
+  }
+  @media (min-width: 425px) and (max-width: 767px) {
+    transform: scaleY(+1);
+    width: calc(375px + 328 * (100vw - 425px) / 342);
+    height: calc(233px + 228 * (100vw - 376px) / 391);
+    top: calc(-25px - 115 * (100vw - 376px) / 391);
+    left: calc(-25px + 40 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    transform: scaleY(+1);
+    width: 703px;
+    height: 451px;
+    top: -140px;
+    left: 15px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    width: calc(703px + 477 * (100vw - 769px) / 510);
+    height: calc(451px + 349 * (100vw - 769px) / 510);
+    top: calc(-140px - 100 * (100vw - 769px) / 510);
+  }
+  @media (min-width: 1280px) {
+    width: 1180px;
+    height: 800px;
+    top: -240px;
+  }
+}

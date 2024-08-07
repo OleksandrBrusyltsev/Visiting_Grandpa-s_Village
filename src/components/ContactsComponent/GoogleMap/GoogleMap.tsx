@@ -9,6 +9,7 @@ import {
 import s from "./GoogleMap.module.scss";
 import Image from "next/image";
 import grandpa from '../../../../public/images/grandpas/Grandpa1.png';
+import { CustomMarker } from "./CustomMarker";
 type GoogleMapProps = {
   googleMapWrapperRef: React.RefObject<HTMLDivElement>;
 };
@@ -31,12 +32,13 @@ const GoogleMap: FC<GoogleMapProps> = ({ googleMapWrapperRef }) => {
           mapId={process.env.NEXT_PUBLIC_MAP_ADI}
         >
           <AdvancedMarker position={position} onClick={() => setOpen(true)}>
-            <Pin
+            {/* <Pin
               background={"rgb(194, 191, 183)"}
               borderColor={"rgb( 97, 97, 97)"}
               glyphColor={"rgb(63, 85, 64)"}
               scale={2}
-            ></Pin>
+            ></Pin> */}
+            <CustomMarker />
           </AdvancedMarker>
 
           {open && (

@@ -55,9 +55,9 @@ const Header = () => {
           </Link>
 
           <div className={css.headerBox}>
-            <LangBtn />
+            {/* <LangBtn />s */}
 
-            <button
+            {/* <button
               className={css.userBtn}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -106,7 +106,7 @@ const Header = () => {
                   />
                 </svg>
               )}
-            </button>
+            </button> */}
 
             <Button
               label={"Завітати"}
