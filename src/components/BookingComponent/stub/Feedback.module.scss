@@ -1,6 +1,9 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
 .wrapper {
-    width: 427px;
-    display: none;
+    width: calc(100vw - 40px);
+    max-width: 427px;
     position: relative;
     background-color: rgb(var(--color-nude));
     border-radius: 8px;
@@ -14,7 +17,10 @@
     opacity: 0;
     visibility: hidden;
     text-align: center;
-    
+    margin: 0 auto;
+    @include mixins.media-min(variables.$mobile) {
+        width: 100vw;
+    }
     .title,
     .subTitle {
         font-weight: 600;
@@ -33,7 +39,7 @@
         margin-bottom: 24px;
     }
     .message {
-        width: 320px;
+        max-width: 320px;
         font-family: var(--f-family-main);
         color: rgb(var(--color-base-green));
         font-size: 16px;
@@ -49,13 +55,17 @@
     .closeBtn {
         position: absolute;
         top: -60px;
-        right: -60px;
+        right: 0px;
         font-weight: 700;
         color: rgb(var(--color-base-green));
         font-size: 50px;
-        width: 60px;
-        height: 60px;
+        font-family: 'Times New Roman', Times, serif;
         border-radius: 50%;
+        @include mixins.media-min(variables.$mobile) {
+            right: -60px;
+            width: 60px;
+            height: 60px;
+        }
     }
 }
 .success::before {

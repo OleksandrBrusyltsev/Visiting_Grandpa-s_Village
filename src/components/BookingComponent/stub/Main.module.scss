@@ -2,7 +2,7 @@
 @use "../../../styles/variables";
 
 .wrapper {
-    width: 100%;
+    width: calc(100% - 40px);
     max-width: 604px;
     display: flex;
     flex-direction: column;
@@ -10,11 +10,15 @@
     padding: 25px;
     gap: 20px;
     isolation: isolate;
-    background: #D0CEC7;
-    border: 2px solid #3F5540;
+    background-color: rgb(var(--color-nude));
+    border: 2px solid rgb(var(--color-base-green));
     border-radius: 8px;
     font-family: var(--f-family-main);
     position: relative;
+    margin: 0 auto;
+    @include mixins.media-min(variables.$mobile) {
+        width: 100%;
+    }
     &::before {
         position: absolute;
         content: '';
@@ -46,7 +50,7 @@
     }
     .title {
         text-align: end;
-        font-size: var(--f-size-h3);
+        font-size: 20px;
         color: rgb(var(--color-base-green));
         letter-spacing: 0.005em;
         font-weight: 700;
@@ -56,6 +60,7 @@
         @include mixins.media-min(variables.$mobile) {
             text-align: center;
             width: 86%;
+            font-size: var(--f-size-h3);
         }
     }
     .form {
@@ -90,7 +95,6 @@
             &::placeholder {
                 color: rgba(97, 97, 97, 0.8);
             }
-            
         }
         .recaptcha {
             align-self: center;
@@ -101,6 +105,10 @@
         .btn {
             max-width: 100%;
             margin-top: 5px;
+            @media (max-width: 767px) {
+                font-size: 20px;
+                line-height: 1.1;
+            }
         }
     }
     .altContacts {
@@ -108,21 +116,20 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
-        @include mixins.media-min(variables.$mobile) {
-        }
- 
     }
     .closeBtn {
         position: absolute;
         top: -60px;
         right: 0px;
+        font-weight: 700;
         color: rgb(var(--color-base-green));
         font-size: 50px;
-        width: 60px;
-        height: 60px;
+        font-family: 'Times New Roman', Times, serif;
         border-radius: 50%;
         @include mixins.media-min(variables.$mobile) {
             right: -60px;
+            width: 60px;
+            height: 60px;
         }
     }
 }

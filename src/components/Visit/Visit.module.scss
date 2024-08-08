@@ -4,7 +4,7 @@
 .hero {
     margin-top: 16px;
     position: relative;
-  
+    overflow-x: clip;
 }
 .grandpaWrapper {
     width: clamp(176px, calc(240px - 64 * (767px - 100vw) / 392), 240px);
@@ -43,6 +43,7 @@
 .decoration {
     position: relative;
     color: rgb(var(--color-base-green));
+    overflow-x: clip;
     margin-bottom: clamp(103px, calc(103px + 17 * (767px - 100vw) / 392), 120px);
     .decorWrapper {
         width: clamp(244px, calc(430px - 186 * (767px - 100vw) / 392), 430px);

@@ -30,7 +30,7 @@ async function sendTelegramMessage(message: string, chatId: string) {
     const attempt = 3;
     const url = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;
     const headers = { 'Content-Type': 'application/json' };
-    const body = JSON.stringify({ chat_id: chatId, text: message });
+    const body = JSON.stringify({ chat_id: chatId, text: message,  parse_mode: 'Markdown'  });
 
     for (let i = 0; i < attempt; i++) {
         try {
@@ -58,10 +58,7 @@ async function sendTelegramMessage(message: string, chatId: string) {
 }
 export async function telegramAction(data: any) {
     const formattedDate = getCurrentDateTime();
-    const message = `Звернення від: ${formattedDate},
-                    Ім'я: ${data.name},
-                    Телефон: ${data.phone.replace(/[^+\d]/g, '')},
-                    Повідомлення: ${data.message}`;
+    const message = `\*\*Звернення від:\*\* ${formattedDate},\n\*\*Ім'я:\*\* ${data.name},\n\*\*Телефон:\*\* ${data.phone.replace(/[^+\d]/g, '')},\n\*\*Повідомлення:\*\* ${data.message}`;
     
     const validationResult = await recaptchaValidation(data?.recaptchaResponse);
 

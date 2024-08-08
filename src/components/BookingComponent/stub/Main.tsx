@@ -140,6 +140,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                             type="text" 
                             name='name'
                             autoFocus
+                            maxLength={30}
                             className={s.input} 
                             autoComplete='off'
                             placeholder={isMobile ? 'Ваше ім’я' : ''}
@@ -192,6 +193,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                             rows={5} 
                             required
                             title=''
+                            maxLength={500}
                             autoComplete='off'
                             onInvalid={(e: any) => e.target.setCustomValidity('Це поле є обов’язковим')}
                             onChange={(e: any) => e.target.setCustomValidity('')}
