@@ -115,8 +115,9 @@ export const houses = [
     treesDecor: "/images/houses/house/hatynka-babky-izhachky/trees-decor.png",
     swiper: [
       "/images/houses/house/hatynka-babky-izhachky/hatynka-babky-izhachky-1.png",
-      "/images/houses/house/hatynka-babky-izhachky/hatynka-babky-izhachky-2.png",
-      "/images/houses/house/hatynka-babky-izhachky/hatynka-babky-izhachky-3.png",
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723139617/y19cl5weeomdqbjgysld.jpg",
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723139618/haxbaxo4reg1ms3ygupa.jpg",
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723139619/tb1pholzzocv24xb98xk.jpg",
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345875/ydij7hsodfgc8yvlnil6.jpg",
@@ -301,10 +302,13 @@ export const houses = [
     // fake
     swiper: [
       "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-1.png",
-      "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-2.png",
-      "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-3.png",
-      "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-4.png",
-      "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-5.png",
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140205/y53cddkanfa8wtz45uz1.jpg",
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140206/v4kvjbkxkcyrzy8thevv.jpg",
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140207/ujvjyru3gu2qtr5hvgof.jpg",
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140208/vwkp1h4tgydkjidg37id.jpg",
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140209/frs6hzdfshgjby8h7ffn.jpg",
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140210/f4mbwx55yvyjmrif2nwl.jpg",
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140210/cnfarw7ycza4dcyqvwbg.jpg"
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345878/zkesaqmdsfsk2ofwzy4n.jpg",
@@ -349,6 +353,7 @@ export const houses = [
       "/images/houses/house/teremok/teremok-2.png",
       "/images/houses/house/teremok/teremok-3.png",
       "/images/houses/house/teremok/teremok-4.png",
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140444/bpae2ajfynkanjtcxjts.jpg",
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345881/esdertz6nrzd0kucpsgr.jpg",
