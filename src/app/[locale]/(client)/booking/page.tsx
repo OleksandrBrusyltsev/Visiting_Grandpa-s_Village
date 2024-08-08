@@ -1,6 +1,14 @@
-import { useTranslations } from 'next-intl';
+import { Metadata } from 'next';
 import { unstable_setRequestLocale } from 'next-intl/server';
-import Link from 'next/link';
+
+import Visit from '@/components/Visit/Visit';
+
+export const metadata: Metadata = {
+  title:
+    "Замовлення номерів - Відпочинок на блакитних озерах (с. Олешня, Чернігівська область)",
+  description:
+    "Еко-садиба «На селі у Дідуся!!! » ОЛЕШНЯ, БЛАКИТНІ ОЗЕРА замовлення номерів та попереднє бронювання.",
+};
 
 // export async function generateStaticParams() {
 //   return ["uk", "en"].map((locale) => ({ locale }));
@@ -12,24 +20,10 @@ export default function Page({
   params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
-  const t = useTranslations('Breadcrumbs');
 
   return (
     <div className='container'>
-      <h1 style={{
-        marginTop: 20,
-        marginBottom: 20,
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        color: '#000000',
-      }}>Сторінка Завітати </h1>
-      <div>
-        Link: <Link href={`/${locale}/booking/payment`}>{t('payment')}</Link>
-      </div>
-      <div>
-        Link: <Link href={`/${locale}/booking/options`}>{t('options')}</Link>
-      </div>
+      <Visit /> 
     </div>
   )
 }

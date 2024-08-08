@@ -8,10 +8,12 @@ import Button from "../ui/Button/Button";
 import Calendar from "./components/Calendar/Calendar";
 import GuestsForm from "./components/GuestsForm/GuestsForm";
 import Modal from "./components/Modal/Modal";
-import StubModal from "../ui/Modal/Modal";
+import StubModal, { ModalHandle } from "../ui/Modal/Modal";
+import Main from "./stub/Main";
+import Success from "./stub/Success";
+import Error from "./stub/Error";
 
 import s from "./BookingComponent.module.scss";
-import ContactForm from "./stub/ContactForm";
 
 gsap.registerPlugin(useGSAP);      
 
@@ -45,46 +47,96 @@ export type OrderType = {
   endDate: string | undefined,
   guests: number,
 }
+
+// export type BotResponseStateType = {
+//   status: boolean;
+//   message?: string
+// }
 const BookingComponent: FC = () => {
   
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);//small modal for datepicker and guests
   const [activeChild, setActiveChild] = useState<ChildrenType>({
     type: null,
     triggerRef: null
   });
   
+  //datepicker
   const [checkInDate, setCheckInDate] = useState<Date | null>(initialState.today);
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(initialState.tomorrow);
-
+  
+  //guests
   const [adultsCount, setAdultsCount] = useState<number>(initialState.adultsCount);
   const [childrenCount, setChildrenCount] = useState<number>(initialState.childrenCount);
-
-  const modalRef = useRef<HTMLDivElement | null>(null);
-  const startRef = useRef<HTMLDivElement | null>(null);
-  const endRef = useRef<HTMLDivElement | null>(null);
-  const guestRef = useRef<HTMLFieldSetElement | null>(null);
   
-
-
-  //temporary stub logic -->
-  const [isStubModalOpen, setIsStubModalOpen] = useState<boolean>(false);
+  //order for booking form
   const [order, setOrder] = useState<OrderType>({
     startDate: checkInDate?.toLocaleDateString("uk-UA"),
     endDate: checkOutDate?.toLocaleDateString("uk-UA"),
     guests: adultsCount + childrenCount
   });
-  const toggleStub = () => setIsStubModalOpen(!isStubModalOpen);
+
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  const startRef = useRef<HTMLDivElement | null>(null);
+  const endRef = useRef<HTMLDivElement | null>(null);
+  const guestRef = useRef<HTMLFieldSetElement | null>(null);
+
+  
+  //temporary stub logic -->
+  
+  //displaying modal overlay
+  const [isStubModalOpen, setIsStubModalOpen] = useState<boolean>(false);
+  
+  const [botResponseState, setBotResponseState] = useState<boolean | null>(null);
+  
+  //states for displaying main form and success/error forms
+  const [showMainForm, setShowMainForm] = useState<boolean>(true);
+  const [showSuccessForm, setShowSuccessForm] = useState<boolean>(false);
+  const [showErrorForm, setShowErrorForm] = useState<boolean>(false);
+  
+  //ref for adding animation to stub modal closing handler
+  const refForAnimatedClose = useRef<ModalHandle | null>(null);
+
+  //handlers for opening/closing stub modal
+  const handleOpenStub = () => {
+    setIsStubModalOpen(!isStubModalOpen);
+  }
+  const handleShowSuccess = () => {
+    showMainForm && setShowMainForm(false);
+    setShowSuccessForm(true);
+    setBotResponseState(null);
+  }
+  const handleShowError = () => {
+    showMainForm && setShowMainForm(false);
+    setShowErrorForm(true);
+    setBotResponseState(null);
+  }
+
+  //closing stub modal
+  const handleCloseStub = () => {
+    resetBooking();
+    setIsStubModalOpen(false);
+    setShowErrorForm(false);
+    setShowSuccessForm(false);
+    setShowMainForm(true);
+  }
+
+  //handler to return  to the main form when an error catched
+  const backToMainForm = () => {
+    setShowMainForm(true);
+    setShowErrorForm(false);
+  }
+  
+  //changing states of active forms and displaying forms logic
   useEffect(() => {
-    setOrder({
-      startDate: checkInDate?.toLocaleDateString("uk-UA"),
-        endDate: checkOutDate?.toLocaleDateString("uk-UA"),
-        guests: adultsCount + childrenCount
-    }); 
-  }, [checkInDate, checkOutDate, adultsCount, childrenCount]);
+    if(!isStubModalOpen || botResponseState === null) return;
+    botResponseState ? handleShowSuccess() : handleShowError();
+    }, [botResponseState, isStubModalOpen]);
+    
 //<--end temporary stub logic
 
+  
 
-
+  //small modal for choosing dates and guests
   const toggleModal = (val: ChildrenType) => {
 
     //open modal and set children
@@ -130,8 +182,17 @@ const BookingComponent: FC = () => {
       setCheckInDate(date);
     }
   };
-  
-  //close modal by outside click or Esc key
+
+  //changing an order data
+  useEffect(() => {
+    setOrder({
+      startDate: checkInDate?.toLocaleDateString("uk-UA"),
+        endDate: checkOutDate?.toLocaleDateString("uk-UA"),
+        guests: adultsCount + childrenCount
+    }); 
+  }, [checkInDate, checkOutDate, adultsCount, childrenCount]);
+
+  //close small modal by outside click or Esc key
   useEffect(() => {
     const handleEscExit = (e: KeyboardEvent) => {
       if(e.code === 'Escape' && isModalOpen) {
@@ -156,7 +217,6 @@ const BookingComponent: FC = () => {
       document.removeEventListener('click', handleOutOfModalClick);
     }
   },[toggleModal]);
-
 
   const resetBooking = () => {
     setAdultsCount(initialState.adultsCount);
@@ -317,7 +377,7 @@ const BookingComponent: FC = () => {
             label="Шукати"
             type="submit"
             disabled={!checkOutDate ? true : false}
-            onClick={toggleStub}
+            onClick={handleOpenStub}
           />
         </div>
       </form>
@@ -340,12 +400,24 @@ const BookingComponent: FC = () => {
           ) : null}
         </div>
       </Modal>
-      <StubModal isOpen={isStubModalOpen} onClose={() => {
-          resetBooking();//tmp logic for stub
-          setIsStubModalOpen(false);
-        }
-      }>
-        <ContactForm order={order}/>
+      <StubModal 
+        isOpen={isStubModalOpen} 
+        onClose={handleCloseStub}
+        wrapperStyles={{
+          margin: 'auto',
+        }}
+        ref={refForAnimatedClose}
+        inner={false}>
+        <Main 
+          isOpen={showMainForm} 
+          order={order} 
+          handleBotResponse={setBotResponseState}
+          handleClose={refForAnimatedClose.current?.assignedClose}/>
+        <Success isOpen={showSuccessForm} handleClose={refForAnimatedClose.current?.assignedClose} />
+        <Error 
+          isOpen={showErrorForm} 
+          handleClose={refForAnimatedClose.current?.assignedClose} 
+          handleRepeatFilling={backToMainForm} />
       </StubModal>
     </div>
   );

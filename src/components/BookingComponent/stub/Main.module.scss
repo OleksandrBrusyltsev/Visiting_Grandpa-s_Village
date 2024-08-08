@@ -1,0 +1,203 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
+.wrapper {
+    width: calc(100% - 40px);
+    max-width: 604px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px;
+    gap: 20px;
+    isolation: isolate;
+    background-color: rgb(var(--color-nude));
+    border: 2px solid rgb(var(--color-base-green));
+    border-radius: 8px;
+    font-family: var(--f-family-main);
+    position: relative;
+    margin: 0 auto;
+    overflow-x: clip;
+    @include mixins.media-min(variables.$mobile) {
+        width: 100%;
+        overflow-x: unset;
+    }
+    &::before {
+        position: absolute;
+        content: '';
+        background-repeat: no-repeat;
+        top: 0;
+        left: 0;
+        width: min(calc(360 * (604px - 100%)), 360px);
+        aspect-ratio: 0.95;
+        background-image: url('/images/grandpas/Grandpa4.png'), url('/images/backgrounds/christmasTrees.png');
+        background-size: 162px 174px, 360px 379px;
+        background-position: top left, top -100px left -114px;
+        z-index: -1;
+    }
+    &::after {
+        position: absolute;
+        content: '';
+        background-repeat: no-repeat;
+        bottom: 124px;
+        right: 0;
+        width: min(calc(360 * (604px - 100%)), 360px);
+        aspect-ratio: 0.91;
+        background-image: url('/images/backgrounds/christmasTrees.png');
+        background-size: contain;
+        z-index: -1;
+    }
+    @include mixins.media-min(variables.$mobile) {
+        padding: 35px 100px;
+        // gap: 46px;
+    }
+    .title {
+        text-align: end;
+        font-size: 20px;
+        color: rgb(var(--color-base-green));
+        letter-spacing: 0.005em;
+        font-weight: 700;
+        line-height: 1.1;
+        width: 80%;
+        margin: 0 0 0 auto;
+        @include mixins.media-min(variables.$mobile) {
+            text-align: center;
+            width: 86%;
+            font-size: var(--f-size-h3);
+        }
+    }
+    .form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        
+        .label, .label > * {
+            display: block;
+            width: 100%;
+            font-size: var(--f-size-body);
+        }
+        .label span {
+            font-weight: 700;
+        }
+        .label:last-of-type > .input {
+            padding: 8px 10px;
+            @include mixins.media-min(variables.$mobile) {
+                padding: 16px 10px;
+            }
+        }
+        .input{
+            margin-top: 8px;
+            padding: 8px 10px;
+            background-color: #FAFAFA;
+            border: 1px solid #B3B3B3;
+            border-radius: 6px;
+            max-width: 100%;
+            outline: none;
+            &:user-invalid {
+                outline: 2px solid red;
+            }
+            &::placeholder {
+                color: rgba(97, 97, 97, 0.8);
+            }
+        }
+        .recaptcha {
+            align-self: center;
+            margin-top: 5px;
+            min-width: 300px;
+            min-height: 74px;
+        }
+        .btn {
+            max-width: 100%;
+            margin-top: 5px;
+            @media (max-width: 767px) {
+                font-size: 20px;
+                line-height: 1.1;
+            }
+        }
+    }
+    .altContacts {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .closeBtn {
+        position: absolute;
+        top: -60px;
+        right: 0px;
+        font-weight: 700;
+        color: rgb(var(--color-base-green));
+        font-size: 50px;
+        font-family: 'Times New Roman', Times, serif;
+        border-radius: 50%;
+        @include mixins.media-min(variables.$mobile) {
+            right: -60px;
+            width: 60px;
+            height: 60px;
+        }
+    }
+}
+       .altContact {
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 1.1;
+            color: rgb(var(--color-black));
+            letter-spacing: 0.005em;
+            &:first-child {
+                text-align: center;
+            }
+            @include mixins.media-min(variables.$mobile) {
+                align-items: center;
+                font-size: var(--f-size-body);
+                &:not(:first-child) {
+                    padding-left: 46px;
+                }
+            }
+            .telegramIcon {
+                width: 32px;
+                height: 32px;
+                color: rgb(var(--color-dark-green));
+                transition: color 0.3s, stroke 0.3s;
+                margin-left: 1rem;
+              
+                @media (hover: hover) {
+                    &:hover {
+                        color: transparent;
+                        stroke: rgb(var(--color-base-green));
+                        stroke-width: 1px;
+                    }
+                }
+              
+                &:active {
+                  color: rgb(var(--color-natural-orange));
+                  stroke: rgb(var(--color-natural-orange));
+                  stroke-width: 0;
+                }
+              }
+        }
+        .altContact:first-of-type {
+            @include mixins.media-min(variables.$mobile) {
+                text-align: center;
+            }
+        }
+        .altContact:last-of-type {
+            display: flex;
+            align-items: center;
+            margin-top: -6px;
+    
+        }
+        .phone {
+            line-height: 1.21;
+            font-size: 14px;
+            font-family: var(--f-family-inter);
+            text-decoration: underline;
+            color: rgb(var(--color-base-green));
+            margin-inline: 10px 6px;
+            &:active {
+                color: rgb(var(--color-natural-orange));
+            }
+            @include mixins.media-min(variables.$mobile) {
+                font-size: var(--f-size-body);
+            }
+        }

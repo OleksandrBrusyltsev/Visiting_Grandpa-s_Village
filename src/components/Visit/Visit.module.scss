@@ -1,0 +1,104 @@
+@use '../../styles/mixins' as mixins;
+@use '../../styles/variables';
+
+.hero {
+    margin-top: 16px;
+    position: relative;
+    overflow-x: clip;
+}
+.grandpaWrapper {
+    width: clamp(176px, calc(240px - 64 * (767px - 100vw) / 392), 240px);
+    aspect-ratio: 1;
+    position: absolute;
+    right: -13px;
+    top: clamp(13px, calc(66px - 53 * (100vw - 375px) / 392), 66px);
+    img {
+        object-fit: contain;
+    }
+}
+.heroTitle {
+    color: rgb(var(--color-black));
+    font-family: var(--f-family-headline);
+    font-size: clamp(24px, calc(36px - 12 * (767px - 100vw) / 392), 36px);
+    font-weight: 600;
+    line-height: 97.64%;
+    letter-spacing: -0.005em;
+    width: clamp(280px, calc(420px - 140 * (767px - 100vw) / 392), 420px);
+    margin-left: clamp(45px, calc(74px - 29 * (767px - 100vw) / 392), 74px);
+}
+.quoteText {
+    font-family: var(--f-family-main);
+    font-weight: 700;
+    font-size: clamp(14px, calc(16px - 2 * (767px - 100vw) / 392), 16px);
+    line-height: 16.4px;
+    color: rgb(var(--color-base-green));
+    width: clamp(200px, calc(374px - 174 * (767px - 100vw) / 392), 374px);
+    margin-left: clamp(0px, calc(118px - 118 * (767px - 100vw) / 392), 118px);
+    margin-top: clamp(24px, calc(44px - 20 * (100vw - 375px) / 392), 44px);
+}
+.bookingForm {
+    margin: 130px auto 0;
+    width: fit-content;
+}
+.decoration {
+    position: relative;
+    color: rgb(var(--color-base-green));
+    overflow-x: clip;
+    margin-bottom: clamp(103px, calc(103px + 17 * (767px - 100vw) / 392), 120px);
+    .decorWrapper {
+        width: clamp(244px, calc(430px - 186 * (767px - 100vw) / 392), 430px);
+        aspect-ratio: 1.2;
+        position: relative;
+        margin-left: clamp(-24px, calc(0px - 24 * (767px - 100vw) / 392), 0px);
+        margin-top: clamp(11px, calc(53px - 42 * (767px - 100vw) / 392), 53px);
+        z-index: -1;
+        img {
+            object-fit: contain;
+        }
+    }
+    .visitCurve {
+        position: absolute;
+        width: clamp(118px, calc(226px - 108 * (767px - 100vw) / 392), 226px);
+        height: clamp(85px, calc(145px - 60 * (767px - 100vw) / 392), 145px);
+        
+        top: clamp(-30px, calc(26px - 56 * (100vw - 375px) / 392), 26px);
+        right: clamp(0px, calc(62px - 62 * (767px - 100vw) / 392), 62px);
+        rotate: -20.5deg;
+    }
+}
+@include mixins.media-min(variables.$mobile) {
+    .heroTitle {
+        width: clamp(420px, calc(750px - 330 * (1279px - 100vw) / 511), 750px);
+    }
+    .quoteText {
+        line-height: 1.1;
+        width: clamp(374px, calc(473px - 99 * (1279px - 100vw) / 511), 473px);
+        margin-left: clamp(118px, calc(378px - 260 * (1279px - 100vw) / 511), 378px);
+        margin-top: clamp(24px, calc(40px - 16 * (1279px - 100vw) / 511), 40px);
+
+    }
+    .bookingForm {
+        margin-top: clamp(42px, calc(130px - 88 * (100vw - 768px) / 511), 130px);
+        margin-left: clamp(0px, calc((100% - 709px) / 2), 62px)
+    }
+    .grandpaWrapper {
+        width: clamp(240px, calc(315px - 75 * (1279px - 100vw) / 511), 315px);
+        top: clamp(-70px, calc(13px - 83 * (100vw - 768px) / 511), 13px);
+    }
+    .decoration {
+        margin-bottom: clamp(82px, calc(82px + 21 * (1279px - 100vw) / 511), 103px);
+        .decorWrapper {
+            width: clamp(430px, calc(535px - 105 * (1279px - 100vw) / 511), 535px);
+            margin-left: clamp(0px, calc(88px - 88 * (1279px - 100vw) / 511), 88px);
+            margin-top: clamp(35px, calc(53px - 18 * (100vw - 768px) / 511), 53px);
+        }
+        .visitCurve {
+            rotate: 0deg;
+            width: clamp(226px, calc(537px - 311 * (1279px - 100vw) / 511), 537px);
+            height: clamp(145px, calc(342px - 197 * (1279px - 100vw) / 511), 342px);
+            
+            top: clamp(-35px, calc(-30px - 5 * (100vw - 768px) / 511), -30px);
+            right: clamp(62px, calc(160px - 98 * (1279px - 100vw) / 511), 160px);
+        }
+    }
+}
