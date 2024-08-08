@@ -1,0 +1,27 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.rulesTitleWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.rulesTitle {
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-h3);
+  color: rgba(var(--color-base-green));
+  text-align: left;
+  width: 220px;
+  margin-right: -50px;
+  font-weight: 600;
+  line-height: 23.43px;
+   @include mixins.media-min(375px) {
+    width: 232px;
+  }
+}
+
+.rulesTitleImg {
+  width: 178px;
+  height: 149px;
+  margin-right: -60px;
+}

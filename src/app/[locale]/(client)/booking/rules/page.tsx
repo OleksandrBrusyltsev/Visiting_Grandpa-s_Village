@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
+import Rules from '@/components/Rules/Rules';
 
 export async function generateStaticParams() {
   return ["uk", "en"].map((locale) => ({ locale }));
@@ -22,7 +23,7 @@ export default function Page({
         fontWeight: 'bold',
         textAlign: 'center',
         color: '#000000',
-      }}>Сторінка {t('rules')}</h1>
+      }}><Rules/></h1>
     </div>
   )
 }
