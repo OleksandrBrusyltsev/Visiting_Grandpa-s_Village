@@ -9,7 +9,7 @@ import PhoneInputMask from 'react-input-mask';
 import { telegramAction } from '@/actions/tgBotAction';
 import { MatchMediaContext } from '@/context/MatchMediaContext';
 import Button from '@/components/ui/Button/Button';
-import { BotResponseStateType, OrderType } from '../BookingComponent';
+import { OrderType } from '../BookingComponent';
 
 import s from "./Main.module.scss";
 import {messages} from '@/data/bookingStub';
@@ -18,7 +18,7 @@ type Props = {
     order: OrderType;
     isOpen: boolean;
     handleClose: (() => void) | undefined;
-    handleBotResponse: (props: BotResponseStateType | null) => void
+    handleBotResponse: (status: boolean | null) => void
 }
 declare global {
     interface Window {
@@ -124,7 +124,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
             (e.target as HTMLFormElement).reset();
         } 
 
-        handleBotResponse(botResponse ? ({status: botResponse.status} as BotResponseStateType) : null);
+        handleBotResponse(botResponse ? botResponse.status : null);
     }
     
     if(!handleClose) return

@@ -1,5 +1,4 @@
 'use server';
-import { BotResponseStateType } from '@/components/BookingComponent/BookingComponent';
 import {tgUserId} from '../data/admin/tgUserId';
 import recaptchaValidation from './recaptchaValidation';
 
@@ -16,7 +15,47 @@ function getCurrentDateTime() {
 
     return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
 };
+type TgResponseType = {
+    ok: boolean,
+    // result: {
+    //     from: {
+    //         first_name: string,
+    //     },
+    //     date: number,
+    //     text: string
+    // }
+}
 
+async function sendTelegramMessage(message: string, chatId: string) {
+    const attempt = 3;
+    const url = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;
+    const headers = { 'Content-Type': 'application/json' };
+    const body = JSON.stringify({ chat_id: chatId, text: message });
+
+    for (let i = 0; i < attempt; i++) {
+        try {
+            const response = await fetch(url, { method: 'POST', headers, body });
+
+            if(!response.ok) throw new Error('Network error');
+
+            const data: TgResponseType = await response.json();
+
+            if (data.ok) {
+                return {
+                    chatId,
+                    status: true,
+                }
+            } else throw new Error('Telegram response error');
+            
+        } catch (error) {
+            console.log('Attemp №', i + 1, 'failed', error);
+        }
+    }
+    return {
+        chatId,
+        status: false,
+    };
+}
 export async function telegramAction(data: any) {
     const formattedDate = getCurrentDateTime();
     const message = `Звернення від: ${formattedDate},
@@ -27,48 +66,26 @@ export async function telegramAction(data: any) {
     const validationResult = await recaptchaValidation(data?.recaptchaResponse);
 
     if (!validationResult?.ok) {
-        console.log(validationResult?.message);
         return
     }
-    const commonResp: BotResponseStateType[] = [];
+    const commonResp: Array<{chatId: string; status: boolean}> = [];
     for(let user of tgUserId) {
-       try { 
-            if(user.chatId) {
-                await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        chat_id: user.chatId,
-                        text: message,
-                    })
-                });
-                commonResp.push({
-                    status: true,
-                    message: "Найближчим часом з вами зв’яжеться помічник Дідуся для уточнення бронювання"
-                });
-            }
-        } catch (error) {
-            commonResp.push({
-                status: false,
-                message: "Повторіть спробу ще раз"
-            }); 
-        }      
+        if(user.chatId) {
+            const chatIdResp = await sendTelegramMessage(message, user.chatId);
+            commonResp.push(chatIdResp);
+        }
     }
-    // return commonResp.some(item => item.status) ? 
-    //     {
-    //         status: true,
-    //         message: "Найближчим часом з вами зв’яжеться помічник Дідуся для уточнення бронювання"
-    //     } : 
-    //     {
-    //         status: false, message: "Повторіть спробу ще раз"
-    //     }
-    return Math.floor(Math.random() * 10) > 5 ? {
-        status: true,
-        message: "Найближчим часом з вами зв’яжеться помічник Дідуся для уточнення бронювання"
-    } : 
-    {
-        status: false, message: "Повторіть спробу ще раз"
-    }
+    return commonResp.some(item => item.status) ? 
+        {
+            status: true
+        } : 
+        {
+            status: false
+        }
+    // return Math.floor(Math.random() * 10) > 5 ? {
+    //     status: true,
+    // } : 
+    // {
+    //     status: false, 
+    // }
 }

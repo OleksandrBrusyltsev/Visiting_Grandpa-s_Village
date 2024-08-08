@@ -48,10 +48,10 @@ export type OrderType = {
   guests: number,
 }
 
-export type BotResponseStateType = {
-  status: boolean;
-  message?: string
-}
+// export type BotResponseStateType = {
+//   status: boolean;
+//   message?: string
+// }
 const BookingComponent: FC = () => {
   
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);//small modal for datepicker and guests
@@ -86,7 +86,7 @@ const BookingComponent: FC = () => {
   //displaying modal overlay
   const [isStubModalOpen, setIsStubModalOpen] = useState<boolean>(false);
   
-  const [botResponseState, setBotResponseState] = useState<BotResponseStateType | null>(null);
+  const [botResponseState, setBotResponseState] = useState<boolean | null>(null);
   
   //states for displaying main form and success/error forms
   const [showMainForm, setShowMainForm] = useState<boolean>(true);
@@ -128,13 +128,9 @@ const BookingComponent: FC = () => {
   
   //changing states of active forms and displaying forms logic
   useEffect(() => {
-    if(!isStubModalOpen || !botResponseState) return;
-    if(botResponseState?.status) {
-      handleShowSuccess()
-      } else {
-        handleShowError();
-      }
-    }, [botResponseState?.status, isStubModalOpen]);
+    if(!isStubModalOpen || botResponseState === null) return;
+    botResponseState ? handleShowSuccess() : handleShowError();
+    }, [botResponseState, isStubModalOpen]);
     
 //<--end temporary stub logic
 
