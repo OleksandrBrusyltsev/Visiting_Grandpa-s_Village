@@ -1,20 +1,35 @@
 'use server';
+import { DateTimeFormatOptions } from 'next-intl';
 import {tgUserId} from '../data/admin/tgUserId';
 import recaptchaValidation from './recaptchaValidation';
 
-function getCurrentDateTime() {
+function getCurrentDateTimeUkraine() {
     const now = new Date();
 
-    const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const year = now.getFullYear();
+    const options: DateTimeFormatOptions = {
+        timeZone: 'Europe/Kiev',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false 
+    };
 
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const formatter = new Intl.DateTimeFormat('en-GB', options);
+    const formattedParts = formatter.formatToParts(now);
+
+    const day = formattedParts.find(part => part.type === 'day')?.value;
+    const month = formattedParts.find(part => part.type === 'month')?.value;
+    const year = formattedParts.find(part => part.type === 'year')?.value;
+    const hours = formattedParts.find(part => part.type === 'hour')?.value;
+    const minutes = formattedParts.find(part => part.type === 'minute')?.value;
+    const seconds = formattedParts.find(part => part.type === 'second')?.value;
 
     return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
-};
+}
+
 type TgResponseType = {
     ok: boolean,
     // result: {
@@ -57,7 +72,7 @@ async function sendTelegramMessage(message: string, chatId: string) {
     };
 }
 export async function telegramAction(data: any) {
-    const formattedDate = getCurrentDateTime();
+    const formattedDate = getCurrentDateTimeUkraine();
     const message = `\*\*Звернення від:\*\* ${formattedDate},\n\*\*Ім'я:\*\* ${data.name},\n\*\*Телефон:\*\* ${data.phone.replace(/[^+\d]/g, '')},\n\*\*Повідомлення:\*\* ${data.message}`;
     
     const validationResult = await recaptchaValidation(data?.recaptchaResponse);

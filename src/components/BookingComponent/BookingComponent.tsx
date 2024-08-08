@@ -405,7 +405,6 @@ const BookingComponent: FC = () => {
         onClose={handleCloseStub}
         wrapperStyles={{
           margin: 'auto',
-          maxHeight: 'none',
         }}
         ref={refForAnimatedClose}
         inner={false}>

@@ -209,8 +209,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                     />
                 </form>
                 <div className={s.altContacts}>
-                    {isMobile ? null : <p className={s.altContact}>або
-                    </p>}
+                    <p className={s.altContact}>або</p>
                     <p className={s.altContact}>зателефонуйте 
                         <a href="tel:+380931919663" className={s.phone}> +38(093) 19-19-663</a>,
                     </p>

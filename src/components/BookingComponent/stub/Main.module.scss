@@ -16,8 +16,10 @@
     font-family: var(--f-family-main);
     position: relative;
     margin: 0 auto;
+    overflow-x: clip;
     @include mixins.media-min(variables.$mobile) {
         width: 100%;
+        overflow-x: unset;
     }
     &::before {
         position: absolute;
@@ -79,7 +81,10 @@
             font-weight: 700;
         }
         .label:last-of-type > .input {
-            padding: 16px 10px;
+            padding: 8px 10px;
+            @include mixins.media-min(variables.$mobile) {
+                padding: 16px 10px;
+            }
         }
         .input{
             margin-top: 8px;
@@ -135,12 +140,16 @@
 }
        .altContact {
             font-weight: 700;
-            font-size: var(--f-size-body);
+            font-size: 14px;
             line-height: 1.1;
             color: rgb(var(--color-black));
             letter-spacing: 0.005em;
+            &:first-child {
+                text-align: center;
+            }
             @include mixins.media-min(variables.$mobile) {
                 align-items: center;
+                font-size: var(--f-size-body);
                 &:not(:first-child) {
                     padding-left: 46px;
                 }
@@ -180,12 +189,15 @@
         }
         .phone {
             line-height: 1.21;
-            font-size: var(--f-size-body);
+            font-size: 14px;
             font-family: var(--f-family-inter);
             text-decoration: underline;
             color: rgb(var(--color-base-green));
             margin-inline: 10px 6px;
             &:active {
                 color: rgb(var(--color-natural-orange));
+            }
+            @include mixins.media-min(variables.$mobile) {
+                font-size: var(--f-size-body);
             }
         }
