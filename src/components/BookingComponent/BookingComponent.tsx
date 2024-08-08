@@ -9,7 +9,7 @@ import Calendar from "./components/Calendar/Calendar";
 import GuestsForm from "./components/GuestsForm/GuestsForm";
 import Modal from "./components/Modal/Modal";
 import StubModal, { ModalHandle } from "../ui/Modal/Modal";
-import ContactForm from "./stub/ContactForm";
+import Main from "./stub/Main";
 import Success from "./stub/Success";
 import Error from "./stub/Error";
 
@@ -409,11 +409,11 @@ const BookingComponent: FC = () => {
         onClose={handleCloseStub}
         wrapperStyles={{
           margin: 'auto',
-          maxHeight: '90dvh',
+          maxHeight: 'none',
         }}
         ref={refForAnimatedClose}
         inner={false}>
-        <ContactForm 
+        <Main 
           isOpen={showMainForm} 
           order={order} 
           handleBotResponse={setBotResponseState}

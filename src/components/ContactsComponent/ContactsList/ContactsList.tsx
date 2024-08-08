@@ -25,6 +25,12 @@ const socialMediaLinks = [
     link: "https://www.instagram.com/ecousadba.in.ua/",
     icon: "instagram",
   },
+  {
+    id: 4,
+    link: "https://www.linkedin.com/company/grandpa-s-village/",
+    icon: "linkedin",
+    ariaLabel: "link to linkedin",
+  },
 ];
 
 const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;

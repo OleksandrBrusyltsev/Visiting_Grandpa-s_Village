@@ -11,7 +11,8 @@ import { MatchMediaContext } from '@/context/MatchMediaContext';
 import Button from '@/components/ui/Button/Button';
 import { BotResponseStateType, OrderType } from '../BookingComponent';
 
-import s from "./ContactForm.module.scss";
+import s from "./Main.module.scss";
+import {messages} from '@/data/bookingStub';
 
 type Props = {
     order: OrderType;
@@ -42,10 +43,11 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
     const formRef = useRef<HTMLFormElement | null>(null);
     const recaptchaId = useRef<string | null>(null);
     const locale = useLocale();
+    const {title, subtitle, message} = messages[0];
 
     const loadRecaptcha = () => {
         if (window.grecaptcha) {
-            if (recaptchaId.current) {
+            if (recaptchaId.current !== null) {
                 window.grecaptcha.reset(recaptchaId.current);
             } else {
                 recaptchaId.current = window.grecaptcha.render('g-recaptcha', {
@@ -130,9 +132,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
     return (
         <>
             <div className={s.wrapper} ref={wrapperRef}>
-                <h1 className={s.title}>
-                    Найближчим часом з вами зв’яжеться помічник Дідуся для уточнення бронювання
-                </h1>
+                <h1 className={s.title}>{title}</h1>
                 <form className={s.form} onSubmit={onSubmit} ref={formRef}>
                     <label htmlFor="name" className={s.label}>
                         {isMobile ? null : <span>Ім&apos;я</span>}
@@ -147,13 +147,10 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                             required 
                             onInvalid={(e: any) => {
                                 e.target.setCustomValidity('Це поле є обов’язковим');
-                                e.target.style.outline = '2px solid red';
+                                // e.target.style.outline = '2px solid red';
                             }}
                             onChange={(e: any) => {
                                 e.target.setCustomValidity('');
-                                if(e.target.value){
-                                    e.target.style.outline = 'initial';
-                                }
                             }}
                         />
                     </label>
@@ -169,17 +166,17 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                             pattern="\+38\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}"
                             onInvalid={(e: any) => {
                                 e.target.setCustomValidity('Це поле є обов’язковим');
-                                e.target.style.outline = '2px solid red';
+                                // e.target.style.outline = '2px solid red';
                             }}
                             onChange={(e: any) => {
                                 if (e.target.value === '' || e.target.value === '+3 (0__) ___ __ __') {
                                     e.target.setCustomValidity('Це поле є обов’язковим');
-                                    e.target.style.outline = '2px solid red';
+                                    // e.target.style.outline = '2px solid red';
                                 } else if(!validatePhone(e.target.value)) {
                                     e.target.setCustomValidity('Формат номеру телефону +38 (0XX) XXX XX XX');
                                 } else {
                                     e.target.setCustomValidity('');
-                                    e.target.style.outline = 'initial';
+                                    // e.target.style.outline = 'initial';
                                 }
                             }}
                             name='phone'
@@ -191,7 +188,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                         <textarea 
                             name="message" 
                             defaultValue={`Потрібен номер на ${order.guests}х з ${order.startDate}-${order.endDate}`} 
-                            placeholder='Опишіть мету вашого звернення'
+                            placeholder={message}
                             rows={5} 
                             required
                             title=''
@@ -203,7 +200,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                     </label>
                     <div className={`${s.recaptcha} g-recaptcha`} id='g-recaptcha' data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_TOKEN}/>
                     <Button 
-                        label='Відправити запит на дзвінок' 
+                        label={subtitle}
                         className={s.btn} 
                         type='submit' 
                         size='default'
@@ -213,7 +210,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                     {isMobile ? null : <p className={s.altContact}>або
                     </p>}
                     <p className={s.altContact}>зателефонуйте 
-                        <a href="tel:+380931919663" className={s.phone}> +38(093) 19-19-663</a> ,
+                        <a href="tel:+380931919663" className={s.phone}> +38(093) 19-19-663</a>,
                     </p>
                     <p className={s.altContact}>напишіть нам в Телеграм 
                         <a
