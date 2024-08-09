@@ -35,8 +35,7 @@ export default async function House({ id }: Props) {
     price_addons,
     rooms,
   } = house;
-  const title = house.title.filter((item) => item.language === locale)[0]
-    .longTitle;
+  const title = house.title.filter((item) => item.language === locale)[0].text;
 
   return (
     <div className={s.sectionWrapper}>
