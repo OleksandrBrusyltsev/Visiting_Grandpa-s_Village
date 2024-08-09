@@ -5,10 +5,12 @@ export const houses = [
       {
         language: "uk",
         text: "Хатинка Діда Мороза",
+        longTitle: "Хатинка Діда Мороза",
       },
       {
         language: "en",
         text: "Hatynka Dida Moroza",
+        longTitle: "Hatynka Dida Moroza",
       },
     ],
     rental_price: 1300,
@@ -50,10 +52,12 @@ export const houses = [
       {
         language: "uk",
         text: "Світлиця",
+        longTitle: "Світлиця",
       },
       {
         language: "en",
         text: "Svitlytsia",
+        longTitle: "Svitlytsia",
       },
     ],
     rental_price: 1300,
@@ -97,10 +101,12 @@ export const houses = [
       {
         language: "uk",
         text: "Хатинка Бабки-Їжачки",
+        longTitle: "Хатинка Бабки-Їжачки (літній варіант)",
       },
       {
         language: "en",
         text: "Hatynka Babky Izhachky",
+        longTitle: "Hatynka Babky Izhachky (summer version)",
       },
     ],
     rental_price: 900,
@@ -143,10 +149,12 @@ export const houses = [
       {
         language: "uk",
         text: "Комора Де Люкс",
+        longTitle: "Комора Де Люкс",
       },
       {
         language: "en",
         text: "Komora De Lyuks",
+        longTitle: "Komora De Lyuks",
       },
     ],
     rental_price: 1300,
@@ -189,10 +197,12 @@ export const houses = [
       {
         language: "uk",
         text: "Опочивальня",
+        longTitle: "Опочивальня",
       },
       {
         language: "en",
         text: "Opochyvalnia",
+        longTitle: "Opochyvalnia",
       },
     ],
     rental_price: 1300,
@@ -235,10 +245,12 @@ export const houses = [
       {
         language: "uk",
         text: "Горниця",
+        longTitle: "Горниця",
       },
       {
         language: "en",
         text: "Hornytsia",
+        longTitle: "Hornytsia",
       },
     ],
     rental_price: 1300,
@@ -283,10 +295,12 @@ export const houses = [
       {
         language: "uk",
         text: "Майстерня Гномів",
+        longTitle: "Майстерня Гномів",
       },
       {
         language: "en",
         text: "Maisternia Hnomiv",
+        longTitle: "Maisternia Hnomiv",
       },
     ],
     rental_price: 1800,
@@ -308,7 +322,7 @@ export const houses = [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140208/vwkp1h4tgydkjidg37id.jpg",
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140209/frs6hzdfshgjby8h7ffn.jpg",
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140210/f4mbwx55yvyjmrif2nwl.jpg",
-      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140210/cnfarw7ycza4dcyqvwbg.jpg"
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140210/cnfarw7ycza4dcyqvwbg.jpg",
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345878/zkesaqmdsfsk2ofwzy4n.jpg",
@@ -333,11 +347,13 @@ export const houses = [
     title: [
       {
         language: "uk",
-        text: "Теремок-1, Теремок-2",
+        text: "Теремок",
+        longTitle: "Теремок-1, Теремок-2",
       },
       {
         language: "en",
-        text: "Teremok-1б Teremok-2",
+        text: "Teremok",
+        longTitle: "Teremok-1, Teremok-2",
       },
     ],
     rental_price: 750,
@@ -379,10 +395,12 @@ export const houses = [
       {
         language: "uk",
         text: "Хороми",
+        longTitle: "Хороми",
       },
       {
         language: "en",
         text: "Khoromy",
+        longTitle: "Khoromy",
       },
     ],
     rental_price: 0,
@@ -394,37 +412,37 @@ export const houses = [
     max_children: 0,
     rooms: [
       {
-        name: "hornytsia",
+        name: "khoromy-didusia-1",
         title: [
           {
             language: "uk",
-            text: "Горниця",
+            text: "Хороми Дідуся (1 поверх)",
           },
           {
             language: "en",
-            text: "Hornytsia",
+            text: "Khoromy Didusia (1 floor)",
           },
         ],
-        rental_price: 1300,
+        rental_price: 1600,
         price_addons: {
           adult: 200,
           child: 150,
         },
         max_adults: 2,
-        max_children: 1,
+        max_children: 2,
         rooms: [],
         // fake
         photoDecor: "/images/houses/house/decor/teremok.svg",
         // fake
         swiper: [
-          "/images/houses/house/svitlytsia/svitlytsia-1.png",
-          "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
-          "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+          "/images/houses/house/khoromy-didusia-1/khoromy-didusia-1-1.png",
+          "/images/houses/house/khoromy-didusia-1/khoromy-didusia-1-2.png",
+          "/images/houses/house/khoromy-didusia-1/khoromy-didusia-1-3.png",
         ],
         photo: [
           "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
         ],
-        text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat qui dolorum corrupti ab nisi impedit, ad, exercitationem repellendus saepe iste dolorem ipsam! Doloribus, eum sed! Ad quam assumenda eveniet accusantium?",
+        text: `Запрошуємо до **Хоромів Дідуся**. Цей просторий номер на **першому поверсі** обладнаний усім необхідним для комфортного перебування. Інтер’єр виконаний з **натурального дерева**, що створює атмосферу справжньої гармонії з природою. В номері є зручне **двоспальне ліжко, телевізор,  душ і туалет**.\n\n Також в номері є **диван**, на якому комфортно можуть додатково розмітитись ще два гостя.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
         id: 5,
         coordinates: {
           topSmall: 35,
@@ -440,15 +458,15 @@ export const houses = [
         },
       },
       {
-        name: "hornytsia",
+        name: "khoromy-didusia-2",
         title: [
           {
             language: "uk",
-            text: "Горниця",
+            text: "Хороми Дідуся (2 поверх)",
           },
           {
             language: "en",
-            text: "Hornytsia",
+            text: "Khoromy Didusia (2 floor)",
           },
         ],
         rental_price: 1300,
@@ -463,14 +481,14 @@ export const houses = [
         photoDecor: "/images/houses/house/decor/teremok.svg",
         // fake
         swiper: [
-          "/images/houses/house/svitlytsia/svitlytsia-1.png",
-          "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
-          "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+          "/images/houses/house/khoromy-didusia-2/khoromy-didusia-2-1.png",
+          "/images/houses/house/khoromy-didusia-2/khoromy-didusia-2-2.png",
+          "/images/houses/house/khoromy-didusia-2/khoromy-didusia-2-3.png",
         ],
         photo: [
           "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
         ],
-        text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat qui dolorum corrupti ab nisi impedit, ad, exercitationem repellendus saepe iste dolorem ipsam! Doloribus, eum sed! Ad quam assumenda eveniet accusantium?",
+        text: `Ласкаво запрошуємо до **другого номера Хоромів Дідуся**. Цей **затишний номер на другому поверсі** пропонує всі зручності для вашого комфортного перебування. В номері є **два односпальних ліжка, душ і туалет, холодильник та телевізор**, а також краєвид на мальовничий ліс, який додає особливого шарму відпочинку.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
         id: 5,
         coordinates: {
           topSmall: 35,
@@ -486,15 +504,61 @@ export const houses = [
         },
       },
       {
-        name: "hornytsia",
+        name: "khoromy-babusi-1",
         title: [
           {
             language: "uk",
-            text: "Горниця",
+            text: "Хороми Бабусі (1 поверх)",
           },
           {
             language: "en",
-            text: "Hornytsia",
+            text: "Khoromy Babusi (1 floor)",
+          },
+        ],
+        rental_price: 1600,
+        price_addons: {
+          adult: 200,
+          child: 150,
+        },
+        max_adults: 2,
+        max_children: 2,
+        rooms: [],
+        // fake
+        photoDecor: "/images/houses/house/decor/teremok.svg",
+        // fake
+        swiper: [
+          "/images/houses/house/khoromy-babusi-1/khoromy-babusi-1-1.png",
+          "/images/houses/house/khoromy-babusi-1/khoromy-babusi-1-2.png",
+          "/images/houses/house/khoromy-babusi-1/khoromy-babusi-1-3.png",
+        ],
+        photo: [
+          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
+        ],
+        text: `Запрошуємо до **Хоромів Бабусі**. Цей просторий номер на **першому поверсі** обладнаний усім необхідним для комфортного перебування. Інтер’єр виконаний з **натурального дерева**, що створює атмосферу справжньої гармонії з природою. В номері є зручне **двоспальне ліжко, телевізор, душ і туалет**.\n\n Також в номері є **диван**, на якому комфортно можуть додатково розмітитись ще **два гостя**.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
+        id: 5,
+        coordinates: {
+          topSmall: 35,
+          leftSmall: 235,
+          topSmallDifference: 35,
+          leftSmallDifference: 245,
+          topMedium: 70,
+          leftMedium: 480,
+          topMediumDifference: 40,
+          leftMediumDifference: 300,
+          topLarge: 110,
+          leftLarge: 780,
+        },
+      },
+      {
+        name: "khoromy-babusi-2",
+        title: [
+          {
+            language: "uk",
+            text: "Хороми Бабусі (2 поверх)",
+          },
+          {
+            language: "en",
+            text: "Khoromy Babusi (2 floor)",
           },
         ],
         rental_price: 1300,
@@ -509,14 +573,14 @@ export const houses = [
         photoDecor: "/images/houses/house/decor/teremok.svg",
         // fake
         swiper: [
-          "/images/houses/house/svitlytsia/svitlytsia-1.png",
-          "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
-          "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+          "/images/houses/house/khoromy-babusi-2/khoromy-babusi-2-1.png",
+          "/images/houses/house/khoromy-babusi-2/khoromy-babusi-2-2.png",
+          "/images/houses/house/khoromy-babusi-2/khoromy-babusi-2-3.png",
         ],
         photo: [
           "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
         ],
-        text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat qui dolorum corrupti ab nisi impedit, ad, exercitationem repellendus saepe iste dolorem ipsam! Doloribus, eum sed! Ad quam assumenda eveniet accusantium?",
+        text: `Ласкаво запрошуємо до **другого номера Хоромів Бабусі**. Цей **затишний номер на другому поверсі** пропонує всі зручності для вашого комфортного перебування. В номері є **два односпальних ліжка, душ і туалет, холодильник та телевізор**, а також краєвид на мальовничий ліс, який додає особливого шарму відпочинку.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
         id: 5,
         coordinates: {
           topSmall: 35,
@@ -532,6 +596,146 @@ export const houses = [
         },
       },
     ],
+    // rooms: [
+    //   {
+    //     name: "hornytsia",
+    //     title: [
+    //       {
+    //         language: "uk",
+    //         text: "Горниця",
+    //       },
+    //       {
+    //         language: "en",
+    //         text: "Hornytsia",
+    //       },
+    //     ],
+    //     rental_price: 1300,
+    //     price_addons: {
+    //       adult: 200,
+    //       child: 150,
+    //     },
+    //     max_adults: 2,
+    //     max_children: 1,
+    //     rooms: [],
+    //     // fake
+    //     photoDecor: "/images/houses/house/decor/teremok.svg",
+    //     // fake
+    //     swiper: [
+    //       "/images/houses/house/svitlytsia/svitlytsia-1.png",
+    //       "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
+    //       "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+    //     ],
+    //     photo: [
+    //       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
+    //     ],
+    //     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat qui dolorum corrupti ab nisi impedit, ad, exercitationem repellendus saepe iste dolorem ipsam! Doloribus, eum sed! Ad quam assumenda eveniet accusantium?",
+    //     id: 5,
+    //     coordinates: {
+    //       topSmall: 35,
+    //       leftSmall: 235,
+    //       topSmallDifference: 35,
+    //       leftSmallDifference: 245,
+    //       topMedium: 70,
+    //       leftMedium: 480,
+    //       topMediumDifference: 40,
+    //       leftMediumDifference: 300,
+    //       topLarge: 110,
+    //       leftLarge: 780,
+    //     },
+    //   },
+    //   {
+    //     name: "hornytsia",
+    //     title: [
+    //       {
+    //         language: "uk",
+    //         text: "Горниця",
+    //       },
+    //       {
+    //         language: "en",
+    //         text: "Hornytsia",
+    //       },
+    //     ],
+    //     rental_price: 1300,
+    //     price_addons: {
+    //       adult: 200,
+    //       child: 150,
+    //     },
+    //     max_adults: 2,
+    //     max_children: 1,
+    //     rooms: [],
+    //     // fake
+    //     photoDecor: "/images/houses/house/decor/teremok.svg",
+    //     // fake
+    //     swiper: [
+    //       "/images/houses/house/svitlytsia/svitlytsia-1.png",
+    //       "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
+    //       "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+    //     ],
+    //     photo: [
+    //       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
+    //     ],
+    //     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat qui dolorum corrupti ab nisi impedit, ad, exercitationem repellendus saepe iste dolorem ipsam! Doloribus, eum sed! Ad quam assumenda eveniet accusantium?",
+    //     id: 5,
+    //     coordinates: {
+    //       topSmall: 35,
+    //       leftSmall: 235,
+    //       topSmallDifference: 35,
+    //       leftSmallDifference: 245,
+    //       topMedium: 70,
+    //       leftMedium: 480,
+    //       topMediumDifference: 40,
+    //       leftMediumDifference: 300,
+    //       topLarge: 110,
+    //       leftLarge: 780,
+    //     },
+    //   },
+    //   {
+    //     name: "hornytsia",
+    //     title: [
+    //       {
+    //         language: "uk",
+    //         text: "Горниця",
+    //       },
+    //       {
+    //         language: "en",
+    //         text: "Hornytsia",
+    //       },
+    //     ],
+    //     rental_price: 1300,
+    //     price_addons: {
+    //       adult: 200,
+    //       child: 150,
+    //     },
+    //     max_adults: 2,
+    //     max_children: 1,
+    //     rooms: [],
+    //     // fake
+    //     photoDecor: "/images/houses/house/decor/teremok.svg",
+    //     // fake
+    //     swiper: [
+    //       "/images/houses/house/svitlytsia/svitlytsia-1.png",
+    //       "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
+    //       "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+    //     ],
+    //     photo: [
+    //       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
+    //     ],
+    //     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat qui dolorum corrupti ab nisi impedit, ad, exercitationem repellendus saepe iste dolorem ipsam! Doloribus, eum sed! Ad quam assumenda eveniet accusantium?",
+    //     id: 5,
+    //     coordinates: {
+    //       topSmall: 35,
+    //       leftSmall: 235,
+    //       topSmallDifference: 35,
+    //       leftSmallDifference: 245,
+    //       topMedium: 70,
+    //       leftMedium: 480,
+    //       topMediumDifference: 40,
+    //       leftMediumDifference: 300,
+    //       topLarge: 110,
+    //       leftLarge: 780,
+    //     },
+    //   },
+    // ],
     // fake
     // photoDecor: "/images/houses/house/decor/khoromy.svg",
     photoDecor: "/images/houses/house/decor/khoromy.svg",

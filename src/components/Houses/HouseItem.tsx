@@ -34,7 +34,7 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
   ref
 ) {
   const locale = useLocale();
-  const t = useTranslations('HouseItem');
+  const t = useTranslations("HouseItem");
   const path = usePathname();
   const pathName = path.split("/")[2];
   const { push } = useRouter();
@@ -80,7 +80,9 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
           {!!rental_price ? (
             <>
               <Icon name="pocket" className={s.pocketIcon} />
-              <span className={s.price}>{t('rateBase', {price: rental_price})}</span>
+              <span className={s.price}>
+                {t("rateBase", { price: rental_price })}
+              </span>
             </>
           ) : null}
         </div>
