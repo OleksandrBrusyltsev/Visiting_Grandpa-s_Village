@@ -3,7 +3,8 @@
 
 .rulesTitleWrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: -30px;
 }
 
 .rulesTitle {
@@ -15,8 +16,8 @@
   margin-right: -50px;
   font-weight: 600;
   line-height: 23.43px;
-   @include mixins.media-min(375px) {
-    width: 232px;
+  @include mixins.media-min(450px) {
+    width: 280px;
   }
 }
 
@@ -24,4 +25,81 @@
   width: 178px;
   height: 149px;
   margin-right: -60px;
+}
+
+.iconErrow {
+  margin-bottom: 14px;
+}
+
+.rulesRememberList {
+  margin-bottom: -40px;
+}
+
+.rulesItem {
+  text-align: left;
+}
+
+.rulesItem:not(:last-child) {
+  margin-bottom: 38px;
+}
+
+.rulesItem:last-child {
+  margin-bottom: -20px;
+}
+
+.ruleTitle {
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-body-big);
+  font-weight: 600;
+  line-height: 26.4px;
+  margin-bottom: 10px;
+}
+
+.ruleDescription {
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 300;
+  line-height: 18.56px;
+}
+
+.rulesRememberList {
+  margin-bottom: 100px;
+  color: rgba(var(--color-base-green));
+}
+
+.itemImg {
+  width: 206px;
+  height: auto;
+  margin-right: -150px;
+  margin-bottom: -50%;
+}
+
+.rulesRememberItemFirst {
+  width: 190px;
+  margin-bottom: 24px;
+}
+
+.rulesRememberItem,
+.rulesRememberItemFirst {
+  font-family: var(--f-family-headline);
+  font-size: var(--f-size-button-small);
+  font-weight: 600;
+  line-height: 22px;
+  text-align: left;
+}
+
+.rulesRememberItemSpan1 {
+  width: 160px;
+}
+
+.rulesRememberItemSpan2 {
+  width: 180px;
+}
+
+.rulesRememberItem {
+  text-align: left;
+}
+
+.rulesRememberItem:not(:last-child) {
+  margin-bottom: 24px;
 }
