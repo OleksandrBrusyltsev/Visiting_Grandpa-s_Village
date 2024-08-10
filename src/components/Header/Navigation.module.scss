@@ -1,64 +1,41 @@
 @use "../../styles/mixins" as mixins;
 @use "../../styles/variables";
 
-.container {
-  display: none;
-
-  @include mixins.media-min(variables.$mobile) {
-    margin: 0 auto;
-    min-width: 707px;
-    // margin-top: 16px;
-    // margin-bottom: 80px;
-    padding: 16px 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @include mixins.media-min(variables.$breakpoint-laptop) {
-    padding: 16px 50px;
-    min-width: 1180px;
-  }
-
-  @include mixins.media-min(variables.$pc) {
-    padding: 16px 130px;
-    min-width: 1440px;
-  
-  }
-}
-
 .list {
-  display: flex;
-  gap: 52px;
-  justify-content: space-evenly;
-  align-items: center;
-
-  // width: 707px;
-
-  @include mixins.media-min(variables.$breakpoint-laptop) {
-    // width: 1180px;
-    gap: 170px;
+  display: none;
+  
+  @include mixins.media-min(variables.$mobile) {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
   }
 }
 
 .item {
   padding: 10px;
-  width: 100%;
-  text-align: center;
-  text-wrap: nowrap;
-
-  color: rgba(var(--color-black), 1);
+  color: rgb(var(--color-black));
   font-family: var(--f-family-main);
   font-size: var(--f-size-body);
   font-weight: 400;
   line-height: normal;
+  width: max-content; 
+  white-space: nowrap;
+  transition: transform 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
+  
+  &::before {
+    content: attr(data-text);
+    font-weight: 700;
+    visibility: hidden;
+    height: 0;
+    display: block;
+    overflow: hidden;
+}
 
-  transition: transform 0.3s ease, color 0.3s ease;
-
-  &:hover,
-  &:focus {
-    color: rgb(var(--color-base-green));
-    transform: translateY(3px);
+  @media (hover: hover){
+    &:hover {
+      color: rgb(var(--color-base-green));
+      transform: translateY(3px);
+    }
   }
 
   &:active {

@@ -1,5 +1,4 @@
 import House from "@/components/House/House";
-
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,14 +7,14 @@ export const metadata: Metadata = {
     "Обирайте проживання у затишних хатинках, теремках та горницях зі зручностями біля Голубих озер Чернігівської області.",
 };
 
-type Props = { params: { house: string } };
+type Props = { params: { room: string } };
 
 export default function Page({ params }: Props) {
-  const { house } = params;
+  const { room } = params;
 
   return (
     <div className="container">
-      <House id={house} />
+      <House id={room} />
     </div>
   );
 }

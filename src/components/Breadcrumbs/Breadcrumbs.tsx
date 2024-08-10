@@ -42,6 +42,9 @@ export default function Breadcrumbs() {
             data = await getData('gallery');
           } else if(key === 'house') {
             data = await getData('houses');
+          } else if(key === 'room') {
+            const tmpData: HouseItem[] = await getData('houses');
+            data = tmpData.filter(item => item.name === params['house'])[0].rooms;
           }
 
           const name = params[key as keyof typeof params];

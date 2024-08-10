@@ -32,7 +32,7 @@ const LangBtn = () => {
       >
         UA
       </button>
-      <p>/</p>
+      <p>/&nbsp;</p>
       <button
         disabled={isPending}
         value="en"

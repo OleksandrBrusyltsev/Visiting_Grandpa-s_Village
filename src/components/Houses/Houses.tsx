@@ -159,34 +159,14 @@ export default function Houses({ items }: Props) {
                 clearProps: "all",
               },
             })
-            .from(`.${s.descr1}`, {
-              y: -150,
-            })
-            .from(
-              `.${s.map}`,
-              {
-                x: -150,
-                y: 150,
-              },
-              "<"
-            )
-            .from(
-              [`.${s.descr2}`, `.${s.grandpa}`],
-              {
-                x: 150,
-              },
-              "<"
-            );
+            .from(`.${s.descr1}`, {y: -150})
+            .from(`.${s.map}`, {x: -150, y: 150}, "<")
+            .from([`.${s.descr2}`, `.${s.grandpa}`], {x: 150}, "<" );
 
           //booking component and houses list title animation
           mainTimeline
-            .from(`.${s.bookingForm}`, {
-              y: 100,
-              scale: 0.9,
-            })
-            .from(`.${s.housesTitle}`, {
-              y: 100,
-            });
+            .from(`.${s.bookingForm}`, {y: 100,scale: 0.9})
+            .from(`.${s.housesTitle}`, {y: 100});
 
           housesRef.current.forEach((h, i) => {
             gsap.fromTo(
@@ -213,9 +193,10 @@ export default function Houses({ items }: Props) {
         //houses list animation
         if (isTablet || isDesktop) {
           ScrollTrigger.batch(housesRef.current, {
+            interval: 0.2,
             batchMax: 2,
             onEnter: (batch) =>
-              mainTimeline.fromTo(
+              gsap.fromTo(
                 batch,
                 {
                   x: (i) => (i % 2 ? 100 : -100),
