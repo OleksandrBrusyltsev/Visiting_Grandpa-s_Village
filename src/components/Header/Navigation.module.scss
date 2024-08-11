@@ -21,7 +21,7 @@
   width: max-content; 
   white-space: nowrap;
   transition: transform 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
-  
+  text-align: center;
   &::before {
     content: attr(data-text);
     font-weight: 700;

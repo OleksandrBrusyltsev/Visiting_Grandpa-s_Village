@@ -12,6 +12,13 @@
     @include mixins.media-min(variables.$breakpoint-laptop) {
         margin-top: 36px;
     }
+    .breadcrumbsList {
+        display: flex;
+        gap: 10px;
+        @include mixins.media-min(variables.$mobile) {
+            gap: 22px;
+        }
+    }
 }
 .arrowBack {
     margin-top: 19px;

@@ -16,7 +16,7 @@ export default function BreadcrumbItem({item}: BreadcrumbItemProps) {
     <>
       {href ? 
         <li className={s.breadcrumb}><Link href={href}>{text}</Link></li> :
-        <li className={s.breadcrumb}>{text}</li>}
+        <li className={s.breadcrumb} aria-current="page">{text}</li>}
     </>
   )
 }

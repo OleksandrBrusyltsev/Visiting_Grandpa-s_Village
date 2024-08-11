@@ -4,9 +4,7 @@
 .hero {
     @include mixins.mak-green;
     position: relative;
-    @media (hover: none) {
-        overflow-x: clip;
-    }
+    overflow-x: clip;
 }
 .heroTitle {
     margin-top: 16px;
@@ -80,9 +78,7 @@
     margin-top: 14px;
     margin-bottom: 62px;
     padding-top: calc(76px * 100vw / 375px);
-    @media (hover: none) {
-        overflow-x: clip;
-    }
+    overflow-x: clip;
 }
 .entertainmentGroup {
     list-style: none;

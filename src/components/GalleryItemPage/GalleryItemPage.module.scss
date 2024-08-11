@@ -11,7 +11,6 @@
         }
     }
     @media (hover: none){
-        overflow-x: clip;
         .desktopOnly {
             display: none;
         }
@@ -19,16 +18,8 @@
             display: inline;
         }
     }
-    .desktopOnly {
-        display: none;
-    }
-    .mobileOnly {
-        display: inline;
-    }
     margin-bottom: 92px;
-    @media (min-width: 1024px) {
-        overflow-x: clip;
-    }
+    overflow-x: clip;
 }
 .hero, 
 .main {

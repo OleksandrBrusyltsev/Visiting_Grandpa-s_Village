@@ -2,12 +2,7 @@
 @use "../../styles/variables";
 
 .overflowContainer {
-    @media (hover: none) {
-        overflow-x: clip;
-    }
-    @media (min-width: 1024px) {
-        overflow-x: hidden;
-    }
+    overflow-x: clip;
 }
 .backgroundImages {
     max-width: 450px;

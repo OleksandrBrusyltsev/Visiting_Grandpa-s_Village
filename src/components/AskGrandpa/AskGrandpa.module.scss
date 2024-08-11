@@ -12,16 +12,18 @@
   align-items: flex-end;
   margin-bottom: 40px;
   row-gap: 40px;
+  overflow-x: clip;
+
   @include mixins.media-min($mobile) {
     margin-bottom: 100px;
     row-gap: 80px;
   }
-  @media (hover: none) {
-    overflow-x: clip;
-  }
-  @media (min-width: 1024px) {
-    overflow-x: clip;
-  }
+  // @media (hover: none) {
+  //   overflow-x: clip;
+  // }
+  // @media (min-width: 1024px) {
+  //   overflow-x: clip;
+  // }
 }
 
 .headlineWrapper {

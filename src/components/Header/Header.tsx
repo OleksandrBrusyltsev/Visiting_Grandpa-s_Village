@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import Link from "next/link";
@@ -14,6 +14,7 @@ import PopupMenu from "./PopupMenu";
 import LangBtn from "../LangBtn/LangBtn";
 import Burger from "../../assets/icons/icon-burger.svg"
 import css from "./Header.module.scss";
+import { MatchMediaContext } from "@/context/MatchMediaContext";
 
 const image = "/images/logo-main.svg";
 const alt = "Logo main";
@@ -27,6 +28,7 @@ const Header = () => {
   const handlePopup = () => {
     setVisible(!isVisible);
   };
+  const {isMobile} = useContext(MatchMediaContext);
 
   return (
     <>
@@ -54,7 +56,7 @@ const Header = () => {
           </Link>
 
           <div className={css.headerBox}>
-            <LangBtn />
+            {isMobile ? null : <LangBtn />}
 
             <button
               className={css.userBtn}
