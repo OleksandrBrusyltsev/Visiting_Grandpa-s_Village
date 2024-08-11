@@ -22,8 +22,12 @@ const PopupMenu: React.FC<PopupMenuProps> = ({ handlePopup }) => {
 
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
     if (menuRef.current) {
       gsap.fromTo(menuRef.current, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+    }
+    return () => {
+      document.body.style.overflow = '';
     }
   }, []);
 

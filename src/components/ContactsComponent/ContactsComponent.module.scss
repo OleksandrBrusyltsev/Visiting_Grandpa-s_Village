@@ -4,12 +4,6 @@
 .contactsContainer {
   margin-top: 16px;
 
-  @media (hover: none) {
-    overflow-x: hidden;
-  }
-  @media (min-width: 1024px) {
-    overflow-x: hidden;
-  }
   @include mixins.media-min(variables.$breakpoint-laptop) {
     margin-top: 40px;
   }

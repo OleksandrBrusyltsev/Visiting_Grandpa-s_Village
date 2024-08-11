@@ -1,9 +1,6 @@
 @use "../../styles/mixins" as mixins;
 @use "../../styles/variables";
 
-.overflowContainer {
-    overflow-x: clip;
-}
 .backgroundImages {
     max-width: 450px;
     margin: 0 auto 89px;

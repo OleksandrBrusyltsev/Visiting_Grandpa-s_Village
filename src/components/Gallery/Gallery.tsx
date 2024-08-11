@@ -96,7 +96,7 @@ export default function Gallery({items}: Props) {
   });
   
   return (
-    <div className={`${s.overflowContainer} container`}>
+    <div className='container'>
         <div className={s.backgroundImages}>
           <section className={s.hero}>
             <div className={s.heroWrapper}>

@@ -220,7 +220,7 @@ export default function Houses({ items }: Props) {
   });
 
   return (
-    <div className={s.houses}>
+    <>
       <section className={`${s.hero} container`}>
         <div className={s.heroWrapper}>
           <p className={s.descr1}>
@@ -282,6 +282,6 @@ export default function Houses({ items }: Props) {
           </>
         </HousesList>
       </main>
-    </div>
+    </>
   );
 }
