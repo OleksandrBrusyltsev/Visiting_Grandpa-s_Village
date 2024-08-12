@@ -6,52 +6,28 @@
 }
 
 .container {
-  // min-width: 375px;
   width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 50px;
-  padding: 6px 17.5px;
+  padding: 6px 24px;
   height: 100px;
   max-width: 1440px;
   margin: 0 auto;
 
-  @include mixins.media-min(variables.$breakpoint-tablet-min) {
-    min-width: 768px;
+  @include mixins.media-min(variables.$mobile) {
     padding: 6px 30px;
     height: 160px;
     align-items: center;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    min-width: 1280px;
     padding: 6px 80px;
   }
-}
 
-// .burgerIcon {
-//   width: 100%;
-//   height: auto;
-
-//   &:hover,
-//   &:active,
-//   &:focus {
-//     color: rgb(var(--color-natural-orange));
-//   }
-// }
-
-.userIcon {
-  width: 100%;
-  margin: auto;
-
-  &:hover,
-  &:focus {
-    color: rgb(var(--color-base-green));
-  }
-
-  &:active {
-    color: rgb(var(--color-natural-orange));
+  @include mixins.media-min(variables.$pc) {
+    padding: 6px 130px;
   }
 }
 
@@ -61,8 +37,13 @@
   align-items: center;
   padding-bottom: 10px;
 
-  @include mixins.media-min(variables.$breakpoint-tablet-min) {
+  @include mixins.media-min(variables.$mobile) {
     display: none;
+  }
+  &:active {
+    .burgerIcon span {
+      height: 3px;
+    }
   }
 }
 
@@ -103,27 +84,46 @@
 .userBtn {
   width: 28px;
   cursor: pointer;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
   color: rgb(var(--color-base-green));
+  svg path {
+    transition: all 0.2s ease;
+  }
   padding-bottom: 10px;
+
+  //tmp styles
+  opacity: 0;
+  visibility: hidden;
+
+  @media (hover: hover) {
+    &:hover svg path {
+      stroke-width: 3;
+    }
+  }
+  &:active svg path {
+    stroke-width: 3;
+    stroke: rgb(var(--color-natural-orange));
+  }
+
+  @include mixins.media-min(variables.$mobile) {
+    padding-bottom: 0;
+  }
 }
 
 .headerBtn {
-  @include mixins.media-max(variables.$breakpoint-mobile-max) {
-    display: none;
+  display: none;
+  @include mixins.media-min(variables.$mobile) {
+    display: unset;
   }
 }
 
 .headerBox {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 46px;
 }
 
 .mainLogo {
-  @include mixins.media-min(variables.$breakpoint-tablet-min) {
+  @include mixins.media-min(variables.$mobile) {
     width: 277px;
     height: 135px;
   }

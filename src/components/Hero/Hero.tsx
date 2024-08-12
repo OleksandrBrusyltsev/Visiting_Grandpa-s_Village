@@ -11,12 +11,18 @@ import { MatchMediaContext } from "@/context/MatchMediaContext";
 
 import css from "./Hero.module.scss";
 
+// const grandpa1 =
+//   "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517241/oz1wa2kj9szz2pdrsuvr.png";
+// const grandpa2 =
+//   "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517243/zpoyooazmets2seyguqz.png";
+// const grandpa3 =
+//   "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517244/ptfpy5qrmul4gp7rqyig.png";
 const grandpa1 =
-  "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517241/oz1wa2kj9szz2pdrsuvr.png";
+  "/images/grandpas/Grandpa1.png";
 const grandpa2 =
-  "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517243/zpoyooazmets2seyguqz.png";
+  "/images/grandpas/Grandpa2.png";
 const grandpa3 =
-  "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517244/ptfpy5qrmul4gp7rqyig.png";
+  "/images/grandpas/Grandpa5.png";
 
 const photo1 =
   "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719519363/uykbyov6dfqg7l8y4nqs.png";

@@ -16,21 +16,17 @@
     font-family: var(--f-family-main);
     position: relative;
     margin: 0 auto;
-    overflow-x: clip;
-    @include mixins.media-min(variables.$mobile) {
-        width: 100%;
-        overflow-x: unset;
-    }
+
     &::before {
         position: absolute;
         content: '';
         background-repeat: no-repeat;
         top: 0;
         left: 0;
-        width: min(calc(360 * (604px - 100%)), 360px);
         aspect-ratio: 0.95;
         background-image: url('/images/grandpas/Grandpa4.png'), url('/images/backgrounds/christmasTrees.png');
-        background-size: 162px 174px, 360px 379px;
+        width: min(calc(340 * (604px - 100%)), 340px);
+        background-size: 162px 174px, 340px 359px;
         background-position: top left, top -100px left -114px;
         z-index: -1;
     }
@@ -46,9 +42,15 @@
         background-size: contain;
         z-index: -1;
     }
+  
     @include mixins.media-min(variables.$mobile) {
+        width: 100%;
         padding: 35px 100px;
         // gap: 46px;
+        &::before {
+            width: min(calc(360 * (604px - 100%)), 360px);
+            background-size: 162px 174px, 360px 379px;
+        }
     }
     .title {
         text-align: end;
