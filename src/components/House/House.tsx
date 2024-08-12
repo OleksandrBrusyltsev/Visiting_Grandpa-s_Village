@@ -16,11 +16,28 @@ type Props = { id: string };
 export default async function House({ id }: Props) {
   const locale = await getLocale();
   const data: HouseItem[] = await getData<HouseItem[]>("houses");
-  const house = data.find((item) => item.name === id);
+
+  // const house = data.find((item) => item.name === id);
+  // !!!
+  // const house = data.find((item) => item.rooms.name === id);
+  // const a = data.find((item) => console.log(item.rooms));
+  // !!!
+  let house = data.find((item) => item.name === id);
+  if (!house) {
+    for (const item of data) {
+      house = item.rooms.find((room) => room.name === id);
+      if (house) {
+        break;
+      }
+    }
+  }
 
   if (!house) {
     return <p>House not found</p>;
   }
+
+  // !!!
+  const isRoom = (house as any).rooms !== undefined;
 
   const {
     photo,
@@ -34,8 +51,16 @@ export default async function House({ id }: Props) {
     coordinates,
     price_addons,
     rooms,
-  } = house;
-  const title = house.title.filter((item) => item.language === locale)[0].text;
+    // !!!
+    // } = house;
+  } = isRoom ? (house as any) : { ...house, rooms: [] };
+
+  // const title = house.title.filter((item) => item.language === locale)[0].text;
+  // !!!
+  const title = isRoom
+    ? (house as any).title.filter((item: any) => item.language === locale)[0]
+        .text
+    : house.title.filter((item) => item.language === locale)[0].text;
 
   return (
     <div className={s.sectionWrapper}>
@@ -92,6 +117,7 @@ export default async function House({ id }: Props) {
         </div>
       ) : (
         <Gallery pictures={swiper} />
+        // <Gallery pictures={(house as any).swiper} />
       )}
 
       <div className={`${s.contentWrapper}`}>
@@ -137,7 +163,7 @@ export default async function House({ id }: Props) {
               То ж маємо:
             </p>
             <div className={s.roomsWrapper}>
-              {rooms.map((room) => (
+              {rooms.map((room: any) => (
                 <HouseItem data={room} key={room.id} />
               ))}
             </div>

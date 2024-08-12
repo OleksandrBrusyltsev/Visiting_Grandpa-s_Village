@@ -572,9 +572,9 @@ export const houses = [
         photoDecor: "/images/houses/house/decor/komora-de-lyuks.svg",
         treesDecor: "/images/houses/house/komora-de-lyuks/trees-decor.png",
         swiper: [
-          "/images/houses/house/khoromy-babusi-2/khoromy-babusi-2-1.png",
-          "/images/houses/house/khoromy-babusi-2/khoromy-babusi-2-2.png",
-          "/images/houses/house/khoromy-babusi-2/khoromy-babusi-2-3.png",
+          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
+          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
+          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
         ],
         photo: [
           "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
