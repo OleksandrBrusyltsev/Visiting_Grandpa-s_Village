@@ -17,11 +17,6 @@ export default async function House({ id }: Props) {
   const locale = await getLocale();
   const data: HouseItem[] = await getData<HouseItem[]>("houses");
 
-  // const house = data.find((item) => item.name === id);
-  // !!!
-  // const house = data.find((item) => item.rooms.name === id);
-  // const a = data.find((item) => console.log(item.rooms));
-  // !!!
   let house = data.find((item) => item.name === id);
   if (!house) {
     for (const item of data) {
@@ -36,7 +31,6 @@ export default async function House({ id }: Props) {
     return <p>House not found</p>;
   }
 
-  // !!!
   const isRoom = (house as any).rooms !== undefined;
 
   const {
@@ -51,12 +45,8 @@ export default async function House({ id }: Props) {
     coordinates,
     price_addons,
     rooms,
-    // !!!
-    // } = house;
   } = isRoom ? (house as any) : { ...house, rooms: [] };
 
-  // const title = house.title.filter((item) => item.language === locale)[0].text;
-  // !!!
   const title = isRoom
     ? (house as any).title.filter((item: any) => item.language === locale)[0]
         .text
@@ -117,7 +107,6 @@ export default async function House({ id }: Props) {
         </div>
       ) : (
         <Gallery pictures={swiper} />
-        // <Gallery pictures={(house as any).swiper} />
       )}
 
       <div className={`${s.contentWrapper}`}>

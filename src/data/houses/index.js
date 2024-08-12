@@ -432,15 +432,17 @@ export const houses = [
         max_children: 2,
         rooms: [],
         // fake
-        photoDecor: "/images/houses/house/decor/teremok.svg",
+        photoDecor: "/images/houses/house/decor/khoromy-didusia-1.svg",
+        treesDecor:
+          "/images/houses/house/khoromy/khoromy-didusia-1/trees-decor.png",
         // fake
         swiper: [
-          "/images/houses/house/khoromy-didusia-1/khoromy-didusia-1-1.png",
-          "/images/houses/house/khoromy-didusia-1/khoromy-didusia-1-2.png",
-          "/images/houses/house/khoromy-didusia-1/khoromy-didusia-1-3.png",
+          "/images/houses/house/khoromy/khoromy-didusia-1/khoromy-didusia-1-1.png",
+          "/images/houses/house/khoromy/khoromy-didusia-1/khoromy-didusia-1-2.png",
+          "/images/houses/house/khoromy/khoromy-didusia-1/khoromy-didusia-1-3.png",
         ],
         photo: [
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
+          "/images/houses/house/khoromy/khoromy-didusia-1/khoromy-didusia-1-1.png",
         ],
         text: `Запрошуємо до **Хоромів Дідуся**. Цей просторий номер на **першому поверсі** обладнаний усім необхідним для комфортного перебування. Інтер’єр виконаний з **натурального дерева**, що створює атмосферу справжньої гармонії з природою. В номері є зручне **двоспальне ліжко, телевізор,  душ і туалет**.\n\n Також в номері є **диван**, на якому комфортно можуть додатково розмітитись ще два гостя.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
         id: 5,
@@ -477,16 +479,17 @@ export const houses = [
         max_adults: 5,
         max_children: 0,
         rooms: [],
-        photoDecor: "/images/houses/house/decor/maisternia-hnomiv.svg",
-        treesDecor: "/images/houses/house/maisternia-hnomiv/trees-decor.png",
+        photoDecor: "/images/houses/house/decor/khoromy-didusia-2.svg",
+        treesDecor:
+          "/images/houses/house/khoromy/khoromy-didusia-2/trees-decor.png",
         // fake
         swiper: [
-          "/images/houses/house/khoromy-didusia-2/khoromy-didusia-2-1.png",
-          "/images/houses/house/khoromy-didusia-2/khoromy-didusia-2-2.png",
-          "/images/houses/house/khoromy-didusia-2/khoromy-didusia-2-3.png",
+          "/images/houses/house/khoromy/khoromy-didusia-2/khoromy-didusia-2-1.png",
+          "/images/houses/house/khoromy/khoromy-didusia-2/khoromy-didusia-2-2.png",
+          "/images/houses/house/khoromy/khoromy-didusia-2/khoromy-didusia-2-3.png",
         ],
         photo: [
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345878/zkesaqmdsfsk2ofwzy4n.jpg",
+          "/images/houses/house/khoromy/khoromy-didusia-2/khoromy-didusia-2-1.png",
         ],
         text: `Ласкаво запрошуємо до **другого номера Хоромів Дідуся**. Цей **затишний номер на другому поверсі** пропонує всі зручності для вашого комфортного перебування. В номері є **два односпальних ліжка, душ і туалет, холодильник та телевізор**, а також краєвид на мальовничий ліс, який додає особливого шарму відпочинку.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
         id: 5,
@@ -524,15 +527,17 @@ export const houses = [
         max_children: 2,
         rooms: [],
         // fake
-        photoDecor: "/images/houses/house/decor/teremok.svg",
+        photoDecor: "/images/houses/house/decor/khoromy-babusi-1.svg",
+        treesDecor:
+          "/images/houses/house/khoromy/khoromy-babusi-1/trees-decor.png",
         // fake
         swiper: [
-          "/images/houses/house/khoromy-babusi-1/khoromy-babusi-1-1.png",
-          "/images/houses/house/khoromy-babusi-1/khoromy-babusi-1-2.png",
-          "/images/houses/house/khoromy-babusi-1/khoromy-babusi-1-3.png",
+          "/images/houses/house/khoromy/khoromy-babusi-1/khoromy-babusi-1-1.png",
+          "/images/houses/house/khoromy/khoromy-babusi-1/khoromy-babusi-1-2.png",
+          "/images/houses/house/khoromy/khoromy-babusi-1/khoromy-babusi-1-3.png",
         ],
         photo: [
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
+          "/images/houses/house/khoromy/khoromy-babusi-1/khoromy-babusi-1-1.png",
         ],
         text: `Запрошуємо до **Хоромів Бабусі**. Цей просторий номер на **першому поверсі** обладнаний усім необхідним для комфортного перебування. Інтер’єр виконаний з **натурального дерева**, що створює атмосферу справжньої гармонії з природою. В номері є зручне **двоспальне ліжко, телевізор, душ і туалет**.\n\n Також в номері є **диван**, на якому комфортно можуть додатково розмітитись ще **два гостя**.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
         id: 5,
@@ -569,15 +574,17 @@ export const houses = [
         max_adults: 2,
         max_children: 1,
         rooms: [],
-        photoDecor: "/images/houses/house/decor/komora-de-lyuks.svg",
-        treesDecor: "/images/houses/house/komora-de-lyuks/trees-decor.png",
+        photoDecor: "/images/houses/house/decor/khoromy-babusi-2.svg",
+        treesDecor:
+          "/images/houses/house/khoromy/khoromy-babusi-2/trees-decor.png",
         swiper: [
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
+          "/images/houses/house/khoromy/khoromy-babusi-2/khoromy-babusi-2-1.png",
+          "/images/houses/house/khoromy/khoromy-babusi-2/khoromy-babusi-2-2.png",
+          "/images/houses/house/khoromy/khoromy-babusi-2/khoromy-babusi-2-3.png",
+          "/images/houses/house/khoromy/khoromy-babusi-2/khoromy-babusi-2-4.png",
         ],
         photo: [
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
+          "/images/houses/house/khoromy/khoromy-babusi-2/khoromy-babusi-2-1.png",
         ],
         text: `Ласкаво запрошуємо до **другого номера Хоромів Бабусі**. Цей **затишний номер на другому поверсі** пропонує всі зручності для вашого комфортного перебування. В номері є **два односпальних ліжка, душ і туалет, холодильник та телевізор**, а також краєвид на мальовничий ліс, який додає особливого шарму відпочинку.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
         id: 5,
@@ -601,9 +608,9 @@ export const houses = [
     treesDecor: "/images/houses/house/khoromy/trees-decor.png",
     // fake
     swiper: [
-      "/images/houses/house/svitlytsia/svitlytsia-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+      "/images/houses/house/khoromy/svitlytsia/svitlytsia-1.png",
+      "/images/houses/house/khoromy/svitlytsia/hatynka-dida-moroza-2-1.png",
+      "/images/houses/house/khoromy/svitlytsia/hatynka-dida-moroza-3-1.png",
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/czorzi3frevroezpzv45.jpg",

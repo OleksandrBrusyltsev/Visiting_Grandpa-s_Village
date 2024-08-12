@@ -20,31 +20,6 @@
     max-width: 1800px;
   }
 }
-.swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .imageWrapper {
-    width: 85%;
-    height: 100%;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    @media (orientation: portrait) and (hover: none) {
-      width: 90%;
-    }
-    img {
-      user-select: none;
-      object-fit: contain;
-    }
-  }
-}
-.swiper-button-prev,
-.swiper-button-next {
-  width: 50px;
-  height: 50px;
-  color: rgb(var(--color-base-green));
-}
 
 .swiper-pagination-bullet-active {
   background: rgb(var(--color-base-green));

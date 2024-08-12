@@ -13,8 +13,8 @@ import "swiper/scss";
 import "swiper/scss/pagination";
 import "swiper/scss/navigation";
 
+import "../../GalleryItemPage/SwiperGalleryItem.scss";
 import "./NewSwiper.scss";
-// import "../../GalleryItemPage/SwiperGalleryItem";
 
 interface GalleryType {
   pictures: string[];
