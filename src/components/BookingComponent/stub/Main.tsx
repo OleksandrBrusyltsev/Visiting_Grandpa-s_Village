@@ -163,6 +163,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                             autoComplete='off'
                             placeholder="+38 (012) 345 67 89"
                             required
+                            type='tel'
                             title=''
                             pattern="\+38\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}"
                             onInvalid={(e: any) => {

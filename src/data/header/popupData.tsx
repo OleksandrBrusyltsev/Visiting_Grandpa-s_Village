@@ -20,9 +20,9 @@ export const navigationLinks = [
       link: "contacts",
       text: "Знайти мене",
     },
-    {
-      id: 6,
-      link: "booking/rules",
-      text: "Правила перебування",
-    },
+    // {
+    //   id: 6,
+    //   link: "booking/rules",
+    //   text: "Правила перебування",
+    // },
   ];

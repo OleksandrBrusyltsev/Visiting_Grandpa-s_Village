@@ -27,12 +27,6 @@
     align-items: normal;
     padding: 0 130px;
   }
-  @media (hover: none) {
-    overflow-x: clip;
-  }
-  @media (min-width: 1024px) {
-    overflow-x: clip;
-  }
 }
 
 .section > .add1 {
@@ -147,7 +141,6 @@
   aspect-ratio: 1;
   max-width: 150px;
   float: right;
-  shape-outside: padding-box;
   @include mixins.media-min(variables.$mobile) {
     position: absolute;
     top: 25px;
@@ -920,12 +913,12 @@
 }
 
 .calendarBox {
-
-  top: 600px;
-  right: 50px;
-
-  @include mixins.media-min(variables.$pc) {
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    top: 600px;
+    right: 50px;
     position: absolute;
+  }
+  @include mixins.media-min(variables.$pc) {
     right: 180px;
   }
 }

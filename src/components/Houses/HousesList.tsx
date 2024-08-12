@@ -3,9 +3,9 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import s from './HousesList.module.scss';
 
-type Props = {children: React.ReactNode, data: HouseItem[]};
+type Props = {children: React.ReactNode, data: HouseItem[], patternOffset?: boolean};
 
-export default function HousesList({children, data}: Props) {
+export default function HousesList({children, data, patternOffset = true}: Props) {
     const listRef = useRef<HTMLElement | null>(null);
     const [size, setSize] = useState(0);
 
@@ -54,11 +54,12 @@ export default function HousesList({children, data}: Props) {
 
         if(window && window.innerWidth >= 768 ) {
             // baseBg - line pattern, baseImg - trees
-            let baseBgOffset =  window.innerWidth >= 1280 ? 140 : 100; 
+            let baseBgOffset = !patternOffset ? 0 : window.innerWidth >= 1280 ? 140 : 100; 
             let baseImgOffset = 0; 
 
             //line pattern height
-            bgSize =  window.innerWidth >= 1280 ? 1200 : 874; 
+            console.log(listRef.current.clientHeight);
+            bgSize = listRef.current.clientHeight < 1500 ? listRef.current.clientHeight : window.innerWidth < 1280 ? 874 : 1200; 
             //trees size
             imgSize =  window.innerWidth >= 1280 ? "383px 420px" : "324px 314px"; 
             //big trees (in the center)

@@ -42,6 +42,9 @@ export default function Breadcrumbs() {
             data = await getData('gallery');
           } else if(key === 'house') {
             data = await getData('houses');
+          } else if(key === 'room') {
+            const tmpData: HouseItem[] = await getData('houses');
+            data = tmpData.filter(item => item.name === params['house'])[0].rooms;
           }
 
           const name = params[key as keyof typeof params];
@@ -74,12 +77,15 @@ export default function Breadcrumbs() {
 
   return (
     !isMain ? <div className='container'>
-      <nav className={s.breadcrumbsWrapper}>
-        { breadcrumbs.map((item, i) => (<BreadcrumbItem item={item} key={i}/>)) }
+      <nav aria-label="Хлібні крошки" className={s.breadcrumbsWrapper}>
+        <ul role="breadcrumb" className={s.breadcrumbsList}>
+          { breadcrumbs.map((item, i) => (<BreadcrumbItem item={item} key={i}/>)) }
+        </ul>
       </nav>
       <button
         className={s.arrowBack}
         onClick={back }
+        aria-label="Повернутися на попередню сторінку"
         >
           <Icon name="arrow" className={s.iconArrow} />
       </button>

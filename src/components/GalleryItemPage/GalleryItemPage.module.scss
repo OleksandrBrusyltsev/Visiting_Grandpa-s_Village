@@ -11,7 +11,6 @@
         }
     }
     @media (hover: none){
-        overflow-x: clip;
         .desktopOnly {
             display: none;
         }
@@ -19,16 +18,8 @@
             display: inline;
         }
     }
-    .desktopOnly {
-        display: none;
-    }
-    .mobileOnly {
-        display: inline;
-    }
     margin-bottom: 92px;
-    @media (min-width: 1024px) {
-        overflow-x: clip;
-    }
+    overflow-x: clip;
 }
 .hero, 
 .main {
@@ -123,16 +114,16 @@
 }
 .callToAction {
     text-align: end;
+    .btnCallToAction {
+        max-width: 297px;
+        padding-block: 11.5px;
+    }
 }
 .slogan {
     font-size: var(--f-size-body);
     line-height: 1;
     max-width: 220px;
     margin: 50px 0 30px auto;
-}
-.btnCallToAction {
-    max-width: 297px;
-    padding-block: 11.5px;
 }
 .cloud {
     display: none;

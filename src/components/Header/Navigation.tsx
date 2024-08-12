@@ -12,21 +12,20 @@ import { usePathname } from "next/navigation";
 
 const Navigation = () => {
   const locale = useLocale();
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
-    <div className={css.container}>
-      <ul className={css.list}>
-        {navigationLinks.map(({ id, link, text }) => (
-          <li
-            key={id}
-            className={`${css.item} ${pathname.startsWith(`/${locale}/${link}`) ? css.active : ''}`}
-          >
-            <Link href={`/${locale}/${link}`}>{text}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className={`${css.list} container`}>
+      {navigationLinks.map(({ id, link, text }) => (
+        <li
+          key={id}
+          data-text={text}
+          className={`${css.item} ${pathname.startsWith(`/${locale}/${link}`) ? css.active : ''}`}
+        >
+          <Link href={`/${locale}/${link}`}>{text}</Link>
+        </li>
+      ))}
+    </ul>
   );
 };
 

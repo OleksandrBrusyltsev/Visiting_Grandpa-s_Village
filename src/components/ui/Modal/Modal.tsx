@@ -77,16 +77,17 @@ const Modal = forwardRef<ModalHandle, Props>(function Modal({children, isOpen, o
 
     //block body scrolling
     useEffect(() => {
+        if (!body) return;
         if (isOpen) {
-          document.body.style.overflow = 'hidden';
+          body.style.overflow = 'hidden';
         } else {
-          document.body.style.overflow = 'auto';
+          body.style.overflow = '';
         }
     
         return () => {
-          document.body.style.overflow = 'auto';
+          document.body.style.overflow = '';
         };
-    }, [isOpen]);
+    }, [isOpen, body]);
     
     if (!isOpen || !body) return null;
     

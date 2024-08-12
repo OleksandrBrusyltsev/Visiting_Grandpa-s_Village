@@ -5,9 +5,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  @include mixins.media-max(variables.$breakpoint-mobile-max) {
-    display: none;
+  color: rgb(var(--color-black));
+  font-size: 24px;
+  
+  @include mixins.media-min(variables.$mobile) {
+    font-size: var(--f-size-body);
   }
+    //tmp styles
+    opacity: 0;
+    visibility: hidden;
 }
 
 .active {
@@ -15,17 +21,19 @@
 }
 
 .langBtn {
-  color: rgba(var(--color-black), 1);
   font-family: var(--f-family-headline);
-  font-size: var(--f-size-body);
   font-weight: 600;
   line-height: normal;
+  transition: color 0.2s;
 
-  // &:hover,
-  // &:active,
-  // &:focus {
-  //   // color: rgb(var(--color-natural-orange));
-  // }
+  @media (hover: hover) {
+    &:hover {
+      color: rgb(var(--color-natural-orange));
+    }
+  }
+  &:active {
+    color: rgb(var(--color-natural-orange));
+  }
 }
 .active {
   color: rgb(var(--color-natural-orange));

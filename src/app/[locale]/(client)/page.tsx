@@ -25,14 +25,7 @@ export default function Home({
   const t = useTranslations("Index");
   return (
     <main>
-      {/* <div className="container"
-      style={{
-        // display: 'flex',
-        // justifyContent: 'center',
-        // margin: '80px auto 120px'
-      }}> */}
       <Hero />
-      {/* </div> */}
       <WelcomeBlock text={t("welcomeBlock")} />
     </main>
   );

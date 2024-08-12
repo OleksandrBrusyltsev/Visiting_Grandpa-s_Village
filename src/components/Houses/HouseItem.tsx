@@ -37,6 +37,7 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
   const t = useTranslations("HouseItem");
   const path = usePathname();
   const pathName = path.split("/")[2];
+  const houseWithRooms = path.split("/")[3] || null;
   const { push } = useRouter();
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
@@ -59,7 +60,7 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
     <div className={s.houseWrapper} ref={ref}>
       <div
         className={s.imageWrapper}
-        onClick={() => push(`/${locale}/${pathName}/${name}`)}
+        onClick={() => push(houseWithRooms ? `/${locale}/${pathName}/${houseWithRooms}/${name}` : `/${locale}/${pathName}/${name}`)}
       >
         <Image
           fill
@@ -70,7 +71,6 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
       </div>
       <div
         className={s.content}
-        onClick={() => push(`/${locale}/${pathName}/${name}`)}
       >
         <div className={s.titleWrapper}>
           <Icon name="house" className={s.houseIcon} />
@@ -106,7 +106,7 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
           <Button
             label={!!rental_price ? "Завітати" : "Дивитись"}
             className={""}
-            onClick={() => push(`/${locale}/${pathName}/${name}`)}
+            onClick={() => push(houseWithRooms ? `/${locale}/${pathName}/${houseWithRooms}/${name}` : `/${locale}/${pathName}/${name}`)}
             type="button"
           />
         </div>
