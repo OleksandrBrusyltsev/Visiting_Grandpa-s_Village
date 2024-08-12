@@ -15,15 +15,8 @@ export default function Page({
   const t = useTranslations('Breadcrumbs');
 
   return (
-    <div className='container'>
-      <h1 style={{
-        marginTop: 20,
-        marginBottom: 20,
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        color: '#000000',
-      }}><Rules/></h1>
+    <div>
+      <Rules/>
     </div>
   )
 }

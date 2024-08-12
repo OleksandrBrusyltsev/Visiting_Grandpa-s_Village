@@ -1,10 +1,32 @@
 @use "../../styles/mixins" as mixins;
 @use "../../styles/variables";
 
+.rulesContainer {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding-inline: 24px;
+
+  @include mixins.media-min(variables.$mobile) {
+    padding-inline: 30px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    padding-inline: 50px;
+  }
+  @include mixins.media-min(variables.$pc) {
+    padding-inline: 130px;
+  }
+}
+
 .rulesTitleWrapper {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: -30px;
+
+   @include mixins.media-min(variables.$mobile) {
+    margin-bottom: -60px;
+  }
 }
 
 .rulesTitle {
@@ -16,23 +38,65 @@
   margin-right: -50px;
   font-weight: 600;
   line-height: 23.43px;
-  @include mixins.media-min(450px) {
+  @include mixins.media-min(375px) {
+    width: 230px;
+  }
+
+  @include mixins.media-min(550px) {
     width: 280px;
+  }
+  @include mixins.media-min(630px) {
+    width: 320px;
+  }
+
+  @include mixins.media-min(variables.$mobile) {
+    font-size: var(--f-size-h1);
+    width: 456px;
+    line-height: 36px;
   }
 }
 
-.rulesTitleImg {
+.granpa1 {
   width: 178px;
-  height: 149px;
+  height: auto;
   margin-right: -60px;
+  @include mixins.media-min(400px) {
+    width: 280px;
+  }
+
+  @include mixins.media-min(550px) {
+    width: 305px;
+  }
+  @include mixins.media-min(variables.$mobile) {
+    margin-right: -190px;
+    margin-left: -15px;
+  }
 }
 
-.iconErrow {
+.iconErrowWrapper {
   margin-bottom: 14px;
 }
 
-.rulesRememberList {
-  margin-bottom: -40px;
+.iconErrow {
+  stroke: rgba(var(--color-base-green)); /* Цвет обводки (линии) */
+  stroke-width: 0.5;
+  width: 46px;
+  fill: rgba(var(--color-base-green));
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 76px;
+    margin-right: 0;
+    margin-left: 280px;
+  }
+}
+
+.rulesList {
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 73px;
+  }
 }
 
 .rulesItem {
@@ -41,10 +105,6 @@
 
 .rulesItem:not(:last-child) {
   margin-bottom: 38px;
-}
-
-.rulesItem:last-child {
-  margin-bottom: -20px;
 }
 
 .ruleTitle {
@@ -67,36 +127,61 @@
   color: rgba(var(--color-base-green));
 }
 
-.itemImg {
+.grandpa2 {
   width: 206px;
   height: auto;
-  margin-right: -150px;
-  margin-bottom: -50%;
+  margin-left: 130px;
+  margin-bottom: -35%;
+
+  @include mixins.media-min(375px) {
+    margin-left: 170px;
+  }
+
+  @include mixins.media-min(400px) {
+    margin-left: 210px;
+    margin-bottom: -40%;
+    width: 280px;
+  }
+
+  @include mixins.media-min(550px) {
+    margin-left: 270px;
+    width: 300px;
+  }
+  @include mixins.media-min(variables.$mobile) {
+    width: 367px;
+    margin-bottom: -60%;
+    margin-left: 310px;
+  }
 }
 
 .rulesRememberItemFirst {
   width: 190px;
   margin-bottom: 24px;
+
+  @include mixins.media-min(400px) {
+    width: 230px;
+  }
+
+  @include mixins.media-min(550px) {
+    width: 270px;
+  }
 }
 
-.rulesRememberItem,
-.rulesRememberItemFirst {
+.rulesRememberItemFirst,
+.rulesRememberItemSecond {
+  margin-bottom: 24px;
+  @include mixins.media-min(variables.$mobile) {
+    width: 320px;
+  }
+}
+
+.rulesRememberItemThird,
+.rulesRememberItemFirst,
+.rulesRememberItemSecond {
   font-family: var(--f-family-headline);
   font-size: var(--f-size-button-small);
   font-weight: 600;
   line-height: 22px;
-  text-align: left;
-}
-
-.rulesRememberItemSpan1 {
-  width: 160px;
-}
-
-.rulesRememberItemSpan2 {
-  width: 180px;
-}
-
-.rulesRememberItem {
   text-align: left;
 }
 
