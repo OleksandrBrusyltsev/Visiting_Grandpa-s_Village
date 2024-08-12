@@ -1,15 +1,17 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import Button from "../../ui/Button/Button";
 import Icon from "../../ui/Icon/Icon";
 import s from "./Booking.module.scss";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import NumberInput from "../../ui/NumberInput/NumberInput";
 import { useEffect, useState } from "react";
 
 type Props = {
   price: number;
   guests: number;
+  title: string;
   addons: number;
   photoDecor: string;
   treesDecor: string;
@@ -44,7 +46,6 @@ function GuestsBlock({
   maxAddons: number;
 }) {
   const t = useTranslations("HouseItem");
-
   return (
     <>
       <NumberInput
@@ -80,6 +81,7 @@ function GuestsBlock({
 export default function Booking({
   price,
   guests,
+  title,
   addons,
   photoDecor,
   treesDecor,
@@ -93,18 +95,20 @@ export default function Booking({
   const [childrenCount, setChildrenCount] = useState<number>(
     initialState.childrenCount
   );
-  const [total, setTotal] = useState<number>(price);
+  // const [total, setTotal] = useState<number>(price);
+  const {push} = useRouter();
+  const locale = useLocale();
 
-  useEffect(() => {
-    if (typeof priceAddons === "object") {
-      setTotal(
-        () =>
-          price +
-          adultsCount * priceAddons.adult +
-          childrenCount * priceAddons.child
-      );
-    }
-  }, [adultsCount, childrenCount]);
+  // useEffect(() => {
+  //   if (typeof priceAddons === "object") {
+  //     setTotal(
+  //       () =>
+  //         price +
+  //         adultsCount * priceAddons.adult +
+  //         childrenCount * priceAddons.child
+  //     );
+  //   }
+  // }, [adultsCount, childrenCount]);
 
   return (
     <section className={s.sectionWrapper}>
@@ -192,7 +196,7 @@ export default function Booking({
           </div>
         </div>
         <div className={s.buttonWrapper}>
-          <Button label={t("book")} size="large" type="button" />
+          <Button label={t("book")} size="large" type="button" onClick={() => push(`/${locale}/booking?house=${title}`)}/>
         </div>
       </div>
     </section>
