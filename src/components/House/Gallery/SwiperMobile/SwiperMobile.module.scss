@@ -1,33 +1,33 @@
-.swiperMobile {
-  height: 270px;
-
-  @media (min-width: 376px) and (max-width: 767px) {
-    height: calc(270px + 280 * (100vw - 376px) / 391);
-  }
-  @media (min-width: 768px) {
-    height: 550px;
-    // height: 425px;
-  }
-  @media (min-width: 1280px) {
-    display: none;
-  }
-}
-
 // .swiperMobile {
-//   height: 165px;
+//   height: 270px;
 
 //   @media (min-width: 376px) and (max-width: 767px) {
-//     height: calc(165px + 255 * (100vw - 376px) / 391);
+//     height: calc(270px + 280 * (100vw - 376px) / 391);
 //   }
 //   @media (min-width: 768px) {
-//     // height: 550px;
-//     height: 420px;
-//   }
-//   @media (min-width: 1200px) {
-//     height: 650px;
-//     // height: 420px;
+//     height: 550px;
+//     // height: 425px;
 //   }
 //   @media (min-width: 1280px) {
 //     display: none;
 //   }
 // }
+
+.swiperMobile {
+  height: 165px;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    height: calc(165px + 255 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    // height: 550px;
+    height: 420px;
+  }
+  @media (min-width: 1200px) {
+    height: 650px;
+    // height: 420px;
+  }
+  @media (min-width: 1280px) {
+    display: none;
+  }
+}

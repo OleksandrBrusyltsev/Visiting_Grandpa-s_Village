@@ -17,67 +17,67 @@ interface SwiperType {
 
 const SwiperMobile: FC<SwiperType> = ({ pictures, initialSlide }) => {
   const swiperElRef = useRef<any>(null);
-  // return (
-  //   <div className={s.swiperMobile}>
-  //     <Swiper
-  //       direction="vertical"
-  //       initialSlide={initialSlide}
-  //       slidesPerView={1}
-  //       spaceBetween={3}
-  //       keyboard={{
-  //         enabled: true,
-  //       }}
-  //       loop={true}
-  //       pagination={{
-  //         clickable: true,
-  //       }}
-  //       modules={[Keyboard, Pagination, Navigation]}
-  //     >
-  //       {pictures.map((item) => (
-  //         <SwiperSlide key={item}>
-  //           <div className="imageWrapper">
-  //             <Image
-  //               src={item}
-  //               style={{
-  //                 objectFit: "contain",
-  //                 borderRadius: "8px",
-  //               }}
-  //               alt="picture"
-  //               fill
-  //             />
-  //           </div>
-  //         </SwiperSlide>
-  //       ))}
-  //     </Swiper>
-  //   </div>
-  // );
-
   return (
     <div className={s.swiperMobile}>
-      <swiper-container
-        ref={swiperElRef}
-        slides-per-view="1"
-        navigation="false"
-        space-between={30}
-        // @ts-ignore
-        loop="true"
+      <Swiper
+        direction="vertical"
+        initialSlide={initialSlide}
+        slidesPerView={1}
+        spaceBetween={3}
+        keyboard={{
+          enabled: true,
+        }}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Keyboard, Pagination, Navigation]}
       >
         {pictures.map((item) => (
-          <swiper-slide key={item}>
-            <Image
-              fill
-              alt="alt"
-              src={item}
-              style={{
-                objectFit: "contain",
-                borderRadius: "8px",
-              }}
-            />
-          </swiper-slide>
+          <SwiperSlide key={item}>
+            <div className="imageWrapper">
+              <Image
+                src={item}
+                style={{
+                  objectFit: "contain",
+                  borderRadius: "8px",
+                }}
+                alt="picture"
+                fill
+              />
+            </div>
+          </SwiperSlide>
         ))}
-      </swiper-container>
+      </Swiper>
     </div>
   );
+
+  // return (
+  //   <div className={s.swiperMobile}>
+  //     <swiper-container
+  //       ref={swiperElRef}
+  //       slides-per-view="1"
+  //       navigation="false"
+  //       space-between={30}
+  //       // @ts-ignore
+  //       loop="true"
+  //     >
+  //       {pictures.map((item) => (
+  //         <swiper-slide key={item}>
+  //           <Image
+  //             fill
+  //             alt="alt"
+  //             src={item}
+  //             style={{
+  //               objectFit: "contain",
+  //               borderRadius: "8px",
+  //             }}
+  //           />
+  //         </swiper-slide>
+  //       ))}
+  //     </swiper-container>
+  //   </div>
+  // );
 };
 
 export default SwiperMobile;
