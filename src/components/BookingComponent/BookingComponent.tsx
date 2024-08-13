@@ -1,6 +1,7 @@
 "use client";
 import { useState, FC, useRef, useEffect, FormEventHandler} from "react";
 import { useGSAP } from "@gsap/react";
+import { useSearchParams } from "next/navigation";
 import gsap from "gsap";
 
 import Icon from "../ui/Icon/Icon";
@@ -43,9 +44,10 @@ type ChildrenType = {
 
 //temporary stub logic
 export type OrderType = {
-  startDate: string | undefined,
-  endDate: string | undefined,
-  guests: number,
+  startDate: string | undefined;
+  endDate: string | undefined;
+  guests: number;
+  house: string | null
 }
 
 // export type BotResponseStateType = {
@@ -68,11 +70,15 @@ const BookingComponent: FC = () => {
   const [adultsCount, setAdultsCount] = useState<number>(initialState.adultsCount);
   const [childrenCount, setChildrenCount] = useState<number>(initialState.childrenCount);
   
+  //getting house to book
+  const searchParams = useSearchParams();
+  
   //order for booking form
   const [order, setOrder] = useState<OrderType>({
     startDate: checkInDate?.toLocaleDateString("uk-UA"),
     endDate: checkOutDate?.toLocaleDateString("uk-UA"),
-    guests: adultsCount + childrenCount
+    guests: adultsCount + childrenCount,
+    house: searchParams.get('house')
   });
 
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -188,9 +194,10 @@ const BookingComponent: FC = () => {
     setOrder({
       startDate: checkInDate?.toLocaleDateString("uk-UA"),
         endDate: checkOutDate?.toLocaleDateString("uk-UA"),
-        guests: adultsCount + childrenCount
+        guests: adultsCount + childrenCount,
+        house: searchParams.get('house')
     }); 
-  }, [checkInDate, checkOutDate, adultsCount, childrenCount]);
+  }, [checkInDate, checkOutDate, adultsCount, childrenCount, searchParams]);
 
   //close small modal by outside click or Esc key
   useEffect(() => {
@@ -374,7 +381,7 @@ const BookingComponent: FC = () => {
 
         <div className={s.buttonSearch}>
           <Button
-            label="Шукати"
+            label={`${searchParams.has("house") ? "Замовити" : "Шукати"}`}
             type="submit"
             disabled={!checkOutDate ? true : false}
             onClick={handleOpenStub}

@@ -27,6 +27,7 @@
 
   @include mixins.media-min(variables.$mobile) {
     flex-direction: row;
+    gap: unset;
     justify-content: space-between;
     padding: 10px 30px;
   }
@@ -194,10 +195,10 @@
 
 .buttonSearch {
   font-size: var(--f-size-button-small);
-  width: 7.375rem;
+  // min-width: 7.375rem;
   & > button {
     max-width: unset;
-    padding: unset;
+    padding-block: unset;
     line-height: 44px;
   }
 }
