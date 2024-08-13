@@ -30,10 +30,10 @@
     position: relative;
 }
 .main {
-    margin-top: 81px;
+    margin-top: 90px;
 }
 .heroTitle {
-    max-width: clamp(280px, calc(280px + 320 * (100vw - 375px) / 392), 600px);
+    max-width: clamp(293px, calc(293px + 207 * (100vw - 375px) / 392), 500px);
     padding-left: clamp(0px, calc(0px + 74 * (100vw - 375px) / 392), 74px);
     font-size: var(--f-size-body-big);
     position: relative;
@@ -41,8 +41,8 @@
 }
 .grandpaWrapper {
     position: absolute;
-    right:-10px;
-    top: clamp(-38px, calc(-38px + 108 * (767px - 100vw) / 392), 70px);
+    right: clamp(-10px, calc(-10px + 64 * (100vw - 375px) / 392), 54px);
+    bottom: clamp(-100px, calc(-100px + 75 * (100vw - 375px) / 392), -25px);
     width: 142px;
     aspect-ratio: 1;
     img {
@@ -52,7 +52,9 @@
         position: absolute;
         content: '';
         top: -85px;
+        top: clamp(-85px, calc(-85px + 15 * (100vw - 375px) / 392), -70px);
         left: -40px;
+        left: clamp(-85px, calc(-85px + 45 * (767px - 100vw) / 392), -40px);
         width: 240px;
         height: 220px;;
         background-image: url('/images/backgrounds/christmasTrees.png');
@@ -150,7 +152,6 @@
         float: right;
         margin-right: -10px;
         shape-outside: padding-box;
-        border-radius: 50% 50% 0% 0%;
         position: static;
         margin-right: clamp(-10px, calc(-10px + 39 * (100vw - 768px) / 511), 29px);
         margin-top: clamp(-86px, calc(-38px - 48 * (100vw - 768px) / 511), -38px);
