@@ -26,35 +26,24 @@
     @include mixins.mak-green;
 }
 .hero {
-    margin-top: 16px;
+    margin-top: clamp(16px, calc(16px + 20 * (100vw - 375px) / 392), 36px);
     position: relative;
 }
 .main {
     margin-top: 81px;
 }
 .heroTitle {
-    max-width: 80%;
+    max-width: clamp(280px, calc(280px + 320 * (100vw - 375px) / 392), 600px);
     padding-left: clamp(0px, calc(0px + 74 * (100vw - 375px) / 392), 74px);
     font-size: var(--f-size-body-big);
     position: relative;
-    &::before {
-        position: absolute;
-        content: '';
-        background-repeat: no-repeat;
-        top: -34%;
-        left: 6%;
-        width: clamp(210px, calc(210px + 160 * (100vw - 375px) / 392), 370px);
-        aspect-ratio: 1.094;
-        background-image: url('/images/backgrounds/christmasTrees.png');
-        background-size: contain;
-        z-index: -1;
-    }
+    letter-spacing: -0.005em;
 }
 .grandpaWrapper {
     position: absolute;
-    right: -10px;
-    bottom: -50px;
-    width: clamp(142px, calc(232px - 90 * (767px - 100vw) / 392), 232px);
+    right:-10px;
+    top: clamp(-38px, calc(-38px + 108 * (767px - 100vw) / 392), 70px);
+    width: 142px;
     aspect-ratio: 1;
     img {
         object-fit: contain;
@@ -62,10 +51,10 @@
     &::before {
         position: absolute;
         content: '';
-        top: calc(-60px + 28 * (100vw - 375px) / 392);
-        left: -19%;
-        width: clamp(210px, calc(210px + 160 * (100vw - 375px) / 392), 370px);
-        aspect-ratio: 1.094;
+        top: -85px;
+        left: -40px;
+        width: 240px;
+        height: 220px;;
         background-image: url('/images/backgrounds/christmasTrees.png');
         background-repeat: no-repeat;
         background-size: contain;
@@ -76,15 +65,21 @@
     font-size: 14px;
     line-height: 1.4;
     padding-left: clamp(24px, calc(24px + 80 * (100vw - 375px) / 392), 104px);
+    padding-right: 0;
+    margin-left: 0;
     position: relative;
+    width: clamp(200px, calc(200px + 320 * (100vw - 375px) / 55), 520px);
     .curve {
         display: block;
         position: absolute;
-        bottom: 0%;
+        bottom: 30%;
         transform: translateY(110%);
-        left: 56%;
+        left: clamp(183px, calc(183px + 157 * (100vw - 375px) / 55), 340px);
         width: 10px;
         height: 30px;
+        @media (min-width: 431px) {
+            left: clamp(340px, calc(340px + 100 * (100vw - 430px) / 337), 440px);
+        }
     }
 }
 .itemWrapper {
@@ -133,18 +128,22 @@
     .galleryItemWrapper {
         margin-bottom: 112px;
     }
-    .hero {
-        margin-top: 36px;
-    }
     .heroTitle {
         max-width: 90%;  
         padding-left: clamp(74px, calc(74px + 146 * (100vw - 768px) / 511), 220px);
         font-size: var(--f-size-h2);
         line-height: 1.1;
         &::before {
+            position: absolute;
+            content: '';
+            background-repeat: no-repeat;
             top: -60%;
+            left: 6%;
             width: 370px;
             aspect-ratio: 1.15;
+            background-image: url('/images/backgrounds/christmasTrees.png');
+            background-size: contain;
+            z-index: -1;
         }
     }
     .grandpaWrapper {
@@ -152,19 +151,22 @@
         margin-right: -10px;
         shape-outside: padding-box;
         border-radius: 50% 50% 0% 0%;
-        position: relative;
-        margin-right: clamp(0px, calc(0px + 29 * (100vw - 768px) / 511), 29px);
-        margin-top: clamp(-86px, calc(-50px - 36 * (100vw - 768px) / 511), -50px);
+        position: static;
+        margin-right: clamp(-10px, calc(-10px + 39 * (100vw - 768px) / 511), 29px);
+        margin-top: clamp(-86px, calc(-38px - 48 * (100vw - 768px) / 511), -38px);
         width: clamp(172px, calc(252px - 80 * (100vw - 768px) / 511), 252px);
         &::before {
             position: unset;
         }
     }
     .callToClick {
-        padding-left: clamp(104px, calc(104px + 386 * (100vw - 768px) / 511), 490px);
+        max-width: 470px;  
+        text-align: center;
+        padding-left: 0;
+        margin-left: clamp(104px, calc(104px + 386 * (100vw - 768px) / 511), 490px);
         font-size: 20px;
         .curve {
-            left: 76%;
+            left: 470px;
             width: 14px;
             height: 40px;
         }
@@ -227,8 +229,9 @@
         margin-right: clamp(29px, calc(29px + 51 * (100vw - 1280px) / 160), 80px);
     }
     .callToClick {
+        margin-inline: auto;
         .curve {
-            left: min(calc(76% + 40px), 913px);
+            left: 450px;
         }
     }
     .main {
