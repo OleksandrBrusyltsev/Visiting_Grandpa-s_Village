@@ -90,8 +90,69 @@ const Gallery: FC<GalleryType> = ({ pictures }) => {
         )
       )} */}
       {isMobile || isTablet ? (
-        <SwiperMobile pictures={pictures} initialSlide={firstSlide} />
+        // !!!
+        // <SwiperMobile pictures={pictures} initialSlide={firstSlide} />
+        <div onClick={() => setSwiperOpen(!isSwiperOpen)}>
+          <div
+            style={{ height: "300px" }}
+            // className={`${s.imageWrapper}`}
+          >
+            <Image
+              key={pictures[0]}
+              fill
+              alt="alt"
+              src={pictures[0]}
+              style={{
+                objectFit: "cover",
+                borderRadius: "8px",
+              }}
+            />
+          </div>
+          {isSwiperOpen && (
+            <Modal
+              isOpen={isSwiperOpen}
+              onClose={() => setSwiperOpen(false)}
+              wrapperStyles={{
+                width: isMobile ? "100vw" : "90vw",
+              }}
+            >
+              <Swiper
+                direction="horizontal"
+                initialSlide={firstSlide}
+                slidesPerView={1}
+                spaceBetween={3}
+                keyboard={{
+                  enabled: true,
+                }}
+                loop={true}
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[Keyboard, Pagination, Navigation]}
+                navigation={isMobile ? false : true}
+              >
+                {pictures.map((item) => (
+                  <SwiperSlide key={item}>
+                    <div className="imageWrapper">
+                      <Image
+                        src={item}
+                        sizes="(max-width: 1280px) 100vw, (max-width: 1440px) 80vw, 70vw"
+                        placeholder="blur"
+                        blurDataURL={
+                          "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8dOXMfwAIZQNzt0gGRgAAAABJRU5ErkJggg=="
+                        }
+                        alt="alt"
+                        fill
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </Modal>
+          )}
+        </div>
       ) : (
+        // !!!
         isSwiperOpen && (
           <Modal
             isOpen={isSwiperOpen}

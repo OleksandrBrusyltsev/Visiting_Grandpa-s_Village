@@ -14,10 +14,11 @@
 // }
 
 .swiperMobile {
-  height: 165px;
+  height: 200px;
+  // width: 100px;
 
   @media (min-width: 376px) and (max-width: 767px) {
-    height: calc(165px + 255 * (100vw - 376px) / 391);
+    height: calc(200px + 220 * (100vw - 376px) / 391);
   }
   @media (min-width: 768px) {
     // height: 550px;

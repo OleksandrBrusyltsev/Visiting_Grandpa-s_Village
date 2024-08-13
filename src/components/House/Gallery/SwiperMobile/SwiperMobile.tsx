@@ -20,7 +20,7 @@ const SwiperMobile: FC<SwiperType> = ({ pictures, initialSlide }) => {
   return (
     <div className={s.swiperMobile}>
       <Swiper
-        direction="vertical"
+        direction="horizontal"
         initialSlide={initialSlide}
         slidesPerView={1}
         spaceBetween={3}
