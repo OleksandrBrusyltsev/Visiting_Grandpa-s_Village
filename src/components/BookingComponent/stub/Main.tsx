@@ -189,7 +189,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                         {isMobile ? null : <span>Коментар</span>}
                         <textarea 
                             name="message" 
-                            defaultValue={`Потрібен номер на ${order.guests}х з ${order.startDate}-${order.endDate}`} 
+                            defaultValue={`Потрібен номер${order.house ? ` ${order.house} ` : ' '}на ${order.guests}х з ${order.startDate}-${order.endDate}`} 
                             placeholder={message}
                             rows={5} 
                             required

@@ -123,6 +123,7 @@ export default async function House({ id }: Props) {
             priceAddons={price_addons}
             rooms={rooms}
             guests={max_adults}
+            title={title}
             addons={max_children}
             photoDecor={photoDecor}
             treesDecor={treesDecor}
