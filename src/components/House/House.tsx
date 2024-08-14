@@ -123,6 +123,7 @@ export default async function House({ id }: Props) {
             priceAddons={price_addons}
             rooms={rooms}
             guests={max_adults}
+            title={title}
             addons={max_children}
             photoDecor={photoDecor}
             treesDecor={treesDecor}
@@ -131,7 +132,7 @@ export default async function House({ id }: Props) {
       </div>
 
       {rooms.length ? (
-        <HousesList data={rooms as HouseItem[]}>
+        <HousesList data={rooms as HouseItem[]} patternOffset={false}>
           <>
             <p className={`${s.roomsTitle} ${rooms.length ? s.apartment : ""}`}>
               То ж маємо:

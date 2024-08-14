@@ -99,27 +99,27 @@ export default function GalleryItemPage({items}: Props) {
                         подивитись більше
                         <Icon name="curve-gallery-chapter" className={s.curve}/>
                     </p>
-                        <GalleryItemPageList>
-                            {
-                                gallery.map((img, i) => (
-                                    <li className={s.itemWrapper}
-                                        ref={(el: HTMLLIElement) => galleryRef.current[i] = el}
-                                        tabIndex={0}
-                                        onClick={() => toggleSwiper(i)}
-                                        onKeyDown={(e) => handleKeyboardToggle(e, i)}
-                                        key={i}
-                                        >
-                                        <div className={s.imageWrapper}>
-                                            <Image 
-                                                src={img.src} 
-                                                alt={img.description} 
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 35vw, 25vw"
-                                                fill/>
-                                        </div>
-                                    </li>
-                                ))
-                            }
-                        </GalleryItemPageList>
+                    <GalleryItemPageList>
+                        {
+                            gallery.map((img, i) => (
+                                <li className={s.itemWrapper}
+                                    ref={(el: HTMLLIElement) => galleryRef.current[i] = el}
+                                    tabIndex={0}
+                                    onClick={() => toggleSwiper(i)}
+                                    onKeyDown={(e) => handleKeyboardToggle(e, i)}
+                                    key={i}
+                                    >
+                                    <div className={s.imageWrapper}>
+                                        <Image 
+                                            src={img.src} 
+                                            alt={img.description} 
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 35vw, 25vw"
+                                            fill/>
+                                    </div>
+                                </li>
+                            ))
+                        }
+                    </GalleryItemPageList>
                     <div className={`${s.callToAction} container`}>
                         <div className={s.cloud}>
                             <Icon name="cloud" />
@@ -143,7 +143,6 @@ export default function GalleryItemPage({items}: Props) {
                     onClose={() => setIsOpenSwiper(false)}
                     wrapperStyles={{
                         width: isMobile ? '100vw' : '90vw',
-                        height: '100dvh',
                     }}
                     >
                     <SwiperGalleryItem gallery={gallery} initialSlide={firstSlide}/>

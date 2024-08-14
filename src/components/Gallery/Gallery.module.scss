@@ -1,14 +1,6 @@
 @use "../../styles/mixins" as mixins;
 @use "../../styles/variables";
 
-.overflowContainer {
-    @media (hover: none) {
-        overflow-x: clip;
-    }
-    @media (min-width: 1024px) {
-        overflow-x: hidden;
-    }
-}
 .backgroundImages {
     max-width: 450px;
     margin: 0 auto 89px;

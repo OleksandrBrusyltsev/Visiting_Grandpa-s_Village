@@ -5,7 +5,7 @@ type ValidationResult = {
     message: string
 }
 
-export default async function recapchaValidation(captureResponse: string): Promise<ValidationResult | undefined> {
+export default async function recaptchaValidation(captureResponse: string): Promise<ValidationResult | undefined> {
     if (!process.env.RECAPTCHA_SERVER_TOKEN) {
         return
     }

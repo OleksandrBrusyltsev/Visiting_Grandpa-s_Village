@@ -1,13 +1,6 @@
 @use "../../styles/mixins" as mixins;
 @use "../../styles/variables";
-.houses {
-    @media (hover: none){
-        overflow-x: clip;
-    }
-    @media (min-width: 1024px) {
-        overflow-x: clip;
-    }
-}
+
 .hero {
     margin-top: 32px;
 }
@@ -33,10 +26,10 @@
 }
 .grandpa {
     width: 148px;
-    height: 140px;
+    aspect-ratio: 1;
     position: absolute; 
-    top: -99px;
-    right:  calc((100vw - 375px) / 3);
+    top: -105px;
+    right:  calc(-10px + (100vw - 375px) / 3);
     z-index: -1;
     img {
         object-fit: contain;
@@ -137,7 +130,6 @@
     }
     .grandpa {
         width: 209px;
-        height: 239px;
         top: unset;
         bottom: -156px;
         right:  calc((100vw - 768px) / 6);
@@ -215,7 +207,6 @@
     }
     .grandpa {
         width: 314px;
-        height: 361px;
         bottom: -224px;
         right: calc((100vw - 1180px) / 2 - 50px);
         z-index: 1;
