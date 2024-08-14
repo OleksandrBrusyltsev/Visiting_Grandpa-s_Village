@@ -19,8 +19,8 @@ const Rules: FC = () => {
       <div className={s.iconErrowWrapper}>
         <svg
           className={s.iconErrow}
-          width="61"
-          height="70"
+          // width="61"
+          // height="70"
           viewBox="0 0 61 70"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
