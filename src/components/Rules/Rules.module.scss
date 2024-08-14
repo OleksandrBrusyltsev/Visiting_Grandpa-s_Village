@@ -4,9 +4,14 @@
 .rulesContainer {
   width: 100%;
   max-width: 560px;
-  margin-left:  auto;
+  margin-left: auto;
   margin-right: auto;
+  padding-inline: 24px;
   margin-bottom: 120px;
+
+  @include mixins.media-min(variables.$mobile) {
+    padding-inline: 0;
+  }
 
   @include mixins.media-min(900px) {
     max-width: 760px;
@@ -31,9 +36,6 @@
   }
   @include mixins.media-min(900px) {
     margin-bottom: -100px;
-  }
-
-  @include mixins.media-min(variables.$breakpoint-laptop) {
   }
 }
 
@@ -82,13 +84,17 @@
   }
 
   @include mixins.media-min(variables.$mobile) {
-    width: 350px;
-    margin-right: -150px;
-    margin-left: -15px;
+    margin-right: -180px;
   }
+
+  @include mixins.media-min(900px) {
+    width: 350px;
+    margin-right: -110px;
+    margin-left: 0;
+  }
+
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 427px;
-    margin-left: 0;
   }
 }
 
@@ -181,17 +187,16 @@
   }
   @include mixins.media-min(variables.$mobile) {
     width: 367px;
-    margin-bottom: -60%;
+    margin-bottom: -50%;
     margin-left: 310px;
   }
   @include mixins.media-min(900px) {
-    margin-bottom: -40%;
+    margin-bottom: -33%;
     margin-left: 450px;
     width: 350px;
   }
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 427px;
-    margin-bottom: -33%;
     margin-left: 600px;
   }
 }
@@ -237,9 +242,9 @@
   font-weight: 600;
   line-height: 22px;
   text-align: left;
-   @include mixins.media-min(variables.$breakpoint-laptop) {
-     font-size: var( --f-size-h3);
-     line-height: 27px;
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    font-size: var(--f-size-h3);
+    line-height: 27px;
   }
 }
 
