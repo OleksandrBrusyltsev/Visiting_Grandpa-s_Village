@@ -5,10 +5,14 @@ export const houses = [
       {
         language: "uk",
         text: "Хатинка Діда Мороза",
+        longTitle: "Хатинка Діда Мороза",
+        decorText: "Хатинку Діда Мороза",
       },
       {
         language: "en",
         text: "Hatynka Dida Moroza",
+        longTitle: "Hatynka Dida Moroza",
+        decorText: "Hatynka Dida Moroza",
       },
     ],
     rental_price: 1300,
@@ -30,8 +34,11 @@ export const houses = [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345875/ivo9lsgtpu8sdxgfexje.jpg",
     ],
     text: `Запрошую тебе в чарівну **хатинку Діда Мороза**. Це місце, де в справжній казці зливаються екологічність та відпочинок в комфортних умовах. В Хатинці є все, що потрібно: **ванна кімната з душем та туалетом, холодильник і телевізор.**\n\n Наша хатинка розташована серед природи, в обіймах пишних ялинок та зелених дерев. Фасад оформлений **натуральними матеріалами**, включаючи дерево та природні складники. Декорування відображає **традиційний стиль українського села**, що приваблює як маленьких так і великих гостей.\n\n Усередині хатинки тебе чекає затишне приміщення, розраховане на **2 людей**. Там кожна деталь наповнена моєю турботою.\n\n В зимовий період Хатинка Дідуся наповнюється особливо теплою атмосферою, бо я придумав створити в середині **Баньку**, щоб мої відвідувачі змогли розслабитись та сповна насолодитись часом, проведеним в Еко-садибі “На селі у Дідуся”.`,
+    // decorText: "",
     id: 0,
     coordinates: {
+      top: 35,
+      left: 100,
       topSmall: 45,
       leftSmall: 130,
       topSmallDifference: 45,
@@ -50,10 +57,14 @@ export const houses = [
       {
         language: "uk",
         text: "Світлиця",
+        longTitle: "Світлиця",
+        decorText: "Світлицю",
       },
       {
         language: "en",
         text: "Svitlytsia",
+        longTitle: "Svitlytsia",
+        decorText: "Svitlytsia",
       },
     ],
     rental_price: 1300,
@@ -79,6 +90,8 @@ export const houses = [
     text: `Моя улюблена перлина - **хатинка Світлиця**. Дідусь створив її, щоб дарувати  **неповторну атмосферу справжньої казки** улюбленим гостям.\n\n В Світлиці є **все, що потрібно** для приємного відпочинку: зручна спальня **для двох осіб**, а також є **диванчик** (на якому за бажанням може **додатково** розміститись людина, або дитина). Світлиця має повністю обладнану **ванну кімнату з душем і туалетом, холодильник і телевізор**.\n\n Кожна деталь внутрішнього приміщення пронизана **турботою Дідуся** про гостей.\n\n Розташована Світлиця серед **буйного зеленого лісу та величних ялин**, що надає нашій Садибі неповторності. Фасад виконаний з **натуральних матеріалів - дерева** та інших природних елементів, що підкреслює її органічність та злагодженість з природою.\n\n **Запрошую тебе** відвідати Світлицю у нашій Еко-садибі "На селі у Дідуся", де кожен момент стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
     id: 1,
     coordinates: {
+      top: 15,
+      left: 155,
       topSmall: 30,
       leftSmall: 190,
       topSmallDifference: 30,
@@ -97,10 +110,14 @@ export const houses = [
       {
         language: "uk",
         text: "Хатинка Бабки-Їжачки",
+        longTitle: "Хатинка Бабки-Їжачки (літній варіант)",
+        decorText: "Хатинку Бабки-Їжачки",
       },
       {
         language: "en",
         text: "Hatynka Babky Izhachky",
+        longTitle: "Hatynka Babky Izhachky (summer version)",
+        decorText: "Hatynka Babky Izhachky",
       },
     ],
     rental_price: 900,
@@ -125,6 +142,8 @@ export const houses = [
     text: `**Хатинка Бабки Їжачки** ідеально підходить для спокійного літнього відпочинку: в ній є двоспальне **ліжко для двох осіб**, а також **односплальне ліжко**, на якому може **додатково зручно розміститись людина, або дитина**.\n\n Для гостей Хатинки **душ і туалет** розташовані **в окремій прибудові поруч з хатинкою**.\n\n Кожен куточок хатинки створений з **любов'ю і турботою Дідуся**, щоб забезпечити комфорт і затишок для наших гостей.\n\n Розташована **Хатинка Бабки Їжачки** серед буйного зеленого лісу та величних ялин, що надає нашій Садибі неповторності. Фасад виконаний з **натуральних матеріалів** - дерева та інших природних елементів, що підкреслює її органічність та **злагодженість з природою**.\n\n Запрошую тебе відвідати нашу Еко-садибу "На селі у Дідуся", де кожен момент стає **особливим**, а кожен гість - **цінним членом нашої родини**.`,
     id: 2,
     coordinates: {
+      top: 40,
+      left: 240,
       topSmall: 60,
       leftSmall: 290,
       topSmallDifference: 45,
@@ -143,10 +162,14 @@ export const houses = [
       {
         language: "uk",
         text: "Комора Де Люкс",
+        longTitle: "Комора Де Люкс",
+        decorText: "Комору Де Люкс",
       },
       {
         language: "en",
         text: "Komora De Lyuks",
+        longTitle: "Komora De Lyuks",
+        decorText: "Komora De Lyuks",
       },
     ],
     rental_price: 1300,
@@ -171,6 +194,8 @@ export const houses = [
     text: `Ласкаво прошу до **Комори Де Люкс** – ідеального місця для  спокійного відпочинку. Комора де Люкс призначена **для двох осіб**, але має можливість **додаткового місця на зручному диванчику**.  В Хатинці є просторе двоспальне ліжко, сучасна ванна кімната з **душем і туалетом, холодильник та телевізор**.\n\n Кожен куточок нашої Хатинки створений мною, **Дідусем**, з великою **любов'ю і турботою**, щоб гості відчули справжній комфорт і затишок.\n\n Садиба розташована серед густого зеленого лісу, величних ялин та дарує **неповторне відчуття єднання з природою**. Фасад з натуральних матеріалів підкреслює гармонію з навколишнім середовищем.\n\n Запрошую відвідати Комору Де Люкс і **насолодитися відпочинком** у серці природи.`,
     id: 3,
     coordinates: {
+      top: 60,
+      left: 50,
       topSmall: 80,
       leftSmall: 70,
       topSmallDifference: 60,
@@ -189,10 +214,14 @@ export const houses = [
       {
         language: "uk",
         text: "Опочивальня",
+        longTitle: "Опочивальня",
+        decorText: "Опочивальню",
       },
       {
         language: "en",
         text: "Opochyvalnia",
+        longTitle: "Opochyvalnia",
+        decorText: "Opochyvalnia",
       },
     ],
     rental_price: 1300,
@@ -217,6 +246,8 @@ export const houses = [
     text: "Дідусь запрошує до **Опочивальні** – чудового місця для відпочинку. Цей затишний будиночок ідеально підходить **для двох осіб**, але також пропонує **додаткове спальне місце** на зручному **дивані**. У будинку ви знайдете **комфортне двоспальне ліжко**, сучасну ванну кімнату з **душем і туалетом**, а також **телевізор** і **холодильник** для вашої зручності.\n\n Опочивальня створена з **великою любов`ю і турботою**, щоб забезпечити вам справжній **комфорт та затишок**. Розташована серед густого неймовірного лісу, будівля оточена **величними ялинами**, що створюють **атмосферу гармонії з природою**. Будинок побудований з натуральних матеріалів і прекрасно вписується в навколишній природній пейзаж.\n\n Дідусь запрошує завітати до **Опочивальні** та насолодитися **неповторним відпочинком** у самому серці природи.",
     id: 4,
     coordinates: {
+      top: 45,
+      left: 75,
       topSmall: 60,
       leftSmall: 95,
       topSmallDifference: 50,
@@ -235,10 +266,14 @@ export const houses = [
       {
         language: "uk",
         text: "Горниця",
+        longTitle: "Горниця",
+        decorText: "Горницю",
       },
       {
         language: "en",
         text: "Hornytsia",
+        longTitle: "Hornytsia",
+        decorText: "Hornytsia",
       },
     ],
     rental_price: 1300,
@@ -265,6 +300,8 @@ export const houses = [
     text: `Дідусь створив **Хатинку Горницю**, щоб дарувати **неповторну атмосферу справжньої казки** улюбленим гостям .\n\n В Горниці є **все, що потрібно** для приємного відпочинку: зручне двоспальне **ліжко для двох осіб**, а також є **диванчик** (на якому за бажанням може додатково розміститись людина, або дитина). Горниця має повністю обладнану **ванну кімнату з душем і туалетом, холодильник і телевізор**.\n\n Кожна деталь внутрішнього приміщення пронизана **турботою Дідуся** про гостей.\n\n Розташована Горниця серед **буйного зеленого лісу та величних ялин**, що надає нашій Садибі неповторності. Фасад виконаний з **натуральних матеріалів - дерева** та інших природних елементів, що підкреслює її органічність та злагодженість з природою.\n\n **Запрошую тебе** відвідати Світлицю у нашій Еко-садибі "На селі у Дідуся", де кожен момент стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
     id: 5,
     coordinates: {
+      top: 10,
+      left: 105,
       topSmall: 15,
       leftSmall: 125,
       topSmallDifference: 30,
@@ -283,10 +320,14 @@ export const houses = [
       {
         language: "uk",
         text: "Майстерня Гномів",
+        longTitle: "Майстерня Гномів",
+        decorText: "Майстерню Гномів",
       },
       {
         language: "en",
         text: "Maisternia Hnomiv",
+        longTitle: "Maisternia Hnomiv",
+        decorText: "Maisternia Hnomiv",
       },
     ],
     rental_price: 1800,
@@ -308,7 +349,7 @@ export const houses = [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140208/vwkp1h4tgydkjidg37id.jpg",
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140209/frs6hzdfshgjby8h7ffn.jpg",
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140210/f4mbwx55yvyjmrif2nwl.jpg",
-      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140210/cnfarw7ycza4dcyqvwbg.jpg"
+      "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140210/cnfarw7ycza4dcyqvwbg.jpg",
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345878/zkesaqmdsfsk2ofwzy4n.jpg",
@@ -316,6 +357,8 @@ export const houses = [
     text: `Ласкаво прошу до **Майстерні Гномів** – унікального та затишного будиночка нашої Садиби, де кожен гість відчує справжню магію і домашню атмосферу.\n\n Цей будиночок розрахований на **п'ятьох гостей** і пропонує всі **сучасні зручності**, щоб ваш відпочинок був максимально комфортним. У Майстерні Гномів є **душ, туалет, телевізор, холодильник та камін**, що забезпечує затишок і зручність під час перебування.\n\n Інтер'єр будиночка виконаний з **натурального дерева**, що створює особливу атмосферу гармонії з природою. Кожен куточок Майстерні Гномів створений мною, вашим **Дідусем**, з великою **любов'ю і увагою** до деталей, щоб всі госіт могли насолоджуватися незабутнім відпочинком.\n\n Вартість перебування у Майстерні Гномів становить **1800 грн** за добу для всіх гостей, включаючи всі зручності. Запрошуємо до нашої **еко-садиби "На селі у Дідуся"**, де кожен момент стане особливим, а ви станете частиною нашої **великої родини**.`,
     id: 6,
     coordinates: {
+      top: 70,
+      left: 220,
       topSmall: 90,
       leftSmall: 265,
       topSmallDifference: 70,
@@ -333,11 +376,15 @@ export const houses = [
     title: [
       {
         language: "uk",
-        text: "Теремок-1, Теремок-2",
+        text: "Теремок",
+        longTitle: "Теремок-1, Теремок-2",
+        decorText: "Теремок",
       },
       {
         language: "en",
-        text: "Teremok-1б Teremok-2",
+        text: "Teremok",
+        longTitle: "Teremok-1, Teremok-2",
+        decorText: "Teremok",
       },
     ],
     rental_price: 750,
@@ -361,6 +408,8 @@ export const houses = [
     text: `Дідусь запрошує до **Теремка** – затишного куточка нашої Садиби, що ідеально підходить для відпочинку серед природи. Теремок має **два однакових номери**, розташовані **на другому поверсі**: Теремок-1 і Теремок-2.\n\n **Кожен номер** розрахований на **двох гостей** та облаштований всім необхідним для комфортного перебування. На цьому поверсі ви знайдете **спільний туалет, умивальник та холодильник**, які призначені **для обслуговування обох номерів**.\n\n У Теремку ви відчуєте справжній **комфорт і затишок**, створений мною, вашим Дідусем, з великою любов'ю і увагою до деталей. Кожен куточок цього будиночка дихає **теплом і гостинністю**, забезпечуючи вам незабутній відпочинок.\n\n Запрошую до нашої **еко-садиби "На селі у Дідуся"**, де кожен момент стане особливим, а ви станете частиною нашої великої родини. Відвідайте нас і **насолоджуйтеся справжнім відпочинком** у серці природи.`,
     id: 7,
     coordinates: {
+      top: 45,
+      left: 200,
       topSmall: 60,
       leftSmall: 240,
       topSmallDifference: 55,
@@ -379,10 +428,14 @@ export const houses = [
       {
         language: "uk",
         text: "Хороми",
+        longTitle: "Хороми",
+        decorText: "Хороми",
       },
       {
         language: "en",
         text: "Khoromy",
+        longTitle: "Khoromy",
+        decorText: "Khoromy",
       },
     ],
     rental_price: 0,
@@ -394,39 +447,45 @@ export const houses = [
     max_children: 0,
     rooms: [
       {
-        name: "hornytsia",
+        name: "khoromy-didusia-1",
         title: [
           {
             language: "uk",
-            text: "Горниця",
+            text: "Хороми Дідуся (1 поверх)",
+            decorText: "Хороми Дідуся",
           },
           {
             language: "en",
-            text: "Hornytsia",
+            text: "Khoromy Didusia (1 floor)",
+            decorText: "Khoromy Didusia",
           },
         ],
-        rental_price: 1300,
+        rental_price: 1600,
         price_addons: {
           adult: 200,
           child: 150,
         },
         max_adults: 2,
-        max_children: 1,
+        max_children: 2,
         rooms: [],
         // fake
-        photoDecor: "/images/houses/house/decor/teremok.svg",
+        photoDecor: "/images/houses/house/decor/khoromy-didusia-1.svg",
+        treesDecor:
+          "/images/houses/house/khoromy/khoromy-didusia-1/trees-decor.png",
         // fake
         swiper: [
-          "/images/houses/house/svitlytsia/svitlytsia-1.png",
-          "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
-          "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+          "/images/houses/house/khoromy/khoromy-didusia-1/khoromy-didusia-1-1.png",
+          "/images/houses/house/khoromy/khoromy-didusia-1/khoromy-didusia-1-2.png",
+          "/images/houses/house/khoromy/khoromy-didusia-1/khoromy-didusia-1-3.png",
         ],
         photo: [
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345876/x8byu9uxfuau78na6k1t.jpg",
+          "/images/houses/house/khoromy/khoromy-didusia-1/khoromy-didusia-1-1.png",
         ],
-        text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat qui dolorum corrupti ab nisi impedit, ad, exercitationem repellendus saepe iste dolorem ipsam! Doloribus, eum sed! Ad quam assumenda eveniet accusantium?",
-        id: 5,
+        text: `Запрошуємо до **Хоромів Дідуся**. Цей просторий номер на **першому поверсі** обладнаний усім необхідним для комфортного перебування. Інтер’єр виконаний з **натурального дерева**, що створює атмосферу справжньої гармонії з природою. В номері є зручне **двоспальне ліжко, телевізор,  душ і туалет**.\n\n Також в номері є **диван**, на якому комфортно можуть додатково розмітитись ще два гостя.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
+        id: 9,
         coordinates: {
+          top: 25,
+          left: 195,
           topSmall: 35,
           leftSmall: 235,
           topSmallDifference: 35,
@@ -440,15 +499,17 @@ export const houses = [
         },
       },
       {
-        name: "maisternia-hnomiv",
+        name: "khoromy-didusia-2",
         title: [
           {
             language: "uk",
-            text: "Майстерня Гномів",
+            text: "Хороми Дідуся (2 поверх)",
+            decorText: "Хороми Дідуся",
           },
           {
             language: "en",
-            text: "Maisternia Hnomiv",
+            text: "Khoromy Didusia (2 floor)",
+            decorText: "Khoromy Didusia",
           },
         ],
         rental_price: 1800,
@@ -459,25 +520,23 @@ export const houses = [
         max_adults: 5,
         max_children: 0,
         rooms: [],
-        photoDecor: "/images/houses/house/decor/maisternia-hnomiv.svg",
-        treesDecor: "/images/houses/house/maisternia-hnomiv/trees-decor.png",
+        photoDecor: "/images/houses/house/decor/khoromy-didusia-2.svg",
+        treesDecor:
+          "/images/houses/house/khoromy/khoromy-didusia-2/trees-decor.png",
         // fake
         swiper: [
-          "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-1.png",
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140205/y53cddkanfa8wtz45uz1.jpg",
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140206/v4kvjbkxkcyrzy8thevv.jpg",
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140207/ujvjyru3gu2qtr5hvgof.jpg",
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140208/vwkp1h4tgydkjidg37id.jpg",
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140209/frs6hzdfshgjby8h7ffn.jpg",
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140210/f4mbwx55yvyjmrif2nwl.jpg",
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140210/cnfarw7ycza4dcyqvwbg.jpg"
+          "/images/houses/house/khoromy/khoromy-didusia-2/khoromy-didusia-2-1.png",
+          "/images/houses/house/khoromy/khoromy-didusia-2/khoromy-didusia-2-2.png",
+          "/images/houses/house/khoromy/khoromy-didusia-2/khoromy-didusia-2-3.png",
         ],
         photo: [
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345878/zkesaqmdsfsk2ofwzy4n.jpg",
+          "/images/houses/house/khoromy/khoromy-didusia-2/khoromy-didusia-2-1.png",
         ],
-        text: `Ласкаво прошу до **Майстерні Гномів** – унікального та затишного будиночка нашої Садиби, де кожен гість відчує справжню магію і домашню атмосферу.\n\n Цей будиночок розрахований на **п'ятьох гостей** і пропонує всі **сучасні зручності**, щоб ваш відпочинок був максимально комфортним. У Майстерні Гномів є **душ, туалет, телевізор, холодильник та камін**, що забезпечує затишок і зручність під час перебування.\n\n Інтер'єр будиночка виконаний з **натурального дерева**, що створює особливу атмосферу гармонії з природою. Кожен куточок Майстерні Гномів створений мною, вашим **Дідусем**, з великою **любов'ю і увагою** до деталей, щоб всі госіт могли насолоджуватися незабутнім відпочинком.\n\n Вартість перебування у Майстерні Гномів становить **1800 грн** за добу для всіх гостей, включаючи всі зручності. Запрошуємо до нашої **еко-садиби "На селі у Дідуся"**, де кожен момент стане особливим, а ви станете частиною нашої **великої родини**.`,
-        id: 6,
+        text: `Ласкаво запрошуємо до **другого номера Хоромів Дідуся**. Цей **затишний номер на другому поверсі** пропонує всі зручності для вашого комфортного перебування. В номері є **два односпальних ліжка, душ і туалет, холодильник та телевізор**, а також краєвид на мальовничий ліс, який додає особливого шарму відпочинку.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
+        id: 10,
         coordinates: {
+          top: 25,
+          left: 195,
           topSmall: 90,
           leftSmall: 265,
           topSmallDifference: 70,
@@ -491,15 +550,69 @@ export const houses = [
         },
       },
       {
-        name: "komora-de-lyuks",
+        name: "khoromy-babusi-1",
         title: [
           {
             language: "uk",
-            text: "Комора Де Люкс",
+            text: "Хороми Бабусі (1 поверх)",
+            decorText: "Хороми Бабусі",
           },
           {
             language: "en",
-            text: "Komora De Lyuks",
+            text: "Khoromy Babusi (1 floor)",
+            decorText: "Khoromy Babusi",
+          },
+        ],
+        rental_price: 1600,
+        price_addons: {
+          adult: 200,
+          child: 150,
+        },
+        max_adults: 2,
+        max_children: 2,
+        rooms: [],
+        // fake
+        photoDecor: "/images/houses/house/decor/khoromy-babusi-1.svg",
+        treesDecor:
+          "/images/houses/house/khoromy/khoromy-babusi-1/trees-decor.png",
+        // fake
+        swiper: [
+          "/images/houses/house/khoromy/khoromy-babusi-1/khoromy-babusi-1-1.png",
+          "/images/houses/house/khoromy/khoromy-babusi-1/khoromy-babusi-1-2.png",
+          "/images/houses/house/khoromy/khoromy-babusi-1/khoromy-babusi-1-3.png",
+        ],
+        photo: [
+          "/images/houses/house/khoromy/khoromy-babusi-1/khoromy-babusi-1-1.png",
+        ],
+        text: `Запрошуємо до **Хоромів Бабусі**. Цей просторий номер на **першому поверсі** обладнаний усім необхідним для комфортного перебування. Інтер’єр виконаний з **натурального дерева**, що створює атмосферу справжньої гармонії з природою. В номері є зручне **двоспальне ліжко, телевізор, душ і туалет**.\n\n Також в номері є **диван**, на якому комфортно можуть додатково розмітитись ще **два гостя**.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
+        id: 11,
+        coordinates: {
+          top: 25,
+          left: 195,
+          topSmall: 35,
+          leftSmall: 235,
+          topSmallDifference: 35,
+          leftSmallDifference: 245,
+          topMedium: 70,
+          leftMedium: 480,
+          topMediumDifference: 40,
+          leftMediumDifference: 300,
+          topLarge: 110,
+          leftLarge: 780,
+        },
+      },
+      {
+        name: "khoromy-babusi-2",
+        title: [
+          {
+            language: "uk",
+            text: "Хороми Бабусі (2 поверх)",
+            decorText: "Хороми Бабусі",
+          },
+          {
+            language: "en",
+            text: "Khoromy Babusi (2 floor)",
+            decorText: "Khoromy Babusi",
           },
         ],
         rental_price: 1300,
@@ -510,30 +623,33 @@ export const houses = [
         max_adults: 2,
         max_children: 1,
         rooms: [],
-        photoDecor: "/images/houses/house/decor/komora-de-lyuks.svg",
-        treesDecor: "/images/houses/house/komora-de-lyuks/trees-decor.png",
+        photoDecor: "/images/houses/house/decor/khoromy-babusi-2.svg",
+        treesDecor:
+          "/images/houses/house/khoromy/khoromy-babusi-2/trees-decor.png",
         swiper: [
-          "/images/houses/house/komora-de-lyuks/komora-de-lyuks-1.png",
-          "/images/houses/house/komora-de-lyuks/komora-de-lyuks-2.png",
-          "/images/houses/house/komora-de-lyuks/komora-de-lyuks-3.png",
-          "/images/houses/house/komora-de-lyuks/komora-de-lyuks-4.png",
+          "/images/houses/house/khoromy/khoromy-babusi-2/khoromy-babusi-2-1.png",
+          "/images/houses/house/khoromy/khoromy-babusi-2/khoromy-babusi-2-2.png",
+          "/images/houses/house/khoromy/khoromy-babusi-2/khoromy-babusi-2-3.png",
+          "/images/houses/house/khoromy/khoromy-babusi-2/khoromy-babusi-2-4.png",
         ],
         photo: [
-          "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/rrg5nwgx6ppba6qpdck8.jpg",
+          "/images/houses/house/khoromy/khoromy-babusi-2/khoromy-babusi-2-1.png",
         ],
-        text: `Ласкаво прошу до **Комори Де Люкс** – ідеального місця для  спокійного відпочинку. Комора де Люкс призначена **для двох осіб**, але має можливість **додаткового місця на зручному диванчику**.  В Хатинці є просторе двоспальне ліжко, сучасна ванна кімната з **душем і туалетом, холодильник та телевізор**.\n\n Кожен куточок нашої Хатинки створений мною, **Дідусем**, з великою **любов'ю і турботою**, щоб гості відчули справжній комфорт і затишок.\n\n Садиба розташована серед густого зеленого лісу, величних ялин та дарує **неповторне відчуття єднання з природою**. Фасад з натуральних матеріалів підкреслює гармонію з навколишнім середовищем.\n\n Запрошую відвідати Комору Де Люкс і **насолодитися відпочинком** у серці природи.`,
-        id: 3,
+        text: `Ласкаво запрошуємо до **другого номера Хоромів Бабусі**. Цей **затишний номер на другому поверсі** пропонує всі зручності для вашого комфортного перебування. В номері є **два односпальних ліжка, душ і туалет, холодильник та телевізор**, а також краєвид на мальовничий ліс, який додає особливого шарму відпочинку.\n\n Кожен момент в Еко-садибі "На селі у Дідуся" стає **особливим**, а кожен **гість - цінним членом нашої родини**.`,
+        id: 12,
         coordinates: {
-          topSmall: 80,
-          leftSmall: 70,
-          topSmallDifference: 60,
-          leftSmallDifference: 130,
-          topMedium: 140,
-          leftMedium: 200,
-          topMediumDifference: 70,
-          leftMediumDifference: 150,
-          topLarge: 210,
-          leftLarge: 350,
+          top: 25,
+          left: 195,
+          topSmall: 35,
+          leftSmall: 235,
+          topSmallDifference: 35,
+          leftSmallDifference: 245,
+          topMedium: 70,
+          leftMedium: 480,
+          topMediumDifference: 40,
+          leftMediumDifference: 300,
+          topLarge: 110,
+          leftLarge: 780,
         },
       },
     ],
@@ -543,9 +659,9 @@ export const houses = [
     treesDecor: "/images/houses/house/khoromy/trees-decor.png",
     // fake
     swiper: [
-      "/images/houses/house/svitlytsia/svitlytsia-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-2-1.png",
-      "/images/houses/house/svitlytsia/hatynka-dida-moroza-3-1.png",
+      "/images/houses/house/khoromy/svitlytsia/svitlytsia-1.png",
+      "/images/houses/house/khoromy/svitlytsia/hatynka-dida-moroza-2-1.png",
+      "/images/houses/house/khoromy/svitlytsia/hatynka-dida-moroza-3-1.png",
     ],
     photo: [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345877/czorzi3frevroezpzv45.jpg",
@@ -553,6 +669,8 @@ export const houses = [
     text: `Хороми, **найбільший будинок** на Садибі. Саме тому Дідусь вирішив розділити його на частини, Хороми складаюсть з **4-х номерів**, що розділені за сторонами  (**Хороми Дідуся та Хороми Бабусі**) та поверхами (**перший та другий**). Зараз розкажу детальніше та покажу, як чарівно я все влаштував всередині.\n\n Цей чудовий будинок розташований серед мальовничого **зеленого лісу і величних ялин**, що забезпечує нашим гостям спокій і затишок.\n\n **Два великих номери** розташовані на **першому поверсі**, кожен з яких обладнаний усім необхідним для  комфортного перебування. На **другому поверсі** розміщені **два менших номери**, однаково зручних і затишних. Інтер’ єр виконаний з **натурального дерева**, що створює атмосферу справжньої гармонії з природою.\n\n Кожен куточок Хоромів розроблений мною, вашим Дідусем, з великою любов'ю і увагою до деталей, щоб гості могли насолоджуватися відпочинком і **відчути себе як вдома**.`,
     id: 8,
     coordinates: {
+      top: 25,
+      left: 195,
       topSmall: 35,
       leftSmall: 235,
       topSmallDifference: 35,

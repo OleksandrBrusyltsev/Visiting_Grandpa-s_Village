@@ -6,7 +6,6 @@ import Icon from "../../ui/Icon/Icon";
 import s from "./Booking.module.scss";
 import { useLocale, useTranslations } from "next-intl";
 import NumberInput from "../../ui/NumberInput/NumberInput";
-import { useEffect, useState } from "react";
 
 type Props = {
   price: number;
@@ -23,10 +22,7 @@ type Props = {
       };
   rooms: HouseItem[];
 };
-const initialState = {
-  adultsCount: 0,
-  childrenCount: 0,
-};
+
 function GuestsBlock({
   adults,
   setAdults,
@@ -89,26 +85,8 @@ export default function Booking({
   rooms,
 }: Props) {
   const t = useTranslations("HouseItem");
-  const [adultsCount, setAdultsCount] = useState<number>(
-    initialState.adultsCount
-  );
-  const [childrenCount, setChildrenCount] = useState<number>(
-    initialState.childrenCount
-  );
-  // const [total, setTotal] = useState<number>(price);
-  const {push} = useRouter();
+  const { push } = useRouter();
   const locale = useLocale();
-
-  // useEffect(() => {
-  //   if (typeof priceAddons === "object") {
-  //     setTotal(
-  //       () =>
-  //         price +
-  //         adultsCount * priceAddons.adult +
-  //         childrenCount * priceAddons.child
-  //     );
-  //   }
-  // }, [adultsCount, childrenCount]);
 
   return (
     <section className={s.sectionWrapper}>
@@ -130,54 +108,13 @@ export default function Booking({
           />
         </div>
       </div>
-      {/* <div className={`${s.bookingWrapper} ${addons ? s.addons : s.simple}`}> */}
       <div className={`${s.bookingWrapper} ${s.simple}`}>
         <div className={s.priceWrapper}>
           <div className={s.iconPrice}>
             <Icon name="price-houses" />
           </div>
-          <p className={s.textPrice}>
-            {/* {priceAddons
-              ? t("rateBaseExt", { price, guests })
-              : t("rateBase", { price })} */}
-            {t("rateBase", { price })}
-          </p>
+          <p className={s.textPrice}>{t("rateBase", { price })}</p>
         </div>
-
-        {/* {addons ? (
-          <p className={s.addonsTitle}>
-            {t("additionalGuests", { guests: addons })}
-          </p>
-        ) : null} */}
-
-        {/* {addons ? (
-          <>
-            <GuestsBlock
-              adults={adultsCount}
-              setAdults={setAdultsCount}
-              child={childrenCount}
-              setChild={setChildrenCount}
-              priceAddons={
-                priceAddons as {
-                  adult: number;
-                  child: number;
-                }
-              }
-              maxAddons={addons}
-            />
-            <p className={s.textTotal}>
-              {t("total.text")}
-              <span className={s.total}>{t("total.currency", { total })}</span>
-            </p>
-          </>
-        ) : (
-          <div className={s.guestsWrapper}>
-            <div className={s.iconGuests}>
-              <Icon name="guests-houses" />
-            </div>
-            <p className={s.textGuests}>{t("guests", { guests })}</p>
-          </div>
-        )} */}
         <div className={s.guestsWrapper}>
           <div className={s.iconGuests}>
             <Icon name="guests-houses" />
@@ -196,7 +133,12 @@ export default function Booking({
           </div>
         </div>
         <div className={s.buttonWrapper}>
-          <Button label={t("book")} size="large" type="button" onClick={() => push(`/${locale}/booking?house=${title}`)}/>
+          <Button
+            label={t("book")}
+            size="large"
+            type="button"
+            onClick={() => push(`/${locale}/booking?house=${title}`)}
+          />
         </div>
       </div>
     </section>

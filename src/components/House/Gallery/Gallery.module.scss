@@ -102,3 +102,18 @@
     grid-row: 2 / 3;
   }
 }
+
+.imageMobileWrapper {
+  height: 300px;
+  position: relative;
+
+  @media (min-width: 425px) and (max-width: 767px) {
+    height: calc(300px + 200 * (100vw - 376px) / 342);
+  }
+  @media (min-width: 768px) {
+    height: 500px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    height: calc(500px + 200 * (100vw - 376px) / 510);
+  }
+}

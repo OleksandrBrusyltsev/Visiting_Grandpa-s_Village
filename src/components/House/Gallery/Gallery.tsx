@@ -1,9 +1,7 @@
 "use client";
-import { FC, useState, useContext, useRef } from "react";
+import { FC, useState, useContext } from "react";
 import Image from "next/image";
-import Swiper from "./Swiper/Swiper";
-import Modal from "@/components/ui/Modal/Modal";
-import SwiperMobile from "./SwiperMobile/SwiperMobile";
+import MainSwiper from "./MainSwiper/MainSwiper";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
 import s from "./Gallery.module.scss";
 
@@ -15,7 +13,6 @@ const Gallery: FC<GalleryType> = ({ pictures }) => {
   const [isSwiperOpen, setSwiperOpen] = useState(false);
   const [firstSlide, setFirstSlide] = useState<number>(0);
   const { isTablet, isMobile } = useContext(MatchMediaContext);
-  const swiperElRef = useRef<any>(null);
   const toggleSwiper = (i: number) => {
     setSwiperOpen(!isSwiperOpen);
     setFirstSlide(i);
@@ -55,29 +52,44 @@ const Gallery: FC<GalleryType> = ({ pictures }) => {
                 objectFit: "cover",
                 borderRadius: "8px",
               }}
+              sizes="(max-width: 1280px) 100vw, (max-width: 1440px) 80vw, 70vw"
             />
           </div>
         ))}
       </div>
 
       {isMobile || isTablet ? (
-        <SwiperMobile pictures={pictures} />
-      ) : (
-        isSwiperOpen && (
-          <Modal
-            isOpen={isSwiperOpen}
-            onClose={() => setSwiperOpen(false)}
-            wrapperStyles={{
-              width: isMobile ? "100vw" : "90vw",
-              height: "100dvh",
-            }}
-          >
-            <Swiper
-              pictures={pictures}
+        <div onClick={() => setSwiperOpen(!isSwiperOpen)}>
+          <div className={s.imageMobileWrapper}>
+            <Image
+              key={pictures[0]}
+              fill
+              alt="alt"
+              src={pictures[0]}
+              style={{
+                objectFit: "cover",
+                borderRadius: "8px",
+              }}
+              sizes="(max-width: 1280px) 100vw, (max-width: 1440px) 80vw, 70vw"
+            />
+          </div>
+          {isSwiperOpen && (
+            <MainSwiper
               isSwiperOpen={isSwiperOpen}
               initialSlide={firstSlide}
+              pictures={pictures}
+              onClose={() => setSwiperOpen(false)}
             />
-          </Modal>
+          )}
+        </div>
+      ) : (
+        isSwiperOpen && (
+          <MainSwiper
+            isSwiperOpen={isSwiperOpen}
+            initialSlide={firstSlide}
+            pictures={pictures}
+            onClose={() => setSwiperOpen(false)}
+          />
         )
       )}
     </div>
