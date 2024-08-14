@@ -4,6 +4,8 @@ import PinProps from "../../../../types/pin";
 import styles from "./Pin.module.scss";
 
 const Pin: FC<PinProps> = ({
+  top,
+  left,
   topSmall,
   leftSmall,
   topSmallDifference,
@@ -20,6 +22,8 @@ const Pin: FC<PinProps> = ({
       className={styles.pin}
       style={
         {
+          "--top": `${top}px`,
+          "--left": `${left}px`,
           "--top-small": `${topSmall}px`,
           "--left-small": `${leftSmall}px`,
           "--top-small-difference": `${topSmallDifference}`,
@@ -33,7 +37,12 @@ const Pin: FC<PinProps> = ({
         } as React.CSSProperties
       }
     >
-      <Image fill alt="pin" src="/images/houses/house/Shape.png" />
+      <Image
+        fill
+        alt="pin"
+        src="/images/houses/house/Shape.png"
+        sizes="17px, 24px"
+      />
     </div>
   );
 };

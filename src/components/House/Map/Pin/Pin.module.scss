@@ -2,9 +2,12 @@
   width: 17px;
   height: 24px;
   position: absolute;
-  top: var(--top-small);
-  left: var(--left-small);
-
+  top: var(--top);
+  left: var(--left);
+  @media (min-width: 375px) {
+    top: var(--top-small);
+    left: var(--left-small);
+  }
   @media (min-width: 376px) and (max-width: 767px) {
     top: calc(
       var(--top-small) + var(--top-small-difference) * (100vw - 376px) / 391

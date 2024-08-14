@@ -52,12 +52,18 @@ export default async function House({ id }: Props) {
         .text
     : house.title.filter((item) => item.language === locale)[0].text;
 
+  const decorText = isRoom
+    ? (house as any).title.filter((item: any) => item.language === locale)[0]
+        .decorText
+    : house.title.filter((item) => item.language === locale)[0].decorText;
+
   return (
     <div className={s.sectionWrapper}>
       {rooms.length ? null : (
         <div className={`${s.arrowBlockWrapper}`}>
           <p className={s.textDecor}>
-            &quot;Гортай, щоб побачити більше фото.&quot;
+            {/* &quot;Гортай, щоб побачити більше фото.&quot; */}
+            &quot;Клікай на фото, щоб подивитись більше.&quot;
           </p>
           <div className={s.arrowWrapper}>
             <Icon name="arrow-house-small" />
@@ -161,7 +167,7 @@ export default async function House({ id }: Props) {
         </HousesList>
       ) : null}
 
-      <HeroSection />
+      <HeroSection text={decorText} />
       <Map locale={locale} coordinates={coordinates} />
     </div>
   );

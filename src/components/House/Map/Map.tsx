@@ -2,22 +2,12 @@ import { FC } from "react";
 import Image from "next/image";
 import Pin from "./Pin/Pin";
 import Icon from "../../ui/Icon/Icon";
+import PinProps from "../../../types/pin";
 import s from "./Map.module.scss";
 
 type Props = {
   locale: string;
-  coordinates: {
-    topSmall: number;
-    leftSmall: number;
-    topSmallDifference: number;
-    leftSmallDifference: number;
-    topMedium: number;
-    leftMedium: number;
-    topMediumDifference: number;
-    leftMediumDifference: number;
-    topLarge: number;
-    leftLarge: number;
-  };
+  coordinates: PinProps;
 };
 
 const Map: FC<Props> = ({ locale, coordinates }) => {
@@ -33,6 +23,7 @@ const Map: FC<Props> = ({ locale, coordinates }) => {
           }
           src="/images/houses/house/illustration-map.png"
           className={s.mapImage}
+          sizes="(max-width: 1280px) 100vw, (max-width: 1440px) 80vw, 70vw"
         />
       </div>
       <div className={s.cloudBackground}>
@@ -40,6 +31,8 @@ const Map: FC<Props> = ({ locale, coordinates }) => {
       </div>
       {coordinates ? (
         <Pin
+          top={coordinates.top}
+          left={coordinates.left}
           topSmall={coordinates.topSmall}
           leftSmall={coordinates.leftSmall}
           topSmallDifference={coordinates.topSmallDifference}

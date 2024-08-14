@@ -5,6 +5,7 @@ type HouseItem = {
     language: string;
     text: string;
     longTitle: string;
+    decorText: string;
   }[];
   rental_price: number;
   price_addons:
