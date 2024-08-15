@@ -152,6 +152,9 @@
   font-weight: 600;
   line-height: 1.2 em;
   margin-bottom: 10px;
+   @include mixins.media-min(variables.$mobile) {
+    font-size: 28px;
+  }
 }
 
 .ruleDescription {
