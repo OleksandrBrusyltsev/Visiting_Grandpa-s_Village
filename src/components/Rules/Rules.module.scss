@@ -119,7 +119,7 @@
 
   @include mixins.media-min(variables.$mobile) {
     width: 76px;
-    margin-left: 240px;
+    margin-left: 280px;
   }
 
   @include mixins.media-min(900px) {
@@ -150,7 +150,7 @@
   font-family: var(--f-family-headline);
   font-size: var(--f-size-body-big);
   font-weight: 600;
-  line-height: 26.4px;
+  line-height: 1.2 em;
   margin-bottom: 10px;
 }
 
@@ -158,7 +158,10 @@
   font-family: var(--f-family-main);
   font-size: var(--f-size-body);
   font-weight: 300;
-  line-height: 18.56px;
+  line-height: 1.2 em;
+  @include mixins.media-min(variables.$mobile) {
+    font-size: var(--f-size-button-small)
+  }
 }
 
 .rulesRememberList {
