@@ -16,11 +16,22 @@ type Props = { id: string };
 export default async function House({ id }: Props) {
   const locale = await getLocale();
   const data: HouseItem[] = await getData<HouseItem[]>("houses");
-  const house = data.find((item) => item.name === id);
+
+  let house = data.find((item) => item.name === id);
+  if (!house) {
+    for (const item of data) {
+      house = item.rooms.find((room) => room.name === id);
+      if (house) {
+        break;
+      }
+    }
+  }
 
   if (!house) {
     return <p>House not found</p>;
   }
+
+  const isRoom = (house as any).rooms !== undefined;
 
   const {
     photo,
@@ -34,15 +45,25 @@ export default async function House({ id }: Props) {
     coordinates,
     price_addons,
     rooms,
-  } = house;
-  const title = house.title.filter((item) => item.language === locale)[0].text;
+  } = isRoom ? (house as any) : { ...house, rooms: [] };
+
+  const title = isRoom
+    ? (house as any).title.filter((item: any) => item.language === locale)[0]
+        .text
+    : house.title.filter((item) => item.language === locale)[0].text;
+
+  const decorText = isRoom
+    ? (house as any).title.filter((item: any) => item.language === locale)[0]
+        .decorText
+    : house.title.filter((item) => item.language === locale)[0].decorText;
 
   return (
     <div className={s.sectionWrapper}>
       {rooms.length ? null : (
         <div className={`${s.arrowBlockWrapper}`}>
           <p className={s.textDecor}>
-            &quot;Гортай, щоб побачити більше фото.&quot;
+            {/* &quot;Гортай, щоб побачити більше фото.&quot; */}
+            &quot;Клікай на фото, щоб подивитись більше.&quot;
           </p>
           <div className={s.arrowWrapper}>
             <Icon name="arrow-house-small" />
@@ -138,7 +159,7 @@ export default async function House({ id }: Props) {
               То ж маємо:
             </p>
             <div className={s.roomsWrapper}>
-              {rooms.map((room) => (
+              {rooms.map((room: any) => (
                 <HouseItem data={room} key={room.id} />
               ))}
             </div>
@@ -146,7 +167,7 @@ export default async function House({ id }: Props) {
         </HousesList>
       ) : null}
 
-      <HeroSection />
+      <HeroSection text={decorText} />
       <Map locale={locale} coordinates={coordinates} />
     </div>
   );

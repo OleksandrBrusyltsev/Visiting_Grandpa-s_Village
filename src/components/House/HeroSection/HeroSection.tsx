@@ -3,13 +3,13 @@ import Image from "next/image";
 import Icon from "../../ui/Icon/Icon";
 import s from "./HeroSection.module.scss";
 
-const HeroSection: FC = () => {
+type Props = { text: string };
+
+export default async function HeroSection({ text }: Props) {
   return (
     <div className={`${s.heroSectionWrapper}`}>
       <div className={s.hero}>
-        <p className={s.description}>
-          &quot;Побудував я Хатинку Діда Мороза тут.&quot;
-        </p>
+        <p className={s.description}>&quot;Побудував я {text} тут.&quot;</p>
         <div className={s.curve}>
           <Icon name="curve-house" />
         </div>
@@ -24,6 +24,4 @@ const HeroSection: FC = () => {
       </div>
     </div>
   );
-};
-
-export default HeroSection;
+}

@@ -1,4 +1,6 @@
 export default interface PinProps {
+  top: number;
+  left: number;
   topSmall: number;
   leftSmall: number;
   topSmallDifference: number;

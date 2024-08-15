@@ -1,0 +1,27 @@
+.swiper-wrapper {
+  height: 94%;
+}
+
+.swiper {
+  width: 100%;
+  height: 502px;
+  @media (min-width: 768px) {
+    height: 420px;
+    max-width: 1800px;
+  }
+  @media (min-width: 1200px) {
+    height: 80vh;
+    max-width: 1800px;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  background: rgb(var(--color-base-green));
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: var(--swiper-pagination-bottom, -5px);
+}
