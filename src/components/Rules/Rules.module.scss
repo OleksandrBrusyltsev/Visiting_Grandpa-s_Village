@@ -150,9 +150,9 @@
   font-family: var(--f-family-headline);
   font-size: var(--f-size-body-big);
   font-weight: 600;
-  line-height: 1.2 em;
+  line-height: 1.2;
   margin-bottom: 10px;
-   @include mixins.media-min(variables.$mobile) {
+  @include mixins.media-min(variables.$mobile) {
     font-size: 28px;
   }
 }
@@ -161,9 +161,9 @@
   font-family: var(--f-family-main);
   font-size: var(--f-size-body);
   font-weight: 300;
-  line-height: 1.2 em;
+  line-height: 1.2;
   @include mixins.media-min(variables.$mobile) {
-    font-size: var(--f-size-button-small)
+    font-size: var(--f-size-button-small);
   }
 }
 
@@ -243,11 +243,15 @@
 .rulesRememberItemThird,
 .rulesRememberItemFirst,
 .rulesRememberItemSecond {
-  font-family: var(--f-family-headline);
+  font-family: var(--f-family-main);
   font-size: var(--f-size-button-small);
   font-weight: 600;
-  line-height: 22px;
+  line-height: 1.2;
   text-align: left;
+
+  @include mixins.media-min(variables.$mobile) {
+    font-size: var(--f-size-body-big);
+  }
   @include mixins.media-min(variables.$breakpoint-laptop) {
     font-size: var(--f-size-h3);
     line-height: 27px;
