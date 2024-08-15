@@ -264,7 +264,7 @@ export default function Houses({ items }: Props) {
       </div>
 
       <main>
-        <HousesList data={items}>
+        <HousesList data={items} className="container">
           <>
             <div className={s.housesTitle}>
               <h1>Живи тут</h1>

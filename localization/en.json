@@ -39,7 +39,7 @@
       "text": "Check-out time: ",
       "time": "12:00"
     },
-    "guests": "{guests, plural, =1 {# guest} other {# guests}}",
+    "guests": "{guests, plural, =1 { guest} other { guests}}",
     "adultGuestAddons": "adult ({rate} hrn)",
     "childGuestAddons": "child of 3-12 y.o. ({rate} hrn)",
     "visit": "Visit",

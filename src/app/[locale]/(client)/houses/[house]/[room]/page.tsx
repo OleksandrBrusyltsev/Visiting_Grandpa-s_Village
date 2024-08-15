@@ -11,10 +11,11 @@ type Props = { params: { room: string } };
 
 export default function Page({ params }: Props) {
   const { room } = params;
-
+  const isRoom = "room" in params;
+  
   return (
     <div className="container">
-      <House id={room} />
+      <House id={room} isRoom={isRoom}/>
     </div>
   );
 }

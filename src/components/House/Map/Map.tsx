@@ -21,9 +21,9 @@ const Map: FC<Props> = ({ locale, coordinates }) => {
               ? "Map of Grandpa's houses"
               : "Карта еко садиби Дідуся"
           }
-          src="/images/houses/house/illustration-map.png"
+          src="/images/backgrounds/illustration-map.png"
+          sizes="100vw"
           className={s.mapImage}
-          sizes="(max-width: 1280px) 100vw, (max-width: 1440px) 80vw, 70vw"
         />
       </div>
       <div className={s.cloudBackground}>

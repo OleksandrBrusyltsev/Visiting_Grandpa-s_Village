@@ -11,6 +11,18 @@ import s from "./HouseItem.module.scss";
 
 type Props = { data: HouseItem };
 
+export const guestsString = (main: number, ad: number, str: string) => {
+  if (ad) return `${main}+${ad} ${str}`;
+  switch (true) {
+    case main === 1:
+      return `${main} ${str}`;
+    case main < 5:
+      return `${main} ${str}`;
+    default:
+      return `${main} ${str}`;
+  }
+};
+
 const FavoriteIcon = ({ className }: { className: string }) => {
   return (
     <svg
@@ -39,22 +51,10 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
   const pathName = path.split("/")[2];
   const houseWithRooms = path.split("/")[3] || null;
   const { push } = useRouter();
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  // const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-  const { name, photo, max_adults, max_children, rooms, rental_price } = data;
+  const { name, photo, guests, add_guests_variants, rooms, rental_price } = data;
   const title = data.title.filter((item) => item.language === locale)[0].text;
-
-  const guestsString = () => {
-    if (max_children) return `${max_adults}+${max_children} гостей`;
-    switch (!!rental_price) {
-      case max_adults === 1:
-        return `${max_adults} гість`;
-      case max_adults < 5:
-        return `${max_adults} гостя`;
-      default:
-        return `${max_adults} гостей`;
-    }
-  };
 
   return (
     <div className={s.houseWrapper} ref={ref}>
@@ -74,25 +74,29 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
       >
         <div className={s.titleWrapper}>
           <Icon name="house" className={s.houseIcon} />
-          <h3 className={s.title}>{title}</h3>
+          <h3 
+            className={s.title} 
+            dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }}
+          ></h3>
         </div>
-        <div className={s.priceWrapper}>
-          {!!rental_price ? (
-            <>
-              <Icon name="pocket" className={s.pocketIcon} />
-              <span className={s.price}>
-                {t("rateBase", { price: rental_price })}
-              </span>
-            </>
-          ) : null}
-        </div>
+        {!!rental_price ? (
+          <div className={s.priceWrapper}>
+            <Icon name="pocket" className={s.pocketIcon} />
+            <span className={s.price}>
+              {t("rateBase", { price: rental_price })}
+            </span>
+          </div>
+        ) : null}
         <div className={s.guestsWrapper}>
           {rooms.length ? (
             <span className={s.guests}>Кількість номерів: 4</span>
           ) : (
             <>
               <Icon name="guests" className={s.guestsIcon} />
-              <span className={s.guests}>{guestsString()}</span>
+              { !!rental_price ? 
+                <span className={s.guests}>{guestsString(guests, add_guests_variants.adult, t('guests', {guests: add_guests_variants.adult ? 5 : guests}))}</span> :
+                null 
+              }
             </>
           )}
         </div>
@@ -111,14 +115,14 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
           />
         </div>
       </div>
-      <button
+      {/* <button
         className={s.favoriteWrapper}
         onClick={() => setIsFavorite(!isFavorite)}
       >
         <FavoriteIcon
           className={`${s.favoriteIcon} ${isFavorite ? s.isFavorite : ""}`}
         />
-      </button>
+      </button> */}
     </div>
   );
 });

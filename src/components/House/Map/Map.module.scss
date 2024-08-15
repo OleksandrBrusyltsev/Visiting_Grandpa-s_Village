@@ -1,6 +1,6 @@
 .mapWrapper {
   margin-top: 155px;
-  margin-bottom: 54px;
+  margin-bottom: clamp(60px, calc(60px + 115 * (100vw - 375px) / 392), 175px);
   position: relative;
   display: flex;
   justify-content: center;
@@ -10,6 +10,7 @@
   }
   @media (min-width: 768px) {
     margin-top: 197px;
+    margin-bottom: clamp(175px, calc(175px + 37 * (100vw - 768px) / 511), 212px);
   }
   @media (min-width: 769px) and (max-width: 1279px) {
     margin-top: calc(197px + 90 * (100vw - 769px) / 510);

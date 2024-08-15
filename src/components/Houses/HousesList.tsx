@@ -3,9 +3,14 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import s from './HousesList.module.scss';
 
-type Props = {children: React.ReactNode, data: HouseItem[], patternOffset?: boolean};
+type Props = {
+    children: React.ReactNode;
+    data: HouseItem[]; 
+    patternOffset?: boolean;
+    className?: string
+};
 
-export default function HousesList({children, data, patternOffset = true}: Props) {
+export default function HousesList({children, data, patternOffset = true, className}: Props) {
     const listRef = useRef<HTMLElement | null>(null);
     const [size, setSize] = useState(0);
 
@@ -119,7 +124,7 @@ export default function HousesList({children, data, patternOffset = true}: Props
     }, [data.length, size]);
 
     return (
-        <section className={`${s.housesList} container`} ref={listRef}>
+        <section className={`${s.housesList} ${className}`} ref={listRef}>
             {children}
         </section>
     )

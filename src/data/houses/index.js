@@ -17,11 +17,14 @@ export const houses = [
     ],
     rental_price: 1300,
 
-    // for booking component on the house page: {adult: number,child: number,} - if elsewhere except of Horomy rooms max_children > 0
+    // for booking component on the house page: {adult: number,child: number,} - if elsewhere except of Horomy rooms add_guests > 0
     price_addons: false,
 
-    max_adults: 2,
-    max_children: 0,
+    guests: 2,
+    add_guests_variants: {
+      adult: 0,
+      twoChildAsAdult: false,
+    },
     rooms: [],
     photoDecor: "/images/houses/house/decor/hatynka-dida-moroza.svg",
     treesDecor: "/images/houses/house/hatynka-dida-moroza/trees-decor.png",
@@ -72,8 +75,11 @@ export const houses = [
       adult: 200,
       child: 150,
     },
-    max_adults: 2,
-    max_children: 0,
+    guests: 2,
+    add_guests_variants: {
+      adult: 1,
+      twoChildAsAdult: true,
+    },
     rooms: [],
     photoDecor: "/images/houses/house/decor/svitlytsia.svg",
     treesDecor: "/images/houses/house/svitlytsia/trees-decor.png",
@@ -125,8 +131,11 @@ export const houses = [
       adult: 200,
       child: 150,
     },
-    max_adults: 2,
-    max_children: 1,
+    guests: 2,
+    add_guests_variants: {
+      adult: 1,
+      twoChildAsAdult: false,
+    },
     rooms: [],
     photoDecor: "/images/houses/house/decor/hatynka-babky-izhachky.svg",
     treesDecor: "/images/houses/house/hatynka-babky-izhachky/trees-decor.png",
@@ -177,8 +186,11 @@ export const houses = [
       adult: 200,
       child: 150,
     },
-    max_adults: 2,
-    max_children: 1,
+    guests: 2,
+    add_guests_variants: {
+      adult: 1,
+      twoChildAsAdult: false,
+    },
     rooms: [],
     photoDecor: "/images/houses/house/decor/komora-de-lyuks.svg",
     treesDecor: "/images/houses/house/komora-de-lyuks/trees-decor.png",
@@ -229,8 +241,11 @@ export const houses = [
       adult: 200,
       child: 150,
     },
-    max_adults: 2,
-    max_children: 1,
+    guests: 2,
+    add_guests_variants: {
+      adult: 2,
+      twoChildAsAdult: false,
+    },
     rooms: [],
     photoDecor: "/images/houses/house/decor/opochyvalnia.svg",
     treesDecor: "/images/houses/house/opochyvalnia/trees-decor.png",
@@ -281,8 +296,11 @@ export const houses = [
       adult: 200,
       child: 150,
     },
-    max_adults: 2,
-    max_children: 1,
+    guests: 2,
+    add_guests_variants: {
+      adult: 1,
+      twoChildAsAdult: true,
+    },
     rooms: [],
     photoDecor: "/images/houses/house/decor/hornytsia.svg",
     treesDecor: "/images/houses/house/hornytsia/trees-decor.png",
@@ -335,8 +353,11 @@ export const houses = [
       adult: 200,
       child: 150,
     },
-    max_adults: 5,
-    max_children: 0,
+    guests: 5,
+    add_guests_variants: {
+      adult: 0,
+      twoChildAsAdult: false,
+    },
     rooms: [],
     photoDecor: "/images/houses/house/decor/maisternia-hnomiv.svg",
     treesDecor: "/images/houses/house/maisternia-hnomiv/trees-decor.png",
@@ -387,10 +408,13 @@ export const houses = [
         decorText: "Teremok",
       },
     ],
-    rental_price: 750,
+    rental_price: 1500,
     price_addons: false,
-    max_adults: 2,
-    max_children: 0,
+    guests: 4,
+    add_guests_variants: {
+      adult: 0,
+      twoChildAsAdult: false,
+    },
     rooms: [],
     photoDecor: "/images/houses/house/decor/teremok.svg",
     treesDecor: "/images/houses/house/teremok/trees-decor.png",
@@ -443,20 +467,23 @@ export const houses = [
       adult: 200,
       child: 150,
     },
-    max_adults: 0,
-    max_children: 0,
+    guests: 0,
+    add_guests_variants: {
+      adult: 0,
+      twoChildAsAdult: false,
+    },
     rooms: [
       {
         name: "khoromy-didusia-1",
         title: [
           {
             language: "uk",
-            text: "Хороми Дідуся (1 поверх)",
+            text: "Хороми Дідуся\n(1 поверх)",
             decorText: "Хороми Дідуся",
           },
           {
             language: "en",
-            text: "Khoromy Didusia (1 floor)",
+            text: "Khoromy Didusia\n(1 floor)",
             decorText: "Khoromy Didusia",
           },
         ],
@@ -465,8 +492,11 @@ export const houses = [
           adult: 200,
           child: 150,
         },
-        max_adults: 2,
-        max_children: 2,
+        guests: 2,
+        add_guests_variants: {
+          adult: 2,
+          twoChildAsAdult: false,
+        },
         rooms: [],
         // fake
         photoDecor: "/images/houses/house/decor/khoromy-didusia-1.svg",
@@ -503,22 +533,25 @@ export const houses = [
         title: [
           {
             language: "uk",
-            text: "Хороми Дідуся (2 поверх)",
+            text: "Хороми Дідуся\n(2 поверх)",
             decorText: "Хороми Дідуся",
           },
           {
             language: "en",
-            text: "Khoromy Didusia (2 floor)",
+            text: "Khoromy Didusia\n(2 floor)",
             decorText: "Khoromy Didusia",
           },
         ],
-        rental_price: 1800,
+        rental_price: 1300,
         price_addons: {
           adult: 200,
           child: 150,
         },
-        max_adults: 5,
-        max_children: 0,
+        guests: 2,
+        add_guests_variants: {
+          adult: 1,
+          twoChildAsAdult: false,
+        },
         rooms: [],
         photoDecor: "/images/houses/house/decor/khoromy-didusia-2.svg",
         treesDecor:
@@ -554,12 +587,12 @@ export const houses = [
         title: [
           {
             language: "uk",
-            text: "Хороми Бабусі (1 поверх)",
+            text: "Хороми Бабусі\n(1 поверх)",
             decorText: "Хороми Бабусі",
           },
           {
             language: "en",
-            text: "Khoromy Babusi (1 floor)",
+            text: "Khoromy Babusi\n(1 floor)",
             decorText: "Khoromy Babusi",
           },
         ],
@@ -568,8 +601,11 @@ export const houses = [
           adult: 200,
           child: 150,
         },
-        max_adults: 2,
-        max_children: 2,
+        guests: 2,
+        add_guests_variants: {
+          adult: 2,
+          twoChildAsAdult: false,
+        },
         rooms: [],
         // fake
         photoDecor: "/images/houses/house/decor/khoromy-babusi-1.svg",
@@ -606,12 +642,12 @@ export const houses = [
         title: [
           {
             language: "uk",
-            text: "Хороми Бабусі (2 поверх)",
+            text: "Хороми Бабусі\n(2 поверх)",
             decorText: "Хороми Бабусі",
           },
           {
             language: "en",
-            text: "Khoromy Babusi (2 floor)",
+            text: "Khoromy Babusi\n(2 floor)",
             decorText: "Khoromy Babusi",
           },
         ],
@@ -620,8 +656,11 @@ export const houses = [
           adult: 200,
           child: 150,
         },
-        max_adults: 2,
-        max_children: 1,
+        guests: 2,
+        add_guests_variants: {
+          adult: 1,
+          twoChildAsAdult: false,
+        },
         rooms: [],
         photoDecor: "/images/houses/house/decor/khoromy-babusi-2.svg",
         treesDecor:
