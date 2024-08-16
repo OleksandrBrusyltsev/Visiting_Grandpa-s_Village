@@ -1,0 +1,49 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.list {
+  display: none;
+  
+  @include mixins.media-min(variables.$mobile) {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.item {
+  padding: 10px;
+  color: rgb(var(--color-black));
+  font-family: var(--f-family-main);
+  font-size: var(--f-size-body);
+  font-weight: 400;
+  line-height: normal;
+  width: max-content; 
+  white-space: nowrap;
+  transition: transform 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
+  text-align: center;
+  &::before {
+    content: attr(data-text);
+    font-weight: 700;
+    visibility: hidden;
+    height: 0;
+    display: block;
+    overflow: hidden;
+}
+
+  @media (hover: hover){
+    &:hover {
+      color: rgb(var(--color-base-green));
+      transform: translateY(3px);
+    }
+  }
+
+  &:active {
+    color: rgb(var(--color-natural-orange));
+    font-weight: 700;
+  }
+}
+
+.active {
+  font-weight: 700;
+}

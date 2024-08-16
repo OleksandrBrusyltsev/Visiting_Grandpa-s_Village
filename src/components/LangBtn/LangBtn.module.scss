@@ -1,0 +1,40 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.langContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(var(--color-black));
+  font-size: 24px;
+  
+  @include mixins.media-min(variables.$mobile) {
+    font-size: var(--f-size-body);
+  }
+    //tmp styles
+    opacity: 0;
+    visibility: hidden;
+}
+
+.active {
+  color: rgb(var(--color-natural-orange));
+}
+
+.langBtn {
+  font-family: var(--f-family-headline);
+  font-weight: 600;
+  line-height: normal;
+  transition: color 0.2s;
+
+  @media (hover: hover) {
+    &:hover {
+      color: rgb(var(--color-natural-orange));
+    }
+  }
+  &:active {
+    color: rgb(var(--color-natural-orange));
+  }
+}
+.active {
+  color: rgb(var(--color-natural-orange));
+}

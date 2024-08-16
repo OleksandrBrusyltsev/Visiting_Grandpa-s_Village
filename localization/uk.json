@@ -1,0 +1,52 @@
+{
+  "Index": {
+    "title": "укр",
+    "description": "укр",
+    "welcomeBlock": "Найкращий час для відпочинку - зараз"
+  },
+  "NotFoundPage": {
+    "title": "щось пішло не так, вибачай",
+    "description": "Сторінка не знайдена"
+  },
+  "Admin": {
+    "title": "Адмінка"
+  },
+  "Breadcrumbs": {
+    "home": "Головна",
+    "houses": "Жити",
+    "meals": "Їсти",
+    "entertainment": "Байдикувати",
+    "gallery": "Спогади",
+    "contacts": "Знайти мене",
+    "booking": "Завітати",
+    "options": "Варіанти бронювань",
+    "payment": "Оплата",
+    "rules": "Умови бронювання та правила перебування"
+  },
+  "HouseItem": {
+    "rateBase": "{price} грн/доба",
+    "rateBaseExt": "{price} грн/доба за {guests, plural, =1 {# гостя} other {# гостей}}",
+    "additionalGuests": "додатково ({guests, plural, =1 {# гість} =2 {# гостя} =3 {# гостя} =4 {# гостя} other {# гостей}})",
+    "total": {
+      "text": "Всього:",
+      "currency": " {total} грн."
+    },
+    "checkInTime": {
+      "text": "Час заїзду: ",
+      "time": "14:00"
+    },
+    "checkOutTime": {
+      "text": "Час виїзду: ",
+      "time": "12:00"
+    },
+    "guests": "{guests, plural, =1 { гість} =2 { гостя} =3 { гостя} =4 { гостя} other { гостей}}",
+    "adultGuestAddons": "дорослий ({rate} грн.)",
+    "childGuestAddons": "дитина 3-12р. ({rate} грн.)",
+    "visit": "Завітай",
+    "book": "Забронювати"
+  },
+  "UI": {
+    "visit": "Завітати",
+    "home": "На Головну"
+  }
+}

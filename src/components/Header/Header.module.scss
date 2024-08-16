@@ -1,0 +1,130 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.fullsizeBackground {
+  background-color: rgba(var(--color-nude), 0.5);
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 6px 24px;
+  height: 100px;
+  max-width: 1440px;
+  margin: 0 auto;
+
+  @include mixins.media-min(variables.$mobile) {
+    padding: 6px 30px;
+    height: 160px;
+    align-items: center;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    padding: 6px 80px;
+  }
+
+  @include mixins.media-min(variables.$pc) {
+    padding: 6px 130px;
+  }
+}
+
+.burgerBtn {
+  width: 28px;
+  cursor: pointer;
+  align-items: center;
+  padding-bottom: 10px;
+
+  @include mixins.media-min(variables.$mobile) {
+    display: none;
+  }
+  &:active {
+    .burgerIcon span {
+      height: 3px;
+    }
+  }
+}
+
+.burgerIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 28px;
+  height: 28px;
+}
+
+.burgerIcon span {
+  background-color:rgb(var(--color-base-green));
+  height: 2px;
+  width: 28px;
+  transition: transform 0.5s ease, opacity 0.2s ease;
+}
+
+.burgerBtn.active .burgerIcon span:nth-child(1) {
+  background-color:rgb(var(--color-natural-orange));
+  transform: rotate(45deg);
+  position: relative;
+  top: 9.33px;
+}
+
+.burgerBtn.active .burgerIcon span:nth-child(2) {
+  background-color:rgb(var(--color-natural-orange));
+  opacity: 0;
+}
+
+.burgerBtn.active .burgerIcon span:nth-child(3) {
+  background-color:rgb(var(--color-natural-orange));
+  transform: rotate(-45deg);
+  position: relative;
+  top: -9.33px;
+}
+
+.userBtn {
+  width: 28px;
+  cursor: pointer;
+  color: rgb(var(--color-base-green));
+  svg path {
+    transition: all 0.2s ease;
+  }
+  padding-bottom: 10px;
+
+  //tmp styles
+  opacity: 0;
+  visibility: hidden;
+
+  @media (hover: hover) {
+    &:hover svg path {
+      stroke-width: 3;
+    }
+  }
+  &:active svg path {
+    stroke-width: 3;
+    stroke: rgb(var(--color-natural-orange));
+  }
+
+  @include mixins.media-min(variables.$mobile) {
+    padding-bottom: 0;
+  }
+}
+
+.headerBtn {
+  display: none;
+  @include mixins.media-min(variables.$mobile) {
+    display: unset;
+  }
+}
+
+.headerBox {
+  display: flex;
+  align-items: center;
+  gap: 46px;
+}
+
+.mainLogo {
+  @include mixins.media-min(variables.$mobile) {
+    width: 277px;
+    height: 135px;
+  }
+}

@@ -1,0 +1,939 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.section {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px;
+  max-width: 650px;
+
+  @include mixins.media-min(variables.$mobile) {
+    max-width: 768px;
+    align-items: normal;
+    padding: 0 30px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    max-width: 1280px;
+    align-items: normal;
+    margin-top: 40px;
+    padding: 0 50px;
+  }
+  @include mixins.media-min(variables.$pc) {
+    max-width: 1440px;
+    align-items: normal;
+    padding: 0 130px;
+  }
+}
+
+.section > .add1 {
+  align-self: inspect($value: flex-start);
+  margin-left: 24px;
+
+  width: 50vw;
+}
+
+.grandbox1 {
+  margin-bottom: 12px;
+  margin-top: 63px;
+
+  @include mixins.media-min(variables.$mobile) {
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-top: 40px;
+    margin-bottom: 36px;
+  }
+}
+
+.textBox1 {
+  @include mixins.media-min(variables.$mobile) {
+    width: 362px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 515px;
+  }
+}
+
+.mainTitle {
+  font-family: var(--f-family-headline);
+  font-weight: 600;
+  font-size: var(--f-size-button-big);
+  line-height: 21.48px;
+  color: rgba(var(--color-base-green), 1);
+  @include mixins.media-min(variables.$mobile) {
+    font-size: 32px;
+    line-height: 35.2px;
+  }
+}
+
+.text1 {
+  font-family: var(--f-family-main);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16.44px;
+  color: rgb(var(--color-black));
+  margin-bottom: 12px;
+
+  @include mixins.media-min(variables.$mobile) {
+    padding: 0;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 32px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    font-size: 20px;
+  }
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.text2 {
+  font-size: 16px;
+  font-weight: 700;
+  text-align: right;
+  color: rgba(var(--color-base-green), 1);
+  margin-bottom: 20px;
+
+  font-family: var(--f-family-main);
+
+  @include mixins.media-min(variables.$mobile) {
+    padding: 0;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    font-size: 20px;
+  }
+}
+
+.boxForAlign {
+  margin-left: auto;
+}
+
+.imgBox {
+  position: relative;
+  height: calc((100vw - 48px) / 327 * 273);
+  max-height: 480px;
+
+  width: 100%;
+  margin: 0 auto;
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-top: -50px;
+    max-height: 423px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    max-height: 500px;
+    margin-top: unset;
+  }
+}
+
+.grandpa1 {
+  margin-top: clamp(20px, calc(20px + 20 * (100vw - 375px) / 392), 40px);
+  margin-inline: -5px;
+  width: 26vw;
+  height: unset;
+  aspect-ratio: 1;
+  max-width: 150px;
+  float: right;
+  @include mixins.media-min(variables.$mobile) {
+    position: absolute;
+    top: 25px;
+    right: 41px;
+
+    width: 254px;
+    height: 254px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    top: 150px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 334px;
+    height: 334px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.photo1 {
+  // z-index: 50;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 51vw;
+  height: unset;
+  aspect-ratio: 1.085;
+  max-width: 302px;
+
+  @include mixins.media-min(variables.$mobile) {
+    top: 136px;
+
+    width: 302px;
+    height: 274px;
+
+    max-width: unset;
+    max-height: unset;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    top: -300px;
+    right: 0;
+    left: auto;
+
+    width: 544px;
+    height: 492px;
+  }
+}
+
+.illustration1 {
+  position: absolute;
+  top: 30%;
+  right: 0;
+  // z-index: 49;
+
+  width: 55vw;
+  height: unset;
+  aspect-ratio: 1.062;
+  max-width: 354px;
+
+  transform: scale(-1, 1);
+
+  @include mixins.media-min(variables.$mobile) {
+    top: 50px;
+
+    width: 354px;
+    height: 321px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    z-index: 49;
+    top: auto;
+    bottom: -50px;
+    right: auto;
+    left: 0;
+    width: 410px;
+    height: 372px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    transform: none;
+  }
+}
+
+.title1 {
+  font-family: var(--f-family-headline);
+  font-weight: 600;
+  font-size: var(--f-size-button-big);
+  line-height: 21.48px;
+  color: rgba(var(--color-base-green), 1);
+
+  @include mixins.media-min(variables.$mobile) {
+    font-size: 48px;
+    line-height: 52.8px;
+    text-transform: uppercase;
+  }
+}
+
+.textContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  @include mixins.media-min(variables.$mobile) {
+    width: 484px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 551px;
+    margin: 0 auto;
+    align-items: flex-end;
+  }
+}
+
+.marg {
+  margin-bottom: 20px;
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 32px;
+  }
+}
+
+.grandbox2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  margin-bottom: -20px;
+
+  @include mixins.media-min(variables.$mobile) {
+    display: block;
+    padding: 0;
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+  }
+}
+
+.grandpa2 {
+  width: 30vw;
+  aspect-ratio: 1;
+  height: unset;
+
+  max-width: 161px;
+  transform: scale(-1, 1);
+  z-index: -1;
+
+  @include mixins.media-min(variables.$mobile) {
+    position: absolute;
+    right: 30px;
+    left: auto;
+    width: 304px;
+    height: 302px;
+
+    max-width: 100%;
+    max-height: 100%;
+    transform: none;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    top: 750px;
+    right: 50px;
+    width: 327px;
+    height: 324px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @include mixins.media-min(variables.$pc) {
+    top: 750px;
+    right: 160px;
+    width: 327px;
+    height: 324px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.imgBox2 {
+  width: 100%;
+  position: relative;
+  @include mixins.media-min(variables.$mobile) {
+    margin-bottom: 30px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-top: -56px;
+  }
+}
+
+.photo4 {
+  position: absolute;
+  top: 32%;
+  left: 0;
+  z-index: 55;
+  width: 46vw;
+  height: unset;
+  aspect-ratio: 1.545;
+  max-width: 299px;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 376px;
+    height: 214px;
+
+    max-width: unset;
+    max-height: unset;
+
+    top: auto;
+    bottom: 0;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 556px;
+    height: 354px;
+
+    top: 594px;
+  }
+}
+
+.photo2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 57vw;
+  height: unset;
+  aspect-ratio: 1.815;
+  max-width: 370px;
+  z-index: 20;
+  @include mixins.media-min(variables.$mobile) {
+    width: 424px;
+    height: 206px;
+
+    max-width: unset;
+    max-height: unset;
+
+    left: 0;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 748px;
+    height: 410px;
+    top: 54px;
+  }
+}
+
+.photo3 {
+  position: absolute;
+  right: 8.3%;
+  bottom: -8%;
+  z-index: 48;
+
+  width: 57vw;
+  height: unset;
+  aspect-ratio: 1.277;
+  max-width: 370px;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 402px;
+    height: 348px;
+    right: 0;
+
+    max-width: unset;
+    max-height: unset;
+
+    bottom: auto;
+    top: 21%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 606px;
+    height: 526px;
+    top: 326px;
+  }
+}
+
+.add {
+  text-align: right;
+  margin-bottom: 20px;
+  margin-left: auto;
+
+  @include mixins.media-min(variables.$mobile) {
+    text-align: left;
+    padding: 0;
+  }
+}
+
+.imgBox3 {
+  position: relative;
+  height: 110vw;
+
+  max-height: 635px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.illustration3 {
+  position: absolute;
+  top: -18%;
+  left: 0;
+  z-index: 50;
+
+  width: 50vw;
+  height: unset;
+  aspect-ratio: 1.039;
+  max-width: 325px;
+  transform: scale(-1, 1);
+
+  @include mixins.media-min(variables.$mobile) {
+    right: 0;
+    left: auto;
+    top: -60%;
+
+    width: 356px;
+    height: 298px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    transform: none;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    right: 0;
+    left: auto;
+    top: -450px;
+
+    width: 488px;
+    height: 458px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    // transform: scale(-1, 1);
+  }
+}
+
+.photo7 {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  z-index: 49;
+
+  width: 42vw;
+  height: unset;
+  aspect-ratio: 1;
+  max-width: 273px;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 434px;
+    height: 434px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    left: 0;
+    right: auto;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 668px;
+    height: 668px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    left: 0;
+    right: auto;
+    top: 150px;
+  }
+}
+
+.photo5 {
+  position: absolute;
+  top: min(50%, 313px);
+  left: 4%;
+  z-index: 48;
+
+  width: 52vw;
+  height: unset;
+  aspect-ratio: 1.155;
+  max-width: 338px;
+
+  @include mixins.media-min(variables.$mobile) {
+    right: 0;
+    left: auto;
+    top: auto;
+    bottom: 0;
+
+    width: 345px;
+    height: 296px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    right: 0;
+    left: auto;
+    top: auto;
+    bottom: 0;
+
+    width: 499px;
+    height: 430px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.illustration2 {
+  position: absolute;
+  top: clamp(-239px, calc(-259px + 139 * (767px - 100vw) / 392), -120px);
+  right: clamp(-35px, calc(-35px + 35 * (767px - 100vw) / 392), 0px);
+
+  z-index: -1;
+
+  width: 52vw;
+  height: unset;
+  aspect-ratio: 0.97;
+  max-width: 338px;
+  transform: scale(-1, 1);
+
+  @include mixins.media-min(variables.$mobile) {
+    right: auto;
+    left: -70%;
+    top: -86px;
+    z-index: 47;
+    width: 322px;
+    height: 318px;
+
+    max-width: unset;
+    max-height: unset;
+
+    transform: none;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    left: -70%;
+    top: -137px;
+
+    width: 506px;
+    height: 498px;
+  }
+}
+
+.imgMask {
+  position: relative;
+  z-index: -1;
+  @include mixins.media-min(variables.$mobile) {
+    position: inherit;
+    z-index: 0;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+  }
+}
+
+.imgMask::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+  pointer-events: none;
+  @include mixins.media-min(variables.$mobile) {
+    display: none;
+  }
+}
+
+.textContainer2 {
+  position: relative;
+  margin-top: 40px;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 433px;
+    margin-left: 40%;
+    margin-top: 100px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 695px;
+  }
+}
+
+.add1 {
+  // margin-left: 24px;
+  max-width: 200px;
+
+  margin-bottom: 20px;
+
+  @include mixins.media-min(variables.$mobile) {
+    max-width: 100%;
+    margin-bottom: 36px;
+  }
+}
+
+.imgBox4 {
+  position: relative;
+  width: 100%;
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    height: 1000px;
+    max-height: 100%;
+  }
+}
+
+.grandpa3 {
+  position: absolute;
+  top: 5%;
+  left: 0;
+
+  width: 39vw;
+  height: unset;
+  aspect-ratio: 1.165;
+  max-width: 225px;
+  z-index: 48;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 311px;
+    height: 248px;
+
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    left: auto;
+    right: 0;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 454px;
+    height: 364px;
+
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    left: auto;
+    right: 0;
+  }
+}
+
+.photo6 {
+  position: absolute;
+  right: 0;
+  top: min(15%, 80px);
+
+  width: 54vw;
+  height: unset;
+  aspect-ratio: 1.351;
+  max-width: 351px;
+  z-index: 49;
+
+  @include mixins.media-min(variables.$mobile) {
+    right: auto;
+    left: 0;
+    top: 0;
+
+    width: 420px;
+    height: 315px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    right: auto;
+    left: 0;
+    top: 74px;
+
+    width: 660px;
+    height: 496px;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.photo8 {
+  position: absolute;
+  bottom: 7%;
+  right: 0;
+
+  width: 77vw;
+  height: unset;
+  aspect-ratio: 1.55;
+  max-width: 500px;
+  z-index: 50;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 370px;
+    height: 236px;
+
+    max-width: 100%;
+    max-height: 100%;
+    right: 0;
+    bottom: 0;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 550px;
+    height: 352px;
+
+    max-width: 100%;
+    max-height: 100%;
+    top: auto;
+    left: auto;
+    right: 0;
+    bottom: 100px;
+  }
+}
+
+.svg {
+  z-index: 10;
+}
+
+.line1Box {
+  padding-left: 33.6%;
+
+  @include mixins.media-min(variables.$mobile) {
+    padding-left: unset;
+    display: flex;
+    justify-content: center;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    justify-content: flex-start;
+  }
+}
+
+.line2Box {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  @include mixins.media-min(variables.$mobile) {
+    margin-inline: 18.4% auto;
+    padding-bottom: 75px;
+    margin-top: -20px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-inline: 17.8% auto;
+    margin-top: unset;
+  }
+}
+
+.line2 {
+  width: 81%;
+  aspect-ratio: 1;
+  @include mixins.media-min(variables.$mobile) {
+    height: 540px;
+    width: 540px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 911px;
+    height: 911px;
+  }
+}
+
+.line3Box {
+  display: flex;
+  justify-content: center;
+  height: 76vw;
+  max-height: 433px;
+  @include mixins.media-min(variables.$mobile) {
+    transform: rotate(-13deg);
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-top: 200px;
+  }
+}
+
+.line3 {
+  @include mixins.media-min(variables.$mobile) {
+    width: 94vw;
+    max-width: 975px;
+    z-index: 46;
+    overflow: hidden;
+  }
+}
+
+.line1 {
+  width: 51vw;
+  max-width: 320px;
+  height: unset;
+  aspect-ratio: 0.725;
+
+  @include mixins.media-min(variables.$mobile) {
+    width: 198px;
+    aspect-ratio: 0.825;
+    margin-left: 170px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 291px;
+    // height: 351px;
+    aspect-ratio: 0.829;
+    margin-left: 100px;
+  }
+}
+
+.line4Box {
+  display: flex;
+  justify-content: center;
+  @include mixins.media-min(variables.$mobile) {
+    padding-top: 50px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    padding-top: unset;
+  }
+}
+
+.line4 {
+  width: 72%;
+  aspect-ratio: 0.634;
+  // max-height: 433px;
+  @include mixins.media-min(variables.$mobile) {
+    width: 550px;
+    height: auto;
+    aspect-ratio: 0.96;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 799px;
+    aspect-ratio: 1.11;
+    margin-top: 200px;
+  }
+}
+
+.textContainer1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 40px;
+  @include mixins.media-min(variables.$mobile) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0px;
+    width: 415px;
+  }
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    width: 672px;
+    margin-top: 100px;
+  }
+}
+
+.calendarBox {
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    top: 600px;
+    right: 50px;
+    position: absolute;
+  }
+  @include mixins.media-min(variables.$pc) {
+    right: 180px;
+  }
+}
+
+.box1Ref {
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+
+  @include mixins.media-min(variables.$mobile) {
+    display: block;
+  }
+}

@@ -1,0 +1,11 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.contactsContainer {
+  margin-top: 16px;
+
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-top: 40px;
+  }
+}
+

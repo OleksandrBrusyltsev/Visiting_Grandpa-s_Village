@@ -1,0 +1,18 @@
+@mixin media-min($value) {
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+@mixin media-max($value) {
+  @media (max-width: $value) {
+    @content;
+  }
+}
+
+@mixin mak-green {
+  font-family: var(--f-family-headline);
+  color: rgb(var(--color-base-green));
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}

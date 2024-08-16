@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "Mak";
+  src: url("/fonts/Mak-SemiBoldHigh.woff2") format("woff2"),
+    url("/fonts/Mak-SemiBoldHigh.woff") format("woff"),
+    url("/fonts/Mak-SemiBoldHigh.otf") format("otf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("/fonts/Raleway-Bold.woff2") format("woff2"),
+    url("/fonts/Raleway-Bold.woff") format("woff"),
+    url("/fonts/Raleway-Bold.otf") format("otf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("/fonts/Raleway-Light.woff2") format("woff2"),
+    url("/fonts/Raleway-Light.woff") format("woff"),
+    url("/fonts/Raleway-Light.otf") format("otf");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("/fonts/Raleway-Regular.woff2") format("woff2"),
+    url("/fonts/Raleway-Regular.woff") format("woff"),
+    url("/fonts/Raleway-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-ExtraBold.woff2") format("woff2"),
+    url("/fonts/Inter-ExtraBold.woff") format("woff"),
+    url("/fonts/Inter-ExtraBold.ttf") format("truetype");
+  font-weight: 900;
+}
