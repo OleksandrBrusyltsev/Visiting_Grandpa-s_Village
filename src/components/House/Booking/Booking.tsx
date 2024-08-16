@@ -1,17 +1,22 @@
 "use client";
 import Image from "next/image";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+
 import Button from "../../ui/Button/Button";
 import Icon from "../../ui/Icon/Icon";
-import s from "./Booking.module.scss";
-import { useLocale, useTranslations } from "next-intl";
 import NumberInput from "../../ui/NumberInput/NumberInput";
+
+import s from "./Booking.module.scss";
 
 type Props = {
   price: number;
   guests: number;
+  addGuests: {
+    adult: number;
+    twoChildAsAdult: boolean;
+  };
   title: string;
-  addons: number;
   photoDecor: string;
   treesDecor: string;
   priceAddons:
@@ -21,76 +26,80 @@ type Props = {
         child: number;
       };
   rooms: HouseItem[];
+  isRoom?: boolean;
 };
 
-function GuestsBlock({
-  adults,
-  setAdults,
-  child,
-  setChild,
-  priceAddons,
-  maxAddons,
-}: {
-  adults: number;
-  setAdults: React.Dispatch<React.SetStateAction<number>>;
-  child: number;
-  setChild: React.Dispatch<React.SetStateAction<number>>;
-  priceAddons: {
-    adult: number;
-    child: number;
-  };
-  maxAddons: number;
-}) {
-  const t = useTranslations("HouseItem");
-  return (
-    <>
-      <NumberInput
-        count={adults}
-        setCount={setAdults}
-        max={maxAddons - child}
-        min={0}
-      >
-        <div className={s.guestsWrapper}>
-          <Icon name="guests-houses" className={s.iconGuests} />
-          <p className={s.textGuests}>
-            {t("adultGuestAddons", { rate: priceAddons.adult })}
-          </p>
-        </div>
-      </NumberInput>
-      <NumberInput
-        count={child}
-        setCount={setChild}
-        max={maxAddons - adults}
-        min={0}
-      >
-        <div className={s.guestsWrapper}>
-          <Icon name="guests-houses" className={s.iconGuests} />
-          <p className={s.textGuests}>
-            {t("childGuestAddons", { rate: priceAddons.child })}
-          </p>
-        </div>
-      </NumberInput>
-    </>
-  );
-}
+// function GuestsBlock({
+//   adults,
+//   setAdults,
+//   child,
+//   setChild,
+//   priceAddons,
+//   maxAddons,
+// }: {
+//   adults: number;
+//   setAdults: React.Dispatch<React.SetStateAction<number>>;
+//   child: number;
+//   setChild: React.Dispatch<React.SetStateAction<number>>;
+//   priceAddons: {
+//     adult: number;
+//     child: number;
+//   };
+//   maxAddons: number;
+// }) {
+//   const t = useTranslations("HouseItem");
+//   return (
+//     <>
+//       <NumberInput
+//         count={adults}
+//         setCount={setAdults}
+//         max={maxAddons - child}
+//         min={0}
+//       >
+//         <div className={s.guestsWrapper}>
+//           <Icon name="guests-houses" className={s.iconGuests} />
+//           <p className={s.textGuests}>
+//             {t("adultGuestAddons", { rate: priceAddons.adult })}
+//           </p>
+//         </div>
+//       </NumberInput>
+//       <NumberInput
+//         count={child}
+//         setCount={setChild}
+//         max={maxAddons - adults}
+//         min={0}
+//       >
+//         <div className={s.guestsWrapper}>
+//           <Icon name="guests-houses" className={s.iconGuests} />
+//           <p className={s.textGuests}>
+//             {t("childGuestAddons", { rate: priceAddons.child })}
+//           </p>
+//         </div>
+//       </NumberInput>
+//     </>
+//   );
+// }
 
 export default function Booking({
   price,
   guests,
+  addGuests,
   title,
-  addons,
   photoDecor,
   treesDecor,
   priceAddons,
   rooms,
+  isRoom = false,
 }: Props) {
   const t = useTranslations("HouseItem");
   const { push } = useRouter();
   const locale = useLocale();
+  
+  const note = `*можливо додати ${addGuests.adult}${addGuests.adult < 2 ? ' гостя' : 'х гостей'}${addGuests.twoChildAsAdult ? `, або ${addGuests.adult * 2}х дітей` : ''}`;
 
   return (
     <section className={s.sectionWrapper}>
-      <div className={s.imageDecorWrapper}>
+      <div className={`${s.imageDecorWrapper} ${isRoom ? s.apartment : ""}`}>
         <div
           className={s.imageDecor}
           style={
@@ -119,8 +128,11 @@ export default function Booking({
           <div className={s.iconGuests}>
             <Icon name="guests-houses" />
           </div>
-          <p className={s.textGuests}>{t("guests", { guests })}</p>
+          <p className={s.textGuests}>{guests}{" "}{t('guests', {guests})}</p>
         </div>
+        {addGuests.adult ? (
+          <p className={s.textGuestsNote}>{note}</p>
+        ) : null}
 
         <div className={s.timeWrapper}>
           <div>

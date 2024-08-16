@@ -83,11 +83,13 @@
 
   @include mixins.media-min(variables.$mobile) {
     padding: 0;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 300;
-    line-height: 18.56px;
-
+    line-height: 1.2;
     margin-bottom: 32px;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    font-size: 20px;
   }
 }
 
@@ -106,8 +108,11 @@
 
   @include mixins.media-min(variables.$mobile) {
     padding: 0;
-    font-size: 16px;
-    line-height: 17.6px;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    font-size: 20px;
   }
 }
 

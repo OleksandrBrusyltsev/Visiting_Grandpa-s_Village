@@ -89,7 +89,7 @@
       position: relative;
       justify-self: end;
       width: 50%;
-      aspect-ratio: 0.902;
+      aspect-ratio: 1;
       grid-area: grandpa;
       flex-grow: 1;
       align-self: end;
@@ -139,6 +139,26 @@
     flex-direction: row;
   }
 }
+.contentWrapper.apartment {
+  display: block;
+  @include mixins.media-min(variables.$mobile) {
+    width: 70%;
+    margin-inline: 80px auto;
+  }
+  
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    margin-inline: 110px auto;
+  }
+ 
+  .textWrapper{
+    width: 100%;
+    padding: 0;
+  }
+  .text {
+    padding-right: 0;
+    width: 100%;
+  }
+}
 
 .textWrapper {
   padding-left: 0px;
@@ -177,8 +197,10 @@
 
 .text {
   margin-top: 24px;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 1.2;
   font-family: var(--f-family-main);
+  font-weight: 300;
 
   @media (min-width: 376px) and (max-width: 767px) {
     font-size: calc(14px + 2 * (100vw - 376px) / 391);
@@ -189,13 +211,15 @@
   }
 
   @media (min-width: 768px) {
-    font-size: 16px;
+    font-size: 18px;
     padding-right: 50px;
   }
 
   @media (min-width: 1280px) {
     width: 516px;
+    font-size: 20px;
     margin-top: 71px;
+    padding-right: 0px;
   }
 
   & p {
@@ -267,18 +291,7 @@
   }
 
   & .servicesIcon {
-    padding: 18px;
-
-    @media (min-width: 768px) {
-      padding-top: 0px;
-      padding-bottom: 0px;
-    }
-  }
-}
-.apartment {
-  padding-left: 0;
-  @include mixins.media-min(variables.$mobile) {
-    padding-left: 110px;
+    padding: 0px 8px;
   }
 }
 
@@ -288,6 +301,25 @@
   font-family: var(--f-family-headline);
   font-size: var(--f-size-h3);
   color: rgb(var(--color-total-black));
+}
+
+.roomsTitle.apartment {
+  @media (min-width: 1000px) {
+    margin-right: 140px;
+    position: relative;
+    &::before {
+      width: 300px;
+      height: 300px;
+      transform: scaleX(-1);
+      content: "";
+      position: absolute;
+      right: -150px;
+      bottom: -20px;
+      z-index: -1;
+      background-image: url("/images/backgrounds/christmasTrees.png");
+      background-size: contain;
+    }
+  }
 }
 .roomsWrapper {
   width: 100%;

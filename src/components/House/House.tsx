@@ -11,10 +11,11 @@ import HousesList from "../Houses/HousesList";
 import HeroSection from "./HeroSection/HeroSection";
 import Map from "./Map/Map";
 
-type Props = { id: string };
+type Props = { id: string; isRoom?: boolean };
 
-export default async function House({ id }: Props) {
+export default async function House({ id, isRoom = false }: Props) {
   const locale = await getLocale();
+
   const data: HouseItem[] = await getData<HouseItem[]>("houses");
 
   let house = data.find((item) => item.name === id);
@@ -31,31 +32,23 @@ export default async function House({ id }: Props) {
     return <p>House not found</p>;
   }
 
-  const isRoom = (house as any).rooms !== undefined;
-
   const {
     photo,
     swiper,
     rental_price,
-    max_adults,
-    max_children,
+    guests,
+    add_guests_variants,
     photoDecor,
     treesDecor,
     text,
     coordinates,
     price_addons,
     rooms,
-  } = isRoom ? (house as any) : { ...house, rooms: [] };
+  } = house;
 
-  const title = isRoom
-    ? (house as any).title.filter((item: any) => item.language === locale)[0]
-        .text
-    : house.title.filter((item) => item.language === locale)[0].text;
+  const title =  house.title.filter((item) => item.language === locale)[0].text;
 
-  const decorText = isRoom
-    ? (house as any).title.filter((item: any) => item.language === locale)[0]
-        .decorText
-    : house.title.filter((item) => item.language === locale)[0].decorText;
+  const decorText =  house.title.filter((item) => item.language === locale)[0].decorText;
 
   return (
     <div className={s.sectionWrapper}>
@@ -115,12 +108,13 @@ export default async function House({ id }: Props) {
         <Gallery pictures={swiper} />
       )}
 
-      <div className={`${s.contentWrapper}`}>
-        <div className={`${s.textWrapper}  ${rooms.length ? s.apartment : ""}`}>
+      <div className={`${s.contentWrapper} ${rooms.length ? s.apartment : ""}`}>
+        <div className={s.textWrapper}>
           <h1 className={s.headline}>{title}</h1>
           <p className={s.text}>
             <MarkdownPreview markdown={text} />
           </p>
+          {/* services icons */}
           {rooms.length ? null : (
             <div className={s.servicesWrapper}>
               <div className={s.iconWrapper}>
@@ -138,14 +132,16 @@ export default async function House({ id }: Props) {
             </div>
           )}
         </div>
+        {/* booking block */}
         {rooms.length ? null : (
           <Booking
             price={rental_price}
             priceAddons={price_addons}
             rooms={rooms}
-            guests={max_adults}
+            isRoom={isRoom}
+            guests={guests}
+            addGuests={add_guests_variants}
             title={title}
-            addons={max_children}
             photoDecor={photoDecor}
             treesDecor={treesDecor}
           />

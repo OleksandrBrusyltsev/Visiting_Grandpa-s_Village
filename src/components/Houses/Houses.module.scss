@@ -184,7 +184,9 @@
     }
     .housesTitle {
         margin-top: 92px;
-        font-size: var(--f-size-large);
+        h1 {
+            font-size: var(--f-size-large);
+        }
     }
     .titleOutline {
         display: none;

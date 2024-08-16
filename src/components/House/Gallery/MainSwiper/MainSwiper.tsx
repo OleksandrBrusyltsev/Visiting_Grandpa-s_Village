@@ -47,11 +47,11 @@ const MainSwiper: FC<SwiperType> = ({
           enabled: true,
         }}
         loop={true}
-        pagination={{
+        pagination={isMobile ? {
           clickable: true,
-        }}
+        } : false}
         modules={[Keyboard, Pagination, Navigation]}
-        navigation={isMobile || isTablet ? false : true}
+        navigation={isMobile ? false : true}
       >
         {pictures.map((item) => (
           <SwiperSlide key={item}>

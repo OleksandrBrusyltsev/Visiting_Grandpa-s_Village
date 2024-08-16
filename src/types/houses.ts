@@ -14,8 +14,11 @@ type HouseItem = {
         adult: number;
         child: number;
       };
-  max_adults: number;
-  max_children: number;
+  guests: number;
+  add_guests_variants: {
+    adult: number;
+    twoChildAsAdult: boolean;
+  };
   rooms: HouseItem[] | [];
   photo: string[];
   photoDecor: string;

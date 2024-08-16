@@ -39,7 +39,7 @@
       "text": "Час виїзду: ",
       "time": "12:00"
     },
-    "guests": "{guests, plural, =1 {# гість} =2 {# гостя} =3 {# гостя} =4 {# гостя} other {# гостей}}",
+    "guests": "{guests, plural, =1 { гість} =2 { гостя} =3 { гостя} =4 { гостя} other { гостей}}",
     "adultGuestAddons": "дорослий ({rate} грн.)",
     "childGuestAddons": "дитина 3-12р. ({rate} грн.)",
     "visit": "Завітай",
