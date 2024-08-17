@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, FC, useContext } from "react";
+import { useState, useRef, FC, useContext, useEffect } from "react";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -10,6 +10,7 @@ import { MatchMediaContext } from "@/context/MatchMediaContext";
 import { useClickOutside } from "@/hooks/useClickOutside";
 
 import style from "./AskGrandpa.module.scss";
+import { ScrollTrigger } from "gsap/all";
 
 const IconAsk = ({className}: {className: string}) => {
   const {isMobile} = useContext(MatchMediaContext);
@@ -32,7 +33,7 @@ const AskGrandpa: FC = () => {
   const [isVisible, setVisible] = useState(true);
   const telegramRef = useRef<HTMLDivElement>(null);
   useClickOutside(telegramRef, () => setVisible(true));
-  
+  const headlineWrapperRef= useRef<HTMLDivElement | null>(null);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -43,15 +44,21 @@ const AskGrandpa: FC = () => {
   const handlePopup = () => {
     setVisible(!isVisible);
   };
+  
+  useEffect(() => {
+    ScrollTrigger.refresh(true);
+  }, []);
 
   useGSAP(() => {
-    gsap.from(`.${style.headlineWrapper}`, {
+    if(!headlineWrapperRef.current) return;
+    
+    gsap.from(headlineWrapperRef.current, {
       x: 100,
       autoAlpha: 0,
       ease: "power1.out",
       clearProps: true,
       scrollTrigger: {
-        trigger: `.${style.headlineWrapper}`,
+        trigger: headlineWrapperRef.current,
         start: "top 90%",
       }
     });
@@ -61,7 +68,7 @@ const AskGrandpa: FC = () => {
     <div 
       className={`${style.askWrapper} container`}
     >
-        <div className={style.headlineWrapper}>
+        <div className={style.headlineWrapper} ref={headlineWrapperRef}>
           <p className={style.headline}>запитати дідуся</p>
           
           <div

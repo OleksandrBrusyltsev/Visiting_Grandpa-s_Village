@@ -44,17 +44,17 @@ export const getData = async <T>(url: string, slug?: string): Promise<T> => {
   };
 
   const currentData = data[url];
-
+  
   if (slug) {
     if (isGalleryItemArray(currentData)) {
       const result = currentData.filter((item) => item.name === slug);
-      return new Promise((res) => setTimeout(() => res(result as T), 100));
+      return new Promise((res) => res(result as T));
     }
 
     if (isHouseItemArray(currentData)) {
       const result = currentData.filter((item) => item.name === slug);
-      return new Promise((res) => setTimeout(() => res(result as T), 100));
+      return new Promise((res) => res(result as T));
     }
   }
-  return new Promise((res) => setTimeout(() => res(data[url] as T), 100));
+  return new Promise((res) => res(currentData as T));
 };
