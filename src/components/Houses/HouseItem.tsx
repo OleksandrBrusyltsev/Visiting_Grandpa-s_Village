@@ -11,17 +11,7 @@ import s from "./HouseItem.module.scss";
 
 type Props = { data: HouseItem };
 
-export const guestsString = (main: number, ad: number, str: string) => {
-  if (ad) return `${main}+${ad} ${str}`;
-  switch (true) {
-    case main === 1:
-      return `${main} ${str}`;
-    case main < 5:
-      return `${main} ${str}`;
-    default:
-      return `${main} ${str}`;
-  }
-};
+ 
 
 const FavoriteIcon = ({ className }: { className: string }) => {
   return (
@@ -55,6 +45,12 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
 
   const { name, photo, guests, add_guests_variants, rooms, rental_price } = data;
   const title = data.title.filter((item) => item.language === locale)[0].text;
+
+  const guestsString = (main: number, ad: number) => {
+    const str = ad ? t("guests", {guests: 5}) : t("guests", {guests: main});
+    if (ad) return `${main}+${ad} ${str}`;
+    return `${main} ${str}`
+  };
 
   return (
     <div className={s.houseWrapper} ref={ref}>
@@ -94,7 +90,7 @@ const HouseItem = forwardRef<HTMLDivElement, Props>(function HouseItem(
             <>
               <Icon name="guests" className={s.guestsIcon} />
               { !!rental_price ? 
-                <span className={s.guests}>{guestsString(guests, add_guests_variants.adult, t('guests', {guests: add_guests_variants.adult ? 5 : guests}))}</span> :
+                <span className={s.guests}>{guestsString(guests, add_guests_variants.adult)}</span> :
                 null 
               }
             </>

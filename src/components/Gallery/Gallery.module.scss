@@ -207,8 +207,8 @@
         display: block;
         position: absolute;
         top: -132px;
-        right: 0px;
-        width: 529px;
+        right: -40px;
+        width: 700px;
         aspect-ratio: 2.02;
         z-index: -1;
     }
@@ -302,7 +302,8 @@
         margin-block: 105px 60px;
     }
     .cloud {
-        width: 787px;
+        width: 1000px;
+        right: -110px;
         top: -141px;
     }
 }

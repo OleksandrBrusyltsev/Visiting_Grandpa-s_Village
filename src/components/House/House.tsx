@@ -1,3 +1,4 @@
+"use client";
 import { getLocale } from "next-intl/server";
 import { getData } from "@/actions/getData";
 import Image from "next/image";
@@ -10,27 +11,18 @@ import HouseItem from "../Houses/HouseItem";
 import HousesList from "../Houses/HousesList";
 import HeroSection from "./HeroSection/HeroSection";
 import Map from "./Map/Map";
+import { useLocale } from "next-intl";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
 
-type Props = { id: string; isRoom?: boolean };
+type Props = { item: HouseItem; isRoom?: boolean };
 
-export default async function House({ id, isRoom = false }: Props) {
-  const locale = await getLocale();
-
-  const data: HouseItem[] = await getData<HouseItem[]>("houses");
-
-  let house = data.find((item) => item.name === id);
-  if (!house) {
-    for (const item of data) {
-      house = item.rooms.find((room) => room.name === id);
-      if (house) {
-        break;
-      }
-    }
-  }
-
-  if (!house) {
-    return <p>House not found</p>;
-  }
+export default function House({ item, isRoom = false }: Props) {
+  const locale = useLocale();
+  
+  useGSAP(() => {
+    ScrollTrigger.refresh(true);
+  });
 
   const {
     photo,
@@ -41,14 +33,15 @@ export default async function House({ id, isRoom = false }: Props) {
     photoDecor,
     treesDecor,
     text,
+    title,
     coordinates,
     price_addons,
     rooms,
-  } = house;
+  } = item;
 
-  const title =  house.title.filter((item) => item.language === locale)[0].text;
+  const titleText = title.filter((item) => item.language === locale)[0].text;
 
-  const decorText =  house.title.filter((item) => item.language === locale)[0].decorText;
+  const decorText = title.filter((item) => item.language === locale)[0].decorText;
 
   return (
     <div className={s.sectionWrapper}>
@@ -69,7 +62,7 @@ export default async function House({ id, isRoom = false }: Props) {
           <div className={s.imageWrapper}>
             <Image
               fill
-              alt={title}
+              alt={titleText}
               src={photo[0]}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
@@ -110,7 +103,7 @@ export default async function House({ id, isRoom = false }: Props) {
 
       <div className={`${s.contentWrapper} ${rooms.length ? s.apartment : ""}`}>
         <div className={s.textWrapper}>
-          <h1 className={s.headline}>{title}</h1>
+          <h1 className={s.headline}>{titleText}</h1>
           <p className={s.text}>
             <MarkdownPreview markdown={text} />
           </p>
@@ -141,7 +134,7 @@ export default async function House({ id, isRoom = false }: Props) {
             isRoom={isRoom}
             guests={guests}
             addGuests={add_guests_variants}
-            title={title}
+            title={titleText}
             photoDecor={photoDecor}
             treesDecor={treesDecor}
           />

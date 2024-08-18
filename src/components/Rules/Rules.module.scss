@@ -165,6 +165,9 @@
   @include mixins.media-min(variables.$mobile) {
     font-size: var(--f-size-button-small);
   }
+  @include mixins.media-min(variables.$breakpoint-laptop) {
+    font-size: 20px;
+  }
 }
 
 .rulesRememberList {
