@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { unstable_setRequestLocale } from "next-intl/server";
+
 import { getData } from "@/actions/getData";
 import Meals from "@/components/Meals/Meals";
-import { useTranslations } from "next-intl";
-import { unstable_setRequestLocale } from "next-intl/server";
+import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
+import { locales } from "@/data/locales";
 
 export const metadata: Metadata = {
   title:
@@ -11,9 +13,9 @@ export const metadata: Metadata = {
     "Еко-садиба «На селі у Дідуся!!! » ОЛЕШНЯ, БЛАКИТНІ ОЗЕРА Харчування за попереднім замовленням по меню.",
 };
 
-// export async function generateStaticParams() {
-//   return ["uk", "en"].map((locale) => ({ locale }));
-// }
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export default async function Page({
   params: { locale },
@@ -24,5 +26,8 @@ export default async function Page({
 
   const items = await getData<MealsItem[]>("meals");
 
-  return <Meals items={items} />;
+  return <>
+    <Meals items={items} />;
+    <AskGrandpa />
+  </>
 }

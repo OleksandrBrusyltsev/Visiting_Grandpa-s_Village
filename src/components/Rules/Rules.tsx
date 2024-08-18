@@ -16,9 +16,9 @@ const Rules: FC = () => {
         </h1>
         <Image src={Granpa1} alt="picture" className={s.granpa1}></Image>
       </div>
-      <div className={s.iconErrowWrapper}>
+      <div className={s.iconArrowWrapper}>
         <svg
-          className={s.iconErrow}
+          className={s.iconArrow}
           viewBox="0 0 111 130"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -41,25 +41,29 @@ const Rules: FC = () => {
           </li>
         ))}
       </ul>
-      <div className={s.rulesRememberWrapper}>
-        <Image src={Grandpa2} alt="picture" className={s.grandpa2}></Image>
-        <ul className={s.rulesRememberList}>
-          <li className={s.rulesRememberItemFirst}>
-            <u>Невеличке нагадування:</u>&nbsp; Дідусь та команда Еко-садиби “На
-            селі у Дідуся” - твої друзі, завжди готові допомогти та зробити
-            відпочинок приємним і незабутнім.
-          </li>
-          <li className={s.rulesRememberItemSecond}>
-            Також пам’ятайте, що ми не можемо контролювати погоду та інші
-            зовнішні обставини, проте гарантуємо вам теплий прийом та комфортний
-            відпочинок.
-          </li>
-          <li className={s.rulesRememberItemThird}>
-            “На селі у Дідуся” гості отримують гарні, приємні емоції та
-            створюють неповторні, теплі спогади.
-          </li>
-        </ul>
-      </div>
+       
+      <ul className={s.rulesRememberList}>
+        <li className={s.grandpa2Wrapper}>
+          <Image src={Grandpa2} fill alt="picture" ></Image>
+        </li>
+        <li>
+          <span className={s.rulesRememberSpan} >Невеличке нагадування:</span>Дідусь та команда Еко-садиби “На
+          селі у Дідуся” - твої друзі, завжди готові допомогти та зробити
+          відпочинок приємним і незабутнім.
+        </li>
+        <li>
+          Також пам’ятайте, що ми не можемо контролювати погоду та інші
+          зовнішні обставини, проте гарантуємо вам теплий прийом та комфортний
+          відпочинок.
+        </li>
+        <li>
+          “На селі у Дідуся” гості отримують гарні, приємні емоції та
+          створюють неповторні, теплі спогади.
+        </li>
+        <li>
+          <a href="/publicOffer.pdf" target="_blank" rel="noopener noreferrer">Публічна оферта</a>
+        </li>
+      </ul>
     </div>
   );
 };

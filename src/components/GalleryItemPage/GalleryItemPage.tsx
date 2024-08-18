@@ -16,13 +16,13 @@ import s from "./GalleryItemPage.module.scss";
 import { ScrollTrigger } from "gsap/all";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
 
-type Props = { items: GalleryItem[] };
+type Props = { item: GalleryItem };
 
-export default function GalleryItemPage({ items }: Props) {
+export default function GalleryItemPage({ item }: Props) {
   const locale = useLocale();
   const [isOpenSwiper, setIsOpenSwiper] = useState<boolean>(false);
   const [firstSlide, setFirstSlide] = useState<number>(0);
-  const { description, gallery } = items[0];
+  const { description, gallery } = item;
   const quote = description.filter((d) => d.language === locale)[0].text;
   const galleryRef = useRef<Array<HTMLLIElement>>([]);
   const { isMobile } = useContext(MatchMediaContext);
@@ -40,6 +40,8 @@ export default function GalleryItemPage({ items }: Props) {
   };
 
   useGSAP(() => {
+    ScrollTrigger.refresh(true);
+    
     const mm = gsap.matchMedia();
     mm.add(
       {

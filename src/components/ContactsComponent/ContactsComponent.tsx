@@ -35,6 +35,7 @@ const ContactsComponent: FC = () => {
 
   useGSAP(() => {
     // TelegramBlock animations
+    if(!telegramTitle.current || !telegramText.current || !map.current || !telegramLinkWrapper.current || !grandpa.current || !contactsListWrapper.current || !lake.current || !faqTitle.current || !faqWrapper.current || !house.current || !routeInfoWrapper.current || !googleMapWrapper.current) return
     gsap
       .timeline({
         defaults: {

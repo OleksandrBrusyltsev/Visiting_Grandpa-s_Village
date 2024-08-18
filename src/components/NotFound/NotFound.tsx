@@ -43,13 +43,13 @@ function NotFound() {
     return (
         <main className={`${s.wrapper} container`}>
             <h1 className={s.title}>{t("title")}</h1>
-            <p className={s.description}>
+            <div className={s.description}>
                 <div className={s.number}>4</div>
                 <div className={s.number}>0
                     <div className={s.grandpa}></div>
                 </div>
                 <div className={s.number}>4</div>
-            </p>
+            </div>
             <Link href={'/' + locale} className={s.home}>
                 <Button label={tUi("home")}/>
             </Link>
