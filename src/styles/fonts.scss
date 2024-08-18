@@ -21,6 +21,29 @@
   src: url("/fonts/Raleway-Light.woff2") format("woff2"),
     url("/fonts/Raleway-Light.woff") format("woff"),
     url("/fonts/Raleway-Light.otf") format("otf");
+<<<<<<< HEAD
   font-weight: 400;
   font-style: normal;
 }
+=======
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("/fonts/Raleway-Regular.woff2") format("woff2"),
+    url("/fonts/Raleway-Regular.woff") format("woff"),
+    url("/fonts/Raleway-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-ExtraBold.woff2") format("woff2"),
+    url("/fonts/Inter-ExtraBold.woff") format("woff"),
+    url("/fonts/Inter-ExtraBold.ttf") format("truetype");
+  font-weight: 900;
+}
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01

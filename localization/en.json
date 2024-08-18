@@ -1,13 +1,62 @@
 {
   "Index": {
     "title": "en",
+<<<<<<< HEAD
     "description": "en"
   },
   "NotFoundPage": {
     "title": "Page not found",
+=======
+    "description": "en",
+    "welcomeBlock": "The best time to rest is now"
+  },
+  "NotFoundPage": {
+    "title": "something went wrong, sorry",
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
     "description": "Page not found."
   },
   "Admin": {
     "title": "Admin"
+<<<<<<< HEAD
+=======
+  },
+  "Breadcrumbs": {
+    "home": "Home",
+    "houses": "Accommodation",
+    "meals": "Meals",
+    "entertainment": "Entertainment",
+    "gallery": "Gallery",
+    "contacts": "Contacts",
+    "booking": "Booking",
+    "options": "Booking options",
+    "payment": "Payment",
+    "rules": "Booking conditions and rules of stay"
+  },
+  "HouseItem": {
+    "rateBase": "{price} hrn/day",
+    "rateBaseExt": "{price} hrn/day per {guests, plural, =1 {# guest} other {# guests}}",
+    "additionalGuests": "additional ({guests, plural, =1 {# guest} other {# guests}})",
+    "total": {
+      "text": "Total:",
+      "currency": " {total} hrn."
+    },
+    "checkInTime": {
+      "text": "Check-in time: ",
+      "time": "14:00"
+    },
+    "checkOutTime": {
+      "text": "Check-out time: ",
+      "time": "12:00"
+    },
+    "guests": "{guests, plural, =1 { guest} other { guests}}",
+    "adultGuestAddons": "adult ({rate} hrn)",
+    "childGuestAddons": "child of 3-12 y.o. ({rate} hrn)",
+    "visit": "Visit",
+    "book": "Book"
+  },
+  "UI": {
+    "visit": "Visit",
+    "home": "Home Page"
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
   }
 }

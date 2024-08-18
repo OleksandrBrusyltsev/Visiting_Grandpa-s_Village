@@ -8,6 +8,17 @@
   padding-right: 20px;
   padding-left: 20px;
 
+<<<<<<< HEAD
+=======
+  & > p.childDescr {
+    font-family: var(--f-family-main);
+    font-size: var(--f-size-body);
+    color: rgb(var(--color-total-black));
+    &:first-of-type {
+      margin-bottom: 29px;
+    }
+  }
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
   @include mixins.media-min(variables.$mobile) {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -27,19 +38,33 @@
 .childWrapper {
   margin-bottom: 48px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
 .buttonWrapper {
   display: flex;
   align-items: center;
   width: 132px;
   justify-content: space-between;
 }
+<<<<<<< HEAD
 .plusButton,
 .minButton {
   position: relative;
+=======
+
+.changeButton {
+  font-family: var(--f-family-main);
+  font-size: 1rem;
+  line-height: 36px;
+  font-weight: 700;
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
   width: 36px;
   height: 36px;
   border-radius: 50%;
   border: 1px solid rgba(12, 12, 12, 1);
+<<<<<<< HEAD
 }
 
 .minIcon,
@@ -48,6 +73,25 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+=======
+  color: rgb(var(--color-total-black));
+  transition: box-shadow 0.3s, transform 0.2s, background-color 0.2s;  
+
+  &:first-of-type {
+    line-height: 25px;
+  }
+
+  &:not(.disabled):hover {
+    box-shadow: 3px 3px 15px rgba(var(--color-base-green), 0.5),
+                -1px -1px 5px rgba(var(--color-base-green), 0.2);
+  }
+
+  &:not(.disabled):active {
+    transform: scale(1.1); 
+    background-color: rgba(var(--color-base-green), 0.2);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  }
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
 }
 
 .title {
@@ -55,12 +99,20 @@
   font-size: var(--f-size-h3);
   color: rgb(var(--color-total-black));
 }
+<<<<<<< HEAD
 .value {
+=======
+
+.value {
+  flex: 1 0;
+  text-align: center;
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
   font-family: var(--f-family-headline);
   font-size: 18px;
   color: rgb(var(--color-total-black));
 }
 
+<<<<<<< HEAD
 .textFirst,
 .textSecond {
   font-family: var(--f-family-main);
@@ -70,3 +122,9 @@
 .textFirst {
   margin-bottom: 29px;
 }
+=======
+.disabled {
+  border: 1px solid rgb(var(--color-gray-light));
+  color: rgb(var(--color-gray-light));
+}
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01

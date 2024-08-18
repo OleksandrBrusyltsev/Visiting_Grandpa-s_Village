@@ -5,15 +5,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
   @include mixins.media-max(variables.$breakpoint-mobile-max) {
     display: none;
   }
+=======
+  color: rgb(var(--color-black));
+  font-size: 24px;
+  
+  @include mixins.media-min(variables.$mobile) {
+    font-size: var(--f-size-body);
+  }
+    //tmp styles
+    opacity: 0;
+    visibility: hidden;
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
 }
 
 .active {
   color: rgb(var(--color-natural-orange));
 }
 
+<<<<<<< HEAD
 .langBtb {
   color: rgba(var(--color-white), 1);
   font-family: var(--f-family-headline);
@@ -24,6 +37,20 @@
   &:hover,
   &:active,
   &:focus {
+=======
+.langBtn {
+  font-family: var(--f-family-headline);
+  font-weight: 600;
+  line-height: normal;
+  transition: color 0.2s;
+
+  @media (hover: hover) {
+    &:hover {
+      color: rgb(var(--color-natural-orange));
+    }
+  }
+  &:active {
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
     color: rgb(var(--color-natural-orange));
   }
 }

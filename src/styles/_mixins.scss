@@ -9,3 +9,13 @@
     @content;
   }
 }
+<<<<<<< HEAD
+=======
+
+@mixin mak-green {
+  font-family: var(--f-family-headline);
+  color: rgb(var(--color-base-green));
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01

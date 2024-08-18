@@ -1,0 +1,181 @@
+.heroSectionWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 93px;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    margin-top: calc(93px + 40 * (100vw - 376px) / 391);
+  }
+
+  @media (min-width: 768px) {
+    margin-top: 133px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    margin-top: calc(133px - 60 * (100vw - 769px) / 510);
+  }
+
+  @media (min-width: 1280px) {
+    // margin-top: 248px;
+  }
+}
+
+.hero {
+  width: 327px;
+  position: relative;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    width: calc(327px + 326 * (100vw - 376px) / 391);
+  }
+
+  @media (min-width: 768px) {
+    width: 653px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    width: calc(769px + 527 * (100vw - 376px) / 510);
+  }
+
+  @media (min-width: 1280px) {
+    width: 1180px;
+  }
+}
+
+.description {
+  position: absolute;
+  font-family: var(--f-family-main);
+  color: rgb(var(--color-base-green));
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 700;
+  width: 240px;
+  left: 0px;
+  text-align: center;
+  line-height: 110%;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    font-size: calc(12px + 4 * (100vw - 376px) / 391);
+    left: calc(0px + 110 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    font-size: 16px;
+    left: 110px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    left: calc(110px + 460 * (100vw - 769px) / 510);
+  }
+  @media (min-width: 1280px) {
+    left: 570px;
+  }
+}
+
+.grandpa {
+  width: 120px;
+  height: 110px;
+  position: absolute;
+  right: 0;
+  top: -40px;
+  z-index: -1;
+  img {
+    object-fit: contain;
+  }
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    width: calc(120px + 116 * (100vw - 376px) / 391);
+    height: calc(110px + 129 * (100vw - 376px) / 391);
+    right: calc(0px + 25 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    width: 236px;
+    height: 239px;
+    right: 25px;
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    width: calc(236px + 97 * (100vw - 769px) / 510);
+    height: calc(239px + 95 * (100vw - 769px) / 510);
+    right: calc(25px - 20 * (100vw - 769px) / 510);
+    top: calc(-40px - 80 * (100vw - 769px) / 510);
+  }
+
+  @media (min-width: 1280px) {
+    width: 334px;
+    height: 334px;
+    right: -5px;
+    top: -120px;
+  }
+
+  &::after {
+    width: 180px;
+    height: 200px;
+    content: "";
+    position: absolute;
+    right: -24px;
+    bottom: -105px;
+    background-image: url("/images/houses/house/house-trees.png");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    @media (min-width: 376px) and (max-width: 767px) {
+      width: calc(180px + 26 * (100vw - 376px) / 391);
+      height: calc(206px + 20 * (100vw - 376px) / 391);
+      // right: calc(-30px + 13 * (100vw - 376px) / 391);
+      right: -24px;
+      bottom: calc(-105px - 30 * (100vw - 376px) / 391);
+    }
+    @media (min-width: 768px) {
+      width: 206px;
+      height: 226px;
+      right: -24px;
+      bottom: -135px;
+    }
+    @media (min-width: 769px) and (max-width: 1279px) {
+      width: calc(206px + 162 * (100vw - 769px) / 510);
+      height: calc(226px + 179 * (100vw - 769px) / 510);
+      right: calc(-24px - 1 * (100vw - 769px) / 510);
+      bottom: calc(-135px - 215 * (100vw - 769px) / 510);
+    }
+    @media (min-width: 1280px) {
+      width: 368px;
+      height: 405px;
+      right: -25px;
+      bottom: -350px;
+    }
+  }
+}
+
+.curve {
+  width: 83px;
+  height: 91px;
+  display: block;
+  position: absolute;
+  bottom: -140px;
+  left: 110px;
+
+  @media (min-width: 376px) and (max-width: 767px) {
+    width: calc(83px + 7 * (100vw - 376px) / 391);
+    height: calc(91px + 14 * (100vw - 376px) / 391);
+    bottom: calc(-140px - 35 * (100vw - 376px) / 391);
+    left: calc(110px + 150 * (100vw - 376px) / 391);
+  }
+  @media (min-width: 768px) {
+    width: 90px;
+    height: 105px;
+    bottom: -175px;
+    left: 260px;
+    rotate: (0deg);
+  }
+  @media (min-width: 1000px) {
+    rotate: (15deg);
+  }
+  @media (min-width: 769px) and (max-width: 1279px) {
+    width: calc(90px + 56 * (100vw - 769px) / 510);
+    height: calc(105px + 42 * (100vw - 769px) / 510);
+    bottom: calc(-175px - 20 * (100vw - 769px) / 510);
+    left: calc(260px + 370 * (100vw - 769px) / 510);
+  }
+  @media (min-width: 1280px) {
+    width: 146px;
+    height: 147px;
+    bottom: -195px;
+    left: 630px;
+  }
+}

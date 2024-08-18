@@ -1,0 +1,18 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.housesList {
+    position: relative;
+    @include mixins.mak-green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include mixins.media-min(variables.$mobile) {
+        
+    }
+
+    @include mixins.media-min(variables.$breakpoint-laptop) {
+        
+    }
+}

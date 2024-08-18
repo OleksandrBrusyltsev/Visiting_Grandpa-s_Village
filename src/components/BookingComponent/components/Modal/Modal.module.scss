@@ -3,6 +3,10 @@
 
 .modal {
   width: 330px;
+<<<<<<< HEAD
+=======
+  min-height: 300px;
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
   background-color: rgb(var(--color-calendar-bcg));
   border-radius: 8px;
   border: 1px solid rgb(var(--color-base-green));
@@ -10,6 +14,13 @@
   position: absolute;
   z-index: 100;
   left: -10%;
+<<<<<<< HEAD
+=======
+  opacity: 0;
+  visibility: hidden;
+  scale: 0.8;
+
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
 
   @include mixins.media-min(variables.$mobile) {
     width: 400px;

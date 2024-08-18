@@ -28,7 +28,15 @@ a:active {
 html,
 body {
   height: 100%;
+<<<<<<< HEAD
   /* min-width: 360px; */
+=======
+  overflow-x: clip;
+}
+
+html {
+  scrollbar-gutter: stable;
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
 }
 
 input,

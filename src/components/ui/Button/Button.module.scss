@@ -17,10 +17,19 @@
   padding: 1rem;
   transition: background 0.3s, color 0.3s, box-shadow 0.3s, border 0.3s;
 
+<<<<<<< HEAD
   &:not(:disabled):hover {
     background: rgb(var(--color-white));
     color: rgb(var(--color-black));
     box-shadow: 4px 4px 8px 0px rgba(var(--color-total-black), 0.25);
+=======
+    @media (hover: hover) {
+      &:not(:disabled):hover {
+      background: transparent;
+      color: rgb(var(--color-black));
+      box-shadow: 2px 2px 5px 1px rgba(var(--color-total-black), 0.1);
+    }
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
   }
 
   &:not(:disabled):active {
@@ -50,4 +59,16 @@
   &_small {
     max-width: 7.375rem;
   }
+<<<<<<< HEAD
 }
+=======
+
+  &_header {
+    width: 188px;
+  }
+}
+
+.headerBtn{
+  width: 188px;
+}
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01

@@ -1,5 +1,9 @@
 .backdrop {
+<<<<<<< HEAD
   position: absolute;
+=======
+  position: fixed;
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
   z-index: 98;
   top: 0;
   width: 100%;
@@ -12,15 +16,22 @@
   z-index: 99;
   left: 50%;
   transform: translateX(-50%);
+<<<<<<< HEAD
 
   top: 138px;
   background-color: rgb(var(--color-base-green));
   width: 360px;
   height: 401px;
+=======
+  top: 138px;
+  background-color: rgb(var(--color-base-green));
+  width: 360px;
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
   border-radius: 3px;
   padding: 16px;
 }
 
+<<<<<<< HEAD
 .langContainer {
   display: flex;
   justify-content: center;
@@ -69,3 +80,58 @@
 .active {
   color: rgb(var(--color-natural-orange));
 }
+=======
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  list-style: none;
+  border-bottom: 0.5px solid rgba(var(--color-white), 1);
+  text-align: center;
+  color: rgba(var(--color-white), 1);
+  font-family: var(--f-family-headline);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 16px;
+  & > * {
+    padding: 20px 10px;
+  } 
+  //tmp styles -->
+  &:last-of-type {
+    border: none
+  }
+  //end tmp styles<--
+
+  &:not(:last-child):active {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  &:active {
+    background-color: rgb(var(--color-natural-orange));
+    border-radius: 8px;
+  }
+}
+
+.curActive {
+  background-color: rgb(var(--color-natural-orange));
+  border-radius: 8px;
+}
+.itemLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 20px 10px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.active {
+  color: rgb(var(--color-natural-orange));
+}
+
+.flash {
+  color: rgb(var(--color-total-black));
+}
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01

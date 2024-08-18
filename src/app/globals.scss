@@ -6,6 +6,10 @@
 :root {
   --f-family-headline: "Mak", Arial, sans-serif;
   --f-family-main: "Raleway", Arial, sans-serif;
+<<<<<<< HEAD
+=======
+  --f-family-inter: "Inter", Arial, sans-serif;
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
 
   --f-size-body-small: 0.75rem; /* text */
   --f-size-numbers-small: 0.875rem;
@@ -32,3 +36,34 @@
   --color-error: 168, 14, 14;
   --color-calendar-bcg: 239, 235, 231;
 }
+<<<<<<< HEAD
+=======
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-inline: 24px;
+  @include media-min($mobile) {
+    padding-inline: 30px;
+  }
+  @include media-min($breakpoint-laptop) {
+    padding-inline: 50px;
+  }
+  @include media-min($pc) {
+    padding-inline: 130px;
+  }
+}
+
+swiper-container {
+  height: 100%;
+  border-radius: 8%;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  color: rgb(var(--color-base-green));
+  width: 50px;
+  height: 50px;
+}
+>>>>>>> 5a28b413a7eea541795a727d3e7a5a390ead1c01
