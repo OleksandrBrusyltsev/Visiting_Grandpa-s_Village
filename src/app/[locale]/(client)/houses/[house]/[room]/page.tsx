@@ -28,6 +28,7 @@ export async function generateStaticParams({
     cur?.rooms.forEach((room) => accu.push({ locale, house, room: room.name }));
     return accu
   }, [] as {locale: string, house: string, room: string }[]);
+  console.log(routes);
   return routes;
 }
 

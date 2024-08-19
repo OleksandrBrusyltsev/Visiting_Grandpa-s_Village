@@ -1,27 +1,26 @@
 "use client";
-import { getLocale } from "next-intl/server";
-import { getData } from "@/actions/getData";
 import Image from "next/image";
+import { useLocale } from "next-intl";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+
 import Booking from "./Booking/Booking";
 import Gallery from "./Gallery/Gallery";
 import Icon from "../ui/Icon/Icon";
 import MarkdownPreview from "../../functions/MarkdownPreview";
-import s from "./House.module.scss";
 import HouseItem from "../Houses/HouseItem";
 import HousesList from "../Houses/HousesList";
 import HeroSection from "./HeroSection/HeroSection";
 import Map from "./Map/Map";
-import { useLocale } from "next-intl";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/all";
-import { useEffect } from "react";
+
+import s from "./House.module.scss";
 
 type Props = { item: HouseItem; isRoom?: boolean };
 
 export default function House({ item, isRoom = false }: Props) {
   const locale = useLocale();
   
-  useEffect(() => {
+  useGSAP(() => {
     ScrollTrigger.refresh(true);
   });
 

@@ -1,16 +1,16 @@
 "use client";
 
-import { useState, useRef, FC, useContext, useEffect } from "react";
+import { useState, useRef, FC, useContext } from "react";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 import Icon from "../ui/Icon/Icon";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
 import { useClickOutside } from "@/hooks/useClickOutside";
 
 import style from "./AskGrandpa.module.scss";
-import { ScrollTrigger } from "gsap/all";
 
 const IconAsk = ({className}: {className: string}) => {
   const {isMobile} = useContext(MatchMediaContext);

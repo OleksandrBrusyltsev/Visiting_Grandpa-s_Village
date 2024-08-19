@@ -208,7 +208,7 @@ const ContactsComponent: FC = () => {
         <FAQ lakeRef={lake} faqTitleRef={faqTitle} faqWrapperRef={faqWrapper} />
         <RouteInfo houseRef={house} routeInfoWrapperRef={routeInfoWrapper} />
       </div>
-      <GoogleMap googleMapWrapperRef={googleMapWrapper} />
+      {/* <GoogleMap googleMapWrapperRef={googleMapWrapper} /> */}
     </>
   );
 };
