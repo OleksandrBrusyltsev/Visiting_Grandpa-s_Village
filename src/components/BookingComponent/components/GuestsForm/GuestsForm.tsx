@@ -1,6 +1,8 @@
 // "use client";
 import { FC } from "react";
-
+import Image from "next/image";
+import IconPlus from "../../../../assets/icons/icon-plus.svg";
+import IconMin from "../../../../assets/icons/icon-min.svg";
 import s from "./GuestsForm.module.scss";
 
 interface GuestsProps {
