@@ -95,7 +95,11 @@ export default function Booking({
   const { push } = useRouter();
   const locale = useLocale();
   
-  const note = `*можливо додати ${addGuests.adult}${addGuests.adult < 2 ? ' гостя' : 'х гостей'}${addGuests.twoChildAsAdult ? `, або ${addGuests.adult * 2}х дітей` : ''}`;
+  const note = `*можливо додати ${addGuests.adult}${addGuests.adult < 2 && addGuests.twoChildAsAdult ?
+     ' дорослого' : 
+     addGuests.adult < 2 && !addGuests.twoChildAsAdult ?
+                   ' гостя' : 'х гостей'}${addGuests.twoChildAsAdult ?
+                             ` або ${addGuests.adult * 2}х дітей` : ''}`;
 
   return (
     <section className={s.sectionWrapper}>
