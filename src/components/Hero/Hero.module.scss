@@ -111,9 +111,6 @@
     font-size: 18px;
     line-height: 1.2;
   }
-  @include mixins.media-min(variables.$breakpoint-laptop) {
-    font-size: 20px;
-  }
 }
 
 .boxForAlign {
@@ -678,35 +675,27 @@
 
 .grandpa3 {
   position: absolute;
-  top: 5%;
-  left: 0;
-
-  width: 39vw;
+  top: -40px;
+  left: -35px;
+  width: clamp(200px, calc(200px + 111 * (100vw - 375px) / 392), 311px);
+  max-width: 280px;
   height: unset;
-  aspect-ratio: 1.165;
-  max-width: 225px;
+  aspect-ratio: 1;
   z-index: 48;
 
   @include mixins.media-min(variables.$mobile) {
     width: 311px;
-    height: 248px;
-
     max-width: 100%;
     max-height: 100%;
-    top: 0;
+    top: -10px;
+    right: -35px;
     left: auto;
-    right: 0;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 454px;
-    height: 364px;
-
-    max-width: 100%;
-    max-height: 100%;
-    top: 0;
-    left: auto;
-    right: 0;
+    top: 70px;
+    right: 40px;
   }
 }
 

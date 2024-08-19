@@ -809,7 +809,7 @@ const Hero = () => {
             та забути про все на світі. <br />
           </p>
           <p className={css.text1}>
-            Разом ми зможемоь
+            Разом ми зможемо
             <span className={css.bold}> створити щасливі спогади </span>
             неповторних моментів, які дарують внутрішню насолоду, щастя та
             відчуття цінності кожної хвилинки тут.
@@ -821,7 +821,7 @@ const Hero = () => {
           src={grandpa3}
           alt={"grandpa3"}
           width={453}
-          height={364}
+          height={469}
           className={css.grandpa3}
           ref={grandpa3Animation}
         />

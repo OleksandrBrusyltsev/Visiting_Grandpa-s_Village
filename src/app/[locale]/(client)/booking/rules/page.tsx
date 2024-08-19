@@ -1,9 +1,12 @@
 import { useTranslations } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
+
 import Rules from '@/components/Rules/Rules';
+import AskGrandpa from '@/components/AskGrandpa/AskGrandpa';
+import { locales } from '@/data/locales';
 
 export async function generateStaticParams() {
-  return ["uk", "en"].map((locale) => ({ locale }));
+  return locales.map((locale) => ({ locale }));
 }
 
 export default function Page({
@@ -15,8 +18,9 @@ export default function Page({
   const t = useTranslations('Breadcrumbs');
 
   return (
-    <div>
+    <>
       <Rules/>
-    </div>
+      <AskGrandpa />
+    </>
   )
 }

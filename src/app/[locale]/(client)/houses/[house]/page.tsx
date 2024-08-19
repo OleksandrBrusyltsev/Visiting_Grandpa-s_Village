@@ -4,6 +4,7 @@ import House from "@/components/House/House";
 import { getData } from "@/actions/getData";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 
 export const metadata: Metadata = {
   title: "Проживання в затишних хатинках та теремках Блакитних озер",
@@ -32,8 +33,11 @@ export default async function Page({ params }: Props) {
   if(!houseItem.length) notFound();
   
   return (
-    <div className="container">
-      <House item={houseItem[0]}/>
-    </div>
+    <>
+      <div className="container">
+        <House item={houseItem[0]}/>
+      </div>
+      <AskGrandpa />
+    </>
   );
 }

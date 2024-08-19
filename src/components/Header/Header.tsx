@@ -5,24 +5,21 @@ import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/all";
-import gsap from "gsap";
-import Icon from "../ui/Icon/Icon";
+
 import Button from "../ui/Button/Button";
 import PopupMenu from "./PopupMenu";
 import LangBtn from "../LangBtn/LangBtn";
-import Burger from "../../assets/icons/icon-burger.svg"
-import css from "./Header.module.scss";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
+import useRegisterGSAP from "@/hooks/useRegisterGSAP";
+
+import css from "./Header.module.scss";
 
 const image = "/images/logo-main.svg";
 const alt = "Logo main";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
-
 const Header = () => {
   const [isVisible, setVisible] = useState(false);
+  useRegisterGSAP();
   const { push } = useRouter();
   const locale = useLocale();
   const handlePopup = () => {

@@ -54,10 +54,8 @@ export default function Breadcrumbs() {
             data = await getData('houses');
           } else if(key === 'room') {
             const tmpData: HouseItem[] = await getData('houses', params['house']);
-            console.log(tmpData);
             if(!tmpData.length) return
             data = tmpData[0].rooms;
-            console.log(data);
           }
 
           const value = params[key as keyof typeof params];
@@ -70,7 +68,6 @@ export default function Breadcrumbs() {
           }
         }
       } 
-      console.log(slugTranslation);
 
       //формируем готовые хлебные крошки
       const breadcrumbs = pathArray[pathArray.length - 1] !== 'rules' ? 
@@ -95,7 +92,7 @@ export default function Breadcrumbs() {
   if(!breadcrumbs.length) return
 
   const isMain = pathArray.length === 1;
-  console.log("breadcrumbs", breadcrumbs);
+  
   return (
     !isMain ? <div className='container'>
       <nav aria-label="Хлібні крошки" className={s.breadcrumbsWrapper}>

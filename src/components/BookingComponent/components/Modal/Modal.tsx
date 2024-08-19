@@ -5,8 +5,6 @@ import {useGSAP} from "@gsap/react";
 
 import s from "./Modal.module.scss";
 
-gsap.registerPlugin(useGSAP);      
-
 type ModalProps = {
   visible: boolean;
   children: ReactNode;

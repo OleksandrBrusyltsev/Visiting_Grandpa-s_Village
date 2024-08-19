@@ -4,6 +4,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { getData } from "@/actions/getData";
 import GalleryItemPage from '@/components/GalleryItemPage/GalleryItemPage';
 import { notFound } from 'next/navigation';
+import AskGrandpa from '@/components/AskGrandpa/AskGrandpa';
 
 type Props = {params: { chapter: string; locale: string }}
 
@@ -27,6 +28,9 @@ export default async function Page({params}: Props) {
   if(!galleryItem.length) notFound();
 
   return (
-    <GalleryItemPage item={galleryItem[0]} />
+    <>
+      <GalleryItemPage item={galleryItem[0]} />
+      <AskGrandpa />
+    </>
   )
 }

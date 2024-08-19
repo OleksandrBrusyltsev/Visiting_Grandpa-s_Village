@@ -5,6 +5,8 @@ import { getData } from "@/actions/getData";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
+
 export const metadata: Metadata = {
   title: "Проживання в затишних хатинках та теремках Блакитних озер",
   description:
@@ -12,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 export const dynamicParams = false;
+
 
 export async function generateStaticParams({
   params: { locale },
@@ -44,8 +47,11 @@ export default async function Page({ params }: Props) {
   
   
   return (
-    <div className="container">
-      <House item={roomItem[0]} isRoom={isRoom}/>
-    </div>
+    <>
+      <div className="container">
+        <House item={roomItem[0]} isRoom={isRoom}/>
+      </div>
+      <AskGrandpa />
+    </>
   );
 }

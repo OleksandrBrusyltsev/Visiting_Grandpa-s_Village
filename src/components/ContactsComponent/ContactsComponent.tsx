@@ -35,6 +35,7 @@ const ContactsComponent: FC = () => {
 
   useGSAP(() => {
     // TelegramBlock animations
+    if(!telegramTitle.current || !telegramText.current || !map.current || !telegramLinkWrapper.current || !grandpa.current || !contactsListWrapper.current || !lake.current || !faqTitle.current || !faqWrapper.current || !house.current || !routeInfoWrapper.current || !googleMapWrapper.current) return
     gsap
       .timeline({
         defaults: {
@@ -207,7 +208,7 @@ const ContactsComponent: FC = () => {
         <FAQ lakeRef={lake} faqTitleRef={faqTitle} faqWrapperRef={faqWrapper} />
         <RouteInfo houseRef={house} routeInfoWrapperRef={routeInfoWrapper} />
       </div>
-      {/* <GoogleMap googleMapWrapperRef={googleMapWrapper} /> */}
+      <GoogleMap googleMapWrapperRef={googleMapWrapper} />
     </>
   );
 };
