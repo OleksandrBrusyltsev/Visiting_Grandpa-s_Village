@@ -11,8 +11,8 @@
   position: absolute;
   z-index: 99;
   left: 50%;
-  transform: translateX(-50%);
-  top: 138px;
+  transform: translate(-50%, -50%);
+  top: 50%;
   background-color: rgb(var(--color-base-green));
   width: 360px;
   border-radius: 3px;
