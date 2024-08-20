@@ -21,7 +21,6 @@ export default async function recaptchaValidation(captureResponse: string): Prom
     let result: ValidationResult;
 
     try {
-        console.log(response);
 
         result = {
             ok: response.success,

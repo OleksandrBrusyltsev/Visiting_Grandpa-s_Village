@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import WelcomeBlock from "../../../components/WelcomeBlock/WelcomeBlock";
-// import AskGrandpa from "../../../components/AskGrandpa/AskGrandpa";
 
 import Hero from "@/components/Hero/Hero";
+import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 
 export const metadata: Metadata = {
   title: 'Відпочинок на Блакитних озерах Чернігівщини | "На селі у Дідуся"',
@@ -12,9 +12,9 @@ export const metadata: Metadata = {
     'Відпочинок на Блакитних озерах Чернігівщини | "На селі у Дідуся"',
 };
 
-export async function generateStaticParams() {
-  return ["uk", "en"].map((locale) => ({ locale }));
-}
+// export async function generateStaticParams() {
+//   return ["uk", "en"].map((locale) => ({ locale }));
+// }
 
 export default function Home({
   params: { locale },
@@ -27,6 +27,7 @@ export default function Home({
     <main>
       <Hero />
       <WelcomeBlock text={t("welcomeBlock")} />
+      <AskGrandpa />
     </main>
   );
 }

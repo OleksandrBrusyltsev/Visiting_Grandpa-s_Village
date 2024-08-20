@@ -16,8 +16,6 @@ import Error from "./stub/Error";
 
 import s from "./BookingComponent.module.scss";
 
-gsap.registerPlugin(useGSAP);      
-
 const todayReset = () => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);

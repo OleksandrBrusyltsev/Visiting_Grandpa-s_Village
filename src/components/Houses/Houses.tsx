@@ -5,6 +5,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+
 import BookingComponent from "../BookingComponent/BookingComponent";
 import Icon from "../ui/Icon/Icon";
 import HouseItem from "./HouseItem";

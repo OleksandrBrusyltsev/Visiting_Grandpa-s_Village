@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import { HeaderUrls } from "../../../../types/header";
+import { unstable_setRequestLocale } from "next-intl/server";
+
+// import { HeaderUrls } from "../../../../types/header";
 import ContactsComponent from "../../../../components/ContactsComponent/ContactsComponent";
+import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
+import { locales } from "@/data/locales";
 
 export const metadata: Metadata = {
   title:
@@ -9,27 +13,38 @@ export const metadata: Metadata = {
     "Запрошуємо на незабутній відпочинок на унікальних Блакитних озерах Чернігівської області, в еко-садибі «На селі у Дідуся», с. Олешня.",
 };
 
-const urls: HeaderUrls = {
-  en: {
-    pathList: ["contacts"],
-  },
-  uk: {
-    pathList: ["contacts"],
-  },
-};
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-export async function generateStaticParams({
+// const urls: HeaderUrls = {
+//   en: {
+//     pathList: ["contacts"],
+//   },
+//   uk: {
+//     pathList: ["contacts"],
+//   },
+// };
+
+// export async function generateStaticParams({
+//   params: { locale },
+// }: {
+//   params: { locale: string };
+// }) {
+//   return (urls[locale]?.pathList || []).map((item) => ({ slug: item }));
+// }
+
+export default async function ContactsPage({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  return (urls[locale]?.pathList || []).map((item) => ({ slug: item }));
-}
+  unstable_setRequestLocale(locale);
 
-export default async function ContactsPage() {
   return (
     <>
       <ContactsComponent />
+      <AskGrandpa />
     </>
   );
 }

@@ -304,17 +304,16 @@
 }
 
 .roomsTitle.apartment {
-  @media (min-width: 1000px) {
+  @media (min-width: 768px) {
     margin-right: 140px;
     position: relative;
     &::before {
-      width: 300px;
-      height: 300px;
-      transform: scaleX(-1);
+      width: clamp(400px, 40vw, 600px);
+      aspect-ratio: 1;
       content: "";
       position: absolute;
-      right: -150px;
-      bottom: -20px;
+      right: clamp(-330px, calc(-230px - 100 * (100vw - 768px) / 732), -230px);
+      bottom: clamp(-180px, calc(-125px - 55 * (100vw - 768px) / 732), -125px);
       z-index: -1;
       background-image: url("/images/backgrounds/christmasTrees.png");
       background-size: contain;

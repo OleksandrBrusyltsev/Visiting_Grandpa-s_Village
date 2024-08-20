@@ -5,7 +5,7 @@ import s from "./HeroSection.module.scss";
 
 type Props = { text: string };
 
-export default async function HeroSection({ text }: Props) {
+export default function HeroSection({ text }: Props) {
   return (
     <div className={`${s.heroSectionWrapper}`}>
       <div className={s.hero}>

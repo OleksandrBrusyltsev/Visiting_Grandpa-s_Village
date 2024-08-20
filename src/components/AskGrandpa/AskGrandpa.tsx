@@ -4,6 +4,7 @@ import { useState, useRef, FC, useContext } from "react";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 import Icon from "../ui/Icon/Icon";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
@@ -32,7 +33,7 @@ const AskGrandpa: FC = () => {
   const [isVisible, setVisible] = useState(true);
   const telegramRef = useRef<HTMLDivElement>(null);
   useClickOutside(telegramRef, () => setVisible(true));
-  
+  const headlineWrapperRef= useRef<HTMLDivElement | null>(null);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -43,25 +44,30 @@ const AskGrandpa: FC = () => {
   const handlePopup = () => {
     setVisible(!isVisible);
   };
-
+ 
   useGSAP(() => {
-    gsap.from(`.${style.headlineWrapper}`, {
+    if(!headlineWrapperRef.current) return;
+    
+    ScrollTrigger.refresh(true);
+
+    gsap.from(headlineWrapperRef.current, {
       x: 100,
       autoAlpha: 0,
       ease: "power1.out",
       clearProps: true,
       scrollTrigger: {
-        trigger: `.${style.headlineWrapper}`,
+        trigger: headlineWrapperRef.current,
         start: "top 90%",
       }
     });
+
   })
 
   return (
     <div 
       className={`${style.askWrapper} container`}
     >
-        <div className={style.headlineWrapper}>
+        <div className={style.headlineWrapper} ref={headlineWrapperRef}>
           <p className={style.headline}>запитати дідуся</p>
           
           <div

@@ -114,7 +114,6 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
         }
 
         formData = {...formData, recaptchaResponse};
-        console.log(formData);
         
         formRef.current?.requestSubmit();
 

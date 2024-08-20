@@ -63,7 +63,6 @@ export default function HousesList({children, data, patternOffset = true, classN
             let baseImgOffset = 0; 
 
             //line pattern height
-            console.log(listRef.current.clientHeight);
             bgSize = listRef.current.clientHeight < 1500 ? listRef.current.clientHeight : window.innerWidth < 1280 ? 874 : 1200; 
             //trees size
             imgSize =  window.innerWidth >= 1280 ? "383px 420px" : "324px 314px"; 

@@ -21,6 +21,7 @@
     font-size: clamp(24px, calc(36px - 12 * (767px - 100vw) / 392), 36px);
     font-weight: 600;
     line-height: 97.64%;
+    min-height: calc(clamp(24px, calc(36px - 12 * (767px - 100vw) / 392), 36px) * 2 * 0.9764);
     letter-spacing: -0.005em;
     width: clamp(280px, calc(420px - 140 * (767px - 100vw) / 392), 420px);
     margin-left: clamp(45px, calc(74px - 29 * (767px - 100vw) / 392), 74px);
@@ -98,5 +99,10 @@
             top: clamp(-35px, calc(-30px - 5 * (100vw - 768px) / 511), -30px);
             right: clamp(62px, calc(160px - 98 * (1279px - 100vw) / 511), 160px);
         }
+    }
+}
+@include mixins.media-min(variables.$breakpoint-laptop) {
+    .grandpaWrapper {
+        // top: -90px;
     }
 }
