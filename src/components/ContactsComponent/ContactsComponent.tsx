@@ -1,5 +1,5 @@
 "use client";
-import { FC, useRef } from "react";
+import {FC, useEffect, useRef} from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import TelegramBotLink from "./TelegramBlock/TelegramBlock";
@@ -32,6 +32,10 @@ const ContactsComponent: FC = () => {
 
   // Create refs for googleMapWrapper element
   const googleMapWrapper = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    ScrollTrigger.refresh(true);
+  }, []);
 
   useGSAP(() => {
     // TelegramBlock animations
@@ -152,7 +156,7 @@ const ContactsComponent: FC = () => {
               },
               ">-0.3"
             );
-          ScrollTrigger.refresh(true);
+     //     ScrollTrigger.refresh(true);
         }
       }
     );
@@ -191,6 +195,7 @@ const ContactsComponent: FC = () => {
     });
     ScrollTrigger.refresh(true);
   });
+
 
   return (
     <>
