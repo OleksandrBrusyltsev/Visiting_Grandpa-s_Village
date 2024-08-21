@@ -1,9 +1,7 @@
-"use client";
 import { FC } from "react";
 import Image from "next/image";
 import Granpa1 from "../../../public/images/grandpas/Grandpa7.png";
 import Grandpa2 from "../../../public/images/grandpas/Grandpa6.png";
-import IconErrow from "../../assets/icons/icon-arrow-rules.svg";
 import { rules } from "../../data/rules/index.js";
 import s from "./Rules.module.scss";
 

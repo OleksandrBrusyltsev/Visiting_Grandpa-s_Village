@@ -1,8 +1,6 @@
 "use client";
 import Image from "next/image";
 import { useLocale } from "next-intl";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/all";
 
 import Booking from "./Booking/Booking";
 import Gallery from "./Gallery/Gallery";
@@ -19,10 +17,6 @@ type Props = { item: HouseItem; isRoom?: boolean };
 
 export default function House({ item, isRoom = false }: Props) {
   const locale = useLocale();
-  
-  useGSAP(() => {
-    ScrollTrigger.refresh(true);
-  });
 
   const {
     photo,
