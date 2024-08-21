@@ -62,7 +62,7 @@ export default function Entertainment({items}: Props) {
         aniRef.current.forEach((e, i) => {
            gsap.timeline({
                 defaults: {
-                    opacity: 0,
+                    autoAlpha: 0,
                     duration: 0.8,
                     ease: "power1.out",
                 },
