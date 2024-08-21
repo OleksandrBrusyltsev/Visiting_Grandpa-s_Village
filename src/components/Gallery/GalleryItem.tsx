@@ -1,7 +1,6 @@
 "use client"
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { useParams, usePathname, useRouter } from 'next/navigation';
+import Link from "next/link";
 import Image from 'next/image';
 import { forwardRef, useContext } from "react";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
@@ -12,7 +11,7 @@ import s from './GalleryItem.module.scss';
 
 type Props = {data: GalleryItem};
 
-const GalleryItem = forwardRef<HTMLDivElement, Props>(function GalleryItem({data}, ref) {
+const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem({data}, ref) {
   const {locale} = useParams();
   const path = usePathname();
   const pathName = path.split('/')[2];
@@ -20,15 +19,11 @@ const GalleryItem = forwardRef<HTMLDivElement, Props>(function GalleryItem({data
   const {name, cover} = data;
   const title = data.title.filter(item => item.language === locale)[0].text;
   
-  const {push} = useRouter();
-  const handleClickItem = () => push(`/${locale}/${pathName}/${name}`);
-  
   return (
-      <div 
+      <Link 
         className={s.itemWrapper} 
         tabIndex={0}
-        onKeyDown={(e) => (e.code === 'Enter' || e.code === 'NumpadEnter') && handleClickItem()}
-        onClick={handleClickItem}
+        href={`/${locale}/${pathName}/${name}`}
         ref={ref}
       >
         <div className={s.imageWrapper} >
@@ -48,7 +43,7 @@ const GalleryItem = forwardRef<HTMLDivElement, Props>(function GalleryItem({data
             type='button' 
             tabIndex={-1} />
         </div>
-      </div>
+      </Link>
     
   )
 })
