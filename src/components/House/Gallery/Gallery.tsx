@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState, useContext } from "react";
+import { FC, useState, useContext, forwardRef } from "react";
 import Image from "next/image";
 import MainSwiper from "./MainSwiper/MainSwiper";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
@@ -9,7 +9,7 @@ interface GalleryType {
   pictures: string[];
 }
 
-const Gallery: FC<GalleryType> = ({ pictures }) => {
+const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery ({ pictures }, ref) {
   const [isSwiperOpen, setSwiperOpen] = useState(false);
   const [firstSlide, setFirstSlide] = useState<number>(0);
   const { isTablet, isMobile } = useContext(MatchMediaContext);
@@ -34,7 +34,7 @@ const Gallery: FC<GalleryType> = ({ pictures }) => {
       : s.small__3;
 
   return (
-    <div className={s.galleryWrapper}>
+    <div className={s.galleryWrapper} ref={ref}>
       <div className={s.gallery}>
         {pictures.map((item, index) => (
           <div
@@ -94,6 +94,6 @@ const Gallery: FC<GalleryType> = ({ pictures }) => {
       )}
     </div>
   );
-};
+});
 
 export default Gallery;
