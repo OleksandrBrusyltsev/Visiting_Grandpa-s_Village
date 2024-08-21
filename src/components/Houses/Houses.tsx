@@ -19,7 +19,7 @@ type Props = {
 
 export default function Houses({ items }: Props) {
   const { locale } = useParams();
-  const housesRef = useRef<Array<HTMLDivElement>>([]);
+  const housesRef = useRef<Array<HTMLAnchorElement>>([]);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -274,7 +274,7 @@ export default function Houses({ items }: Props) {
             <div className={s.housesWrapper}>
               {items.map((house, i) => (
                 <HouseItem
-                  ref={(el: HTMLDivElement) => (housesRef.current[i] = el)}
+                  ref={(el: HTMLAnchorElement) => (housesRef.current[i] = el)}
                   data={house}
                   key={house.id}
                 />
