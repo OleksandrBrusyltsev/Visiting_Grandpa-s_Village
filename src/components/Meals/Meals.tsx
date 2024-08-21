@@ -149,7 +149,12 @@ export default function Meals({items}: Props) {
             <div className={s.heroWrapper}>
                 <h1 className={s.title}>Нарешті, моє улюблене -&nbsp;Їжа. Поїмо ?</h1>
                 <div className={s.heroImage}>
-                    <Image src={"/images/meals/dog.png"} fill alt={'grandpa prays before eating'} />
+                    <Image 
+                        src={"/images/meals/dog.png"} 
+                        alt={'grandpa prays before eating'} 
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
+                        fill 
+                        />
                     <div className={s.callToEatWrapper}>
                         <p className={s.callToEat}>давай вже<br/>скоріш їсти </p>
                         <Icon name="meals-outline" className={s.callToEatOutline} />

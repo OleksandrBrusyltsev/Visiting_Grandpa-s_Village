@@ -1,14 +1,16 @@
 "use client";
-import {FC, useEffect, useRef} from "react";
+import {FC, useRef} from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+
 import TelegramBotLink from "./TelegramBlock/TelegramBlock";
 import ContactsList from "./ContactsList/ContactsList";
 import FAQ from "./FAQ/FAQ";
 import RouteInfo from "./RouteInfo/RouteInfo";
 import GoogleMap from "./GoogleMap/GoogleMap";
+
 import s from "./ContactsComponent.module.scss";
-import { ScrollTrigger } from "gsap/all";
 
 const ContactsComponent: FC = () => {
   // Create refs for TelegramBlock elements
@@ -33,13 +35,8 @@ const ContactsComponent: FC = () => {
   // Create refs for googleMapWrapper element
   const googleMapWrapper = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    ScrollTrigger.refresh(true);
-  }, []);
-
   useGSAP(() => {
     // TelegramBlock animations
-    if(!telegramTitle.current || !telegramText.current || !map.current || !telegramLinkWrapper.current || !grandpa.current || !contactsListWrapper.current || !lake.current || !faqTitle.current || !faqWrapper.current || !house.current || !routeInfoWrapper.current || !googleMapWrapper.current) return
     gsap
       .timeline({
         defaults: {
@@ -125,7 +122,6 @@ const ContactsComponent: FC = () => {
               },
               ">-0.3"
             );
-          ScrollTrigger.refresh(true);
         }
 
         if (isNotMobile) {
@@ -156,7 +152,6 @@ const ContactsComponent: FC = () => {
               },
               ">-0.3"
             );
-     //     ScrollTrigger.refresh(true);
         }
       }
     );

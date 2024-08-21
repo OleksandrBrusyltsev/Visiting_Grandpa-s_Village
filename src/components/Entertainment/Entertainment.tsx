@@ -96,7 +96,7 @@ export default function Entertainment({items}: Props) {
                     <Image 
                         src={'/images/grandpas/Grandpa1.png'} 
                         alt={'Grandpa photo'} 
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
                         fill/>
                 </div>
                 <h1 className={s.heroTitle} >
@@ -130,7 +130,11 @@ export default function Entertainment({items}: Props) {
                                     aniRef.current[i] = aniRef.current[i] || [];
                                     aniRef.current[i][2] = el;
                                 }}>
-                                <Image src={images[0]} alt={props.title} fill />
+                                <Image 
+                                    src={images[0]} 
+                                    alt={props.title} 
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
+                                    fill />
                             </div>
                             <div 
                                 className={`${s.entertainmentImgWrapper} ${i % 2 ? s.right : s.left}`}
@@ -138,7 +142,11 @@ export default function Entertainment({items}: Props) {
                                     aniRef.current[i] = aniRef.current[i] || [];
                                     aniRef.current[i][3] = el;
                                 }}>
-                                <Image src={images[1]} alt={props.title} fill />
+                                <Image 
+                                    src={images[1]} 
+                                    alt={props.title} 
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
+                                    fill />
                             </div>
                         </li>
                         )

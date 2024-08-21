@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { forwardRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
@@ -80,7 +81,7 @@ type Props = {
 //   );
 // }
 
-export default function Booking({
+const Booking = forwardRef<HTMLDivElement, Props>(function Booking({
   price,
   guests,
   addGuests,
@@ -90,7 +91,7 @@ export default function Booking({
   priceAddons,
   rooms,
   isRoom = false,
-}: Props) {
+}, ref) {
   const t = useTranslations("HouseItem");
   const { push } = useRouter();
   const locale = useLocale();
@@ -102,7 +103,7 @@ export default function Booking({
                              ` або ${addGuests.adult * 2}х дітей` : ''}`;
 
   return (
-    <section className={s.sectionWrapper}>
+    <section className={s.sectionWrapper} ref={ref}>
       <div className={`${s.imageDecorWrapper} ${isRoom ? s.apartment : ""}`}>
         <div
           className={s.imageDecor}
@@ -159,4 +160,5 @@ export default function Booking({
       </div>
     </section>
   );
-}
+})
+export default Booking;

@@ -17,7 +17,7 @@ type Props = {items: GalleryItem[]}
 
 export default function Gallery({items}: Props) {
   const {locale} = useParams();
-  const galleryRef = useRef<Array<HTMLDivElement>>([]);
+  const galleryRef = useRef<Array<HTMLAnchorElement>>([]);
 
   useGSAP(() => {
 
@@ -126,7 +126,7 @@ export default function Gallery({items}: Props) {
               <div className={s.galleryWrapper}>
                 {items.map((item, i) => (
                   <GalleryItem 
-                    ref={(el: HTMLDivElement) => galleryRef.current[i] = el} 
+                    ref={(el: HTMLAnchorElement) => galleryRef.current[i] = el} 
                     data={item} 
                     key={i}/>)
                   )
