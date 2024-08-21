@@ -95,7 +95,7 @@ const ContactsComponent: FC = () => {
           // FAQ animation
           gsap.from(lake.current, {
             x: -200,
-            opacity: 0,
+            autoAlpha: 0,
             duration: 0.7,
             scrollTrigger: {
               trigger: lake.current,
@@ -106,7 +106,7 @@ const ContactsComponent: FC = () => {
           gsap
             .timeline({
               defaults: {
-                opacity: 0,
+                autoAlpha: 0,
                 duration: 0.7,
               },
               scrollTrigger: {
@@ -129,7 +129,7 @@ const ContactsComponent: FC = () => {
           gsap
             .timeline({
               defaults: {
-                opacity: 0,
+                autoAlpha: 0,
                 duration: 0.7,
               },
               scrollTrigger: {
@@ -159,7 +159,7 @@ const ContactsComponent: FC = () => {
     // RouteInfo animation
     gsap.from(house.current, {
       x: 200,
-      opacity: 0,
+      autoAlpha: 0,
       duration: 0.7,
       scrollTrigger: {
         trigger: house.current,
@@ -169,7 +169,7 @@ const ContactsComponent: FC = () => {
 
     gsap.from(routeInfoWrapper.current, {
       x: -100,
-      opacity: 0,
+      autoAlpha: 0,
       duration: 0.7,
       scrollTrigger: {
         trigger: routeInfoWrapper.current,
@@ -178,16 +178,16 @@ const ContactsComponent: FC = () => {
     });
 
     // GoogleMap animation
-    // gsap.from(googleMapWrapper.current, {
-    //   y: 200,
-    //   autoAlpha: 0,
-    //   duration: 0.7,
-    //   scrollTrigger: {
-    //     trigger: googleMapWrapper.current,
-    //     start: "top 80%",
-    //   },
-    //   clearProps: "transform",
-    // });
+    gsap.from(googleMapWrapper.current, {
+      y: 200,
+      autoAlpha: 0,
+      duration: 0.7,
+      scrollTrigger: {
+        trigger: googleMapWrapper.current,
+        start: "top 80%",
+      },
+      clearProps: "transform",
+    });
     ScrollTrigger.refresh(true);
   });
 
