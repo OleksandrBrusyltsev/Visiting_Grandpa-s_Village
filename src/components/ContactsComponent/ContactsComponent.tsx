@@ -178,16 +178,16 @@ const ContactsComponent: FC = () => {
     });
 
     // GoogleMap animation
-    // gsap.from(googleMapWrapper.current, {
-    //   y: 200,
-    //   autoAlpha: 0,
-    //   duration: 0.7,
-    //   scrollTrigger: {
-    //     trigger: googleMapWrapper.current,
-    //     start: "top 80%",
-    //   },
-    //   clearProps: "transform",
-    // });
+    gsap.from(googleMapWrapper.current, {
+      y: 200,
+      autoAlpha: 0,
+      duration: 0.7,
+      scrollTrigger: {
+        trigger: googleMapWrapper.current,
+        start: "top 80%",
+      },
+      clearProps: "transform",
+    });
     ScrollTrigger.refresh(true);
   });
 

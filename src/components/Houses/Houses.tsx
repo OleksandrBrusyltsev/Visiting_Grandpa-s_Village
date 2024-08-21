@@ -40,7 +40,7 @@ export default function Houses({ items }: Props) {
         //booking component and houses list title animation
         const mainTimeline = gsap.timeline({
           defaults: {
-            opacity: 0,
+            autoAlpha: 0,
             duration: isMobile ? 0.7 : isTablet ? 0.8 : 1,
           },
           scrollTrigger: {
@@ -54,7 +54,7 @@ export default function Houses({ items }: Props) {
           gsap
             .timeline({
               defaults: {
-                opacity: 0,
+                autoAlpha: 0,
                 ease: "power1.out",
                 duration: 0.8,
                 clearProps: "all",
@@ -75,7 +75,7 @@ export default function Houses({ items }: Props) {
               `.${s.curve}`,
               {
                 clipPath: "inset(0% 0% 100% 0%)",
-                opacity: 1,
+                autoAlpha: 1,
               },
               ">-0.4"
             )
@@ -103,7 +103,7 @@ export default function Houses({ items }: Props) {
           gsap
             .timeline({
               defaults: {
-                opacity: 0,
+                autoAlpha: 0,
                 ease: "power1.out",
                 duration: 1.2,
                 clearProps: "all",
@@ -133,7 +133,7 @@ export default function Houses({ items }: Props) {
           mainTimeline
             .from(`.${s.curve}`, {
               clipPath: "inset(0% 0% 100% 0%)",
-              opacity: 1,
+              autoAlpha: 1,
             })
             .from(`.${s.bookingForm}`, {
               scale: 0.9,
@@ -154,7 +154,7 @@ export default function Houses({ items }: Props) {
           gsap
             .timeline({
               defaults: {
-                opacity: 0,
+                autoAlpha: 0,
                 ease: "power1.out",
                 duration: 0.8,
                 clearProps: "all",

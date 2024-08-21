@@ -24,7 +24,7 @@ export default function Gallery({items}: Props) {
     //hero block animation
     gsap.timeline({
       defaults: {
-        opacity: 0,
+        autoAlpha: 0,
         ease: "power1.out",
         duration: 1,
       }
