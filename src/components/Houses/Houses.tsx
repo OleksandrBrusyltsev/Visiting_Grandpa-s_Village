@@ -235,7 +235,7 @@ export default function Houses({ items }: Props) {
               fill
               alt="Friendly Grandpa"
               src="/images/grandpas/Grandpa2.png"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="100vw"
             />
           </div>
 
