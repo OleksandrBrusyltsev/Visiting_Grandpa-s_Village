@@ -160,14 +160,14 @@ export default function Houses({ items }: Props) {
                 clearProps: "all",
               },
             })
-            .from(`.${s.descr1}`, {y: -150})
-            .from(`.${s.map}`, {x: -150, y: 150}, "<")
-            .from([`.${s.descr2}`, `.${s.grandpa}`], {x: 150}, "<" );
+            .from(`.${s.descr1}`, { y: -150 })
+            .from(`.${s.map}`, { x: -150, y: 150 }, "<")
+            .from([`.${s.descr2}`, `.${s.grandpa}`], { x: 150 }, "<");
 
           //booking component and houses list title animation
           mainTimeline
-            .from(`.${s.bookingForm}`, {y: 100,scale: 0.9})
-            .from(`.${s.housesTitle}`, {y: 100});
+            .from(`.${s.bookingForm}`, { y: 100, scale: 0.9 })
+            .from(`.${s.housesTitle}`, { y: 100 });
 
           housesRef.current.forEach((h, i) => {
             gsap.fromTo(
@@ -220,16 +220,38 @@ export default function Houses({ items }: Props) {
     ScrollTrigger.refresh(true);
   });
 
+  // text block animation
+  const textWrapperRef = useRef<HTMLDivElement | null>(null);
+  useGSAP(() => {
+    if (!textWrapperRef.current) return;
+
+    ScrollTrigger.refresh(true);
+
+    gsap.from(textWrapperRef.current, {
+      x: 100,
+      autoAlpha: 0,
+      ease: "power1.out",
+      clearProps: true,
+      scrollTrigger: {
+        trigger: textWrapperRef.current,
+        start: "top 90%",
+      },
+    });
+  });
+
   return (
     <>
       <section className={`${s.hero} container`}>
         <div className={s.heroWrapper}>
-          <p className={s.descr1}>
-            Маю багато казкових будиночків та хатинок, можеш вибрати будь-який
-            варіант на свій смак.
-          </p>
+          <h1 className={s.descr1}>
+            Еко комплекс казкових дерев&apos;яних будиночків
+          </h1>
           {/* eslint-disable-next-line react/no-unescaped-entities */}
-          <p className={s.descr2}>"Гортай нижче - я тобі все покажу"</p>
+          <p className={s.descr2}>
+            &quot;Маю дерев&apos;яні будиночки та хатинки, можеш вибрати
+            будь-який варіант на свій смак. Гортай нижче - я тобі все
+            покажу&quot;
+          </p>
           <div className={s.grandpa}>
             <Image
               fill
@@ -268,7 +290,7 @@ export default function Houses({ items }: Props) {
         <HousesList data={items} className="container">
           <>
             <div className={s.housesTitle}>
-              <h1>Живи тут</h1>
+              <p>Живи тут</p>
               <Icon name="ellipse" className={s.titleOutline} />
             </div>
             <div className={s.housesWrapper}>
@@ -282,6 +304,21 @@ export default function Houses({ items }: Props) {
             </div>
           </>
         </HousesList>
+        <div className={s.textWrapper} ref={textWrapperRef}>
+          <p className={s.text}>
+            Ласкаво просимо до еко комплексу «На селі у Дідуся», розташованого в
+            мальовничому куточку України - на Чернігівщині біля Блакитних озер.
+            Пропонуємо вам комфортний відпочинок у затишних хатинках, де ви
+            зможетевідчути гармонію з природою. Наші дерев&apos;яні будиночки
+            забезпечені всім необхідним для комфортного перебування.{" "}
+          </p>
+          <p className={s.text}>
+            Відкрийте для себе справжній відпочинок на природі, насолоджуючись
+            чистим повітрям, прогулянками лісом та казковими заходами сонця біля
+            озера. Еко-комплекс «На селі у Дідуся» – ідеальне місце для
+            родинного відпочинку, романтичних вікендів та відновлення сил.
+          </p>
+        </div>
       </main>
     </>
   );

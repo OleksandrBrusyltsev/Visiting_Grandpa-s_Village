@@ -398,13 +398,13 @@ export const houses = [
       {
         language: "uk",
         text: "Теремок",
-        longTitle: "Теремок-1, Теремок-2",
+        longTitle: "Теремок",
         decorText: "Теремок",
       },
       {
         language: "en",
         text: "Teremok",
-        longTitle: "Teremok-1, Teremok-2",
+        longTitle: "Теремок",
         decorText: "Teremok",
       },
     ],
