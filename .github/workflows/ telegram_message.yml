@@ -22,7 +22,6 @@ jobs:
             Pull request: [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
             
             Repository: ${{ github.repository }}
-            See changes: ${{ github.event.pull_request.html_url }}
 
       - name: Send Telegram message on merge to develop
         if: ${{ github.event_name == 'push' && contains(github.ref, 'refs/heads/develop') }}
