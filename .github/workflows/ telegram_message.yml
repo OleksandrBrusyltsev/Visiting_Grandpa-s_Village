@@ -30,6 +30,6 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            The branch `${{ github.ref_name }}` was successfully merged by ${{ github.actor }}! 
-            Repository: ${{ github.repository }}
+            **The branch** `${{ github.ref_name }}` was successfully merged by ${{ github.actor }}! 
+            Repository: [${{ github.repository }}](https://github.com/${{ github.repository }})
             See latest commit: ${{ github.event.head_commit.url }}
