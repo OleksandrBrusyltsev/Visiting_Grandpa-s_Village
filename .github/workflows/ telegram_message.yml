@@ -18,7 +18,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            ${{ github.actor }} created a pull request on branch `${{ github.ref_name }}`:
+            ${{ github.actor }} created a pull request on branch `${{ github.head_ref }}`:
             Pull request: [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
             
             Repository: ${{ github.repository }}
