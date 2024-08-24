@@ -20,8 +20,6 @@ jobs:
           message: |
             ${{ github.actor }} created a pull request on branch `${{ github.head_ref }}`:
             Pull request: [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
-            
-            Repository: [${{ github.repository }}](https://github.com/${{ github.repository }})
 
       - name: Send Telegram message on merge to develop
         if: ${{ github.event_name == 'push' && contains(github.ref, 'refs/heads/develop') }}
@@ -30,6 +28,5 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            **The branch** `${{ github.ref_name }}` was successfully merged by ${{ github.actor }}! 
-            Repository: [${{ github.repository }}](https://github.com/${{ github.repository }})
+            The branch `${{ github.ref_name }}` was successfully merged by ${{ github.actor }}! 
             See latest commit: ${{ github.event.head_commit.url }}
