@@ -2,7 +2,7 @@ name: telegram message
 on: 
   push:
     branches:
-      - develop
+      - '**'
   pull_request:
     types: [opened, closed]
 
@@ -18,19 +18,21 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            ${{ github.actor }} created a pull request:
-            **Pull request **: [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
-            
-            Repository: ${{ github.repository }}
-            See changes: ${{ github.event.pull_request.html_url }}
+            **${{ github.actor }} created a pull request in branch `${{ github.ref_name }}`:**
+            **Pull request**: [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
 
-      - name: Send Telegram message on merge to develop
-        if: github.event_name == 'push' && contains(github.ref, 'refs/heads/develop')
+            **Repository**: ${{ github.repository }}
+            [**View Pull Request**](${{ github.event.pull_request.html_url }})
+          parse_mode: Markdown
+
+      - name: Send Telegram message on merge to any branch
+        if: github.event_name == 'push'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            The branch was successfully merged into `develop` by ${{ github.actor }}!
-            Repository: ${{ github.repository }}
-            See latest commit: ${{ github.event.head_commit.url }}
+            **Branch `${{ github.ref_name }}` was successfully pushed by ${{ github.actor }}!**
+            **Repository**: ${{ github.repository }}
+            **See latest commit**: ${{ github.event.head_commit.url }}
+          parse_mode: Markdown
