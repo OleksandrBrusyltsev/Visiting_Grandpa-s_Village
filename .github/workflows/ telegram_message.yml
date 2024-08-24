@@ -14,16 +14,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: |
-            ${{ github.actor }} created a ${{
-              github.event_name == 'push' && 'commit' || 'pull request'
-            }}:
-            
-            {% if github.event_name == 'push' %}
-              Commit message: ${{ github.event.commits[0].message }}
-            {% else %}
-              Pull request title: ${{ github.event.pull_request.title }}
-              Description: ${{ github.event.pull_request.body }}
-            {% endif %}
+            ${{ github.actor }} created a pull request:
+            Pull request title: ${{ github.event.pull_request.title }}
             
             Repository: ${{ github.repository }}
-            See changes: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
+            See changes: ${{ github.event.pull_request.html_url }}
