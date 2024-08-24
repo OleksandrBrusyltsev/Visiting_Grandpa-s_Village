@@ -21,7 +21,7 @@ jobs:
             ${{ github.actor }} created a pull request on branch `${{ github.head_ref }}`:
             Pull request: [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
             
-            Repository: ${{ github.repository }}
+            Repository: [${{ github.repository }}](https://github.com/${{ github.repository }})
 
       - name: Send Telegram message on merge to develop
         if: ${{ github.event_name == 'push' && contains(github.ref, 'refs/heads/develop') }}
