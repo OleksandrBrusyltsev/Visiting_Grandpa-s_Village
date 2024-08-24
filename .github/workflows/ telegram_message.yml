@@ -1,0 +1,29 @@
+name: telegram message
+on: 
+  push: 
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telegram message on push or pull request
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            ${{ github.actor }} created a ${{
+              github.event_name == 'push' && 'commit' || 'pull request'
+            }}:
+            
+            {% if github.event_name == 'push' %}
+              Commit message: ${{ github.event.commits[0].message }}
+            {% else %}
+              Pull request title: ${{ github.event.pull_request.title }}
+              Description: ${{ github.event.pull_request.body }}
+            {% endif %}
+            
+            Repository: ${{ github.repository }}
+            See changes: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
