@@ -7,7 +7,7 @@ import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { locales } from "@/data/locales";
 
 export const metadata: Metadata = {
-  title: "Еко комплекс для відпочинку за Києвом",
+  title: "Еко комплекс для відпочинку за Києвом | На селі у Дідуся",
   description:
     "Еко комплекс на Чернігівщині в дерев'яних будиночках, зручні та затишні апартаменти для сімейного відпочинку чи наодинці",
 };
