@@ -13,6 +13,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message_thread_id: 5
           message: |
             ${{ github.actor }} created a pull request:
             Pull request title: ${{ github.event.pull_request.title }}
