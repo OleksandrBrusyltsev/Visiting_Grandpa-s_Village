@@ -1,13 +1,18 @@
-version: 2
-updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
-    schedule:
-      interval: 'daily'
-      time: '01:00'
-    target-branch: 'develop'
-    open-pull-requests-limit: 10
-    commit-message:
-      prefix: 'deps'
-      include:
-        prefix-development-only: true
+name: Notify Telegram on Pull Request
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types: [opened, closed]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Notification to Telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: "Pull Request: ${{ github.event.pull_request.title }} \nURL: ${{ github.event.pull_request.html_url }}"
