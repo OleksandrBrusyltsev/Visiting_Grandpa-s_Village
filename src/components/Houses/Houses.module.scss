@@ -129,7 +129,7 @@
   margin-top: -90px;
 
   @media (min-width: 768px) {
-    font-size: 18px;
+    font-size: var(--f-size-button-small);
   }
   @media (min-width: 1280px) {
     margin-top: 0px;
@@ -158,13 +158,15 @@
 
 @include mixins.media-min(variables.$mobile) {
   .hero {
-    margin-top: 40px;
+    // margin-top: 40px;
+    margin-top: 16px;
   }
   .descr1 {
     font-size: var(--f-size-h1);
     min-width: unset;
     width: 100%;
     padding-left: 0;
+    // padding-left: calc((100vw - 375px) / 6);
   }
   .descr2 {
     text-align: center;

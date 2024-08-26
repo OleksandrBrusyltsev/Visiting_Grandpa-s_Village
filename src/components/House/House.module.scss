@@ -231,9 +231,9 @@
   }
   & a {
     color: rgb(var(--color-base-green));
-    &:hover {
-      text-decoration: underline;
-    }
+    // &:hover {
+    //   text-decoration: underline;
+    // }
   }
 }
 

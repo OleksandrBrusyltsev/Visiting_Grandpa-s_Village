@@ -24,10 +24,10 @@ export default function Home({
   unstable_setRequestLocale(locale);
   const t = useTranslations("Index");
   return (
-    <main>
+    <>
       <Hero />
       <WelcomeBlock text={t("welcomeBlock")} />
       <AskGrandpa />
-    </main>
+    </>
   );
 }

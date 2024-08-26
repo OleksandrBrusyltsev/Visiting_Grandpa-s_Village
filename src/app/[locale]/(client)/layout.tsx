@@ -12,7 +12,7 @@ export async function generateStaticParams() {
 
 export default async function LocaleLayout({
   children,
-  params: { locale }
+  params: { locale },
 }: {
   children: React.ReactNode;
   params: { locale: string };
@@ -21,10 +21,12 @@ export default async function LocaleLayout({
 
   return (
     <>
-      <Header />
-      <Navigation />
+      <header>
+        <Header />
+        <Navigation />
+      </header>
       <Breadcrumbs />
-        {children}
+      <main>{children}</main>
       <Footer />
     </>
   );

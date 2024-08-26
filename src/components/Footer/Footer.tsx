@@ -58,13 +58,15 @@ export default function Footer() {
         />
       </button>
 
-      <ul className={s.nav}>
-        {navLink.map(({ id, label, link }) => (
-          <li key={id} className={s.navItem}>
-            <Link href={`/${locale}/${link}`}>{label}</Link>
-          </li>
-        ))}
-      </ul>
+      <nav>
+        <ul className={s.nav}>
+          {navLink.map(({ id, label, link }) => (
+            <li key={id} className={s.navItem}>
+              <Link href={`/${locale}/${link}`}>{label}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       <div className={s.contacts}>
         <div className={s.contactsWrap}>

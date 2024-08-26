@@ -286,40 +286,40 @@ export default function Houses({ items }: Props) {
         <BookingComponent />
       </div>
 
-      <main>
-        <HousesList data={items} className="container">
-          <>
-            <div className={s.housesTitle}>
-              <p>Живи тут</p>
-              <Icon name="ellipse" className={s.titleOutline} />
-            </div>
-            <div className={s.housesWrapper}>
-              {items.map((house, i) => (
-                <HouseItem
-                  ref={(el: HTMLAnchorElement) => (housesRef.current[i] = el)}
-                  data={house}
-                  key={house.id}
-                />
-              ))}
-            </div>
-          </>
-        </HousesList>
-        <div className={s.textWrapper} ref={textWrapperRef}>
-          <p className={s.text}>
-            Ласкаво просимо до еко комплексу «На селі у Дідуся», розташованого в
-            мальовничому куточку України - на Чернігівщині біля Блакитних озер.
-            Пропонуємо вам комфортний відпочинок у затишних хатинках, де ви
-            зможетевідчути гармонію з природою. Наші дерев&apos;яні будиночки
-            забезпечені всім необхідним для комфортного перебування.{" "}
-          </p>
-          <p className={s.text}>
-            Відкрийте для себе справжній відпочинок на природі, насолоджуючись
-            чистим повітрям, прогулянками лісом та казковими заходами сонця біля
-            озера. Еко-комплекс «На селі у Дідуся» – ідеальне місце для
-            родинного відпочинку, романтичних вікендів та відновлення сил.
-          </p>
-        </div>
-      </main>
+      {/* <main> */}
+      <HousesList data={items} className="container">
+        <>
+          <div className={s.housesTitle}>
+            <p>Живи тут</p>
+            <Icon name="ellipse" className={s.titleOutline} />
+          </div>
+          <div className={s.housesWrapper}>
+            {items.map((house, i) => (
+              <HouseItem
+                ref={(el: HTMLAnchorElement) => (housesRef.current[i] = el)}
+                data={house}
+                key={house.id}
+              />
+            ))}
+          </div>
+        </>
+      </HousesList>
+      <div className={s.textWrapper} ref={textWrapperRef}>
+        <p className={s.text}>
+          Ласкаво просимо до еко комплексу «На селі у Дідуся», розташованого в
+          мальовничому куточку України - на Чернігівщині біля Блакитних озер.
+          Пропонуємо вам комфортний відпочинок у затишних хатинках, де ви
+          зможетевідчути гармонію з природою. Наші дерев&apos;яні будиночки
+          забезпечені всім необхідним для комфортного перебування.{" "}
+        </p>
+        <p className={s.text}>
+          Відкрийте для себе справжній відпочинок на природі, насолоджуючись
+          чистим повітрям, прогулянками лісом та казковими заходами сонця біля
+          озера. Еко-комплекс «На селі у Дідуся» – ідеальне місце для родинного
+          відпочинку, романтичних вікендів та відновлення сил.
+        </p>
+      </div>
+      {/* </main> */}
     </>
   );
 }

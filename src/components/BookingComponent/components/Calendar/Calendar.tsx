@@ -19,10 +19,7 @@ interface DayInfo {
   month: number;
 }
 
-const getClassNames = (
-  classNames: string,
-  styles: Record<string, string>
-) => {
+const getClassNames = (classNames: string, styles: Record<string, string>) => {
   return classNames
     .split(" ")
     .map((className) => styles[className])
@@ -90,7 +87,7 @@ const Calendar: FC<CalendarProps> = ({
         });
       }
     }
-    return daysArray
+    return daysArray;
   };
 
   const handlePrevNextClick = (direction: number) => {
@@ -131,22 +128,22 @@ const Calendar: FC<CalendarProps> = ({
       const date = new Date(currYear, item.month, item.day);
       date.setHours(0, 0, 0, 0);
       let classes = [item.class];
-  
+
       // Добавить класс для отключенной даты
       if (date.getTime() < today.getTime()) {
         classes.push("disabled");
       }
-  
+
       // Если это день заезда, добавляем класс "activeDay"
       if (checkInDate && date.getTime() == checkInDate.getTime()) {
         classes.push("checkInDate");
       }
-  
+
       // Если это день выезда, добавляем класс "activeDay"
       if (checkOutDate && date.getTime() == checkOutDate.getTime()) {
         classes.push("checkOutDate");
       }
-  
+
       // Если это день между заездом и выездом, добавляем класс "activePeriod"
       if (
         checkInDate &&
@@ -156,7 +153,7 @@ const Calendar: FC<CalendarProps> = ({
       ) {
         classes.push("activePeriod");
       }
-  
+
       return {
         ...item,
         class: classes.join(" "),
@@ -164,10 +161,10 @@ const Calendar: FC<CalendarProps> = ({
     });
     setDaysList(daysListWithActiveClass);
   }, [checkInDate, checkOutDate, currMonth, currYear]);
-  
+
   return (
     <div className={s.calendarWrapper}>
-      <header className={s.calendarHeader}>
+      <div className={s.calendarHeader}>
         <p className={s.currentMonth}>{`${months[currMonth]} ${currYear}`}</p>
         <div className="icons">
           <button
@@ -175,7 +172,7 @@ const Calendar: FC<CalendarProps> = ({
             className={s.calendarPrevButton}
             onClick={() => handlePrevNextClick(-1)}
           >
-            <Image src={IconPrev} alt = "icon-prev"className={s.prevIcon} />
+            <Image src={IconPrev} alt="icon-prev" className={s.prevIcon} />
           </button>
           <button
             type="button"
@@ -185,7 +182,7 @@ const Calendar: FC<CalendarProps> = ({
             <Image src={IconNext} alt="icon-next" className={s.nextIcon} />
           </button>
         </div>
-      </header>
+      </div>
       <div className={s.daysWrapper}>
         <ul className={s.weeksList}>
           <li className={s.weeksItem}>Пн</li>
@@ -197,18 +194,19 @@ const Calendar: FC<CalendarProps> = ({
           <li className={s.weeksItem}>Нд</li>
         </ul>
         <ul className={s.daysList}>
-          {daysList.length && daysList.map((item, index) => {
-            const classNames = getClassNames(item.class, s);
-            return (
-              <li
-                key={index}
-                className={`${s.daysItem} ${classNames}`}
-                onClick={() => handleDayClick(item.day, item.month)}
-              >
-                <div>{item.day}</div>
-              </li>
-            );
-          })}
+          {daysList.length &&
+            daysList.map((item, index) => {
+              const classNames = getClassNames(item.class, s);
+              return (
+                <li
+                  key={index}
+                  className={`${s.daysItem} ${classNames}`}
+                  onClick={() => handleDayClick(item.day, item.month)}
+                >
+                  <div>{item.day}</div>
+                </li>
+              );
+            })}
         </ul>
       </div>
     </div>

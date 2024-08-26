@@ -10,11 +10,15 @@ export const metadata: Metadata = {
 };
 
 export default function NotFoundPage() {
-  return   (
-    <div style={{display: 'flex', flexDirection: 'column', minHeight: '100%'}}>
-      <Header />
+  return (
+    <div
+      style={{ display: "flex", flexDirection: "column", minHeight: "100%" }}
+    >
+      <header>
+        <Header />
+      </header>
       <NotFound />
       <Footer />
     </div>
-  )
+  );
 }
