@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,6 +21,7 @@ const Header = () => {
   const [isVisible, setVisible] = useState(false);
   useRegisterGSAP();
   const { push } = useRouter();
+  const pathname = usePathname();
   const locale = useLocale();
   const handlePopup = () => {
     setVisible(!isVisible);
@@ -42,7 +43,8 @@ const Header = () => {
               <span></span>
             </div>
           </button>
-          <Link href={`/${locale}`} className={css.linkLogo}>
+          {/* block circular reference */}
+          {pathname === `/${locale}` ? (
             <Image
               src={image}
               alt={alt}
@@ -50,7 +52,17 @@ const Header = () => {
               height={80}
               className={css.mainLogo}
             />
-          </Link>
+          ) : (
+            <Link href={`/${locale}`} className={css.linkLogo}>
+              <Image
+                src={image}
+                alt={alt}
+                width={144}
+                height={80}
+                className={css.mainLogo}
+              />
+            </Link>
+          )}
 
           <div className={css.headerBox}>
             {isMobile ? null : <LangBtn />}
