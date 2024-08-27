@@ -46,6 +46,7 @@ const Header = () => {
           {/* block circular reference */}
           {pathname === `/${locale}` ? (
             <Image
+              title="Ви вже на цій сторінці"
               src={image}
               alt={alt}
               width={144}

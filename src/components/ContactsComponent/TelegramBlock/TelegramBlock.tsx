@@ -23,7 +23,7 @@ const TelegramBlock: FC<TelegramBlockProps> = ({
   return (
     <>
       <h1 className={s.telegramTitle} ref={telegramTitleRef}>
-        Зв’язатись з Дідусем
+        Контакти еко-садиби &quot;На селі у дідуся&quot;
       </h1>
       <div className={s.telegramWrapper}>
         <p className={s.telegramText} ref={telegramTextRef}>

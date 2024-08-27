@@ -12,7 +12,7 @@ const RouteInfo: FC<RouteInfoProps> = ({ houseRef, routeInfoWrapperRef }) => {
     <div className={s.imgAndRouteInfoWrapper}>
       <Image src={House} alt="picture" className={s.house} ref={houseRef} />
       <div className={s.routeInfoWrapper} ref={routeInfoWrapperRef}>
-        <h1 className={s.routeInfoTitle}>Як дістатися з Чернігова?</h1>
+        <h2 className={s.routeInfoTitle}>Як дістатися з Чернігова?</h2>
         <p className={s.routeInfoText}>
           Електричкою до станції Грибова Рудня. Електричка виходить із Чернігова
           до Грибової Рудні двічі на день — о 8:16 ранку та о 21:20 вечора

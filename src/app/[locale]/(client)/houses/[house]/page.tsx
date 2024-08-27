@@ -3,7 +3,7 @@ import { getData } from "@/actions/getData";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
-import { generateMetadata as generatePageMetadata } from "@/functions/generateMetadata";
+import { generatePageMetadata } from "@/functions/generatePageMetadata";
 
 export const dynamicParams = false;
 
@@ -16,11 +16,11 @@ export async function generateStaticParams({
   return items.map((item) => ({ locale, house: item.name }));
 }
 
+type Props = { params: { house: string; locale: string } };
+
 export async function generateMetadata({ params }: Props) {
   return generatePageMetadata({ params });
 }
-
-type Props = { params: { house: string; locale: string } };
 
 export default async function Page({ params }: Props) {
   const { house, locale } = params;

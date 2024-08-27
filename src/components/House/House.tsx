@@ -258,7 +258,6 @@ export default function House({ item, isRoom = false }: Props) {
       {rooms.length ? null : (
         <div className={`${s.arrowBlockWrapper}`}>
           <p className={s.textDecor}>
-            {/* &quot;Гортай, щоб побачити більше фото.&quot; */}
             &quot;Клікай на фото, щоб подивитись більше.&quot;
           </p>
           <div className={s.arrowWrapper}>
@@ -272,7 +271,7 @@ export default function House({ item, isRoom = false }: Props) {
           <div className={s.imageWrapper}>
             <Image
               fill
-              alt={titleText}
+              alt={`фото дерев'яного будинку ${titleText} еко-садиби На селі у дідуся`}
               src={photo[0]}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
@@ -308,7 +307,7 @@ export default function House({ item, isRoom = false }: Props) {
           </div>
         </div>
       ) : (
-        <Gallery pictures={swiper} ref={galleryRef} />
+        <Gallery pictures={swiper} houseName={titleText} ref={galleryRef} />
       )}
 
       <div className={`${s.contentWrapper} ${rooms.length ? s.apartment : ""}`}>

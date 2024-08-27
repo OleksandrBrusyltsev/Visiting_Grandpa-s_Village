@@ -12,8 +12,6 @@ import s from "./HouseItem.module.scss";
 
 type Props = { data: HouseItem };
 
- 
-
 // const FavoriteIcon = ({ className }: { className: string }) => {
 //   return (
 //     <svg
@@ -44,39 +42,52 @@ const HouseItem = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
   const { push } = useRouter();
   // const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-  const { name, photo, guests, add_guests_variants, rooms, rental_price } = data;
+  const { name, photo, guests, add_guests_variants, rooms, rental_price } =
+    data;
   const title = data.title.filter((item) => item.language === locale)[0].text;
 
   const guestsString = (main: number, ad: number) => {
-    const str = ad ? t("guests", {guests: 5}) : t("guests", {guests: main});
+    const str = ad ? t("guests", { guests: 5 }) : t("guests", { guests: main });
     if (ad) return `${main}+${ad} ${str}`;
-    return `${main} ${str}`
+    return `${main} ${str}`;
   };
 
   return (
-    <Link 
+    <Link
       className={s.houseWrapper}
-      ref={ref} 
-      href={houseWithRooms ? `/${locale}/${pathName}/${houseWithRooms}/${name}` : `/${locale}/${pathName}/${name}`}>
+      ref={ref}
+      href={
+        houseWithRooms
+          ? `/${locale}/${pathName}/${houseWithRooms}/${name}`
+          : `/${locale}/${pathName}/${name}`
+      }
+    >
       <div
         className={s.imageWrapper}
-        onClick={() => push(houseWithRooms ? `/${locale}/${pathName}/${houseWithRooms}/${name}` : `/${locale}/${pathName}/${name}`)}
+        onClick={() =>
+          push(
+            houseWithRooms
+              ? `/${locale}/${pathName}/${houseWithRooms}/${name}`
+              : `/${locale}/${pathName}/${name}`
+          )
+        }
       >
         <Image
           fill
           src={photo[0]}
-          alt={title || "house-photo"}
+          // alt={title || "house-photo"}
+          alt={`фото дерев'яного будинку ${
+            title || null
+          } еко-садиби На селі у дідуся`}
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
         />
       </div>
-      <div
-        className={s.content}
-      >
+      <div className={s.content}>
         <div className={s.titleWrapper}>
           <Icon name="house" className={s.houseIcon} />
-          <h3 
-            className={s.title} 
-            dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }}
+          <h3
+            className={s.title}
+            dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, "<br />") }}
           ></h3>
         </div>
         {!!rental_price ? (
@@ -93,10 +104,11 @@ const HouseItem = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
           ) : (
             <>
               <Icon name="guests" className={s.guestsIcon} />
-              { !!rental_price ? 
-                <span className={s.guests}>{guestsString(guests, add_guests_variants.adult)}</span> :
-                null 
-              }
+              {!!rental_price ? (
+                <span className={s.guests}>
+                  {guestsString(guests, add_guests_variants.adult)}
+                </span>
+              ) : null}
             </>
           )}
         </div>

@@ -31,7 +31,7 @@ const Rules: FC = () => {
       <ul className={s.rulesList}>
         {rules.map((rule) => (
           <li key={rule.id} className={s.rulesItem}>
-            <h3 className={s.ruleTitle}>{rule.title}</h3>
+            <h2 className={s.ruleTitle}>{rule.title}</h2>
             <p
               className={s.ruleDescription}
               dangerouslySetInnerHTML={{ __html: rule.description }}
@@ -39,27 +39,30 @@ const Rules: FC = () => {
           </li>
         ))}
       </ul>
-       
+
       <ul className={s.rulesRememberList}>
         <li className={s.grandpa2Wrapper}>
-          <Image src={Grandpa2} fill alt="picture" ></Image>
+          <Image src={Grandpa2} fill alt="picture"></Image>
         </li>
         <li>
-          <span className={s.rulesRememberSpan} >Невеличке нагадування:</span>Дідусь та команда Еко-садиби “На
-          селі у Дідуся” - твої друзі, завжди готові допомогти та зробити
-          відпочинок приємним і незабутнім.
+          <span className={s.rulesRememberSpan}>Невеличке нагадування:</span>
+          Дідусь та команда <a href="/">Еко-садиби “На селі у Дідуся”</a> - твої
+          друзі, завжди готові допомогти та зробити відпочинок приємним і
+          незабутнім.
         </li>
         <li>
-          Також пам’ятайте, що ми не можемо контролювати погоду та інші
-          зовнішні обставини, проте гарантуємо вам теплий прийом та комфортний
+          Також пам’ятайте, що ми не можемо контролювати погоду та інші зовнішні
+          обставини, проте гарантуємо вам теплий прийом та комфортний
           відпочинок.
         </li>
         <li>
-          “На селі у Дідуся” гості отримують гарні, приємні емоції та
-          створюють неповторні, теплі спогади.
+          “На селі у Дідуся” гості отримують гарні, приємні емоції та створюють
+          неповторні, теплі спогади.
         </li>
         <li>
-          <a href="/publicOffer.pdf" target="_blank" rel="noopener noreferrer">Публічна оферта</a>
+          <a href="/publicOffer.pdf" target="_blank" rel="noopener noreferrer">
+            Публічна оферта
+          </a>
         </li>
       </ul>
     </div>

@@ -128,11 +128,11 @@ export default function Gallery({ items }: Props) {
       <div className={s.backgroundImages}>
         <section className={s.hero}>
           <div className={s.heroWrapper}>
-            <p className={s.descr1}>
+            <h1 className={s.descr1}>
               Люблю згадувати всі щасливі моменти,{" "}
               <span className={s.noBreak}>що відбулись</span>{" "}
               <span className={s.noBreak}>“На Селі у Дідуся”</span>
-            </p>
+            </h1>
             <p className={s.descr2}>Згадаєш зі мною?</p>
             <div className={s.grandpa}>
               <Image
@@ -146,11 +146,11 @@ export default function Gallery({ items }: Props) {
         </section>
         <div className={s.main}>
           <section className={s.memoriesGallery}>
-            <h1 className={s.callToClick}>
+            <p className={s.callToClick}>
               <span className={s.desktopOnly}>Клікай</span>
               <span className={s.mobileOnly}>Натискай</span> на фото, щоб
               подивитись більше
-            </h1>
+            </p>
             <div className={s.galleryWrapper}>
               {items.map((item, i) => (
                 <GalleryItem

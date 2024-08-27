@@ -6,6 +6,7 @@ import Icon from "../ui/Icon/Icon";
 import s from "./Footer.module.scss";
 import { navLink } from "./../../data/footer/data";
 import { useLocale } from "next-intl";
+import { usePathname } from "next/navigation";
 
 const image = "/images/logo-main.svg";
 
@@ -39,6 +40,7 @@ const socialMediaLinks = [
 export default function Footer() {
   const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
   const locale = useLocale();
+  const pathname = usePathname();
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -48,21 +50,36 @@ export default function Footer() {
 
   return (
     <footer className={s.footer}>
-      <button onClick={scrollToTop}>
+      {pathname === `/${locale}` ? (
         <Image
+          title="Ви вже на цій сторінці"
           src={image}
           alt="logo"
           width={144}
           height={80}
           className={s.logoLaptop}
         />
-      </button>
+      ) : (
+        <Link href={`/${locale}`}>
+          <Image
+            src={image}
+            alt="logo"
+            width={144}
+            height={80}
+            className={s.logoLaptop}
+          />
+        </Link>
+      )}
 
       <nav>
         <ul className={s.nav}>
           {navLink.map(({ id, label, link }) => (
             <li key={id} className={s.navItem}>
-              <Link href={`/${locale}/${link}`}>{label}</Link>
+              {pathname === `/${locale}/${link}` ? (
+                <p title="Ви вже на цій сторінці">{label}</p>
+              ) : (
+                <Link href={`/${locale}/${link}`}>{label}</Link>
+              )}
             </li>
           ))}
         </ul>

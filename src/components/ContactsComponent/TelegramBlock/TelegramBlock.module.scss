@@ -6,16 +6,20 @@
   font-size: var(--f-size-h3);
   color: rgba(var(--color-base-green));
   font-weight: 600;
-  line-height: 35.15px;
+  // line-height: 35.15px;
   margin-bottom: 20px;
+  margin-left: 50px;
+  text-align: end;
 
   @include mixins.media-min(variables.$mobile) {
     font-size: var(--f-size-h1);
-    margin-left: 112px;
+    margin-left: 0px;
+    text-align: start;
     margin-bottom: -4rem;
   }
 
   @include mixins.media-min(1000px) {
+    margin-left: 50px;
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
@@ -32,7 +36,7 @@
     grid-template-columns: 1fr 1fr;
     align-items: start;
     grid-template-rows: auto auto auto;
-    row-gap: 49px;
+    row-gap: 52px;
     margin-bottom: 0px;
   }
 
@@ -69,9 +73,12 @@
     font-size: 18px;
     line-height: 1.2;
   }
+  @include mixins.media-min(1000px) {
+    font-size: 16px;
+    margin-left: 50px;
+  }
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 384px;
-    font-size: 20px;
   }
 }
 
@@ -127,11 +134,14 @@
     grid-row: 3 / 4;
     margin-bottom: 15px;
   }
-
+  @include mixins.media-min(1000px) {
+    margin-left: 100px;
+  }
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    max-width: 430px;
+    // max-width: 430px;
+    max-width: 380px;
     margin-bottom: 23px;
-    margin-left: auto;
+    // margin-left: auto;
   }
 }
 
@@ -152,7 +162,7 @@
     line-height: 1.2;
   }
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getData } from "@/actions/getData";
 
-export async function generateMetadata({
+export async function generatePageMetadata({
   params,
 }: {
   params: { house: string; locale: string };

@@ -3,7 +3,7 @@ import { getData } from "@/actions/getData";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
-import { generateMetadata as generatePageMetadata } from "@/functions/generateMetadata";
+import { generatePageMetadata } from "@/functions/generatePageMetadata";
 
 export async function generateMetadata({ params }: Props) {
   return generatePageMetadata({ params });
