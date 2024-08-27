@@ -89,7 +89,7 @@ const ContactsList: FC<ContactsListProps> = ({
               />
               <div className={s.adressWrapper}>
                 <p>Україна, Чернігівська область, с. Олешня,</p>{' '}
-                <p>вул. Першотравнева 5</p>
+                <p>вул. Озерна 5</p>
               </div>
             </Link>
           </li>
