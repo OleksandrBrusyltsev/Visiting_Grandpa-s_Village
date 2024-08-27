@@ -37,7 +37,6 @@ export const houses = [
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1720345875/ivo9lsgtpu8sdxgfexje.jpg",
     ],
     text: `Запрошую тебе в чарівну **хатинку Діда Мороза**. Це місце, де в справжній казці зливаються екологічність та відпочинок в комфортних умовах. В Хатинці є все, що потрібно: **ванна кімната з душем та туалетом, холодильник і телевізор.**\n\n Наша хатинка розташована серед природи, в обіймах пишних ялинок та зелених дерев. Фасад оформлений **натуральними матеріалами**, включаючи дерево та природні складники. Декорування відображає **традиційний стиль українського села**, що приваблює як маленьких так і великих гостей.\n\n Усередині хатинки тебе чекає затишне приміщення, розраховане на **2 людей**. Там кожна деталь наповнена моєю турботою.\n\n В зимовий період *еко-будинок Хатинка Діда Мороза* наповнюється особливо теплою атмосферою, бо я придумав створити в середині **Баньку**, щоб мої відвідувачі змогли розслабитись та сповна насолодитись часом, проведеним *[в еко-садибі “На селі у Дідуся”](/)*.`,
-    // decorText: "",
     id: 0,
     coordinates: {
       top: 35,
@@ -304,7 +303,6 @@ export const houses = [
     rooms: [],
     photoDecor: "/images/houses/house/decor/hornytsia.svg",
     treesDecor: "/images/houses/house/hornytsia/trees-decor.png",
-    // fake
     swiper: [
       "/images/houses/house/hornytsia/hornytsia-1.png",
       "/images/houses/house/hornytsia/hornytsia-2.png",
@@ -361,7 +359,6 @@ export const houses = [
     rooms: [],
     photoDecor: "/images/houses/house/decor/maisternia-hnomiv.svg",
     treesDecor: "/images/houses/house/maisternia-hnomiv/trees-decor.png",
-    // fake
     swiper: [
       "/images/houses/house/maisternia-hnomiv/maisternia-hnomiv-1.png",
       "https://res.cloudinary.com/dzbm3urzv/image/upload/v1723140205/y53cddkanfa8wtz45uz1.jpg",
@@ -418,7 +415,6 @@ export const houses = [
     rooms: [],
     photoDecor: "/images/houses/house/decor/teremok.svg",
     treesDecor: "/images/houses/house/teremok/trees-decor.png",
-    // fake
     swiper: [
       "/images/houses/house/teremok/teremok-1.png",
       "/images/houses/house/teremok/teremok-2.png",
@@ -498,11 +494,9 @@ export const houses = [
           twoChildAsAdult: false,
         },
         rooms: [],
-        // fake
         photoDecor: "/images/houses/house/decor/khoromy-didusia-1.svg",
         treesDecor:
           "/images/houses/house/khoromy/khoromy-didusia-1/trees-decor.png",
-        // fake
         swiper: [
           "/images/houses/house/khoromy/khoromy-didusia-1/khoromy-didusia-1-1.png",
           "/images/houses/house/khoromy/khoromy-didusia-1/khoromy-didusia-1-2.png",
@@ -556,7 +550,6 @@ export const houses = [
         photoDecor: "/images/houses/house/decor/khoromy-didusia-2.svg",
         treesDecor:
           "/images/houses/house/khoromy/khoromy-didusia-2/trees-decor.png",
-        // fake
         swiper: [
           "/images/houses/house/khoromy/khoromy-didusia-2/khoromy-didusia-2-1.png",
           "/images/houses/house/khoromy/khoromy-didusia-2/khoromy-didusia-2-2.png",
@@ -607,11 +600,9 @@ export const houses = [
           twoChildAsAdult: false,
         },
         rooms: [],
-        // fake
         photoDecor: "/images/houses/house/decor/khoromy-babusi-1.svg",
         treesDecor:
           "/images/houses/house/khoromy/khoromy-babusi-1/trees-decor.png",
-        // fake
         swiper: [
           "/images/houses/house/khoromy/khoromy-babusi-1/khoromy-babusi-1-1.png",
           "/images/houses/house/khoromy/khoromy-babusi-1/khoromy-babusi-1-2.png",
@@ -692,11 +683,8 @@ export const houses = [
         },
       },
     ],
-    // fake
-    // photoDecor: "/images/houses/house/decor/khoromy.svg",
     photoDecor: "/images/houses/house/decor/khoromy.svg",
     treesDecor: "/images/houses/house/khoromy/trees-decor.png",
-    // fake
     swiper: [
       "/images/houses/house/khoromy/svitlytsia/svitlytsia-1.png",
       "/images/houses/house/khoromy/svitlytsia/hatynka-dida-moroza-2-1.png",
