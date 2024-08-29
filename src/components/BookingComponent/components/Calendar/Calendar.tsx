@@ -172,14 +172,14 @@ const Calendar: FC<CalendarProps> = ({
             className={s.calendarPrevButton}
             onClick={() => handlePrevNextClick(-1)}
           >
-            <Image src={IconPrev} alt="icon-prev" className={s.prevIcon} />
+            <Image src={IconPrev} alt="" className={s.prevIcon} />
           </button>
           <button
             type="button"
             className={s.calendarNextButton}
             onClick={() => handlePrevNextClick(1)}
           >
-            <Image src={IconNext} alt="icon-next" className={s.nextIcon} />
+            <Image src={IconNext} alt="" className={s.nextIcon} />
           </button>
         </div>
       </div>

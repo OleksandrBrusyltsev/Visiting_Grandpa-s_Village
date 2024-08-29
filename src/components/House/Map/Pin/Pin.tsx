@@ -39,7 +39,7 @@ const Pin: FC<PinProps> = ({
     >
       <Image
         fill
-        alt="pin"
+        alt=""
         src="/images/houses/house/Shape.png"
         sizes="17px, 24px"
       />

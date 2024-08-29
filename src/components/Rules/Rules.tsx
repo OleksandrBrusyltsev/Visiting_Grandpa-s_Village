@@ -12,7 +12,7 @@ const Rules: FC = () => {
         <h1 className={s.rulesTitle}>
           Твій Дідусь має невеликі прохання та правила, які діють в еко-садибі
         </h1>
-        <Image src={Granpa1} alt="picture" className={s.granpa1}></Image>
+        <Image src={Granpa1} alt="" className={s.granpa1}></Image>
       </div>
       <div className={s.iconArrowWrapper}>
         <svg
@@ -42,7 +42,7 @@ const Rules: FC = () => {
 
       <ul className={s.rulesRememberList}>
         <li className={s.grandpa2Wrapper}>
-          <Image src={Grandpa2} fill alt="picture"></Image>
+          <Image src={Grandpa2} fill alt=""></Image>
         </li>
         <li>
           <span className={s.rulesRememberSpan}>Невеличке нагадування:</span>

@@ -253,6 +253,10 @@ export default function House({ item, isRoom = false }: Props) {
     { dependencies: [rooms] }
   );
 
+  const alt = titleText
+    ? `фото дерев'яного будинку ${titleText} еко-садиби На селі у дідуся`
+    : `фото дерев'яного будинку еко-садиби На селі у дідуся`;
+
   return (
     <div className={s.sectionWrapper}>
       {rooms.length ? null : (
@@ -271,7 +275,7 @@ export default function House({ item, isRoom = false }: Props) {
           <div className={s.imageWrapper}>
             <Image
               fill
-              alt={`фото дерев'яного будинку ${titleText} еко-садиби На селі у дідуся`}
+              alt={alt}
               src={photo[0]}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
@@ -284,7 +288,7 @@ export default function House({ item, isRoom = false }: Props) {
           <div className={s.imageGrandpa}>
             <Image
               fill
-              alt="grandpa"
+              alt=""
               src="/images/grandpas/Grandpa2.png"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
@@ -300,7 +304,7 @@ export default function House({ item, isRoom = false }: Props) {
           >
             <Image
               fill
-              alt="house decor"
+              alt=""
               src={photoDecor}
               sizes="(max-width: 768px) 100vw, 50vw"
             />

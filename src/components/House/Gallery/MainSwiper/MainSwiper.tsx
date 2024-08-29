@@ -31,6 +31,9 @@ const MainSwiper: FC<SwiperType> = ({
   houseName,
 }) => {
   const { isMobile, isTablet } = useContext(MatchMediaContext);
+  const alt = houseName
+    ? `фото дерев'яного будинку ${houseName} еко-садиби На селі у дідуся`
+    : "фото дерев'яного будинку еко-садиби На селі у дідуся";
 
   return (
     <Modal
@@ -69,9 +72,7 @@ const MainSwiper: FC<SwiperType> = ({
                 blurDataURL={
                   "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8dOXMfwAIZQNzt0gGRgAAAABJRU5ErkJggg=="
                 }
-                alt={`фото дерев'яного будинку ${
-                  houseName || null
-                } еко-садиби На селі у дідуся`}
+                alt={alt}
                 fill
               />
             </div>

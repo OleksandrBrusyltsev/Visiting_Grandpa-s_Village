@@ -8,7 +8,7 @@ import {
 } from "@vis.gl/react-google-maps";
 import s from "./GoogleMap.module.scss";
 import Image from "next/image";
-import grandpa from '../../../../public/images/grandpas/Grandpa1.png';
+import grandpa from "../../../../public/images/grandpas/Grandpa1.png";
 import { CustomMarker } from "./CustomMarker";
 type GoogleMapProps = {
   googleMapWrapperRef: React.RefObject<HTMLDivElement>;
@@ -22,10 +22,7 @@ const GoogleMap: FC<GoogleMapProps> = ({ googleMapWrapperRef }) => {
 
   return (
     <APIProvider apiKey={apiKey}>
-      <div
-        ref={googleMapWrapperRef}
-        className={s.googleMapWrapper}
-      >
+      <div ref={googleMapWrapperRef} className={s.googleMapWrapper}>
         <Map
           defaultCenter={position}
           defaultZoom={17}
@@ -43,9 +40,14 @@ const GoogleMap: FC<GoogleMapProps> = ({ googleMapWrapperRef }) => {
 
           {open && (
             <InfoWindow position={position} onCloseClick={() => setOpen(false)}>
-              <Image src={grandpa} alt="grandpa" width={75} height={75} style={{transform: 'translateX(50%)'}}/>
-              <p style={{fontSize: 16}}>Welcome to Sadyba!</p>
-
+              <Image
+                src={grandpa}
+                alt=""
+                width={75}
+                height={75}
+                style={{ transform: "translateX(50%)" }}
+              />
+              <p style={{ fontSize: 16 }}>Welcome to Sadyba!</p>
             </InfoWindow>
           )}
         </Map>

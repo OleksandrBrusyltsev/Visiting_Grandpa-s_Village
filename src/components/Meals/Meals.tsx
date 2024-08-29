@@ -215,7 +215,7 @@ export default function Meals({ items }: Props) {
         <div className={s.heroImage}>
           <Image
             src={"/images/meals/dog.png"}
-            alt={"grandpa prays before eating"}
+            alt=""
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
             fill
           />

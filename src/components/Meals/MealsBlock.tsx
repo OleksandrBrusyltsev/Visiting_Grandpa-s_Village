@@ -24,7 +24,7 @@ export default function MealsBlock({ item, position }: Props) {
           <div className={s.mainPhoto}>
             <Image
               src={photo[0]}
-              alt={`${photo[0]} image`}
+              alt=""
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
               fill
             />
@@ -42,7 +42,7 @@ export default function MealsBlock({ item, position }: Props) {
         <div className={s.mainPhoto}>
           <Image
             src={photo[0]}
-            alt={`${photo[0]} image`}
+            alt=""
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
             fill
           />
@@ -51,7 +51,7 @@ export default function MealsBlock({ item, position }: Props) {
       <div className={s.topPhoto}>
         <Image
           src={photo[1]}
-          alt={`${photo[1]} image`}
+          alt=""
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           fill
         />
@@ -59,7 +59,7 @@ export default function MealsBlock({ item, position }: Props) {
       <div className={s.bottomPhoto}>
         <Image
           src={photo[2]}
-          alt={`${photo[2]} image`}
+          alt=""
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           fill
         />

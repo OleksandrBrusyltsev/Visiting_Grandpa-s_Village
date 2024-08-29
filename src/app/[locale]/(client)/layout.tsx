@@ -20,7 +20,7 @@ export default async function LocaleLayout({
   unstable_setRequestLocale(locale);
 
   return (
-    <>
+    <body>
       <header>
         <Header />
         <Navigation />
@@ -28,6 +28,6 @@ export default async function LocaleLayout({
       <Breadcrumbs />
       <main>{children}</main>
       <Footer />
-    </>
+    </body>
   );
 }

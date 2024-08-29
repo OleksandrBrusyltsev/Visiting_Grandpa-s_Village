@@ -4,9 +4,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, unstable_setRequestLocale } from "next-intl/server";
 import { locales } from "@/data/locales";
 
-// export function generateStaticParams() {
-//   return ["uk", "en"].map((locale) => ({ locale }));
-// }
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }

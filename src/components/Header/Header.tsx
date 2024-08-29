@@ -48,7 +48,7 @@ const Header = () => {
             <Image
               title="Ви вже на цій сторінці"
               src={image}
-              alt={alt}
+              alt=""
               width={144}
               height={80}
               className={css.mainLogo}
@@ -57,7 +57,7 @@ const Header = () => {
             <Link href={`/${locale}`} className={css.linkLogo}>
               <Image
                 src={image}
-                alt={alt}
+                alt=""
                 width={144}
                 height={80}
                 className={css.mainLogo}

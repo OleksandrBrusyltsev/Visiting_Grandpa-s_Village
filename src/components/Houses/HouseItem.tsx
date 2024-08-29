@@ -45,6 +45,9 @@ const HouseItem = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
   const { name, photo, guests, add_guests_variants, rooms, rental_price } =
     data;
   const title = data.title.filter((item) => item.language === locale)[0].text;
+  const alt = title
+    ? `фото дерев'яного будинку ${title} еко-садиби На селі у дідуся`
+    : "фото дерев'яного будинку еко-садиби На селі у дідуся";
 
   const guestsString = (main: number, ad: number) => {
     const str = ad ? t("guests", { guests: 5 }) : t("guests", { guests: main });
@@ -75,10 +78,7 @@ const HouseItem = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
         <Image
           fill
           src={photo[0]}
-          // alt={title || "house-photo"}
-          alt={`фото дерев'яного будинку ${
-            title || null
-          } еко-садиби На селі у дідуся`}
+          alt={alt}
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
         />
       </div>

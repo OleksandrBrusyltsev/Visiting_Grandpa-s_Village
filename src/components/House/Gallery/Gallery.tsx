@@ -37,6 +37,10 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery(
       ? s.small__4
       : s.small__3;
 
+  const alt = houseName
+    ? `фото дерев'яного будинку ${houseName} еко-садиби На селі у дідуся`
+    : "фото дерев'яного будинку еко-садиби На селі у дідуся";
+
   return (
     <div className={s.galleryWrapper} ref={ref}>
       <div className={s.gallery}>
@@ -50,9 +54,7 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery(
           >
             <Image
               fill
-              alt={`фото дерев'яного будинку ${
-                houseName || null
-              } еко-садиби На селі у дідуся`}
+              alt={alt}
               src={item}
               style={{
                 objectFit: "cover",
@@ -70,9 +72,7 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery(
             <Image
               key={pictures[0]}
               fill
-              alt={`фото дерев'яного будинку ${
-                houseName || null
-              } еко-садиби На селі у дідуся`}
+              alt={alt}
               src={pictures[0]}
               style={{
                 objectFit: "cover",

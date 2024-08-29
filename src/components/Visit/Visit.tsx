@@ -122,7 +122,7 @@ export default function Visit({}: Props) {
         <div className={s.grandpaWrapper}>
           <Image
             src={"/images/grandpas/Grandpa1.png"}
-            alt={"Grandpa photo"}
+            alt=""
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             fill
           />
@@ -139,7 +139,7 @@ export default function Visit({}: Props) {
         <div className={s.decorWrapper}>
           <Image
             src={"/images/visit/combo.png"}
-            alt={"Decoration photo"}
+            alt=""
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             fill
           />

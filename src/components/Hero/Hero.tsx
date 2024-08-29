@@ -710,7 +710,7 @@ const Hero = () => {
       <div className={css.box1Ref}>
         <Image
           src={grandpa1}
-          alt={"GrandPa"}
+          alt=""
           width={334}
           height={334}
           className={css.grandpa1}
@@ -745,7 +745,7 @@ const Hero = () => {
       <div className={css.imgBox}>
         <Image
           src={photo1}
-          alt={"photo"}
+          alt=""
           width={544}
           height={492}
           className={css.photo1}
@@ -754,7 +754,7 @@ const Hero = () => {
 
         <Image
           src={illustration1}
-          alt={"illustration"}
+          alt=""
           width={410}
           height={372}
           className={css.illustration1}
@@ -797,7 +797,7 @@ const Hero = () => {
         <div className={`${css.imgMask}`}>
           <Image
             src={grandpa2}
-            alt={"grandpa2"}
+            alt=""
             width={327}
             height={324}
             className={`${css.grandpa2}`}
@@ -830,7 +830,7 @@ const Hero = () => {
       <div className={css.imgBox2}>
         <Image
           src={photo2}
-          alt={"photo2"}
+          alt=""
           width={748}
           height={410}
           className={`${css.photo2}`}
@@ -839,7 +839,7 @@ const Hero = () => {
 
         <Image
           src={photo4}
-          alt={"photo4"}
+          alt=""
           width={556}
           height={354}
           className={`${css.photo4}`}
@@ -848,7 +848,7 @@ const Hero = () => {
 
         <Image
           src={photo3}
-          alt={"photo3"}
+          alt=""
           width={606}
           height={526}
           className={`${css.photo3}`}
@@ -909,7 +909,7 @@ const Hero = () => {
       <div className={css.imgBox3}>
         <Image
           src={illustration3}
-          alt={"illustration3"}
+          alt=""
           width={488}
           height={458}
           className={css.illustration3}
@@ -918,7 +918,7 @@ const Hero = () => {
 
         <Image
           src={photo5}
-          alt={"photo5"}
+          alt=""
           width={660}
           height={496}
           className={css.photo6}
@@ -927,7 +927,7 @@ const Hero = () => {
 
         <Image
           src={photo6}
-          alt={"photo6"}
+          alt=""
           width={499}
           height={430}
           className={css.photo5}
@@ -968,7 +968,7 @@ const Hero = () => {
       <div className={css.textContainer2}>
         <Image
           src={illustration2}
-          alt={"illustration2"}
+          alt=""
           width={506}
           height={498}
           className={css.illustration2}
@@ -997,7 +997,7 @@ const Hero = () => {
       <div className={css.imgBox4}>
         <Image
           src={grandpa3}
-          alt={"grandpa3"}
+          alt=""
           width={453}
           height={469}
           className={css.grandpa3}
@@ -1005,7 +1005,7 @@ const Hero = () => {
         />
         <Image
           src={photo7}
-          alt={"photo7"}
+          alt=""
           width={668}
           height={668}
           className={css.photo7}
@@ -1013,7 +1013,7 @@ const Hero = () => {
         />
         <Image
           src={photo8}
-          alt={"photo8"}
+          alt=""
           width={550}
           height={352}
           className={css.photo8}

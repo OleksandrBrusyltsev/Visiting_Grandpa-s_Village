@@ -143,7 +143,7 @@ export default function Entertainment({ items }: Props) {
         <div className={s.grandpaWrapper}>
           <Image
             src={"/images/grandpas/Grandpa1.png"}
-            alt={"Grandpa photo"}
+            alt="Grandpa photo"
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
             fill
           />
@@ -191,7 +191,7 @@ export default function Entertainment({ items }: Props) {
               >
                 <Image
                   src={images[0]}
-                  alt={props.title}
+                  alt=""
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
                   fill
                 />
@@ -207,7 +207,7 @@ export default function Entertainment({ items }: Props) {
               >
                 <Image
                   src={images[1]}
-                  alt={props.title}
+                  alt=""
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
                   fill
                 />
@@ -219,7 +219,7 @@ export default function Entertainment({ items }: Props) {
           <Image
             className={s.treesImage}
             src={"/images/backgrounds/christmasTrees.png"}
-            alt={"Trees photo"}
+            alt=""
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             fill
           />

@@ -255,7 +255,7 @@ export default function Houses({ items }: Props) {
           <div className={s.grandpa}>
             <Image
               fill
-              alt="Friendly Grandpa"
+              alt=""
               src="/images/grandpas/Grandpa2.png"
               sizes="100vw"
             />
@@ -309,7 +309,7 @@ export default function Houses({ items }: Props) {
           Ласкаво просимо до еко комплексу «На селі у Дідуся», розташованого в
           мальовничому куточку України - на Чернігівщині біля Блакитних озер.
           Пропонуємо вам комфортний відпочинок у затишних хатинках, де ви
-          зможетевідчути гармонію з природою. Наші дерев&apos;яні будиночки
+          зможете відчути гармонію з природою. Наші дерев&apos;яні будиночки
           забезпечені всім необхідним для комфортного перебування.{" "}
         </p>
         <p className={s.text}>
