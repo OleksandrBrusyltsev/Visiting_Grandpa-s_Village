@@ -7,9 +7,9 @@ import Hero from "@/components/Hero/Hero";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 
 export const metadata: Metadata = {
-  title: 'Відпочинок на Блакитних озерах Чернігівщини | "На селі у Дідуся"',
+  title: "Еко відпочинок за містом На селі у дідуся",
   description:
-    'Відпочинок на Блакитних озерах Чернігівщини | "На селі у Дідуся"',
+    "Еко готель для відпочинку на природі в селі Олешня Чернігівської області, заміський комплекс за Києвом в лісі серед Блакитних озер",
 };
 
 // export async function generateStaticParams() {
@@ -24,10 +24,10 @@ export default function Home({
   unstable_setRequestLocale(locale);
   const t = useTranslations("Index");
   return (
-    <main>
+    <>
       <Hero />
       <WelcomeBlock text={t("welcomeBlock")} />
       <AskGrandpa />
-    </main>
+    </>
   );
 }

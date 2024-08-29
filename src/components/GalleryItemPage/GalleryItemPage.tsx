@@ -113,7 +113,7 @@ export default function GalleryItemPage({ item }: Props) {
           </div>
           <h1 className={s.heroTitle}>{quote}</h1>
         </section>
-        <main className={s.main}>
+        <div className={s.main}>
           <p className={`${s.callToClick} container`}>
             <span className={s.desktopOnly}>Клікай</span>
             <span className={s.mobileOnly}>Натискай</span> на фото, щоб
@@ -156,7 +156,7 @@ export default function GalleryItemPage({ item }: Props) {
               />
             </Link>
           </div>
-        </main>
+        </div>
       </div>
       {isOpenSwiper && (
         <Modal

@@ -7,9 +7,9 @@ import { locales } from "@/data/locales";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
-  title: "Фото галерея Еко-садиби «На селі у Дідуся» | Блакитні Озера",
+  title: "Фото галерея спогадів | На селі у Дідуся",
   description:
-    "Розгляньте неймовірні фото Еко-садиби «На селі у Дідуся» поблизу чарівних Блакитних озер Чернігівської області. Почуйте красу природи та спокій в нашому закладі.",
+    "Розгляньте неймовірні фото наших гостей, збережені щирі емоції радості та щастя в галереї еко-садиби. Станьте свідками краси природи та спокою",
 };
 
 export async function generateStaticParams() {
@@ -23,8 +23,10 @@ export default async function Page({ params: { locale } }: Props) {
 
   const items = await getData<GalleryItem[]>("gallery");
 
-  return <>
-    <Gallery items={items} />
-    <AskGrandpa />
-  </>
+  return (
+    <>
+      <Gallery items={items} />;
+      <AskGrandpa />
+    </>
+  );
 }

@@ -39,9 +39,11 @@ export default function House({ item, isRoom = false }: Props) {
     rooms,
   } = item;
 
-  const titleText = title.filter((item) => item.language === locale)[0].text;
+  const titleText = title.filter((item) => item.language === locale)[0]
+    .longTitle;
 
-  const decorText = title.filter((item) => item.language === locale)[0].decorText;
+  const decorText = title.filter((item) => item.language === locale)[0]
+    .decorText;
 
   const gallerySimpleRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -49,35 +51,38 @@ export default function House({ item, isRoom = false }: Props) {
   const houseTextRef = useRef<HTMLDivElement>(null);
   const housesRef = useRef<Array<HTMLAnchorElement>>([]);
 
-  useGSAP(() => {
-    const mm = gsap.matchMedia();
-    mm.add(
-      {
-        isMobile: "(max-width: 767px)",
-        isTablet: "(min-width: 768px) and (max-width: 1279px)",
-        isDesktop: "(min-width: 1280px)",
-      },
-      (context) => {
-        const { isMobile, isTablet, isDesktop } = context.conditions as gsap.Conditions;
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add(
+        {
+          isMobile: "(max-width: 767px)",
+          isTablet: "(min-width: 768px) and (max-width: 1279px)",
+          isDesktop: "(min-width: 1280px)",
+        },
+        (context) => {
+          const { isMobile, isTablet, isDesktop } =
+            context.conditions as gsap.Conditions;
 
-        //gallery animation
-        const tl = gsap.timeline({
-          defaults: {
-            autoAlpha: 0,
-            duration: 1,
-            ease: "power1.out",
-          }
-        });
-        rooms.length ?
-          tl.from(gallerySimpleRef.current, { scale: 0.9 }) :
-          tl.from(galleryRef.current, { scale: 0.9 }).from(`.${s.arrowBlockWrapper}`, { y: -50 }, ">-0.5");
-          
+          //gallery animation
+          const tl = gsap.timeline({
+            defaults: {
+              autoAlpha: 0,
+              duration: 1,
+              ease: "power1.out",
+            },
+          });
+          rooms.length
+            ? tl.from(gallerySimpleRef.current, { scale: 0.9 })
+            : tl
+                .from(galleryRef.current, { scale: 0.9 })
+                .from(`.${s.arrowBlockWrapper}`, { y: -50 }, ">-0.5");
+
           // house description and booking component animation
-          
-          
-          if(!rooms.length) {
+
+          if (!rooms.length) {
             // house description animation
-            if(isMobile || isTablet) {
+            if (isMobile || isTablet) {
               gsap.from(houseTextRef.current, {
                 x: -100,
                 autoAlpha: 0,
@@ -86,7 +91,7 @@ export default function House({ item, isRoom = false }: Props) {
                 scrollTrigger: {
                   trigger: houseTextRef.current,
                   start: "top 90%",
-                }
+                },
               });
 
               //booking component animation
@@ -98,27 +103,27 @@ export default function House({ item, isRoom = false }: Props) {
                 scrollTrigger: {
                   trigger: bookingRef.current,
                   start: "top 90%",
-                }
+                },
               });
             }
 
             // house description and booking component animation
-            if(isDesktop) {
-              gsap.timeline({
-                defaults: {
-                  autoAlpha: 0,
-                  duration: 0.8,
-                  ease: "power1.out"
-                },
-                scrollTrigger: {
-                  trigger: `.${s.contentWrapper}`,
-                  start: "top 90%",
-                }}
-              )
-              .from(houseTextRef.current, {x: -100, delay: 0.5})
-              .from(bookingRef.current, {x: 100}, "<");
+            if (isDesktop) {
+              gsap
+                .timeline({
+                  defaults: {
+                    autoAlpha: 0,
+                    duration: 0.8,
+                    ease: "power1.out",
+                  },
+                  scrollTrigger: {
+                    trigger: `.${s.contentWrapper}`,
+                    start: "top 90%",
+                  },
+                })
+                .from(houseTextRef.current, { x: -100, delay: 0.5 })
+                .from(bookingRef.current, { x: 100 }, "<");
             }
-
           } else {
             gsap.from(houseTextRef.current, {
               x: -100,
@@ -128,115 +133,135 @@ export default function House({ item, isRoom = false }: Props) {
               scrollTrigger: {
                 trigger: houseTextRef.current,
                 start: "top 90%",
-              }
+              },
             });
           }
-          
-        //rooms/houses list animation
-        if (rooms.length) {
-          //hide all houses
-          housesRef.current.forEach((h) => {
-            gsap.set(h, { autoAlpha: 0 });
-          });
 
-          gsap.timeline({
-            defaults: {
-              autoAlpha: 0,
-              duration: 0.7,
-              ease: "power1.out",
-            },
-            scrollTrigger: {
-              trigger: `.${s.roomsTitle}`,
-              start: "top 90%",
-            }
-          }).from(`.${s.roomsTitle}`, { x: 50 });
+          //rooms/houses list animation
+          if (rooms.length) {
+            //hide all houses
+            housesRef.current.forEach((h) => {
+              gsap.set(h, { autoAlpha: 0 });
+            });
 
-          if (isMobile) {
-
-            housesRef.current.forEach((h, i) => {
-              gsap.fromTo(
-                h,
-                {
-                  x: i % 2 ? 100 : -100,
+            gsap
+              .timeline({
+                defaults: {
                   autoAlpha: 0,
-                },
-                {
-                  x: 0,
-                  autoAlpha: 1,
-                  duration: 0.8,
+                  duration: 0.7,
                   ease: "power1.out",
-                  scrollTrigger: {
-                    trigger: h,
-                    start: "top 80%",
-                    end: "bottom start",
-                  },
-                }
-              );
-            });
-          }
+                },
+                scrollTrigger: {
+                  trigger: `.${s.roomsTitle}`,
+                  start: "top 90%",
+                },
+              })
+              .from(`.${s.roomsTitle}`, { x: 50 });
 
-          if (isTablet || isDesktop) {
-
-            ScrollTrigger.batch(housesRef.current, {
-              interval: 0.2,
-              batchMax: 2,
-              onEnter: (batch) =>
+            if (isMobile) {
+              housesRef.current.forEach((h, i) => {
                 gsap.fromTo(
-                  batch,
+                  h,
                   {
-                    x: (i) => (i % 2 ? 100 : -100),
+                    x: i % 2 ? 100 : -100,
                     autoAlpha: 0,
                   },
                   {
                     x: 0,
                     autoAlpha: 1,
-                    duration: 0.6,
+                    duration: 0.8,
                     ease: "power1.out",
+                    scrollTrigger: {
+                      trigger: h,
+                      start: "top 80%",
+                      end: "bottom start",
+                    },
                   }
-                ),
-              start: "top 80%",
-              end: "bottom start",
-              once: true,
-            });
+                );
+              });
+            }
+
+            if (isTablet || isDesktop) {
+              ScrollTrigger.batch(housesRef.current, {
+                interval: 0.2,
+                batchMax: 2,
+                onEnter: (batch) =>
+                  gsap.fromTo(
+                    batch,
+                    {
+                      x: (i) => (i % 2 ? 100 : -100),
+                      autoAlpha: 0,
+                    },
+                    {
+                      x: 0,
+                      autoAlpha: 1,
+                      duration: 0.6,
+                      ease: "power1.out",
+                    }
+                  ),
+                start: "top 80%",
+                end: "bottom start",
+                once: true,
+              });
+            }
           }
+
+          //grandpa and map animation
+          gsap
+            .timeline({
+              defaults: {
+                autoAlpha: 0,
+                duration: 0.7,
+                ease: "power1.out",
+              },
+              scrollTrigger: {
+                trigger: `.${heroSection.heroSectionWrapper}`,
+                start: "top 90%",
+              },
+            })
+            .from(`.${heroSection.grandpa}`, {
+              y: -50,
+              scale: 0.8,
+            })
+            .from(
+              `.${heroSection.description}`,
+              {
+                x: 50,
+              },
+              ">-0.3"
+            )
+            .from(
+              `.${heroSection.curve}`,
+              {
+                clipPath: "inset(0% 0% 100% 0%)",
+                duration: 0.5,
+              },
+              ">-0.3"
+            )
+            .from(
+              `.${map.mapWrapper}`,
+              {
+                scale: 0.8,
+                y: 50,
+              },
+              ">-0.2"
+            );
         }
-
-        //grandpa and map animation
-        gsap.timeline({
-          defaults: {
-            autoAlpha: 0,
-            duration: 0.7,
-            ease: "power1.out",
-          },
-          scrollTrigger: {
-            trigger: `.${heroSection.heroSectionWrapper}`,
-            start: "top 90%",
-          }
-        }).from(`.${heroSection.grandpa}`, {
-          y: -50,
-          scale: 0.8,
-        }).from(`.${heroSection.description}`, {
-          x: 50,
-        }, ">-0.3")
-          .from(`.${heroSection.curve}`, {
-            clipPath: "inset(0% 0% 100% 0%)",
-            duration: 0.5,
-          }, ">-0.3")
-          .from(`.${map.mapWrapper}`, {
-            scale: 0.8,
-            y: 50
-          }, ">-0.2");
-
-      });
+      );
       ScrollTrigger.refresh();
-  }, { dependencies: [rooms] });
+    },
+    { dependencies: [rooms] }
+  );
+
+  const alt = titleText
+    ? `фото дерев'яного будинку ${titleText} еко-садиби На селі у дідуся`
+    : `фото дерев'яного будинку еко-садиби На селі у дідуся`;
 
   return (
     <div className={s.sectionWrapper}>
       {rooms.length ? null : (
         <div className={`${s.arrowBlockWrapper}`}>
           <p className={s.textDecor}>
-            {/* &quot;Гортай, щоб побачити більше фото.&quot; */}
             &quot;Клікай на фото, щоб подивитись більше.&quot;
           </p>
           <div className={s.arrowWrapper}>
@@ -250,7 +275,7 @@ export default function House({ item, isRoom = false }: Props) {
           <div className={s.imageWrapper}>
             <Image
               fill
-              alt={titleText}
+              alt={alt}
               src={photo[0]}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
@@ -263,7 +288,7 @@ export default function House({ item, isRoom = false }: Props) {
           <div className={s.imageGrandpa}>
             <Image
               fill
-              alt="grandpa"
+              alt=""
               src="/images/grandpas/Grandpa2.png"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
@@ -279,14 +304,14 @@ export default function House({ item, isRoom = false }: Props) {
           >
             <Image
               fill
-              alt="house decor"
+              alt=""
               src={photoDecor}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         </div>
       ) : (
-        <Gallery pictures={swiper} ref={galleryRef} />
+        <Gallery pictures={swiper} houseName={titleText} ref={galleryRef} />
       )}
 
       <div className={`${s.contentWrapper} ${rooms.length ? s.apartment : ""}`}>
@@ -341,7 +366,8 @@ export default function House({ item, isRoom = false }: Props) {
                 <HouseItem
                   data={room}
                   key={room.id}
-                  ref={(el: HTMLAnchorElement) => (housesRef.current[i] = el)} />
+                  ref={(el: HTMLAnchorElement) => (housesRef.current[i] = el)}
+                />
               ))}
             </div>
           </>

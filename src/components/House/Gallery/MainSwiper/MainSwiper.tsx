@@ -20,6 +20,7 @@ interface SwiperType {
   pictures: string[];
   initialSlide: number;
   onClose: () => void;
+  houseName: string;
 }
 
 const MainSwiper: FC<SwiperType> = ({
@@ -27,8 +28,12 @@ const MainSwiper: FC<SwiperType> = ({
   isSwiperOpen,
   initialSlide,
   onClose,
+  houseName,
 }) => {
   const { isMobile, isTablet } = useContext(MatchMediaContext);
+  const alt = houseName
+    ? `фото дерев'яного будинку ${houseName} еко-садиби На селі у дідуся`
+    : "фото дерев'яного будинку еко-садиби На селі у дідуся";
 
   return (
     <Modal
@@ -47,9 +52,13 @@ const MainSwiper: FC<SwiperType> = ({
           enabled: true,
         }}
         loop={true}
-        pagination={isMobile ? {
-          clickable: true,
-        } : false}
+        pagination={
+          isMobile
+            ? {
+                clickable: true,
+              }
+            : false
+        }
         modules={[Keyboard, Pagination, Navigation]}
         navigation={isMobile ? false : true}
       >
@@ -63,7 +72,7 @@ const MainSwiper: FC<SwiperType> = ({
                 blurDataURL={
                   "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8dOXMfwAIZQNzt0gGRgAAAABJRU5ErkJggg=="
                 }
-                alt="alt"
+                alt={alt}
                 fill
               />
             </div>

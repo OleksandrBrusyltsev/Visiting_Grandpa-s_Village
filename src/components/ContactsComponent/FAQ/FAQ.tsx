@@ -94,10 +94,10 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
 
   return (
     <div className={s.imgAndFaqWrapper} ref={imgAndFaqWrapper}>
-      <Image src={Lake} alt="picture" className={s.lake} ref={lakeRef} />
-      <h1 className={s.faqTitle} ref={faqTitleRef}>
+      <Image src={Lake} alt="" className={s.lake} ref={lakeRef} />
+      <h2 className={s.faqTitle} ref={faqTitleRef}>
         Частіше за все Дідуся запитують
-      </h1>
+      </h2>
 
       <div className={s.faqWrapper} ref={faqWrapperRef}>
         <ul className={s.faqList}>
@@ -111,7 +111,7 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
                 <button type="button" className={s.iconButton}>
                   <Image
                     src={openIndices.includes(index) ? UpIcon : DownIcon}
-                    alt={openIndices.includes(index) ? "close" : "open"}
+                    alt=""
                     className={s.icon}
                   />
                 </button>

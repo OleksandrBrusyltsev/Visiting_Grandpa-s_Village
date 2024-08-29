@@ -23,7 +23,7 @@ const TelegramBlock: FC<TelegramBlockProps> = ({
   return (
     <>
       <h1 className={s.telegramTitle} ref={telegramTitleRef}>
-        Зв’язатись з Дідусем
+        Контакти еко-садиби &quot;На селі у дідуся&quot;
       </h1>
       <div className={s.telegramWrapper}>
         <p className={s.telegramText} ref={telegramTextRef}>
@@ -31,7 +31,7 @@ const TelegramBlock: FC<TelegramBlockProps> = ({
           <span className={s.telegramTextBold}>&#x20;Telegram-bot&#x20;</span>,
           знаю як ти любиш корисні зручні сервіси.
         </p>
-        <Image src={Map} alt="map" className={s.map} ref={mapRef} />
+        <Image src={Map} alt="" className={s.map} ref={mapRef} />
         <div className={s.telegramLinkWrapper} ref={telegramLinkWrapperRef}>
           <p className={s.telegramLinkText}>
             Скористайся, щоб забронювати будиночок, або запитати
