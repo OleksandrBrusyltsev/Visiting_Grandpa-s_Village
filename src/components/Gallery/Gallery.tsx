@@ -2,7 +2,7 @@
 import Image from "next/image"
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -19,8 +19,18 @@ export default function Gallery({items}: Props) {
   const {locale} = useParams();
   const galleryRef = useRef<Array<HTMLAnchorElement>>([]);
 
-  useGSAP(() => {
+  useEffect(() => {
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+  });
 
+  // useEffect(() => {
+  //   console.log("galleryWrapper clientWidth: ", document.querySelector(`.${s.galleryWrapper}`)?.clientWidth)
+  // })
+
+  useGSAP(() => {
+    
     //hero block animation
     gsap.timeline({
       defaults: {
@@ -60,7 +70,7 @@ export default function Gallery({items}: Props) {
         galleryRef.current.forEach((g, i) => {
             gsap.fromTo(g, {
               x: i%2 ? 100 : -100,
-              autoAlpha: 0, 
+              // autoAlpha: 0
             }, {
               x: 0,
               autoAlpha: 1,
@@ -69,7 +79,8 @@ export default function Gallery({items}: Props) {
               ease: 'power1.out',
               scrollTrigger: {
                 trigger: g,
-                start: 'top 90%',
+                start: 'top 80%',
+                // markers: true,
               }
             })
           })
@@ -79,7 +90,6 @@ export default function Gallery({items}: Props) {
           batchMax: 2,   
           onEnter: batch => gsap.fromTo(batch, {
             x: i => i%2 ? 100 : -100,
-            autoAlpha: 0, 
           }, {
             x: 0,
             autoAlpha: 1,
@@ -92,7 +102,7 @@ export default function Gallery({items}: Props) {
         });
       }
     });
-    ScrollTrigger.refresh(true);
+     ScrollTrigger.refresh();
   });
   
   return (
@@ -126,9 +136,9 @@ export default function Gallery({items}: Props) {
               <div className={s.galleryWrapper}>
                 {items.map((item, i) => (
                   <GalleryItem 
-                    ref={(el: HTMLAnchorElement) => galleryRef.current[i] = el} 
+                    ref={(el: HTMLAnchorElement) => (galleryRef.current[i] = el)} 
                     data={item} 
-                    key={i}/>)
+                    key={item.id}/>)
                   )
                 }
               </div>

@@ -1,5 +1,5 @@
 "use client";
-import {FC, useRef} from "react";
+import { FC,  useEffect,  useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
@@ -35,35 +35,35 @@ const ContactsComponent: FC = () => {
   // Create refs for googleMapWrapper element
   const googleMapWrapper = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+  });
+
   useGSAP(() => {
     // TelegramBlock animations
-    gsap
+    gsap 
       .timeline({
         defaults: {
           x: -200,
-          opacity: 0,
+          autoAlpha: 0,
           duration: 0.7,
+          ease: "power1.out",
         },
       })
       .from(telegramTitle.current, {})
       .from(telegramText.current, {}, ">-0.5")
-      .from(
-        map.current,
-        {
-          x: 200,
-          opacity: 0,
-          duration: 1,
-        },
-        0
-      )
+      .from(map.current, {x: 200, duration: 1}, 0)
       .from(telegramLinkWrapper.current, {}, ">-0.5");
 
     // contactsList animation
     gsap
       .timeline({
         defaults: {
-          duration: 0.5,
-          opacity: 0,
+          duration: 0.7,
+          autoAlpha: 0,
+          ease: "power1.out",
           clearProps: "transform",
         },
         scrollTrigger: {
@@ -71,17 +71,12 @@ const ContactsComponent: FC = () => {
           start: "top 80%",
         },
       })
-      .from(grandpa.current, {
-        scale: 0.9,
-        y: -100,
-        clearProps: "transform",
-      })
+      .from(grandpa.current, {scale: 0.9,y: 100})
       .from(contactsListWrapper.current, {
         clipPath: "inset(0% 0% 100% 0%)",
-        duration: 0.7,
-        clearProps: "transform",
       });
-
+      
+    // FAQ animation
     const mm = gsap.matchMedia();
     mm.add(
       {
@@ -92,11 +87,11 @@ const ContactsComponent: FC = () => {
         const { isMobile, isNotMobile } = context.conditions as gsap.Conditions;
 
         if (isMobile) {
-          // FAQ animation
           gsap.from(lake.current, {
             x: -200,
             autoAlpha: 0,
             duration: 0.7,
+            ease: "power1.out",
             scrollTrigger: {
               trigger: lake.current,
               start: "top 80%",
@@ -108,6 +103,7 @@ const ContactsComponent: FC = () => {
               defaults: {
                 autoAlpha: 0,
                 duration: 0.7,
+                ease: "power1.out"
               },
               scrollTrigger: {
                 trigger: faqTitle.current,
@@ -115,22 +111,16 @@ const ContactsComponent: FC = () => {
               },
             })
             .from(faqTitle.current, { y: -100 })
-            .from(
-              faqWrapper.current,
-              {
-                y: -100,
-              },
-              ">-0.3"
-            );
+            .from(faqWrapper.current, {y: -100}, ">-0.3");
         }
 
         if (isNotMobile) {
-          // FAQ animation
           gsap
             .timeline({
               defaults: {
                 autoAlpha: 0,
                 duration: 0.7,
+                ease: "power1.out"
               },
               scrollTrigger: {
                 trigger: lake.current,
@@ -138,20 +128,8 @@ const ContactsComponent: FC = () => {
               },
             })
             .from(lake.current, { x: -200 })
-            .from(
-              faqTitle.current,
-              {
-                x: 200,
-              },
-              "<"
-            )
-            .from(
-              faqWrapper.current,
-              {
-                x: 200,
-              },
-              ">-0.3"
-            );
+            .from(faqTitle.current, { x: 200 }, "<")
+            .from(faqWrapper.current, { x: 200 }, ">-0.3");
         }
       }
     );
@@ -161,9 +139,11 @@ const ContactsComponent: FC = () => {
       x: 200,
       autoAlpha: 0,
       duration: 0.7,
+      ease: "power1.out",
       scrollTrigger: {
         trigger: house.current,
         start: "top 80%",
+        markers: true,
       },
     });
 
@@ -171,6 +151,7 @@ const ContactsComponent: FC = () => {
       x: -100,
       autoAlpha: 0,
       duration: 0.7,
+      ease: "power1.out",
       scrollTrigger: {
         trigger: routeInfoWrapper.current,
         start: "top 80%",
@@ -182,13 +163,13 @@ const ContactsComponent: FC = () => {
       y: 200,
       autoAlpha: 0,
       duration: 0.7,
+      ease: "power1.out",
+      clearProps: "transform",
       scrollTrigger: {
         trigger: googleMapWrapper.current,
         start: "top 80%",
       },
-      clearProps: "transform",
     });
-    ScrollTrigger.refresh(true);
   });
 
 

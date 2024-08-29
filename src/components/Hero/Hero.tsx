@@ -565,7 +565,7 @@ const Hero = () => {
       }
     });
 
-    ScrollTrigger.refresh(true);
+    ScrollTrigger.refresh();
   }, {});
 
   return (

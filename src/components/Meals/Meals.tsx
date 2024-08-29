@@ -141,7 +141,7 @@ export default function Meals({items}: Props) {
                 x: isNotMobile ? -200 : -100,
             }, "<")
         });
-        ScrollTrigger.refresh(true);
+        ScrollTrigger.refresh();
     });
 
     return (

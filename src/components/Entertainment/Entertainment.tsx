@@ -86,7 +86,7 @@ export default function Entertainment({items}: Props) {
                 y: -50,
             }, ">-0.5")
         });
-        ScrollTrigger.refresh(true);
+        ScrollTrigger.refresh();
     });
 
     return (

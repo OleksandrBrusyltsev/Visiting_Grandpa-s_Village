@@ -64,10 +64,20 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
     updateMargin();
 
     // Вызов функции обновления марджина при изменении контента
-    const observer = new MutationObserver(updateMargin);
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (
+          mutation.type === "attributes" 
+        ) {
+          updateMargin();
+          break;
+        }
+      }
+    });
+
     if (faqWrapperRef.current) {
       observer.observe(faqWrapperRef.current, {
-        childList: true,
+        attributes: true,
         subtree: true,
       });
     }

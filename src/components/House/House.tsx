@@ -228,7 +228,7 @@ export default function House({ item, isRoom = false }: Props) {
           }, ">-0.2");
 
       });
-      ScrollTrigger.refresh(true);
+      ScrollTrigger.refresh();
   }, { dependencies: [rooms] });
 
   return (

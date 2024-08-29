@@ -14,20 +14,12 @@ export const getData = async <T>(url: string, slug?: string): Promise<T> => {
 
   //type guards
   function isGalleryItemArray(arr: any[]): arr is GalleryItem[] {
-    return arr.length > 0 && "name" in arr[0];
+    return arr.length > 0 && "cover" in arr[0];
   }
 
   function isHouseItemArray(arr: any[]): arr is HouseItem[] {
-    return arr.length > 0 && "name" in arr[0];
+    return arr.length > 0 && "guests" in arr[0];
   }
-
-  // if (slug && (isGalleryItemArray(resp) || isHouseItemArray(resp))) {
-  //   return data.filter(item => item.name === slug)
-  // }
-  //   return data;
-  // } catch (err) {
-  //   console.error(err);
-  // }
 
   // tmp fake data
   const data: {
@@ -46,15 +38,10 @@ export const getData = async <T>(url: string, slug?: string): Promise<T> => {
   const currentData = data[url];
   
   if (slug) {
-    if (isGalleryItemArray(currentData)) {
+    if (isGalleryItemArray(currentData) || isHouseItemArray(currentData)) {
       const result = currentData.filter((item) => item.name === slug);
-      return new Promise((res) => res(result as T));
-    }
-
-    if (isHouseItemArray(currentData)) {
-      const result = currentData.filter((item) => item.name === slug);
-      return new Promise((res) => res(result as T));
+      return new Promise((res) => setTimeout(() => res(result as T), 100));
     }
   }
-  return new Promise((res) => res(currentData as T));
+  return new Promise((res) => setTimeout(() => res(currentData as T), 100));
 };
