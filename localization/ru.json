@@ -1,0 +1,52 @@
+{
+  "Index": {
+    "title": "ру",
+    "description": "ру",
+    "welcomeBlock": "Лучшее время для отдыха - сейчас"
+  },
+  "NotFoundPage": {
+    "title": "что-то пошло не так, извини",
+    "description": "Страница не найдена"
+  },
+  "Admin": {
+    "title": "Админка"
+  },
+  "Breadcrumbs": {
+    "home": "Главная",
+    "houses": "Проживание",
+    "meals": "Питание",
+    "entertainment": "Развлечения",
+    "gallery": "Галерея",
+    "contacts": "Контакты",
+    "booking": "Бронирование",
+    "options": "Варианты бронирования",
+    "payment": "Оплата",
+    "rules": "Условия бронирования и правила проживания"
+  },
+  "HouseItem": {
+    "rateBase": "{price} грн/сутки",
+    "rateBaseExt": "{price} грн/сутки за {guests, plural, =1 {# гостя} other {# гостей}}",
+    "additionalGuests": "дополнительно ({guests, plural, =1 {# гость} =2 {# гостя} =3 {# гостя} =4 {# гостя} other {# гостей}})",
+    "total": {
+      "text": "Итого:",
+      "currency": " {total} грн."
+    },
+    "checkInTime": {
+      "text": "Время заезда: ",
+      "time": "14:00"
+    },
+    "checkOutTime": {
+      "text": "Время выезда: ",
+      "time": "12:00"
+    },
+    "guests": "{guests, plural, =1 { гость} other { гостей}}",
+    "adultGuestAddons": "взрослый ({rate} грн.)",
+    "childGuestAddons": "ребенок 3-12 лет ({rate} грн.)",
+    "visit": "Посетить",
+    "book": "Забронировать"
+  },
+  "UI": {
+    "visit": "Посетить",
+    "home": "На Главную"
+  }
+}

@@ -1,1 +1,1 @@
-export const locales = ["uk", "en"];
+export const locales = ["uk", "en","ru"];

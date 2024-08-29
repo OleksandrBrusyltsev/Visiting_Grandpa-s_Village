@@ -11,6 +11,10 @@ export const gallery = [
                 language: 'en',
                 text: 'Atmosphere',
             },
+            {
+                language: 'ru',
+                text: 'Атмосфера',
+            },
         ],
         cover: [
             {
@@ -45,11 +49,15 @@ export const gallery = [
         description: [
             {
                 language: 'uk',
-                text: 'Поринь в незабутню атмосферу Садиби та природньої краси  разом з Дідусем. ',
+                text: 'Поринь в незабутню атмосферу Садиби та природньої краси разом з Дідусем.',
             },
             {
                 language: 'en',
                 text: 'Immerse yourself in the unforgettable atmosphere of the Manor and natural beauty with Grandpa.',
+            },
+            {
+                language: 'ru',
+                text: 'Погрузитесь в незабываемую атмосферу Усадьбы и природной красоты вместе с Дедушкой.',
             },
         ],
     },
@@ -64,6 +72,10 @@ export const gallery = [
             {
                 language: 'en',
                 text: 'Blue lakes',
+            },
+            {
+                language: 'ru',
+                text: 'Голубые озера',
             },
         ],
         cover: [
@@ -153,11 +165,15 @@ export const gallery = [
         description: [
             {
                 language: 'uk',
-                text: 'Справжня природна перлина, що зачаровує  неповторною красою та загадковістю.',
+                text: 'Справжня природна перлина, що зачаровує неповторною красою та загадковістю.',
             },
             {
                 language: 'en',
                 text: 'A real natural pearl that fascinates with its unique beauty and mystery.',
+            },
+            {
+                language: 'ru',
+                text: 'Настоящая природная жемчужина, которая завораживает своей уникальной красотой и загадочностью.',
             },
         ],
     },
@@ -172,6 +188,10 @@ export const gallery = [
             {
                 language: 'en',
                 text: 'The territory of the Manor',
+            },
+            {
+                language: 'ru',
+                text: 'Территория Усадьбы',
             },
         ],
         cover: [
@@ -207,11 +227,15 @@ export const gallery = [
         description: [
             {
                 language: 'uk',
-                text: 'Відвідай  мальовничу територію Садиби та насолодись природною красою разом з Дідусем.',
+                text: 'Відвідай мальовничу територію Садиби та насолодись природною красою разом з Дідусем.',
             },
             {
                 language: 'en',
                 text: 'Visit the picturesque territory of the Manor and enjoy the natural beauty together with Grandpa.',
+            },
+            {
+                language: 'ru',
+                text: 'Посетите живописную территорию Усадьбы и насладитесь природной красотой вместе с Дедушкой.',
             },
         ],
     },
@@ -226,6 +250,10 @@ export const gallery = [
             {
                 language: 'en',
                 text: 'Houses',
+            },
+            {
+                language: 'ru',
+                text: 'Домики',
             },
         ],
         cover: [
@@ -260,9 +288,13 @@ export const gallery = [
                 language: 'en',
                 text: 'The cozy houses of the Manor invite you to immerse yourself in the world of natural beauty together with Grandpa.',
             },
+            {
+                language: 'ru',
+                text: 'Уютные домики Усадьбы приглашают вас окунуться в мир природной красоты вместе с Дедушкой.',
+            },
         ],
     },
-    // {
+     // {
     //     id: 5,
     //     name: 'master-classes',
     //     title: [
@@ -342,6 +374,10 @@ export const gallery = [
                 language: 'en',
                 text: "Children's holidays",
             },
+            {
+                language: 'ru',
+                text: "Детские праздники",
+            },
         ],
         cover: [
             {
@@ -367,6 +403,10 @@ export const gallery = [
             {
                 language: 'en',
                 text: "At the Manor, we organize exciting group children's holidays, where you can have fun with Grandpa.",
+            },
+            {
+                language: 'ru',
+                text: "На Усадьбе мы устраиваем захватывающие групповые детские праздники, где можно весело провести время вместе с Дедушкой.",
             },
         ],
     },
