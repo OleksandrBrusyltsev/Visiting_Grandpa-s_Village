@@ -1,15 +1,14 @@
-import { Metadata } from 'next';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { Metadata } from "next";
+import { unstable_setRequestLocale } from "next-intl/server";
 
-import Visit from '@/components/Visit/Visit';
-import AskGrandpa from '@/components/AskGrandpa/AskGrandpa';
-import { locales } from '@/data/locales';
+import Visit from "@/components/Visit/Visit";
+import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
+import { locales } from "@/data/locales";
 
 export const metadata: Metadata = {
-  title:
-    "Замовлення номерів - Відпочинок на блакитних озерах (с. Олешня, Чернігівська область)",
+  title: "Замовлення номерів | На селі у Дідуся",
   description:
-    "Еко-садиба «На селі у Дідуся!!! » ОЛЕШНЯ, БЛАКИТНІ ОЗЕРА замовлення номерів та попереднє бронювання.",
+    "Замовлення номерів та попереднє бронювання в еко-садибі «На селі у Дідуся».",
 };
 
 export async function generateStaticParams() {
@@ -25,10 +24,10 @@ export default function Page({
 
   return (
     <>
-      <div className='container'>
-        <Visit /> 
+      <div className="container">
+        <Visit />
       </div>
       <AskGrandpa />
     </>
-  )
+  );
 }

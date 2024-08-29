@@ -8,8 +8,6 @@ import css from "./Navigation.module.scss";
 import { navigationLinks } from "@/data/header/navigationData";
 import { usePathname } from "next/navigation";
 
-
-
 const Navigation = () => {
   const locale = useLocale();
   const pathname = usePathname();
@@ -20,9 +18,15 @@ const Navigation = () => {
         <li
           key={id}
           data-text={text}
-          className={`${css.item} ${pathname.startsWith(`/${locale}/${link}`) ? css.active : ''}`}
+          className={`${css.item} ${
+            pathname.startsWith(`/${locale}/${link}`) ? css.active : ""
+          }`}
         >
-          <Link href={`/${locale}/${link}`}>{text}</Link>
+          {pathname === `/${locale}/${link}` ? (
+            <p title="Ви вже на цій сторінці">{text}</p>
+          ) : (
+            <Link href={`/${locale}/${link}`}>{text}</Link>
+          )}
         </li>
       ))}
     </ul>

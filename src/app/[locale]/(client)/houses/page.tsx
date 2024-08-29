@@ -7,9 +7,9 @@ import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { locales } from "@/data/locales";
 
 export const metadata: Metadata = {
-  title: "Проживання в затишних хатинках та теремках Блакитних озер",
+  title: "Еко комплекс для відпочинку за Києвом | На селі у Дідуся",
   description:
-    "Обирайте проживання у затишних хатинках, теремках та горницях зі зручностями біля Голубих озер Чернігівської області.",
+    "Еко комплекс на Чернігівщині в дерев'яних будиночках, зручні та затишні апартаменти для сімейного відпочинку чи наодинці",
 };
 
 export async function generateStaticParams() {
@@ -23,8 +23,10 @@ export default async function Page({ params: { locale } }: Props) {
 
   const items = await getData<HouseItem[]>("houses");
 
-  return <>
-    <Houses items={items} />
-    <AskGrandpa />
-  </>
+  return (
+    <>
+      <Houses items={items} />
+      <AskGrandpa />
+    </>
+  );
 }

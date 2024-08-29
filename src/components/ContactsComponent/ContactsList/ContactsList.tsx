@@ -46,20 +46,15 @@ const ContactsList: FC<ContactsListProps> = ({
 }) => {
   return (
     <div className={s.imgWrapper}>
-      <Image
-        className={s.grandpa}
-        src={Grandpa}
-        alt="picture"
-        ref={grandpaRef}
-      />
+      <Image className={s.grandpa} src={Grandpa} alt="" ref={grandpaRef} />
       <div className={s.contactsListWrapper} ref={contactsListWrapperRef}>
         <ul className={s.contactsList}>
           <li className={s.contactsItem}>
             <p className={s.contactsItemTitle}>Телефон</p>
             <Link href={`tel:+380931919663`} className={s.contactItemText}>
               <Image
-                src= {IconTel}
-                alt="handset"
+                src={IconTel}
+                alt=""
                 className={`${sFooter.contactsIcon} ${s.contactItemIcon}`}
               />
               + 38 (093) 191 96 63
@@ -73,7 +68,7 @@ const ContactsList: FC<ContactsListProps> = ({
             >
               <Image
                 src={IconEmail}
-                alt="email"
+                alt=""
                 className={`${sFooter.contactsIcon} ${s.contactItemIcon}`}
               />
               naseliudidusya@gmail.com
@@ -84,11 +79,11 @@ const ContactsList: FC<ContactsListProps> = ({
             <Link href={mapUrl} target="_blank" className={s.contactItemText}>
               <Image
                 src={IconMap}
-                alt="map"
+                alt=""
                 className={`${sFooter.contactsIcon} ${s.contactItemIcon}`}
               />
               <div className={s.adressWrapper}>
-                <p>Україна, Чернігівська область, с. Олешня,</p>{' '}
+                <p>Україна, Чернігівська область, с. Олешня,</p>{" "}
                 <p>вул. Озерна 5</p>
               </div>
             </Link>
