@@ -16,7 +16,7 @@ export default function HeroSection({ text }: Props) {
         <div className={s.grandpa}>
           <Image
             fill
-            alt="Friendly Grandpa"
+            alt=""
             src="/images/grandpas/Grandpa1.png"
             sizes="(max-width: 768px) 100vw, 50vw"
           />

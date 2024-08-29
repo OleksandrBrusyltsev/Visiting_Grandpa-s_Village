@@ -7,9 +7,13 @@ import s from "./Gallery.module.scss";
 
 interface GalleryType {
   pictures: string[];
+  houseName: string;
 }
 
-const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery ({ pictures }, ref) {
+const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery(
+  { pictures, houseName },
+  ref
+) {
   const [isSwiperOpen, setSwiperOpen] = useState(false);
   const [firstSlide, setFirstSlide] = useState<number>(0);
   const { isTablet, isMobile } = useContext(MatchMediaContext);
@@ -33,6 +37,10 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery ({ pict
       ? s.small__4
       : s.small__3;
 
+  const alt = houseName
+    ? `фото дерев'яного будинку ${houseName} еко-садиби На селі у дідуся`
+    : "фото дерев'яного будинку еко-садиби На селі у дідуся";
+
   return (
     <div className={s.galleryWrapper} ref={ref}>
       <div className={s.gallery}>
@@ -46,7 +54,7 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery ({ pict
           >
             <Image
               fill
-              alt="alt"
+              alt={alt}
               src={item}
               style={{
                 objectFit: "cover",
@@ -64,7 +72,7 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery ({ pict
             <Image
               key={pictures[0]}
               fill
-              alt="alt"
+              alt={alt}
               src={pictures[0]}
               style={{
                 objectFit: "cover",
@@ -79,6 +87,7 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery ({ pict
               initialSlide={firstSlide}
               pictures={pictures}
               onClose={() => setSwiperOpen(false)}
+              houseName={houseName}
             />
           )}
         </div>
@@ -89,6 +98,7 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery ({ pict
             initialSlide={firstSlide}
             pictures={pictures}
             onClose={() => setSwiperOpen(false)}
+            houseName={houseName}
           />
         )
       )}
