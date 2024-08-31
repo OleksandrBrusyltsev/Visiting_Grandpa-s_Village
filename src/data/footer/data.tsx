@@ -22,7 +22,7 @@ export const navLink = [
     label: {
       uk: "Байдикувати",
       ru: "Бездельничать",
-      en: "Entertainment", //  TODO: Entertainment or Relax ? We need to discuss it
+      en: "Entertainment",
     },
     link: "entertainment",
   },
@@ -31,7 +31,7 @@ export const navLink = [
     label: {
       uk: "Спогади",
       ru: "Воспоминания",
-       en: "Gallery",  //  TODO: Gallery or Memories ? We need to discuss it
+       en: "Memories",
     },
     link: "gallery",
   },
@@ -40,7 +40,7 @@ export const navLink = [
     label: {
       uk: "Знайти мене",
       ru: "Найти меня",
-      en: "Contacts", // TODO: Find me or Contacts ? We need to discuss it
+      en: "Contacts",
     },
     link: "contacts",
   },
