@@ -718,7 +718,7 @@ const Hero = () => {
         />
         <div className={css.grandbox1}>
           <h1 className={`${css.textBox1} ${css.mainTitle}`} ref={box1Ref}>
-            Еко відпочинок &quot;На селі у дідуся&quot;
+            Еко відпочинок &quot;На&nbsp;селі&nbsp;у&nbsp;дідуся&quot;
           </h1>
         </div>
 

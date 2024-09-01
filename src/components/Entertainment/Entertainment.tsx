@@ -19,7 +19,7 @@ export default function Entertainment({ items }: Props) {
     setTimeout(() => {
       ScrollTrigger.refresh();
     }, 500)
-  });
+  }, []);
 
   useGSAP(() => {
     //hero block animation
