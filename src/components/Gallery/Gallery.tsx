@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -18,16 +18,6 @@ type Props = { items: GalleryItem[] };
 export default function Gallery({ items }: Props) {
   const { locale } = useParams();
   const galleryRef = useRef<Array<HTMLAnchorElement>>([]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 500);
-  });
-
-  // useEffect(() => {
-  //   console.log("galleryWrapper clientWidth: ", document.querySelector(`.${s.galleryWrapper}`)?.clientWidth)
-  // })
 
   useGSAP(() => {
     //hero block animation
@@ -82,8 +72,9 @@ export default function Gallery({ items }: Props) {
       (context) => {
         const { isMobile, isNotMobile } = context.conditions as gsap.Conditions;
         galleryRef.current.forEach((h) => {
-          gsap.set(h, { autoAlpha: 0 });
+          gsap.set(h, { autoAlpha: 0});
         });
+        if(galleryRef.current.some(item => item.clientHeight === 0)) return
         if (isMobile) {
           galleryRef.current.forEach((g, i) => {
             gsap.fromTo(
@@ -100,7 +91,6 @@ export default function Gallery({ items }: Props) {
                 scrollTrigger: {
                   trigger: g,
                   start: "top 90%",
-                  // markers: true,
                 },
               }
             );
@@ -130,8 +120,8 @@ export default function Gallery({ items }: Props) {
         }
       }
     );
-    ScrollTrigger.refresh();
-  });
+    // ScrollTrigger.refresh(true);
+  }, [galleryRef.current[0]?.clientHeight]);
 
   return (
     <div className="container">

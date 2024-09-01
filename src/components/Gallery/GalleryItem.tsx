@@ -21,9 +21,7 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
   const {isMobile, isTablet} = useContext(MatchMediaContext);
   const {name, cover} = data;
   const title = data.title.filter(item => item.language === locale)[0].text;
-  // useEffect(() => {
-  //   console.log("itemWrapper clientHeight: ", document.querySelector(`.${s.itemWrapper}`)?.clientHeight, '\n', "itemWrapper clientWidth: ", document.querySelector(`.${s.itemWrapper}`)?.clientWidth)
-  // });
+
   return (
     <Link
       className={s.itemWrapper}

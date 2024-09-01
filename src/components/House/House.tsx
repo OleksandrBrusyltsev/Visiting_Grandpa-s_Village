@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useGSAP } from "@gsap/react";
@@ -50,6 +50,12 @@ export default function House({ item, isRoom = false }: Props) {
   const bookingRef = useRef<HTMLDivElement>(null);
   const houseTextRef = useRef<HTMLDivElement>(null);
   const housesRef = useRef<Array<HTMLAnchorElement>>([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      ScrollTrigger.refresh(true);
+    }, 1000)
+  });
 
   useGSAP(
     () => {
@@ -248,7 +254,7 @@ export default function House({ item, isRoom = false }: Props) {
             );
         }
       );
-      ScrollTrigger.refresh();
+      ScrollTrigger.refresh(true);
     },
     { dependencies: [rooms] }
   );

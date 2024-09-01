@@ -40,8 +40,8 @@ export const getData = async <T>(url: string, slug?: string): Promise<T> => {
   if (slug) {
     if (isGalleryItemArray(currentData) || isHouseItemArray(currentData)) {
       const result = currentData.filter((item) => item.name === slug);
-      return new Promise((res) => setTimeout(() => res(result as T), 100));
+      return Promise.resolve(result as T);
     }
   }
-  return new Promise((res) => setTimeout(() => res(currentData as T), 100));
+  return Promise.resolve(currentData as T);
 };

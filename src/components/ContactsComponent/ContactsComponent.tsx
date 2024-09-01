@@ -142,8 +142,7 @@ const ContactsComponent: FC = () => {
       ease: "power1.out",
       scrollTrigger: {
         trigger: house.current,
-        start: "top 80%",
-        markers: true,
+        start: "top 80%"
       },
     });
 

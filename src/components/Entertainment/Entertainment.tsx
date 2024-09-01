@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import Quote from "./Quote/Quote";
 
 import s from "./Entertainment.module.scss";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
 
 type Props = { items: EntertainmentItem[] };
@@ -14,6 +14,12 @@ type Props = { items: EntertainmentItem[] };
 export default function Entertainment({ items }: Props) {
   const aniRef = useRef<Array<Array<HTMLDivElement>>>([[]]);
   const textWrapperRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500)
+  });
 
   useGSAP(() => {
     //hero block animation
