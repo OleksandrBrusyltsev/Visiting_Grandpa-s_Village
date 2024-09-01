@@ -205,7 +205,7 @@ export default function Meals({ items }: Props) {
           );
       }
     );
-    ScrollTrigger.refresh(true);
+    ScrollTrigger.refresh();
   });
 
   return (

@@ -5,6 +5,7 @@ import WelcomeBlock from "../../../components/WelcomeBlock/WelcomeBlock";
 
 import Hero from "@/components/Hero/Hero";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
+import { locales } from "@/data/locales";
 
 export const metadata: Metadata = {
   title: "Еко відпочинок за містом На селі у дідуся",
@@ -12,9 +13,9 @@ export const metadata: Metadata = {
     "Еко готель для відпочинку на природі в селі Олешня Чернігівської області, заміський комплекс за Києвом в лісі серед Блакитних озер",
 };
 
-// export async function generateStaticParams() {
-//   return ["uk", "en"].map((locale) => ({ locale }));
-// }
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export default function Home({
   params: { locale },

@@ -4,6 +4,7 @@ import { getData } from "@/actions/getData";
 import Gallery from "@/components/Gallery/Gallery";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { locales } from "@/data/locales";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "Фото галерея спогадів | На селі у Дідуся",
@@ -15,9 +16,11 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-type Props = {};
+type Props = { params: { locale: string } };
 
-export default async function Page({}: Props) {
+export default async function Page({ params: { locale } }: Props) {
+  unstable_setRequestLocale(locale);
+
   const items = await getData<GalleryItem[]>("gallery");
 
   return (

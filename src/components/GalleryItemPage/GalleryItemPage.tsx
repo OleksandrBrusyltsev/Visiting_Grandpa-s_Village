@@ -40,8 +40,8 @@ export default function GalleryItemPage({ item }: Props) {
   };
 
   useGSAP(() => {
-    ScrollTrigger.refresh(true);
-
+    ScrollTrigger.refresh();
+    
     const mm = gsap.matchMedia();
     mm.add(
       {

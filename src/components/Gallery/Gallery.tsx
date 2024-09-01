@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -72,15 +72,15 @@ export default function Gallery({ items }: Props) {
       (context) => {
         const { isMobile, isNotMobile } = context.conditions as gsap.Conditions;
         galleryRef.current.forEach((h) => {
-          gsap.set(h, { autoAlpha: 0 });
+          gsap.set(h, { autoAlpha: 0});
         });
+        if(galleryRef.current.some(item => item.clientHeight === 0)) return
         if (isMobile) {
           galleryRef.current.forEach((g, i) => {
             gsap.fromTo(
               g,
               {
                 x: i % 2 ? 100 : -100,
-                autoAlpha: 0,
               },
               {
                 x: 0,
@@ -120,8 +120,8 @@ export default function Gallery({ items }: Props) {
         }
       }
     );
-    ScrollTrigger.refresh(true);
-  });
+    // ScrollTrigger.refresh(true);
+  }, [galleryRef.current[0]?.clientHeight]);
 
   return (
     <div className="container">
@@ -156,7 +156,7 @@ export default function Gallery({ items }: Props) {
                 <GalleryItem
                   ref={(el: HTMLAnchorElement) => (galleryRef.current[i] = el)}
                   data={item}
-                  key={i}
+                  key={item.id}
                 />
               ))}
             </div>

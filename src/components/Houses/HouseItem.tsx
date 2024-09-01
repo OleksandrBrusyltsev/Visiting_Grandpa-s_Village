@@ -67,13 +67,6 @@ const HouseItem = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
     >
       <div
         className={s.imageWrapper}
-        onClick={() =>
-          push(
-            houseWithRooms
-              ? `/${locale}/${pathName}/${houseWithRooms}/${name}`
-              : `/${locale}/${pathName}/${name}`
-          )
-        }
       >
         <Image
           fill
