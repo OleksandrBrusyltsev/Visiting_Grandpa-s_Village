@@ -19,6 +19,12 @@ export default function Gallery({ items }: Props) {
   const { locale } = useParams();
   const galleryRef = useRef<Array<HTMLAnchorElement>>([]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      ScrollTrigger.refresh(true);
+    }, 1)
+  }, []);
+
   useGSAP(() => {
     //hero block animation
     gsap
@@ -74,7 +80,7 @@ export default function Gallery({ items }: Props) {
         galleryRef.current.forEach((h) => {
           gsap.set(h, { autoAlpha: 0});
         });
-        if(galleryRef.current.some(item => item.clientHeight === 0)) return
+
         if (isMobile) {
           galleryRef.current.forEach((g, i) => {
             gsap.fromTo(
@@ -120,8 +126,8 @@ export default function Gallery({ items }: Props) {
         }
       }
     );
-    // ScrollTrigger.refresh(true);
-  }, [galleryRef.current[0]?.clientHeight]);
+    ScrollTrigger.refresh(true);
+  });
 
   return (
     <div className="container">

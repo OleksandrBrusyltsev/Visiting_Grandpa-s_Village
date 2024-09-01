@@ -26,7 +26,7 @@ export default function Houses({ items }: Props) {
     setTimeout(() => {
       ScrollTrigger.refresh();
     }, 500);
-  });
+  }, []);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();

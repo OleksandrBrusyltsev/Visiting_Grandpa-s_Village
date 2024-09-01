@@ -39,7 +39,7 @@ const ContactsComponent: FC = () => {
     setTimeout(() => {
       ScrollTrigger.refresh();
     }, 500);
-  });
+  }, []);
 
   useGSAP(() => {
     // TelegramBlock animations
@@ -169,6 +169,8 @@ const ContactsComponent: FC = () => {
         start: "top 80%",
       },
     });
+    
+    ScrollTrigger.refresh();
   });
 
 
