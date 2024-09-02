@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -18,6 +18,12 @@ type Props = { items: GalleryItem[] };
 export default function Gallery({ items }: Props) {
   const { locale } = useParams();
   const galleryRef = useRef<Array<HTMLAnchorElement>>([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      ScrollTrigger.refresh(true);
+    }, 1)
+  }, []);
 
   useGSAP(() => {
     //hero block animation
@@ -72,15 +78,15 @@ export default function Gallery({ items }: Props) {
       (context) => {
         const { isMobile, isNotMobile } = context.conditions as gsap.Conditions;
         galleryRef.current.forEach((h) => {
-          gsap.set(h, { autoAlpha: 0 });
+          gsap.set(h, { autoAlpha: 0});
         });
+
         if (isMobile) {
           galleryRef.current.forEach((g, i) => {
             gsap.fromTo(
               g,
               {
                 x: i % 2 ? 100 : -100,
-                autoAlpha: 0,
               },
               {
                 x: 0,
@@ -156,7 +162,7 @@ export default function Gallery({ items }: Props) {
                 <GalleryItem
                   ref={(el: HTMLAnchorElement) => (galleryRef.current[i] = el)}
                   data={item}
-                  key={i}
+                  key={item.id}
                 />
               ))}
             </div>

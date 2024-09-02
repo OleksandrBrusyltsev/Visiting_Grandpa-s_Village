@@ -42,21 +42,15 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
     // Обновление марджина при изменении высоты faqWrapper
     const updateMargin = () => {
       const screenWidth = window.innerWidth;
-      const breakpoint = 768; // Ширина экрана, начиная с которой будет применяться CSS
+      const breakpoint = 1024; // Ширина экрана, начиная с которой будет применяться CSS
 
-      if (imgAndFaqWrapper.current) {
-        if (screenWidth < breakpoint) {
-          if (faqWrapperRef.current) {
-            const faqHeight = faqWrapperRef.current.offsetHeight;
-            const additionalMargin = 60; // Добавление 40 пикселей
-            imgAndFaqWrapper.current.style.marginBottom = `${
-              faqHeight + additionalMargin
-            }px`;
-          }
-        } else {
-          // Сбросить марджин, если ширина экрана больше или равна breakpoint
-          imgAndFaqWrapper.current.style.marginBottom = "";
-        }
+      if (imgAndFaqWrapper.current && faqWrapperRef.current) {
+        const faqHeight = faqWrapperRef.current.offsetHeight;
+        const additionalMargin = 60; 
+        // Добавление 60 пикселей или сбрасываем марджин, если ширина экрана больше или равна breakpoint
+        imgAndFaqWrapper.current.style.marginBottom = screenWidth < breakpoint ? `${
+          faqHeight + additionalMargin
+        }px` : '';
       }
     };
 
@@ -64,10 +58,20 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
     updateMargin();
 
     // Вызов функции обновления марджина при изменении контента
-    const observer = new MutationObserver(updateMargin);
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (
+          mutation.type === "attributes" 
+        ) {
+          updateMargin();
+          break;
+        }
+      }
+    });
+
     if (faqWrapperRef.current) {
       observer.observe(faqWrapperRef.current, {
-        childList: true,
+        attributes: true,
         subtree: true,
       });
     }
