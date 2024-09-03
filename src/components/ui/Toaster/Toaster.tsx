@@ -71,7 +71,7 @@ export default function Toaster({ promoText, isPromoActive, timeout }: Props) {
             y: 100,
             autoAlpha: 0,
             ease: "power1.out",
-            delay: 1,
+            delay: 3,
             paused: true
         })
     })
