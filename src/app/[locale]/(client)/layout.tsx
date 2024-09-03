@@ -5,6 +5,9 @@ import Footer from "../../../components/Footer/Footer";
 import Header from "../../../components/Header/Header";
 import Navigation from "@/components/Header/Navigation";
 import { locales } from "@/data/locales";
+import Toaster from "@/components/ui/Toaster/Toaster";
+import { toasters } from "@/data/advertisementToaster";
+import { getPromoData } from "@/functions/tosterHelpers";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -12,20 +15,30 @@ export async function generateStaticParams() {
 
 export default async function LocaleLayout({
   children,
-  params: { locale }
+  params: { locale },
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
+  const dataToasters = await Promise.resolve(toasters);
+  const serverTime = Date.now();
+  const curPromo = getPromoData(dataToasters, serverTime, locale);
 
   return (
     <>
-      <Header />
-      <Navigation />
+      <header>
+        <Header />
+        <Navigation />
+      </header>
       <Breadcrumbs />
-        {children}
+      <main>{children}</main>
       <Footer />
+      <Toaster
+        promoText={curPromo.promoText}
+        isPromoActive={curPromo.isPromoActive}
+        timeout={curPromo.timeout}
+      />
     </>
   );
 }

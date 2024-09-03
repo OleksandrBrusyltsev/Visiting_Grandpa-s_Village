@@ -1,9 +1,7 @@
-"use client";
 import { FC } from "react";
 import Image from "next/image";
 import Granpa1 from "../../../public/images/grandpas/Grandpa7.png";
 import Grandpa2 from "../../../public/images/grandpas/Grandpa6.png";
-import IconErrow from "../../assets/icons/icon-arrow-rules.svg";
 import { rules } from "../../data/rules/index.js";
 import s from "./Rules.module.scss";
 
@@ -14,7 +12,7 @@ const Rules: FC = () => {
         <h1 className={s.rulesTitle}>
           Твій Дідусь має невеликі прохання та правила, які діють в еко-садибі
         </h1>
-        <Image src={Granpa1} alt="picture" className={s.granpa1}></Image>
+        <Image src={Granpa1} alt="" className={s.granpa1}></Image>
       </div>
       <div className={s.iconArrowWrapper}>
         <svg
@@ -33,7 +31,7 @@ const Rules: FC = () => {
       <ul className={s.rulesList}>
         {rules.map((rule) => (
           <li key={rule.id} className={s.rulesItem}>
-            <h3 className={s.ruleTitle}>{rule.title}</h3>
+            <h2 className={s.ruleTitle}>{rule.title}</h2>
             <p
               className={s.ruleDescription}
               dangerouslySetInnerHTML={{ __html: rule.description }}
@@ -41,27 +39,30 @@ const Rules: FC = () => {
           </li>
         ))}
       </ul>
-       
+
       <ul className={s.rulesRememberList}>
         <li className={s.grandpa2Wrapper}>
-          <Image src={Grandpa2} fill alt="picture" ></Image>
+          <Image src={Grandpa2} fill alt=""></Image>
         </li>
         <li>
-          <span className={s.rulesRememberSpan} >Невеличке нагадування:</span>Дідусь та команда Еко-садиби “На
-          селі у Дідуся” - твої друзі, завжди готові допомогти та зробити
-          відпочинок приємним і незабутнім.
+          <span className={s.rulesRememberSpan}>Невеличке нагадування:</span>
+          Дідусь та команда <a href="/">Еко-садиби “На селі у Дідуся”</a> - твої
+          друзі, завжди готові допомогти та зробити відпочинок приємним і
+          незабутнім.
         </li>
         <li>
-          Також пам’ятайте, що ми не можемо контролювати погоду та інші
-          зовнішні обставини, проте гарантуємо вам теплий прийом та комфортний
+          Також пам’ятайте, що ми не можемо контролювати погоду та інші зовнішні
+          обставини, проте гарантуємо вам теплий прийом та комфортний
           відпочинок.
         </li>
         <li>
-          “На селі у Дідуся” гості отримують гарні, приємні емоції та
-          створюють неповторні, теплі спогади.
+          “На селі у Дідуся” гості отримують гарні, приємні емоції та створюють
+          неповторні, теплі спогади.
         </li>
         <li>
-          <a href="/publicOffer.pdf" target="_blank" rel="noopener noreferrer">Публічна оферта</a>
+          <a href="/publicOffer.pdf" target="_blank" rel="noopener noreferrer">
+            Публічна оферта
+          </a>
         </li>
       </ul>
     </div>

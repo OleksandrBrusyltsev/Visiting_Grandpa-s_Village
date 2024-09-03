@@ -4,7 +4,7 @@
 .itemWrapper {
     width: 100%;
     max-width: 550px;
-    aspect-ratio: 1.31;
+    // min-height: 250px;//
     background-color: rgba(var(--color-nude), 0.7);
     border-radius: 8px;
     overflow: hidden;
@@ -22,7 +22,8 @@
 }
 
 .imageWrapper {
-    height: calc(100% - 56px);
+    // min-width: 307px;
+    aspect-ratio: 1.75;
     position: relative;
     
     img {
@@ -46,9 +47,10 @@
 @include mixins.media-min(variables.$mobile) {
     .itemWrapper {
         width: calc((100% - 30px) / 2);
-        aspect-ratio: 1.36;
+        // aspect-ratio: 1.39;
         max-width: unset;
     }
+
 }
 
 @include mixins.media-min(variables.$breakpoint-laptop) {
@@ -56,11 +58,7 @@
         width: calc((100% - 70px) / 2);
         aspect-ratio: 1.37;
         position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
         padding: 20px;
-        gap: 10px;
 
         &:hover,
         &:focus {
@@ -89,7 +87,7 @@
         width: calc(100% - 40px);
         height: calc(100% - 40px);
         position: absolute;
-        transition: opacity 045s, height 0.6s, filter 0.4s 0.5s;
+        transition: height 0.6s, filter 0.4s 0.5s;
             
         img {
             object-fit: cover;

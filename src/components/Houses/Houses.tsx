@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
@@ -19,7 +19,14 @@ type Props = {
 
 export default function Houses({ items }: Props) {
   const { locale } = useParams();
-  const housesRef = useRef<Array<HTMLDivElement>>([]);
+  const housesRef = useRef<Array<HTMLAnchorElement>>([]);
+  const textWrapperRef = useRef<HTMLDivElement | null>(null);
+  
+  useEffect(() => {
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+  }, []);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -37,10 +44,22 @@ export default function Houses({ items }: Props) {
           gsap.set(h, { autoAlpha: 0 });
         });
 
+        //hero block animation
+        const heroBlockTimeline = 
+        gsap
+          .timeline({
+            defaults: {
+              autoAlpha: 0,
+              ease: "power1.out",
+              duration: isMobile ? 0.7 : isTablet ? 0.8 : 1.2,
+              clearProps: "all",
+            },
+        });
+           
         //booking component and houses list title animation
-        const mainTimeline = gsap.timeline({
+        const bookingFormTimeline = gsap.timeline({
           defaults: {
-            opacity: 0,
+            autoAlpha: 0,
             duration: isMobile ? 0.7 : isTablet ? 0.8 : 1,
           },
           scrollTrigger: {
@@ -51,15 +70,7 @@ export default function Houses({ items }: Props) {
 
         //hero block animation
         if (isTablet) {
-          gsap
-            .timeline({
-              defaults: {
-                opacity: 0,
-                ease: "power1.out",
-                duration: 0.8,
-                clearProps: "all",
-              },
-            })
+          heroBlockTimeline
             .from(`.${s.descr1}`, {
               y: -100,
             })
@@ -75,7 +86,7 @@ export default function Houses({ items }: Props) {
               `.${s.curve}`,
               {
                 clipPath: "inset(0% 0% 100% 0%)",
-                opacity: 1,
+                autoAlpha: 1,
               },
               ">-0.4"
             )
@@ -84,7 +95,7 @@ export default function Houses({ items }: Props) {
             });
 
           //booking component and houses list title animation
-          mainTimeline
+          bookingFormTimeline
             .from(`.${s.bookingForm}`, {
               scale: 0.9,
             })
@@ -100,15 +111,7 @@ export default function Houses({ items }: Props) {
 
         //hero block animation
         if (isDesktop) {
-          gsap
-            .timeline({
-              defaults: {
-                opacity: 0,
-                ease: "power1.out",
-                duration: 1.2,
-                clearProps: "all",
-              },
-            })
+          heroBlockTimeline
             .from(`.${s.descr1}`, {
               y: -100,
               duration: 1,
@@ -130,10 +133,10 @@ export default function Houses({ items }: Props) {
             );
 
           //booking component and houses list title animation
-          mainTimeline
+          bookingFormTimeline
             .from(`.${s.curve}`, {
               clipPath: "inset(0% 0% 100% 0%)",
-              opacity: 1,
+              autoAlpha: 1,
             })
             .from(`.${s.bookingForm}`, {
               scale: 0.9,
@@ -149,42 +152,34 @@ export default function Houses({ items }: Props) {
             );
         }
 
-        //hero block animation + houses list animation
         if (isMobile) {
-          gsap
-            .timeline({
-              defaults: {
-                opacity: 0,
-                ease: "power1.out",
-                duration: 0.8,
-                clearProps: "all",
-              },
-            })
-            .from(`.${s.descr1}`, {y: -150})
-            .from(`.${s.map}`, {x: -150, y: 150}, "<")
-            .from([`.${s.descr2}`, `.${s.grandpa}`], {x: 150}, "<" );
+         //hero block animation 
+         heroBlockTimeline
+            .from(`.${s.descr1}`, { y: -150 })
+            .from(`.${s.map}`, { x: -150, y: 150 }, "<")
+            .from([`.${s.descr2}`, `.${s.grandpa}`], { x: 150 }, "<");
 
           //booking component and houses list title animation
-          mainTimeline
+          bookingFormTimeline
             .from(`.${s.bookingForm}`, {y: 100,scale: 0.9})
-            .from(`.${s.housesTitle}`, {y: 100});
-
+            .from(`.${s.housesTitle}`, {y: 100}, ">-0.4");
+            
+          //houses list animation
           housesRef.current.forEach((h, i) => {
             gsap.fromTo(
               h,
               {
                 x: i % 2 ? 100 : -100,
-                autoAlpha: 0,
               },
               {
                 x: 0,
                 autoAlpha: 1,
                 duration: 0.8,
+                delay: 0.2,
                 ease: "power1.out",
                 scrollTrigger: {
                   trigger: h,
                   start: "top 80%",
-                  end: "bottom start",
                 },
               }
             );
@@ -201,7 +196,6 @@ export default function Houses({ items }: Props) {
                 batch,
                 {
                   x: (i) => (i % 2 ? 100 : -100),
-                  autoAlpha: 0,
                 },
                 {
                   x: 0,
@@ -217,25 +211,42 @@ export default function Houses({ items }: Props) {
         }
       }
     );
-    ScrollTrigger.refresh(true);
+
+    if (!textWrapperRef.current) return;
+
+    gsap.from(textWrapperRef.current, {
+      x: 100,
+      autoAlpha: 0,
+      ease: "power1.out",
+      clearProps: true,
+      scrollTrigger: {
+        trigger: textWrapperRef.current,
+        start: "top 90%",
+      },
+    });
+
+    ScrollTrigger.refresh();
   });
 
   return (
     <>
       <section className={`${s.hero} container`}>
         <div className={s.heroWrapper}>
-          <p className={s.descr1}>
-            Маю багато казкових будиночків та хатинок, можеш вибрати будь-який
-            варіант на свій смак.
-          </p>
+          <h1 className={s.descr1}>
+            Еко комплекс казкових дерев&apos;яних будиночків
+          </h1>
           {/* eslint-disable-next-line react/no-unescaped-entities */}
-          <p className={s.descr2}>"Гортай нижче - я тобі все покажу"</p>
+          <p className={s.descr2}>
+            &quot;Маю дерев&apos;яні будиночки та хатинки, можеш вибрати
+            будь-який варіант на свій смак. Гортай нижче - я тобі все
+            покажу&quot;
+          </p>
           <div className={s.grandpa}>
             <Image
               fill
-              alt="Friendly Grandpa"
+              alt=""
               src="/images/grandpas/Grandpa2.png"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="100vw"
             />
           </div>
 
@@ -264,25 +275,40 @@ export default function Houses({ items }: Props) {
         <BookingComponent />
       </div>
 
-      <main>
-        <HousesList data={items} className="container">
-          <>
-            <div className={s.housesTitle}>
-              <h1>Живи тут</h1>
-              <Icon name="ellipse" className={s.titleOutline} />
-            </div>
-            <div className={s.housesWrapper}>
-              {items.map((house, i) => (
-                <HouseItem
-                  ref={(el: HTMLDivElement) => (housesRef.current[i] = el)}
-                  data={house}
-                  key={house.id}
-                />
-              ))}
-            </div>
-          </>
-        </HousesList>
-      </main>
+      {/* <main> */}
+      <HousesList data={items} className="container">
+        <>
+          <div className={s.housesTitle}>
+            <p>Живи тут</p>
+            <Icon name="ellipse" className={s.titleOutline} />
+          </div>
+          <div className={s.housesWrapper}>
+            {items.map((house, i) => (
+              <HouseItem
+                ref={(el: HTMLAnchorElement) => (housesRef.current[i] = el)}
+                data={house}
+                key={house.id}
+              />
+            ))}
+          </div>
+        </>
+      </HousesList>
+      <div className={s.textWrapper} ref={textWrapperRef}>
+        <p className={s.text}>
+          Ласкаво просимо до еко комплексу «На селі у Дідуся», розташованого в
+          мальовничому куточку України - на Чернігівщині біля Блакитних озер.
+          Пропонуємо вам комфортний відпочинок у затишних хатинках, де ви
+          зможете відчути гармонію з природою. Наші дерев&apos;яні будиночки
+          забезпечені всім необхідним для комфортного перебування.{" "}
+        </p>
+        <p className={s.text}>
+          Відкрийте для себе справжній відпочинок на природі, насолоджуючись
+          чистим повітрям, прогулянками лісом та казковими заходами сонця біля
+          озера. Еко-комплекс «На селі у Дідуся» – ідеальне місце для родинного
+          відпочинку, романтичних вікендів та відновлення сил.
+        </p>
+      </div>
+      {/* </main> */}
     </>
   );
 }

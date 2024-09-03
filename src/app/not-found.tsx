@@ -1,12 +1,5 @@
 "use client";
-import { Metadata } from "next";
 import { useRouter } from "next/navigation";
-
-export const metadata: Metadata = {
-  title: "Сторінка не знайдена - 404",
-  description:
-    "Сторінка, яку ви шукаєте, не знайдена. Поверніться на головну сторінку або скористайтеся навігацією.",
-};
 
 export default function NotFound() {
   const router = useRouter();
@@ -15,7 +8,7 @@ export default function NotFound() {
   };
 
   return (
-    <html lang="en">
+    <html lang="uk">
       <body
         style={{
           backgroundColor: "#f0f0f0",
@@ -28,7 +21,7 @@ export default function NotFound() {
         <div style={{ textAlign: "center" }}>
           <h1 style={{ fontSize: "6rem", color: "#333" }}>404</h1>
           <p style={{ fontSize: "2rem", color: "#333" }}>
-            Oops! The page you are looking for does not exist.
+            Oops! Ця сторінка не існує.
           </p>
           <button
             style={{
@@ -38,10 +31,11 @@ export default function NotFound() {
               border: "none",
               borderRadius: "5px",
               cursor: "pointer",
+              margin: "25px",
             }}
             onClick={() => changeLanguageHandler("/")}
           >
-            Go Back Home
+            На головну
           </button>
         </div>
       </body>

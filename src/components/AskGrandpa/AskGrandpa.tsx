@@ -48,7 +48,7 @@ const AskGrandpa: FC = () => {
   useGSAP(() => {
     if(!headlineWrapperRef.current) return;
     
-    ScrollTrigger.refresh(true);
+    ScrollTrigger.refresh();
 
     gsap.from(headlineWrapperRef.current, {
       x: 100,

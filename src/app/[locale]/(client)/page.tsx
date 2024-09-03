@@ -5,16 +5,17 @@ import WelcomeBlock from "../../../components/WelcomeBlock/WelcomeBlock";
 
 import Hero from "@/components/Hero/Hero";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
+import { locales } from "@/data/locales";
 
 export const metadata: Metadata = {
-  title: 'Відпочинок на Блакитних озерах Чернігівщини | "На селі у Дідуся"',
+  title: "Еко відпочинок за містом На селі у дідуся",
   description:
-    'Відпочинок на Блакитних озерах Чернігівщини | "На селі у Дідуся"',
+    "Еко готель для відпочинку на природі в селі Олешня Чернігівської області, заміський комплекс за Києвом в лісі серед Блакитних озер",
 };
 
-// export async function generateStaticParams() {
-//   return ["uk", "en"].map((locale) => ({ locale }));
-// }
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export default function Home({
   params: { locale },
@@ -24,10 +25,10 @@ export default function Home({
   unstable_setRequestLocale(locale);
   const t = useTranslations("Index");
   return (
-    <main>
+    <>
       <Hero />
       <WelcomeBlock text={t("welcomeBlock")} />
       <AskGrandpa />
-    </main>
+    </>
   );
 }

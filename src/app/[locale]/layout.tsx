@@ -4,9 +4,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, unstable_setRequestLocale } from "next-intl/server";
 import { locales } from "@/data/locales";
 
-// export function generateStaticParams() {
-//   return ["uk", "en"].map((locale) => ({ locale }));
-// }
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -24,9 +21,7 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <MatchMediaProvider>
-            {children}
-          </MatchMediaProvider>
+          <MatchMediaProvider>{children}</MatchMediaProvider>
         </NextIntlClientProvider>
       </body>
     </html>

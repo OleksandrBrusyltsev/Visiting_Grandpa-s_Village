@@ -7,10 +7,9 @@ import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { locales } from "@/data/locales";
 
 export const metadata: Metadata = {
-  title:
-    "Харчування - Відпочинок на блакитних озерах (с. Олешня, Чернігівська область)",
+  title: "Здорове харчування в еко стилі | На селі у Дідуся",
   description:
-    "Еко-садиба «На селі у Дідуся!!! » ОЛЕШНЯ, БЛАКИТНІ ОЗЕРА Харчування за попереднім замовленням по меню.",
+    "Насолоджуйтесь домашніми українськими стравами та їжею в еко стилі з видом на природу, літня кухня та мангали біля озера",
 };
 
 export async function generateStaticParams() {
@@ -26,8 +25,10 @@ export default async function Page({
 
   const items = await getData<MealsItem[]>("meals");
 
-  return <>
-    <Meals items={items} />;
-    <AskGrandpa />
-  </>
+  return (
+    <>
+      <Meals items={items} />;
+      <AskGrandpa />
+    </>
+  );
 }
