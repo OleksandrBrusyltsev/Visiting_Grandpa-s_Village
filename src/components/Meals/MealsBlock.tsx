@@ -30,13 +30,9 @@ export default function MealsBlock({ item, position }: Props) {
             />
           </div>
         ) : null}
-        {/* <p
-          className={s.mealsDescription}
-          dangerouslySetInnerHTML={{ __html: description }}
-        /> */}
-        <p className={s.mealsDescription}>
+        <div className={s.mealsDescription}>
           <MarkdownPreview markdown={description} />
-        </p>
+        </div>
       </div>
       {position === 0 || !isMobile ? (
         <div className={s.mainPhoto}>
