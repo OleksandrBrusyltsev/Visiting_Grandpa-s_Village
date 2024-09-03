@@ -1,0 +1,65 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables";
+
+.toasterWrapper {
+    visibility: hidden;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    max-height: 20vh;
+    z-index: 90;
+    background-color: #fff;
+    border-block: 1px solid rgb(var(--color-base-green));
+
+    .toasterContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding-block: 12px;
+
+        @include mixins.media-min(variables.$mobile) {
+            gap: 20px;
+        }
+
+        .toasterText {
+            font-size: 16px;
+            line-height: 1.2;
+            letter-spacing: normal;
+            color: rgb(var(--color-black));
+            text-align: center;
+            font-family: var(--f-family-main);
+
+            @include mixins.media-min(variables.$mobile) {
+                font-size: 18px;
+            }
+
+            @include mixins.media-min(variables.$breakpoint-laptop) {
+                font-size: 20px;
+            }
+
+            .heartIcon {
+                vertical-align: middle;
+                width: 1.5rem;
+                height: 1.5rem;
+                margin-left: 10px;
+                color: rgb(var(--color-base-green))
+            }
+
+            @include mixins.media-min(variables.$mobile) {
+                width: 80%;
+            }
+
+            @include mixins.media-min(variables.$breakpoint-laptop) {
+                width: 62%;
+            }
+        }
+
+        .toasterClose {
+            font-size: 3rem;
+            line-height: 25px;
+            color: rgb(var(--color-base-green));
+        }
+    }
+}
