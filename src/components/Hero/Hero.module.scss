@@ -68,7 +68,7 @@
   line-height: 21.48px;
   color: rgba(var(--color-base-green), 1);
   @include mixins.media-min(variables.$mobile) {
-    width: 535px;
+    width: 540px;
     font-size: 32px;
     line-height: 35.2px;
   }
