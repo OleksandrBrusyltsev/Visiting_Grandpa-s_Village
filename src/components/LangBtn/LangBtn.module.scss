@@ -7,13 +7,14 @@
   align-items: center;
   color: rgb(var(--color-black));
   font-size: 24px;
-  
+
   @include mixins.media-min(variables.$mobile) {
     font-size: var(--f-size-body);
   }
-    //tmp styles
-    opacity: 0;
-    visibility: hidden;
+
+  //tmp styles
+  // opacity: 0;
+  // visibility: hidden;
 }
 
 .active {
@@ -31,10 +32,12 @@
       color: rgb(var(--color-natural-orange));
     }
   }
+
   &:active {
     color: rgb(var(--color-natural-orange));
   }
 }
+
 .active {
   color: rgb(var(--color-natural-orange));
 }

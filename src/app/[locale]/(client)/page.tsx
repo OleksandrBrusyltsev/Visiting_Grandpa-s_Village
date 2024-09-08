@@ -23,11 +23,10 @@ export default function Home({
   params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
-  const t = useTranslations("Index");
+
   return (
     <>
       <Hero />
-      <WelcomeBlock text={t("welcomeBlock")} />
       <AskGrandpa />
     </>
   );

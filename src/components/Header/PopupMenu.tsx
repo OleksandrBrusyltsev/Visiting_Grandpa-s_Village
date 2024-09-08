@@ -6,10 +6,10 @@ import { useLocale } from "next-intl";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-import { navigationLinks } from "./../../data/header/popupData";
+import { navLinks as navigationLinks } from "@/data/navigationMenu";
 
 import css from "./PopupMenu.module.scss";
-// import LangBtn from "../LangBtn/LangBtn";
+import LangBtn from "../LangBtn/LangBtn";
 
 interface PopupMenuProps {
   handlePopup: () => void;
@@ -38,25 +38,24 @@ const PopupMenu: React.FC<PopupMenuProps> = ({ handlePopup }) => {
     <div ref={menuRef} className={css.backdrop} onClick={handlePopup}>
       <div className={css.popupContainer}>
         <ul className={css.list}>
-          {navigationLinks.map(({ id, link, text }) => (
+          {navigationLinks.map(({ id, link, label }) => (
             <li
               key={id}
-              className={`${css.item} ${
-                pathname.startsWith(`/${locale}/${link}`) ? css.curActive : ""
-              }`}
+              className={`${css.item} ${pathname.startsWith(`/${locale}/${link}`) ? css.curActive : ""
+                }`}
             >
               {pathname === `/${locale}/${link}` ? (
-                <p className={css.itemLink}>{text}</p>
+                <p className={css.itemLink}>{label[locale as keyof typeof label]}</p>
               ) : (
                 <Link href={`/${locale}/${link}`} className={css.itemLink}>
-                  {text}
+                  {label[locale as keyof typeof label]}
                 </Link>
               )}
             </li>
           ))}
-          {/* <li className={css.item}>
+          <li className={css.item}>
             <LangBtn />
-          </li> */}
+          </li>
         </ul>
       </div>
     </div>

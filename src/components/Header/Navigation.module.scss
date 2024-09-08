@@ -3,7 +3,7 @@
 
 .list {
   display: none;
-  
+
   @include mixins.media-min(variables.$mobile) {
     margin-top: 16px;
     display: flex;
@@ -18,10 +18,12 @@
   font-size: var(--f-size-body);
   font-weight: 400;
   line-height: normal;
-  width: max-content; 
+  width: max-content;
   white-space: nowrap;
   transition: transform 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
   text-align: center;
+  text-transform: uppercase;
+
   &::before {
     content: attr(data-text);
     font-weight: 700;
@@ -29,9 +31,9 @@
     height: 0;
     display: block;
     overflow: hidden;
-}
+  }
 
-  @media (hover: hover){
+  @media (hover: hover) {
     &:hover {
       color: rgb(var(--color-base-green));
       transform: translateY(3px);
