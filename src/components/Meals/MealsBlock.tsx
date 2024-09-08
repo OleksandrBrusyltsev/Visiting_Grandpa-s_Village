@@ -6,6 +6,7 @@ import { MatchMediaContext } from "@/context/MatchMediaContext";
 import MarkdownPreview from "../../functions/MarkdownPreview";
 
 import s from "./MealsBlock.module.scss";
+import { useLocale } from "next-intl";
 
 type Props = {
   item: MealsItem;
@@ -13,12 +14,15 @@ type Props = {
 };
 
 export default function MealsBlock({ item, position }: Props) {
+  const locale = useLocale();
   const { title, description, photo } = item;
   const { isMobile } = useContext(MatchMediaContext);
 
   return (
     <div className={s.mealsBlockWrapper}>
-      <h2 className={s.mealsTitle}>{title}</h2>
+      <h2 className={s.mealsTitle}
+        dangerouslySetInnerHTML={{ __html: title[locale as keyof typeof title] }}
+      />
       <div className={s.mealsDescriptionWrapper}>
         {position !== 0 && isMobile ? (
           <div className={s.mainPhoto}>
@@ -31,7 +35,7 @@ export default function MealsBlock({ item, position }: Props) {
           </div>
         ) : null}
         <div className={s.mealsDescription}>
-          <MarkdownPreview markdown={description} />
+          <MarkdownPreview markdown={description[locale as keyof typeof description]} />
         </div>
       </div>
       {position === 0 || !isMobile ? (
