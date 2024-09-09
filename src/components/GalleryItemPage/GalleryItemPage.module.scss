@@ -6,32 +6,40 @@
         .desktopOnly {
             display: inline;
         }
+
         .mobileOnly {
             display: none;
         }
     }
-    @media (hover: none){
+
+    @media (hover: none) {
         .desktopOnly {
             display: none;
         }
+
         .mobileOnly {
             display: inline;
         }
     }
+
     margin-bottom: 92px;
     overflow-x: clip;
 }
-.hero, 
+
+.hero,
 .main {
     @include mixins.mak-green;
 }
+
 .hero {
     margin-top: clamp(16px, calc(16px + 20 * (100vw - 375px) / 392), 36px);
     position: relative;
 }
+
 .main {
     margin-top: 90px;
 }
+
 .heroTitle {
     max-width: clamp(293px, calc(293px + 207 * (100vw - 375px) / 392), 500px);
     padding-left: clamp(0px, calc(0px + 74 * (100vw - 375px) / 392), 74px);
@@ -39,15 +47,18 @@
     position: relative;
     letter-spacing: -0.005em;
 }
+
 .grandpaWrapper {
     position: absolute;
     right: clamp(-10px, calc(-10px + 64 * (100vw - 375px) / 392), 54px);
     bottom: clamp(-100px, calc(-100px + 75 * (100vw - 375px) / 392), -25px);
     width: 142px;
     aspect-ratio: 1;
+
     img {
         object-fit: contain;
     }
+
     &::before {
         position: absolute;
         content: '';
@@ -56,13 +67,15 @@
         left: -40px;
         left: clamp(-85px, calc(-85px + 45 * (767px - 100vw) / 392), -40px);
         width: 240px;
-        height: 220px;;
+        height: 220px;
+        ;
         background-image: url('/images/backgrounds/christmasTrees.png');
         background-repeat: no-repeat;
         background-size: contain;
         z-index: -1;
     }
 }
+
 .callToClick {
     font-size: 14px;
     line-height: 1.4;
@@ -71,6 +84,7 @@
     margin-left: 0;
     position: relative;
     width: clamp(200px, calc(200px + 320 * (100vw - 375px) / 55), 520px);
+
     .curve {
         display: block;
         position: absolute;
@@ -79,11 +93,13 @@
         left: clamp(183px, calc(183px + 157 * (100vw - 375px) / 55), 340px);
         width: 10px;
         height: 30px;
+
         @media (min-width: 431px) {
             left: clamp(340px, calc(340px + 100 * (100vw - 430px) / 337), 440px);
         }
     }
 }
+
 .itemWrapper {
     width: 100%;
     max-width: 550px;
@@ -93,48 +109,37 @@
     padding: 10px;
     cursor: pointer;
     transition: box-shadow 0.4s, scale 0.4s, background-color 0.4s;
+
     @media (hover: none) {
         &:active {
             scale: 0.98;
         }
     }
-}   
+}
+
 .imageWrapper {
     position: relative;
     height: 100%;
     transition: scale 0.4s;
     border-radius: 8px;
     overflow: hidden;
+
     img {
         object-fit: cover;
     }
-}
-.callToAction {
-    text-align: end;
-    .btnCallToAction {
-        max-width: 297px;
-        padding-block: 11.5px;
-    }
-}
-.slogan {
-    font-size: var(--f-size-body);
-    line-height: 1;
-    max-width: 220px;
-    margin: 50px 0 30px auto;
-}
-.cloud {
-    display: none;
 }
 
 @include mixins.media-min(variables.$mobile) {
     .galleryItemWrapper {
         margin-bottom: 112px;
     }
+
     .heroTitle {
-        max-width: 90%;  
+        max-width: 90%;
         padding-left: clamp(74px, calc(74px + 146 * (100vw - 768px) / 511), 220px);
         font-size: var(--f-size-h2);
         line-height: 1.1;
+
         &::before {
             position: absolute;
             content: '';
@@ -148,6 +153,7 @@
             z-index: -1;
         }
     }
+
     .grandpaWrapper {
         float: right;
         margin-right: -10px;
@@ -156,60 +162,48 @@
         margin-right: clamp(-10px, calc(-10px + 39 * (100vw - 768px) / 511), 29px);
         margin-top: clamp(-86px, calc(-38px - 48 * (100vw - 768px) / 511), -38px);
         width: clamp(172px, calc(252px - 80 * (100vw - 768px) / 511), 252px);
+
         &::before {
             position: unset;
         }
     }
+
     .callToClick {
-        max-width: 470px;  
+        max-width: 470px;
         text-align: center;
         padding-left: 0;
         margin-left: clamp(104px, calc(104px + 386 * (100vw - 768px) / 511), 490px);
         font-size: 20px;
+
         .curve {
             left: 470px;
             width: 14px;
             height: 40px;
         }
     }
+
     .main {
         margin: 124px auto 0;
+
         .curve {
             transform: translateY(100%);
         }
     }
-    
+
     .itemWrapper {
         width: calc((100% - 9px * 2) / 3);
         aspect-ratio: 1.09;
         max-width: unset;
+
         @media (hover: hover) {
+
             &:hover,
             &:focus {
-                box-shadow:  2px 2px 5px 1px rgba(0, 0, 0, 0.1);
+                box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1);
                 background-color: rgb(var(--color-nude));
                 scale: 1.03
             }
         }
-    }
-    .callToAction {
-        position: relative;
-    }
-    .slogan {
-        font-size: var(--f-size-body-big);
-        line-height: 1.1;
-        margin-block: 132px 40px;
-        max-width: unset;
-    }
-    .cloud {
-        color: rgba(179, 161, 137, 0.5);
-        display: block;
-        position: absolute;
-        top: -132px;
-        right: -40px;
-        width: 700px;
-        aspect-ratio: 2.02;
-        z-index: -1;
     }
 }
 
@@ -217,24 +211,30 @@
     .galleryItemWrapper {
         margin-bottom: 186px;
     }
+
     .hero {
         margin-top: 41px;
     }
+
     .heroTitle {
         &::before {
             top: -104%;
             left: 9%;
         }
     }
+
     .grandpaWrapper {
         margin-right: clamp(29px, calc(29px + 51 * (100vw - 1280px) / 160), 80px);
     }
+
     .callToClick {
         margin-inline: auto;
+
         .curve {
             left: 450px;
         }
     }
+
     .main {
         margin: 60px auto 0;
     }
@@ -242,27 +242,22 @@
     .itemWrapper {
         width: calc((100% - 24px * 3) / 4);
         aspect-ratio: 1.108;
+
         @media (hover: hover) {
+
             &:hover,
             &:focus {
                 scale: 1.06
             }
         }
     }
-    .slogan {
-        font-size: var(--f-size-h2);
-        margin-block: 105px 60px;
-    }
-    .cloud {
-        width: 1000px;
-        right: 0px;
-        top: -141px;
-    }
 }
+
 @include mixins.media-min(variables.$pc) {
     .grandpaWrapper {
         margin-right: 0;
     }
+
     .main {
         width: 1280px;
     }

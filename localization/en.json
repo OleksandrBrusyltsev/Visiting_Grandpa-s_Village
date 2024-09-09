@@ -13,7 +13,7 @@
   },
   "Breadcrumbs": {
     "home": "Home",
-    "houses": "Accommodation",
+    "houses": "Live",
     "meals": "Meals",
     "entertainment": "Entertainment",
     "gallery": "Gallery",
@@ -48,7 +48,8 @@
   "UI": {
     "visit": "Visit",
     "home": "Home Page",
-    "currLink": "You are already on this page"
+    "currLink": "You are already on this page",
+    "view": "View more"
   },
   "Gallery": {
     "clickMode": "{mode, select, desktop {Click} mobile {Press} other {Unknown}} on the photo to see more",

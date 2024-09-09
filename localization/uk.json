@@ -48,7 +48,8 @@
   "UI": {
     "visit": "Завітати",
     "home": "На Головну",
-    "currLink": "Ви вже на цій сторінці"
+    "currLink": "Ви вже на цій сторінці",
+    "view": "Переглянути"
   },
   "Gallery": {
     "clickMode": "{mode, select, desktop {Клікай} mobile {Натискай} other {Unknown}} на фото, щоб подивитись більше",

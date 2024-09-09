@@ -2,13 +2,13 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from 'next/image';
-import { forwardRef, useContext, useEffect } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { forwardRef, useContext } from "react";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
 
 import Button from "../ui/Button/Button";
 
 import s from "./GalleryItem.module.scss";
-import { useLocale } from "next-intl";
 
 type Props = { data: GalleryItem };
 
@@ -22,6 +22,7 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
   const { isMobile, isTablet } = useContext(MatchMediaContext);
   const { name, cover } = data;
   const title = data.title[locale as keyof typeof data.title];
+  const t = useTranslations("UI");
 
   return (
     <Link
@@ -44,7 +45,7 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
       </div>
       <div className={s.btnWrapper}>
         <Button
-          label={isMobile || isTablet ? title : "Переглянути"}
+          label={isMobile || isTablet ? title : t('view')}
           type="button"
           tabIndex={-1}
         />

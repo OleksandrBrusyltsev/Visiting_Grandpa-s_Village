@@ -1,31 +1,34 @@
 "use client";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 import Icon from "../ui/Icon/Icon";
-import Button from "../ui/Button/Button";
 import GalleryItemPageList from "./GalleryItemPageList";
 import SwiperGalleryItem from "./SwiperGalleryItem";
 import Modal from "../ui/Modal/Modal";
+import { MatchMediaContext } from "@/context/MatchMediaContext";
+import SloganBlock from "./SloganBlock";
 
 import s from "./GalleryItemPage.module.scss";
-import { ScrollTrigger } from "gsap/all";
-import { MatchMediaContext } from "@/context/MatchMediaContext";
 
 type Props = { item: GalleryItem };
 
 export default function GalleryItemPage({ item }: Props) {
   const locale = useLocale();
+  const t = useTranslations("Gallery");
+
   const [isOpenSwiper, setIsOpenSwiper] = useState<boolean>(false);
   const [firstSlide, setFirstSlide] = useState<number>(0);
   const { description, gallery } = item;
-  const quote = description.filter((d) => d.language === locale)[0].text;
   const galleryRef = useRef<Array<HTMLLIElement>>([]);
   const { isMobile } = useContext(MatchMediaContext);
+
+  const quote = description[locale as keyof typeof description];
+
   const toggleSwiper = (i: number) => {
     setIsOpenSwiper(!isOpenSwiper);
     setFirstSlide(i);
@@ -41,7 +44,7 @@ export default function GalleryItemPage({ item }: Props) {
 
   useGSAP(() => {
     ScrollTrigger.refresh();
-    
+
     const mm = gsap.matchMedia();
     mm.add(
       {
@@ -115,9 +118,8 @@ export default function GalleryItemPage({ item }: Props) {
         </section>
         <div className={s.main}>
           <p className={`${s.callToClick} container`}>
-            <span className={s.desktopOnly}>Клікай</span>
-            <span className={s.mobileOnly}>Натискай</span> на фото, щоб
-            подивитись більше
+            <span className={s.desktopOnly}>{t('clickMode', { mode: 'desktop' })}</span>
+            <span className={s.mobileOnly}>{t('clickMode', { mode: 'mobile' })}</span>
             <Icon name="curve-gallery-chapter" className={s.curve} />
           </p>
           <GalleryItemPageList>
@@ -141,21 +143,7 @@ export default function GalleryItemPage({ item }: Props) {
               </li>
             ))}
           </GalleryItemPageList>
-          <div className={`${s.callToAction} container`}>
-            <div className={s.cloud}>
-              <Icon name="cloud" />
-            </div>
-            <p className={s.slogan}>
-              А далі створимо нові щасливі спогади разом.
-            </p>
-            <Link href={`/${locale}/booking`}>
-              <Button
-                label="Завітати"
-                type={"button"}
-                className={s.btnCallToAction}
-              />
-            </Link>
-          </div>
+          <SloganBlock />
         </div>
       </div>
       {isOpenSwiper && (

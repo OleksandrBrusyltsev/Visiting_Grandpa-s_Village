@@ -1,0 +1,67 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.callToAction {
+    text-align: end;
+    font-family: var(--f-family-headline);
+    margin-bottom: 89px;
+
+    .btnCallToAction {
+        max-width: 297px;
+        padding-block: 11.5px;
+    }
+}
+
+.slogan {
+    color: rgb(var(--color-base-green));
+    font-size: var(--f-size-body);
+    line-height: 1;
+    max-width: 220px;
+    margin: 50px 0 30px auto;
+}
+
+.cloud {
+    display: none;
+}
+
+@include mixins.media-min(variables.$mobile) {
+    .callToAction {
+        position: relative;
+        margin-bottom: 106px;
+    }
+
+    .slogan {
+        font-size: var(--f-size-body-big);
+        line-height: 1.1;
+        margin-block: 132px 40px;
+        max-width: unset;
+    }
+
+    .cloud {
+        color: rgba(179, 161, 137, 0.5);
+        display: block;
+        position: absolute;
+        top: -132px;
+        right: -40px;
+        width: 700px;
+        aspect-ratio: 2.02;
+        z-index: -1;
+    }
+}
+
+@include mixins.media-min(variables.$breakpoint-laptop) {
+    .callToAction {
+        margin-bottom: 142px;
+    }
+
+    .slogan {
+        font-size: var(--f-size-h2);
+        margin-block: 105px 60px;
+    }
+
+    .cloud {
+        width: 1000px;
+        right: 0px;
+        top: -141px;
+    }
+}
