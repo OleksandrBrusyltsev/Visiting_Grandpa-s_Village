@@ -49,7 +49,10 @@
     "visit": "Visit",
     "home": "Home Page",
     "currLink": "You are already on this page",
-    "view": "View more"
+    "view": "View more",
+    "askGrandpa": "Ask Grandpa",
+    "copyrights": "© 2024 Eco-estate “At Grandpa's Village”",
+    "rules": "Booking conditions and rules of stay"
   },
   "Gallery": {
     "clickMode": "{mode, select, desktop {Click} mobile {Press} other {Unknown}} on the photo to see more",
@@ -63,5 +66,40 @@
     "phone": "Phone",
     "address": "Address",
     "FAQTitle": "Most often Grandpa is asked"
+  },
+  "Visit": {
+    "title": "Choose when you plan to visit the Estate",
+    "text": "“Grandpa will quickly find the best accommodation options for these days”"
+  },
+  "BookingForm": {
+    "adults": "Adults",
+    "children": "Children",
+    "guests": "Guests",
+    "arrival": "Arrival",
+    "departure": "Departure",
+    "search": "{search, select, true {Book} other {Search}}",
+    "note1": "Children under 3 years old without extra bed are not charged.",
+    "note2": "Children from 3 to 12 years old, with a separate bed, are charged at the children's rate - 150 UAH/day."
+  },
+  "Rules": {
+    "title": "Your grandfather has some small whishes and rules that apply in the eco-estate",
+    "note1": "A little reminder:",
+    "note2": "Grandpa and the team of the <a href=\"/\">Eco-estate “At Grandpa's village” </a> are your friends, always ready to help and make your vacation pleasant and unforgettable.",
+    "note3": "Also remember that we cannot control the weather and other external circumstances, but we guarantee you a warm welcome and a comfortable stay.",
+    "note4": "“At Grandpa's village” guests get good, pleasant emotions and create unique, warm memories.",
+    "note5": "Public offer"
+  },
+  "BookingStub": {
+    "fillForm": "Fill the form",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "phone": "Phone",
+    "commentLabel": "Comment",
+    "comment": "I need room{house}for {guests, plural, =1 {one person} other {# persons}} on {startDate}-{endDate}",
+    "or": "or",
+    "call": "call us ",
+    "write": "write to us in Telegram",
+    "requiredField": "This field is required",
+    "phoneFormat": "Phone number format +38 (0XX) XXX XX XX"
   }
 }

@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 
 import Icon from "../ui/Icon/Icon";
+import MarkdownPreview from "@/functions/MarkdownPreview";
 
 import s from "./Footer.module.scss";
 import { navLinks } from "@/data/navigationMenu";
@@ -87,13 +88,15 @@ export default function Footer() {
         <div className={s.contactsWrap}>
           <Icon name="map" className={s.contactsIcon} />
           <Link href={mapUrl} target="_blank" className={s.contactsText}>
-            Україна, Чернігівська область, с. Олешня, вул. Озерна 5
+            <MarkdownPreview
+              markdown={contacts.address[locale as keyof typeof contacts.address]}
+            />
           </Link>
         </div>
         <div className={s.contactsWrap}>
           <Icon name="handset" className={s.contactsIcon} />
-          <Link href={`tel:+380931919663`} className={s.contactsText}>
-            +38 (093) 191 96 63
+          <Link href={`tel:${contacts.phone.replace(/[^+\d]/g, '')}`} className={s.contactsText}>
+            {contacts.phone}
           </Link>
         </div>
       </div>
@@ -108,12 +111,12 @@ export default function Footer() {
         ))}
       </ul>
       <div className={`${s.copyrightBox}`}>
-        <p className={s.copyright}>© 2024 Еко-садиба “На селі у Дідуся”</p>
+        <p className={s.copyright}>{t('copyrights')}</p>
         <Link
           href={`/${locale}/booking/rules`}
           className={`${s.copyright} ${s.text}`}
         >
-          Умови бронювання та правила перебування
+          {t('rules')}
         </Link>
       </div>
     </footer>

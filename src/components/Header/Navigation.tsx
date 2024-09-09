@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import css from "./Navigation.module.scss";
 
@@ -10,6 +10,8 @@ import { usePathname } from "next/navigation";
 
 const Navigation = () => {
   const locale = useLocale();
+  const t = useTranslations("UI");
+
   const pathname = usePathname();
 
   return (
@@ -22,7 +24,7 @@ const Navigation = () => {
             }`}
         >
           {pathname === `/${locale}/${link}` ? (
-            <p title="Ви вже на цій сторінці">{label[locale as keyof typeof label]}</p>
+            <p title={t('currLink')}>{label[locale as keyof typeof label]}</p>
           ) : (
             <Link href={`/${locale}/${link}`}>{label[locale as keyof typeof label]}</Link>
           )}

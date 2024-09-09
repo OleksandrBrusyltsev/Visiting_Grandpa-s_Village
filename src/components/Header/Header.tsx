@@ -2,7 +2,7 @@
 
 import { useContext, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -15,18 +15,22 @@ import useRegisterGSAP from "@/hooks/useRegisterGSAP";
 import css from "./Header.module.scss";
 
 const image = "/images/logo-main.svg";
-const alt = "Logo main";
 
 const Header = () => {
   const [isVisible, setVisible] = useState(false);
+  const { isMobile } = useContext(MatchMediaContext);
+
   useRegisterGSAP();
+
   const { push } = useRouter();
   const pathname = usePathname();
+
   const locale = useLocale();
+  const t = useTranslations("UI");
+
   const handlePopup = () => {
     setVisible(!isVisible);
   };
-  const { isMobile } = useContext(MatchMediaContext);
 
   return (
     <>
@@ -46,7 +50,7 @@ const Header = () => {
           {/* block circular reference */}
           {pathname === `/${locale}` ? (
             <Image
-              title="Ви вже на цій сторінці"
+              title={t('currLink')}
               src={image}
               alt=""
               width={144}
@@ -92,7 +96,7 @@ const Header = () => {
             </button>
 
             <Button
-              label={"Завітати"}
+              label={t('visit')}
               type={"button"}
               size={"header"}
               className={css.headerBtn}

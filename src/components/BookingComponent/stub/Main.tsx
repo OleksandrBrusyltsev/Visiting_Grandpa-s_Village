@@ -1,6 +1,6 @@
 
 import Script from 'next/script';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useContext, useEffect, useRef } from 'react'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -12,7 +12,7 @@ import Button from '@/components/ui/Button/Button';
 import { OrderType } from '../BookingComponent';
 
 import s from "./Main.module.scss";
-import {messages} from '@/data/bookingStub';
+import { messages } from '@/data/bookingStub';
 
 type Props = {
     order: OrderType;
@@ -32,18 +32,22 @@ declare global {
         };
         onloadCallback: () => void;
     }
-  }
+}
 const validatePhone = (phone: string) => {
     return phone.match(/^\+38\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}$/)
 }
 
-export default function ContactForm({order, isOpen, handleClose, handleBotResponse}: Props) {
-    const {isMobile} = useContext(MatchMediaContext);
+export default function ContactForm({ order, isOpen, handleClose, handleBotResponse }: Props) {
+    const { isMobile } = useContext(MatchMediaContext);
     const wrapperRef = useRef<HTMLDivElement | null>(null);
     const formRef = useRef<HTMLFormElement | null>(null);
     const recaptchaId = useRef<string | null>(null);
+
     const locale = useLocale();
-    const {title, subtitle, message} = messages[0];
+    const t = useTranslations("BookingStub");
+
+    const { title, subtitle, message } = messages[0];
+
 
     const loadRecaptcha = () => {
         if (window.grecaptcha) {
@@ -63,7 +67,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
             loadRecaptcha();
         };
         return () => {
-            window.onloadCallback = () => {};
+            window.onloadCallback = () => { };
         };
     }, []);
 
@@ -76,32 +80,32 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
 
     //анимация открытия/закрытия главной формы
     useGSAP(() => {
-        if(isOpen) {
-            gsap.set(wrapperRef.current, {display:'flex'});
+        if (isOpen) {
+            gsap.set(wrapperRef.current, { display: 'flex' });
             gsap.to(wrapperRef.current, {
-                opacity: 1, 
+                opacity: 1,
                 ease: 'power1.out',
-                duration: 0.3 
+                duration: 0.3
             })
         }
-        if(!isOpen) {
+        if (!isOpen) {
             gsap.to(wrapperRef.current, {
-                opacity: 0, 
+                opacity: 0,
                 ease: 'power1.out',
-                duration: 0.3, 
-                onComplete: () => {gsap.set(wrapperRef.current, {display:'none'})}
+                duration: 0.3,
+                onComplete: () => { gsap.set(wrapperRef.current, { display: 'none' }) }
             })
         }
-    }, {dependencies: [isOpen]});
+    }, { dependencies: [isOpen] });
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
+
         const data = new FormData(e.target as HTMLFormElement);
 
         let formData: { [key: string]: any } = Object.fromEntries(data.entries());
         //валидация номера телефона
-        if(formRef.current && !validatePhone(formData.phone)) {
+        if (formRef.current && !validatePhone(formData.phone)) {
             (formRef.current[1] as HTMLInputElement).style.outline = '2px solid red';
             (formRef.current[1] as HTMLInputElement).focus();
             return
@@ -113,40 +117,40 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
             return;
         }
 
-        formData = {...formData, recaptchaResponse};
-        
+        formData = { ...formData, recaptchaResponse };
+
         formRef.current?.requestSubmit();
 
         const botResponse = await telegramAction(formData);
-        if(botResponse?.status) {
+        if (botResponse?.status) {
             //reset form    
             (e.target as HTMLFormElement).reset();
-        } 
+        }
 
         handleBotResponse(botResponse ? botResponse.status : null);
     }
-    
-    if(!handleClose) return
+
+    if (!handleClose) return
 
     return (
         <>
             <div className={s.wrapper} ref={wrapperRef}>
-                <h1 className={s.title}>{title}</h1>
+                <h1 className={s.title}>{title[locale as keyof typeof title]}</h1>
                 <form className={s.form} onSubmit={onSubmit} ref={formRef}>
                     <label htmlFor="name" className={s.label}>
-                        {isMobile ? null : <span>Ім&apos;я</span>}
-                        <input 
-                            type="text" 
+                        {isMobile ? null : <span>{t('name')}</span>}
+                        <input
+                            type="text"
                             name='name'
                             autoFocus
                             maxLength={30}
-                            className={s.input} 
+                            className={s.input}
                             autoComplete='off'
-                            placeholder={isMobile ? 'Ваше ім’я' : ''}
+                            placeholder={isMobile ? t('namePlaceholder') : ''}
                             title=''
-                            required 
+                            required
                             onInvalid={(e: any) => {
-                                e.target.setCustomValidity('Це поле є обов’язковим');
+                                e.target.setCustomValidity(t('requiredField'));
                                 // e.target.style.outline = '2px solid red';
                             }}
                             onChange={(e: any) => {
@@ -155,7 +159,7 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                         />
                     </label>
                     <label htmlFor="phone" className={s.label}>
-                        {isMobile ? null : <span>Телефон</span>}
+                        {isMobile ? null : <span>{t('phone')}</span>}
                         <PhoneInputMask
                             mask="+38 (099) 999 99 99"
                             maskPlaceholder="_"
@@ -166,15 +170,15 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                             title=''
                             pattern="\+38\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}"
                             onInvalid={(e: any) => {
-                                e.target.setCustomValidity('Це поле є обов’язковим');
+                                e.target.setCustomValidity(t('requiredField'));
                                 // e.target.style.outline = '2px solid red';
                             }}
                             onChange={(e: any) => {
                                 if (e.target.value === '' || e.target.value === '+3 (0__) ___ __ __') {
-                                    e.target.setCustomValidity('Це поле є обов’язковим');
+                                    e.target.setCustomValidity(t('requiredField'));
                                     // e.target.style.outline = '2px solid red';
-                                } else if(!validatePhone(e.target.value)) {
-                                    e.target.setCustomValidity('Формат номеру телефону +38 (0XX) XXX XX XX');
+                                } else if (!validatePhone(e.target.value)) {
+                                    e.target.setCustomValidity(t('phoneFormat'));
                                 } else {
                                     e.target.setCustomValidity('');
                                     // e.target.style.outline = 'initial';
@@ -185,35 +189,40 @@ export default function ContactForm({order, isOpen, handleClose, handleBotRespon
                         />
                     </label>
                     <label htmlFor="message" className={s.label}>
-                        {isMobile ? null : <span>Коментар</span>}
-                        <textarea 
-                            name="message" 
-                            defaultValue={`Потрібен номер${order.house ? ` ${order.house} ` : ' '}на ${order.guests}х з ${order.startDate}-${order.endDate}`} 
-                            placeholder={message}
-                            rows={5} 
+                        {isMobile ? null : <span>{t('commentLabel')}</span>}
+                        <textarea
+                            name="message"
+                            defaultValue={t('comment', {
+                                house: order.house ? ` ${order.house} ` : ' ',
+                                guests: order.guests,
+                                startDate: order.startDate,
+                                endDate: order.endDate
+                            })}
+                            placeholder={message[locale as keyof typeof message]}
+                            rows={5}
                             required
                             title=''
                             maxLength={500}
                             autoComplete='off'
-                            onInvalid={(e: any) => e.target.setCustomValidity('Це поле є обов’язковим')}
+                            onInvalid={(e: any) => e.target.setCustomValidity(t('requiredField'))}
                             onChange={(e: any) => e.target.setCustomValidity('')}
                             className={s.input}
                         />
                     </label>
-                    <div className={`${s.recaptcha} g-recaptcha`} id='g-recaptcha' data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_TOKEN}/>
-                    <Button 
-                        label={subtitle}
-                        className={s.btn} 
-                        type='submit' 
+                    <div className={`${s.recaptcha} g-recaptcha`} id='g-recaptcha' data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_TOKEN} />
+                    <Button
+                        label={subtitle[locale as keyof typeof subtitle]}
+                        className={s.btn}
+                        type='submit'
                         size='default'
                     />
                 </form>
                 <div className={s.altContacts}>
-                    <p className={s.altContact}>або</p>
-                    <p className={s.altContact}>зателефонуйте 
+                    <p className={s.altContact}>{t('or')}</p>
+                    <p className={s.altContact}>{t('call')}
                         <a href="tel:+380931919663" className={s.phone}> +38(093) 19-19-663</a>,
                     </p>
-                    <p className={s.altContact}>напишіть нам в Телеграм 
+                    <p className={s.altContact}>{t('write')}
                         <a
                             href="https://t.me/VisitingGrandpasVillage_Operator"
                         >
