@@ -2,9 +2,12 @@
 
 import { FC } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
-import IconTelegram from "../../../assets/icons/icon-telegram.svg";
+
 import Map from "../../../../public/images/contacts/map.png";
+import MarkdownPreview from "@/functions/MarkdownPreview";
+
 import s from "./TelegramBlock.module.scss";
 
 type TelegramBlockProps = {
@@ -20,22 +23,29 @@ const TelegramBlock: FC<TelegramBlockProps> = ({
   mapRef,
   telegramLinkWrapperRef,
 }) => {
+  const t = useTranslations('Contacts');
+
   return (
     <>
-      <h1 className={s.telegramTitle} ref={telegramTitleRef}>
-        Контакти еко-садиби &quot;На селі у дідуся&quot;
+      <h1 className={s.telegramTitle} ref={telegramTitleRef}
+        dangerouslySetInnerHTML={{
+          __html: t('title'),
+        }}
+      >
       </h1>
       <div className={s.telegramWrapper}>
-        <p className={s.telegramText} ref={telegramTextRef}>
-          Незважаючи на поважний вік твій Дідусь дуже сучасний, тому має
-          <span className={s.telegramTextBold}>&#x20;Telegram-bot&#x20;</span>,
-          знаю як ти любиш корисні зручні сервіси.
-        </p>
+        <div className={s.telegramText} ref={telegramTextRef}>
+          <MarkdownPreview markdown={
+            t('text1')
+          } />
+        </div>
         <Image src={Map} alt="" className={s.map} ref={mapRef} />
         <div className={s.telegramLinkWrapper} ref={telegramLinkWrapperRef}>
-          <p className={s.telegramLinkText}>
-            Скористайся, щоб забронювати будиночок, або запитати
-          </p>
+          <div className={s.telegramLinkText}>
+            <MarkdownPreview markdown={
+              t('text2')
+            } />
+          </div>
           <Link
             href="https://t.me/VisitingGrandpasVillage_Operator"
             className={s.telegramBotLink}
@@ -43,7 +53,7 @@ const TelegramBlock: FC<TelegramBlockProps> = ({
             <svg className={s.telegramIcon}>
               <use xlinkHref="/sprite.svg#telegram" />
             </svg>
-            <p className={s.telegramIconText}>Чат-Бот</p>
+            <p className={s.telegramIconText}>{t('text3')}</p>
           </Link>
         </div>
       </div>

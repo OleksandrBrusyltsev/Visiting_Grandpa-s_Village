@@ -4,11 +4,13 @@ import { FC, useState, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useRef } from "react";
-import faqData from "./faqData.json";
+import { useLocale, useTranslations } from "next-intl";
+
 import Lake from "../../../../public/images/contacts/lake.png";
 import DownIcon from "../../../assets/icons/icon-down.svg";
 import UpIcon from "../../../assets/icons/icon-up.svg";
 import s from "./FAQ.module.scss";
+import { contacts } from "@/data/contacts";
 
 type FAQProps = {
   lakeRef: React.RefObject<HTMLImageElement>;
@@ -20,6 +22,8 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
   const [openIndices, setOpenIndices] = useState<number[]>([]);
   const imgAndFaqWrapper = useRef<HTMLDivElement>(null);
   const answerRefs = useRef<(HTMLParagraphElement | null)[]>([]);
+  const t = useTranslations("Contacts");
+  const locale = useLocale();
 
   const toggleAnswer = (index: number) => {
     if (openIndices.includes(index)) {
@@ -46,11 +50,10 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
 
       if (imgAndFaqWrapper.current && faqWrapperRef.current) {
         const faqHeight = faqWrapperRef.current.offsetHeight;
-        const additionalMargin = 60; 
+        const additionalMargin = 60;
         // Добавление 60 пикселей или сбрасываем марджин, если ширина экрана больше или равна breakpoint
-        imgAndFaqWrapper.current.style.marginBottom = screenWidth < breakpoint ? `${
-          faqHeight + additionalMargin
-        }px` : '';
+        imgAndFaqWrapper.current.style.marginBottom = screenWidth < breakpoint ? `${faqHeight + additionalMargin
+          }px` : '';
       }
     };
 
@@ -61,7 +64,7 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         if (
-          mutation.type === "attributes" 
+          mutation.type === "attributes"
         ) {
           updateMargin();
           break;
@@ -90,12 +93,12 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
     <div className={s.imgAndFaqWrapper} ref={imgAndFaqWrapper}>
       <Image src={Lake} alt="" className={s.lake} ref={lakeRef} />
       <h2 className={s.faqTitle} ref={faqTitleRef}>
-        Частіше за все Дідуся запитують
+        {t('FAQTitle')}
       </h2>
 
       <div className={s.faqWrapper} ref={faqWrapperRef}>
         <ul className={s.faqList}>
-          {faqData.map((item, index) => (
+          {contacts.faq[locale as keyof typeof contacts.faq].map((item, index) => (
             <li key={index} className={s.faqItem}>
               <div
                 className={s.questionWrapper}

@@ -2,53 +2,55 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 
 import Icon from "../ui/Icon/Icon";
 
 import s from "./Footer.module.scss";
 import { navLinks } from "@/data/navigationMenu";
+import { contacts } from "@/data/contacts";
 
 const image = "/images/logo-main.svg";
-
-const socialMediaLinks = [
-  {
-    id: 1,
-    link: "https://www.facebook.com/ecousadba.in.ua/",
-    icon: "facebook",
-    ariaLabel: "link to facebook",
-  },
-  {
-    id: 2,
-    link: "https://t.me/VisitingGrandpasVillage_Operator",
-    icon: "telegram",
-    ariaLabel: "link to telegram",
-  },
-  {
-    id: 3,
-    link: "https://www.instagram.com/ecousadba.in.ua/",
-    icon: "instagram",
-    ariaLabel: "link to instagram",
-  },
-  {
-    id: 4,
-    link: "https://www.linkedin.com/company/grandpa-s-village/",
-    icon: "linkedin",
-    ariaLabel: "link to linkedin",
-  },
-];
 
 export default function Footer() {
   const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
   const locale = useLocale();
   const pathname = usePathname();
+  const t = useTranslations("UI");
+
+  const socialLinks = [
+    {
+      id: 1,
+      link: contacts.facebook_link,
+      icon: 'facebook',
+      ariaLabel: 'link to facebook',
+    },
+    {
+      id: 2,
+      link: contacts.telegram_link,
+      icon: 'telegram',
+      ariaLabel: 'link to telegram',
+    },
+    {
+      id: 3,
+      link: contacts.instagram_link,
+      icon: 'instagram',
+      ariaLabel: 'link to instagram',
+    },
+    {
+      id: 4,
+      link: contacts.linkedin_link,
+      icon: 'linkedin',
+      ariaLabel: 'link to linkedin',
+    },
+  ];
 
   return (
     <footer className={s.footer}>
       {pathname === `/${locale}` ? (
         <Image
-          title="Ви вже на цій сторінці"
+          title={t('currLink')}
           src={image}
           alt="logo"
           width={144}
@@ -72,7 +74,7 @@ export default function Footer() {
           {navLinks.map(({ id, label, link }) => (
             <li key={id} className={s.navItem}>
               {pathname === `/${locale}/${link}` ? (
-                <p title="Ви вже на цій сторінці">{label[locale as keyof typeof label]}</p>
+                <p title={t('currLink')}>{label[locale as keyof typeof label]}</p>
               ) : (
                 <Link href={`/${locale}/${link}`}>{label[locale as keyof typeof label]}</Link>
               )}
@@ -97,7 +99,7 @@ export default function Footer() {
       </div>
 
       <ul className={s.socialMedia}>
-        {socialMediaLinks.map(({ link, icon, id, ariaLabel }) => (
+        {socialLinks.map(({ link, icon, id, ariaLabel }) => (
           <li key={id}>
             <Link href={link} target="_blank" aria-label={ariaLabel}>
               <Icon name={icon} className={s.socialMediaIcon} />
