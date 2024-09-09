@@ -4,38 +4,41 @@
 .backgroundImages {
     max-width: 450px;
     margin: 0 auto 89px;
-    background-image: 
-    url('/images/backgrounds/christmasTrees.png'), 
-    url('/images/backgrounds/christmasTrees.png'), 
-    url('/images/backgrounds/christmasTrees.png'), 
-    url('/images/backgrounds/christmasTrees.png'), 
-    url('/images/backgrounds/christmasTrees.png'), 
-    url('/images/backgrounds/christmasTrees.png'), 
-    url('/images/backgrounds/christmasTrees.png');
+    background-image:
+        url('/images/backgrounds/christmasTrees.png'),
+        url('/images/backgrounds/christmasTrees.png'),
+        url('/images/backgrounds/christmasTrees.png'),
+        url('/images/backgrounds/christmasTrees.png'),
+        url('/images/backgrounds/christmasTrees.png'),
+        url('/images/backgrounds/christmasTrees.png'),
+        url('/images/backgrounds/christmasTrees.png');
     background-repeat: no-repeat;
-    background-position: left 125px, 
-    right calc(100% / 1644px * 360px),
-    left calc(100% / 1644px * 540px),
-    left calc(100% / 1644px * 870px),
-    right calc(100% / 1644px * 1120px),
-    left calc(100% / 1644px  * 1330px),
-    calc(55% - 50px) calc(100% / 1644px * 1600px);
+    background-position: left 125px,
+        right calc(100% / 1644px * 360px),
+        left calc(100% / 1644px * 540px),
+        left calc(100% / 1644px * 870px),
+        right calc(100% / 1644px * 1120px),
+        left calc(100% / 1644px * 1330px),
+        calc(55% - 50px) calc(100% / 1644px * 1600px);
     background-size: 240px 231px;
 }
 
-.hero, 
+.hero,
 .main {
     width: 100%;
     max-width: 550px;
     margin: 0 auto;
     @include mixins.mak-green;
 }
+
 .hero {
     margin-top: 16px;
 }
+
 .main {
     margin-top: 26px;
 }
+
 .heroWrapper {
     position: relative;
 }
@@ -64,22 +67,20 @@
     object-fit: contain;
 }
 
-.noBreak {
-    white-space: nowrap;
-}
-.memoriesGallery{
+.memoriesGallery {
     position: relative;
 }
+
 .backgroundCurve {
     position: absolute;
     top: -4px;
     left: 0px;
-    right: 0px; 
+    right: 0px;
     bottom: -32px;
     background-image: url('/images/backgrounds/curve-375-1.svg'),
-    url('/images/backgrounds/curve-375-2.svg');
-    background-position: 13px top, 
-            11px bottom;
+        url('/images/backgrounds/curve-375-2.svg');
+    background-position: 13px top,
+        11px bottom;
     background-size: 87% auto, 92% auto;
     background-repeat: no-repeat;
     z-index: -1;
@@ -109,6 +110,7 @@
 
 .callToAction {
     text-align: end;
+
     .btnCallToAction {
         max-width: 297px;
         padding-block: 11.5px;
@@ -133,25 +135,27 @@
         margin: unset;
         margin-bottom: 106px;
         max-width: unset;
-        background-image: 
-            url('/images/backgrounds/christmasTrees.png'), 
-            url('/images/backgrounds/christmasTrees.png'), 
+        background-image:
             url('/images/backgrounds/christmasTrees.png'),
-            url('/images/backgrounds/christmasTrees.png'),;
+            url('/images/backgrounds/christmasTrees.png'),
+            url('/images/backgrounds/christmasTrees.png'),
+            url('/images/backgrounds/christmasTrees.png');
         background-repeat: no-repeat;
         background-position: 110px 200px,
-                            80% calc(100% / 1500px * 550px),
-                            12% calc(100% / 1500px * 960px),
-                            calc(50% + 100px * (100vw / 768px)) calc(100% / 1500px * 1415px);
+            80% calc(100% / 1500px * 550px),
+            12% calc(100% / 1500px * 960px),
+            calc(50% + 100px * (100vw / 768px)) calc(100% / 1500px * 1415px);
     }
 
     .hero,
     .main {
         max-width: unset;
     }
+
     .main {
         margin-top: 90px;
     }
+
     .descr1 {
         max-width: 370px;
         margin: 0 auto 0 14vw;
@@ -170,17 +174,17 @@
         right: calc((100vw - 768px) / 3);
         top: -41px;
     }
-    
+
     .backgroundCurve {
         background-image: url('/images/backgrounds/curve-768.svg');
         background-size: 100% 100%;
-        background-position: unset; 
+        background-position: unset;
         top: -60px;
         left: 0px;
-        right: 0px; 
+        right: 0px;
         bottom: -96px;
     }
-    
+
     .callToClick {
         font-size: 20px;
         width: unset;
@@ -202,6 +206,7 @@
         margin-block: 132px 40px;
         max-width: unset;
     }
+
     .cloud {
         color: rgba(179, 161, 137, 0.5);
         display: block;
@@ -212,18 +217,22 @@
         aspect-ratio: 2.02;
         z-index: -1;
     }
+
     @media (hover: hover) {
         .desktopOnly {
             display: inline;
         }
+
         .mobileOnly {
             display: none;
         }
     }
+
     @media (hover: none) {
         .desktopOnly {
             display: none;
         }
+
         .mobileOnly {
             display: inline;
         }
@@ -234,28 +243,32 @@
 
     .backgroundImages {
         margin-bottom: 142px;
-        background-image: 
-            url('/images/backgrounds/christmasTrees.png'), 
-            url('/images/backgrounds/christmasTrees.png'), 
+        background-image:
+            url('/images/backgrounds/christmasTrees.png'),
+            url('/images/backgrounds/christmasTrees.png'),
             url('/images/backgrounds/christmasTrees.png'),
             url('/images/backgrounds/christmasTrees.png'),
             url('/images/backgrounds/christmasTrees.png');
         background-repeat: no-repeat;
         background-position: 43% 200px,
-                            80% calc(100% / 2050px * 620px),
-                            30% calc(100% / 2050px * 800px),
-                            23% calc(100% / 2050px * 1350px),
-                            55% calc(100% / 2050px * 1700px);
+            80% calc(100% / 2050px * 620px),
+            30% calc(100% / 2050px * 800px),
+            23% calc(100% / 2050px * 1350px),
+            55% calc(100% / 2050px * 1700px);
     }
+
     .desktopOnly {
         display: inline;
     }
+
     .hero {
         margin-top: 42px;
     }
+
     .main {
         margin-top: 117px;
     }
+
     .mobileOnly {
         display: none;
     }
@@ -268,6 +281,7 @@
 
     .descr2 {
         padding-left: 330px;
+        max-width: 900px;
         font-size: var(--f-size-large);
         text-align: left;
         margin: 60px 0 0;
@@ -288,7 +302,7 @@
         background-size: contain;
         top: -71px;
         left: 38px;
-        right: 0px; 
+        right: 0px;
         bottom: -47px;
     }
 
@@ -301,6 +315,7 @@
         font-size: var(--f-size-h2);
         margin-block: 105px 60px;
     }
+
     .cloud {
         width: 1000px;
         right: -110px;

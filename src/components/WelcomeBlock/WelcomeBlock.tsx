@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Button from "../ui/Button/Button";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import WelcomeBlockType from "../../types/welcomeBlock";
 
@@ -12,6 +12,8 @@ const alt = "Landscape picture";
 
 const WelcomeBlock: React.FC<WelcomeBlockType> = ({ text }) => {
   const locale = useLocale();
+  const tGlobal = useTranslations('UI');
+
   return (
     <div className={style.blockWrapper}>
       <div className={style.textWrapper}>
@@ -28,7 +30,7 @@ const WelcomeBlock: React.FC<WelcomeBlockType> = ({ text }) => {
         />
         <div className={style.buttonWrapper}>
           <Link href={`/${locale}/booking`}>
-            <Button size="large" label="Завітати" className={style.button} />
+            <Button size="large" label={tGlobal('visit')} className={style.button} />
           </Link>
         </div>
       </div>

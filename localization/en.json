@@ -48,5 +48,9 @@
   "UI": {
     "visit": "Visit",
     "home": "Home Page"
+  },
+  "Gallery": {
+    "clickMode": "{mode, select, desktop {Click} mobile {Press} other {Unknown}} on the photo to see more",
+    "slogan": "And then we will create new happy memories together."
   }
 }

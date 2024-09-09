@@ -48,5 +48,9 @@
   "UI": {
     "visit": "Завітати",
     "home": "На Головну"
+  },
+  "Gallery": {
+    "clickMode": "{mode, select, desktop {Клікай} mobile {Натискай} other {Unknown}} на фото, щоб подивитись більше",
+    "slogan": "А далі створимо нові щасливі спогади разом."
   }
 }

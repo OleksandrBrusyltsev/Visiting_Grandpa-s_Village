@@ -2,21 +2,27 @@ type GalleryItem = {
     id: number;
     name: string;
     title: {
-        language: string,
-        text: string,
-    }[];
+        en: string;
+        ru: string;
+        uk: string;
+    };
     cover: {
-        id: number,
-        src: string,
-        description: string,
+        id: number;
+        src: string;
+        description: {
+            en: string;
+            ru: string;
+            uk: string;
+        };
     }[];
     gallery: {
-        id: number,
-        src: string,
-        description: string,
+        id: number;
+        src: string;
+        description: string;
     }[];
     description: {
-        language: string,
-        text: string,
-    }[];
+        en: string;
+        ru: string;
+        uk: string;
+    };
 };

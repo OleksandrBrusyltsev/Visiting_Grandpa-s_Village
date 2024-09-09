@@ -1,5 +1,5 @@
 "use client";
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from 'next/image';
 import { forwardRef, useContext, useEffect } from "react";
@@ -8,6 +8,7 @@ import { MatchMediaContext } from "@/context/MatchMediaContext";
 import Button from "../ui/Button/Button";
 
 import s from "./GalleryItem.module.scss";
+import { useLocale } from "next-intl";
 
 type Props = { data: GalleryItem };
 
@@ -15,12 +16,12 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
   { data },
   ref
 ) {
-  const { locale } = useParams();
+  const locale = useLocale();
   const path = usePathname();
   const pathName = path.split('/')[2];
-  const {isMobile, isTablet} = useContext(MatchMediaContext);
-  const {name, cover} = data;
-  const title = data.title.filter(item => item.language === locale)[0].text;
+  const { isMobile, isTablet } = useContext(MatchMediaContext);
+  const { name, cover } = data;
+  const title = data.title[locale as keyof typeof data.title];
 
   return (
     <Link
@@ -33,7 +34,7 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
         <Image
           className={s.itemImage}
           src={cover[0].src}
-          alt={cover[0].description}
+          alt={cover[0].description[locale as keyof typeof cover[0]['description']]}
           sizes="(max-width: 768px) 100vw, 50vw"
           fill
         />
