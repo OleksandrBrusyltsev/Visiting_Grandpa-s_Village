@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -8,9 +9,10 @@ import Icon from "../ui/Icon/Icon";
 
 import s from "./Visit.module.scss";
 
-type Props = {};
+export default function Visit() {
 
-export default function Visit({}: Props) {
+  const t = useTranslations('Visit');
+
   useGSAP(() => {
     const mm = gsap.matchMedia();
     mm.add(
@@ -28,6 +30,7 @@ export default function Visit({}: Props) {
                 autoAlpha: 0,
                 ease: "power1.out",
                 duration: 0.7,
+                clearProps: true,
               },
             })
             .from(`.${s.heroTitle}`, {
@@ -76,6 +79,7 @@ export default function Visit({}: Props) {
                 autoAlpha: 0,
                 ease: "power1.out",
                 duration: 0.7,
+                clearProps: true,
               },
             })
             .from(`.${s.heroTitle}`, {
@@ -127,9 +131,9 @@ export default function Visit({}: Props) {
             fill
           />
         </div>
-        <h1 className={s.heroTitle}>Обирай, коли плануєш відвідати Садибу</h1>
+        <h1 className={s.heroTitle}>{t('title')}</h1>
         <p className={s.quoteText}>
-          “Дідусь швиденько підбере найкращі варіанти розміщення на ці дні”
+          {t('text')}
         </p>
       </section>
       <div className={s.bookingForm}>

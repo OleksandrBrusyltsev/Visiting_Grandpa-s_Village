@@ -9,6 +9,14 @@ type ModalProps = {
   visible: boolean;
   children: ReactNode;
 }
+const handleSrollUp = (el: HTMLElement | null) => {
+  if (window === undefined || !el) return
+  const posY = el.getBoundingClientRect().top;
+  const blockHeight = el.clientHeight;
+  const freeSpace = window.innerHeight - posY;
+  const diff = freeSpace - blockHeight;
+  if (freeSpace < blockHeight) window.scrollBy({ top: - diff, behavior: "smooth" });
+};
 
 const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal({children, visible}, ref) {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -19,7 +27,8 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal({children, v
         gsap.to(containerRef.current, {
           autoAlpha: 1,
           scale: 1,
-          ease: "power2.out"
+          ease: "power2.out",
+          onStart: () => handleSrollUp(containerRef.current)
         });
       } else {
         gsap.to(containerRef.current, {

@@ -1,16 +1,22 @@
 import { FC } from "react";
 import Image from "next/image";
+import { useLocale, useTranslations } from "next-intl";
+
 import Granpa1 from "../../../public/images/grandpas/Grandpa7.png";
 import Grandpa2 from "../../../public/images/grandpas/Grandpa6.png";
 import { rules } from "../../data/rules/index.js";
 import s from "./Rules.module.scss";
 
 const Rules: FC = () => {
+
+  const locale = useLocale();
+  const t = useTranslations('Rules');
+
   return (
     <div className={s.rulesContainer}>
       <div className={s.rulesTitleWrapper}>
         <h1 className={s.rulesTitle}>
-          Твій Дідусь має невеликі прохання та правила, які діють в еко-садибі
+          {t('title')}
         </h1>
         <Image src={Granpa1} alt="" className={s.granpa1}></Image>
       </div>
@@ -31,10 +37,10 @@ const Rules: FC = () => {
       <ul className={s.rulesList}>
         {rules.map((rule) => (
           <li key={rule.id} className={s.rulesItem}>
-            <h2 className={s.ruleTitle}>{rule.title}</h2>
+            <h2 className={s.ruleTitle}>{rule.title[locale as keyof typeof rule.title]}</h2>
             <p
               className={s.ruleDescription}
-              dangerouslySetInnerHTML={{ __html: rule.description }}
+              dangerouslySetInnerHTML={{ __html: rule.description[locale as keyof typeof rule.description] }}
             ></p>
           </li>
         ))}
@@ -45,23 +51,18 @@ const Rules: FC = () => {
           <Image src={Grandpa2} fill alt=""></Image>
         </li>
         <li>
-          <span className={s.rulesRememberSpan}>Невеличке нагадування:</span>
-          Дідусь та команда <a href="/">Еко-садиби “На селі у Дідуся”</a> - твої
-          друзі, завжди готові допомогти та зробити відпочинок приємним і
-          незабутнім.
+          <span className={s.rulesRememberSpan}>{t('note1')}</span>
+          <span dangerouslySetInnerHTML={{ __html: t.raw('note2') }} />
         </li>
         <li>
-          Також пам’ятайте, що ми не можемо контролювати погоду та інші зовнішні
-          обставини, проте гарантуємо вам теплий прийом та комфортний
-          відпочинок.
+          {t('note3')}
         </li>
         <li>
-          “На селі у Дідуся” гості отримують гарні, приємні емоції та створюють
-          неповторні, теплі спогади.
+          {t('note4')}
         </li>
         <li>
           <a href="/publicOffer.pdf" target="_blank" rel="noopener noreferrer">
-            Публічна оферта
+            {t('note5')}
           </a>
         </li>
       </ul>

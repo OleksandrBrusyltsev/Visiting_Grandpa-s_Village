@@ -207,6 +207,9 @@
         top: 11px;
         right: 11px;
     }
+    .houseWrapper:last-of-type .content {
+        grid-template-columns: minmax(220px, 1fr) auto 1fr;
+    }
 }
 @include mixins.media-min(variables.$pc) {
 

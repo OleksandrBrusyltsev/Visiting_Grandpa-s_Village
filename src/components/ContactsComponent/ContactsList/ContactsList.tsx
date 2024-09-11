@@ -9,29 +9,9 @@ import IconTel from "../../../assets/icons/icon-tel.svg";
 import sFooter from "../../Footer/Footer.module.scss";
 import s from "./ContactsList.module.scss";
 
-const socialMediaLinks = [
-  {
-    id: 1,
-    link: "https://www.facebook.com/ecousadba.in.ua/",
-    icon: "facebook",
-  },
-  {
-    id: 2,
-    link: "https://t.me/VisitingGrandpasVillageBot",
-    icon: "telegram",
-  },
-  {
-    id: 3,
-    link: "https://www.instagram.com/ecousadba.in.ua/",
-    icon: "instagram",
-  },
-  {
-    id: 4,
-    link: "https://www.linkedin.com/company/grandpa-s-village/",
-    icon: "linkedin",
-    ariaLabel: "link to linkedin",
-  },
-];
+import { useLocale, useTranslations } from "next-intl";
+import MarkdownPreview from "@/functions/MarkdownPreview";
+import { contacts } from "@/data/contacts";
 
 const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
 
@@ -44,26 +24,56 @@ const ContactsList: FC<ContactsListProps> = ({
   grandpaRef,
   contactsListWrapperRef,
 }) => {
+  const t = useTranslations('Contacts');
+  const locale = useLocale();
+
+  const socialLinks = [
+    {
+      id: 1,
+      link: contacts.facebook_link,
+      icon: 'facebook',
+      ariaLabel: 'link to facebook',
+    },
+    {
+      id: 2,
+      link: contacts.telegram_link,
+      icon: 'telegram',
+      ariaLabel: 'link to telegram',
+    },
+    {
+      id: 3,
+      link: contacts.instagram_link,
+      icon: 'instagram',
+      ariaLabel: 'link to instagram',
+    },
+    {
+      id: 4,
+      link: contacts.linkedin_link,
+      icon: 'linkedin',
+      ariaLabel: 'link to linkedin',
+    },
+  ];
+
   return (
     <div className={s.imgWrapper}>
       <Image className={s.grandpa} src={Grandpa} alt="" ref={grandpaRef} />
       <div className={s.contactsListWrapper} ref={contactsListWrapperRef}>
         <ul className={s.contactsList}>
           <li className={s.contactsItem}>
-            <p className={s.contactsItemTitle}>Телефон</p>
-            <Link href={`tel:+380931919663`} className={s.contactItemText}>
+            <p className={s.contactsItemTitle}>{t('phone')}</p>
+            <Link href={`tel:${contacts.phone.replace(/[^+\d]/g, '')}`} className={s.contactItemText}>
               <Image
                 src={IconTel}
                 alt=""
                 className={`${sFooter.contactsIcon} ${s.contactItemIcon}`}
               />
-              + 38 (093) 191 96 63
+              {contacts.phone}
             </Link>
           </li>
           <li className={s.contactsItem}>
             <p className={s.contactsItemTitle}>E-mail</p>
             <Link
-              href={`mailto:naseliudidusya@gmail.com`}
+              href={`mailto:${contacts.email}`}
               className={s.contactItemText}
             >
               <Image
@@ -71,11 +81,11 @@ const ContactsList: FC<ContactsListProps> = ({
                 alt=""
                 className={`${sFooter.contactsIcon} ${s.contactItemIcon}`}
               />
-              naseliudidusya@gmail.com
+              {contacts.email}
             </Link>
           </li>
           <li className={s.contactsItem}>
-            <p className={s.contactsItemTitle}>Адреса</p>
+            <p className={s.contactsItemTitle}>{t('address')}</p>
             <Link href={mapUrl} target="_blank" className={s.contactItemText}>
               <Image
                 src={IconMap}
@@ -83,16 +93,17 @@ const ContactsList: FC<ContactsListProps> = ({
                 className={`${sFooter.contactsIcon} ${s.contactItemIcon}`}
               />
               <div className={s.adressWrapper}>
-                <p>Україна, Чернігівська область, с. Олешня,</p>{" "}
-                <p>вул. Озерна 5</p>
+                <MarkdownPreview
+                  markdown={contacts.address[locale as keyof typeof contacts.address]}
+                />
               </div>
             </Link>
           </li>
         </ul>
         <ul className={`${sFooter.socialMedia} ${s.socialMediaList}`}>
-          {socialMediaLinks.map(({ link, icon, id }) => (
+          {socialLinks.map(({ link, icon, id, ariaLabel }) => (
             <li key={id}>
-              <Link href={link} target="_blank">
+              <Link href={link} target="_blank" aria-label={ariaLabel}>
                 <Icon name={icon} className={sFooter.socialMediaIcon} />
               </Link>
             </li>

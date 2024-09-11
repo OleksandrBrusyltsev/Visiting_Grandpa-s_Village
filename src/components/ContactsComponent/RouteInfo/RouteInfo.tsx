@@ -1,32 +1,32 @@
 import { FC } from "react";
 import Image from "next/image";
+import { useLocale } from "next-intl";
+
 import House from "../../../../public/images/contacts/house.png";
+import MarkdownPreview from "@/functions/MarkdownPreview";
+
 import s from "./RouteInfo.module.scss";
+import { contacts } from "@/data/contacts";
 
 type RouteInfoProps = {
   houseRef: React.RefObject<HTMLImageElement>;
   routeInfoWrapperRef: React.RefObject<HTMLDivElement>;
 };
 const RouteInfo: FC<RouteInfoProps> = ({ houseRef, routeInfoWrapperRef }) => {
+  const locale = useLocale();
+
   return (
     <div className={s.imgAndRouteInfoWrapper}>
       <Image src={House} alt="" className={s.house} ref={houseRef} />
       <div className={s.routeInfoWrapper} ref={routeInfoWrapperRef}>
-        <h2 className={s.routeInfoTitle}>Як дістатися з Чернігова?</h2>
-        <p className={s.routeInfoText}>
-          Електричка на станцію Грибова Рудня з Чернігова ходить двічі на день —
-          о 8:16 ранку та о 21:20 вечора. Однак під час бойових дій рух
-          електрички може бути припинений, тому рекомендується перевіряти
-          актуальний розклад перед поїздкою.
-        </p>
-        <p className={s.routeInfoText}>
-          Автобусний маршрут Чернігів - Олександрівка: автобус ходить один раз
-          на день, відправлення з Чернігова орієнтовно о 12:30 з автостанції
-          «Нива» та орієнтовно о 13:30 від зупинки біля готелю «Україна».
-        </p>
+        <h2 className={s.routeInfoTitle}>{contacts.directions_from_city[locale as keyof typeof contacts.directions_from_city]}</h2>
+        <div className={s.routeInfoText}>
+          <MarkdownPreview markdown={contacts.routeInfo1[locale as keyof typeof contacts.routeInfo1]} />
+        </div>
+       
         <div className={s.textDotWrapper}>
           <span className={s.dot}></span>
-          <p className={s.textDot}>Інформація може змінюватися</p>
+          <p className={s.textDot}>{contacts.routeInfo2[locale as keyof typeof contacts.routeInfo2]}</p>
         </div>
       </div>
     </div>

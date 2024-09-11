@@ -1,19 +1,23 @@
 "use client";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
 
 import Quote from "./Quote/Quote";
+import MarkdownPreview from "@/functions/MarkdownPreview";
 
 import s from "./Entertainment.module.scss";
-import { useEffect, useRef } from "react";
-import { ScrollTrigger } from "gsap/all";
 
 type Props = { items: EntertainmentItem[] };
 
 export default function Entertainment({ items }: Props) {
   const aniRef = useRef<Array<Array<HTMLDivElement>>>([[]]);
   const textWrapperRef = useRef<HTMLDivElement | null>(null);
+  const locale = useLocale();
+  const t = useTranslations("Entertainment");
 
   useEffect(() => {
     setTimeout(() => {
@@ -122,7 +126,7 @@ export default function Entertainment({ items }: Props) {
           ">-0.5"
         );
     });
-    
+
     if (!textWrapperRef.current) return;
 
     gsap.from(textWrapperRef.current, {
@@ -150,27 +154,34 @@ export default function Entertainment({ items }: Props) {
             fill
           />
         </div>
-        <h1 className={s.heroTitle}>База відпочинку для незабутніх спогадів</h1>
+        <h1 className={s.heroTitle}
+          dangerouslySetInnerHTML={{
+            __html: items[0].title[locale as keyof typeof items[0]['title']],
+          }}
+        />
         <div className={s.topQuoteWrapper}>
-          <p className={s.topQuote}>
-            &quot;Мистецтво Відпочинку - не завжди означає Дію, навчись нічого
-            не робити, а просто насолодись тишею та спокоєм.&quot;
-          </p>
+          <div className={s.topQuote}>
+            <MarkdownPreview markdown={items[0].quote[locale as keyof typeof items[0]['quote']]} />
+          </div>
         </div>
-        <p className={s.question}>Як саме?</p>
-        <p className={s.answer}>Дідусь покаже тобі</p>
+        <div className={s.question}>
+          <MarkdownPreview markdown={items[0].subtitle[locale as keyof typeof items[0]['subtitle']]} />
+        </div>
+        <div className={s.answer}>
+          <MarkdownPreview markdown={items[0].text[locale as keyof typeof items[0]['text']]} />
+        </div>
       </section>
       <div className={`${s.main} container`}>
         <ul className={s.entertainmentList}>
-          {items.map(({ images, text, ...props }, i) => (
-            <li className={s.entertainmentGroup} key={i}>
+          {items.slice(1).map(({ id, images, text, title }, i) => (
+            <li className={s.entertainmentGroup} key={id}>
               <Quote
                 ref={(el: HTMLDivElement) => {
                   aniRef.current[i] = aniRef.current[i] || [];
                   aniRef.current[i][0] = el;
                 }}
                 position={i % 2 ? "right" : "left"}
-                {...props}
+                title={title[locale as keyof typeof title]}
               >
                 <div
                   className={s.quoteText}
@@ -179,13 +190,12 @@ export default function Entertainment({ items }: Props) {
                     aniRef.current[i][1] = el;
                   }}
                 >
-                  {text}
+                  {text[locale as keyof typeof text]}
                 </div>
               </Quote>
               <div
-                className={`${s.entertainmentImgWrapper} ${
-                  i % 2 ? s.left : s.right
-                }`}
+                className={`${s.entertainmentImgWrapper} ${i % 2 ? s.left : s.right
+                  }`}
                 ref={(el: HTMLDivElement) => {
                   aniRef.current[i] = aniRef.current[i] || [];
                   aniRef.current[i][2] = el;
@@ -199,9 +209,8 @@ export default function Entertainment({ items }: Props) {
                 />
               </div>
               <div
-                className={`${s.entertainmentImgWrapper} ${
-                  i % 2 ? s.right : s.left
-                }`}
+                className={`${s.entertainmentImgWrapper} ${i % 2 ? s.right : s.left
+                  }`}
                 ref={(el: HTMLDivElement) => {
                   aniRef.current[i] = aniRef.current[i] || [];
                   aniRef.current[i][3] = el;
@@ -229,18 +238,12 @@ export default function Entertainment({ items }: Props) {
         <div className={s.backgroundCurve}></div>
       </div>
       <div className={`${s.textWrapper} container`} ref={textWrapperRef}>
-        <p className={s.text}>
-          База відпочинку «На селі у Дідуся» пропонує атмосферу спокою, де кожен
-          може зануритися у тишу природи, відновити сили та створити нові
-          спогади. Тут ви знайдете прості, але важливі радощі життя: купання в
-          природних водоймах, збирання спогадів, радість від сміху та
-          спілкування з близькими.
-        </p>
-        <p className={s.text}>
-          Наша база відпочинку «На селі у Дідуся» ідеально підходить для тих,
-          хто шукає гармонію з природою, затишок і незабутні моменти разом з
-          родиною та друзями.
-        </p>
+        <div className={s.text}>
+          <MarkdownPreview markdown={t('note1')} />
+        </div>
+        <div className={s.text}>
+          <MarkdownPreview markdown={t('note2')} />
+        </div>
       </div>
     </>
   );

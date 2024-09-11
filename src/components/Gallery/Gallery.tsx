@@ -1,15 +1,15 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
 import GalleryItem from "./GalleryItem";
-import Button from "../ui/Button/Button";
-import Icon from "../ui/Icon/Icon";
+import MarkdownPreview from "@/functions/MarkdownPreview";
+import SloganBlock from "../GalleryItemPage/SloganBlock";
 
 import s from "./Gallery.module.scss";
 
@@ -18,6 +18,7 @@ type Props = { items: GalleryItem[] };
 export default function Gallery({ items }: Props) {
   const { locale } = useParams();
   const galleryRef = useRef<Array<HTMLAnchorElement>>([]);
+  const t = useTranslations('Gallery');
 
   useEffect(() => {
     setTimeout(() => {
@@ -78,7 +79,7 @@ export default function Gallery({ items }: Props) {
       (context) => {
         const { isMobile, isNotMobile } = context.conditions as gsap.Conditions;
         galleryRef.current.forEach((h) => {
-          gsap.set(h, { autoAlpha: 0});
+          gsap.set(h, { autoAlpha: 0 });
         });
 
         if (isMobile) {
@@ -130,61 +131,51 @@ export default function Gallery({ items }: Props) {
   });
 
   return (
-    <div className="container">
-      <div className={s.backgroundImages}>
-        <section className={s.hero}>
-          <div className={s.heroWrapper}>
-            <h1 className={s.descr1}>
-              Люблю згадувати всі щасливі моменти,{" "}
-              <span className={s.noBreak}>що відбулись</span>{" "}
-              <span className={s.noBreak}>“На Селі у Дідуся”</span>
-            </h1>
-            <p className={s.descr2}>Згадаєш зі мною?</p>
-            <div className={s.grandpa}>
-              <Image
-                fill
-                alt="Friendly Grandpa"
-                src="/images/grandpas/Grandpa1.png"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </div>
-        </section>
-        <div className={s.main}>
-          <section className={s.memoriesGallery}>
-            <p className={s.callToClick}>
-              <span className={s.desktopOnly}>Клікай</span>
-              <span className={s.mobileOnly}>Натискай</span> на фото, щоб
-              подивитись більше
-            </p>
-            <div className={s.galleryWrapper}>
-              {items.map((item, i) => (
-                <GalleryItem
-                  ref={(el: HTMLAnchorElement) => (galleryRef.current[i] = el)}
-                  data={item}
-                  key={item.id}
+    <>
+      <div className="container">
+        <div className={s.backgroundImages}>
+          <section className={s.hero}>
+            <div className={s.heroWrapper}>
+              <h1 className={s.descr1}
+                dangerouslySetInnerHTML={{
+                  __html: items[0].title[locale as keyof typeof items[0]["title"]],
+                }} />
+              <div className={s.descr2}>
+                <MarkdownPreview markdown={
+                  items[0].description[locale as keyof typeof items[0]["description"]]
+                } />
+              </div>
+              <div className={s.grandpa}>
+                <Image
+                  fill
+                  alt={items[0].cover[0].description[locale as keyof typeof items[0]["cover"][0]["description"]]}
+                  src={items[0].cover[0].src}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
-              ))}
+              </div>
             </div>
-            <div className={s.backgroundCurve}></div>
           </section>
-          <div className={s.callToAction}>
-            <div className={s.cloud}>
-              <Icon name="cloud" />
-            </div>
-            <p className={s.slogan}>
-              А далі створимо нові щасливі спогади разом.
-            </p>
-            <Link href={`/${locale}/booking`}>
-              <Button
-                label="Завітати"
-                type={"button"}
-                className={s.btnCallToAction}
-              />
-            </Link>
+          <div className={s.main}>
+            <section className={s.memoriesGallery}>
+              <p className={s.callToClick}>
+                <span className={s.desktopOnly}>{t('clickMode', { mode: 'desktop' })}</span>
+                <span className={s.mobileOnly}>{t('clickMode', { mode: 'mobile' })}</span>
+              </p>
+              <div className={s.galleryWrapper}>
+                {items.slice(1).map((item, i) => (
+                  <GalleryItem
+                    ref={(el: HTMLAnchorElement) => (galleryRef.current[i] = el)}
+                    data={item}
+                    key={item.id}
+                  />
+                ))}
+              </div>
+              <div className={s.backgroundCurve}></div>
+            </section>
           </div>
         </div>
       </div>
-    </div>
+      <SloganBlock />
+    </>
   );
 }
