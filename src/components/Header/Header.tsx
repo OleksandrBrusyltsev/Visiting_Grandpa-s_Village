@@ -14,7 +14,8 @@ import useRegisterGSAP from "@/hooks/useRegisterGSAP";
 
 import css from "./Header.module.scss";
 
-const image = "/images/logo-main.svg";
+const image_uk = "/images/logo-main-uk.svg";
+const image_en = "/images/logo-main-en.svg";
 
 const Header = () => {
   const [isVisible, setVisible] = useState(false);
@@ -51,18 +52,18 @@ const Header = () => {
           {pathname === `/${locale}` ? (
             <Image
               title={t('currLink')}
-              src={image}
+              src={locale === "en" ? image_en : image_uk}
               alt=""
-              width={144}
+              width={200}
               height={80}
               className={css.mainLogo}
             />
           ) : (
             <Link href={`/${locale}`} className={css.linkLogo}>
               <Image
-                src={image}
+                  src={locale === "en" ? image_en : image_uk}
                 alt=""
-                width={144}
+                width={200}
                 height={80}
                 className={css.mainLogo}
               />

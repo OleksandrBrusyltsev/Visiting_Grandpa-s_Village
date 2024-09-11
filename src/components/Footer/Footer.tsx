@@ -12,7 +12,8 @@ import s from "./Footer.module.scss";
 import { navLinks } from "@/data/navigationMenu";
 import { contacts } from "@/data/contacts";
 
-const image = "/images/logo-main.svg";
+const image_uk = "/images/logo-main-uk.svg";
+const image_en = "/images/logo-main-en.svg";
 
 export default function Footer() {
   const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
@@ -52,7 +53,7 @@ export default function Footer() {
       {pathname === `/${locale}` ? (
         <Image
           title={t('currLink')}
-          src={image}
+          src={locale === "en" ? image_en : image_uk}
           alt="logo"
           width={144}
           height={80}
@@ -61,7 +62,7 @@ export default function Footer() {
       ) : (
         <Link href={`/${locale}`}>
           <Image
-            src={image}
+              src={locale === "en" ? image_en : image_uk}
             alt="logo"
             width={144}
             height={80}
