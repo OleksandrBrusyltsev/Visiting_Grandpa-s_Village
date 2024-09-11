@@ -23,7 +23,6 @@ export async function generateStaticParams({
     cur?.rooms.forEach((room) => accu.push({ locale, house, room: room.name }));
     return accu;
   }, [] as { locale: string; house: string; room: string }[]);
-  // console.log(routes);
   return routes;
 }
 
@@ -32,7 +31,6 @@ type Props = { params: { house: string; room: string; locale: string } };
 export default async function Page({ params }: Props) {
   const { room, house, locale } = params;
   unstable_setRequestLocale(locale);
-  const isRoom = "room" in params;
 
   const houseItem = await getData<HouseItem[]>("houses", house);
   if (!houseItem.length) notFound();
@@ -43,7 +41,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <div className="container">
-        <House item={roomItem[0]} isRoom={isRoom} />
+        <House item={roomItem[0]} />
       </div>
       <AskGrandpa />
     </>

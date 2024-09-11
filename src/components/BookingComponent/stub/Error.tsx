@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRef } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -21,6 +22,9 @@ export default function Error({
 }: Props) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { title, subtitle, message } = messages[2];
+
+  const locale = useLocale();
+  const t = useTranslations("BookingStub");
 
   useGSAP(
     () => {
@@ -51,16 +55,16 @@ export default function Error({
         width={186}
         height={210}
       />
-      <h1 className={s.title}>{title}</h1>
-      <h2 className={s.subTitle}>{subtitle}</h2>
-      <p className={s.message}>{message}</p>
+      <h1 className={s.title}>{title[locale as keyof typeof title]}</h1>
+      <h2 className={s.subTitle}>{subtitle[locale as keyof typeof subtitle]}</h2>
+      <p className={s.message}>{message[locale as keyof typeof message]}</p>
       <button className={s.closeBtn} onClick={handleClose}>
         &times;
       </button>
       <Button
         className={s.mainBtn}
         onClick={handleRepeatFilling}
-        label="Заповнити Форму"
+        label={t('fillForm')}
         size="default"
       />
     </div>

@@ -73,17 +73,15 @@
     font-size: 18px;
     line-height: 1.2;
   }
+
   @include mixins.media-min(1000px) {
-    font-size: 16px;
     margin-left: 50px;
   }
+
   @include mixins.media-min(variables.$breakpoint-laptop) {
     width: 384px;
+    font-size: 20px;
   }
-}
-
-.telegramTextBold {
-  font-weight: 700;
 }
 
 .map {
@@ -93,6 +91,7 @@
   display: block;
   margin-left: auto;
   margin-bottom: 18px;
+  z-index: -1;
 
   @include mixins.media-min(654px) {
     margin-bottom: -2rem;
@@ -115,6 +114,8 @@
     width: 508px;
     min-width: 508px;
     margin-right: auto;
+    margin-top: 2.5rem;
+    margin-bottom: -4.5rem;
   }
 }
 
@@ -134,9 +135,11 @@
     grid-row: 3 / 4;
     margin-bottom: 15px;
   }
+
   @include mixins.media-min(1000px) {
     margin-left: 100px;
   }
+
   @include mixins.media-min(variables.$breakpoint-laptop) {
     // max-width: 430px;
     max-width: 380px;
@@ -157,10 +160,12 @@
   font-size: var(--f-size-body);
   font-weight: 700;
   line-height: 18.56px;
+
   @include mixins.media-min(variables.$mobile) {
     font-size: 18px;
     line-height: 1.2;
   }
+
   @include mixins.media-min(variables.$breakpoint-laptop) {
     font-size: 16px;
   }

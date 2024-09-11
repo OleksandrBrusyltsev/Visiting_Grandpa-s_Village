@@ -15,9 +15,9 @@
   }
 
   @include mixins.media-min(variables.$breakpoint-laptop) {
-    width: 668px;
+    width: 57%;
     max-width: 668px;
-    margin-right: 40%;
+    margin-left: 40px;
     margin-bottom: 60px;
   }
 }
