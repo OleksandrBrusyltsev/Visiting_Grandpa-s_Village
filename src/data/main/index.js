@@ -2,7 +2,7 @@ export const main = [
     {
         id: 0,
         title: {
-            en: "Eco vacation “At&nbsp;Grandpa's&nbsp;village”",
+            en: "Eco vacation “Grandpa's&nbsp;village”",
             ru: 'Эко отдых “На деревне у&nbsp;Дедушки”',
             uk: 'Еко відпочинок "На&nbsp;селі&nbsp;у&nbsp;Дідуся"',
         },
