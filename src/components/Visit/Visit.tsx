@@ -30,6 +30,7 @@ export default function Visit() {
                 autoAlpha: 0,
                 ease: "power1.out",
                 duration: 0.7,
+                clearProps: true,
               },
             })
             .from(`.${s.heroTitle}`, {
@@ -78,6 +79,7 @@ export default function Visit() {
                 autoAlpha: 0,
                 ease: "power1.out",
                 duration: 0.7,
+                clearProps: true,
               },
             })
             .from(`.${s.heroTitle}`, {

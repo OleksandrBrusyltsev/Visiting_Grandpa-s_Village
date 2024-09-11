@@ -63,6 +63,7 @@
         top: clamp(-30px, calc(26px - 56 * (100vw - 375px) / 392), 26px);
         right: clamp(0px, calc(62px - 62 * (767px - 100vw) / 392), 62px);
         rotate: -20.5deg;
+        z-index: -1;
     }
 }
 @include mixins.media-min(variables.$mobile) {

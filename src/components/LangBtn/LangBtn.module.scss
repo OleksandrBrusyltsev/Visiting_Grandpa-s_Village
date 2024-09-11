@@ -12,32 +12,28 @@
     font-size: var(--f-size-body);
   }
 
-  //tmp styles
-  // opacity: 0;
-  // visibility: hidden;
-}
+  .langBtn {
+    font-family: var(--f-family-headline);
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: normal;
+    padding: 5px;
+    transition: color 0.2s;
+    cursor: pointer;
 
-.active {
-  color: rgb(var(--color-natural-orange));
-}
+    @media (hover: hover) {
+      &:hover {
+        color: rgb(var(--color-natural-orange));
+      }
+    }
 
-.langBtn {
-  font-family: var(--f-family-headline);
-  font-weight: 600;
-  line-height: normal;
-  transition: color 0.2s;
-
-  @media (hover: hover) {
-    &:hover {
+    &:active {
       color: rgb(var(--color-natural-orange));
     }
   }
 
-  &:active {
+  .active {
     color: rgb(var(--color-natural-orange));
+    cursor: default;
   }
-}
-
-.active {
-  color: rgb(var(--color-natural-orange));
 }

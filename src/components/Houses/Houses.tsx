@@ -140,10 +140,10 @@ export default function Houses({ items }: Props) {
             .from(`.${s.curve}`, {
               clipPath: "inset(0% 0% 100% 0%)",
               autoAlpha: 1,
+              duration: 0.5,
             })
             .from(`.${s.bookingForm}`, {
               scale: 0.9,
-              delay: 0.2,
             })
             .from(
               `.${s.housesTitle}`,

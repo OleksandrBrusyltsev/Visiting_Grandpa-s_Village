@@ -72,7 +72,7 @@ const Header = () => {
           <div className={css.headerBox}>
             {isMobile ? null : <LangBtn />}
 
-            <button className={css.userBtn} aria-label="user button">
+            {/* <button className={css.userBtn} aria-label="user button">
               <svg
                 width="28"
                 height="28"
@@ -93,7 +93,7 @@ const Header = () => {
                   strokeMiterlimit="10"
                 />
               </svg>
-            </button>
+            </button> */}
 
             <Button
               label={t('visit')}

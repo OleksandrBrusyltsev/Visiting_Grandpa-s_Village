@@ -1,48 +1,53 @@
-import React, { useState, useEffect, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import React from "react";
+import { usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
+import Link from "next/link";
+
 import css from "./LangBtn.module.scss";
 
+type BtnProps = {
+  name: 'uk' | 'en';
+  isActive: boolean;
+}
+
+const Btn: React.FC<BtnProps> = ({name, isActive }) => {
+  const locale = useLocale();
+  const pathname = usePathname();
+
+  const nextLocale = locales.filter(l => l !== locale)[0];
+  const link = pathname.replace(`/${locale}`, `/${nextLocale}`);
+  return (
+    <>
+      {
+        isActive ?
+          <span role="button"
+            aria-pressed="true"
+            tabIndex={0} 
+            className={`${css.langBtn} ${css.active}`}>{name}</span> :
+          <Link
+            role="button"
+            aria-pressed="false"
+            tabIndex={0}
+            className={css.langBtn}
+            href={link}
+          >
+            {name}
+          </Link>
+      }
+    </>
+  );
+}
+
+const locales = ['uk', 'en'];
+
 const LangBtn = () => {
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
-  const localActive = useLocale();
-  const [activeButton, setActiveButton] = useState<string | null>(null);
-
-  const changeLanguageHandler = (nextLocal: string) => {
-    startTransition(() => {
-      router.replace(`/${nextLocal}`);
-    });
-    // setActiveButton(nextLocal);
-  };
-
-  useEffect(() => {
-    setActiveButton(localActive);
-  }, [localActive]);
-
+  const locale = useLocale();
+  
   return (
     <div className={css.langContainer}>
-      <button
-        disabled={isPending}
-        value="uk"
-        className={
-          activeButton === "uk" ? `${css.langBtn} ${css.active}` : css.langBtn
-        }
-        onClick={() => changeLanguageHandler("uk")}
-      >
-        UA
-      </button>
-      <p>/&nbsp;</p>
-      <button
-        disabled={isPending}
-        value="en"
-        className={
-          activeButton === "en" ? `${css.langBtn} ${css.active}` : css.langBtn
-        }
-        onClick={() => changeLanguageHandler("en")}
-      >
-        EN
-      </button>
+      <Btn name="uk" isActive={locale === "uk"} />
+      <p>&nbsp;/&nbsp;</p>
+      <Btn name="en" isActive={locale === "en"} />
     </div>
   );
 };
