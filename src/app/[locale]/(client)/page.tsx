@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Еко відпочинок за містом На селі у дідуся",
   description:
     "Еко готель для відпочинку на природі в селі Олешня Чернігівської області, заміський комплекс за Києвом в лісі серед Блакитних озер",
+  other: {
+    "google-site-verification": "Yy2eWiERz4G340GcJ4J0ebWXu0GNzOaU-AQJVCYkv1s"
+  }
 };
 
 export async function generateStaticParams() {
