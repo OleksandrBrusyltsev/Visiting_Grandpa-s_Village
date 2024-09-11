@@ -12,7 +12,7 @@ export async function generatePageMetadata({
 
   if (!houseItem.length) notFound();
 
-  const houseTitle = houseItem[0].title[params.locale as keyof typeof houseItem[0]['title']].text;
+  const houseTitle = houseItem[0].long_title[params.locale as keyof typeof houseItem[0]['long_title']];
 
   return {
     title: `Еко-будинок ${houseTitle} | На селі у Дідуся`,

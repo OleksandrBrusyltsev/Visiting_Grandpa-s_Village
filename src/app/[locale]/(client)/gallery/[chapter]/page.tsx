@@ -15,8 +15,9 @@ export async function generateStaticParams({
   params: { locale },
 }: {
   params: { locale: string };
-}) {
-  const items = await getData<GalleryItem[]>("gallery");
+  }) {
+  //сортировка нужна для удаления обектов с пустым названием name, которые используются для хранения hero блока в галерее
+  const items = (await getData<GalleryItem[]>("gallery")).filter(gal => gal.name);
   return items.map((gal) => ({ locale, chapter: gal.name }));
 }
 
