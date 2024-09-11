@@ -97,7 +97,9 @@
   font-size: var(--f-size-body);
   font-weight: 300;
   line-height: 18.56px;
-  margin-bottom: 16px;
+  &  p {
+    margin-bottom: 16px;
+  }
 
   @include mixins.media-min(variables.$mobile) {
     margin-bottom: 24px;

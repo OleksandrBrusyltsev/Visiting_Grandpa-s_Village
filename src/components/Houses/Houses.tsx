@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
@@ -21,7 +22,9 @@ export default function Houses({ items }: Props) {
   const { locale } = useParams();
   const housesRef = useRef<Array<HTMLAnchorElement>>([]);
   const textWrapperRef = useRef<HTMLDivElement | null>(null);
-  
+
+  const t = useTranslations("Houses");
+
   useEffect(() => {
     setTimeout(() => {
       ScrollTrigger.refresh();
@@ -45,17 +48,17 @@ export default function Houses({ items }: Props) {
         });
 
         //hero block animation
-        const heroBlockTimeline = 
-        gsap
-          .timeline({
-            defaults: {
-              autoAlpha: 0,
-              ease: "power1.out",
-              duration: isMobile ? 0.7 : isTablet ? 0.8 : 1.2,
-              clearProps: "all",
-            },
-        });
-           
+        const heroBlockTimeline =
+          gsap
+            .timeline({
+              defaults: {
+                autoAlpha: 0,
+                ease: "power1.out",
+                duration: isMobile ? 0.7 : isTablet ? 0.8 : 1.2,
+                clearProps: "all",
+              },
+            });
+
         //booking component and houses list title animation
         const bookingFormTimeline = gsap.timeline({
           defaults: {
@@ -153,17 +156,17 @@ export default function Houses({ items }: Props) {
         }
 
         if (isMobile) {
-         //hero block animation 
-         heroBlockTimeline
+          //hero block animation 
+          heroBlockTimeline
             .from(`.${s.descr1}`, { y: -150 })
             .from(`.${s.map}`, { x: -150, y: 150 }, "<")
             .from([`.${s.descr2}`, `.${s.grandpa}`], { x: 150 }, "<");
 
           //booking component and houses list title animation
           bookingFormTimeline
-            .from(`.${s.bookingForm}`, {y: 100,scale: 0.9})
-            .from(`.${s.housesTitle}`, {y: 100}, ">-0.4");
-            
+            .from(`.${s.bookingForm}`, { y: 100, scale: 0.9 })
+            .from(`.${s.housesTitle}`, { y: 100 }, ">-0.4");
+
           //houses list animation
           housesRef.current.forEach((h, i) => {
             gsap.fromTo(
@@ -233,13 +236,11 @@ export default function Houses({ items }: Props) {
       <section className={`${s.hero} container`}>
         <div className={s.heroWrapper}>
           <h1 className={s.descr1}>
-            Еко комплекс казкових дерев&apos;яних будиночків
+            {t('mainTitle')}
           </h1>
           {/* eslint-disable-next-line react/no-unescaped-entities */}
           <p className={s.descr2}>
-            &quot;Маю дерев&apos;яні будиночки та хатинки, можеш вибрати
-            будь-який варіант на свій смак. Гортай нижче - я тобі все
-            покажу&quot;
+            {t('quote')}
           </p>
           <div className={s.grandpa}>
             <Image
@@ -275,11 +276,10 @@ export default function Houses({ items }: Props) {
         <BookingComponent />
       </div>
 
-      {/* <main> */}
       <HousesList data={items} className="container">
         <>
           <div className={s.housesTitle}>
-            <p>Живи тут</p>
+            <p>{t('title')}</p>
             <Icon name="ellipse" className={s.titleOutline} />
           </div>
           <div className={s.housesWrapper}>
@@ -295,20 +295,12 @@ export default function Houses({ items }: Props) {
       </HousesList>
       <div className={s.textWrapper} ref={textWrapperRef}>
         <p className={s.text}>
-          Ласкаво просимо до еко комплексу «На селі у Дідуся», розташованого в
-          мальовничому куточку України - на Чернігівщині біля Блакитних озер.
-          Пропонуємо вам комфортний відпочинок у затишних хатинках, де ви
-          зможете відчути гармонію з природою. Наші дерев&apos;яні будиночки
-          забезпечені всім необхідним для комфортного перебування.{" "}
+          {t('note1')}{" "}
         </p>
         <p className={s.text}>
-          Відкрийте для себе справжній відпочинок на природі, насолоджуючись
-          чистим повітрям, прогулянками лісом та казковими заходами сонця біля
-          озера. Еко-комплекс «На селі у Дідуся» – ідеальне місце для родинного
-          відпочинку, романтичних вікендів та відновлення сил.
+          {t('note2')}{" "}
         </p>
       </div>
-      {/* </main> */}
     </>
   );
 }

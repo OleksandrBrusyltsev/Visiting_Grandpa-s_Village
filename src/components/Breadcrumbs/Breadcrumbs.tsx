@@ -45,13 +45,14 @@ export default function Breadcrumbs() {
 
       //получаем данные из API и формируем объект с переводами для динамических путей (slug)
       for (let key in params) {
-
         if (key !== 'locale') {
           let data: GalleryItem[] | HouseItem[] | undefined;
           if (key === 'chapter') {
             data = await getData('gallery');
+
           } else if (key === 'house') {
             data = await getData('houses');
+
           } else if (key === 'room') {
             const tmpData: HouseItem[] = await getData('houses', params['house']);
             if (!tmpData.length) return
@@ -62,7 +63,10 @@ export default function Breadcrumbs() {
 
           if (data) {
             const currentItem = data.filter(item => item.name === value);
-            const translation = currentItem.length ? currentItem[0].title[locale as keyof typeof currentItem[0]['title']] : '';
+            
+            if (!currentItem.length) return
+            const translation = currentItem[0].title[locale as keyof typeof currentItem[0]['title']];
+            
             if (!translation) return
             slugTranslation[value as string] = translation;
           }

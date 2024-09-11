@@ -168,28 +168,4 @@ export const entertainments = [
         },
         images: ['/images/entertainment/11.png', '/images/entertainment/12.png'],
     },
-    {
-        id: 7,
-        title: {
-            uk: '',
-            ru: '',
-            en: '',
-        },
-        subtitle: {
-            uk: '',
-            ru: '',
-            en: '',
-        },
-        text: {
-            uk: 'База відпочинку «На селі у Дідуся» пропонує атмосферу спокою, де кожен може зануритися у тишу природи, відновити сили та створити нові спогади. Тут ви знайдете прості, але важливі радощі життя: купання в природних водоймах, збирання спогадів, радість від сміху та спілкування з близькими.',
-            ru: 'База отдыха «На деревне у Дедушки» предлагает атмосферу покоя, где каждый может окунуться в тишину природы, восстановить силы и создать новые воспоминания. Здесь вы найдете простые, но важные радости жизни: купание в природных водоемах, сбор воспоминаний, радость от смеха и общения с близкими.',
-            en: "The recreation center “At Grandpa's village” offers an atmosphere of tranquility where everyone can plunge into the silence of nature, recuperate and create new memories. Here you will find the simple but important joys of life: swimming in natural reservoirs, collecting memories, the joy of laughter and communication with loved ones.",
-        },
-        quote: {
-            uk: 'Наша база відпочинку «На селі у Дідуся» ідеально підходить для тих, хто шукає гармонію з природою, затишок і незабутні моменти разом з родиною та друзями.',
-            ru: 'Наша база отдыха «На деревне у Дедушки» идеально подходит для тех, кто ищет гармонию с природой, уют и незабываемые моменты вместе с семьей и друзьями.',
-            en: "Our recreation center “At Grandpa's village” is ideal for those who are looking for harmony with nature, comfort and unforgettable moments with family and friends.",
-        },
-        images: [],
-    },
 ];

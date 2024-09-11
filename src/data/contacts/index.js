@@ -109,16 +109,11 @@ export const contacts = {
         uk: 'Як дістатися з Чернігова?',
     },
     routeInfo1: {
-        en: 'The train to Hrybova Rudnia station from Chernihiv runs twice a day - at 8:16 am and 9:20 pm. However, during military operations, the train may be suspended, so it is recommended to check the current schedule before traveling.',
-        ru: 'Электричка на станцию Грибова Рудня из Чернигова ходит дважды в день - в 8:16 утра и в 21:20 вечера. Однако во время боевых действий движение электрички может быть приостановлено, поэтому рекомендуется проверять актуальное расписание перед поездкой.',
-        uk: 'Електричка на станцію Грибова Рудня з Чернігова ходить двічі на день — о 8:16 ранку та о 21:20 вечора. Однак під час бойових дій рух електрички може бути припинений, тому рекомендується перевіряти актуальний розклад перед поїздкою.',
+        en: 'The train to Hrybova Rudnia station from Chernihiv runs twice a day - at 8:16 am and 9:20 pm. However, during military operations, the train may be suspended, so it is recommended to check the current schedule before traveling.\n\nBus route Chernihiv - Oleksandrivka: bus runs once a day, departing from Chernihiv at approximately 12:30 from the Niva bus station and at approximately 13:30 from the bus stop near the "Ukraine" Hotel.',
+        ru: 'Электричка на станцию Грибова Рудня из Чернигова ходит дважды в день - в 8:16 утра и в 21:20 вечера. Однако во время боевых действий движение электрички может быть приостановлено, поэтому рекомендуется проверять актуальное расписание перед поездкой. \n\nАвтобусный маршрут Чернигов - Александровка: автобус ходит один раз в день, отправление из Чернигова ориентировочно в 12:30 с автостанции «Нива» и ориентировочно в 13:30 от остановки возле гостиницы «Украина».',
+        uk: 'Електричка на станцію Грибова Рудня з Чернігова ходить двічі на день — о 8:16 ранку та о 21:20 вечора. Однак під час бойових дій рух електрички може бути припинений, тому рекомендується перевіряти актуальний розклад перед поїздкою.\n\nАвтобусний маршрут Чернігів - Олександрівка: автобус ходить один раз на день, відправлення з Чернігова орієнтовно о 12:30 з автостанції «Нива» та орієнтовно о 13:30 від зупинки біля готелю «Україна».',
     },
     routeInfo2: {
-        en: 'Bus route Chernihiv - Oleksandrivka: bus runs once a day, departing from Chernihiv at approximately 12:30 from the Niva bus station and at approximately 13:30 from the bus stop near the "Ukraine" Hotel.',
-        ru: 'Автобусный маршрут Чернигов - Александровка: автобус ходит один раз в день, отправление из Чернигова ориентировочно в 12:30 с автостанции «Нива» и ориентировочно в 13:30 от остановки возле гостиницы «Украина».',
-        uk: 'Автобусний маршрут Чернігів - Олександрівка: автобус ходить один раз на день, відправлення з Чернігова орієнтовно о 12:30 з автостанції «Нива» та орієнтовно о 13:30 від зупинки біля готелю «Україна».',
-    },
-    routeInfo3: {
         en: 'Information may change',
         ru: 'Информация может меняться',
         uk: 'Інформація може змінюватися',

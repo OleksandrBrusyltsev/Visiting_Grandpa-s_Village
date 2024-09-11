@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
@@ -17,6 +17,7 @@ export default function Entertainment({ items }: Props) {
   const aniRef = useRef<Array<Array<HTMLDivElement>>>([[]]);
   const textWrapperRef = useRef<HTMLDivElement | null>(null);
   const locale = useLocale();
+  const t = useTranslations("Entertainment");
 
   useEffect(() => {
     setTimeout(() => {
@@ -172,7 +173,7 @@ export default function Entertainment({ items }: Props) {
       </section>
       <div className={`${s.main} container`}>
         <ul className={s.entertainmentList}>
-          {items.slice(1, -1).map(({ id, images, text, title }, i) => (
+          {items.slice(1).map(({ id, images, text, title }, i) => (
             <li className={s.entertainmentGroup} key={id}>
               <Quote
                 ref={(el: HTMLDivElement) => {
@@ -238,10 +239,10 @@ export default function Entertainment({ items }: Props) {
       </div>
       <div className={`${s.textWrapper} container`} ref={textWrapperRef}>
         <div className={s.text}>
-          <MarkdownPreview markdown={items[7].text[locale as keyof typeof items[8]['text']]} />
+          <MarkdownPreview markdown={t('note1')} />
         </div>
         <div className={s.text}>
-          <MarkdownPreview markdown={items[7].quote[locale as keyof typeof items[8]['quote']]} />
+          <MarkdownPreview markdown={t('note2')} />
         </div>
       </div>
     </>

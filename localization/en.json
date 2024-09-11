@@ -25,12 +25,7 @@
   },
   "HouseItem": {
     "rateBase": "{price} hrn/day",
-    "rateBaseExt": "{price} hrn/day per {guests, plural, =1 {# guest} other {# guests}}",
-    "additionalGuests": "additional ({guests, plural, =1 {# guest} other {# guests}})",
-    "total": {
-      "text": "Total:",
-      "currency": " {total} hrn."
-    },
+    "roomsAmount": "Amount of rooms: {amount}",
     "checkInTime": {
       "text": "Check-in time: ",
       "time": "14:00"
@@ -40,10 +35,16 @@
       "time": "12:00"
     },
     "guests": "{guests, plural, =1 { guest} other { guests}}",
+    "guestsNote": "*you can add {extra_guests, plural, =1 {# guest} =2 {# guests} =3 {# guests} =4  {# guests} other {}}{extra_adults, plural, =1 {# adult or} =2 {# adults or} =3 {# adults or} =4 {# adults or} other {}} {extra_children, plural, =2 {# children} =3 {# children} =4 {# children} other {}}",
+    "visit": "{isPlural, select, true {View} other {Visit}}",
+    "book": "Book",
+    "altText": "photo of the wooden house {title} of the eco-estate In the countryside At the Grandpa's village",
+    "heroQuote": "\"I built {text} here.\"",
+    "click": "\"Click on the photo to see more.\"",
+    "look": "\"Look at the beautiful Mansions I have\"",
+    "roomsTitle": "So we have:",
     "adultGuestAddons": "adult ({rate} hrn)",
-    "childGuestAddons": "child of 3-12 y.o. ({rate} hrn)",
-    "visit": "Visit",
-    "book": "Book"
+    "childGuestAddons": "child of 3-12 y.o. ({rate} hrn)"
   },
   "UI": {
     "visit": "Visit",
@@ -51,8 +52,12 @@
     "currLink": "You are already on this page",
     "view": "View more",
     "askGrandpa": "Ask Grandpa",
-    "copyrights": "© 2024 Eco-estate “At Grandpa's Village”",
+    "copyrights": "© 2024 Eco-estate “At the Grandpa's village”",
     "rules": "Booking conditions and rules of stay"
+  },
+  "Entertainment": {
+    "note1": "The recreation center “At the Grandpa's village” offers an atmosphere of tranquility where everyone can plunge into the silence of nature, recuperate and create new memories. Here you will find the simple but important joys of life: swimming in natural reservoirs, collecting memories, the joy of laughter and communication with loved ones.",
+    "note2": "Our recreation center “At the Grandpa's village” is ideal for those who are looking for harmony with nature, comfort and unforgettable moments with family and friends."
   },
   "Gallery": {
     "clickMode": "{mode, select, desktop {Click} mobile {Press} other {Unknown}} on the photo to see more",
@@ -84,9 +89,9 @@
   "Rules": {
     "title": "Your grandfather has some small whishes and rules that apply in the eco-estate",
     "note1": "A little reminder:",
-    "note2": "Grandpa and the team of the <a href=\"/\">Eco-estate “At Grandpa's village” </a> are your friends, always ready to help and make your vacation pleasant and unforgettable.",
+    "note2": "Grandpa and the team of the <a href=\"/\">Eco-estate “At the Grandpa's village” </a> are your friends, always ready to help and make your vacation pleasant and unforgettable.",
     "note3": "Also remember that we cannot control the weather and other external circumstances, but we guarantee you a warm welcome and a comfortable stay.",
-    "note4": "“At Grandpa's village” guests get good, pleasant emotions and create unique, warm memories.",
+    "note4": "“At the Grandpa's village” guests get good, pleasant emotions and create unique, warm memories.",
     "note5": "Public offer"
   },
   "BookingStub": {
@@ -101,5 +106,12 @@
     "write": "write to us in Telegram",
     "requiredField": "This field is required",
     "phoneFormat": "Phone number format +38 (0XX) XXX XX XX"
+  },
+  "Houses": {
+    "mainTitle": "Eco complex of fabulous wooden houses",
+    "quote": "“I have wooden houses and huts, you can choose any option to your liking. Scroll down - I'll show you everything”",
+    "title": "Live here",
+    "note1": "Welcome to the eco-complex “At the Grandpa's village”, located in a picturesque corner of Ukraine - in Chernihiv region near the Blue Lakes. We offer you a comfortable stay in cozy huts where you can feel harmony with nature. Our wooden houses are equipped with everything you need for a comfortable stay.",
+    "note2": "Discover a real outdoor recreation, enjoying clean air, walks in the woods and fabulous sunsets by the lake. The eco-complex “At the Grandpa's village” is an ideal place for family vacations, romantic weekends and recuperation."
   }
 }
