@@ -39,6 +39,7 @@
     "visit": "{isPlural, select, true {View} other {Visit}}",
     "book": "Book",
     "altText": "photo of the wooden house {title} of the eco-estate In the countryside Grandpa's village",
+
     "heroQuote": "\"I built {text} here.\"",
     "click": "\"Click on the photo to see more.\"",
     "look": "\"Look at the beautiful Mansions I have\"",
@@ -65,6 +66,7 @@
   },
   "Contacts": {
     "title": "Contacts of the eco-estate “Grandpa's village”",
+
     "text1": "Despite his venerable age, your Grandpa is very modern, so he has a **Telegram-bot**, I know how much you love useful and convenient services.",
     "text2": "Use to book a house, or ask",
     "text3": "ChatBot",
@@ -92,6 +94,7 @@
     "note2": "Grandpa and the team of the <a href=\"/\">Eco-estate “Grandpa's village” </a> are your friends, always ready to help and make your vacation pleasant and unforgettable.",
     "note3": "Also remember that we cannot control the weather and other external circumstances, but we guarantee you a warm welcome and a comfortable stay.",
     "note4": "“Grandpa's village” guests get good, pleasant emotions and create unique, warm memories.",
+
     "note5": "Public offer"
   },
   "BookingStub": {
@@ -113,5 +116,6 @@
     "title": "Live here",
     "note1": "Welcome to the eco-complex “Grandpa's village”, located in a picturesque corner of Ukraine - in Chernihiv region near the Blue Lakes. We offer you a comfortable stay in cozy huts where you can feel harmony with nature. Our wooden houses are equipped with everything you need for a comfortable stay.",
     "note2": "Discover a real outdoor recreation, enjoying clean air, walks in the woods and fabulous sunsets by the lake. The eco-complex “Grandpa's village” is an ideal place for family vacations, romantic weekends and recuperation."
+
   }
 }

@@ -24,6 +24,7 @@ export const meals = [
             uk: 'Мангали на території *[еко-садиби “На селі у Дідуся”](/)* **входять у вартість проживання.** Запалюй вогнище, готуй свої улюблені *страви в еко-стилі* та насолоджуйся смаком, знаходячись в обіймах зелені та цвіту, серед неймовірної природи і чистого лісового повітря.\n\n Атмосфера, що панує тут зробить їжу, ще смачнішою та подарує незабутні емоції.',
             ru: 'Мангалы на территории *[эко-усадьбы “На деревне у Дедушки”](/)* **входят в стоимость проживания.** Разжигай огонь, готовь свои любимые *блюда в эко-стиле* и наслаждайся вкусом, находясь в окружении зелени и цветов, среди невероятной природы и чистого лесного воздуха.\n\n Атмосфера, царящая здесь, сделает еду еще вкуснее и подарит незабываемые эмоции.',
             en: "The grills on the territory of the *[eco-estate “Grandpa's village”](/)* **are included in the accommodation price.** Light the fire, cook your favorite *eco-style dishes,* and enjoy the taste while surrounded by greenery and flowers, amidst incredible nature and fresh forest air.\n\n The atmosphere here will make the food even tastier and provide unforgettable emotions.",
+
         },
         photo: [
             '/images/meals/grill.png',
