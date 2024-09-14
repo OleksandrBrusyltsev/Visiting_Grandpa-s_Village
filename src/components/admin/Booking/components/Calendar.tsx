@@ -1,12 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { Calendar, momentLocalizer, SlotInfo } from "react-big-calendar";
-import moment from "moment";
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 // import NewEventModal from "./AddModal";
 // import EditEventModal from "./EditModal";
-
-const localizer = momentLocalizer(moment); // or globalizeLocalizer
 
 type CalendarEvent = {
   title: string;
@@ -26,11 +25,12 @@ const MyCalendar: React.FC = () => {
     setIsEditEventModalOpen(false);
   };
 
-  const handleSlotSelected = (slotInfo: SlotInfo) => {
+  const handleSlotSelected = (info: any) => {
+    console.log(info);
     setCurrentEvent({
       title: "",
-      start: slotInfo.start,
-      end: slotInfo.end,
+      start: info.start,
+      end: info.end,
       desc: "",
     });
     setIsNewEventModalOpen(true);
@@ -58,17 +58,13 @@ const MyCalendar: React.FC = () => {
   };
 
   return (
-    <div id="Calendar" style={{ height: "100vh" }}>
-      <Calendar
-        localizer={localizer}
+    <div style={{ height: "100vh" }}>
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        initialView="dayGridMonth"
         events={events}
-        views={["month", "week", "day", "agenda"]}
-        timeslots={2}
-        defaultView="month"
-        defaultDate={new Date()}
-        selectable
-        onSelectEvent={handleEventSelected}
-        onSelectSlot={handleSlotSelected}
+        selectable={true}
+        editable={true}
       />
       Модалка для нового события
       {/* {currentEvent && (
