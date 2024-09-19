@@ -8,15 +8,15 @@ export const toasters = [
         translations: [
             {
                 language: 'ru',
-                text: 'Дедушка советует! Забронируй любой домик со специальной скидкой 10% с 15 сентября! Успей воспользоваться уникальным предложением',
+                text: 'Дедушка советует! Забронируй любой домик на две и более ночи со специальной скидкой 10% с 15 сентября! Успей воспользоваться уникальным предложением',
             },
             {
                 language: 'en',
-                text: 'Grandpa advises! Book any house with a special 10% discount up to 15th of September! Take advantage of the unique offer',
+                text: 'Grandpa advises! Book any house for two or more nights with a special 10% discount starting from September 15th! Take advantage of the unique offer',
             },
             {
                 language: 'uk',
-                text: 'Дідусь радить! Забронюй будь-який будиночок зі спеціальною знижкою 10% з 15 вересня ! Встигни скористатись унікальною пропозицією',
+                text: 'Дідусь радить! Забронюй будь-який будиночок від двох діб зі спеціальною знижкою 10% з 15 вересня! Встигни скористатися унікальною пропозицією',
             },
         ],
     },
