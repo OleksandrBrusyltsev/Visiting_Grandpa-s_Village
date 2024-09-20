@@ -6,14 +6,12 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import dayjs, { Dayjs } from "dayjs";
-import AddModal from "./AddModal";
+import AddNewBookModal from "./AddNewBookModal";
 // import EditEventModal from "./EditModal";
 
 type CalendarEvent = {
-  title: string;
-  start: Dayjs; 
+  start: Dayjs;
   end: Dayjs;
-  desc?: string;
   resourceId?: string;
 };
 
@@ -32,20 +30,16 @@ const MyCalendar: React.FC = () => {
     setIsNewBookModalOpen(false);
   };
 
- const handleSlotSelected = (info: any) => {
-   setCurrentEvent({
-     title: "",
-     start: dayjs(info.start), 
-     end: dayjs(info.end), 
-     resourceId: info.resource.id,
-   });
-   setIsNewBookModalOpen(true);
- };
-
-  const addNewBook = (newEvent: CalendarEvent) => {
-    setEvents([...events, newEvent]);
-    setIsNewBookModalOpen(false);
+  const handleSlotSelected = (info: any) => {
+    console.log("Slot selected:", info);
+    setCurrentEvent({
+      start: dayjs(info.start),
+      end: dayjs(info.end),
+      resourceId: info.resource.id,
+    });
+    setIsNewBookModalOpen(true);
   };
+
 
   const updateExistingEvent = (updatedEvent: CalendarEvent) => {
     setEvents(
@@ -71,8 +65,8 @@ const MyCalendar: React.FC = () => {
         initialView="resourceTimelineWeek"
         events={events.map((event) => ({
           ...event,
-          start: event.start.toDate(), // Преобразуем Dayjs в Date для FullCalendar
-          end: event.end.toDate(), // Преобразуем Dayjs в Date для FullCalendar
+          start: event.start.toDate(),
+          end: event.end.toDate(),
         }))}
         resources={resources}
         selectable={true}
@@ -117,11 +111,11 @@ const MyCalendar: React.FC = () => {
       />
       Модалка для нового события
       {currentEvent && (
-        <AddModal
-          open={isNewEventModalOpen}
+        <AddNewBookModal
+          open={isNewBookModalOpen}
           handleClose={handleCloseModals}
           currentEvent={currentEvent}
-          addNewEvent={addNewEvent}
+          
         />
       )}
       {/* Модалка для редактирования события */}
