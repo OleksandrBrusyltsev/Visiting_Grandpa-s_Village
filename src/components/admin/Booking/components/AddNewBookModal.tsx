@@ -28,7 +28,6 @@ type NewBookModalProps = {
     start: Dayjs;
     end: Dayjs;
   };
-  
 };
 
 const AddNewBookModal: FC<NewBookModalProps> = ({
@@ -38,7 +37,7 @@ const AddNewBookModal: FC<NewBookModalProps> = ({
 }) => {
   const defaultCheckInTime = dayjs(currentEvent.start).hour(12).minute(0);
   const defaultCheckOutTime = dayjs(currentEvent.end).hour(14).minute(0);
-  
+
   const [bookData, setBookData] = useState({
     name: "",
     phone: "",
@@ -49,7 +48,7 @@ const AddNewBookModal: FC<NewBookModalProps> = ({
     checkOutTime: defaultCheckOutTime,
     comment: "",
   });
-  
+
   // const [name, setName] = useState("");
   // const [phone, setPhone] = useState("");
   // const [email, setEmail] = useState("");
@@ -68,17 +67,16 @@ const AddNewBookModal: FC<NewBookModalProps> = ({
   //   defaultCheckOutTime
   // );
 
-   const handleChange = (field: string, value: string | Dayjs | null) => {
-     setBookData({
-       ...bookData,
-       [field]: value,
-     });
+  const handleChange = (field: string, value: string | Dayjs | null) => {
+    setBookData({
+      ...bookData,
+      [field]: value,
+    });
   };
-    const handleSave = () => {
-      console.log("Saving booking:", bookData);
-      handleClose();
-    };
-
+  const handleSave = () => {
+    console.log("Saving booking:", bookData);
+    handleClose();
+  };
 
   return (
     <Dialog
