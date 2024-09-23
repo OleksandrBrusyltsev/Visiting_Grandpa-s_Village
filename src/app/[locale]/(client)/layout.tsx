@@ -1,17 +1,25 @@
 import { unstable_setRequestLocale } from "next-intl/server";
+import { Metadata } from "next";
 
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
-import Footer from "../../../components/Footer/Footer";
-import Header from "../../../components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import Header from "@/components/Header/Header";
 import Navigation from "@/components/Header/Navigation";
-import { locales } from "@/data/locales";
 import Toaster from "@/components/ui/Toaster/Toaster";
-import { toasters } from "@/data/advertisementToaster";
 import { getPromoData } from "@/functions/tosterHelpers";
+
+import { toasters } from "@/data/advertisementToaster";
+import { locales } from "@/data/locales";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
+
+export const metadata: Metadata = {
+  other: {
+    "google-site-verification": "Yy2eWiERz4G340GcJ4J0ebWXu0GNzOaU-AQJVCYkv1s"
+  }
+};
 
 export default async function LocaleLayout({
   children,
