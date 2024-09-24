@@ -16,8 +16,25 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  other: {
-    "google-site-verification": "Yy2eWiERz4G340GcJ4J0ebWXu0GNzOaU-AQJVCYkv1s"
+  metadataBase: new URL(
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+    process.env.VERCEL_BRANCH_URL ||
+    process.env.VERCEL_URL ||
+    `http://localhost:${process.env.PORT || 3000}`
+  ),
+  verification: {
+    "google": "Yy2eWiERz4G340GcJ4J0ebWXu0GNzOaU-AQJVCYkv1s"
+  },
+  // alternates: {
+  //   canonical: '/uk',
+  //   languages: {
+  //     // 'uk': '/uk',
+  //     'en': '/en',
+  //     'ru': '/ru',
+  //   },
+  // },
+  openGraph: {
+    images: '/opengraph-image.jpg',
   }
 };
 
