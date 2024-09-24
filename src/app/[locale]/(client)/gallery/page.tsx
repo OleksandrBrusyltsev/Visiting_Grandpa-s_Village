@@ -1,22 +1,21 @@
-import type { Metadata } from "next";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 import { getData } from "@/actions/getData";
 import Gallery from "@/components/Gallery/Gallery";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
-import { locales } from "@/data/locales";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { generatePageMetadata } from "@/functions/generatePageMetadata";
 
-export const metadata: Metadata = {
-  title: "Фото галерея спогадів | На селі у Дідуся",
-  description:
-    "Розгляньте неймовірні фото наших гостей, збережені щирі емоції радості та щастя в галереї еко-садиби. Станьте свідками краси природи та спокою",
-};
+import { locales } from "@/data/locales";
+
+type Props = { params: { locale: string } }
+
+export function generateMetadata({ params }: Props) {
+  return generatePageMetadata(params.locale, "gallery");
+}
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
-
-type Props = { params: { locale: string } };
 
 export default async function Page({ params: { locale } }: Props) {
   unstable_setRequestLocale(locale);

@@ -1,9 +1,10 @@
-import House from "@/components/House/House";
-import { getData } from "@/actions/getData";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+
+import House from "@/components/House/House";
+import { getData } from "@/actions/getData";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
-import { generatePageMetadata } from "@/functions/generatePageMetadata";
+import { generateHouseMetadata } from "@/functions/generateHouseMetadata";
 
 export const dynamicParams = false;
 
@@ -19,7 +20,7 @@ export async function generateStaticParams({
 type Props = { params: { house: string; locale: string } };
 
 export async function generateMetadata({ params }: Props) {
-  return generatePageMetadata({ params });
+  return generateHouseMetadata({ params });
 }
 
 export default async function Page({ params }: Props) {
