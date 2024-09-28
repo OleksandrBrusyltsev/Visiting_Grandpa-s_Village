@@ -6,8 +6,8 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import dayjs, { Dayjs } from "dayjs";
-import AddNewBookModal from "./AddNewBookModal";
-// import EditEventModal from "./EditModal";
+import AddNewBookModal from "../AddNewBookModal";
+import s from "./AdminCalendar.module.scss";
 
 type CalendarEvent = {
   start: Dayjs;
@@ -21,7 +21,7 @@ const resources = [
   { id: "3", title: "Номер 103" },
 ];
 
-const MyCalendar: React.FC = () => {
+const AdminCalendar: React.FC = () => {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [currentEvent, setCurrentEvent] = useState<CalendarEvent | null>(null);
   const [isNewBookModalOpen, setIsNewBookModalOpen] = useState(false);
@@ -39,19 +39,6 @@ const MyCalendar: React.FC = () => {
     });
     setIsNewBookModalOpen(true);
   };
-
-
-  const updateExistingEvent = (updatedEvent: CalendarEvent) => {
-    setEvents(
-      events.map((event) =>
-        event.start === currentEvent?.start ? updatedEvent : event
-      )
-    );
-  };
-
-  // const deleteEvent = (start: Date) => {
-  //   setEvents(events.filter((event) => event.start !== start));
-  // };
 
   return (
     <div className="container">
@@ -115,21 +102,10 @@ const MyCalendar: React.FC = () => {
           open={isNewBookModalOpen}
           handleClose={handleCloseModals}
           currentEvent={currentEvent}
-          
         />
       )}
-      {/* Модалка для редактирования события */}
-      {/* {currentEvent && (
-        <EditEventModal
-          open={isEditEventModalOpen}
-          handleClose={handleCloseModals}
-          currentEvent={currentEvent}
-          updateEvent={updateExistingEvent}
-          deleteEvent={deleteEvent}
-        />
-      )} */}
     </div>
   );
 };
 
-export default MyCalendar;
+export default AdminCalendar;

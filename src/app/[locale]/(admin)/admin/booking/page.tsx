@@ -1,6 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import MyCalendar from "@/components/admin/Booking/components/Calendar";
+import AdminCalendar from "@/components/admin/Booking/components/AdminCalendar/AdminCalendar";
 
 export async function generateStaticParams() {
   return ["uk", "en"].map((locale) => ({ locale }));
@@ -17,7 +17,7 @@ export default function Admin({
   return (
     <main>
       <h1>{t("title")}</h1>
-      <MyCalendar />
+      <AdminCalendar />
     </main>
   );
 }

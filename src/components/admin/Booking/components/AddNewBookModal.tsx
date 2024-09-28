@@ -49,24 +49,6 @@ const AddNewBookModal: FC<NewBookModalProps> = ({
     comment: "",
   });
 
-  // const [name, setName] = useState("");
-  // const [phone, setPhone] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [comment, setComment] = useState("");
-
-  // const [checkInDate, setCheckInDate] = useState<Dayjs | null>(
-  //   currentEvent.start || null
-  // );
-  // const [checkInTime, setCheckInTime] = useState<Dayjs | null>(
-  //   defaultCheckInTime
-  // );
-  // const [checkOutDate, setCheckOutDate] = useState<Dayjs | null>(
-  //   currentEvent.end || null
-  // );
-  // const [checkOutTime, setCheckOutTime] = useState<Dayjs | null>(
-  //   defaultCheckOutTime
-  // );
-
   const handleChange = (field: string, value: string | Dayjs | null) => {
     setBookData({
       ...bookData,
