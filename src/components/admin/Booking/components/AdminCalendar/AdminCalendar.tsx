@@ -6,8 +6,11 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import dayjs, { Dayjs } from "dayjs";
+import { houses } from "../../../../../data/houses/index";
 import AddNewBookModal from "../AddNewBookModal";
 import s from "./AdminCalendar.module.scss";
+
+
 
 type CalendarEvent = {
   start: Dayjs;
@@ -15,11 +18,44 @@ type CalendarEvent = {
   resourceId?: string;
 };
 
-const resources = [
-  { id: "1", title: "Номер 101" },
-  { id: "2", title: "Номер 102" },
-  { id: "3", title: "Номер 103" },
-];
+// const resources = [
+//   { id: "1", title: "Номер 101" },
+//   { id: "2", title: "Номер 102" },
+//   { id: "3", title: "Номер 103" },
+// ];
+
+const resources = houses.map((house) => {
+  // Ищем украинский текст в основном заголовке дома
+  const ukTitle = house.title.find((t) => t.language === "uk");
+
+  // Ищем украинский текст в комнатах, если они есть
+  const roomTitles = house.rooms.map((room) => {
+    const ukRoomTitle = room.title.find((t) => t.language === "uk");
+    return {
+      id: room.name,
+      title: ukRoomTitle?.text || room.name, // Используем украинский текст, если он найден
+    };
+  });
+
+  // Если дом называется "khoromy", добавляем только комнаты
+  if (house.name === "khoromy") {
+    return roomTitles; // Возвращаем только ресурсы для комнат
+  }
+
+  // Основной ресурс для дома (если это не "khoromy")
+  const houseResource = {
+    id: house.name,
+    title: ukTitle?.text || house.name, // Если украинский текст не найден, используем имя
+  };
+
+  // Возвращаем ресурсы для дома и комнат
+  return [houseResource, ...roomTitles];
+});
+
+// Объединяем все ресурсы в один массив
+const allResources = resources.flat();
+
+
 
 const AdminCalendar: React.FC = () => {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
@@ -55,7 +91,7 @@ const AdminCalendar: React.FC = () => {
           start: event.start.toDate(),
           end: event.end.toDate(),
         }))}
-        resources={resources}
+        resources={allResources}
         selectable={true}
         editable={true}
         slotDuration={{ days: 1 }}
