@@ -6,16 +6,7 @@ export default async function page({ children }: Props) {
 
   return (
     <div>
-      <aside>
-        <nav>
-          <ul>
-            
-          </ul>
-        </nav>
-      </aside>
-      <div className="children_wrapper">
-        { children}
-      </div>
+      Головна сторінка Адмін Панелі
     </div>
   )
 }

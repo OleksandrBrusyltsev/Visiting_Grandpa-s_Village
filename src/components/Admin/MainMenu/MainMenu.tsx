@@ -32,22 +32,12 @@ const closedMixin = (theme: Theme): CSSObject => ({
     },
 });
 
-export const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-}));
-
 const drawerWidth = 280;
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme }) => ({
         width: drawerWidth,
         flexShrink: 0,
-        // whiteSpace: 'nowrap',
         boxSizing: 'border-box',
         variants: [
             {

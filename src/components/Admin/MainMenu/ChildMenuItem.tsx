@@ -17,6 +17,7 @@ import {
     PhotoLibraryOutlined,
     PhotoOutlined
 } from '@mui/icons-material';
+import Link from 'next/link';
 
 type Props = {
     menuItem: MenuItem;
@@ -47,7 +48,7 @@ export default function ChildMenuItem({ menuItem }: Props) {
     return (
         <ListItem disablePadding sx={{ display: 'block' }}>
             <ListItemButton
-                component="a"
+                component={Link}
                 href={url}
                 sx={[{ minHeight: 48, px: 2.5, },
                 ]}
