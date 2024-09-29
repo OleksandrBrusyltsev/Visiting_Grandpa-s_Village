@@ -17,7 +17,9 @@ import {
     PhotoLibraryOutlined,
     PhotoOutlined
 } from '@mui/icons-material';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 type Props = {
     menuItem: MenuItem;
@@ -44,14 +46,24 @@ const iconMapping: { [key: string]: React.ElementType } = {
 export default function ChildMenuItem({ menuItem }: Props) {
     const { name, url, icon } = menuItem;
     const IconComponent = iconMapping[icon];
+    const currPath = usePathname();
+    const selectedIndex = currPath === url ? true : false;
 
     return (
-        <ListItem disablePadding sx={{ display: 'block' }}>
+        <ListItem disablePadding>
             <ListItemButton
+                selected={selectedIndex}
                 component={Link}
                 href={url}
-                sx={[{ minHeight: 48, px: 2.5, },
-                ]}
+                sx={{
+                    minHeight: 48, px: 2.5,
+                    '&.Mui-selected': {
+                        backgroundColor: 'rgba(63, 85, 64, 0.3)',
+                    },
+                    '&:hover, &.Mui-selected:hover': {
+                        backgroundColor: 'rgba(63, 85, 64, 0.5)',
+                    },
+                }}
             >
                 <ListItemIcon
                     sx={{ minWidth: 0, justifyContent: 'center', mr: 3 }}

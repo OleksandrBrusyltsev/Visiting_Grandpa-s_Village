@@ -67,11 +67,13 @@ export default function ParentMenuItem({ menuItem, isDrawerOpen }: Props) {
 
             <ListItem
                 disablePadding
-                // sx={{ display: 'block' }}
                 onClick={handleClick}
             >
                 <ListItemButton
-                    sx={{ minHeight: 48, px: 2.5, }}
+                    sx={{
+                        minHeight: 48, px: 2.5, '&:hover': {
+                            backgroundColor: 'rgba(63, 85, 64, 0.5)',
+                        }, }}
                 >
                     <ListItemIcon
                         sx={{ minWidth: 0, justifyContent: 'center', mr: 3 }}
