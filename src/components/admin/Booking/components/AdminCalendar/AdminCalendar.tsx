@@ -10,8 +10,6 @@ import { houses } from "../../../../../data/houses/index";
 import AddNewBookModal from "../AddNewBookModal";
 import s from "./AdminCalendar.module.scss";
 
-
-
 type CalendarEvent = {
   start: Dayjs;
   end: Dayjs;
@@ -25,37 +23,29 @@ type CalendarEvent = {
 // ];
 
 const resources = houses.map((house) => {
-  // Ищем украинский текст в основном заголовке дома
   const ukTitle = house.title.find((t) => t.language === "uk");
 
-  // Ищем украинский текст в комнатах, если они есть
   const roomTitles = house.rooms.map((room) => {
     const ukRoomTitle = room.title.find((t) => t.language === "uk");
     return {
       id: room.name,
-      title: ukRoomTitle?.text || room.name, // Используем украинский текст, если он найден
+      title: ukRoomTitle?.text || room.name,
     };
   });
 
-  // Если дом называется "khoromy", добавляем только комнаты
   if (house.name === "khoromy") {
-    return roomTitles; // Возвращаем только ресурсы для комнат
+    return roomTitles;
   }
 
-  // Основной ресурс для дома (если это не "khoromy")
   const houseResource = {
     id: house.name,
-    title: ukTitle?.text || house.name, // Если украинский текст не найден, используем имя
+    title: ukTitle?.text || house.name,
   };
 
-  // Возвращаем ресурсы для дома и комнат
   return [houseResource, ...roomTitles];
 });
 
-// Объединяем все ресурсы в один массив
 const allResources = resources.flat();
-
-
 
 const AdminCalendar: React.FC = () => {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
@@ -130,6 +120,7 @@ const AdminCalendar: React.FC = () => {
             resourcesInitiallyExpanded: true,
           },
         }}
+        resourceAreaHeaderContent="Номери"
         select={handleSlotSelected}
       />
       Модалка для нового события
