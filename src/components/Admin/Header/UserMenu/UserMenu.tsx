@@ -15,6 +15,7 @@ import { Login } from '@mui/icons-material';
 import { logout } from '@/actions/admin/auth';
 import {  useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
+import Link from 'next/link';
 
 export default function UserMenu() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -37,7 +38,7 @@ export default function UserMenu() {
     
     return (
         <>
-            <Tooltip title="Account settings">
+            <Tooltip title={`${user.first_name} ${user.last_name}`}>
                 <IconButton
                     onClick={handleClick}
                     size="large"
@@ -45,7 +46,12 @@ export default function UserMenu() {
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
                 >
-                    <Avatar sx={{ width: 48, height: 48 }}></Avatar>
+                    <Avatar
+                        alt={`${user.first_name} ${user.last_name}`}
+                        src="/broken-image.jpg"
+                        sx={{ width: 48, height: 48, bgcolor: 'rgb(63, 85, 64)' }}>
+                        {user.first_name?.charAt(0) || ''}{user.last_name?.charAt(0) || ''}
+                    </Avatar>
                 </IconButton>
             </Tooltip>
             <Menu
@@ -85,24 +91,21 @@ export default function UserMenu() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={handleClose}>
-                    <Avatar /> Profile
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <Avatar /> My account
+                <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/profile' onClick={handleClose}>
+                    <Avatar /> Профіль користувача
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleClose}>
+                <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/users' onClick={handleClose}>
                     <ListItemIcon>
                         <PersonAdd fontSize="small" />
                     </ListItemIcon>
-                    Add another account
+                    Додати користувача
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/settings' onClick={handleClose}>
                     <ListItemIcon>
                         <Settings fontSize="small" />
                     </ListItemIcon>
-                    Settings
+                    Налаштування
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
@@ -112,7 +115,7 @@ export default function UserMenu() {
                                 <Login fontSize="small" />
                         }
                     </ListItemIcon>
-                    Logout
+                    Вийти
                 </MenuItem>
             </Menu>
         </>

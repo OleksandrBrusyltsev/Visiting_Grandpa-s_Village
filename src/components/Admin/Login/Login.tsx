@@ -163,7 +163,8 @@ export default function SignIn() {
             sx={{
               padding: '10px 14px',
               mt: 2, 
-              fontSize: 20
+              fontSize: 20,
+              bgcolor: 'rgb(63, 85, 64)'
             }}
             onClick={validateInputs}
           >
