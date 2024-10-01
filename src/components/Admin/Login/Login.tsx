@@ -1,6 +1,7 @@
 "use client";
 import React, { FormEvent, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
@@ -31,8 +32,8 @@ const SignInContainer = styled(Box)({
 
 
 export default function SignIn() {
+  const locale = useLocale();
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
-
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   
   const [loading, setLoading] = useState<boolean>(false);
@@ -79,7 +80,8 @@ export default function SignIn() {
     if (user) {
       setUser(user);
       (e.target as HTMLFormElement).reset();
-      replace('/dyadus_adm1n_hub');
+      console.log('replace');
+      replace(`/${locale}/dyadus_adm1n_hub`);
     }
   }
 

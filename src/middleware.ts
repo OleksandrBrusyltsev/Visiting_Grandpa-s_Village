@@ -1,15 +1,14 @@
 import createMiddleware from 'next-intl/middleware';
-import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-import { decrypt } from './actions/admin/auth';
 
-const url = process.env.SERV_URL;
+import { decrypt, getSession, updateSession } from './actions/admin/auth';
 
-// 1. Указываем защищенные и публичные маршруты
+// Указываем защищенные и публичные маршруты
 const adminRoutes = ['/dyadus_adm1n_hub', '/dyadus_adm1n_hub/:path*'];
-const protectedClientRoutes = ['/booking/payment', '/booking/option'];
+const protectedClientRoutes = ['/booking/payment', '/booking/option', '/profile'];
 const publicRoutes = [
     '/',
+    '/login',
     '/meals',
     '/entertainment',
     '/gallery',
@@ -22,7 +21,7 @@ const publicRoutes = [
     '/dyadus_adm1n_hub/login',
 ];
 
-// 2. Middleware для обработки локалей (создаем на основе next-intl/middleware)
+// Middleware для обработки локалей (создаем на основе next-intl/middleware)
 const localeMiddleware = createMiddleware({
     locales: ['uk', 'en', 'ru'],
     defaultLocale: 'uk',
@@ -30,6 +29,7 @@ const localeMiddleware = createMiddleware({
 });
 
 export default async function middleware(req: NextRequest) {
+    // Обрабатываем локаль
     const pathname = req.nextUrl.pathname;
     const localeMatch = pathname.match(/^\/(uk|en|ru)/);
     const currentLocale = localeMatch ? localeMatch[1] : 'uk';
@@ -39,95 +39,85 @@ export default async function middleware(req: NextRequest) {
         pathname.replace(`/${currentLocale}`, ''),
     );
     const isPublicRoute = publicRoutes.includes(pathname.replace(`/${currentLocale}`, ''));
+    const isLoginPage =
+        pathname === `/${currentLocale}/dyadus_adm1n_hub/login` ||
+        pathname === `/${currentLocale}/login`;
 
-    let refresh: string | undefined,
-        resp: Response,
-        newRefreshToken: string | null = '',
-        newAccessToken: string | undefined = '';
-    
-    //если публичный путь, то просто обрабатываем локаль
-    if (isPublicRoute) {
+    let refreshTokenCookie: string = '',
+        newAccessToken: string = '';
+    //если публичный путь (но не страница логина), то просто обрабатываем локаль
+    if (isPublicRoute && !isLoginPage) {
         return localeMiddleware(req);
     }
-    //если не публичный путь, то ищем access-token
-    if (isAdminRoute || isProtectedClientRoute) {
-        const accessToken = cookies().get('access_token')?.value;
-        //если нет access-token, то проверяем наличие refresh-token
-        if (!accessToken) {
-            refresh = cookies().get('refresh_token')?.value;
+    // получаем сессию
+    const { user_role } = await getSession(req);
 
-            //если также нет refresh-token, то редиректим на логин, в зависимости от роута, на который пытался перейти юзер
-            if (!refresh) {
-                if (isAdminRoute) {
-                    return NextResponse.redirect(
-                        new URL(`/${currentLocale}/dyadus_adm1n_hub/login`, req.nextUrl.origin),
-                    );
-                } else if (isProtectedClientRoute) {
-                    return NextResponse.redirect(
-                        new URL(`/${currentLocale}/login`, req.nextUrl.origin),
-                    );
-                }
-            }
-            //если есть refresh-token, то обновляем access-token
-            resp = await fetch(`${url}/api/v1/auth/refresh-token`, {
-                method: 'POST',
-                headers: {
-                    Cookie: `refresh_token=${refresh}`,
-                },
-            });
+    //если сессия не найдена, то пытаемся обновить access-token и refresh-token
+    if (!user_role) {
+        const session = await updateSession(req);
 
-            if (!resp.ok) {
-                const errorData = await resp.json();
-                console.log('errorData: ', errorData);
-                return NextResponse.json(
-                    { error: errorData.error || 'Refresh token failed' },
-                    { status: 403 },
+        //ошибка обновления access-token
+        if (session.error) return NextResponse.json({ error: session.error }, { status: 403 });
+
+        //если нет refresh-token, то редиректим на логин, в зависимости от роута, на который пытался перейти юзер
+        if (!session.access_token || !session.refreshTokenCookie) {
+            if (isAdminRoute) {
+                return NextResponse.redirect(
+                    new URL(`/${currentLocale}/dyadus_adm1n_hub/login`, req.nextUrl.origin),
+                );
+            } else if (isProtectedClientRoute) {
+                return NextResponse.redirect(
+                    new URL(`/${currentLocale}/login`, req.nextUrl.origin),
                 );
             }
-
-            //если обновление прошло успешно, то получаем новый access-token и новый refresh-token
-            newRefreshToken = resp.headers.get('set-cookie');
-            newAccessToken = (await resp.json())?.access_token;
-            if (!newRefreshToken || !newAccessToken) {
-                return NextResponse.json({ error: 'Refresh token failed' }, { status: 403 });
-            }
         }
 
-        //декодируем имеющийся или вновь полученный access-token для получения типа юзера
-        const session = await decrypt(newAccessToken || accessToken);
-        //если тип юзера не соответствует маршруту, то редиректим на логин
-        if (
-            isAdminRoute &&
-            session &&
-            session.user_type !== 'admin' &&
-            session?.user_type !== 'superadmin'
-        ) {
-            return NextResponse.redirect(
-                new URL(`/${currentLocale}/dyadus_adm1n_hub/login`, req.nextUrl.origin),
-            );
-        }
-
-        if (isProtectedClientRoute && session && session.user_type !== 'client') {
-            return NextResponse.redirect(new URL(`/${currentLocale}/login`, req.nextUrl.origin));
-        }
-        const response = localeMiddleware(req);
-        
-        //если есть access-token и refresh-token, то добавляем их в куки
-        if (newRefreshToken && newAccessToken) {
-            const exp = (await decrypt(newAccessToken))!.exp;
-            response.headers.set(
-                'set-cookie',
-                `access_token=${newAccessToken}; path=/; expires=${new Date(
-                    exp * 1000,
-                ).toUTCString()}`,
-            );
-            response.headers.append('set-cookie', newRefreshToken);
-        }
-        
-
-        //если access-token и refresh-token есть, то обрабатываем локаль
-        return response;
+        newAccessToken = session.access_token || '';
+        refreshTokenCookie = session.refreshTokenCookie || '';
     }
+
+    //декодируем имеющийся или вновь полученный access-token для получения типа юзера
+    const userRole = user_role || (await decrypt(newAccessToken))?.user_type;
+
+    // редиректим аутентифицированного юзера cо страницы логина
+    // на соответствующую стартовую страницу
+    if (
+        pathname.replace(`/${currentLocale}`, '') === '/dyadus_adm1n_hub/login' &&
+        (user_role === 'admin' || user_role === 'superadmin')
+    ) {
+        return NextResponse.redirect(
+            new URL(`/${currentLocale}/dyadus_adm1n_hub`, req.nextUrl.origin),
+        );
+    }
+    if (pathname.replace(`/${currentLocale}`, '') === '/login' && user_role === 'client') {
+        return NextResponse.redirect(new URL(`/${currentLocale}/profile`, req.nextUrl.origin));
+    }
+
+    //если тип юзера не соответствует маршруту, то редиректим на логин
+    if (isAdminRoute && userRole && userRole !== 'admin' && userRole !== 'superadmin') {
+        return NextResponse.redirect(
+            new URL(`/${currentLocale}/dyadus_adm1n_hub/login`, req.nextUrl.origin),
+        );
+    }
+    if (isProtectedClientRoute && userRole && userRole !== 'client') {
+        return NextResponse.redirect(new URL(`/${currentLocale}/login`, req.nextUrl.origin));
+    }
+
+    const response = localeMiddleware(req);
+
+    //если есть новые access-token и refresh-token, то добавляем их в куки
+    if (refreshTokenCookie && newAccessToken) {
+        const exp = (await decrypt(newAccessToken))!.exp;
+        response.headers.set(
+            'set-cookie',
+            `access_token=${newAccessToken}; path=/; expires=${new Date(
+                exp * 1000,
+            ).toUTCString()}; HttpOnly; SameSite=Lax`,
+        );
+        response.headers.append('set-cookie', refreshTokenCookie);
+    }
+
+    return response;
 }
 
 export const config = {

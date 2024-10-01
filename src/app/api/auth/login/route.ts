@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     }
     catch (error) {
         console.log('Failed to get token: ', error);
-        return { error: 'Failed to get token' };
+        return Response.json({ error: 'Failed to get token' }, { status: 500 });
     }
 
     try {

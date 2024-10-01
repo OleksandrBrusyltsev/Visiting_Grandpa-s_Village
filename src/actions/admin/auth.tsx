@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers'
 import { jwtVerify } from 'jose';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const url = process.env.SERV_URL;
 const key = process.env.JWT_SECRET as string;
@@ -31,12 +31,55 @@ export async function createSession(
     response: NextResponse) {
 
     const exp = (await decrypt(accessToken))!.exp;
-    response.headers.append(
+    response.headers.set(
         'set-cookie',
         `access_token=${accessToken}; path=/; expires=${new Date(exp * 1000).toUTCString()}; HttpOnly; SameSite=Lax`,
     );
     response.headers.append('set-cookie', refreshTokenFromCookie);
     return response;
+}
+
+export async function getSession(request?: NextRequest) {
+    
+    const accessToken = request ? 
+        request.cookies.get('access_token')?.value :
+        cookies().get('access_token')?.value;
+    
+    if (!accessToken) return { user_role: null };
+
+    return {user_role: (await decrypt(accessToken))?.user_type};
+}
+
+export async function updateSession(request: NextRequest) {
+    const refreshToken = request ?
+    request.cookies.get('refresh_token')?.value :
+    cookies().get('refresh_token')?.value;
+    
+    console.log('refreshToken: ', refreshToken);
+    if (!refreshToken) {
+        return { error: null, access_token: null, refreshTokenCookie: null};
+    }
+    
+    const resp = await fetch(`${url}/api/v1/auth/refresh-token`, {
+        method: 'POST',
+        headers: {
+            Cookie: `refresh_token=${refreshToken}`,
+        },
+    });
+console.log(resp);
+    if (!resp.ok) {
+        const errorData = await resp.json();
+        return {
+            error: errorData.error || 'Refresh token failed',
+            access_token: null,
+            refreshTokenCookie: null
+        }
+    }
+    const { access_token } = await resp.json();
+    console.log('access_token: ', access_token);
+    const refreshTokenCookie = resp.headers.get('set-cookie') || '';
+
+    return { error: null, access_token, refreshTokenCookie };
 }
 
 export const getToken = async (email: string, password: string): Promise<Response> => {

@@ -48,7 +48,6 @@ export default function UserMenu() {
                 >
                     <Avatar
                         alt={`${user.first_name} ${user.last_name}`}
-                        src="/broken-image.jpg"
                         sx={{ width: 48, height: 48, bgcolor: 'rgb(63, 85, 64)' }}>
                         {user.first_name?.charAt(0) || ''}{user.last_name?.charAt(0) || ''}
                     </Avatar>
@@ -92,7 +91,7 @@ export default function UserMenu() {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/profile' onClick={handleClose}>
-                    <Avatar /> Профіль користувача
+                    <Avatar src='./opengraph-image.jpg'/> Профіль користувача
                 </MenuItem>
                 <Divider />
                 <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/users' onClick={handleClose}>
