@@ -91,7 +91,7 @@ export default function UserMenu() {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/profile' onClick={handleClose}>
-                    <Avatar src='./opengraph-image.jpg'/> Профіль користувача
+                    <Avatar src='/opengraph-image.jpg'/> Профіль користувача
                 </MenuItem>
                 <Divider />
                 <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/users' onClick={handleClose}>

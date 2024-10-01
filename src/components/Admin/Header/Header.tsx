@@ -22,28 +22,25 @@ export default function Header() {
     };
 
     return (
-        <header className='w-full bg-nude/70'>
-            <div className="container 2xl mx-auto flex justify-between items-center gap-4">
-                <IconButton
-                    size="large"
-                    // edge="start"
-                    aria-label="open menu"
-                    onClick={handleDrawerToggle}
-                    sx={{
-                        "&.MuiIconButton-root": {
-                            marginLeft: "8px"
-                        },
-                    }}
-                >
-                    {open ? <MenuOpenIcon /> : <MenuIcon />}
-                </IconButton>
-                <Link href={`/${locale}/dyadus_adm1n_hub`} className='min-w-80 h-24 relative'>
-                    <Image src="/images/logo-main-admin.svg" alt="" fill />
-                </Link>
-                <div className='grow'></div>
+        <header className='w-full bg-nude/70 flex justify-between items-center gap-4'>
+            <IconButton
+                size="large"
+                aria-label="open menu"
+                onClick={handleDrawerToggle}
+                sx={{
+                    "&.MuiIconButton-root": {
+                        marginLeft: "8px"
+                    },
+                }}
+            >
+                {open ? <MenuOpenIcon /> : <MenuIcon />}
+            </IconButton>
+            <Link href={`/${locale}/dyadus_adm1n_hub`} className='min-w-80 h-24 relative'>
+                <Image src="/images/logo-main-admin.svg" alt="" fill />
+            </Link>
+            <div className='grow'></div>
 
-                <UserMenu/>
-            </div>
+            <UserMenu/>
         </header>
     )
 }

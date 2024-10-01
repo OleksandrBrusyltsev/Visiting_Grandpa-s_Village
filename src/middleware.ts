@@ -5,7 +5,7 @@ import { decrypt, getSession, updateSession } from './actions/admin/auth';
 
 // Указываем защищенные и публичные маршруты
 const adminRoutes = ['/dyadus_adm1n_hub', '/dyadus_adm1n_hub/:path*'];
-const protectedClientRoutes = ['/booking/payment', '/booking/option', '/profile'];
+const protectedClientRoutes = ['/booking/payment', '/booking/options', '/profile'];
 const publicRoutes = [
     '/',
     '/login',

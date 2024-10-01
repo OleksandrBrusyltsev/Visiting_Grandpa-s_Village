@@ -15,7 +15,7 @@ export default async function DashboardLayout({ children }: Props) {
   return (
     <>
       <Header />
-      <div className="container 2xl mx-auto flex">
+      <div className="mx-auto flex">
         <MainMenu menu={menu} />
         <main className="mx-auto grow p-3" style={{ minHeight: 'calc(100dvh - 96px)' }}>
           {children}
