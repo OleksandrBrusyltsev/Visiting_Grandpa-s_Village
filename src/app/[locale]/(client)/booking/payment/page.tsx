@@ -1,15 +1,17 @@
-import { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 import Link from "next/link";
 
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
+import { generatePageMetadata } from "@/functions/generatePageMetadata";
+
 import { locales } from "@/data/locales";
 
-export const metadata: Metadata = {
-  title: "Оплата за бронювання номерів | На селі у Дідуся",
-  description: "Оплата за бронювання номерів в еко-садибі «На селі у Дідуся».",
-};
+type Props = { params: { locale: string } }
+
+export function generateMetadata({ params }: Props) {
+  return generatePageMetadata(params.locale, "payment");
+}
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -17,9 +19,7 @@ export async function generateStaticParams() {
 
 export default function Page({
   params: { locale },
-}: {
-  params: { locale: string };
-}) {
+}: Props) {
   unstable_setRequestLocale(locale);
   const t = useTranslations("Breadcrumbs");
 

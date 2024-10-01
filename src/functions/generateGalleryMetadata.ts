@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+
 import { getData } from '@/actions/getData';
+import { metaData } from '@/data/meta';
 
 export async function generateGalleryMetadata({
     params,
@@ -14,9 +16,16 @@ export async function generateGalleryMetadata({
 
     const galleryTitle =
         galleryItem[0].title[params.locale as keyof (typeof galleryItem)[0]['title']];
-
+    const title =
+        metaData['galleryChapter'].title[
+            params.locale as keyof (typeof metaData)['galleryChapter']['title']
+        ](galleryTitle);
+    const description =
+        metaData['galleryChapter'].description[
+            params.locale as keyof (typeof metaData)['galleryChapter']['description']
+        ](galleryTitle);
     return {
-        title: `Фото галерея розділу ${galleryTitle} | На селі у Дідуся`,
-        description: `Неймовірні фото наших гостей та локацій еко-садиби - ${galleryTitle}. Тут вас завжди зустріне атмосфера затишку та щирі емоції, які ми збережемо на довгі роки в нашій галереї`,
+        title,
+        description,
     };
 }
