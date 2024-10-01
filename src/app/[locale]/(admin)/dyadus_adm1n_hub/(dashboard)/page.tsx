@@ -1,8 +1,9 @@
 import React from 'react'
 
-type Props = {children: React.ReactNode}
+type Props = {}
 
-export default async function page({ children }: Props) {
+
+export default async function page() {
 
   return (
     <div>
