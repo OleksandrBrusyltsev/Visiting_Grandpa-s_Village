@@ -4,7 +4,7 @@ export default async function Page() {
 
   return (
     <div>
-      Головна сторінка Адмін Панелі
+      Головна сторінка Адмін Панелі!
     </div>
   )
 }
