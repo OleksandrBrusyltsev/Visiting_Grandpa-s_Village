@@ -66,7 +66,7 @@ export async function updateSession(request: NextRequest) {
             Cookie: `refresh_token=${refreshToken}`,
         },
     });
-console.log(resp);
+    
     if (!resp.ok) {
         const errorData = await resp.json();
         return {
@@ -111,4 +111,16 @@ export const getUser = async (token: string): Promise<Response> => {
 export async function logout() {
     cookies().delete('access_token');
     cookies().delete('refresh_token');
+    // cookies().set('access_token', "", {
+    //     expires: new Date(0),
+    //     httpOnly: true,
+    //     path: '/',
+    //     sameSite: 'lax',
+    // });
+    // cookies().set('refresh_token', "", {
+    //     expires: new Date(0),
+    //     httpOnly: true,
+    //     path: '/',
+    //     sameSite: 'lax',
+    // });
 }

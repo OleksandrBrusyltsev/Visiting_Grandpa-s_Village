@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 
 import { createSession, getToken, getUser } from '@/actions/admin/auth';
-import { UserType } from '@/types/auth';
 
 export async function POST(request: Request) {
     const credentials = await request.json() as { email: string; password: string };

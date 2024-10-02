@@ -44,7 +44,7 @@ export default function SignIn() {
 
   const setUser = useMainStore((state) => state.setUser);
 
-  const { replace } = useRouter();
+  const { refresh } = useRouter();
   
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -80,8 +80,7 @@ export default function SignIn() {
     if (user) {
       setUser(user);
       (e.target as HTMLFormElement).reset();
-      console.log('replace');
-      replace(`/${locale}/dyadus_adm1n_hub`);
+      refresh()
     }
   }
 

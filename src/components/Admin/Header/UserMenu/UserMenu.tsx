@@ -21,8 +21,8 @@ export default function UserMenu() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const user = useMainStore((state) => state.user);
-    const locale = useLocale();
-    const { replace } = useRouter();
+    const resetUser = useMainStore((state) => state.resetUser);
+    const { refresh } = useRouter();
     
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -30,10 +30,12 @@ export default function UserMenu() {
     const handleClose =  () => {
         setAnchorEl(null);
     };
+
     const handleLogout = async () => {
         setAnchorEl(null);
         await logout();
-        replace(`/${locale}/dyadus_adm1n_hub/login`);
+        resetUser();
+        refresh();
     };
     
     return (
@@ -106,6 +108,7 @@ export default function UserMenu() {
                     </ListItemIcon>
                     Налаштування
                 </MenuItem>
+                
                 <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
                         {

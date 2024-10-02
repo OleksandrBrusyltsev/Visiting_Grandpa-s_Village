@@ -62,6 +62,7 @@ export default async function middleware(req: NextRequest) {
         //если нет refresh-token, то редиректим на логин, в зависимости от роута, на который пытался перейти юзер
         if (!session.access_token || !session.refreshTokenCookie) {
             if (isAdminRoute) {
+                
                 return NextResponse.redirect(
                     new URL(`/${currentLocale}/dyadus_adm1n_hub/login`, req.nextUrl.origin),
                 );

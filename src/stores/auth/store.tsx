@@ -1,6 +1,5 @@
 import { createStore } from 'zustand/vanilla';
 import { devtools, persist } from 'zustand/middleware';
-import { UserType } from '@/types/auth';
 
 export type UserState = {
     user: UserType;
@@ -22,11 +21,11 @@ const initialMainState:
     user: {
         id: '',
         email: '',
-        first_name: null,
-        last_name: null,
-        user_type: null,
+        first_name: '',
+        last_name: '',
+        user_type: '',
         id_active: false,
-        phone_number: null,
+        phone_number: '',
     },
     adminMenuIsOpen: true,
 };

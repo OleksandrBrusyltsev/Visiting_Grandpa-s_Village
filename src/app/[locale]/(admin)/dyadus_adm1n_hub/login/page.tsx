@@ -1,9 +1,7 @@
-import SignIn from '@/components/Admin/Login/Login'
 import React from 'react'
+import SignIn from '@/components/Admin/Login/Login'
 
-type Props = {}
-
-export default function page({}: Props) {
+export default async function Page() {
   return (
     <SignIn/>
   )
