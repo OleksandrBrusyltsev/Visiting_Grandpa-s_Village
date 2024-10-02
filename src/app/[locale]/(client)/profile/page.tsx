@@ -1,5 +1,4 @@
 import { getUser } from '@/actions/admin/auth'
-import { UserType } from '@/types/auth';
 import { cookies } from 'next/headers';
 import React from 'react'
 
