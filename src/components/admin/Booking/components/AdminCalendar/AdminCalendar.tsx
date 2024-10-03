@@ -5,6 +5,8 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
+import ukLocale from "@fullcalendar/core/locales/uk";
+
 import dayjs, { Dayjs } from "dayjs";
 import { houses } from "../../../../../data/houses/index";
 import AddNewBookModal from "../AddNewBookModal";
@@ -67,8 +69,9 @@ const AdminCalendar: React.FC = () => {
   };
 
   return (
-    <div className="container">
+    <div className="admin-calendar-container">
       <FullCalendar
+        schedulerLicenseKey="CC-Attribution-NonCommercial-NoDerivatives"
         plugins={[
           dayGridPlugin,
           timeGridPlugin,
@@ -92,9 +95,9 @@ const AdminCalendar: React.FC = () => {
             "resourceTimelineWeek,resourceTimelineTwoWeeks,resourceTimelineMonth",
         }}
         buttonText={{
-          resourceTimelineWeek: "week",
-          resourceTimelineTwoWeeks: "two weeks",
-          resourceTimelineMonth: "month",
+          resourceTimelineWeek: "тиждень",
+          resourceTimelineTwoWeeks: "два тижні",
+          resourceTimelineMonth: "місяць",
         }}
         views={{
           resourceTimelineWeek: {
@@ -122,15 +125,19 @@ const AdminCalendar: React.FC = () => {
         }}
         resourceAreaHeaderContent="Номери"
         select={handleSlotSelected}
+        locale={ukLocale}
+        //height="100%"
+        //contentHeight="auto"
+        expandRows={true}
       />
       Модалка для нового события
-      {currentEvent && (
+      {/* {currentEvent && (
         <AddNewBookModal
           open={isNewBookModalOpen}
           handleClose={handleCloseModals}
           currentEvent={currentEvent}
         />
-      )}
+      )} */}
     </div>
   );
 };
