@@ -21,7 +21,9 @@
     "booking": "Booking",
     "options": "Booking options",
     "payment": "Payment",
-    "rules": "Booking conditions and rules of stay"
+    "rules": "Booking conditions and rules of stay",
+    "login": "Log in to your personal account",
+    "profile": "Personal account"
   },
   "HouseItem": {
     "rateBase": "{price} hrn/day",
