@@ -44,43 +44,46 @@ export default function SignIn() {
 
   const setUser = useMainStore((state) => state.setUser);
 
-  const { refresh } = useRouter();
+  const { replace } = useRouter();
   
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (error) setError(null);
-    !loading && setLoading(true); 
-    
-    const formData = new FormData(e.target as HTMLFormElement);
 
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: formData.get('email'),
-        password: formData.get('password'),
-      }),
-    })
-
-    setLoading(false);
-
-    if (!response.ok) {
-      const errorText: {
-        error: string
-      } = await response.json();
-      setError(errorText.error);
-      return
-    }
-
-    const user = await response.json();
-
-    if (user) {
-      setUser(user);
-      (e.target as HTMLFormElement).reset();
-      refresh()
+    if (validateInputs()) {
+      !loading && setLoading(true); 
+      
+      const formData = new FormData(e.target as HTMLFormElement);
+  
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.get('email'),
+          password: formData.get('password'),
+        }),
+      })
+  
+      setLoading(false);
+  
+      if (!response.ok) {
+        const errorText: {
+          error: string
+        } = await response.json();
+        setError(errorText.error);
+        return
+      }
+  
+      const user = await response.json();
+  
+      if (user) {
+        setUser(user);
+        (e.target as HTMLFormElement).reset();
+        replace(`/${locale}/dyadus_adm1n_hub`);
+      }
     }
   }
 
@@ -136,6 +139,7 @@ export default function SignIn() {
               fullWidth
               color={Boolean(emailErrorMessage) ? 'error' : 'primary'}
               sx={{ ariaLabel: 'email' }}
+              onChange={() => setEmailErrorMessage('')}
             />
           </FormControl>
           <FormControl>
@@ -153,6 +157,7 @@ export default function SignIn() {
               fullWidth
               variant="outlined"
               color={Boolean(passwordErrorMessage) ? 'error' : 'primary'}
+              onChange={() => setPasswordErrorMessage('')}
             />
           </FormControl>
           <Typography sx={{ color: 'red', textAlign: 'center' }}>{error}</Typography>
@@ -167,7 +172,6 @@ export default function SignIn() {
               fontSize: 20,
               bgcolor: 'rgb(63, 85, 64)'
             }}
-            onClick={validateInputs}
           >
            Увійти
           </Button>

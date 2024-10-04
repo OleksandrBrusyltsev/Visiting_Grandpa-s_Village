@@ -55,7 +55,6 @@ export async function updateSession(request: NextRequest) {
     request.cookies.get('refresh_token')?.value :
     cookies().get('refresh_token')?.value;
     
-    console.log('refreshToken: ', refreshToken);
     if (!refreshToken) {
         return { error: null, access_token: null, refreshTokenCookie: null};
     }
@@ -76,7 +75,6 @@ export async function updateSession(request: NextRequest) {
         }
     }
     const { access_token } = await resp.json();
-    console.log('access_token: ', access_token);
     const refreshTokenCookie = resp.headers.get('set-cookie') || '';
 
     return { error: null, access_token, refreshTokenCookie };

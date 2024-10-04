@@ -1,0 +1,91 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/variables";
+
+.heroWrapper {
+    margin-top: 44px;
+    position: relative;
+    .heroTitle {
+        @include mixins.mak-green;
+        text-wrap: balance;
+        font-size: clamp(24px, calc(24px + 12 *(100vw - 375px )/ 392), 36px);
+        padding-left: clamp(0px, calc(0px + 110 *(100vw - 375px)/ 904), 110px);
+    }
+
+    .heroDescr {
+        font-family: var(--f-family-main);
+        color: rgb(var(--color-base-green));
+        font-size: clamp(16px, calc(16px + 2 *(100vw - 375px)/ 392), 18px);
+        line-height: 1.2;
+        font-weight: 700;
+        max-width: 450px;
+        text-align: end;
+        margin-left: clamp(0px, calc(0px + 328 *(100vw - 375px)/ 904), 328px);
+        margin-top: clamp(32px, calc(32px + 16 *(100vw - 375px)/ 392), 48px);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .grandpa {
+        float: right;
+        text-align: end;
+        width: clamp(148px, calc(148px + 61 *(100vw - 375px)/ 392), 209px);
+        aspect-ratio: 1;
+        position: relative;
+        margin-right: clamp(-20px, calc(-20px + 20 *(100vw - 375px)/ 392), 0px);
+        margin-left: -10px;
+        top: -40px;
+        img {
+            object-fit: contain;
+        }
+
+        &::after {
+            width: 180px;
+            height: 160px;
+            transform: scaleX(-1);
+            content: "";
+            position: absolute;
+            right: -40px;
+            bottom: -30px;
+            z-index: -1;
+            background-image: url("/images/backgrounds/christmasTrees.png");
+            background-position: right bottom;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    }
+    .curve {
+        width: clamp(40px, calc(40px + 40 *(100vw - 375px)/ 392), 80px);
+        aspect-ratio: 0.54;
+        align-self: center;
+    }
+}
+
+@include mixins.media-min(variables.$mobile) {
+    .heroWrapper {
+        .hero {
+            margin-top: 16px;
+        }
+
+        .heroTitle {
+            font-size: var(--f-size-h1);
+            min-width: unset;
+            width: 100%;
+        }
+        .grandpa {
+            width: clamp(209px, calc(209px + 95 *(100vw - 768px)/ 511), 314px);
+        }
+        .curve {
+            align-self: flex-end;
+        }
+    }
+}
+
+@include mixins.media-min(variables.$breakpoint-laptop) {
+    .heroWrapper {
+        .heroTitle {
+            font-size: var(--f-size-h1);
+            width: 66%;
+        }
+    }
+}

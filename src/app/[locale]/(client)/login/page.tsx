@@ -1,10 +1,13 @@
-import SignIn from '@/components/Admin/Login/Login'
 import React from 'react'
 
-type Props = {}
+import AskGrandpa from '@/components/AskGrandpa/AskGrandpa'
+import Login from '@/components/Login/Login'
 
-export default function page({}: Props) {
+export default function Page() {
   return (
-    <SignIn/>
+    <>
+      <Login />
+      <AskGrandpa />
+    </>
   )
 }
