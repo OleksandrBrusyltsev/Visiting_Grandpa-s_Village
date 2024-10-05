@@ -8,9 +8,20 @@
   --fc-button-active-border-color: rgba(194, 191, 183, 0.5);
 }
 
+.admin-calendar-container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  height: 100vh;
+}
+
+.fc-direction-ltr {
+  height: 100%;
+}
+
 .fc {
   font-family: "Open Sans", sans-serif;
 }
+
 .fc .fc-header-toolbar {
   font-size: 18px;
 }
@@ -33,7 +44,6 @@
   border: 1px solid rgb(97, 97, 97);
 }
 
-
 .fc-day-sat,
 .fc-day-sun {
   background-color: rgba(194, 191, 183, 0.5);
@@ -53,12 +63,29 @@
   text-align: center;
 }
 
-.admin-calendar-container {
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
 .fc .fc-datagrid-header .fc-datagrid-cell-frame {
   background-color: rgba(180, 133, 79, 0.7);
   font-size: 22px;
 }
+
+
+
+.fc .fc-scroller::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.fc .fc-scroller::-webkit-scrollbar-thumb {
+  background-color: rgb(63, 85, 64);
+  border-radius: 5px;
+}
+
+.fc .fc-scroller::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(63, 85, 64);
+}
+
+.fc .fc-scroller::-webkit-scrollbar-track {
+  background-color: #d3d3d3; /* Цвет фона под бегунком */
+  border-radius: 5px;
+}
+

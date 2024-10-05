@@ -18,12 +18,6 @@ type CalendarEvent = {
   resourceId?: string;
 };
 
-// const resources = [
-//   { id: "1", title: "Номер 101" },
-//   { id: "2", title: "Номер 102" },
-//   { id: "3", title: "Номер 103" },
-// ];
-
 const resources = houses.map((house) => {
   const ukTitle = house.title.find((t) => t.language === "uk");
 
@@ -126,8 +120,6 @@ const AdminCalendar: React.FC = () => {
         resourceAreaHeaderContent="Номери"
         select={handleSlotSelected}
         locale={ukLocale}
-        //height="100%"
-        //contentHeight="auto"
         expandRows={true}
       />
       Модалка для нового события
