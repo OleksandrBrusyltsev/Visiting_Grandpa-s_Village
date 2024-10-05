@@ -10,5 +10,5 @@ type MealsItem = {
         ru: string;
         uk: string;
     };
-    photo: Array<string>;
+    photos: Array<string>;
 };

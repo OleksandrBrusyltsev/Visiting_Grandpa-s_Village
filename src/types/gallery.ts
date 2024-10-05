@@ -6,20 +6,13 @@ type GalleryItem = {
         ru: string;
         uk: string;
     };
-    cover: {
-        id: number;
-        src: string;
-        description: {
-            en: string;
-            ru: string;
-            uk: string;
-        };
-    }[];
-    gallery: {
-        id: number;
-        src: string;
-        description: string;
-    }[];
+    cover:  string;
+    alt: {
+        en: string;
+        ru: string;
+        uk: string;
+    };
+    photo_urls: string[];
     description: {
         en: string;
         ru: string;

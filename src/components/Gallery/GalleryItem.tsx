@@ -20,7 +20,7 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
   const path = usePathname();
   const pathName = path.split('/')[2];
   const { isMobile, isTablet } = useContext(MatchMediaContext);
-  const { name, cover } = data;
+  const { name, cover, alt } = data;
   const title = data.title[locale as keyof typeof data.title];
   const t = useTranslations("UI");
 
@@ -34,8 +34,8 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
       <div className={s.imageWrapper}>
         <Image
           className={s.itemImage}
-          src={cover[0].src}
-          alt={cover[0].description[locale as keyof typeof cover[0]['description']]}
+          src={cover}
+          alt={alt[locale as keyof typeof alt]}
           sizes="(max-width: 768px) 100vw, 50vw"
           fill
         />

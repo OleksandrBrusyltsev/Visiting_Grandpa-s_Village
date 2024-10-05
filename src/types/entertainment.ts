@@ -10,7 +10,7 @@ type EntertainmentItem = {
         ru: string;
         uk: string;
     };
-    text: {
+    description: {
         en: string;
         ru: string;
         uk: string;
@@ -20,5 +20,5 @@ type EntertainmentItem = {
         ru: string;
         uk: string;
     };
-    images: string[];
+    photos: string[];
 };

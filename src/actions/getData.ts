@@ -18,7 +18,7 @@ export const getData = async <T>(url: string, slug?: string): Promise<T> => {
     arr: GalleryItem[] | HouseItem[] | MealsItem[] | EntertainmentItem[]
   ): arr is GalleryItem[] {
       return (
-          arr.length > 0 && 'gallery' in arr[0]
+          arr.length > 0 && 'photo_urls' in arr[0]
       );
   }
 
