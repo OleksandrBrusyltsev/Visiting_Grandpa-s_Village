@@ -4,6 +4,7 @@ import { houses } from "@/data/houses";
 import { meals } from "@/data/meals";
 import { entertainments } from "@/data/entertainments";
 import { contacts } from "@/data/contacts";
+import { toasters } from '@/data/advertisementToaster';
 
 export const getData = async <T>(url: string, slug?: string): Promise<T> => {
   // const resp = await fetch(url);
@@ -15,7 +16,7 @@ export const getData = async <T>(url: string, slug?: string): Promise<T> => {
 
   //type guards
   function isGalleryItemArray(
-    arr: GalleryItem[] | HouseItem[] | MealsItem[] | EntertainmentItem[]
+    arr: GalleryItem[] | HouseItem[] | MealsItem[] | EntertainmentItem[] | AdvToaster[],
   ): arr is GalleryItem[] {
       return (
           arr.length > 0 && 'photo_urls' in arr[0]
@@ -23,11 +24,9 @@ export const getData = async <T>(url: string, slug?: string): Promise<T> => {
   }
 
   function isHouseItemArray(
-      arr: GalleryItem[] | HouseItem[] | MealsItem[] | EntertainmentItem[],
+      arr: GalleryItem[] | HouseItem[] | MealsItem[] | EntertainmentItem[] | AdvToaster[],
   ): arr is HouseItem[] {
-      return (
-          arr.length > 0 && 'max_adults' in arr[0]
-      );
+      return arr.length > 0 && 'max_adults' in arr[0];
   }
 
   // tmp fake data
@@ -37,12 +36,14 @@ export const getData = async <T>(url: string, slug?: string): Promise<T> => {
     meals: MealsItem[];
     entertainments: EntertainmentItem[];
     contacts: ContactItem;
+    toasters: AdvToaster[];
   } = {
     gallery,
     houses,
     meals,
     entertainments,
-    contacts
+    contacts,
+    toasters 
   };
 
   const currentData = data[url as keyof typeof data];

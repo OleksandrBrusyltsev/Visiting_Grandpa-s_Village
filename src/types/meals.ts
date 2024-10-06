@@ -1,14 +1,6 @@
 type MealsItem = {
     id: number;
-    title: {
-        en: string;
-        ru: string;
-        uk: string;
-    };
-    description: {
-        en: string;
-        ru: string;
-        uk: string;
-    };
+    title: Record<Language, string>;
+    description: Record<Language, string>;
     photos: Array<string>;
 };
