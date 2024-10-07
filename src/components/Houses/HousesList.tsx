@@ -5,12 +5,12 @@ import s from './HousesList.module.scss';
 
 type Props = {
     children: React.ReactNode;
-    data: HouseItem[]; 
+    numberOfHouses: number; 
     patternOffset?: boolean;
     className?: string
 };
 
-export default function HousesList({children, data, patternOffset = true, className}: Props) {
+export default function HousesList({ children, numberOfHouses, patternOffset = true, className}: Props) {
     const listRef = useRef<HTMLElement | null>(null);
     const [size, setSize] = useState(0);
 
@@ -41,8 +41,8 @@ export default function HousesList({children, data, patternOffset = true, classN
             bgImgPattern = '';
 
         if(window && window.innerWidth < 768 ) {
-            const baseBlockHeight = 150 + data.length * (412 + 49) - 49 + 175; 
-            const totalLines = data.length * 2 + 1;
+            const baseBlockHeight = 150 + numberOfHouses * (412 + 49) - 49 + 175; 
+            const totalLines = numberOfHouses * 2 + 1;
             let offset = 0; 
             const inlinePadding = `clamp(-20px, calc((100vw - 500px) / 2 - 24px - 60px), ${(768 - 500) / 2  - 84}px)`;
             bgPosImg = `left ${inlinePadding}  top ${offset}px`;
@@ -71,8 +71,8 @@ export default function HousesList({children, data, patternOffset = true, classN
 
             // const baseBlockHeight = window.innerWidth >= 1280 ? 3440 : 2739;
             const baseBlockHeight = window.innerWidth >= 1280 ? 
-                Math.ceil(data.length / 2) * (489 + 71) - 71 + 171:
-                140 + Math.ceil(data.length / 2) * (438 + 55) - 55 + 100;
+                Math.ceil(numberOfHouses / 2) * (489 + 71) - 71 + 171:
+                140 + Math.ceil(numberOfHouses / 2) * (438 + 55) - 55 + 100;
 
             const baseCardHeight = window.innerWidth >= 1280 ? 560 : 493;
             //quantity of the line patterns
@@ -90,17 +90,17 @@ export default function HousesList({children, data, patternOffset = true, classN
             bgSizePattern = (`100% ${bgSize}px` + ', ').repeat(totalLines).slice(0, -2);
 
             // positions, images and sizes of the trees background
-            bgImgImage = ', ' + (_img + ', ').repeat(data.length > 4 ? Math.ceil(data.length / 2) * 2  : 4).slice(0, -2);
+            bgImgImage = ', ' + (_img + ', ').repeat(numberOfHouses > 4 ? Math.ceil(numberOfHouses / 2) * 2  : 4).slice(0, -2);
             
-            if (data.length <= 4) {
+            if (numberOfHouses <= 4) {
                 bgPosImg = `, right top, left -5% top ${baseCardHeight * v}px, center top ${450 * v}px, right 5% top ${300 * v}px`;
                 bgSizeImg = `, ${imgSize}, ${imgSize}, ${bigImgSize}, ${imgSize}`;
             } else {
-                for(let i = 1; i < data.length / 2 + 1; i++) {
+                for(let i = 1; i < numberOfHouses / 2 + 1; i++) {
                     if (i === 1) {
                         bgPosImg = `, right top ${baseImgOffset * v}px`;
                         bgSizeImg = `, ${imgSize}`;
-                    } else if (i === Math.ceil(data.length / 2)) {
+                    } else if (i === Math.ceil(numberOfHouses / 2)) {
                         bgPosImg += `, center top ${baseImgOffset * v - (window.innerWidth >= 1280 ? 200 : 0)}px, left ${window.innerWidth >= 1280 ? '0' : '-5%'} top ${(baseImgOffset + (window.innerWidth >= 1280 ? 400 : 450)) * v}px, right 5% top ${(baseImgOffset + 300) * v}px`;    
                         bgSizeImg += `, ${bigImgSize}, ${imgSize}, ${imgSize}`;
 
@@ -120,7 +120,7 @@ export default function HousesList({children, data, patternOffset = true, classN
         listRef.current.style.backgroundPosition = bgPosPattern + bgPosImg;
         listRef.current.style.backgroundImage = bgImgPattern + bgImgImage;
        
-    }, [data.length, size]);
+    }, [numberOfHouses, size]);
 
     return (
         <section className={`${s.housesList} ${className}`} ref={listRef}>

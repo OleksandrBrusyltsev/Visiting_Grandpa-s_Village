@@ -12,9 +12,13 @@ import "swiper/scss/navigation";
 
 import "./SwiperGalleryItem.scss";
 
-type Props = Pick<GalleryItem, "gallery"> & { initialSlide: number };
+type Props = {
+  gallery: GalleryItem["photo_urls"];
+  initialSlide: number;
+  alt: string
+};
 
-export default function SwiperGalleryItem({ gallery, initialSlide }: Props) {
+export default function SwiperGalleryItem({ gallery, initialSlide, alt }: Props) {
   const { isMobile } = useContext(MatchMediaContext);
   return (
     <>
@@ -33,17 +37,17 @@ export default function SwiperGalleryItem({ gallery, initialSlide }: Props) {
         modules={[Keyboard, Pagination, Navigation]}
         navigation={isMobile ? false : true}
       >
-        {gallery.map((item) => (
-          <SwiperSlide key={item.id}>
+        {gallery.map((item, index) => (
+          <SwiperSlide key={index}>
             <div className="imageWrapper">
               <Image
-                src={item.src}
+                src={item}
                 sizes="(max-width: 1280px) 100vw, (max-width: 1440px) 80vw, 70vw"
                 placeholder="blur"
                 blurDataURL={
                   "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8dOXMfwAIZQNzt0gGRgAAAABJRU5ErkJggg=="
                 }
-                alt={item.description}
+                alt={alt}
                 fill
               />
             </div>

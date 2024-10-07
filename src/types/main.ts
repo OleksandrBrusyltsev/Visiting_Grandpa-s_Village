@@ -1,24 +1,8 @@
 export type MainPageBlock = {
     id: number;
-    title: {
-        en: string;
-        ru: string;
-        uk: string;
-    };
-    subtitle: {
-        en: string;
-        ru: string;
-        uk: string;
-    };
-    description: {
-        en: string;
-        ru: string;
-        uk: string;
-    };
-    quote: {
-        en: string;
-        ru: string;
-        uk: string;
-    };
+    title: Record<Language, string>;
+    subtitle: Record<Language, string>;
+    description: Record<Language, string>;
+    quote: Record<Language, string>;
     photos: string[];
 };

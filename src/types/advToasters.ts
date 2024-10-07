@@ -1,10 +1,8 @@
 type AdvToaster = {
     id: number;
-    startDate: string;
-    endDate: string;
+    start_date: string;
+    end_date: string;
     timeout: number;
-    translations: {
-        language: string;
-        text: string;
-    }[];
+    is_active: boolean;
+    translations: Record<Language, string>;
 };

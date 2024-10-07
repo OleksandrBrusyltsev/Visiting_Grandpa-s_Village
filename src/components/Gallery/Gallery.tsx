@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -148,8 +149,8 @@ export default function Gallery({ items }: Props) {
               <div className={s.grandpa}>
                 <Image
                   fill
-                  alt={items[0].cover[0].description[locale as keyof typeof items[0]["cover"][0]["description"]]}
-                  src={items[0].cover[0].src}
+                  alt={items[0].alt[locale as keyof typeof items[0]["alt"]]}
+                  src={items[0].cover}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>

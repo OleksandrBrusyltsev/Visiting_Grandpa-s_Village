@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
@@ -17,7 +18,6 @@ export default function Entertainment({ items }: Props) {
   const aniRef = useRef<Array<Array<HTMLDivElement>>>([[]]);
   const textWrapperRef = useRef<HTMLDivElement | null>(null);
   const locale = useLocale();
-  const t = useTranslations("Entertainment");
 
   useEffect(() => {
     setTimeout(() => {
@@ -168,12 +168,12 @@ export default function Entertainment({ items }: Props) {
           <MarkdownPreview markdown={items[0].subtitle[locale as keyof typeof items[0]['subtitle']]} />
         </div>
         <div className={s.answer}>
-          <MarkdownPreview markdown={items[0].text[locale as keyof typeof items[0]['text']]} />
+          <MarkdownPreview markdown={items[0].description[locale as keyof typeof items[0]['description']]} />
         </div>
       </section>
       <div className={`${s.main} container`}>
         <ul className={s.entertainmentList}>
-          {items.slice(1).map(({ id, images, text, title }, i) => (
+          {items.slice(1, items.length - 1).map(({ id, photos, description, title }, i) => (
             <li className={s.entertainmentGroup} key={id}>
               <Quote
                 ref={(el: HTMLDivElement) => {
@@ -190,7 +190,7 @@ export default function Entertainment({ items }: Props) {
                     aniRef.current[i][1] = el;
                   }}
                 >
-                  {text[locale as keyof typeof text]}
+                  {description[locale as keyof typeof description]}
                 </div>
               </Quote>
               <div
@@ -202,7 +202,7 @@ export default function Entertainment({ items }: Props) {
                 }}
               >
                 <Image
-                  src={images[0]}
+                  src={photos[0]}
                   alt=""
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
                   fill
@@ -217,7 +217,7 @@ export default function Entertainment({ items }: Props) {
                 }}
               >
                 <Image
-                  src={images[1]}
+                  src={photos[1]}
                   alt=""
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
                   fill
@@ -239,10 +239,10 @@ export default function Entertainment({ items }: Props) {
       </div>
       <div className={`${s.textWrapper} container`} ref={textWrapperRef}>
         <div className={s.text}>
-          <MarkdownPreview markdown={t('note1')} />
+          <MarkdownPreview markdown={items[items.length - 1].description[locale as keyof typeof items[0]['description']]} />
         </div>
         <div className={s.text}>
-          <MarkdownPreview markdown={t('note2')} />
+          <MarkdownPreview markdown={items[items.length - 1].quote[locale as keyof typeof items[0]['quote']]} />
         </div>
       </div>
     </>
