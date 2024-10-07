@@ -68,8 +68,6 @@
   font-size: 22px;
 }
 
-
-
 .fc .fc-scroller::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -85,7 +83,6 @@
 }
 
 .fc .fc-scroller::-webkit-scrollbar-track {
-  background-color: #d3d3d3; /* Цвет фона под бегунком */
+  background-color: #d3d3d3; 
   border-radius: 5px;
 }
-

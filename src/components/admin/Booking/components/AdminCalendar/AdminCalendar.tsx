@@ -6,47 +6,43 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import ukLocale from "@fullcalendar/core/locales/uk";
-
 import dayjs, { Dayjs } from "dayjs";
 import { houses } from "../../../../../data/houses/index";
-import AddNewBookModal from "../AddNewBookModal";
-import s from "./AdminCalendar.module.scss";
+import allResources from "./components/Resources";
+import AddNewBookModal from "./components/AddNewBookModal";
 
 type CalendarEvent = {
   start: Dayjs;
   end: Dayjs;
-  resourceId?: string;
+  houseName: string;
+  houseId: string;
 };
-
-const resources = houses.map((house) => {
-  const ukTitle = house.title.find((t) => t.language === "uk");
-
-  const roomTitles = house.rooms.map((room) => {
-    const ukRoomTitle = room.title.find((t) => t.language === "uk");
-    return {
-      id: room.name,
-      title: ukRoomTitle?.text || room.name,
-    };
-  });
-
-  if (house.name === "khoromy") {
-    return roomTitles;
-  }
-
-  const houseResource = {
-    id: house.name,
-    title: ukTitle?.text || house.name,
-  };
-
-  return [houseResource, ...roomTitles];
-});
-
-const allResources = resources.flat();
 
 const AdminCalendar: React.FC = () => {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [currentEvent, setCurrentEvent] = useState<CalendarEvent | null>(null);
   const [isNewBookModalOpen, setIsNewBookModalOpen] = useState(false);
+
+  const getResourceTitleById = (resourceId: string) => {
+    // Ищем по ресурсам
+    for (const house of houses) {
+      if (house.name === resourceId) {
+        // Если это домик, возвращаем заголовок домика
+        const ukTitle = house.title.find((t) => t.language === "uk");
+        return ukTitle?.text || house.name;
+      }
+
+      // Ищем по комнатам внутри домика
+      const room = house.rooms.find((room) => room.name === resourceId);
+      if (room) {
+        const ukRoomTitle = room.title.find((t) => t.language === "uk");
+        return ukRoomTitle?.text || room.name;
+      }
+    }
+
+    // Если ресурс не найден, возвращаем ID как fallback
+    return resourceId;
+  };
 
   const handleCloseModals = () => {
     setIsNewBookModalOpen(false);
@@ -54,11 +50,16 @@ const AdminCalendar: React.FC = () => {
 
   const handleSlotSelected = (info: any) => {
     console.log("Slot selected:", info);
+
+    const resourceTitle = getResourceTitleById(info.resource.id); // Получаем украинский заголовок
+
     setCurrentEvent({
       start: dayjs(info.start),
       end: dayjs(info.end),
-      resourceId: info.resource.id,
+      houseName: resourceTitle,
+      houseId: info.resource.id,
     });
+
     setIsNewBookModalOpen(true);
   };
 
@@ -122,14 +123,14 @@ const AdminCalendar: React.FC = () => {
         locale={ukLocale}
         expandRows={true}
       />
-      Модалка для нового события
-      {/* {currentEvent && (
+
+      {currentEvent && (
         <AddNewBookModal
           open={isNewBookModalOpen}
           handleClose={handleCloseModals}
           currentEvent={currentEvent}
         />
-      )} */}
+      )}
     </div>
   );
 };

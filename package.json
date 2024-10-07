@@ -19,6 +19,7 @@
     "@fullcalendar/resource-timeline": "^6.1.15",
     "@fullcalendar/timegrid": "^6.1.15",
     "@gsap/react": "^2.1.1",
+    "@mui/icons-material": "^6.1.2",
     "@mui/material": "^6.0.2",
     "@mui/x-date-pickers": "^7.16.0",
     "@vis.gl/react-google-maps": "^1.1.0",
