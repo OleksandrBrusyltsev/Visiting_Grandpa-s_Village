@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import { useEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
+import { useEffect, useMemo, useRef } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
@@ -19,12 +18,32 @@ type Props = {
 };
 
 export default function Houses({ items }: Props) {
-  const { locale } = useParams();
+  const locale = useLocale();
   const housesRef = useRef<Array<HTMLAnchorElement>>([]);
   const textWrapperRef = useRef<HTMLDivElement | null>(null);
 
   const t = useTranslations("Houses");
 
+  const numberOfHouses = useMemo(() => {
+    return items.filter(item => item.name).filter((item) => !item.house_type).length;
+  }, [items]);
+
+  const houses = useMemo(() => { 
+    return items.filter(item => item.name).filter((item) => !item.house_type)
+  }, [items]);
+
+  const rooms = useMemo(() => {
+    return items.filter(item => item.name).reduce((accu, cur) => { 
+      if (!accu[cur.house_type!]) {
+        accu[cur.house_type!] = 1;
+      } else {
+        accu[cur.house_type!] += 1;
+      }
+
+      return accu
+    }, {} as { [key: string]: number });
+  }, [items]);
+  
   useEffect(() => {
     setTimeout(() => {
       ScrollTrigger.refresh();
@@ -236,17 +255,17 @@ export default function Houses({ items }: Props) {
       <section className={`${s.hero} container`}>
         <div className={s.heroWrapper}>
           <h1 className={s.descr1}>
-            {t('mainTitle')}
+            {items[0].title[locale as keyof typeof items[0]['title']]}
           </h1>
           {/* eslint-disable-next-line react/no-unescaped-entities */}
           <p className={s.descr2}>
-            {t('quote')}
+            {items[0].long_title[locale as keyof typeof items[0]['long_title']]}
           </p>
           <div className={s.grandpa}>
             <Image
               fill
               alt=""
-              src="/images/grandpas/Grandpa2.png"
+              src={items[0].cover_photo}
               sizes="100vw"
             />
           </div>
@@ -276,29 +295,30 @@ export default function Houses({ items }: Props) {
         <BookingComponent />
       </div>
 
-      <HousesList data={items} className="container">
+      <HousesList numberOfHouses={numberOfHouses} className="container">
         <>
           <div className={s.housesTitle}>
             <p>{t('title')}</p>
             <Icon name="ellipse" className={s.titleOutline} />
           </div>
           <div className={s.housesWrapper}>
-            {items.map((house, i) => (
-              <HouseItem
-                ref={(el: HTMLAnchorElement) => (housesRef.current[i] = el)}
-                data={house}
-                key={house.id}
-              />
-            ))}
+            {houses.map((house, i) => (
+                <HouseItem
+                  ref={(el: HTMLAnchorElement) => (housesRef.current[i] = el)}
+                  data={house}
+                  key={house.id}
+                  rooms={rooms[house.name] || 0}
+                />)
+              )}
           </div>
         </>
       </HousesList>
       <div className={s.textWrapper} ref={textWrapperRef}>
         <p className={s.text}>
-          {t('note1')}{" "}
+          {items[0].decor_text[locale as keyof typeof items[0]['decor_text']]}
         </p>
         <p className={s.text}>
-          {t('note2')}{" "}
+          {items[0].description[locale as keyof typeof items[0]['description']]}
         </p>
       </div>
     </>

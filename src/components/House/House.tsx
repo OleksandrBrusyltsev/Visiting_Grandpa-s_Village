@@ -19,9 +19,9 @@ import s from "./House.module.scss";
 import heroSection from "./HeroSection/HeroSection.module.scss";
 import map from "./Map/Map.module.scss";
 
-type Props = { item: HouseItem };
+type Props = { item: HouseItem; rooms: HouseItem[] };
 
-export default function House({ item }: Props) {
+export default function House({ item, rooms }: Props) {
   const locale = useLocale();
   const t = useTranslations("HouseItem");
 
@@ -40,7 +40,6 @@ export default function House({ item }: Props) {
     long_title,
     decor_text,
     coordinates,
-    rooms,
   } = item;
 
   const titleText = long_title[locale as keyof typeof long_title];
@@ -363,7 +362,7 @@ export default function House({ item }: Props) {
       </div>
 
       {rooms.length ? (
-        <HousesList data={rooms as HouseItem[]} patternOffset={false}>
+        <HousesList numberOfHouses={rooms.length} patternOffset={false}>
           <>
             <p className={`${s.roomsTitle} ${rooms.length ? s.apartment : ""}`}>
               {t('roomsTitle')}

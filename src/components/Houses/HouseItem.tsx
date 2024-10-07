@@ -10,7 +10,7 @@ import Button from "../ui/Button/Button";
 
 import s from "./HouseItem.module.scss";
 
-type Props = { data: HouseItem };
+type Props = { data: HouseItem; rooms: number };
 
 // const FavoriteIcon = ({ className }: { className: string }) => {
 //   return (
@@ -31,19 +31,16 @@ type Props = { data: HouseItem };
 //   );
 // };
 const HouseItem = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
-  { data },
+  { data, rooms },
   ref
 ) {
   const locale = useLocale();
   const t = useTranslations("HouseItem");
 
-  const path = usePathname();
-  const pathName = path.split("/")[2];
-  const houseWithRooms = path.split("/")[3] || null;
   const { push } = useRouter();
   // const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-  const { name, cover_photo, max_adults, extra_adults, rooms, rental_price } =
+  const { name, cover_photo, max_adults, extra_adults, house_type, rental_price } =
     data;
   const title = data.title[locale as keyof typeof data.title];
 
@@ -58,9 +55,9 @@ const HouseItem = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
       className={s.houseWrapper}
       ref={ref}
       href={
-        houseWithRooms
-          ? `/${locale}/${pathName}/${houseWithRooms}/${name}`
-          : `/${locale}/${pathName}/${name}`
+        house_type
+          ? `/${locale}/houses/${house_type}/${name}`
+          : `/${locale}/houses/${name}`
       }
     >
       <div
@@ -90,8 +87,8 @@ const HouseItem = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
           </div>
         ) : null}
         <div className={s.guestsWrapper}>
-          {rooms.length ? (
-            <span className={s.guests}>{t('roomsAmount', {amount: rooms.length})}</span>
+          {rooms ? (
+            <span className={s.guests}>{t('roomsAmount', { amount: rooms })}</span>
           ) : (
             <>
               <Icon name="guests" className={s.guestsIcon} />

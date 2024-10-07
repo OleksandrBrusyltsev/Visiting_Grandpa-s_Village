@@ -15,7 +15,7 @@ type HouseItem = {
     extra_children: number;
     extra_adult_price: number;
     extra_children_price: number;
-    rooms: HouseItem[] | [];
+    house_type: string | null;
     photoDecor: string;
     treesDecor: string;
     coordinates: {
