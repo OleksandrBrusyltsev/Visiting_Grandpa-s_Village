@@ -372,6 +372,7 @@ export default function House({ item, rooms }: Props) {
                 <HouseItem
                   data={room}
                   key={room.id}
+                  rooms={0}
                   ref={(el: HTMLAnchorElement) => (housesRef.current[i] = el)}
                 />
               ))}

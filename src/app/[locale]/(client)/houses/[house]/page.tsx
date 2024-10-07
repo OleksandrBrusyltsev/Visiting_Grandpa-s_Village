@@ -14,7 +14,7 @@ export async function generateStaticParams({
   params: { locale: string };
 }) {
   const items = await getData<HouseItem[]>("houses");
-  return items.filter(item => item.name).map((item) => ({ locale, house: item.name }));
+  return items.filter(item => item.name && !item.house_type).map((item) => ({ locale, house: item.name }));
 }
 
 type Props = { params: { house: string; locale: string } };

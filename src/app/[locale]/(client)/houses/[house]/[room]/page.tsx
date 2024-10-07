@@ -18,7 +18,7 @@ export async function generateStaticParams({
   params: { locale: string };
 }) {
   const items = await getData<HouseItem[]>("houses");
-  const rooms = items.filter(item => item.name).filter((item) => item.house_type !== null);
+  const rooms = items.filter(item => item.name && item.house_type);
   const routes = rooms.reduce((accu, cur) => {
     accu.push({ locale, house: cur.house_type!, room: cur.name })
     return accu
