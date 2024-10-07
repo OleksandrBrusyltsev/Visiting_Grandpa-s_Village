@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    //нивелируем скачок UI из-за кастыльного решение MUI, направленного на компенсацию ширины полосы прокрутки при открытии модалок
+    padding-right: 0 !important;
+}

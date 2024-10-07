@@ -1,3 +1,4 @@
+import React from "react";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
