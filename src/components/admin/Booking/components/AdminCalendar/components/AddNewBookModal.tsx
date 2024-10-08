@@ -11,8 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Dayjs } from "dayjs";
-import HouseSelector from "./HouseSelector";
-import allResources from "./Resources";
+import BookingTabs from "./BookingTabs";
 
 interface AddNewBookModalProps {
   open: boolean;
@@ -21,8 +20,8 @@ interface AddNewBookModalProps {
     start: Dayjs;
     end: Dayjs;
     houseName: string;
-    houseId: string;// Заголовок домика на укр
-  } | null; // Можем передавать null, если события пока нет
+    houseId: string;
+  } | null;
 }
 
 const AddNewBookModal: FC<AddNewBookModalProps> = ({
@@ -36,10 +35,7 @@ const AddNewBookModal: FC<AddNewBookModalProps> = ({
     <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
       <DialogTitle>Бронювання №123 (2 доби)</DialogTitle>
       <DialogContent>
-        <HouseSelector
-          currentHouse={{ id: currentEvent.houseId, title: currentEvent.houseName }}
-          
-        />
+        <BookingTabs currentEvent={currentEvent} />
         <div style={{ display: "flex", gap: "16px", marginBottom: "16px" }}>
           <TextField
             label="Дата заїзду"
@@ -58,8 +54,6 @@ const AddNewBookModal: FC<AddNewBookModalProps> = ({
             fullWidth
           />
         </div>
-
-        {/* Здесь можно добавить другие поля, например, количество гостей */}
       </DialogContent>
 
       <DialogActions>

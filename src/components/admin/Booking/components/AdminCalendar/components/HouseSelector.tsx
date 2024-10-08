@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, IconButton, Menu, MenuItem, Chip } from "@mui/material";
+import { FC, useState } from "react";
+import { IconButton, Menu, MenuItem, Chip } from "@mui/material";
 import {
   ExpandMore as ExpandMoreIcon,
   Close as CloseIcon,
@@ -16,7 +16,7 @@ interface House {
   title: string;
 }
 
-const HouseSelector: React.FC<HouseSelectorProps> = ({ currentHouse }) => {
+const HouseSelector: FC<HouseSelectorProps> = ({ currentHouse }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedHouses, setSelectedHouses] = useState<House[]>([currentHouse]);
 
@@ -95,6 +95,5 @@ const HouseSelector: React.FC<HouseSelectorProps> = ({ currentHouse }) => {
     </div>
   );
 };
-
 
 export default HouseSelector;
