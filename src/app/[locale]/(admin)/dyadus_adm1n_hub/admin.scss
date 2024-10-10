@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: unset;
+}
 body {
     //нивелируем скачок UI из-за кастыльного решение MUI, направленного на компенсацию ширины полосы прокрутки при открытии модалок
     padding-right: 0 !important;
+    overflow: auto
 }

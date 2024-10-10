@@ -16,7 +16,8 @@ import {
     HotelOutlined,
     HolidayVillageOutlined,
     PhotoLibraryOutlined,
-    PhotoOutlined
+    PhotoOutlined,
+    AddOutlined
 } from '@mui/icons-material';
 import { Collapse, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
@@ -42,7 +43,8 @@ const iconMapping: { [key: string]: React.ElementType } = {
     HotelOutlined,
     HolidayVillageOutlined,
     PhotoLibraryOutlined,
-    PhotoOutlined
+    PhotoOutlined,
+    AddOutlined
 };
 
 export default function ParentMenuItem({ menuItem, isDrawerOpen }: Props) {

@@ -9,7 +9,7 @@ import getMainMenu from '@/functions/getMainMenu';
 type Props = {
   children: React.ReactNode;
   params: { locale: string };
- }
+}
 
 export default async function DashboardLayout({ children, params: { locale } }: Props) {
   
@@ -27,7 +27,7 @@ export default async function DashboardLayout({ children, params: { locale } }: 
       <Header />
       <div className="mx-auto flex">
         <MainMenu menu={menu} />
-        <main className="mx-auto grow p-3" style={{ minHeight: 'calc(100dvh - 96px)' }}>
+        <main className="mx-auto grow" style={{ minHeight: 'calc(100dvh - 96px)' }}>
           {children}
         </main>
       </div>

@@ -1,4 +1,5 @@
 const houseIcon = 'HotelOutlined';
+const addNew = 'AddOutlined';
 const galleryChapterIcon = 'PhotoOutlined';
 import { menuAdmin } from '@/data/admin/menu';
 
@@ -68,7 +69,16 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
                 locale,
                 'houses',
                 houses.filter((house) => house.name),
-            );
+                );
+            (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
+                indexOfMenuItemHouses
+            ].children?.push({
+                id: 5434234234,
+                name: 'Додати будинок',
+                url: `/${locale}/dyadus_adm1n_hub/houses/add-house`,
+                admission: 'superadmin',
+                icon: addNew,
+            });
         }
         if (indexOgMenuItemGallery && indexOgMenuItemGallery > 0) {
             (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
