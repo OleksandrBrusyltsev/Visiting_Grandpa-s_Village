@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { getData } from '@/actions/getData';
-import AddNewHouse from '@/components/Admin/Houses/AddNewHouse/addNewHouse';
+import AddNewHouse from '@/components/Admin/Houses/AddNewHouse/AddNewHouse';
 
 type Props = {}
 

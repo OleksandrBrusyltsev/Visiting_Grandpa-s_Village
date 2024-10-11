@@ -7,7 +7,7 @@ import SouthOutlinedIcon from '@mui/icons-material/SouthOutlined';
 
 type Props = {
     label: string;
-    inputName: string;
+    nameAttr: string;
     multiple?: boolean;
 };
 
@@ -17,16 +17,16 @@ const HiddenInput = styled('input')({
     height: 1,
     overflow: 'hidden',
     position: 'absolute',
-    bottom: 0,
+    bottom: '50%',
     left: 0,
     whiteSpace: 'nowrap',
     width: 1,
 });
 
-const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ label, inputName, multiple }: Props, ref) {
+const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ label, nameAttr, multiple }: Props, ref) {
     useImperativeHandle(ref, () => ({
         reset() {
-            setSelectedFiles([]);
+            setSelectedFiles([null]);
             setPreviews([]);
             inputRef.current = [];
         },
@@ -100,6 +100,7 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
     const handleRemoveFile = (i: number) => {
         setSelectedFiles(files => multiple ? [...files.filter((file, index) => index !== i && file !== null), null] : [null]);
         setPreviews(previews => previews.filter((_, index) => index !== i));
+        inputRef.current[i].value = '';
     }
     
     //зміна порядку фотографій
@@ -162,15 +163,17 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
                                 display: 'flex',
                                 flexDirection: 'row',
                                 alignItems: 'center',
+                                position: 'relative',
                                 gap: 1,
                                 cursor: 'pointer',
                             }}>
                             <HiddenInput
                                 type="file"
-                                name={multiple ? `${inputName + index}` : inputName}
+                                name={multiple ? `${nameAttr + index}` : nameAttr}
                                 accept={"image/png, image/jpeg"}
                                 onChange={!file ? handleAddFile : handleFileChange}
                                 ref={(el: HTMLInputElement) => inputRef.current[index] = el}
+                                required={selectedFiles[index] || !index ? true : false }
                             />
                             <IconButton
                                 aria-label="add file"
