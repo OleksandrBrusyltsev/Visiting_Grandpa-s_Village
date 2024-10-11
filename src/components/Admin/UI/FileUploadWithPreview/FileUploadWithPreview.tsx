@@ -31,11 +31,11 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
             inputRef.current = [];
         },
     }), []);
-    const [selectedFiles, setSelectedFiles] = useState<Array<File>>([]);
+    const [selectedFiles, setSelectedFiles] = useState<Array<File | null>>([null]);
     const [previews, setPreviews] = useState<Array<string>>([]);
     const [isDragOver, setIsDragOver] = useState<number | null>(null);
 
-    const inputRef = React.useRef<(HTMLInputElement | null)[]>([]);
+    const inputRef = React.useRef<(HTMLInputElement)[]>([]);
 
     //зміна фотографій через кнопку
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,20 +43,34 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
         const file = event.target.files?.[0];
         const targetIndex = inputRef.current?.indexOf(event.target as HTMLInputElement);
         if (file) {
-            setSelectedFiles(files => files.map((el, index) => index === targetIndex ? file : el));
-            setPreviews(previews => previews.map((item, index) => index === targetIndex ? URL.createObjectURL(file) : item));
+            onChangeFile(file, targetIndex);
         }
     };
+
+    const onChangeFile = (file: File, targetIndex: number) => { 
+        setSelectedFiles(files => files.map((el, index) => index === targetIndex ? file : el));
+        setPreviews(previews => previews.map((item, index) => index === targetIndex ? URL.createObjectURL(file) : item));
+    }
 
     //додавання фотографій через базову кнопку 
     const handleAddFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-
         const file = event.target.files?.[0];
         if (file) {
-            setSelectedFiles(files => [...files, file]);
-            setPreviews(previews => [...previews, URL.createObjectURL(file)]);
+            onAddFile(file);
         }
     };
+    const onAddFile = (file: File) => { 
+        setSelectedFiles(files => {
+            if (multiple) {
+                if (previews.length < 4) {
+                    return [...files.filter((el) => el !== null), file, null];
+                }
+                return [...files.filter((el) => el !== null), file];
+            }
+            return [file];
+        });
+        setPreviews(previews => [...previews, URL.createObjectURL(file)]);
+    }
 
     //програмний тригер прихованого інпуту
     const handleButtonClick = (index: number) => {
@@ -71,22 +85,20 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
 
         setIsDragOver(null);
         const file = event.dataTransfer.files[0];
-        const targetIndex = inputRef.current?.findIndex(el => (event.target as HTMLDivElement).contains(el));
+        const targetIndex = inputRef.current?.findIndex(el => (event.currentTarget as HTMLElement).contains(el));
 
         if (file) {
-            if (targetIndex === selectedFiles.length) {
-                setSelectedFiles(files => [...files, file]);
-                setPreviews(previews => [...previews, URL.createObjectURL(file)]);
+            if (targetIndex === selectedFiles.length - 1 && !selectedFiles[selectedFiles.length - 1]) {
+                onAddFile(file);
             } else {
-                setSelectedFiles(files => files.map((el, index) => index === targetIndex ? file : el));
-                setPreviews(previews => previews.map((item, index) => index === targetIndex ? URL.createObjectURL(file) : item));
+                onChangeFile(file, targetIndex);
             }
         }
     };
 
     //видалення фотографій
     const handleRemoveFile = (i: number) => {
-        setSelectedFiles(files => files.filter((_, index) => index !== i));
+        setSelectedFiles(files => multiple ? [...files.filter((file, index) => index !== i && file !== null), null] : [null]);
         setPreviews(previews => previews.filter((_, index) => index !== i));
     }
     
@@ -97,11 +109,18 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
         setPreviews(previews => previews.map((item, index) => index === targetIndex ? previews[targetIndex + direction] : index === targetIndex + direction ? previews[targetIndex] : item));
         [inputRef.current[targetIndex], inputRef.current[targetIndex + direction]] = [inputRef.current[targetIndex + direction], inputRef.current[targetIndex]];
     }
+
     //відслідковування активного інпута під час перетягування
     const handleDragOver = (event: React.DragEvent<HTMLElement>) => {
         event.preventDefault();
-        const targetIndex = inputRef.current?.findIndex(el => (event.target as HTMLDivElement).contains(el));
-        setIsDragOver(targetIndex);
+
+        const targetIndex = inputRef.current?.findIndex(el => (event.currentTarget as HTMLElement).contains(el));
+        isDragOver !== targetIndex && setIsDragOver(targetIndex);
+    };
+    const handleDragLeave = (event: React.DragEvent<HTMLElement>) => {
+        event.preventDefault();
+        if((event.currentTarget as HTMLElement).contains(event.relatedTarget as HTMLElement)) return;
+        setIsDragOver(null);
     };
     
     return (
@@ -116,57 +135,53 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
         >
             <Typography component={'legend'}>{label} (виберіть або перетащіть файл в форматі png, jpeg.{multiple && ' Максимум 5 штук' })</Typography>
             
-            {previews?.map((_, index) => (
-                <Stack
-                    key={index}
-                    onDrop={handleDrop}
-                    onDragOver={handleDragOver}
-                    sx={[{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        gap: 2,
-                        
-                    }, isDragOver === index && {
-                        backgroundColor: 'rgba(63, 85, 64, 0.3)',
-                        border: '1px dashed rgb(63, 85, 64)',
-                        borderRadius: '8px',
-                    }]}
-                >
+            {
+                selectedFiles?.map((file, index) => (
                     <Stack
-                        onClick={() => handleButtonClick(index)}
-                        sx={{
-                            flex: 1,
+                        key={index}
+                        onDrop={handleDrop}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        sx={[{
                             display: 'flex',
                             flexDirection: 'row',
-                            alignItems: 'center',
-                            gap: 1,
-                            cursor: 'pointer',
-                        }}>
-                        <HiddenInput
-                            type="file"
-                            name={multiple ?`${inputName + index}` : inputName}
-                            accept={"image/png, image/jpeg"}
-                            onChange={handleFileChange}
-                            ref={(el) => inputRef.current[index] = el}
-                        />
-                        <IconButton
-                            aria-label="add file"
-                            size="large"
-                            sx={{ alignSelf: 'flex-start' }}
-                        >
-                            <AddAPhotoOutlinedIcon fontSize="large" sx={{ color: 'rgb(63, 85, 64)' }} />
-                        </IconButton>
-                        <Typography>{previews[index] ? 'Змінити фото' : 'Вибрати фото'}</Typography>
-                    </Stack>
-
-                    {previews[index] && (
-                        <Box
+                            alignItems: 'stretch',
+                            '&:not(:last-of-type)': {
+                                mb: '10px'
+                            }
+                        }, isDragOver === index && {
+                            backgroundColor: 'rgba(63, 85, 64, 0.3)',
+                            border: '1px dashed rgb(63, 85, 64)',
+                            borderRadius: '8px',
+                        }]}
+                    >
+                        <Stack
+                            onClick={() => handleButtonClick(index)}
                             sx={{
-                                marginTop: '20px',
-                                textAlign: 'center',
-                            }}
-                        >
+                                flex: 1,
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                gap: 1,
+                                cursor: 'pointer',
+                            }}>
+                            <HiddenInput
+                                type="file"
+                                name={multiple ? `${inputName + index}` : inputName}
+                                accept={"image/png, image/jpeg"}
+                                onChange={!file ? handleAddFile : handleFileChange}
+                                ref={(el: HTMLInputElement) => inputRef.current[index] = el}
+                            />
+                            <IconButton
+                                aria-label="add file"
+                                size="large"
+                            >
+                                <AddAPhotoOutlinedIcon fontSize="large" sx={{ color: 'rgb(63, 85, 64)' }} />
+                            </IconButton>
+                            <Typography>{previews[index] ? 'Змінити фото' : 'Вибрати фото'}</Typography>
+                        </Stack>
+
+                        {previews[index] && (
                             <Box
                                 component="img"
                                 src={previews[index]}
@@ -178,69 +193,32 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
                                     border: '1px solid grey',
                                 }}
                             />
-                        </Box>
-                    )}
-                    {previews[index] && (
-                        <Stack
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: 2,
-                            }}
-                        >
-                            <IconButton onClick={() => handleMoveFile(-1, index)} aria-label="delete" size="small" disabled={index===0} title='Перемістити фото вгору'>
-                                <NorthOutlinedIcon fontSize="small" sx={[{ color: 'rgb(63, 85, 64)' }, index === 0 && { visibility: 'hidden' }]} />
-                            </IconButton>
-                            <IconButton onClick={() => handleRemoveFile(index)} aria-label="delete" size="small">
-                                <ClearOutlinedIcon fontSize="small" sx={{ color: 'red' }} />
-                            </IconButton>
-                            <IconButton onClick={() => handleMoveFile(+1, index)} aria-label="delete" size="small" disabled={index === previews.length - 1} title='Перемістити фото вниз'>
-                                <SouthOutlinedIcon fontSize="small" sx={[{ color: 'rgb(63, 85, 64)' }, index === previews.length - 1 && { visibility: 'hidden' }]} />
-                            </IconButton>
-                        </Stack>
-                    )}
-                </Stack>
-            ))}
-
-            {((previews.length < 5 && multiple) || (!multiple && previews.length === 0)) && (
-                <Stack
-                    sx={[isDragOver === previews.length && {
-                        bgcolor: 'rgba(63, 85, 64, 0.3)',
-                        border: '1px dashed grey',
-                        borderRadius: '8px',
-                    }]}
-                    onDrop={handleDrop}
-                    onDragOver={handleDragOver}>
-                
-                    <Stack
-                        onClick={() => handleButtonClick(previews.length)}
-                        sx={{
-                            flex: 1,
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            gap: 1,
-                            cursor: 'pointer',
-                        }}>
-                        <HiddenInput
-                            type="file"
-                            onChange={handleAddFile}
-                            accept={"image/png, image/jpeg"}
-                            ref={(el) => inputRef.current[previews.length] = el}
-                        />
-                        <IconButton
-                            aria-label="add file"
-                            size="large"
-                            sx={{ alignSelf: 'flex-start' }}
-                        >
-                            <AddAPhotoOutlinedIcon fontSize="large" sx={{ color: 'rgb(63, 85, 64)' }} />
-                        </IconButton>
-                        <Typography>{'Додати фото'}</Typography>
+                        )}
+                        {previews[index] && (
+                            <Stack
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: 2,
+                                    ml: 2
+                                }}
+                            >
+                                <IconButton onClick={() => handleMoveFile(-1, index)} aria-label="delete" size="small" disabled={index === 0} title='Перемістити фото вгору'>
+                                    <NorthOutlinedIcon fontSize="small" sx={[{ color: 'rgb(63, 85, 64)' }, index === 0 && { visibility: 'hidden' }]} />
+                                </IconButton>
+                                <IconButton onClick={() => handleRemoveFile(index)} aria-label="delete" size="small">
+                                    <ClearOutlinedIcon fontSize="small" sx={{ color: 'red' }} />
+                                </IconButton>
+                                <IconButton onClick={() => handleMoveFile(+1, index)} aria-label="delete" size="small" disabled={index === previews.length - 1} title='Перемістити фото вниз'>
+                                    <SouthOutlinedIcon fontSize="small" sx={[{ color: 'rgb(63, 85, 64)' }, index === previews.length - 1 && { visibility: 'hidden' }]} />
+                                </IconButton>
+                            </Stack>
+                        )}
                     </Stack>
-                </Stack>
-            )}
+                ))
+            }
         </Box>
     );
 });
