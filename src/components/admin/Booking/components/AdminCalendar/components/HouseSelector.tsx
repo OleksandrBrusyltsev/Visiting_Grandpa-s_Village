@@ -46,6 +46,7 @@ const HouseSelector: FC<HouseSelectorProps> = ({ currentHouse }) => {
         alignItems: "center",
         flexWrap: "wrap",
         gap: "8px",
+        marginBottom: "32px",
       }}
     >
       {selectedHouses.map((house) => (

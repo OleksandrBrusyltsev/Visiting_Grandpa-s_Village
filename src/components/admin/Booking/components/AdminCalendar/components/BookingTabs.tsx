@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { Tabs, Tab, Box, Typography } from "@mui/material";
 import { Dayjs } from "dayjs";
 import HouseSelector from "./HouseSelector";
+import BookInfo from "./BookInfo";
 
 interface BookingTabsProps {
   currentEvent: {
@@ -20,7 +21,7 @@ const BookingTabs: FC<BookingTabsProps> = ({ currentEvent }) => {
   };
 
   return (
-    <Box>
+    <Box >
       <Tabs
         value={activeTab}
         onChange={handleTabChange}
@@ -70,6 +71,8 @@ const BookingTabs: FC<BookingTabsProps> = ({ currentEvent }) => {
             borderBottom: "1px solid #2E4236",
             borderRadius: "0 4px 4px 4px",
             backgroundColor: "#f7f7f7",
+            paddingRight: 0,
+            paddingLeft:0
           }}
         >
           <HouseSelector
@@ -78,6 +81,7 @@ const BookingTabs: FC<BookingTabsProps> = ({ currentEvent }) => {
               title: currentEvent.houseName,
             }}
           />
+          <BookInfo currentEvent= {{ start: currentEvent.start, end: currentEvent.end} }/>
         </Box>
       )}
 

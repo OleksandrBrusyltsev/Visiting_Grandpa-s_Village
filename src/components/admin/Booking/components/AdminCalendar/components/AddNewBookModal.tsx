@@ -36,24 +36,6 @@ const AddNewBookModal: FC<AddNewBookModalProps> = ({
       <DialogTitle>Бронювання №123 (2 доби)</DialogTitle>
       <DialogContent>
         <BookingTabs currentEvent={currentEvent} />
-        <div style={{ display: "flex", gap: "16px", marginBottom: "16px" }}>
-          <TextField
-            label="Дата заїзду"
-            value={currentEvent.start.format("DD.MM.YYYY")}
-            InputProps={{
-              readOnly: true,
-            }}
-            fullWidth
-          />
-          <TextField
-            label="Дата виїзду"
-            value={currentEvent.end.format("DD.MM.YYYY")}
-            InputProps={{
-              readOnly: true,
-            }}
-            fullWidth
-          />
-        </div>
       </DialogContent>
 
       <DialogActions>
