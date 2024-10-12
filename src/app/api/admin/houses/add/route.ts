@@ -1,5 +1,6 @@
 import getCloudinaryUrl from '@/actions/admin/getCloudinaryUrl';
 import { verifySession } from '@/functions/dal';
+import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server'
 
@@ -99,10 +100,10 @@ export async function POST(request: Request) {
                 { status: responseToBackend.status },
             );
         }
+        revalidateTag('houses');
         return NextResponse.json({ description: 'Будинок успішно додано!' }, { status: 200 });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ message: (error as Error).message }, { status: 500 });
     }
-        // return NextResponse.json({ description: 'Ура!' }, { status: 200 });
 }

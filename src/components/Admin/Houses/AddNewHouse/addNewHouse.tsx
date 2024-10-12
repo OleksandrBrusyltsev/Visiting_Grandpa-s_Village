@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect } from 'react'
+import { useRouter } from 'next/navigation';
 import { Box, Fab, Grid2 as Grid, Stack, TextField, Tooltip, Typography, Zoom } from '@mui/material'
 import { SxProps } from '@mui/system';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
@@ -75,7 +76,8 @@ const fieldsetData = [
 
         legend: 'Опис будинку (для виділення тексту жирним шрифтом необхідно використати зірочки: **текст**)',
         nameAttr: "description",
-        multiLang: true
+        multiLang: true,
+        multiline: true
     }
 
 ]
@@ -118,10 +120,11 @@ const extraFieldsetData = [
 ]
 
 export default function AddNewHouse({ housesList }: Props) {
+    const { refresh } = useRouter();
     const [showFab, setShowFab] = React.useState(false);
 
     const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState<string | null>('Error');
+    const [error, setError] = React.useState<string | null>(null);
     const [success, setSuccess] = React.useState<string | null>(null);
 
     const formRef = React.useRef<HTMLFormElement>(null);
@@ -154,14 +157,17 @@ export default function AddNewHouse({ housesList }: Props) {
                 const data = await response.json();
                 setSuccess(data.description);
                 handleResetForm();
+                refresh();
             } else {
                 const error = await response.json();
+                window?.scrollTo({ top: 0, behavior: 'smooth' });
                 setError(error.message)
                 setLoading(false);
                 return
             };
         }
         catch (error) {
+            window?.scrollTo({ top: 0, behavior: 'smooth' });
             setError('Щось пішло не так, як планувалось! Спробуйте ще раз!');
             setLoading(false);
             return
@@ -223,12 +229,13 @@ export default function AddNewHouse({ housesList }: Props) {
                 <FileUploadWithPreview label={'Фото для галереї на сторінці будинку'} nameAttr={"photo"} ref={galleryRef} multiple />
 
                 {
-                    fieldsetData.map(({ legend, nameAttr, multiLang }, index) => (
+                    fieldsetData.map(({ legend, nameAttr, multiLang, multiline }, index) => (
                         <HouseFieldset
                             key={index}
                             legend={legend}
                             nameAttr={nameAttr}
                             multiLang={multiLang}
+                            multiline={multiline || false}
                         />
                     ))
                 }
@@ -251,6 +258,9 @@ export default function AddNewHouse({ housesList }: Props) {
                                 <TextField
                                     label={label}
                                     type="number"
+                                    InputProps={{
+                                        inputProps: { min: 0 },
+                                    }}
                                     id={nameAttr}
                                     name={nameAttr}
                                     variant="outlined"
@@ -306,7 +316,7 @@ export default function AddNewHouse({ housesList }: Props) {
                                     color={fab.color}
                                     type={fab.type}
                                     disabled={loading}
-                                    onClick={index === fabs.length - 1 ? () => handleResetForm() : () => { }}
+                                    onClick={index === fabs.length - 1 ? () => handleResetForm() : undefined}
                                     >
                                     {fab.icon}
                                 </Fab>

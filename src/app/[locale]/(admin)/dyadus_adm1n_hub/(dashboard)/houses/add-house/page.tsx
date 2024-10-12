@@ -1,13 +1,11 @@
 import React from 'react';
 
-import { getData } from '@/actions/getData';
 import AddNewHouse from '@/components/Admin/Houses/AddNewHouse/AddNewHouse';
+import { getHouses } from '@/actions/getHouses';
 
-type Props = {}
-
-export default async function Page({ }: Props) {
+export default async function Page() {
   
-  const houses = await getData<HouseItem[]>("houses");
+  const houses = await getHouses();
   const housesList = houses.filter(item => item.name && !item.house_type)
     .map((item) => ({
       id: item.id,
