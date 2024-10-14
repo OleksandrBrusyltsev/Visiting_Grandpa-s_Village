@@ -1,8 +1,16 @@
 import { FC } from "react";
-import { Box, Typography, IconButton, Select, MenuItem } from "@mui/material";
 import {
-  Add,
-  Remove,
+  Box,
+  Typography,
+  IconButton,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
+} from "@mui/material";
+import {
   PersonOutline,
   KeyboardArrowUp,
   KeyboardArrowDown,
@@ -38,12 +46,12 @@ const GuestsSelector: FC<GuestsSelectorProps> = ({
   setChildAge,
 }) => {
   return (
-    <Box padding={3}>
+    <Box padding={3} sx={{ width: "356px", minHeight: "494px" }}>
       {/* Контейнер для выбора количества взрослых и детей */}
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
         {/* Взрослые */}
-        <Box>
-          <Typography mb="12px"sx={{ fontSize: "20px", fontWeight: "bold" }}>
+        <Box sx={{ width: "144px" }}>
+          <Typography mb="12px" sx={{ fontSize: "20px", fontWeight: "bold" }}>
             Дорослі
           </Typography>
           <Box
@@ -54,7 +62,6 @@ const GuestsSelector: FC<GuestsSelectorProps> = ({
               border: "1px solid  #3F5540",
               borderRadius: "8px",
               padding: "5px 10px",
-              width: "144px",
             }}
           >
             <PersonOutline fontSize="large" sx={{ color: "#3F5540" }} />
@@ -85,31 +92,43 @@ const GuestsSelector: FC<GuestsSelectorProps> = ({
         </Box>
 
         {/* Дети */}
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <PersonOutline sx={{ mr: 1 }} />
-          <Typography sx={{ fontWeight: "bold", mr: 2 }}>Діти</Typography>
+        <Box sx={{ width: "144px" }}>
+          <Typography mb="12px" sx={{ fontSize: "20px", fontWeight: "bold" }}>
+            Діти
+          </Typography>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
-              border: "1px solid #D1D1D1",
+              justifyContent: "space-between",
+              border: "1px solid  #3F5540",
               borderRadius: "8px",
-              padding: "0 10px",
+              padding: "5px 10px",
             }}
           >
-            <IconButton
-              size="small"
-              onClick={() => handleDecrease(setChildren, children)}
+            <PersonOutline fontSize="medium" sx={{ color: "#3F5540" }} />
+            <Typography sx={{ fontSize: "20px", fontWeight: "bold" }}>
+              {children}
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
             >
-              <Remove />
-            </IconButton>
-            <Typography>{children}</Typography>
-            <IconButton
-              size="small"
-              onClick={() => handleIncrease(setChildren, 5)}
-            >
-              <Add />
-            </IconButton>
+              <IconButton
+                onClick={() => handleIncrease(setChildren, children)}
+                size="small"
+              >
+                <KeyboardArrowUp fontSize="medium" />
+              </IconButton>
+              <IconButton
+                onClick={() => handleDecrease(setChildren, children)}
+                size="small"
+              >
+                <KeyboardArrowDown fontSize="medium" />
+              </IconButton>
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -120,26 +139,60 @@ const GuestsSelector: FC<GuestsSelectorProps> = ({
           {[...Array(children)].map((_, index) => (
             <Box
               key={index}
-              sx={{ display: "flex", alignItems: "center", mb: 2 }}
+              sx={{
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                mb: 2,
+              }}
             >
-              <PersonOutline sx={{ mr: 1 }} />{" "}
-              {/* Иконка ребенка для возраста */}
-              <Typography sx={{ fontWeight: "bold", mr: 2 }}>Вік</Typography>
-              <Select
-                value={childAges[index] || 0}
-                onChange={(e) => setChildAge(index, e.target.value as number)}
-                sx={{
-                  minWidth: "80px",
-                  border: "1px solid #D1D1D1",
-                  borderRadius: "8px",
-                }}
-              >
-                {Array.from({ length: 18 }).map((_, num) => (
-                  <MenuItem key={num} value={num}>
-                    {num}
-                  </MenuItem>
-                ))}
-              </Select>
+              <FormControl fullWidth>
+                <Typography
+                  variant="body2"
+                  mb="12px"
+                  sx={{ fontSize: "20px", fontWeight: "bold" }}
+                >
+                  Вік
+                </Typography>
+                {/* Иконка внутри поля */}
+                {/* <InputLabel
+                  sx={{
+                    fontSize: "28px",
+                    fontWeight: "bold",
+                    color: "black",
+                    marginBottom: "12px",
+                  }}
+                  id={`child-age-${index}`}
+                >
+                  Вік
+                </InputLabel> */}
+                <Select
+                  labelId={`child-age-${index}`}
+                  value={childAges[index] || 0}
+                  onChange={(e) => setChildAge(index, e.target.value as number)}
+                  input={
+                    <OutlinedInput
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <PersonOutline sx={{ color: "#3F5540" }} />
+                        </InputAdornment>
+                      }
+                    />
+                  }
+                  sx={{
+                    border: "1px solid  #3F5540",
+                    borderRadius: "8px",
+                    padding: "5px 10px",
+                  }}
+                >
+                  {Array.from({ length: 18 }).map((_, num) => (
+                    <MenuItem key={num} value={num}>
+                      {num}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </Box>
           ))}
         </Box>

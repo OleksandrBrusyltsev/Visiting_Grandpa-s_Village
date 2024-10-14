@@ -94,7 +94,7 @@ const BookInfo: FC<BookInfoProps> = ({ currentEvent }) => {
 
       <Box>
         <Box
-          sx={{ display: "flex", alignItems: "center" }}
+          sx={{ display: "flex", alignItems: "center", cursor:"pointer" }}
           onClick={handleOpenGuestsModal}
         >
           <PersonOutline fontSize="large" sx={{ color: "#3F5540" }} />
@@ -103,7 +103,7 @@ const BookInfo: FC<BookInfoProps> = ({ currentEvent }) => {
           <Typography fontWeight="bold">{children}</Typography>
         </Box>
 
-        <Dialog open={isGuestsModalOpen} onClose={handleCloseGuestsModal}>
+        <Dialog  open={isGuestsModalOpen} onClose={handleCloseGuestsModal}>
           <GuestsSelector
             adults={adults}
             children={children}
