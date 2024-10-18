@@ -18,9 +18,7 @@ export const HouseFieldset: React.FC<Props> = function HouseFieldset({ legend, n
                 name={nameAttr}
                 variant="outlined"
                 type='text'
-                InputProps={{
-                    inputProps: { pattern: '^[a-z][a-z0-9-]*$' },
-                }}
+                inputProps={{ pattern: "^[a-z][a-z0-9-]*$" }}
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required

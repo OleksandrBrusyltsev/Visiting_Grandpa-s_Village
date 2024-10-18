@@ -24,105 +24,89 @@ const HiddenInput = styled('input')({
 });
 
 const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ label, nameAttr, multiple }: Props, ref) {
+    const [selectedFiles, setSelectedFiles] = useState<Array<File | null>>([null]);
     useImperativeHandle(ref, () => ({
         reset() {
             setSelectedFiles([null]);
             setPreviews([]);
             inputRef.current = [];
         },
-    }), []);
-    const [selectedFiles, setSelectedFiles] = useState<Array<File | null>>([null]);
+        getSelectedFiles() {
+            return selectedFiles;
+        }
+    }), [selectedFiles]);
     const [previews, setPreviews] = useState<Array<string>>([]);
     const [isDragOver, setIsDragOver] = useState<number | null>(null);
 
     const inputRef = React.useRef<(HTMLInputElement)[]>([]);
 
-    //зміна фотографій через кнопку
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-        const file = event.target.files?.[0];
-        const targetIndex = inputRef.current?.indexOf(event.target as HTMLInputElement);
-        if (file) {
-            onChangeFile(file, targetIndex);
+    const handleButtonClick = (index: number) => {
+        if (inputRef.current && inputRef.current[index]) {
+            inputRef.current[index].click();
         }
     };
 
-    const onChangeFile = (file: File, targetIndex: number) => { 
+    const handleAddFile = (file: File) => {
+        const isLast = multiple && previews.length === 4 || !multiple;
+        setSelectedFiles(files => [...files.filter((el) => el !== null), ...(isLast ? [file] : [file, null])]);
+        setPreviews(previews => [...previews, URL.createObjectURL(file)]);
+    }
+ 
+    const handleChangeFile = (file: File, targetIndex: number) => {
         setSelectedFiles(files => files.map((el, index) => index === targetIndex ? file : el));
         setPreviews(previews => previews.map((item, index) => index === targetIndex ? URL.createObjectURL(file) : item));
     }
 
-    //додавання фотографій через базову кнопку 
-    const handleAddFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            onAddFile(file);
-        }
-    };
-    const onAddFile = (file: File) => { 
-        setSelectedFiles(files => {
-            if (multiple) {
-                if (previews.length < 4) {
-                    return [...files.filter((el) => el !== null), file, null];
-                }
-                return [...files.filter((el) => el !== null), file];
-            }
-            return [file];
-        });
-        setPreviews(previews => [...previews, URL.createObjectURL(file)]);
+    const handleRemoveFile = (targetIndex: number) => {
+        setSelectedFiles(files => [...files.filter((file, index) => file && index !== targetIndex), null]);
+        setPreviews(previews => previews.filter((_, index) => index !== targetIndex));
+        inputRef.current.splice(targetIndex, 1);
     }
 
-    //програмний тригер прихованого інпуту
-    const handleButtonClick = (index: number) => {
-        if (inputRef.current && inputRef.current[index]) {
-            inputRef.current[index].click();  
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        const targetIndex = inputRef.current?.indexOf(event.target as HTMLInputElement);
+        const isInputFilled = Boolean(selectedFiles[targetIndex]);
+        
+        if (isInputFilled) { 
+            file ? handleChangeFile(file, targetIndex) : handleRemoveFile(targetIndex)
+        } else {
+            if (file) {
+                handleAddFile(file);
+            } return
         }
-    };
-    
-    //обробка дропа після перетягування
-    const handleDrop = (event: React.DragEvent<HTMLElement>) => {
-        event.preventDefault();
+    }   
 
+    const onDrop = (event: React.DragEvent<HTMLElement>) => {
+        event.preventDefault();
         setIsDragOver(null);
         const file = event.dataTransfer.files[0];
         const targetIndex = inputRef.current?.findIndex(el => (event.currentTarget as HTMLElement).contains(el));
-
-        if (file) {
-            if (targetIndex === selectedFiles.length - 1 && !selectedFiles[selectedFiles.length - 1]) {
-                onAddFile(file);
-            } else {
-                onChangeFile(file, targetIndex);
-            }
-        }
+        const isInputFilled = Boolean(selectedFiles[targetIndex]);
+        isInputFilled ? handleChangeFile(file, targetIndex) : handleAddFile(file);
     };
 
-    //видалення фотографій
-    const handleRemoveFile = (i: number) => {
-        setSelectedFiles(files => multiple ? [...files.filter((file, index) => index !== i && file !== null), null] : [null]);
-        setPreviews(previews => previews.filter((_, index) => index !== i));
-        inputRef.current[i].value = '';
-    }
-    
-    //зміна порядку фотографій
-    const handleMoveFile = (direction: -1 | 1, targetIndex: number) => {
-        if (targetIndex + direction < 0 || targetIndex + direction >= selectedFiles.length) return;
-        setSelectedFiles(files => files.map((el, index) => index === targetIndex ? files[targetIndex + direction] : index === targetIndex + direction ? files[targetIndex] : el));
-        setPreviews(previews => previews.map((item, index) => index === targetIndex ? previews[targetIndex + direction] : index === targetIndex + direction ? previews[targetIndex] : item));
-        [inputRef.current[targetIndex], inputRef.current[targetIndex + direction]] = [inputRef.current[targetIndex + direction], inputRef.current[targetIndex]];
-    }
-
-    //відслідковування активного інпута під час перетягування
     const handleDragOver = (event: React.DragEvent<HTMLElement>) => {
         event.preventDefault();
-
         const targetIndex = inputRef.current?.findIndex(el => (event.currentTarget as HTMLElement).contains(el));
         isDragOver !== targetIndex && setIsDragOver(targetIndex);
     };
+
     const handleDragLeave = (event: React.DragEvent<HTMLElement>) => {
         event.preventDefault();
-        if((event.currentTarget as HTMLElement).contains(event.relatedTarget as HTMLElement)) return;
+        if ((event.currentTarget as HTMLElement).contains(event.relatedTarget as HTMLElement)) return;
         setIsDragOver(null);
     };
+    
+    const handleMoveFile = (direction: -1 | 1, targetIndex: number) => {
+        if (targetIndex + direction < 0 || targetIndex + direction >= selectedFiles.length) return;
+        
+        setSelectedFiles(files => files.map((el, index) => index === targetIndex ? files[targetIndex + direction] : index === targetIndex + direction ? files[targetIndex] : el));
+        
+        setPreviews(previews => previews.map((item, index) => index === targetIndex ? previews[targetIndex + direction] : index === targetIndex + direction ? previews[targetIndex] : item));
+        
+        [inputRef.current[targetIndex], inputRef.current[targetIndex + direction]] = [inputRef.current[targetIndex + direction], inputRef.current[targetIndex]];
+    }
     
     return (
         <Box
@@ -140,7 +124,7 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
                 selectedFiles?.map((file, index) => (
                     <Stack
                         key={index}
-                        onDrop={handleDrop}
+                        onDrop={onDrop}
                         onDragOver={handleDragOver}
                         onDragLeave={handleDragLeave}
                         sx={[{
@@ -171,9 +155,10 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
                                 type="file"
                                 name={multiple ? `${nameAttr + index}` : nameAttr}
                                 accept={"image/png, image/jpeg"}
-                                onChange={!file ? handleAddFile : handleFileChange}
+                                // onChange={onChange}
+                                onChange={onChange}
                                 ref={(el: HTMLInputElement) => inputRef.current[index] = el}
-                                required={selectedFiles[index] || !index ? true : false }
+                                required={ !selectedFiles[0] }
                             />
                             <IconButton
                                 aria-label="add file"
@@ -208,13 +193,13 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
                                     ml: 2
                                 }}
                             >
-                                <IconButton onClick={() => handleMoveFile(-1, index)} aria-label="delete" size="small" disabled={index === 0} title='Перемістити фото вгору'>
+                                <IconButton onClick={() => handleMoveFile(-1, index)} aria-label="move up" size="small" disabled={index === 0} title='Перемістити фото вгору'>
                                     <NorthOutlinedIcon fontSize="small" sx={[{ color: 'rgb(63, 85, 64)' }, index === 0 && { visibility: 'hidden' }]} />
                                 </IconButton>
                                 <IconButton onClick={() => handleRemoveFile(index)} aria-label="delete" size="small">
                                     <ClearOutlinedIcon fontSize="small" sx={{ color: 'red' }} />
                                 </IconButton>
-                                <IconButton onClick={() => handleMoveFile(+1, index)} aria-label="delete" size="small" disabled={index === previews.length - 1} title='Перемістити фото вниз'>
+                                <IconButton onClick={() => handleMoveFile(+1, index)} aria-label="move down" size="small" disabled={index === previews.length - 1} title='Перемістити фото вниз'>
                                     <SouthOutlinedIcon fontSize="small" sx={[{ color: 'rgb(63, 85, 64)' }, index === previews.length - 1 && { visibility: 'hidden' }]} />
                                 </IconButton>
                             </Stack>

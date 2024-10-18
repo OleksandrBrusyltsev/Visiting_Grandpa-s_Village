@@ -1,0 +1,299 @@
+@use "@/styles/mixins" as mixins;
+@use "@/styles/variables";
+
+.hero {
+    margin-top: 130px;
+}
+
+.heroWrapper {
+    position: relative;
+    display: grid;
+    flex-direction: column;
+}
+
+.descr1 {
+    @include mixins.mak-green;
+    font-size: var(--f-size-button-big);
+    min-width: 241px;
+    width: 65%;
+    padding-left: calc((100cqw - 375px) / 6);
+}
+
+.descr2 {
+    justify-self: flex-end;
+    font-family: var(--f-family-main);
+    color: rgb(var(--color-base-green));
+    font-weight: 700;
+    text-align: end;
+    margin-top: calc(20px + (100cqw - 375px) / 18);
+    width: 281px;
+    font-size: 16px;
+}
+
+.grandpa {
+    width: 148px;
+    aspect-ratio: 1;
+    position: absolute;
+    top: -105px;
+    right: calc(-10px + (100cqw - 375px) / 3);
+  
+    &:hover::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px solid black;
+        border-radius: 10px;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    
+    img {
+        z-index: -1;
+        object-fit: contain;
+    }
+
+    &::after {
+        z-index: -2;
+        width: 180px;
+        height: 160px;
+        transform: scaleX(-1);
+        content: "";
+        position: absolute;
+        right: -40px;
+        bottom: -30px;
+        background-image: url("/images/backgrounds/christmasTrees.png");
+        background-position: right bottom;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+}
+
+.map {
+    margin: 21px auto 0;
+    position: relative;
+}
+
+.mapWrapper {
+    width: 95.7%;
+    aspect-ratio: 1.795;
+    position: relative;
+    top: 0;
+    left: 2.15%;
+
+    img {
+        object-fit: contain;
+    }
+}
+
+.cloudBackground {
+    position: absolute;
+    top: -21px;
+    right: 0;
+    bottom: -67px;
+    left: 0;
+    z-index: -1;
+    color: rgba(179, 161, 137, 0.4);
+}
+
+.cloud {
+    transform: scaleY(-1);
+}
+
+.curve {
+    display: none;
+}
+.textWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    font-family: var(--f-family-main);
+    color: rgb(var(--color-base-green));
+    font-weight: 600;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 50px;
+
+    @container houses (min-width: 768px) {
+        font-size: var(--f-size-button-small);
+    }
+
+    & .text {
+        width: 90%;
+        text-align: center;
+
+        @container houses  (min-width: 768px) {
+            width: 90%;
+        }
+
+        @container houses  (min-width: 1000px) {
+            font-size: 20px;
+            width: 831px;
+        }
+    }
+}
+
+@container houses (min-width: 768px) {
+    .hero {
+        margin-top: 16px;
+    }
+
+    .descr1 {
+        font-size: var(--f-size-h1);
+        min-width: unset;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .descr2 {
+        text-align: center;
+        font-size: var(--f-size-body);
+        line-height: 1.1;
+
+        width: 539px;
+        margin-bottom: 60px;
+        padding-top: 0px;
+    }
+
+    .grandpa {
+        width: 209px;
+        top: unset;
+        bottom: -156px;
+        right: calc((100cqw - 768px) / 6);
+
+        &::after {
+            display: none;
+        }
+    }
+
+    .map {
+        margin-top: 197px;
+    }
+
+    .mapWrapper {
+        width: 66%;
+        aspect-ratio: 1.87;
+        top: 0;
+        left: 17%;
+    }
+
+    .cloudBackground {
+        position: absolute;
+        top: -82px;
+        right: 7%;
+        bottom: -18px;
+        left: 4.7%;
+
+        &::after {
+            width: 215px;
+            height: 208px;
+            transform: scaleX(-1);
+            content: "";
+            position: absolute;
+            left: calc(-15px + (100cqw - 768px) / 8 * 0.66);
+            top: calc((100cqw - 768px) / 20 + 5%);
+            z-index: -1;
+            background-image: url("/images/backgrounds/christmasTrees.png");
+            background-size: contain;
+        }
+    }
+
+    .cloud {
+        transform: scale(-1, 1);
+    }
+
+    .heroWrapper {
+        .curve {
+            display: block;
+            position: absolute;
+            bottom: -152px;
+            left: 12.7%;
+            width: calc((100cqw - 768px) / 8 + 143px);
+            height: 173px;
+            transform: scale(-1, 1);
+        }
+    }
+}
+
+@container houses  (min-width: 1280px) {
+    .descr1 {
+        width: 85%;
+        padding-left: calc((100cqw - 1180px) / 2 - 50px);
+    }
+
+    .descr2 {
+        width: 754px;
+        margin-top: 35px;
+        margin-bottom: 90px;
+    }
+
+    .grandpa {
+        width: 314px;
+        bottom: -224px;
+        right: calc((100cqw - 1180px) / 2 - 50px);
+        z-index: 1;
+    }
+
+    .map {
+        margin-top: -30px;
+    }
+
+    .mapWrapper {
+        width: 760px;
+        left: calc((100cqw - 1180px) / 2 + 63px);
+    }
+
+    .cloudBackground {
+        top: -123px;
+        right: calc((100cqw - 1180px) / 2 + 141px);
+        bottom: -28px;
+        left: calc((100cqw - 1180px) / 2);
+
+        &::after {
+            width: 356px;
+            height: 349px;
+            transform: scale(1, 1);
+            left: unset;
+            right: -30px;
+            top: 65px;
+            z-index: 0;
+        }
+    }
+
+    .cloud {
+        transform: scale(1, 1);
+    }
+
+    .heroWrapper {
+        .curve {
+            width: 219px;
+            height: 265px;
+            bottom: unset;
+            top: 385px;
+            left: unset;
+            right: calc((100cqw - 1280px) / 2 + 116px);
+            transform: unset;
+        }
+    }
+}
+
+@container houses  (min-width: 1440px) {
+    .descr1 {
+        padding-left: 0;
+    }
+
+    .grandpa {
+        right: 0;
+    }
+
+    .heroWrapper {
+        .curve {
+            right: 116px;
+        }
+    }
+}

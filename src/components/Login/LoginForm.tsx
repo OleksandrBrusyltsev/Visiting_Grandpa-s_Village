@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Button from '../ui/Button/Button';
 
 import s from './LoginForm.module.scss';
-import { useMainStore } from '@/stores/auth/store-provider';
+import { useMainStore } from '@/stores/store-provider';
 import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 

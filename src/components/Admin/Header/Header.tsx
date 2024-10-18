@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/MenuOutlined';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 import UserMenu from './UserMenu/UserMenu';
-import { useMainStore } from '@/stores/auth/store-provider';
+import { useMainStore } from '@/stores/store-provider';
 
 export default function Header() {
     const locale = useLocale();

@@ -1,42 +1,12 @@
-import getCloudinaryUrl from '@/actions/admin/getCloudinaryUrl';
-import { verifySession } from '@/functions/dal';
-import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server'
+import { revalidateTag } from 'next/cache';
+
+import getCloudinaryUrl from '@/actions/admin/getCloudinaryUrl';
+import { verifySession } from '@/functions/dal';
+import { combineProperty, getPhotos } from '@/functions/routeHandlersHelpers';
 
 const url = process.env.SERV_URL;
-
-const getPhotos = (object: Record<string, any>, prefix: string) => {
-    const result: Array<File> = [];
-    for (let key in object) {
-        if (key.startsWith(prefix) && object[key].size) {
-            result.push(object[key]);
-        }
-    };
-    return result;
-}
-const combineProperty = (object: Record<string, any>, prefixes: string[]) => {
-    
-    return prefixes.reduce((accu, prefix) => {
-        
-        const propertiesWithPrefix = Object.entries(object).filter((item) =>
-            item[0].startsWith(prefix),
-        );
-
-        const newObject = propertiesWithPrefix.reduce((accu, item) => {
-            const [key, value] = item;
-            const [property, locale] = key.split('-');
-            accu[property] = {
-                ...accu[property],
-                [locale]: value,
-            };
-            return accu;
-        }, {} as Record<string, Record<Language, string>>);
-
-        return { ...accu, ...newObject };
-    }, {} as Record<string, Record<Language, string>>);
-    
-}
 
 export async function POST(request: Request) {
     const { role } = await verifySession();
@@ -48,9 +18,10 @@ export async function POST(request: Request) {
     const data = Object.fromEntries(form);
 
     //получаем ссылки для фото Cloudinary
-    const photos = [data.cover_photo as File];
+    const photos = [data.cover_photo as File | string];
     photos.push(...getPhotos(data, 'photo'));
-    const photosUrls = await getCloudinaryUrl(photos);
+
+    const photosUrls = await getCloudinaryUrl(photos) as string | string[];
     if (typeof photosUrls === 'string') {
         return NextResponse.json({ message: photosUrls }, { status: 500 });
     }
@@ -62,20 +33,21 @@ export async function POST(request: Request) {
         'description',
         'decor_text',
     ])} as Pick<HouseItem, 'title' | 'long_title' | 'description' | 'decor_text'>;
+    
     const combinedData: Omit<HouseItem, 'id' | 'photoDecor' | 'treesDecor' | 'coordinates'> = {
         ...baseCombinedData,
         rental_price: +data.rental_price,
-        cover_photo:  photosUrls[0],
-        photo:  photosUrls.slice(1),
-        name:  data.name as string,
+        cover_photo:  photosUrls![0],
+        photo:  photosUrls!.slice(1) || null,
+        name:  data.name as unknown as string,
         max_adults: +data.max_adults,
         extra_adults:  +data.extra_adults,
         extra_adult_price:  +data.extra_adult_price,
         extra_children:  +data.extra_children,
         extra_children_price:  +data.extra_children_price,
         discount_percent:  +data.discount_percent,
-        is_available:  true,
-        house_type: data.house_type === 'null' ? null : data.house_type as string,
+        is_available: true,
+        house_type: data.house_type === 'null' ? null : data.house_type as unknown as string,
     };
 
     const access_token = cookies().get('access_token')?.value;

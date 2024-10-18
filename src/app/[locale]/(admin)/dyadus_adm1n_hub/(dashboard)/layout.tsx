@@ -6,6 +6,7 @@ import { verifySession } from '@/functions/dal';
 import { getData } from '@/actions/getData';
 import getMainMenu from '@/functions/getMainMenu';
 import { getHouses } from '@/actions/getHouses';
+import Modal from '@/components/Admin/Dialog/Dialog';
 
 type Props = {
   children: React.ReactNode;
@@ -32,6 +33,7 @@ export default async function DashboardLayout({ children, params: { locale } }: 
         <main className="mx-auto grow" style={{ minHeight: 'calc(100dvh - 96px)' }}>
           {children}
         </main>
+        <Modal />
       </div>
     </>
   )

@@ -2,13 +2,20 @@
 
 const url = process.env.SERV_URL;
 
-    export default async function getCloudinaryUrl(photos: File[]) {
+    export default async function getCloudinaryUrl(photos: Array<File | string>) {
+        const photosAsStringAndEmpty = photos.map((item) => (typeof item === 'string' ? item : null));
+        const photosAsFile = photos.filter((item) => typeof item !== 'string');
+
+        if (!photosAsFile.length) {
+            return photos as string[];
+        }
+
         const formData = new FormData();
-        
-        photos.forEach((photo) => {
+
+        photosAsFile.forEach((photo) => {
             formData.append('images', photo);
         });
-        
+
         try {
             const response = await fetch(`${url}/api/v1/photos/upload`, {
                 method: 'POST',
@@ -22,9 +29,15 @@ const url = process.env.SERV_URL;
             }
             if (response.ok) {
                 const result = await response.json();
-                return result.data.urls;
+                const cloudinaryUrls = result.data.urls as string[];
+                let index = 0;
+                const photosUrls = photosAsStringAndEmpty.map((photo) =>
+                    !photo ? cloudinaryUrls[index++] : photo,
+                );
+
+                return photosUrls;
             }
         } catch (error) {
-            return (error as Error).message;
+            return `Error from Cloudinary: ${(error as Error).message}`;
         }
     }

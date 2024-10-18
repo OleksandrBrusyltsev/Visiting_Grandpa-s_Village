@@ -4,7 +4,7 @@ import React from 'react'
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import { List } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
-import { useMainStore } from '@/stores/auth/store-provider';
+import { useMainStore } from '@/stores/store-provider';
 
 import ParentMenuItem from './ParentMenuItem';
 import ChildMenuItem from './ChildMenuItem';

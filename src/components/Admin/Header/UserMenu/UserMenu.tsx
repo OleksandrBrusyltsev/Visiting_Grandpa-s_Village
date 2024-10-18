@@ -10,11 +10,10 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import { useMainStore } from '@/stores/auth/store-provider';
+import { useMainStore } from '@/stores/store-provider';
 import { Login } from '@mui/icons-material';
 import { logout } from '@/actions/admin/auth';
 import {  useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
 import Link from 'next/link';
 
 export default function UserMenu() {
