@@ -8,7 +8,6 @@ import Header from "@/components/Header/Header";
 import Navigation from "@/components/Header/Navigation";
 import Toaster from "@/components/ui/Toaster/Toaster";
 
-import { locales } from "@/data/locales";
 
 import { toasters } from "@/data/advertisementToaster";
 import { locales } from "@/data/locales";
