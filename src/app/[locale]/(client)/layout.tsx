@@ -10,6 +10,9 @@ import Toaster from "@/components/ui/Toaster/Toaster";
 
 import { locales } from "@/data/locales";
 
+import { toasters } from "@/data/advertisementToaster";
+import { locales } from "@/data/locales";
+
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -37,9 +40,6 @@ export const metadata: Metadata = {
   }
 };
 
-// async function getServerTime() {
-//   return Date.now();
-// }
 
 export default async function LocaleLayout({
   children,
