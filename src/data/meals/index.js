@@ -11,7 +11,7 @@ export const meals = [
             ru: 'давай уже\nскорее кушать',
             en: "Let's eat\nalready",
         },
-        photo: [],
+        photos: [],
     },
     {
         id: 1,
@@ -26,7 +26,7 @@ export const meals = [
             en: "The grills on the territory of the *[eco-estate “Grandpa's village”](/)* **are included in the accommodation price.** Light the fire, cook your favorite *eco-style dishes,* and enjoy the taste while surrounded by greenery and flowers, amidst incredible nature and fresh forest air.\n\n The atmosphere here will make the food even tastier and provide unforgettable emotions.",
 
         },
-        photo: [
+        photos: [
             '/images/meals/grill.png',
             '/images/meals/grill-s.png',
             '/images/meals/grill-m.png',
@@ -44,7 +44,7 @@ export const meals = [
             ru: 'Летом все гости Усадьбы могут воспользоваться **Летней кухней** для приготовления любимых блюд. Готовить на природе, среди зелени, свежего воздуха и атмосферы украинской деревни - **невероятное удовольствие.** Приготовленная на природе *еда в эко-стиле* автоматически становится максимально вкусной и оставляет приятные воспоминания.\n\n Использование кухни имеет символическую стоимость - 150&nbsp;грн./сутки, чтобы комфортно и свободно чувствовать себя в пространстве для приготовления пищи.',
             en: 'In summer, all guests of the Manor have the opportunity to use the **Summer Kitchen** for cooking their favorite dishes. Cooking outdoors, amidst greenery, fresh air, and the atmosphere of a Ukrainian village is **an incredible pleasure.** Food cooked outdoors in *eco-style* automatically becomes maximally tasty and leaves pleasant memories.\n\n The use of the kitchen has a symbolic cost -\n 150&nbsp;UAH/day, to comfortably and freely feel in the cooking space.',
         },
-        photo: [
+        photos: [
             '/images/meals/kitchen.png',
             '/images/meals/kitchen-veg.png',
             '/images/meals/kitchen-pot.png',
@@ -62,7 +62,7 @@ export const meals = [
             ru: 'Дедушка всегда максимально заботится о тебе, поэтому в Усадьбе есть возможность заранее заказать **домашние украинские блюда**, чтобы почувствовать настоящий вкус местной культуры, попробовать национальную кухню и **максимально насладиться отдыхом** без самостоятельного приготовления пищи.',
             en: 'Grandpa always takes care of you, so at the Manor, you have the opportunity to pre-order **homemade Ukrainian dishes** to experience the true taste of local culture, try the national cuisine, and **fully enjoy your vacation** without having to cook yourself.',
         },
-        photo: [
+        photos: [
             '/images/meals/self-cooking.png',
             '/images/meals/self-cooking-borsch.png',
             '/images/meals/self-cooking-pelmeni.png',

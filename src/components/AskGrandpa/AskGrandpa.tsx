@@ -79,7 +79,7 @@ const AskGrandpa: FC = () => {
           ref={telegramRef}
           className={`${style.telegramButtons} ${isVisible ? style.hidden : style.visible}`}
         >
-          <Link href='https://t.me/VisitingGrandpasVillageBot' target="_blanc">
+          <Link href='https://t.me/VisitingGrandpasVillage_Operator' target="_blanc">
             <button className={style.telegramButton}>
               <Icon name="telegramAsk" className={style.telegramIcon} />
             </button>

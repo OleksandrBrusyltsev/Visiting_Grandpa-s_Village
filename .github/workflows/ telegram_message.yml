@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - develop
+      - master
+      - admin
   pull_request:
     types: [opened, closed]
 

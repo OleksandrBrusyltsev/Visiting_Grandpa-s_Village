@@ -12,7 +12,6 @@ import s from "./Booking.module.scss";
 
 // type Props = {
 //   rental_price: number;
-//   rooms: HouseItem[];
 //   max_adults: number;
 //   titleText: string;
 //   extra_adults: number;
@@ -27,7 +26,6 @@ import s from "./Booking.module.scss";
 // };
 type CommonProps = Pick<HouseItem,
   'rental_price' |
-  'rooms' |
   'max_adults' |
   'extra_adults' |
   'extra_children' |
@@ -92,7 +90,6 @@ type Props = CommonProps  & {
 
 const Booking = forwardRef<HTMLDivElement, Props>(function Booking({
   rental_price,
-  rooms,
   max_adults,
   titleText,
   extra_adults,

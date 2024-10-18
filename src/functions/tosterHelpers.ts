@@ -1,56 +1,50 @@
-// Проверяем наличие остатка времени до показа тостера
-export function doesTimerHaveLeftTime(): boolean {
-    const currentTime = Date.now();
-    const savedToasterShowTime =
-        typeof window !== 'undefined' ? localStorage.getItem('nextToasterShowTime') : null;
-
-    if (!savedToasterShowTime) return false;
-    const nextToasterShowTime = +savedToasterShowTime;
-
-    const timeDifference = nextToasterShowTime - currentTime;
-    return timeDifference > 0;
-}
-
-// Проверяем, нужно ли показывать тостер (учитываем наличие действующих акций)
-export function shouldToasterBeShown(isPromoActive: boolean): boolean {
-    return !doesTimerHaveLeftTime() && isPromoActive;
-}
-
-// Проверяем, действительна ли промоакция, используя серверное время
-export function getPromoData(
+export function getActivePromoData(
     data: AdvToaster[],
-    serverTime: number,
     locale: string,
 ): {
     isPromoActive: boolean;
     promoText: string;
     timeout: number;
 } {
+    const timeNow = Date.now();
     const activePromoObj = data.find((promo) => {
-        const startDateString = promo.startDate.trim().replace(/[,\/-]/g, '.');
+        const startDateString = promo.start_date.trim().replace(/[,\/-]/g, '.');
         const [dayS, monthS, yearS] = startDateString.split('.');
         const startDate = new Date(`${yearS}-${monthS}-${dayS} 23:59:59`);
 
-        const endDateString = promo.endDate.trim().replace(/[,\/-]/g, '.');
+        const endDateString = promo.end_date.trim().replace(/[,\/-]/g, '.');
         const [dayE, monthE, yearE] = endDateString.split('.');
         const endDate = new Date(`${yearE}-${monthE}-${dayE} 23:59:59`);
 
-        const moreThanStartDate = new Date(startDate) && new Date(startDate).getTime() < serverTime;
-        const lessThanEndDate = new Date(endDate) && new Date(endDate).getTime() > serverTime;
+        const moreThanStartDate = new Date(startDate) && new Date(startDate).getTime() < timeNow;
+        const lessThanEndDate = new Date(endDate) && new Date(endDate).getTime() > timeNow;
 
         return moreThanStartDate && lessThanEndDate;
     });
 
-    const isPromoActive = activePromoObj ? true : false;
-    const promoText = isPromoActive
-        ? activePromoObj?.translations.find((item) => item.language === locale)?.text!
-        : '';
-    //переводим минуты менеджера в миллисекунды
-    const timeout = isPromoActive ? activePromoObj?.timeout! * 60 * 1000 : 0;
+    if (!activePromoObj || !activePromoObj.is_active) {
+        // Нет действующей акции или для действующей акции тостер не активен 
+        return { isPromoActive: false, promoText: '', timeout: 0 };
+    } else {
+        // Есть действующая акция и тостер активен
+        return {
+            isPromoActive: true,
+            promoText:
+                activePromoObj.translations[locale as keyof typeof activePromoObj.translations],
+            //переводим минуты менеджера в миллисекунды
+            timeout: activePromoObj?.timeout! * 60 * 1000,
+        };
+    }
+}
 
-    return {
-        isPromoActive,
-        promoText,
-        timeout,
-    };
+// Проверяем наличие остатка времени до показа тостера
+export function getRemainingToasterDelay(): number {
+    const timeNow = Date.now();
+    const savedToasterShowTime =
+        typeof window !== 'undefined' ? localStorage.getItem('nextToasterShowTime') : null;
+
+    if (!savedToasterShowTime) return 0;
+    const nextToasterShowTime = +savedToasterShowTime;
+
+    return nextToasterShowTime - timeNow;
 }

@@ -23,10 +23,9 @@ export default function GalleryItemPage({ item }: Props) {
 
   const [isOpenSwiper, setIsOpenSwiper] = useState<boolean>(false);
   const [firstSlide, setFirstSlide] = useState<number>(0);
-  const { description, gallery } = item;
+  const { description, photo_urls, alt } = item;
   const galleryRef = useRef<Array<HTMLLIElement>>([]);
   const { isMobile } = useContext(MatchMediaContext);
-
   const quote = description[locale as keyof typeof description];
 
   const toggleSwiper = (i: number) => {
@@ -123,7 +122,7 @@ export default function GalleryItemPage({ item }: Props) {
             <Icon name="curve-gallery-chapter" className={s.curve} />
           </p>
           <GalleryItemPageList>
-            {gallery.map((img, i) => (
+            {photo_urls.map((img, i) => (
               <li
                 className={s.itemWrapper}
                 ref={(el: HTMLLIElement) => (galleryRef.current[i] = el)}
@@ -134,8 +133,8 @@ export default function GalleryItemPage({ item }: Props) {
               >
                 <div className={s.imageWrapper}>
                   <Image
-                    src={img.src}
-                    alt={img.description}
+                    src={img}
+                    alt={alt[locale as keyof typeof alt]}
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 35vw, 25vw"
                     fill
                   />
@@ -154,7 +153,7 @@ export default function GalleryItemPage({ item }: Props) {
             width: isMobile ? "100vw" : "90vw",
           }}
         >
-          <SwiperGalleryItem gallery={gallery} initialSlide={firstSlide} />
+          <SwiperGalleryItem gallery={photo_urls} initialSlide={firstSlide} alt={item.alt[locale as keyof typeof item.alt]} />
         </Modal>
       )}
     </>
