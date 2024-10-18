@@ -8,7 +8,7 @@ export const contacts = {
     email: 'naseliudidusya@gmail.com',
     facebook_link: 'https://www.facebook.com/ecousadba.in.ua/',
     instagram_link: 'https://www.instagram.com/ecousadba.in.ua/',
-    telegram_link: 'https://t.me/VisitingGrandpasVillageBot',
+    telegram_link: 'https://t.me/VisitingGrandpasVillage_Operator',
     linkedin_link: 'https://www.linkedin.com/company/grandpa-s-village/',
     faq: {
         en: [
