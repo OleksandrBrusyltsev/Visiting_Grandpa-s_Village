@@ -1,6 +1,7 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import React from "react";
 
+
 import { getData } from "@/actions/getData";
 import Gallery from "@/components/Gallery/Gallery";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";

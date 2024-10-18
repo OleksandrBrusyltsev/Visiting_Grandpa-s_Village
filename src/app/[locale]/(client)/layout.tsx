@@ -37,9 +37,6 @@ export const metadata: Metadata = {
   }
 };
 
-// async function getServerTime() {
-//   return Date.now();
-// }
 
 export default async function LocaleLayout({
   children,
