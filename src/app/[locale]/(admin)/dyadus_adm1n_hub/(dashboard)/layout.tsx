@@ -1,20 +1,23 @@
 import React from 'react';
+
 import Header from '@/components/Admin/Header/Header'
 import MainMenu from '@/components/Admin/MainMenu/MainMenu';
-
 import { verifySession } from '@/functions/dal';
 import { getData } from '@/actions/getData';
 import getMainMenu from '@/functions/getMainMenu';
+import { getHouses } from '@/actions/getHouses';
+import Modal from '@/components/Admin/Dialog/Dialog';
 
 type Props = {
   children: React.ReactNode;
   params: { locale: string };
- }
-
+}
+// export const dynamic = 'force-dynamic';
 export default async function DashboardLayout({ children, params: { locale } }: Props) {
   
   const session = await verifySession();
-  const houses = await getData<HouseItem[]>("houses");
+  const houses = await getHouses();
+  
   const gallery = (await getData<GalleryItem[]>("gallery")).filter(gal => gal.name);
   
   const menuAdmin = getMainMenu(houses, gallery, locale);
@@ -27,9 +30,10 @@ export default async function DashboardLayout({ children, params: { locale } }: 
       <Header />
       <div className="mx-auto flex">
         <MainMenu menu={menu} />
-        <main className="mx-auto grow p-3" style={{ minHeight: 'calc(100dvh - 96px)' }}>
+        <main className="mx-auto grow" style={{ minHeight: 'calc(100dvh - 96px)' }}>
           {children}
         </main>
+        <Modal />
       </div>
     </>
   )

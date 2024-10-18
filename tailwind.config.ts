@@ -17,7 +17,9 @@ const config: Config = {
                 'gray-light': 'rgb(179, 179, 179)',
                 error: 'rgb(168, 14, 14)',
                 'calendar-bcg': 'rgb(239, 235, 231)',
-                'regal-blue': '#243c5a'
+            },
+            screens: {
+                pc: '1440px',
             },
         },
     },

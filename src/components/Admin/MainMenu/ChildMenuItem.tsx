@@ -1,4 +1,7 @@
 import React from 'react'
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
 import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import {
     CalendarMonthOutlined,
@@ -15,11 +18,10 @@ import {
     HotelOutlined,
     HolidayVillageOutlined,
     PhotoLibraryOutlined,
-    PhotoOutlined
+    PhotoOutlined,
+    AddOutlined
 } from '@mui/icons-material';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 type Props = {
     menuItem: MenuItem;
@@ -40,7 +42,8 @@ const iconMapping: { [key: string]: React.ElementType } = {
     HotelOutlined,
     HolidayVillageOutlined,
     PhotoLibraryOutlined,
-    PhotoOutlined
+    PhotoOutlined,
+    AddOutlined
 };
 
 export default function ChildMenuItem({ menuItem }: Props) {

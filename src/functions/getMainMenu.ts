@@ -1,4 +1,5 @@
 const houseIcon = 'HotelOutlined';
+const addNew = 'AddOutlined';
 const galleryChapterIcon = 'PhotoOutlined';
 import { menuAdmin } from '@/data/admin/menu';
 
@@ -16,10 +17,10 @@ const getBaseMenu = (
         house_type?: string | null;
     }[],
 ) => {
-    let rooms: Record<string, HouseItem[]> = {};
+    let housesWithRooms: Record<string, HouseItem[]> = {};
     // для домиков с комнатами формируем дерево данных для подменю
-    if (type === 'houses' && 'house_type' in arr[0]) {
-        rooms = arr.reduce((accu, cur) => {
+    if (type === 'houses' && arr.length && 'house_type' in arr[0] ) {
+        housesWithRooms = arr.reduce((accu, cur) => {
             if (cur.house_type) {
                 Array.isArray(accu[cur.house_type])
                     ? accu[cur.house_type].push(cur as HouseItem)
@@ -38,8 +39,8 @@ const getBaseMenu = (
             icon: type === 'gallery' ? galleryChapterIcon : houseIcon,
         };
         //если домик с комнатами - добавляем подменю
-        if (type === 'houses' && rooms[el.name]) {
-            menu['children'] = rooms[el.name].map((room) => ({
+        if (type === 'houses' && housesWithRooms[el.name]) {
+            menu['children'] = housesWithRooms[el.name].map((room) => ({
                 id: room.id,
                 name: room.title[locale as keyof typeof room.title],
                 url: `/${locale}/dyadus_adm1n_hub/${type}/${room.name}`,
@@ -68,7 +69,16 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
                 locale,
                 'houses',
                 houses.filter((house) => house.name),
-            );
+                );
+            (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
+                indexOfMenuItemHouses
+            ].children?.push({
+                id: 5434234234,
+                name: 'Додати будинок',
+                url: `/${locale}/dyadus_adm1n_hub/houses/add-house`,
+                admission: 'superadmin',
+                icon: addNew,
+            });
         }
         if (indexOgMenuItemGallery && indexOgMenuItemGallery > 0) {
             (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[

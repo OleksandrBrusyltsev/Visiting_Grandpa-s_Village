@@ -3,7 +3,9 @@
 import { type ReactNode, createContext, useRef, useContext } from 'react'
 import { useStore } from 'zustand'
 
-import { type UserStore, createMainStore } from '@/stores/auth/store'
+import {  createMainStore } from '@/stores/store'
+import { AdminSlice } from './adminSlice'
+import { UserSlice } from './authSlice'
 
 export type StoreApi = ReturnType<typeof createMainStore>
 
@@ -31,7 +33,7 @@ export const StoreProvider = ({
 }
 
 export const useMainStore = <T,>(
-    selector: (store: UserStore) => T,
+    selector: (store: UserSlice & AdminSlice) => T,
 ): T => {
     const storeContext = useContext(StoreContext)
 

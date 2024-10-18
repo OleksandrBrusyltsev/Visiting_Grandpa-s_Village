@@ -2,7 +2,7 @@ import { MatchMediaProvider } from "@/context/MatchMediaContext";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, unstable_setRequestLocale } from "next-intl/server";
 
-import { StoreProvider } from "@/stores/auth/store-provider";
+import { StoreProvider } from "@/stores/store-provider";
 
 import { locales } from "@/data/locales";
 import "../globals.scss";

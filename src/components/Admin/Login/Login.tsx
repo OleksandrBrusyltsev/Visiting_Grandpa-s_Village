@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 
-import { useMainStore } from '@/stores/auth/store-provider';
+import { useMainStore } from '@/stores/store-provider';
 
 const SignInContainer = styled(Box)({
   height: '100%',
