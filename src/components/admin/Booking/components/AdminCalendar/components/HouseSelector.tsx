@@ -44,6 +44,7 @@ const HouseSelector: FC<HouseSelectorProps> = ({ currentHouse }) => {
       style={{
         display: "flex",
         alignItems: "center",
+        justifyContent: "center",
         flexWrap: "wrap",
         gap: "8px",
         marginBottom: "32px",
@@ -66,10 +67,9 @@ const HouseSelector: FC<HouseSelectorProps> = ({ currentHouse }) => {
       ))}
 
       <IconButton onClick={handleClick} style={{ marginLeft: "8px" }}>
-        <ExpandMoreIcon style={{ color: "#2E4236" }} />
+        <ExpandMoreIcon fontSize="large" style={{ color: "#2E4236" }} />
       </IconButton>
 
-      {/* Menu to select more houses */}
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
