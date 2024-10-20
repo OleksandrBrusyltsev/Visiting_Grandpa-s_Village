@@ -87,10 +87,13 @@ const BookingTabs: FC<BookingTabsProps> = ({ currentEvent }) => {
             currentEvent={{ start: currentEvent.start, end: currentEvent.end }}
           />
           <Box
+            
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
+              paddingRight: "10px",
+              paddingLeft: "10px",
             }}
           >
             <BookingStatus />
