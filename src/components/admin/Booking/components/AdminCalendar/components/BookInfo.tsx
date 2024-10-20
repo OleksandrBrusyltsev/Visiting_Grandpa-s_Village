@@ -87,8 +87,8 @@ const BookInfo: FC<BookInfoProps> = ({ currentEvent }) => {
           marginLeft: "auto",
           marginRight: "auto",
           alignItems: "center",
-          justifyContent: "space-between",
-          width: "700px",
+          justifyContent: "center",
+          gap: "20px",
         }}
       >
         <TextField
@@ -143,7 +143,6 @@ const BookInfo: FC<BookInfoProps> = ({ currentEvent }) => {
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              width: "160px",
               backgroundColor: "#ffffff",
               padding: "10px",
               border: "1px solid #3F5540",
@@ -192,7 +191,6 @@ const BookInfo: FC<BookInfoProps> = ({ currentEvent }) => {
             justifyContent: "center",
             borderRadius: "4px",
             backgroundColor: "#ffffff",
-            width: "160px",
             padding: "15px",
             border: "1px solid #3F5540",
           }}
