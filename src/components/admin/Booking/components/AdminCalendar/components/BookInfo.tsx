@@ -80,6 +80,7 @@ const BookInfo: FC<BookInfoProps> = ({ currentEvent }) => {
         backgroundColor: "#C2BFB7B2",
         padding: "16px",
       }}
+      mb={2}
     >
       <Box
         sx={{
