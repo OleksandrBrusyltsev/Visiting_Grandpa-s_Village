@@ -5,6 +5,7 @@ import HouseSelector from "./HouseSelector";
 import BookInfo from "./BookInfo";
 import BookingStatus from "./BookingStatus";
 import GuestsComponent from "./GuestsComponent";
+import ConfirmationCheckbox from "./ConfirmationCheckbox";
 
 interface BookingTabsProps {
   currentEvent: {
@@ -87,16 +88,25 @@ const BookingTabs: FC<BookingTabsProps> = ({ currentEvent }) => {
             currentEvent={{ start: currentEvent.start, end: currentEvent.end }}
           />
           <Box
-            
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
               paddingRight: "10px",
               paddingLeft: "10px",
+              height: "100%",
             }}
           >
-            <BookingStatus />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "stretch",
+              }}
+            >
+              <BookingStatus />
+              <ConfirmationCheckbox />
+            </Box>
             <GuestsComponent />
           </Box>
         </Box>

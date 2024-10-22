@@ -16,6 +16,7 @@ const GuestsComponent = () => {
         borderRadius: "4px",
         minWidth: "400px",
         backgroundColor: "#ffffff",
+        
       }}
     >
       <Typography mb={1} sx={{ fontWeight: "bold" }}>
