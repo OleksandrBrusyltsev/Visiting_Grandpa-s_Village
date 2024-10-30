@@ -7,6 +7,7 @@ export const GoogleTagManager = () => {
             <Script
                 async
                 src="https://www.googletagmanager.com/gtag/js?id=G-P4PLX64BWS"
+
             />
             <Script id="google-analytics">
                 {`
@@ -14,6 +15,7 @@ export const GoogleTagManager = () => {
                        function gtag(){dataLayer.push(arguments);}
                        gtag('js', new Date());
                        gtag('config', 'G-P4PLX64BWS');
+
                     `}
             </Script>
         </>
