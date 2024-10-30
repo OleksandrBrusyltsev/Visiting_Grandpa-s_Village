@@ -15,7 +15,6 @@ const ConfirmationCheckbox = () => {
         display: "flex",
         alignItems: "end",
         gap: "10px",
-        
       }}
     >
       <Typography mb={1} sx={{ fontWeight: "bold" }}>

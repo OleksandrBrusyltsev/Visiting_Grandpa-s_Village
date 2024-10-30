@@ -14,7 +14,7 @@ const BookingStatus = () => {
   };
 
   return (
-    <FormControl component="fieldset" sx={{ width: "380px", flexGrow: "1" }}>
+    <FormControl component="fieldset" sx={{ width: "380px" }}>
       <RadioGroup
         row
         name="booking-status"
