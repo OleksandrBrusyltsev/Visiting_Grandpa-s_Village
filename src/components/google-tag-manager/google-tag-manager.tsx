@@ -6,14 +6,14 @@ export const GoogleTagManager = () => {
         <>
             <Script
                 async
-                src="https://www.googletagmanager.com/gtag/js?id=G-TZT7RV8"
+                src="https://www.googletagmanager.com/gtag/js?id=G-P4PLX64BWS"
             />
             <Script id="google-analytics">
                 {`
                        window.dataLayer = window.dataLayer || [];
                        function gtag(){dataLayer.push(arguments);}
                        gtag('js', new Date());
-                       gtag('config', 'G-TZT7RV8');
+                       gtag('config', 'G-P4PLX64BWS');
                     `}
             </Script>
         </>
