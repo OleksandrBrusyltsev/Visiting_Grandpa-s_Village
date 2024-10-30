@@ -6,6 +6,8 @@ import BookInfo from "./BookInfo";
 import BookingStatus from "./BookingStatus";
 import GuestsComponent from "./GuestsComponent";
 import ConfirmationCheckbox from "./ConfirmationCheckbox";
+import CommentComponent from "./CommentComponent";
+import TotalAmount from "./TotalAmount";
 
 interface BookingTabsProps {
   currentEvent: {
@@ -94,14 +96,16 @@ const BookingTabs: FC<BookingTabsProps> = ({ currentEvent }) => {
               justifyContent: "space-between",
               paddingRight: "10px",
               paddingLeft: "10px",
-              height: "100%",
+              height: "181px",
+              marginBottom:"32px"
             }}
           >
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "stretch",
+                justifyContent: "space-between",
+                height:"100%"
               }}
             >
               <BookingStatus />
@@ -109,6 +113,8 @@ const BookingTabs: FC<BookingTabsProps> = ({ currentEvent }) => {
             </Box>
             <GuestsComponent />
           </Box>
+          <CommentComponent />
+          <TotalAmount/>
         </Box>
       )}
 
