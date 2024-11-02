@@ -36,11 +36,41 @@ const AddNewBookModal: FC<AddNewBookModalProps> = ({
         <BookingTabs currentEvent={currentEvent} />
       </DialogContent>
 
-      <DialogActions>
-        <Button onClick={handleClose} color="primary">
+      <DialogActions sx={{
+        marginLeft: "auto",
+        marginRight: "auto"
+      }}>
+        <Button
+          onClick={handleClose}
+          color="primary"
+          variant="outlined"
+          sx={{
+            color: "#3F5540",
+            borderColor: "#3F5540",
+            fontWeight: "bold",
+            minWidth: "213px",
+            "&:hover": {
+              backgroundColor: "#E0E0E0",
+              borderColor: "#3F5540",
+            },
+          }}
+        >
           Відмінити
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button
+          onClick={handleClose}
+          color="primary"
+          variant="contained"
+          sx={{
+            backgroundColor: "#2E4236",
+            color: "#ffffff",
+            fontWeight: "bold",
+            minWidth: "213px",
+            "&:hover": {
+              backgroundColor: "#1E2E23",
+            },
+          }}
+        >
           Обрати
         </Button>
       </DialogActions>
