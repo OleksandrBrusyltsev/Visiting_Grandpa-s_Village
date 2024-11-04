@@ -7,9 +7,9 @@ export const toasters = [
         timeout: 60, // в минутах
         is_active: true,
         translations: {
-            "ru": "Дедушка советует! Забронируй домик на новогодние праздники и встреть Новый год в уюте и комфорте!",
-            "en": "Grandpa advises! Book a house for the New Year holidays and celebrate in comfort and coziness!",
-            "uk": "Дідусь радить! Забронюй будиночок на новорічні свята та зустрінь Новий рік у затишку та комфорті!"
+            ru: "Дедушка советует! Забронируй домик на новогодние праздники и встреть Новый год в уюте и комфорте!",
+            en: "Grandpa advises! Book a house for the New Year holidays and celebrate in comfort and coziness!",
+            uk: "Дідусь радить! Забронюй будиночок на новорічні свята та зустрінь Новий рік у затишку та комфорті!"
         },
     }
 ];
