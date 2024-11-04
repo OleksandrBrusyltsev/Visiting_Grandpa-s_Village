@@ -23,26 +23,19 @@ const AdminCalendar: React.FC = () => {
   const [currentEvent, setCurrentEvent] = useState<CalendarEvent | null>(null);
   const [isNewBookModalOpen, setIsNewBookModalOpen] = useState(false);
 
-  const getResourceTitleById = (resourceId: string) => {
-    // Ищем по ресурсам
-    for (const house of houses) {
-      if (house.name === resourceId) {
-        // Если это домик, возвращаем заголовок домика
-        const ukTitle = house.title.find((t) => t.language === "uk");
-        return ukTitle?.text || house.name;
-      }
-
-      // Ищем по комнатам внутри домика
-      const room = house.rooms.find((room) => room.name === resourceId);
-      if (room) {
-        const ukRoomTitle = room.title.find((t) => t.language === "uk");
-        return ukRoomTitle?.text || room.name;
-      }
+const getResourceTitleById = (resourceId: string) => {
+  for (const house of houses) {
+    // Проверяем, если ID совпадает с именем дома
+    if (house.name === resourceId) {
+      // Возвращаем заголовок на украинском или имя дома, если заголовка нет
+      return house.title.uk || house.name;
     }
+  }
 
-    // Если ресурс не найден, возвращаем ID как fallback
-    return resourceId;
-  };
+  // Если ресурс не найден, возвращаем ID как fallback
+  return resourceId;
+};
+
 
   const handleCloseModals = () => {
     setIsNewBookModalOpen(false);
