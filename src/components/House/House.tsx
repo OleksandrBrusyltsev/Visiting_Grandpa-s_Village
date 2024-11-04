@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -19,31 +19,32 @@ import s from "./House.module.scss";
 import heroSection from "./HeroSection/HeroSection.module.scss";
 import map from "./Map/Map.module.scss";
 
-type Props = { item: HouseItem; isRoom?: boolean };
+type Props = { item: HouseItem; rooms: HouseItem[] };
 
-export default function House({ item, isRoom = false }: Props) {
+export default function House({ item, rooms }: Props) {
   const locale = useLocale();
+  const t = useTranslations("HouseItem");
 
   const {
+    cover_photo,
     photo,
-    swiper,
     rental_price,
-    guests,
-    add_guests_variants,
+    max_adults,
+    extra_adults,
+    extra_children,
+    extra_adult_price,
+    extra_children_price,
     photoDecor,
     treesDecor,
-    text,
-    title,
+    description,
+    long_title,
+    decor_text,
     coordinates,
-    price_addons,
-    rooms,
   } = item;
 
-  const titleText = title.filter((item) => item.language === locale)[0]
-    .longTitle;
+  const titleText = long_title[locale as keyof typeof long_title];
 
-  const decorText = title.filter((item) => item.language === locale)[0]
-    .decorText;
+  const decorText = decor_text[locale as keyof typeof decor_text];
 
   const gallerySimpleRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -259,16 +260,26 @@ export default function House({ item, isRoom = false }: Props) {
     { dependencies: [rooms] }
   );
 
-  const alt = titleText
-    ? `фото дерев'яного будинку ${titleText} еко-садиби На селі у дідуся`
-    : `фото дерев'яного будинку еко-садиби На селі у дідуся`;
-
+  const bookingProps = {
+    rental_price,
+    rooms,
+    max_adults,
+    titleText,
+    extra_adults,
+    extra_children,
+    extra_adult_price,
+    extra_children_price,
+    photoDecor,
+    treesDecor,
+    ref: bookingRef
+  }
+  
   return (
     <div className={s.sectionWrapper}>
       {rooms.length ? null : (
         <div className={`${s.arrowBlockWrapper}`}>
           <p className={s.textDecor}>
-            &quot;Клікай на фото, щоб подивитись більше.&quot;
+            {t('click')}
           </p>
           <div className={s.arrowWrapper}>
             <Icon name="arrow-house-small" />
@@ -281,14 +292,14 @@ export default function House({ item, isRoom = false }: Props) {
           <div className={s.imageWrapper}>
             <Image
               fill
-              alt={alt}
-              src={photo[0]}
+              alt={t('altText', { title: titleText})}
+              src={cover_photo}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
 
           <p className={s.grandpaQuote}>
-            &quot;Дивись, які гарні Хороми маю&quot;
+            {t('look')}
           </p>
 
           <div className={s.imageGrandpa}>
@@ -317,14 +328,14 @@ export default function House({ item, isRoom = false }: Props) {
           </div>
         </div>
       ) : (
-        <Gallery pictures={swiper} houseName={titleText} ref={galleryRef} />
+        <Gallery pictures={photo} houseName={titleText} ref={galleryRef} />
       )}
 
       <div className={`${s.contentWrapper} ${rooms.length ? s.apartment : ""}`}>
         <div className={s.textWrapper} ref={houseTextRef}>
           <h1 className={s.headline}>{titleText}</h1>
           <div className={s.text}>
-            <MarkdownPreview markdown={text} />
+            <MarkdownPreview markdown={description[locale as keyof typeof description]} />
           </div>
           {/* services icons */}
           {rooms.length ? null : (
@@ -346,32 +357,22 @@ export default function House({ item, isRoom = false }: Props) {
         </div>
         {/* booking block */}
         {rooms.length ? null : (
-          <Booking
-            price={rental_price}
-            priceAddons={price_addons}
-            rooms={rooms}
-            isRoom={isRoom}
-            guests={guests}
-            addGuests={add_guests_variants}
-            title={titleText}
-            photoDecor={photoDecor}
-            treesDecor={treesDecor}
-            ref={bookingRef}
-          />
+          <Booking {...bookingProps} />
         )}
       </div>
 
       {rooms.length ? (
-        <HousesList data={rooms as HouseItem[]} patternOffset={false}>
+        <HousesList numberOfHouses={rooms.length} patternOffset={false}>
           <>
             <p className={`${s.roomsTitle} ${rooms.length ? s.apartment : ""}`}>
-              То ж маємо:
+              {t('roomsTitle')}
             </p>
             <div className={s.roomsWrapper}>
-              {rooms.map((room: any, i: number) => (
+              {rooms.map((room: HouseItem, i: number) => (
                 <HouseItem
                   data={room}
                   key={room.id}
+                  rooms={0}
                   ref={(el: HTMLAnchorElement) => (housesRef.current[i] = el)}
                 />
               ))}

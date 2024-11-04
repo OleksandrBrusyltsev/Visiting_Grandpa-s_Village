@@ -1,15 +1,19 @@
 import { FC } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+
 import Icon from "../../ui/Icon/Icon";
+
 import s from "./HeroSection.module.scss";
 
 type Props = { text: string };
 
-export default function HeroSection({ text }: Props) {
+const HeroSection: FC<Props> = ({ text }) => {
+  const t = useTranslations("HouseItem");
   return (
     <div className={`${s.heroSectionWrapper}`}>
       <div className={s.hero}>
-        <p className={s.description}>&quot;Побудував я {text} тут.&quot;</p>
+        <p className={s.description}>{t('heroQuote', { text })}</p>
         <div className={s.curve}>
           <Icon name="curve-house" />
         </div>
@@ -25,3 +29,4 @@ export default function HeroSection({ text }: Props) {
     </div>
   );
 }
+export default HeroSection;

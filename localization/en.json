@@ -1,9 +1,4 @@
 {
-  "Index": {
-    "title": "en",
-    "description": "en",
-    "welcomeBlock": "The best time to rest is now"
-  },
   "NotFoundPage": {
     "title": "something went wrong, sorry",
     "description": "Page not found."
@@ -13,7 +8,7 @@
   },
   "Breadcrumbs": {
     "home": "Home",
-    "houses": "Accommodation",
+    "houses": "Live",
     "meals": "Meals",
     "entertainment": "Entertainment",
     "gallery": "Gallery",
@@ -21,16 +16,13 @@
     "booking": "Booking",
     "options": "Booking options",
     "payment": "Payment",
-    "rules": "Booking conditions and rules of stay"
+    "rules": "Booking conditions and rules of stay",
+    "login": "Log in to your personal account",
+    "profile": "Personal account"
   },
   "HouseItem": {
     "rateBase": "{price} hrn/day",
-    "rateBaseExt": "{price} hrn/day per {guests, plural, =1 {# guest} other {# guests}}",
-    "additionalGuests": "additional ({guests, plural, =1 {# guest} other {# guests}})",
-    "total": {
-      "text": "Total:",
-      "currency": " {total} hrn."
-    },
+    "roomsAmount": "Amount of rooms: {amount}",
     "checkInTime": {
       "text": "Check-in time: ",
       "time": "14:00"
@@ -40,13 +32,78 @@
       "time": "12:00"
     },
     "guests": "{guests, plural, =1 { guest} other { guests}}",
+    "guestsNote": "*you can add {extra_guests, plural, =1 {# guest} =2 {# guests} =3 {# guests} =4  {# guests} other {}}{extra_adults, plural, =1 {# adult or} =2 {# adults or} =3 {# adults or} =4 {# adults or} other {}} {extra_children, plural, =2 {# children} =3 {# children} =4 {# children} other {}}",
+    "visit": "{isPlural, select, true {View} other {Visit}}",
+    "book": "Book",
+    "altText": "photo of the wooden house {title} of the eco-estate In the countryside Grandpa's village",
+
+    "heroQuote": "\"I built {text} here.\"",
+    "click": "\"Click on the photo to see more.\"",
+    "look": "\"Look at the beautiful Mansions I have\"",
+    "roomsTitle": "So we have:",
     "adultGuestAddons": "adult ({rate} hrn)",
-    "childGuestAddons": "child of 3-12 y.o. ({rate} hrn)",
-    "visit": "Visit",
-    "book": "Book"
+    "childGuestAddons": "child of 3-12 y.o. ({rate} hrn)"
   },
   "UI": {
     "visit": "Visit",
-    "home": "Home Page"
+    "home": "Home Page",
+    "currLink": "You are already on this page",
+    "view": "View more",
+    "askGrandpa": "Ask Grandpa",
+    "copyrights": "© 2024 Eco-estate “Grandpa's village”",
+    "rules": "Booking conditions and rules of stay"
+  },
+  "Gallery": {
+    "clickMode": "{mode, select, desktop {Click} mobile {Press} other {Unknown}} on the photo to see more",
+    "slogan": "And then we will create new happy memories together."
+  },
+  "Contacts": {
+    "title": "Contacts of the eco-estate “Grandpa's village”",
+
+    "text1": "Despite his venerable age, your Grandpa is very modern, so he has a **Telegram-bot**, I know how much you love useful and convenient services.",
+    "text2": "Use to book a house, or ask",
+    "text3": "ChatBot",
+    "phone": "Phone",
+    "address": "Address",
+    "FAQTitle": "Most often Grandpa is asked"
+  },
+  "Visit": {
+    "title": "Choose when you plan to visit the Estate",
+    "text": "“Grandpa will quickly find the best accommodation options for these days”"
+  },
+  "BookingForm": {
+    "adults": "Adults",
+    "children": "Children",
+    "guests": "Guests",
+    "arrival": "Arrival",
+    "departure": "Departure",
+    "search": "{search, select, true {Book} other {Search}}",
+    "note1": "Children under 3 years old without extra bed are not charged.",
+    "note2": "Children from 3 to 12 years old, with a separate bed, are charged at the children's rate - 150 UAH/day."
+  },
+  "Rules": {
+    "title": "Your grandfather has some small whishes and rules that apply in the eco-estate",
+    "note1": "A little reminder:",
+    "note2": "Grandpa and the team of the <a href=\"/\">Eco-estate “Grandpa's village” </a> are your friends, always ready to help and make your vacation pleasant and unforgettable.",
+    "note3": "Also remember that we cannot control the weather and other external circumstances, but we guarantee you a warm welcome and a comfortable stay.",
+    "note4": "“Grandpa's village” guests get good, pleasant emotions and create unique, warm memories.",
+
+    "note5": "Public offer"
+  },
+  "BookingStub": {
+    "fillForm": "Fill the form",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "phone": "Phone",
+    "commentLabel": "Comment",
+    "comment": "I need room{house}for {guests, plural, =1 {one person} other {# persons}} on {startDate}-{endDate}",
+    "or": "or",
+    "call": "call us ",
+    "write": "write to us in Telegram",
+    "requiredField": "This field is required",
+    "phoneFormat": "Phone number format +38 (0XX) XXX XX XX"
+  },
+  "Houses": {
+    "title": "Live here"
   }
 }

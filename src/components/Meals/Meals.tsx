@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useContext } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+import { useLocale } from "next-intl";
 
 import Icon from "../ui/Icon/Icon";
 import MealsBlock from "./MealsBlock";
@@ -10,7 +12,6 @@ import { MatchMediaContext } from "@/context/MatchMediaContext";
 
 import s from "./Meals.module.scss";
 import sBlock from "./MealsBlock.module.scss";
-import { ScrollTrigger } from "gsap/all";
 
 type Props = { items: MealsItem[] };
 
@@ -18,7 +19,6 @@ const getSelector = (s1: string, position: number, s2?: string) =>
   `.${s1}:nth-of-type(${position})${s2 ? " ." + s2 : ""}`;
 
 // selector creation helpers
-const trigger = (n: number) => getSelector(sBlock.mealsBlockWrapper, n);
 const title = (n: number) =>
   getSelector(sBlock.mealsBlockWrapper, n, sBlock.mealsTitle);
 const descr = (n: number) =>
@@ -34,6 +34,7 @@ const curve = (n: number) =>
 
 export default function Meals({ items }: Props) {
   const { isMobile } = useContext(MatchMediaContext);
+  const locale = useLocale();
 
   useGSAP(() => {
     //meals blocks animation
@@ -211,7 +212,9 @@ export default function Meals({ items }: Props) {
   return (
     <div className={`${s.mealsWrapper} container`}>
       <div className={s.heroWrapper}>
-        <h1 className={s.title}>Нарешті, моє улюблене -&nbsp;Їжа. Поїмо ?</h1>
+        <h1 className={s.title}
+          dangerouslySetInnerHTML={{ __html: items[0].title[locale as keyof typeof items[0]['title']] }}
+        />
         <div className={s.heroImage}>
           <Image
             src={"/images/meals/dog.png"}
@@ -220,10 +223,10 @@ export default function Meals({ items }: Props) {
             fill
           />
           <div className={s.callToEatWrapper}>
-            <p className={s.callToEat}>
-              давай вже
-              <br />
-              скоріш їсти{" "}
+            <p className={s.callToEat}
+              dangerouslySetInnerHTML={{ __html: items[0].description[locale as keyof typeof items[0]['description']] }}
+            >
+
             </p>
             <Icon name="meals-outline" className={s.callToEatOutline} />
           </div>
@@ -234,7 +237,7 @@ export default function Meals({ items }: Props) {
         />
       </div>
       <div className={s.main}>
-        {items.map((item, i) => (
+        {items.slice(1).map((item, i) => (
           <MealsBlock item={item} key={item.id} position={i} />
         ))}
       </div>

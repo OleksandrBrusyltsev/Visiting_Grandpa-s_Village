@@ -2,58 +2,58 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import Icon from "../ui/Icon/Icon";
-import s from "./Footer.module.scss";
-import { navLink } from "./../../data/footer/data";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 
-const image = "/images/logo-main.svg";
+import Icon from "../ui/Icon/Icon";
+import MarkdownPreview from "@/functions/MarkdownPreview";
 
-const socialMediaLinks = [
-  {
-    id: 1,
-    link: "https://www.facebook.com/ecousadba.in.ua/",
-    icon: "facebook",
-    ariaLabel: "link to facebook",
-  },
-  {
-    id: 2,
-    link: "https://t.me/VisitingGrandpasVillage_Operator",
-    icon: "telegram",
-    ariaLabel: "link to telegram",
-  },
-  {
-    id: 3,
-    link: "https://www.instagram.com/ecousadba.in.ua/",
-    icon: "instagram",
-    ariaLabel: "link to instagram",
-  },
-  {
-    id: 4,
-    link: "https://www.linkedin.com/company/grandpa-s-village/",
-    icon: "linkedin",
-    ariaLabel: "link to linkedin",
-  },
-];
+import s from "./Footer.module.scss";
+import { navLinks } from "@/data/navigationMenu";
+import { contacts } from "@/data/contacts";
+
+const image_uk = "/images/logo-main-uk.svg";
+const image_en = "/images/logo-main-en.svg";
 
 export default function Footer() {
   const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
   const locale = useLocale();
   const pathname = usePathname();
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const t = useTranslations("UI");
+
+  const socialLinks = [
+    {
+      id: 1,
+      link: contacts.facebook_link,
+      icon: 'facebook',
+      ariaLabel: 'link to facebook',
+    },
+    {
+      id: 2,
+      link: contacts.telegram_link,
+      icon: 'telegram',
+      ariaLabel: 'link to telegram',
+    },
+    {
+      id: 3,
+      link: contacts.instagram_link,
+      icon: 'instagram',
+      ariaLabel: 'link to instagram',
+    },
+    {
+      id: 4,
+      link: contacts.linkedin_link,
+      icon: 'linkedin',
+      ariaLabel: 'link to linkedin',
+    },
+  ];
 
   return (
     <footer className={s.footer}>
       {pathname === `/${locale}` ? (
         <Image
-          title="Ви вже на цій сторінці"
-          src={image}
+          title={t('currLink')}
+          src={locale === "en" ? image_en : image_uk}
           alt="logo"
           width={144}
           height={80}
@@ -62,7 +62,7 @@ export default function Footer() {
       ) : (
         <Link href={`/${locale}`}>
           <Image
-            src={image}
+              src={locale === "en" ? image_en : image_uk}
             alt="logo"
             width={144}
             height={80}
@@ -73,12 +73,12 @@ export default function Footer() {
 
       <nav>
         <ul className={s.nav}>
-          {navLink.map(({ id, label, link }) => (
+          {navLinks.map(({ id, label, link }) => (
             <li key={id} className={s.navItem}>
               {pathname === `/${locale}/${link}` ? (
-                <p title="Ви вже на цій сторінці">{label}</p>
+                <p title={t('currLink')}>{label[locale as keyof typeof label]}</p>
               ) : (
-                <Link href={`/${locale}/${link}`}>{label}</Link>
+                <Link href={`/${locale}/${link}`}>{label[locale as keyof typeof label]}</Link>
               )}
             </li>
           ))}
@@ -89,19 +89,21 @@ export default function Footer() {
         <div className={s.contactsWrap}>
           <Icon name="map" className={s.contactsIcon} />
           <Link href={mapUrl} target="_blank" className={s.contactsText}>
-            Україна, Чернігівська область, с. Олешня, вул. Озерна 5
+            <MarkdownPreview
+              markdown={contacts.address[locale as keyof typeof contacts.address]}
+            />
           </Link>
         </div>
         <div className={s.contactsWrap}>
           <Icon name="handset" className={s.contactsIcon} />
-          <Link href={`tel:+380931919663`} className={s.contactsText}>
-            +38 (093) 191 96 63
+          <Link href={`tel:${contacts.phone.replace(/[^+\d]/g, '')}`} className={s.contactsText}>
+            {contacts.phone}
           </Link>
         </div>
       </div>
 
       <ul className={s.socialMedia}>
-        {socialMediaLinks.map(({ link, icon, id, ariaLabel }) => (
+        {socialLinks.map(({ link, icon, id, ariaLabel }) => (
           <li key={id}>
             <Link href={link} target="_blank" aria-label={ariaLabel}>
               <Icon name={icon} className={s.socialMediaIcon} />
@@ -110,12 +112,12 @@ export default function Footer() {
         ))}
       </ul>
       <div className={`${s.copyrightBox}`}>
-        <p className={s.copyright}>© 2024 Еко-садиба “На селі у Дідуся”</p>
+        <p className={s.copyright}>{t('copyrights')}</p>
         <Link
           href={`/${locale}/booking/rules`}
           className={`${s.copyright} ${s.text}`}
         >
-          Умови бронювання та правила перебування
+          {t('rules')}
         </Link>
       </div>
     </footer>

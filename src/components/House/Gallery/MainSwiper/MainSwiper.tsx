@@ -1,6 +1,7 @@
 "use client";
 import { FC, useContext } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import Modal from "@/components/ui/Modal/Modal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard, Pagination, Navigation } from "swiper/modules";
@@ -31,9 +32,8 @@ const MainSwiper: FC<SwiperType> = ({
   houseName,
 }) => {
   const { isMobile, isTablet } = useContext(MatchMediaContext);
-  const alt = houseName
-    ? `фото дерев'яного будинку ${houseName} еко-садиби На селі у дідуся`
-    : "фото дерев'яного будинку еко-садиби На селі у дідуся";
+  
+  const t = useTranslations('HouseItem');
 
   return (
     <Modal
@@ -72,7 +72,7 @@ const MainSwiper: FC<SwiperType> = ({
                 blurDataURL={
                   "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8dOXMfwAIZQNzt0gGRgAAAABJRU5ErkJggg=="
                 }
-                alt={alt}
+                alt={t('altText', { title: houseName })}
                 fill
               />
             </div>

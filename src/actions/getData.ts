@@ -3,6 +3,8 @@ import { gallery } from "@/data/gallery/gallery.js";
 import { houses } from "@/data/houses";
 import { meals } from "@/data/meals";
 import { entertainments } from "@/data/entertainments";
+import { contacts } from "@/data/contacts";
+import { toasters } from '@/data/advertisementToaster';
 
 export const getData = async <T>(url: string, slug?: string): Promise<T> => {
   // const resp = await fetch(url);
@@ -13,31 +15,40 @@ export const getData = async <T>(url: string, slug?: string): Promise<T> => {
   //   const data = await resp.json();
 
   //type guards
-  function isGalleryItemArray(arr: any[]): arr is GalleryItem[] {
-    return arr.length > 0 && "cover" in arr[0];
+  function isGalleryItemArray(
+    arr: GalleryItem[] | HouseItem[] | MealsItem[] | EntertainmentItem[] | AdvToaster[],
+  ): arr is GalleryItem[] {
+      return (
+          arr.length > 0 && 'photo_urls' in arr[0]
+      );
   }
 
-  function isHouseItemArray(arr: any[]): arr is HouseItem[] {
-    return arr.length > 0 && "guests" in arr[0];
+  function isHouseItemArray(
+      arr: GalleryItem[] | HouseItem[] | MealsItem[] | EntertainmentItem[] | AdvToaster[],
+  ): arr is HouseItem[] {
+      return arr.length > 0 && 'max_adults' in arr[0];
   }
 
   // tmp fake data
   const data: {
-    [key: string]:
-      | GalleryItem[]
-      | HouseItem[]
-      | MealsItem[]
-      | EntertainmentItem[];
+    gallery: GalleryItem[];
+    houses: HouseItem[];
+    meals: MealsItem[];
+    entertainments: EntertainmentItem[];
+    contacts: ContactItem;
+    toasters: AdvToaster[];
   } = {
     gallery,
-    houses: houses as HouseItem[],
+    houses,
     meals,
     entertainments,
+    contacts,
+    toasters 
   };
 
-  const currentData = data[url];
+  const currentData = data[url as keyof typeof data];
   
-  if (slug) {
+  if (slug && Array.isArray(currentData)) {
     if (isGalleryItemArray(currentData) || isHouseItemArray(currentData)) {
       const result = currentData.filter((item) => item.name === slug);
       return Promise.resolve(result as T);

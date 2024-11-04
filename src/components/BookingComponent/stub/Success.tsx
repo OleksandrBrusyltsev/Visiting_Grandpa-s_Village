@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -18,6 +19,9 @@ export default function Success({ handleClose, isOpen }: Props) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { push } = useRouter();
   const { title, subtitle, message } = messages[1];
+
+  const locale = useLocale();
+  const t = useTranslations("UI");
 
   useGSAP(
     () => {
@@ -45,7 +49,7 @@ export default function Success({ handleClose, isOpen }: Props) {
         height={160}
       />
       <h1 className={s.title}>
-        {title}{" "}
+        {title[locale as keyof typeof title]}{" "}
         <svg
           width="28"
           height="26"
@@ -59,8 +63,8 @@ export default function Success({ handleClose, isOpen }: Props) {
           />
         </svg>
       </h1>
-      <h2 className={s.subTitle}>{subtitle}</h2>
-      <p className={s.message}>{message}</p>
+      <h2 className={s.subTitle}>{subtitle[locale as keyof typeof subtitle]}</h2>
+      <p className={s.message}>{message[locale as keyof typeof message]}</p>
       <button className={s.closeBtn} onClick={handleClose}>
         &times;
       </button>
@@ -70,7 +74,7 @@ export default function Success({ handleClose, isOpen }: Props) {
           handleClose();
           push("/");
         }}
-        label="На Головну"
+        label={t('home')}
         size="large"
       />
     </div>

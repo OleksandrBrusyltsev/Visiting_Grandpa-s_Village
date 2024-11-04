@@ -1,8 +1,9 @@
 "use client";
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from 'next/image';
-import { forwardRef, useContext, useEffect } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { forwardRef, useContext } from "react";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
 
 import Button from "../ui/Button/Button";
@@ -15,12 +16,13 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
   { data },
   ref
 ) {
-  const { locale } = useParams();
+  const locale = useLocale();
   const path = usePathname();
   const pathName = path.split('/')[2];
-  const {isMobile, isTablet} = useContext(MatchMediaContext);
-  const {name, cover} = data;
-  const title = data.title.filter(item => item.language === locale)[0].text;
+  const { isMobile, isTablet } = useContext(MatchMediaContext);
+  const { name, cover, alt } = data;
+  const title = data.title[locale as keyof typeof data.title];
+  const t = useTranslations("UI");
 
   return (
     <Link
@@ -32,8 +34,8 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
       <div className={s.imageWrapper}>
         <Image
           className={s.itemImage}
-          src={cover[0].src}
-          alt={cover[0].description}
+          src={cover}
+          alt={alt[locale as keyof typeof alt]}
           sizes="(max-width: 768px) 100vw, 50vw"
           fill
         />
@@ -43,7 +45,7 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
       </div>
       <div className={s.btnWrapper}>
         <Button
-          label={isMobile || isTablet ? title : "Переглянути"}
+          label={isMobile || isTablet ? title : t('view')}
           type="button"
           tabIndex={-1}
         />

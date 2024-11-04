@@ -1,21 +1,14 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getData } from "@/actions/getData";
+import { Metadata } from 'next';
+import { metaData } from '@/data/meta';
 
-export async function generatePageMetadata({
-  params,
-}: {
-  params: { house: string; locale: string };
-}): Promise<Metadata> {
-  const { house } = params;
-  const houseItem = await getData<HouseItem[]>("houses", house);
+export function generatePageMetadata(
+    locale: string,
+    page: keyof typeof metaData): Metadata {
+    
+    const { title, description } = metaData[page];
 
-  if (!houseItem.length) notFound();
-
-  const houseTitle = houseItem[0].title[0].text;
-
-  return {
-    title: `Еко-будинок ${houseTitle} | На селі у Дідуся`,
-    description: `Еко-будинок ${houseTitle} під Києвом в Чернігові для затишного відпочинку в лісі за містом, комфортні кімнати еко-готелю На селі у Дідуся`,
-  };
+    return {
+        title: title[locale as keyof typeof title] as Metadata['title'],
+        description: description[locale as keyof typeof description] as Metadata['description'],
+    };
 }

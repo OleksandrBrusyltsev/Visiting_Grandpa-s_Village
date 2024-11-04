@@ -1,6 +1,6 @@
 type MealsItem = {
-    title: string,
-    description: string,
-    photo: Array<string>,
-    id: number
-}
+    id: number;
+    title: Record<Language, string>;
+    description: Record<Language, string>;
+    photos: Array<string>;
+};

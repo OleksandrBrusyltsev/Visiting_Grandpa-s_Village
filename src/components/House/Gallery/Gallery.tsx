@@ -1,9 +1,10 @@
 "use client";
-import { FC, useState, useContext, forwardRef } from "react";
+import { useState, useContext, forwardRef } from "react";
 import Image from "next/image";
 import MainSwiper from "./MainSwiper/MainSwiper";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
 import s from "./Gallery.module.scss";
+import { useTranslations } from "next-intl";
 
 interface GalleryType {
   pictures: string[];
@@ -17,6 +18,9 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery(
   const [isSwiperOpen, setSwiperOpen] = useState(false);
   const [firstSlide, setFirstSlide] = useState<number>(0);
   const { isTablet, isMobile } = useContext(MatchMediaContext);
+
+  const t = useTranslations("HouseItem");
+
   const toggleSwiper = (i: number) => {
     setSwiperOpen(!isSwiperOpen);
     setFirstSlide(i);
@@ -37,10 +41,6 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery(
       ? s.small__4
       : s.small__3;
 
-  const alt = houseName
-    ? `фото дерев'яного будинку ${houseName} еко-садиби На селі у дідуся`
-    : "фото дерев'яного будинку еко-садиби На селі у дідуся";
-
   return (
     <div className={s.galleryWrapper} ref={ref}>
       <div className={s.gallery}>
@@ -54,7 +54,7 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery(
           >
             <Image
               fill
-              alt={alt}
+              alt={t('altText', { title: houseName })}
               src={item}
               style={{
                 objectFit: "cover",
@@ -72,7 +72,7 @@ const Gallery = forwardRef<HTMLDivElement, GalleryType>(function Gallery(
             <Image
               key={pictures[0]}
               fill
-              alt={alt}
+              alt={t('altText', { title: houseName })}
               src={pictures[0]}
               style={{
                 objectFit: "cover",

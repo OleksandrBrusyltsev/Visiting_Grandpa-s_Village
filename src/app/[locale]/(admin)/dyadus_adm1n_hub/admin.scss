@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: unset;
+}
+body {
+    //нивелируем скачок UI из-за кастыльного решение MUI, направленного на компенсацию ширины полосы прокрутки при открытии модалок
+    padding-right: 0 !important;
+    overflow: auto
+}
+
+//аналог клиентского контейнера, но адаптируется под ширину родительского контейнера, а не экрана
+.container-admin {
+    padding-inline: 24px;
+    margin: 0 auto;
+    max-width: 1440px;
+    width: 100%;
+}
+
+@container houses (min-width: 768px) {
+    .container-admin {
+        padding-inline: 30px;
+    }
+}
+
+@container houses (min-width: 1280px) {
+    .container-admin {
+        padding-inline: 50px;
+    }
+}
+
+@container houses (min-width: 1440px) {
+    .container-admin {
+        padding-inline: 130px;
+    }
+}

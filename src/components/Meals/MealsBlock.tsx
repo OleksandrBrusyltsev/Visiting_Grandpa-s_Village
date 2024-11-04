@@ -6,6 +6,7 @@ import { MatchMediaContext } from "@/context/MatchMediaContext";
 import MarkdownPreview from "../../functions/MarkdownPreview";
 
 import s from "./MealsBlock.module.scss";
+import { useLocale } from "next-intl";
 
 type Props = {
   item: MealsItem;
@@ -13,17 +14,20 @@ type Props = {
 };
 
 export default function MealsBlock({ item, position }: Props) {
-  const { title, description, photo } = item;
+  const locale = useLocale();
+  const { title, description, photos } = item;
   const { isMobile } = useContext(MatchMediaContext);
 
   return (
     <div className={s.mealsBlockWrapper}>
-      <h2 className={s.mealsTitle}>{title}</h2>
+      <h2 className={s.mealsTitle}
+        dangerouslySetInnerHTML={{ __html: title[locale as keyof typeof title] }}
+      />
       <div className={s.mealsDescriptionWrapper}>
         {position !== 0 && isMobile ? (
           <div className={s.mainPhoto}>
             <Image
-              src={photo[0]}
+              src={photos[0]}
               alt=""
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
               fill
@@ -31,13 +35,13 @@ export default function MealsBlock({ item, position }: Props) {
           </div>
         ) : null}
         <div className={s.mealsDescription}>
-          <MarkdownPreview markdown={description} />
+          <MarkdownPreview markdown={description[locale as keyof typeof description]} />
         </div>
       </div>
       {position === 0 || !isMobile ? (
         <div className={s.mainPhoto}>
           <Image
-            src={photo[0]}
+            src={photos[0]}
             alt=""
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
             fill
@@ -46,7 +50,7 @@ export default function MealsBlock({ item, position }: Props) {
       ) : null}
       <div className={s.topPhoto}>
         <Image
-          src={photo[1]}
+          src={photos[1]}
           alt=""
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           fill
@@ -54,7 +58,7 @@ export default function MealsBlock({ item, position }: Props) {
       </div>
       <div className={s.bottomPhoto}>
         <Image
-          src={photo[2]}
+          src={photos[2]}
           alt=""
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           fill

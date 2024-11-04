@@ -1,5 +1,6 @@
 // "use client";
 import { FC } from "react";
+import { useTranslations } from "next-intl";
 
 import s from "./GuestsForm.module.scss";
 
@@ -18,6 +19,7 @@ const GuestsForm: FC<GuestsProps> = ({
   setAdultsCount,
   setChildrenCount,
 }) => {
+  const t = useTranslations('BookingForm');
 
   const handleIncrement = (type: GuestType) => {
     if (type === "adults" && adultsCount < 10) {
@@ -38,7 +40,7 @@ const GuestsForm: FC<GuestsProps> = ({
   return (
     <div className={s.guestsFormContainer}>
       <div className={s.adultWrapper}>
-        <h3 className={s.title}>Дорослі</h3>
+        <h3 className={s.title}>{t('adults')}</h3>
         <div className={s.buttonWrapper}>
           <button
             className={`${s.changeButton} ${adultsCount === 1 ? s.disabled : ''}`}
@@ -59,7 +61,7 @@ const GuestsForm: FC<GuestsProps> = ({
       </div>
 
       <div className={s.childWrapper}>
-        <h3 className={s.title}>Діти</h3>
+        <h3 className={s.title}>{t('children')}</h3>
         <div className={s.buttonWrapper}>
           <button
             className={`${s.changeButton} ${childrenCount === 0 ? s.disabled : ''}`}
@@ -74,16 +76,15 @@ const GuestsForm: FC<GuestsProps> = ({
             type="button"
             onClick={() => handleIncrement("children")}
           >
-           +
+            +
           </button>
         </div>
       </div>
       <p className={s.childDescr}>
-        Діти до 3-х років без надання додаткового місця - не тарифікуються.
+        {t('note1')}
       </p>
       <p className={s.childDescr}>
-        Діти віком від 3-х до 12-ти, з наданням окремого місця, тарифікуються за
-        дитячим тарифом - 150 грн/ніч.{" "}
+        {t('note2')}
       </p>
     </div>
   );

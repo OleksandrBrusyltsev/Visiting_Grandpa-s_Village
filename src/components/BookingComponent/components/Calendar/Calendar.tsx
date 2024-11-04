@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, FC } from "react";
 import Image from "next/image";
+import { useLocale } from "next-intl";
 
 import IconPrev from "../../../../assets/icons/icon-prev.svg";
 import IconNext from "../../../../assets/icons/icon-next.svg";
@@ -26,20 +27,88 @@ const getClassNames = (classNames: string, styles: Record<string, string>) => {
     .join(" ");
 };
 
-const months: string[] = [
-  "Січень",
-  "Лютий",
-  "Березень",
-  "Квітень",
-  "Травень",
-  "Червень",
-  "Липень",
-  "Серпень",
-  "Вересень",
-  "Жовтень",
-  "Листопад",
-  "Грудень",
-];
+const months: {
+  uk: string[];
+  en: string[];
+  ru: string[];
+} = {
+  en: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ],
+  ru: [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ],
+  uk: [
+    "Січень",
+    "Лютий",
+    "Березень",
+    "Квітень",
+    "Травень",
+    "Червень",
+    "Липень",
+    "Серпень",
+    "Вересень",
+    "Жовтень",
+    "Листопад",
+    "Грудень",
+  ]
+};
+
+const days: {
+  uk: string[];
+  en: string[];
+  ru: string[];
+} = {
+  en: [
+    "Mo",
+    "Tu",
+    "We",
+    "Th",
+    "Fr",
+    "Sa",
+    "Su"
+  ],
+  ru: [
+    "Пн",
+    "Вт",
+    "Ср",
+    "Чт",
+    "Пт",
+    "Сб",
+    "Вс"
+  ],
+  uk: [
+    "Пн",
+    "Вт",
+    "Ср",
+    "Чт",
+    "Пт",
+    "Сб",
+    "Нд"
+  ]
+};
 
 const Calendar: FC<CalendarProps> = ({
   onDateSelect,
@@ -50,6 +119,8 @@ const Calendar: FC<CalendarProps> = ({
   const [currMonth, setCurrMonth] = useState<number>(new Date().getMonth());
 
   const [daysList, setDaysList] = useState<DayInfo[]>([]);
+
+  const locale = useLocale();
 
   const renderCalendar = () => {
     let firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
@@ -165,7 +236,7 @@ const Calendar: FC<CalendarProps> = ({
   return (
     <div className={s.calendarWrapper}>
       <div className={s.calendarHeader}>
-        <p className={s.currentMonth}>{`${months[currMonth]} ${currYear}`}</p>
+        <p className={s.currentMonth}>{`${months[locale as keyof typeof months][currMonth]} ${currYear}`}</p>
         <div className="icons">
           <button
             type="button"
@@ -185,13 +256,9 @@ const Calendar: FC<CalendarProps> = ({
       </div>
       <div className={s.daysWrapper}>
         <ul className={s.weeksList}>
-          <li className={s.weeksItem}>Пн</li>
-          <li className={s.weeksItem}>Вт</li>
-          <li className={s.weeksItem}>Ср</li>
-          <li className={s.weeksItem}>Чт</li>
-          <li className={s.weeksItem}>Пт</li>
-          <li className={s.weeksItem}>Сб</li>
-          <li className={s.weeksItem}>Нд</li>
+          {
+            days[locale as keyof typeof days].map((day, i) => <li className={s.weeksItem} key={i}>{day}</li>)
+          }
         </ul>
         <ul className={s.daysList}>
           {daysList.length &&
