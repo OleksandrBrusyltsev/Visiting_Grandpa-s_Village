@@ -86,3 +86,11 @@
   background-color: #d3d3d3;
   border-radius: 5px;
 }
+
+.fc-addEventButton-button {
+  position: absolute;
+  left: -40px;
+  border-bottom-right-radius: 0.25em;
+  border-top-right-radius: 0.25em;
+  z-index: 10;
+}

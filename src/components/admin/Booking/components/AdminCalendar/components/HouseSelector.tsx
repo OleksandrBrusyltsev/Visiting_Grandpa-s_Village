@@ -28,7 +28,6 @@ const HouseSelector: FC<HouseSelectorProps> = ({ currentHouse }) => {
     setAnchorEl(null);
   };
 
-  // Add a house to the selection
   const handleAddHouse = (house: { id: string; title: string }) => {
     setSelectedHouses([...selectedHouses, house]);
     handleClose();

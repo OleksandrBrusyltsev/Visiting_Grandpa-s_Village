@@ -27,7 +27,7 @@ const AddNewBookModal: FC<AddNewBookModalProps> = ({
   handleClose,
   currentEvent,
 }) => {
-  if (!currentEvent) return null; // Если нет текущего события, не рендерим модалку
+  if (!currentEvent) return null; 
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>

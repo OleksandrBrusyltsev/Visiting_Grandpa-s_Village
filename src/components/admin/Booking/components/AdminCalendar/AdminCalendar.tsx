@@ -23,28 +23,27 @@ const AdminCalendar: React.FC = () => {
   const [currentEvent, setCurrentEvent] = useState<CalendarEvent | null>(null);
   const [isNewBookModalOpen, setIsNewBookModalOpen] = useState(false);
 
-const getResourceTitleById = (resourceId: string) => {
-  for (const house of houses) {
-    // Проверяем, если ID совпадает с именем дома
-    if (house.name === resourceId) {
-      // Возвращаем заголовок на украинском или имя дома, если заголовка нет
-      return house.title.uk || house.name;
+  const getResourceTitleById = (resourceId: string) => {
+    for (const house of houses) {
+      if (house.name === resourceId) {
+        return house.title.uk || house.name;
+      }
     }
-  }
 
-  // Если ресурс не найден, возвращаем ID как fallback
-  return resourceId;
-};
-
+    return resourceId;
+  };
 
   const handleCloseModals = () => {
     setIsNewBookModalOpen(false);
   };
 
-  const handleSlotSelected = (info: any) => {
-    console.log("Slot selected:", info);
+  const openNewBookingModal = () => {
+    setCurrentEvent(null);
+    setIsNewBookModalOpen(true);
+  };
 
-    const resourceTitle = getResourceTitleById(info.resource.id); // Получаем украинский заголовок
+  const handleSlotSelected = (info: any) => {
+    const resourceTitle = getResourceTitleById(info.resource.id);
 
     setCurrentEvent({
       start: dayjs(info.start),
@@ -80,7 +79,7 @@ const getResourceTitleById = (resourceId: string) => {
           left: "prev,next today",
           center: "title",
           right:
-            "resourceTimelineWeek,resourceTimelineTwoWeeks,resourceTimelineMonth",
+            "addEventButton,resourceTimelineWeek,resourceTimelineTwoWeeks,resourceTimelineMonth",
         }}
         buttonText={{
           resourceTimelineWeek: "тиждень",
@@ -115,6 +114,20 @@ const getResourceTitleById = (resourceId: string) => {
         select={handleSlotSelected}
         locale={ukLocale}
         expandRows={true}
+        customButtons={{
+          addEventButton: {
+            text: "Додати бронювання",
+            click: () => {
+              setCurrentEvent({
+                start: dayjs(),
+                end: dayjs().add(1, "day"),
+                houseName: "",
+                houseId: "",
+              });
+              setIsNewBookModalOpen(true);
+            },
+          },
+        }}
       />
 
       {currentEvent && (
