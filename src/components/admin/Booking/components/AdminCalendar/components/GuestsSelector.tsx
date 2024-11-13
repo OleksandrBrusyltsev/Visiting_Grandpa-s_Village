@@ -18,7 +18,7 @@ import {
 
 interface GuestsSelectorProps {
   adults: number;
-  children: number;
+  childrenCount: number;
   childAges: number[];
   setAdults: React.Dispatch<React.SetStateAction<number>>;
   setChildren: React.Dispatch<React.SetStateAction<number>>;
@@ -39,7 +39,7 @@ const GuestsSelector: FC<GuestsSelectorProps> = ({
   adults,
   setAdults,
   setChildren,
-  children,
+  childrenCount,
   childAges,
   handleIncrease,
   handleDecrease,

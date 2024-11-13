@@ -174,7 +174,7 @@ const BookInfo: FC<BookInfoProps> = ({ currentEvent }) => {
           <Dialog open={isGuestsModalOpen} onClose={handleCloseGuestsModal}>
             <GuestsSelector
               adults={adults}
-              children={children}
+              childrenCount={children}
               setAdults={setAdults}
               setChildren={setChildren}
               childAges={childrenAges}
