@@ -157,7 +157,7 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
                                 accept={"image/png, image/jpeg"}
                                 // onChange={onChange}
                                 onChange={onChange}
-                                ref={(el: HTMLInputElement) => inputRef.current[index] = el}
+                                ref={(el: any) => inputRef.current[index] = el}
                                 required={ !selectedFiles[0] }
                             />
                             <IconButton

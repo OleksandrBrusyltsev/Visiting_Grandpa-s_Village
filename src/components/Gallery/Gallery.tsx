@@ -165,7 +165,7 @@ export default function Gallery({ items }: Props) {
               <div className={s.galleryWrapper}>
                 {items.slice(1).map((item, i) => (
                   <GalleryItem
-                    ref={(el: HTMLAnchorElement) => (galleryRef.current[i] = el)}
+                    ref={(el: any) => (galleryRef.current[i] = el)}
                     data={item}
                     key={item.id}
                   />

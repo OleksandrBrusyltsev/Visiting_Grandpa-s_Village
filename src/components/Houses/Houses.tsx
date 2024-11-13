@@ -304,7 +304,7 @@ export default function Houses({ items }: Props) {
           <div className={s.housesWrapper}>
             {houses.map((house, i) => (
                 <HouseItem
-                  ref={(el: HTMLAnchorElement) => (housesRef.current[i] = el)}
+                  ref={(el: any) => (housesRef.current[i] = el)}
                   data={house}
                   key={house.id}
                   rooms={rooms[house.name] || 0}
