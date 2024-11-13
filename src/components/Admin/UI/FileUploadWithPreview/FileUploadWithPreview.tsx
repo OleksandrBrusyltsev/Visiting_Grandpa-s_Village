@@ -38,7 +38,7 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
     const [previews, setPreviews] = useState<Array<string>>([]);
     const [isDragOver, setIsDragOver] = useState<number | null>(null);
 
-    const inputRef = React.useRef<(HTMLInputElement)[]>([]);
+    const inputRef = React.useRef<(any)[]>([]);
 
     const handleButtonClick = (index: number) => {
         if (inputRef.current && inputRef.current[index]) {
