@@ -115,7 +115,7 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
               </div>
               <div
                 className={s.answerWrapper}
-                ref={(el) => (answerRefs.current[index] = el)}
+                ref={(el: any) => (answerRefs.current[index] = el)}
                 style={{
                   height: openIndices.includes(index) ? "auto" : 0,
                   overflow: "hidden",

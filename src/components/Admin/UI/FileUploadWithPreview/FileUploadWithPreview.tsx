@@ -38,7 +38,7 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
     const [previews, setPreviews] = useState<Array<string>>([]);
     const [isDragOver, setIsDragOver] = useState<number | null>(null);
 
-    const inputRef = React.useRef<(HTMLInputElement)[]>([]);
+    const inputRef = React.useRef<(any)[]>([]);
 
     const handleButtonClick = (index: number) => {
         if (inputRef.current && inputRef.current[index]) {
@@ -157,7 +157,7 @@ const FileUploadWithPreview = React.forwardRef(function FileUploadWithPreview({ 
                                 accept={"image/png, image/jpeg"}
                                 // onChange={onChange}
                                 onChange={onChange}
-                                ref={(el: HTMLInputElement) => inputRef.current[index] = el}
+                                ref={(el: any) => inputRef.current[index] = el}
                                 required={ !selectedFiles[0] }
                             />
                             <IconButton

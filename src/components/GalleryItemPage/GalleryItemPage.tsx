@@ -125,7 +125,7 @@ export default function GalleryItemPage({ item }: Props) {
             {photo_urls.map((img, i) => (
               <li
                 className={s.itemWrapper}
-                ref={(el: HTMLLIElement) => (galleryRef.current[i] = el)}
+                ref={(el: any) => (galleryRef.current[i] = el)}
                 tabIndex={0}
                 onClick={() => toggleSwiper(i)}
                 onKeyDown={(e) => handleKeyboardToggle(e, i)}
