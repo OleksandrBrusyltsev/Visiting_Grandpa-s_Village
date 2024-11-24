@@ -21,7 +21,7 @@ function renderMarkdownToHTML(markdown) {
   return { __html: renderedHTML };
 }
 
-export default function MarkdownPreview({ markdown }) {
+export default function MarkdownPreview({ markdown, className = {} }) {
   const markup = renderMarkdownToHTML(markdown);
-  return <div dangerouslySetInnerHTML={markup} />;
+  return <div className={ className} dangerouslySetInnerHTML={markup} />;
 }

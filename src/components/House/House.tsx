@@ -10,14 +10,15 @@ import Booking from "./Booking/Booking";
 import Gallery from "./Gallery/Gallery";
 import Icon from "../ui/Icon/Icon";
 import MarkdownPreview from "../../functions/MarkdownPreview";
-import HouseItem from "../Houses/HouseItem";
+import HouseItem from "../Houses/HouseCard";
 import HousesList from "../Houses/HousesList";
 import HeroSection from "./HeroSection/HeroSection";
 import Map from "./Map/Map";
+import Services from "./Services/Services";
 
-import s from "./House.module.scss";
 import heroSection from "./HeroSection/HeroSection.module.scss";
 import map from "./Map/Map.module.scss";
+import s from "./House.module.scss";
 
 type Props = { item: HouseItem; rooms: HouseItem[] };
 
@@ -26,7 +27,6 @@ export default function House({ item, rooms }: Props) {
   const t = useTranslations("HouseItem");
 
   const {
-    cover_photo,
     photo,
     rental_price,
     max_adults,
@@ -82,8 +82,8 @@ export default function House({ item, rooms }: Props) {
           rooms.length
             ? tl.from(gallerySimpleRef.current, { scale: 0.9 })
             : tl
-                .from(galleryRef.current, { scale: 0.9 })
-                .from(`.${s.arrowBlockWrapper}`, { y: -50 }, ">-0.5");
+              .from(galleryRef.current, { scale: 0.9 })
+              .from(`.${s.arrowBlockWrapper}`, { y: -50 }, ">-0.5");
 
           // house description and booking component animation
 
@@ -273,7 +273,7 @@ export default function House({ item, rooms }: Props) {
     treesDecor,
     ref: bookingRef
   }
-  
+
   return (
     <div className={s.sectionWrapper}>
       {rooms.length ? null : (
@@ -292,8 +292,8 @@ export default function House({ item, rooms }: Props) {
           <div className={s.imageWrapper}>
             <Image
               fill
-              alt={t('altText', { title: titleText})}
-              src={cover_photo}
+              alt={t('altText', { title: titleText })}
+              src={photo[0]}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
@@ -338,22 +338,7 @@ export default function House({ item, rooms }: Props) {
             <MarkdownPreview markdown={description[locale as keyof typeof description]} />
           </div>
           {/* services icons */}
-          {rooms.length ? null : (
-            <div className={s.servicesWrapper}>
-              <div className={s.iconWrapper}>
-                <Icon name="house-bath" className={s.servicesIcon} />
-              </div>
-              <div className={s.iconWrapper}>
-                <Icon name="house-tv" className={s.servicesIcon} />
-              </div>
-              <div className={s.iconWrapper}>
-                <Icon name="house-car" className={s.servicesIcon} />
-              </div>
-              <div className={s.iconWrapper}>
-                <Icon name="house-pan" className={s.servicesIcon} />
-              </div>
-            </div>
-          )}
+          {rooms.length ? null : <Services />}
         </div>
         {/* booking block */}
         {rooms.length ? null : (

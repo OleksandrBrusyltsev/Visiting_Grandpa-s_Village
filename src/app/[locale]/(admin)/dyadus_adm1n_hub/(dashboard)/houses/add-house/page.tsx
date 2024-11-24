@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AddNewHouse from '@/components/Admin/Houses/AddNewHouse/addNewHouse';
+import AddNewHouse from '@/components/Admin/Houses/AddNewHouse/AddNewHouse';
 import { getHouses } from '@/actions/getHouses';
 
 export default async function Page() {

@@ -1,5 +1,8 @@
 "use client"
-import * as React from 'react';
+import React, { useState, MouseEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -10,23 +13,21 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import { useMainStore } from '@/stores/store-provider';
 import { Login } from '@mui/icons-material';
 import { logout } from '@/actions/admin/auth';
-import {  useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useMainStore } from '@/stores/store-provider';
 
 export default function UserMenu() {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const user = useMainStore((state) => state.user);
     const resetUser = useMainStore((state) => state.resetUser);
     const { refresh } = useRouter();
-    
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+
+    const handleClick = (event: MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleClose =  () => {
+    const handleClose = () => {
         setAnchorEl(null);
     };
 
@@ -36,7 +37,7 @@ export default function UserMenu() {
         resetUser();
         refresh();
     };
-    
+
     return (
         <>
             <Tooltip title={`${user.first_name} ${user.last_name}`}>
@@ -92,7 +93,7 @@ export default function UserMenu() {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/profile' onClick={handleClose}>
-                    <Avatar src='/opengraph-image.jpg'/> Профіль користувача
+                    <Avatar src='/opengraph-image.jpg' /> Профіль користувача
                 </MenuItem>
                 <Divider />
                 <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/users' onClick={handleClose}>
@@ -107,11 +108,11 @@ export default function UserMenu() {
                     </ListItemIcon>
                     Налаштування
                 </MenuItem>
-                
+
                 <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
                         {
-                            user?.id_active ? 
+                            user?.id_active ?
                                 <Logout fontSize="small" /> :
                                 <Login fontSize="small" />
                         }

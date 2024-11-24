@@ -1,15 +1,21 @@
 import { FC } from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
 import Icon from "../../ui/Icon/Icon";
+import { useTranslations } from "@/hooks/useTranslations";
 
 import s from "./HeroSection.module.scss";
 
-type Props = { text: string };
+type Props = { text: string; lang?: Language };
 
-const HeroSection: FC<Props> = ({ text }) => {
-  const t = useTranslations("HouseItem");
+const HeroSection: FC<Props> = ({ text, lang }) => {
+  
+  //допнастройки для того, чтобы обеспечить поддержку перевода в админке
+  const pathName = usePathname();
+  const isAdmin = pathName.includes("dyadus_adm1n_hub");
+  const t = useTranslations("HouseItem", lang, isAdmin);
+  
   return (
     <div className={`${s.heroSectionWrapper}`}>
       <div className={s.hero}>

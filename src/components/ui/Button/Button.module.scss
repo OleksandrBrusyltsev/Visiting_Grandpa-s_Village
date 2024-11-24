@@ -45,7 +45,7 @@
     max-width: 13.125rem;
 
     @include mixins.media-min(variables.$breakpoint-tablet-min) {
-      max-width: 11.75rem;
+      // max-width: 11.75rem;
     }
   }
 

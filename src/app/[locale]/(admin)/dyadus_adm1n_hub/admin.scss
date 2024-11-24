@@ -2,37 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+
+    @font-face {
+        font-family: "Mak";
+        src: url("/fonts/Mak-SemiBoldHigh.woff2") format("woff2"),
+            url("/fonts/Mak-SemiBoldHigh.woff") format("woff"),
+            url("/fonts/Mak-SemiBoldHigh.otf") format("otf");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "Raleway";
+        src: url("/fonts/Raleway-Bold.woff2") format("woff2"),
+            url("/fonts/Raleway-Bold.woff") format("woff"),
+            url("/fonts/Raleway-Bold.otf") format("otf");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "Raleway";
+        src: url("/fonts/Raleway-Light.woff2") format("woff2"),
+            url("/fonts/Raleway-Light.woff") format("woff"),
+            url("/fonts/Raleway-Light.otf") format("otf");
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "Raleway";
+        src: url("/fonts/Raleway-Regular.woff2") format("woff2"),
+            url("/fonts/Raleway-Regular.woff") format("woff"),
+            url("/fonts/Raleway-Regular.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    b,
+    strong {
+        font-weight: bold;
+    }
+}
+
+@layer utilities {
+    .outline-all * {
+        outline: 1px solid red;
+    }
+}
+
 html {
     scroll-behavior: smooth;
-    scrollbar-gutter: unset;
+    scrollbar-gutter: auto;
+    overflow: initial;
 }
+
 body {
-    //нивелируем скачок UI из-за кастыльного решение MUI, направленного на компенсацию ширины полосы прокрутки при открытии модалок
-    padding-right: 0 !important;
-    overflow: auto
+    overflow: initial;
+    position: relative;
 }
 
 //аналог клиентского контейнера, но адаптируется под ширину родительского контейнера, а не экрана
 .container-admin {
     padding-inline: 24px;
-    margin: 0 auto;
+    margin-inline: auto;
     max-width: 1440px;
     width: 100%;
 }
 
-@container houses (min-width: 768px) {
+@container resizeContainer (min-width: 768px) {
     .container-admin {
         padding-inline: 30px;
     }
 }
 
-@container houses (min-width: 1280px) {
+@container resizeContainer (min-width: 1280px) {
     .container-admin {
         padding-inline: 50px;
     }
 }
 
-@container houses (min-width: 1440px) {
+@container resizeContainer (min-width: 1440px) {
     .container-admin {
         padding-inline: 130px;
     }
