@@ -1,10 +1,10 @@
-import {FC, useState, useEffect} from "react";
-import {Box, TextField, Typography, Dialog} from "@mui/material";
-import {PersonOutline} from "@mui/icons-material";
+import { FC, useState, useEffect } from "react";
+import { Box, TextField, Typography, Dialog } from "@mui/material";
+import { PersonOutline } from "@mui/icons-material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import {Dayjs} from "dayjs";
+import { Dayjs } from "dayjs";
 import dayjs from "dayjs";
-import GuestsSelector from "@/components/Admin/Booking/components/AdminCalendar/components/GuestsSelector";
+import GuestsSelector from "@/components/Admin/Booking2/components/AdminCalendar/components/GuestsSelector";
 
 interface BookInfoProps {
     currentEvent: Date;
@@ -15,7 +15,7 @@ interface Date {
     end: Dayjs;
 }
 
-const BookInfo: FC<BookInfoProps> = ({currentEvent}) => {
+const BookInfo: FC<BookInfoProps> = ({ currentEvent }) => {
     const [startDate, setStartDate] = useState(dayjs(currentEvent.start));
     const [endDate, setEndDate] = useState(dayjs(currentEvent.end));
     const [adults, setAdults] = useState(1);
@@ -164,11 +164,11 @@ const BookInfo: FC<BookInfoProps> = ({currentEvent}) => {
                         }}
                         onClick={handleOpenGuestsModal}
                     >
-                        <PersonOutline fontSize="large" sx={{color: "#3F5540"}}/>
+                        <PersonOutline fontSize="large" sx={{ color: "#3F5540" }} />
                         <Typography fontWeight="bold" mr={2}>
                             {adults},
                         </Typography>
-                        <PersonOutline fontSize="medium" sx={{color: "#3F5540"}}/>
+                        <PersonOutline fontSize="medium" sx={{ color: "#3F5540" }} />
                         <Typography fontWeight="bold">{children}</Typography>
                     </Box>
 
@@ -197,8 +197,8 @@ const BookInfo: FC<BookInfoProps> = ({currentEvent}) => {
                         border: "1px solid #3F5540",
                     }}
                 >
-                    <AccessTimeIcon fontSize="medium" sx={{color: "#3F5540"}}/>
-                    <Typography sx={{fontWeight: "bold"}} ml={2}>
+                    <AccessTimeIcon fontSize="medium" sx={{ color: "#3F5540" }} />
+                    <Typography sx={{ fontWeight: "bold" }} ml={2}>
                         {days} {getDayLabel(days)}
                     </Typography>
                 </Box>
