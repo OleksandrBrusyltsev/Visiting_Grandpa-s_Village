@@ -21,6 +21,10 @@ export const createMainStore = () => {
                             ...state.houseAdding,
                             photo: [],
                         },
+                        houseEditing: {
+                            ...state.houseEditing,
+                            photo: [],
+                        },
                     }),
                 },
             ),

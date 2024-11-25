@@ -5,6 +5,7 @@ import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 import NorthOutlinedIcon from '@mui/icons-material/NorthOutlined';
 import SouthOutlinedIcon from '@mui/icons-material/SouthOutlined';
 import { useMainStore } from '@/stores/store-provider';
+import { validateTransferImages } from '@/functions/validateTransferImages';
 
 type Props = {
     label: string;
@@ -82,13 +83,7 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
         const files = event.dataTransfer.files;
 
         //фильтруем не изображения
-        const validFiles = new DataTransfer();
-        Array.from(files).forEach((file) => {
-            if (file.type.startsWith('image/')) {
-                validFiles.items.add(file);
-            }
-        });
-        const filteredFileList = validFiles.files;
+        const filteredFileList = validateTransferImages(files);
         if (!filteredFileList.length) return;
 
         const targetIndex = getTargetIndex(event);

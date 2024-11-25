@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import {
@@ -26,6 +26,9 @@ import {
 import { AdminSlice } from '@/stores/adminSlice';
 import FileUpload from '../../../UI/FileUpload/FileUpload';
 import { stubImage } from '@/data/stubs';
+import SimpleGalleryWrapper from './SimpleGalleryWrapper';
+import useDraggableItems from '@/hooks/useDraggableItems';
+
 type Props = {
     houseData: { photo: (string | File)[] };
     setHouseData: AdminSlice['setHouseEditing'];
@@ -33,42 +36,23 @@ type Props = {
 
 const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: Props) {
 
-    const initialRender = useRef(true);
-    const update = useRef<boolean>(true);
-
-    const [items, setItems] = useState([...houseData.photo.map((image, i) => ({
-        id: `${i}` as UniqueIdentifier,
-        src: image
-    }))]);
+    const [items, setItems, shouldUpdateHouseData] = useDraggableItems({ houseData });
 
     const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
     const [portalVisible, setPortalVisible] = useState(false);
 
     //для блокирование ошибок во время пререндинга на сервере
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (!document.body) return;
         setPortalVisible(true);
     }, []);
 
-
-    useEffect(() => {
-        setItems(houseData.photo.map((image, i) => ({
-            id: `${i}` as UniqueIdentifier,
-            src: image
-        })));
-        update.current = false;
-    }, [houseData]);
-
     //актуализируем данные в сторе после локальных изменений
     useEffect(() => {
-        if (initialRender.current) {
-            //блокируем обновление данных в сторе, для первого рендера
-            initialRender.current = false;
-            return;
-        }
-        if (!update.current) {
-            //блокируем обновление данных в сторе, вызванное изменением пропсов
-            update.current = true;
+
+        if (!shouldUpdateHouseData.current) {
+            //блокируем обновление данных в сторе, вызванное изменением пропсов (избегаем цикличности) или после первого рендера
+            shouldUpdateHouseData.current = true;
             return;
         }
         setHouseData(houseData => {
@@ -77,7 +61,7 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
             }
             return houseData;
         });
-    }, [items, setHouseData]);
+    }, [items]);
 
     const sensors = useSensors(
         useSensor(PointerSensor),
@@ -92,14 +76,14 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
     };
 
     const handleChange = (id: UniqueIdentifier) => {
-        const changeItemIndex = items.findIndex((item) => item.id === id);
+        const currentItemIndex = items.findIndex((item) => item.id === id);
         return (event: React.ChangeEvent<HTMLInputElement>) => {
             const file = event.target.files?.[0];
             if (file) {
                 console.log(file)
                 setItems((items) => {
                     const newItems = [...items];
-                    newItems[changeItemIndex] = { id, src: file };
+                    newItems[currentItemIndex] = { id, src: URL.createObjectURL(file), raw: file };
                     return newItems;
                 });
             }
@@ -127,8 +111,10 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
         setActiveId(null);
     }
 
+    const sizeOfRow = items.length > 5 ? '@[1024px]:auto-rows-[225px]' : '@[1280px]:auto-rows-[265px]';
+
     return (
-        <div className='relative'>
+        <SimpleGalleryWrapper setItems={setItems}>
             {
                 items.length ?
                     <DndContext
@@ -141,7 +127,7 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
                     >
                         <SortableContext items={items} strategy={rectSortingStrategy}>
 
-                            <ul className={`max-w-[1180px] mx-auto grid grid-cols-12 gap-4 grid-rows-2 aspect-[3] @[1280px]/resizeContainer:aspect-auto @[1280px]/resizeContainer:h-[450px]`}>
+                            <ul className={`max-w-[1180px] select-none mx-auto grid grid-cols-12 gap-4 auto-rows-[160px] ${sizeOfRow}`}>
                                 {
                                     (items.length ?
                                         items :
@@ -151,7 +137,7 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
                                         }]
                                     ).map((value, index) => (
                                         <SortableItem
-                                            classNames={getGridClasses(items.length, index)}
+                                            classNames={getGridClasses(items.length, index + 1)}
                                             key={value.id}
                                             id={value.id}
                                             index={index}
@@ -160,9 +146,7 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
                                             animateLayoutChanges={animateLayoutChanges}
                                             dragOverlay={false}
                                         >
-                                            <Image src={
-                                                typeof value.src === 'string' ? value.src : URL.createObjectURL(value.src)
-                                            }
+                                            <Image src={value.src}
                                                 alt="house image"
                                                 width={400}
                                                 height={400}
@@ -182,11 +166,7 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
                                         fadeIn
                                         dragOverlay
                                     >
-                                        <Image src={
-                                            (typeof items[getIndex(activeId, items)].src === 'string'
-                                                ? items[getIndex(activeId, items)].src
-                                                : URL.createObjectURL(items[getIndex(activeId, items)].src as File)) as string
-                                        }
+                                        <Image src={items[getIndex(activeId, items)].src}
                                             alt="house image"
                                             width={400}
                                             height={400}
@@ -198,13 +178,14 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
                         )}
                     </DndContext> :
                     <Image src={stubImage}
+                        draggable={false}
                         alt="no house data"
                         width={400}
                         height={400}
                         className={`mx-auto`} />
             }
-            <FileUpload setItems={setItems} disabled={items.length >= 5} />
-        </div>
+            <FileUpload setItems={setItems} />
+        </SimpleGalleryWrapper>
     );
 });
 
@@ -214,29 +195,30 @@ export default SimpleGallery;
 export function getGridClasses(total: number, i: number) {
     if (total < 3) {
         switch (i) {
-            case 0: return 'col-span-6 row-span-2';
             case 1: return 'col-span-6 row-span-2';
+            case 2: return 'col-span-6 row-span-2';
         }
     } else if (total === 3) {
         switch (i) {
-            case 0: return 'col-span-7 row-span-2';
-            case 1: return 'col-span-5';
+            case 1: return 'col-span-7 row-span-2';
             case 2: return 'col-span-5';
+            case 3: return 'col-span-5';
         }
     } else if (total === 4) {
         switch (i) {
-            case 0: return 'col-span-7 row-span-2';
-            case 1: return 'col-span-5';
-            case 2: return 'col-span-2';
-            case 3: return 'col-span-3';
+            case 1: return 'col-span-7 row-span-2';
+            case 2: return 'col-span-5';
+            case 3: return 'col-span-2';
+            case 4: return 'col-span-3';
         }
     } else {
         switch (i) {
-            case 0: return 'col-span-7 row-span-2';
-            case 1: return 'col-span-2';
-            case 2: return 'col-span-3';
+            case 1: return 'col-span-7 row-span-2';
+            case 2: return 'col-span-2';
             case 3: return 'col-span-3';
-            case 4: return 'col-span-2';
+            case 4: return 'col-span-3';
+            case 5: return 'col-span-2';
+            default: return 'col-span-2';
         }
     }
 }
