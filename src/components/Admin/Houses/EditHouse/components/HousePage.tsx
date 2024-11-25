@@ -108,7 +108,7 @@ export default function HousePage({ locale, rooms }: Props) {
                 </div>
             )}
 
-            <section className={`${s.contentWrapper} ${rooms ? s.apartment : ""}`}>
+            <section className={`${s.contentWrapper} ${rooms ? s.apartment : ""} w-full`}>
                 <div className={s.textWrapper}>
                     <Input
                         name={`long_title-${locale}`}
