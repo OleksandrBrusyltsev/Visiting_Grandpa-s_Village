@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef } from 'react'
-import { Box, FormControlLabel, Grid2 as Grid, Switch, Tab, Tabs, TextField } from '@mui/material';
+import { Box, FormControlLabel, Grid2 as Grid, Stack, Switch, Tab, Tabs, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
 import HouseCard from './components/HouseCard'
@@ -13,6 +13,7 @@ import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
 import SimpleGallery from './components/SimpleGallery';
 import { validateField } from '@/functions/validateField';
 import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContainer';
+import Button from '@/components/ui/Button/Button';
 
 import s from '@/components/Houses/Houses.module.scss';
 import { extraFieldsetData } from '@/data/admin/defaultsForHousesInputs';
@@ -24,7 +25,7 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
     const [loading, setLoading] = React.useState(false);
 
     const formRef = useRef<HTMLFormElement | null>(null);
-    const { refresh } = useRouter();
+    const { refresh, replace } = useRouter();
 
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
     const houseData = useMainStore((state) => state.houseEditing);
@@ -84,6 +85,25 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
         }
     }
 
+    const handleRemoveHouse = async () => {
+        try {
+            const response = await fetch('/api/admin/houses/remove?id=' + houseData.id, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setDialogOpen(true, 'success', data.description);
+                replace('/dyadus_adm1n_hub');
+                refresh();
+            } else {
+                const errorData = await response.json();
+                setDialogOpen(true, 'error', errorData.message);
+            }
+        } catch (error) {
+            setDialogOpen(true, 'error', `Щось пішло не так, як планувалось! Спробуйте ще раз!\n\n${(error as Error).message}`);
+        }
+    }
+
     return (
         <Box component='form' ref={formRef} onSubmit={handleSubmit} className='@container/resizeContainer'>
 
@@ -94,6 +114,12 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
                             <Tab key={lang} label={lang} />
                         ))
                     }
+                    <Stack direction='row' flexGrow={1} justifyContent='flex-end'>
+                        <Button label='Видалити'
+                            className='hover:!bg-[#a80e0e] hover:!text-white'
+                            onClick={() => handleRemoveHouse()}
+                        />
+                    </Stack>
                 </Tabs>
             </Box>
             {(['uk', 'ru', 'en'] as Language[]).map((lang, index) => (
