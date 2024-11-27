@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/all";
 import Booking from "./Booking/Booking";
 import Gallery from "./Gallery/Gallery";
 import Icon from "../ui/Icon/Icon";
-import MarkdownPreview from "../../functions/MarkdownPreview";
+import MarkdownPreview from "../ui/MarkdownPreview/MarkdownPreview";
 import HouseItem from "../Houses/HouseCard";
 import HousesList from "../Houses/HousesList";
 import HeroSection from "./HeroSection/HeroSection";

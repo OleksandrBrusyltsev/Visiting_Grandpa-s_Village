@@ -11,12 +11,11 @@ import { CustomTabPanel } from '../../Pages/Houses/Houses';
 import { useMainStore } from '@/stores/store-provider';
 import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
 import SimpleGallery from './components/SimpleGallery';
-import { validateField } from '@/functions/validateField';
 import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContainer';
 import Button from '@/components/ui/Button/Button';
+import NumberFields from '../AddNewHouse/components/NumberFields';
 
 import s from '@/components/Houses/Houses.module.scss';
-import { extraFieldsetData } from '@/data/admin/defaultsForHousesInputs';
 
 type Props = { data: HouseItem; housesList: SingleHousesListType; rooms: number }
 
@@ -156,7 +155,7 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
                                 multiline
                                 fullWidth
                                 required
-                                value={houseData.title[lang as keyof typeof houseData['title']]}
+                                value={houseData.title[lang]}
                                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setHouseData((houseData) => {
                                     if (houseData)
                                         houseData.title = {
@@ -175,7 +174,7 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
                                 multiline
                                 fullWidth
                                 required
-                                value={houseData.decor_text[lang as keyof typeof houseData['decor_text']]}
+                                value={houseData.decor_text[lang]}
                                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setHouseData((houseData) => {
                                     if (houseData)
                                         houseData.decor_text = {
@@ -186,49 +185,14 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
                             />
                         </Grid>
                         <Grid size={{ xs: 12 }}>
-                            <HouseSelect housesList={housesList} value={houseData.house_type || 'null'} onChange={(e) => setHouseData((houseData) => {
+                            <HouseSelect housesList={housesList} value={houseData.house_type ?? 'null'} onChange={(e) => setHouseData((houseData) => {
                                 if (houseData)
                                     houseData.house_type = e.target.value;
                                 return houseData;
                             })} />
                         </Grid>
 
-                        {extraFieldsetData.map(({ label, nameAttr, min = 0 }) => {
-                            const { error, color, errorText, warningText } =
-                                validateField(nameAttr, houseData, min);
-
-                            return (
-                                <Grid size={{ xs: 12, lg: 6 }} key={label} >
-                                    <TextField
-                                        label={label}
-                                        color={color}
-                                        id={nameAttr}
-                                        name={nameAttr}
-                                        variant="outlined"
-                                        fullWidth
-                                        required
-                                        focused={Boolean(warningText)}
-                                        error={error}
-                                        value={houseData[nameAttr]}
-                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setHouseData(houseData => {
-                                            if (houseData)
-                                                houseData[nameAttr] = +e.target.value.replace(/[^0-9]/g, '');
-                                            return houseData;
-                                        }
-                                        )}
-                                        helperText={errorText || warningText}
-                                        slotProps={{
-                                            formHelperText: {
-                                                sx: (theme) => ({
-                                                    color: color && theme.palette[color].main
-                                                })
-                                            }
-                                        }}
-                                    />
-                                </Grid>
-                            )
-                        })}
-                        <Grid size={{ xs: 12, lg: 6 }} alignSelf={'center'} >
+                        <NumberFields as='editing'>
                             <FormControlLabel
                                 control={
                                     <Switch checked={houseData.is_available}
@@ -249,8 +213,8 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
                                     }
                                 }}
                             />
+                        </NumberFields>
 
-                        </Grid>
                     </Grid>
                 </CustomTabPanel>
             ))}

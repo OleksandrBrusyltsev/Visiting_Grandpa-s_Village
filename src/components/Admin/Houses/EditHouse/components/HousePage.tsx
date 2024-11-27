@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import Image from 'next/image';
 
 import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
-import MarkdownPreview from '@/functions/MarkdownPreview';
+import MarkdownPreview from '@/components/ui/MarkdownPreview/MarkdownPreview';
 import Booking from '@/components/House/Booking/Booking';
 import HeroSection from '@/components/House/HeroSection/HeroSection';
 import Map from '@/components/House/Map/Map';

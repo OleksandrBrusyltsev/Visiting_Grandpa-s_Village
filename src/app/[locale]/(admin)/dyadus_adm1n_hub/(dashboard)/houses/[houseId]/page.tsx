@@ -27,9 +27,9 @@ export default async function Page({ params }: Props) {
   const rooms = houses.filter(item => item.name).reduce((accu, cur) => {
     if (!cur.house_type) return accu;
     if (!accu[cur.house_type]) {
-      accu[cur.house_type!] = 1;
+      accu[cur.house_type] = 1;
     } else {
-      accu[cur.house_type!] += 1;
+      accu[cur.house_type] += 1;
     }
     return accu
   }, {} as { [key: string]: number });

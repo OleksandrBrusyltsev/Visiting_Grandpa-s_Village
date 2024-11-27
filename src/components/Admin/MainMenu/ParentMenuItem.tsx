@@ -52,12 +52,12 @@ const iconMapping: { [key: string]: React.ElementType } = {
 export default function ParentMenuItem({ menuItem, isDrawerOpen }: Props) {
     const { name, url, icon, children } = menuItem;
 
-    const isComplexHouseRef = React.useRef<boolean>(!["Будиночки", "Галерея", "Сторінки"].includes(menuItem.name) ? true : false);
+    const isComplexHouseRef = React.useRef<boolean>(!["Будиночки", "Галерея", "Сторінки"].includes(menuItem.name));
 
     const [open, setOpen] = React.useState(isComplexHouseRef.current);
 
     const currPath = usePathname();
-    const selectedIndex = currPath === url ? true : false;
+    const selectedIndex = currPath === url;
 
     const handleClick = () => {
         if (isComplexHouseRef.current) return

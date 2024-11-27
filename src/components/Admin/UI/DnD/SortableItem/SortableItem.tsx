@@ -138,8 +138,9 @@ export const Item = React.memo(
                         ${dragOverlay ? 'h-full w-full cursor-inherit animation-pop scale-[var(--scale)] opacity-100' : ''}`}
                         style={style}
                         {...listeners}
-                        tabIndex={0}
                         {...props}
+                        tabIndex={0}
+                        role='listitem'
                     >
                         {children}
                     </div>

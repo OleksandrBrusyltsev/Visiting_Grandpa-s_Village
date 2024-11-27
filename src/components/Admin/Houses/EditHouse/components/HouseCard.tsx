@@ -23,7 +23,7 @@ export default function HouseCard({ locale, rooms }: Props) {
 
     const { photo, max_adults, extra_adults, rental_price } =
         data;
-    const title = data.title[locale as keyof typeof data.title];
+    const title = data.title[locale];
 
     const guestsString = (main: number, ad: number) => {
         const str = ad ? t("guests", { guests: 5 }) : t("guests", { guests: main });
@@ -55,7 +55,7 @@ export default function HouseCard({ locale, rooms }: Props) {
                         dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, "<br />") }}
                     ></h3>
                 </div>
-                {!!rental_price ? (
+                {rental_price ? (
                     <div className={s.priceWrapper}>
                         <Icon name="pocket" className={s.pocketIcon} />
                         <span className={`${s.price} font-['Mak']`}>
@@ -69,7 +69,7 @@ export default function HouseCard({ locale, rooms }: Props) {
                     ) : (
                         <>
                             <Icon name="guests" className={s.guestsIcon} />
-                            {!!rental_price ? (
+                            {rental_price ? (
                                 <span className={`${s.guests} font-['Mak']`}>
                                     {guestsString(max_adults, extra_adults)}
                                 </span>

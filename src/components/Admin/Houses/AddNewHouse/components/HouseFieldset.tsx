@@ -30,7 +30,7 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                         if (houseData) {
                             return {
                                 ...houseData,
-                                [nameAttr]: e.target.value.replace(/[^a-z0-9\-]/gi, '')
+                                [nameAttr]: e.target.value.replace(/[^a-z0-9-]/gi, '')
                             }
                         }
                         return houseData

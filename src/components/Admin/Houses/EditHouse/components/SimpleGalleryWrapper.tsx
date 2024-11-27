@@ -47,6 +47,7 @@ function SimpleGalleryWrapper({ children, setItems }: Props) {
             onDragOver={onDragOver}
             onDragLeave={onDragLeave}
             onDrop={onDrop}
+            role='listbox'
         >
             {children}
         </div>

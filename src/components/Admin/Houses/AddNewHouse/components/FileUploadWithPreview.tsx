@@ -42,7 +42,6 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
         });
     }
 
-
     const handleChangeFile = (file: File, targetIndex: number) => {
         setHouseData(houseData => {
             if (houseData) {
@@ -70,7 +69,7 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
             if (isInputFilled) {
                 files?.length && handleChangeFile(files[0], targetIndex);
             } else {
-                if (files && files.length) {
+                if (files?.length) {
                     handleAddFiles(files);
                 } return
             }
@@ -108,7 +107,7 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
     };
 
     const handleMoveFile = (direction: -1 | 1, targetIndex: number) => {
-        if (targetIndex + direction < 0 || targetIndex + direction >= photo!.length) return;
+        if (targetIndex + direction < 0 || targetIndex + direction >= photo.length) return;
 
         setHouseData(houseData => {
             if (houseData) {
@@ -163,9 +162,9 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
                             }}>
                             <HiddenInput
                                 type="file"
-                                name={multiple ? `${nameAttr + index}` : nameAttr}
                                 accept={"image/*"}
                                 onChange={onChange}
+                                value={''}
                                 multiple={multiple}
                                 data-index={index}
                                 required={!photo?.[0]}

@@ -21,20 +21,18 @@ const FileUpload = memo(function FileUpload({ setItems }: Props) {
     }
 
     return (
-        <>
-            <div className={`min-h-[100px] flex items-center justify-center w-full `}>
-                <div className='flex items-center justify-stretch  w-full'>
-                    <div className='relative cursor-pointer w-full'>
-                        <button type='button' className={`relative bg-base-green w-full h-[55px] text-center text-white rounded-lg text-xl leading-[55px] hover::bg-dark-green shadow-xl active:shadow-inner transition`} tabIndex={-1}>
-                            Додати зображення (або перетягніть файл сюди)
-                            <input type="file" title='' accept='image/*' multiple
-                                className={`absolute inset-0 opacity-0 cursor-pointer`}
-                                onChange={onAddFiles} tabIndex={0} />
-                        </button>
-                    </div>
+        <div className={`min-h-[100px] flex items-center justify-center w-full `}>
+            <div className='flex items-center justify-stretch  w-full'>
+                <div className='relative cursor-pointer w-full'>
+                    <button type='button' className={`relative bg-base-green w-full h-[55px] text-center text-white rounded-lg text-xl leading-[55px] hover::bg-dark-green shadow-xl active:shadow-inner transition`} tabIndex={-1}>
+                        Додати зображення (або перетягніть файл сюди)
+                        <input type="file" title='' accept='image/*' multiple
+                            className={`absolute inset-0 opacity-0 cursor-pointer`}
+                            onChange={onAddFiles} tabIndex={0} />
+                    </button>
                 </div>
             </div>
-        </>
+        </div>
     );
 });
 

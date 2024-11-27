@@ -1,7 +1,7 @@
 "use client";
 import React from 'react'
 import { useRouter } from 'next/navigation';
-import { Box } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 
 import { useMainStore } from '@/stores/store-provider';
 import FileUploadWithPreview from './components/FileUploadWithPreview'
@@ -35,15 +35,10 @@ export default function AddNewHouse({ housesList }: { housesList: SingleHousesLi
 
         const formData = new FormData(e.target as HTMLFormElement);
 
-        //чистим данные полученные из формы от файлов изображений, чтобы потом заменить файлами со стора
-        for (let [key, value] of Array.from(formData)) {
-            if (key.startsWith('photo')) formData.delete(key);
-        }
-
         //вытягиваем файлы изображений со стейта компонента FileUploadWithPreview и добавляем их в FormData
         houseData.photo.forEach((file, index) => {
             formData.append(`photo${index}`, file);
-        })
+        });
 
         try {
             const response = await fetch('/api/admin/houses/add', {
@@ -88,6 +83,7 @@ export default function AddNewHouse({ housesList }: { housesList: SingleHousesLi
             }}
             autoComplete="off"
             onSubmit={handleSubmit}
+            className='@container'
         >
 
             <HouseFieldset
@@ -109,7 +105,13 @@ export default function AddNewHouse({ housesList }: { housesList: SingleHousesLi
                 ))
             }
 
-            <NumberFields />
+            <Stack component="fieldset" sx={{
+                display: 'flex', flexDirection: 'column', gap: 2,
+                border: '1px solid grey', p: 2, borderRadius: '8px',
+            }}>
+                <Typography component={'legend'}>Вартість проживання</Typography>
+                <NumberFields as='adding' />
+            </Stack>
 
             <HouseSelect housesList={housesList} />
 

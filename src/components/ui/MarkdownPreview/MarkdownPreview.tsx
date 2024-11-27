@@ -16,12 +16,16 @@ md.renderer.rules.em_close = function () {
   return "</strong>";
 };
 
-function renderMarkdownToHTML(markdown) {
+function renderMarkdownToHTML(markdown: string) {
   const renderedHTML = md.render(markdown);
   return { __html: renderedHTML };
 }
 
-export default function MarkdownPreview({ markdown, className = {} }) {
+type MarkdownPreviewProps = {
+  markdown: string;
+  className?: string
+}
+export default function MarkdownPreview({ markdown, className }: MarkdownPreviewProps) {
   const markup = renderMarkdownToHTML(markdown);
-  return <div className={ className} dangerouslySetInnerHTML={markup} />;
+  return <div className={className} dangerouslySetInnerHTML={markup} />;
 }

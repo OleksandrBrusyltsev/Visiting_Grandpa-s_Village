@@ -22,7 +22,7 @@ const Modal = () => {
       disableScrollLock
     >
       <DialogTitle sx={{ mx: 2, textAlign: 'center' }}
-        color={type || undefined}
+        color={type ?? undefined}
       >
         Повідомлення від Дідуся
       </DialogTitle>

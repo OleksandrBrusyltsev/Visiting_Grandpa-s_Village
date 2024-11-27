@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useLayoutEffect, useState } from 'react'
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import {
@@ -57,7 +57,7 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
         }
         setHouseData(houseData => {
             if (houseData) {
-                houseData.photo = items.map(item => item.src);
+                houseData.photo = items.map(item => item.raw);
             }
             return houseData;
         });
@@ -195,8 +195,7 @@ export default SimpleGallery;
 export function getGridClasses(total: number, i: number) {
     if (total < 3) {
         switch (i) {
-            case 1: return 'col-span-6 row-span-2';
-            case 2: return 'col-span-6 row-span-2';
+            default: return 'col-span-6 row-span-2';
         }
     } else if (total === 3) {
         switch (i) {

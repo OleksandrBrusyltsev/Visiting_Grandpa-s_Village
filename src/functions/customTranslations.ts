@@ -64,13 +64,13 @@ function replaceTemplate(template: string, params: Record<string, any>): string 
 //вытаскиваем из файла с переводами вложенные значения для namespace, которые соответствуют ключу path (например, checkOutTime.text)
 function getNestedTranslation(translations: Record<string, any>, path: string): any {
     const keys = path.split('.');
-    return keys.reduce((obj, key) => obj && obj[key], translations);
+    return keys.reduce((obj, key) => obj?.[key], translations);
 }
 
 //многовариантный перевод с plural и select
 function formatPlural(params: Record<string, number>, text: string): string {
     const regex = /{(\w+),\s*(plural|select),\s*(.+?})}/; // -> [match, variable, typeOfPlural, cases]
-    const match = text.match(regex);
+    const match = regex.exec(text);
 
     if (!match) {
         return text;
@@ -95,7 +95,7 @@ function formatPlural(params: Record<string, number>, text: string): string {
     if (typeOfPlural === 'plural') {
         const result = casesMap[`${count}`]
             ? casesMap[`${count}`].replace(/#/, String(count))
-            : (casesMap['other'] && casesMap['other'].replace(/#/, String(count))) || '';
+            : casesMap['other']?.replace(/#/, String(count)) || '';
         return replacePluralTemplate(text, result);
     }
     if (typeOfPlural === 'select') {

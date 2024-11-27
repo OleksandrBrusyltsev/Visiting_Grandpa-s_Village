@@ -31,9 +31,8 @@ const getGuestsObj = (extra_adults: number, extra_children: number) => {
   //По просьбе заказчика логика (тут + в файлах с переводами) построена таким образом, что допместа для детей не могут быть сами по себе. 
   //Только как альтернатива для замены 1 взрослого допместа на 2 детских. И только в некоторых домиках, которые известны заказчику
   //Для этого в таком домике необходимо указать 1 взрослое допместо и 2 допместа для детей, или 2 и 4 соответственно
-  extra_children ?
-    guests = { extra_children, extra_guests: 0, extra_adults } :
-    guests = { extra_children: 0, extra_guests: extra_adults, extra_adults: 0 }
+  guests = extra_children ? { extra_children, extra_guests: 0, extra_adults } :
+    { extra_children: 0, extra_guests: extra_adults, extra_adults: 0 }
 
   return guests
 }

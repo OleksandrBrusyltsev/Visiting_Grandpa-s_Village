@@ -78,7 +78,7 @@ const HouseCard = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
             dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, "<br />") }}
           ></h3>
         </div>
-        {!!rental_price ? (
+        {rental_price ? (
           <div className={s.priceWrapper}>
             <Icon name="pocket" className={s.pocketIcon} />
             <span className={s.price}>
@@ -92,7 +92,7 @@ const HouseCard = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
           ) : (
             <>
               <Icon name="guests" className={s.guestsIcon} />
-              {!!rental_price ? (
+              {rental_price ? (
                 <span className={s.guests}>
                   {guestsString(max_adults, extra_adults)}
                 </span>

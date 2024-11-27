@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 import Map from "../../../../public/images/contacts/map.png";
-import MarkdownPreview from "@/functions/MarkdownPreview";
+import MarkdownPreview from "@/components/ui/MarkdownPreview/MarkdownPreview";
 
 import s from "./TelegramBlock.module.scss";
 
