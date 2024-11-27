@@ -9,7 +9,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
 import GalleryItem from "./GalleryItem";
-import MarkdownPreview from "@/functions/MarkdownPreview";
+import MarkdownPreview from "@/components/ui/MarkdownPreview/MarkdownPreview";
 import SloganBlock from "../GalleryItemPage/SloganBlock";
 
 import s from "./Gallery.module.scss";

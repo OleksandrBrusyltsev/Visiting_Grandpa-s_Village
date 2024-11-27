@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 import Icon from "../ui/Icon/Icon";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
-import MarkdownPreview from "../../functions/MarkdownPreview";
+import MarkdownPreview from "../ui/MarkdownPreview/MarkdownPreview";
 
 import s from "./MealsBlock.module.scss";
 import { useLocale } from "next-intl";

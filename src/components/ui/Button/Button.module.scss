@@ -17,8 +17,8 @@
   padding: 1rem;
   transition: background 0.3s, color 0.3s, box-shadow 0.3s, border 0.3s;
 
-    @media (hover: hover) {
-      &:not(:disabled):hover {
+  @media (hover: hover) {
+    &:not(:disabled):hover {
       background: transparent;
       color: rgb(var(--color-black));
       box-shadow: 2px 2px 5px 1px rgba(var(--color-total-black), 0.1);
@@ -43,10 +43,6 @@
 
   &_large {
     max-width: 13.125rem;
-
-    @include mixins.media-min(variables.$breakpoint-tablet-min) {
-      max-width: 11.75rem;
-    }
   }
 
   &_small {
@@ -58,6 +54,6 @@
   }
 }
 
-.headerBtn{
+.headerBtn {
   width: 188px;
 }

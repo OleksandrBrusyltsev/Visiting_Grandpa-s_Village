@@ -16,7 +16,7 @@ export const getHouses = async (slug?: string): Promise<HouseItem[]> => {
             throw new Error(errorData.detail[0].msg);
         }
         const data = await resp.json();
-        return data;
+        return slug ? [data] : data;
     } catch (error) {
         console.error(error);
         throw error;

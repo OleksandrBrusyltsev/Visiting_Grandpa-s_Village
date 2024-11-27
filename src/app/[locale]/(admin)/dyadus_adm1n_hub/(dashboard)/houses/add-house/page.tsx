@@ -1,7 +1,7 @@
 import React from 'react';
 
-import AddNewHouse from '@/components/Admin/Houses/AddNewHouse/addNewHouse';
 import { getHouses } from '@/actions/getHouses';
+import AddNewHouse from '@/components/Admin/Houses/AddNewHouse/AddNewHouse';
 
 export default async function Page() {
   const houses = await getHouses();

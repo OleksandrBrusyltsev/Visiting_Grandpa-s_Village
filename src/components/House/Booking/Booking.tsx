@@ -1,121 +1,64 @@
 "use client";
 import Image from "next/image";
 import { forwardRef } from "react";
-import { useLocale, useTranslations } from "next-intl";
-import { useParams, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
+import { useParams, usePathname, useRouter } from "next/navigation";
 
 import Button from "../../ui/Button/Button";
 import Icon from "../../ui/Icon/Icon";
-import NumberInput from "../../ui/NumberInput/NumberInput";
+import { useTranslations } from "@/hooks/useTranslations";
 
 import s from "./Booking.module.scss";
 
-// type Props = {
-//   rental_price: number;
-//   max_adults: number;
-//   titleText: string;
-//   extra_adults: number;
-//   extra_children: number;
-//   extra_adult_price: number;
-//   extra_children_price: number;
-//   photoDecor: string;
-//   treesDecor: string;
-//   rental_price: number;
-//   max_adults: number;
-//   titleText: string;
-// };
 type CommonProps = Pick<HouseItem,
   'rental_price' |
   'max_adults' |
   'extra_adults' |
   'extra_children' |
-  'extra_adult_price' |
-  'extra_children_price' |
   'photoDecor' |
   'treesDecor'>;
-type Props = CommonProps  & {
-  titleText: string
+type Props = CommonProps & {
+  titleText: string;
+  lang?: Language
 }
 
-// function GuestsBlock({
-//   adults,
-//   setAdults,
-//   child,
-//   setChild,
-//   priceAddons,
-//   maxAddons,
-// }: {
-//   adults: number;
-//   setAdults: React.Dispatch<React.SetStateAction<number>>;
-//   child: number;
-//   setChild: React.Dispatch<React.SetStateAction<number>>;
-//   priceAddons: {
-//     adult: number;
-//     child: number;
-//   };
-//   maxAddons: number;
-// }) {
-//   const t = useTranslations("HouseItem");
-//   return (
-//     <>
-//       <NumberInput
-//         count={adults}
-//         setCount={setAdults}
-//         max={maxAddons - child}
-//         min={0}
-//       >
-//         <div className={s.guestsWrapper}>
-//           <Icon name="guests-houses" className={s.iconGuests} />
-//           <p className={s.textGuests}>
-//             {t("adultGuestAddons", { rate: priceAddons.adult })}
-//           </p>
-//         </div>
-//       </NumberInput>
-//       <NumberInput
-//         count={child}
-//         setCount={setChild}
-//         max={maxAddons - adults}
-//         min={0}
-//       >
-//         <div className={s.guestsWrapper}>
-//           <Icon name="guests-houses" className={s.iconGuests} />
-//           <p className={s.textGuests}>
-//             {t("childGuestAddons", { rate: priceAddons.child })}
-//           </p>
-//         </div>
-//       </NumberInput>
-//     </>
-//   );
-// }
+const getGuestsObj = (extra_adults: number, extra_children: number) => {
+  let guests: {
+    extra_guests?: number;
+    extra_adults?: number;
+    extra_children?: number;
+  } = {};
+  //По просьбе заказчика логика (тут + в файлах с переводами) построена таким образом, что допместа для детей не могут быть сами по себе. 
+  //Только как альтернатива для замены 1 взрослого допместа на 2 детских. И только в некоторых домиках, которые известны заказчику
+  //Для этого в таком домике необходимо указать 1 взрослое допместо и 2 допместа для детей, или 2 и 4 соответственно
+  guests = extra_children ? { extra_children, extra_guests: 0, extra_adults } :
+    { extra_children: 0, extra_guests: extra_adults, extra_adults: 0 }
 
-const Booking = forwardRef<HTMLDivElement, Props>(function Booking({
+  return guests
+}
+
+const Booking = forwardRef<HTMLElement, Props>(function Booking({
   rental_price,
   max_adults,
   titleText,
   extra_adults,
   extra_children,
-  extra_adult_price,
-  extra_children_price,
   photoDecor,
   treesDecor,
+  lang,
 }, ref) {
-  const t = useTranslations("HouseItem");
   const { push } = useRouter();
   const locale = useLocale();
   const params = useParams();
   const isRoom = "room" in params;
-  
-  const getGuestaObj = () => {
-    let guests: {
-      extra_guests?: number;
-      extra_adults?: number;
-      extra_children?: number;
-    } = {};
-    
-    extra_children ? guests = { extra_children, extra_guests: 0, extra_adults } : guests = { extra_children: 0, extra_guests: extra_adults, extra_adults:0 }
-    
-    return guests
-  }
+
+  //допнастройки для того, чтобы: 
+  //1) убрать обработку клика на [Забронювати] в версии для админки;
+  //2) обеспечить поддержку перевода в админке 
+  const pathName = usePathname();
+  const isAdmin = pathName.includes("dyadus_adm1n_hub");
+
+  const t = useTranslations("HouseItem", lang, isAdmin);
 
   return (
     <section className={s.sectionWrapper} ref={ref}>
@@ -148,10 +91,10 @@ const Booking = forwardRef<HTMLDivElement, Props>(function Booking({
           <div className={s.iconGuests}>
             <Icon name="guests-houses" />
           </div>
-          <p className={s.textGuests}>{max_adults}{" "}{t('guests', {guests: max_adults})}</p>
+          <p className={s.textGuests}>{max_adults}{" "}{t('guests', { guests: max_adults })}</p>
         </div>
         {extra_adults ? (
-          <p className={s.textGuestsNote}>{t('guestsNote', getGuestaObj())}</p>
+          <p className={s.textGuestsNote}>{extra_adults && t('guestsNote', getGuestsObj(extra_adults, extra_children))}</p>
         ) : null}
 
         <div className={s.timeWrapper}>
@@ -169,7 +112,10 @@ const Booking = forwardRef<HTMLDivElement, Props>(function Booking({
             label={t("book")}
             size="large"
             type="button"
-            onClick={() => push(`/${locale}/booking?house=${titleText}`)}
+            onClick={() => {
+              if (isAdmin) return
+              push(`/${locale}/booking?house=${titleText}`)
+            }}
           />
         </div>
       </div>

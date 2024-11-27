@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useLocale } from "next-intl";
 
 import House from "../../../../public/images/contacts/house.png";
-import MarkdownPreview from "@/functions/MarkdownPreview";
+import MarkdownPreview from "@/components/ui/MarkdownPreview/MarkdownPreview";
 
 import s from "./RouteInfo.module.scss";
 import { contacts } from "@/data/contacts";
@@ -23,7 +23,7 @@ const RouteInfo: FC<RouteInfoProps> = ({ houseRef, routeInfoWrapperRef }) => {
         <div className={s.routeInfoText}>
           <MarkdownPreview markdown={contacts.routeInfo1[locale as keyof typeof contacts.routeInfo1]} />
         </div>
-       
+
         <div className={s.textDotWrapper}>
           <span className={s.dot}></span>
           <p className={s.textDot}>{contacts.routeInfo2[locale as keyof typeof contacts.routeInfo2]}</p>

@@ -32,7 +32,7 @@
       "time": "12:00"
     },
     "guests": "{guests, plural, =1 { гість} other { гостей}}",
-    "guestsNote": "*можливо додати {extra_guests, plural, =1 {# гостя} =2 {# гостей} =3 {# гостей} =4  {# гостей} other {}}{extra_adults, plural, =1 {# дорослого або} =2 {# дорослих або} =3 {# дорослих або} =4 {# дорослих або} other {}} {extra_children, plural, =2 {# дітей} =3 {# дітей} =4 {# дітей} other {}}",
+    "guestsNote": "*можливо додати {extra_guests, plural, =1 {# гостя} =2 {# гостей} =3 {# гостей} =4  {# гостей} other {}}{extra_adults, plural, =1 {# дорослого} =2 {# дорослих} =3 {# дорослих} =4 {# дорослих} other {}} {extra_children, plural, =2 {або # дітей} =3 {або # дітей} =4 {або # дітей} other {}}",
     "visit": "{isPlural, select, true {Дивитись} other {Завітай}}",
     "book": "Забронювати",
     "altText": "фото дерев'яного будинку {title} еко-садиби На селі у дідуся",

@@ -1,11 +1,11 @@
-import { StateCreator } from "zustand";
-import { AdminSlice } from "./adminSlice";
+import { StateCreator } from 'zustand';
+import { AdminSlice } from './adminSlice';
 
 export interface UserSlice {
     user: UserType;
     setUser: (user: UserType) => void;
     resetUser: () => void;
-};
+}
 
 export const initialUserState: Pick<UserSlice, 'user'> = {
     user: {

@@ -9,6 +9,7 @@ import Navigation from "@/components/Header/Navigation";
 import Toaster from "@/components/ui/Toaster/Toaster";
 
 import { locales } from "@/data/locales";
+import './layout.css';
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

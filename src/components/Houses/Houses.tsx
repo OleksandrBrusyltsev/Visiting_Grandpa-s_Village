@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/all";
 
 import BookingComponent from "../BookingComponent/BookingComponent";
 import Icon from "../ui/Icon/Icon";
-import HouseItem from "./HouseItem";
+import HouseCard from "./HouseCard";
 import HousesList from "./HousesList";
 
 import s from "./Houses.module.scss";
@@ -28,13 +28,14 @@ export default function Houses({ items }: Props) {
     return items.filter(item => item.name).filter((item) => !item.house_type).length;
   }, [items]);
 
-  const houses = useMemo(() => { 
+  const houses = useMemo(() => {
     return items.filter(item => item.name).filter((item) => !item.house_type)
   }, [items]);
 
   const rooms = useMemo(() => {
-    return items.filter(item => item.name).reduce((accu, cur) => { 
-      if (!accu[cur.house_type!]) {
+    return items.filter(item => item.name).reduce((accu, cur) => {
+      if (!cur.house_type) return accu;
+      if (!accu[cur.house_type]) {
         accu[cur.house_type!] = 1;
       } else {
         accu[cur.house_type!] += 1;
@@ -43,7 +44,7 @@ export default function Houses({ items }: Props) {
       return accu
     }, {} as { [key: string]: number });
   }, [items]);
-  
+
   useEffect(() => {
     setTimeout(() => {
       ScrollTrigger.refresh();
@@ -265,7 +266,7 @@ export default function Houses({ items }: Props) {
             <Image
               fill
               alt=""
-              src={items[0].cover_photo}
+              src={items[0].photo[0]}
               sizes="100vw"
             />
           </div>
@@ -303,13 +304,13 @@ export default function Houses({ items }: Props) {
           </div>
           <div className={s.housesWrapper}>
             {houses.map((house, i) => (
-                <HouseItem
-                  ref={(el: any) => (housesRef.current[i] = el)}
-                  data={house}
-                  key={house.id}
-                  rooms={rooms[house.name] || 0}
-                />)
-              )}
+              <HouseCard
+                ref={(el: any) => (housesRef.current[i] = el)}
+                data={house}
+                key={house.id}
+                rooms={rooms[house.name] || 0}
+              />)
+            )}
           </div>
         </>
       </HousesList>

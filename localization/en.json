@@ -32,7 +32,7 @@
       "time": "12:00"
     },
     "guests": "{guests, plural, =1 { guest} other { guests}}",
-    "guestsNote": "*you can add {extra_guests, plural, =1 {# guest} =2 {# guests} =3 {# guests} =4  {# guests} other {}}{extra_adults, plural, =1 {# adult or} =2 {# adults or} =3 {# adults or} =4 {# adults or} other {}} {extra_children, plural, =2 {# children} =3 {# children} =4 {# children} other {}}",
+    "guestsNote": "*you can add {extra_guests, plural, =1 {# guest} =2 {# guests} =3 {# guests} =4  {# guests} other {}}{extra_adults, plural, =1 {# adult} =2 {# adults} =3 {# adults} =4 {# adults} other {}} {extra_children, plural, =2 {or # children} =3 {or # children} =4 {or # children} other {}}",
     "visit": "{isPlural, select, true {View} other {Visit}}",
     "book": "Book",
     "altText": "photo of the wooden house {title} of the eco-estate In the countryside Grandpa's village",

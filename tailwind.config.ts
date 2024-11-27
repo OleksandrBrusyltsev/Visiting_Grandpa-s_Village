@@ -20,9 +20,28 @@ const config: Config = {
             },
             screens: {
                 pc: '1440px',
+                '1000px': '1000px',
+            },
+            keyframes: {
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                pop: {
+                    '0%': {
+                        transform: 'scale(1)',
+                    },
+                    '100%': {
+                        transform: 'scale(var(--scale))',
+                    },
+                },
+            },
+            animation: {
+                fadeIn: 'fadeIn 500ms ease',
+                pop: 'pop 500ms ease-in-out',
             },
         },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/container-queries')],
 };
 export default config;

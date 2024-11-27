@@ -4,6 +4,12 @@
   }
 }
 
+@mixin container-media-min($value) {
+  @container resizeContainer (min-width: #{$value}) {
+    @content;
+  }
+}
+
 @mixin media-max($value) {
   @media (max-width: $value) {
     @content;

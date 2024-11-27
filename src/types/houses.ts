@@ -6,7 +6,6 @@ type HouseItem = {
     decor_text: Record<Language, string>;
     description: Record<Language, string>;
     photo: string[];
-    cover_photo: string;
     rental_price: number;
     max_adults: number;
     is_available: boolean;
@@ -19,17 +18,13 @@ type HouseItem = {
     photoDecor: string;
     treesDecor: string;
     coordinates: {
-        top: number;
+        bottom: number;
         left: number;
-        topSmall: number;
-        leftSmall: number;
-        topSmallDifference: number;
-        leftSmallDifference: number;
-        topMedium: number;
-        leftMedium: number;
-        topMediumDifference: number;
-        leftMediumDifference: number;
-        topLarge: number;
-        leftLarge: number;
     };
 };
+
+type SingleHousesListType = {
+    id: number;
+    name: string;
+    title: string;
+}[];

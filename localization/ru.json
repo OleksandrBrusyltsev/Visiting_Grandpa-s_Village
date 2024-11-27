@@ -32,7 +32,7 @@
       "time": "12:00"
     },
     "guests": "{guests, plural, =1 { гость} other { гостей}}",
-    "guestsNote": "*можно добавить {extra_guests, plural, =1 {# гостя} =2 {# гостей} =3 {# гостей} =4  {# гостей} other {}}{extra_adults, plural, =1 {# взрослого или} =2 {# взрослых или} =3 {# взрослых или} =4 {# взрослых или} other {}} {extra_children, plural, =2 {# дитей} =3 {# дитей} =4 {# дитей} other {}}",
+    "guestsNote": "*можно добавить {extra_guests, plural, =1 {# гостя} =2 {# гостей} =3 {# гостей} =4  {# гостей} other {}}{extra_adults, plural, =1 {# взрослого} =2 {# взрослых} =3 {# взрослых} =4 {# взрослых} other {}} {extra_children, plural, =2 {или # детей} =3 {или # детей} =4 {или # детей} other {}}",
     "visit": "{isPlural, select, true {Смотреть} other {Посетить}}",
     "book": "Забронировать",
     "altText": "фото деревянного домика {title} эко-усадьбы На деревне у Дедушки",

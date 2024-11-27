@@ -25,26 +25,16 @@ const Map: FC<Props> = ({ locale, coordinates }) => {
           sizes="100vw"
           className={s.mapImage}
         />
+        {coordinates ? (
+          <Pin
+            bottom={coordinates.bottom}
+            left={coordinates.left}
+          />
+        ) : null}
       </div>
       <div className={s.cloudBackground}>
         <Icon name="house-cloud" className={s.cloud} />
       </div>
-      {coordinates ? (
-        <Pin
-          top={coordinates.top}
-          left={coordinates.left}
-          topSmall={coordinates.topSmall}
-          leftSmall={coordinates.leftSmall}
-          topSmallDifference={coordinates.topSmallDifference}
-          leftSmallDifference={coordinates.leftSmallDifference}
-          topMedium={coordinates.topMedium}
-          leftMedium={coordinates.leftMedium}
-          topMediumDifference={coordinates.topMediumDifference}
-          leftMediumDifference={coordinates.leftMediumDifference}
-          topLarge={coordinates.topLarge}
-          leftLarge={coordinates.leftLarge}
-        />
-      ) : null}
     </div>
   );
 };

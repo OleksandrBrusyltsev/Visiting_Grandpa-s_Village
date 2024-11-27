@@ -18,8 +18,7 @@ export async function PUT(request: Request) {
     const data = Object.fromEntries(form);
 
     //получаем ссылки для фото Cloudinary
-    const photos = [data.cover_photo as File | string];
-    photos.push(...getPhotos(data, 'photo'));
+    const photos = getPhotos(data, 'photo');
 
     const photosUrls = (await getCloudinaryUrl(photos)) as string | string[];
     if (typeof photosUrls === 'string') {
@@ -28,19 +27,16 @@ export async function PUT(request: Request) {
 
     //собираем и формируем данные для записи нового домика в БД
     const baseCombinedData = {
-        ...combineProperty(data, [
-            'title',
-            'long_title',
-            'description',
-            'decor_text'
-        ]),
+        ...combineProperty(data, ['title', 'long_title', 'description', 'decor_text']),
     } as Pick<HouseItem, 'title' | 'long_title' | 'description' | 'decor_text'>;
-    
-    const combinedData: Omit<HouseItem, 'id' | 'photoDecor' | 'treesDecor' | 'coordinates'> = {
+
+    const combinedData: Omit<HouseItem, 'id' | 'photoDecor' | 'treesDecor' | 'coordinates'> & {
+        cover_photo: string /* удалить потом!!!! сделано для совместимости с API */;
+    } = {
         ...baseCombinedData,
         rental_price: +data.rental_price,
-        cover_photo: photosUrls![0],
-        photo: photosUrls!.slice(1) || null,
+        cover_photo: '' /* удалить потом!!!! сделано для совместимости с API */,
+        photo: photosUrls,
         name: data.name as unknown as string,
         max_adults: +data.max_adults,
         extra_adults: +data.extra_adults,
@@ -75,7 +71,10 @@ export async function PUT(request: Request) {
             );
         }
         revalidateTag('houses');
-        return NextResponse.json({ description: 'Зміни до опису будинку успішно внесено!' }, { status: 200 });
+        return NextResponse.json(
+            { description: 'Зміни до опису будинку успішно внесено!' },
+            { status: 200 },
+        );
     } catch (error) {
         console.log(error);
         return NextResponse.json({ message: (error as Error).message }, { status: 500 });

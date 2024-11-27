@@ -1,7 +1,8 @@
+import { menuAdmin } from '@/data/admin/menu';
+
 const houseIcon = 'HotelOutlined';
 const addNew = 'AddOutlined';
 const galleryChapterIcon = 'PhotoOutlined';
-import { menuAdmin } from '@/data/admin/menu';
 
 const getBaseMenu = (
     locale: string,
@@ -19,7 +20,7 @@ const getBaseMenu = (
 ) => {
     let housesWithRooms: Record<string, HouseItem[]> = {};
     // для домиков с комнатами формируем дерево данных для подменю
-    if (type === 'houses' && arr.length && 'house_type' in arr[0] ) {
+    if (type === 'houses' && arr.length && 'house_type' in arr[0]) {
         housesWithRooms = arr.reduce((accu, cur) => {
             if (cur.house_type) {
                 Array.isArray(accu[cur.house_type])
@@ -29,12 +30,14 @@ const getBaseMenu = (
             return accu;
         }, {} as Record<string, HouseItem[]>);
     }
+
     const unfilteredMenu = type === 'gallery' ? arr : arr.filter((el) => el?.house_type === null);
+
     return unfilteredMenu.map((el) => {
         const menu: MenuItem = {
             id: el.id,
             name: el.title[locale as keyof typeof el.title],
-            url: `/${locale}/dyadus_adm1n_hub/${type}/${el.name}`,
+            url: `/${locale}/dyadus_adm1n_hub/${type}/${el.id}`,
             admission: 'superadmin',
             icon: type === 'gallery' ? galleryChapterIcon : houseIcon,
         };
@@ -43,7 +46,7 @@ const getBaseMenu = (
             menu['children'] = housesWithRooms[el.name].map((room) => ({
                 id: room.id,
                 name: room.title[locale as keyof typeof room.title],
-                url: `/${locale}/dyadus_adm1n_hub/${type}/${room.name}`,
+                url: `/${locale}/dyadus_adm1n_hub/${type}/${room.id}`,
                 admission: 'superadmin',
                 icon: houseIcon,
             }));
@@ -54,7 +57,7 @@ const getBaseMenu = (
 
 export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[], locale: string) {
     const indexOfMenuItemPages = menuAdmin.findIndex((item) => item.name === 'Сторінки');
-    if (indexOfMenuItemPages && indexOfMenuItemPages >= 0) {
+    if (indexOfMenuItemPages >= 0) {
         const indexOfMenuItemHouses = menuAdmin[indexOfMenuItemPages].children!.findIndex(
             (item) => item.name === 'Будиночки',
         );
@@ -62,14 +65,15 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
             (item) => item.name === 'Галерея',
         );
 
-        if (indexOfMenuItemHouses && indexOfMenuItemHouses >= 0) {
+        //добавляем подменю для домиков
+        if (indexOfMenuItemHouses >= 0) {
             (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
                 indexOfMenuItemHouses
             ].children = getBaseMenu(
                 locale,
                 'houses',
                 houses.filter((house) => house.name),
-                );
+            );
             (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
                 indexOfMenuItemHouses
             ].children?.push({
@@ -80,7 +84,9 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
                 icon: addNew,
             });
         }
-        if (indexOgMenuItemGallery && indexOgMenuItemGallery > 0) {
+
+        //добавляем подменю для галереи
+        if (indexOgMenuItemGallery > 0) {
             (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
                 indexOgMenuItemGallery
             ].children = getBaseMenu(locale, 'gallery', gallery);

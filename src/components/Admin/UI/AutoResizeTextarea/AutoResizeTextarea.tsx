@@ -1,12 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 
 type Props = {
-    defaultValue: string;
+    defaultValue?: string;
     className?: string;
-    name: string
+    name: string;
+    onFocus?: () => void; 
+    onBlur?: () => void;
+    value?: string;
+    onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-export default function AutoResizeTextarea({ defaultValue, className, name }: Props) {
+export default function AutoResizeTextarea({ defaultValue, className, name, ...props }: Props) {
     const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
     useEffect(() => {
@@ -16,6 +20,7 @@ export default function AutoResizeTextarea({ defaultValue, className, name }: Pr
         // Функция для обновления количества строк
         const updateHeight = () => {
             const lineHeight = parseInt(getComputedStyle(textarea).lineHeight, 10);
+            //нарочно устанавливаем мин высоту, т.к. дефолтное значение высоты textarea - 2 строки
             textarea.style.height = `${lineHeight}px`;
             textarea.style.height = `${Math.max(textarea.scrollHeight, lineHeight)}px`;
         };
@@ -37,6 +42,7 @@ export default function AutoResizeTextarea({ defaultValue, className, name }: Pr
 
     return (
         <textarea
+            {...props}
             name={name}
             ref={textareaRef}
             className={className}

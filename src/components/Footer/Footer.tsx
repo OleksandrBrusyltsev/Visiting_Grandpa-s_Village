@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 
 import Icon from "../ui/Icon/Icon";
-import MarkdownPreview from "@/functions/MarkdownPreview";
+import MarkdownPreview from "@/components/ui/MarkdownPreview/MarkdownPreview";
 
 import s from "./Footer.module.scss";
 import { navLinks } from "@/data/navigationMenu";
@@ -62,7 +62,7 @@ export default function Footer() {
       ) : (
         <Link href={`/${locale}`}>
           <Image
-              src={locale === "en" ? image_en : image_uk}
+            src={locale === "en" ? image_en : image_uk}
             alt="logo"
             width={144}
             height={80}
