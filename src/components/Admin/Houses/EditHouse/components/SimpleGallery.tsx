@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useLayoutEffect, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import {
@@ -23,46 +23,60 @@ import {
     sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable';
 
-import { AdminSlice } from '@/stores/adminSlice';
 import FileUpload from '../../../UI/FileUpload/FileUpload';
 import { stubImage } from '@/data/stubs';
 import SimpleGalleryWrapper from './SimpleGalleryWrapper';
-import useDraggableItems from '@/hooks/useDraggableItems';
+import { useMainStore } from '@/stores/store-provider';
 
-type Props = {
-    houseData: { photo: (string | File)[] };
-    setHouseData: AdminSlice['setHouseEditing'];
-}
+const SimpleGallery = memo(function SimpleGallery({ photo }: { photo: (string | File)[] }) {
+    const setHouseData = useMainStore((state) => state.setHouseEditing);
+    const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
 
-const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: Props) {
+    const shouldUpdateHouseData = useRef(true);
 
-    const [items, setItems, shouldUpdateHouseData] = useDraggableItems({ houseData });
+    //храним одновременно и изображения, и локальную ссылку на него, т.к. динамическая генерация ссылок при рендере вызывает мерзание UI
+    const [items, setItems] = useState<
+        {
+            id: UniqueIdentifier;
+            raw: string | File;
+            src: string;
+        }[]
+    >([]);
 
-    const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
-    const [portalVisible, setPortalVisible] = useState(false);
-
-    //для блокирование ошибок во время пререндинга на сервере
-    useLayoutEffect(() => {
-        if (!document.body) return;
-        setPortalVisible(true);
-    }, []);
-
-    //актуализируем данные в сторе после локальных изменений
     useEffect(() => {
+        setItems(
+            photo.map((image, i) => ({
+                id: `${i}` as UniqueIdentifier,
+                raw: image,
+                src: typeof image === 'string' ? image : URL.createObjectURL(image),
+            })) ?? [],
+        );
+        shouldUpdateHouseData.current = false;
+    }, [photo]);
 
+    useEffect(() => {
         if (!shouldUpdateHouseData.current) {
             //блокируем обновление данных в сторе, вызванное изменением пропсов (избегаем цикличности) или после первого рендера
             shouldUpdateHouseData.current = true;
             return;
+        } else {
+            setHouseData((houseData) => {
+                if (houseData) {
+                    houseData.photo = items.map((item) => item.raw);
+                }
+                return houseData;
+            }, false);
         }
-        setHouseData(houseData => {
-            if (houseData) {
-                houseData.photo = items.map(item => item.raw);
-            }
-            return houseData;
-        });
-    }, [items]);
+    }, [items, setHouseData]);
 
+    const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+
+    //для блокирование ошибок во время пререндинга на сервере
+    // const [portalVisible, setPortalVisible] = useState(false);
+    // useLayoutEffect(() => {
+    //     if (!document.body) return;
+    //     setPortalVisible(true);
+    // }, []);
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(TouchSensor),
@@ -72,7 +86,8 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
     );
 
     const handleRemove = (id: UniqueIdentifier) => {
-        setItems((items) => items.filter((item) => item.id !== id))
+        setItems((items) => items.filter((item) => item.id !== id));
+        setIsDirtyPage(true);
     };
 
     const handleChange = (id: UniqueIdentifier) => {
@@ -80,12 +95,12 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
         return (event: React.ChangeEvent<HTMLInputElement>) => {
             const file = event.target.files?.[0];
             if (file) {
-                console.log(file)
                 setItems((items) => {
                     const newItems = [...items];
                     newItems[currentItemIndex] = { id, src: URL.createObjectURL(file), raw: file };
                     return newItems;
                 });
+                setIsDirtyPage(true);
             }
             event.target.value = '';
         }
@@ -107,6 +122,7 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
 
                 return arrayMove(items, oldIndex, newIndex);
             });
+            setIsDirtyPage(true);
         }
         setActiveId(null);
     }
@@ -156,7 +172,27 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
                                 }
                             </ul>
                         </SortableContext>
-                        {portalVisible && createPortal(
+                        {/* {portalVisible && createPortal(
+                            <DragOverlay
+                                adjustScale={true}
+                                dropAnimation={dropAnimationConfig}
+                            >
+                                {activeId ? (
+                                    <Item
+                                        fadeIn
+                                        dragOverlay
+                                    >
+                                        <Image src={items[getIndex(activeId, items)].src}
+                                            alt="house image"
+                                            width={400}
+                                            height={400}
+                                            className={`w-full h-full object-cover`} />
+                                    </Item>
+                                ) : null}
+                            </DragOverlay>,
+                            document.body
+                        )} */}
+                        {createPortal(
                             <DragOverlay
                                 adjustScale={true}
                                 dropAnimation={dropAnimationConfig}
@@ -176,8 +212,8 @@ const SimpleGallery = memo(function SimpleGallery({ houseData, setHouseData }: P
                             </DragOverlay>,
                             document.body
                         )}
-                    </DndContext> :
-                    <Image src={stubImage}
+                    </DndContext>
+                    : <Image src={stubImage}
                         draggable={false}
                         alt="no house data"
                         width={400}

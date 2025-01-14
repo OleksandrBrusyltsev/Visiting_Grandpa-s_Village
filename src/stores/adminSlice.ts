@@ -9,6 +9,7 @@ export interface AdminSlice {
         text: string;
         type: 'error' | 'success' | null;
     };
+    isDirtyPage: boolean;
     houseEditing: (Omit<HouseItem, 'photo'> & { photo: (string | File)[] }) | null;
     houseAdding: Omit<HouseItem, 'photo'> & { photo: (string | File)[] };
 
@@ -16,21 +17,30 @@ export interface AdminSlice {
 
     setDialogOpen: (isOpen: boolean, type: 'success' | 'error' | null, message: string) => void;
 
+    setIsDirtyPage: (isDirty: boolean) => void;
+
     setHouseEditing: (
         houseDataUpdate:
             | ((houseData: AdminSlice['houseEditing']) => AdminSlice['houseEditing'])
             | AdminSlice['houseEditing'],
+        resetDirtyPage?: boolean,
     ) => void;
     setHouseAdding: (
         houseDataUpdate:
             | ((houseData: AdminSlice['houseAdding']) => AdminSlice['houseAdding'])
             | AdminSlice['houseAdding'],
+        resetDirtyPage?: boolean,
     ) => void;
 }
 
 export const initialAdminState: Pick<
     AdminSlice,
-    'dialogMessage' | 'dialogIsOpen' | 'adminMenuIsOpen' | 'houseEditing' | 'houseAdding'
+    | 'dialogMessage'
+    | 'dialogIsOpen'
+    | 'adminMenuIsOpen'
+    | 'houseEditing'
+    | 'houseAdding'
+    | 'isDirtyPage'
 > = {
     adminMenuIsOpen: true,
     dialogIsOpen: false,
@@ -38,6 +48,7 @@ export const initialAdminState: Pick<
         text: '',
         type: null,
     },
+    isDirtyPage: false,
     houseEditing: null,
     houseAdding: {
         id: 0,
@@ -109,15 +120,30 @@ export const createAdminSlice: StateCreator<
                 type,
             },
         })),
-    setHouseEditing: (houseDataUpdate) =>
+    setIsDirtyPage: (isDirty) =>
+        set((state) => ({
+            ...state,
+            isDirtyPage: isDirty,
+        })),
+    setHouseEditing: (houseDataUpdate, resetDirtyPage) =>
         set((state) => {
+            if (resetDirtyPage && state.isDirtyPage) {
+                state.isDirtyPage = false;
+            } else if (resetDirtyPage === undefined && !state.isDirtyPage) {
+                state.isDirtyPage = true;
+            }
             state.houseEditing =
                 typeof houseDataUpdate === 'function'
                     ? houseDataUpdate(state.houseEditing)
                     : houseDataUpdate;
         }),
-    setHouseAdding: (houseDataUpdate) =>
+    setHouseAdding: (houseDataUpdate, resetDirtyPage) =>
         set((state) => {
+            if (resetDirtyPage && state.isDirtyPage) {
+                state.isDirtyPage = false;
+            } else if (resetDirtyPage === undefined && !state.isDirtyPage) {
+                state.isDirtyPage = true;
+            }
             state.houseAdding =
                 typeof houseDataUpdate === 'function'
                     ? houseDataUpdate(state.houseAdding)

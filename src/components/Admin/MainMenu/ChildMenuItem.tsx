@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
@@ -21,6 +20,7 @@ import {
     PhotoOutlined,
     AddOutlined
 } from '@mui/icons-material';
+import ConfirmLink from '../UI/ConfirmLink/ConfirmLink';
 
 
 type Props = {
@@ -56,7 +56,7 @@ export default function ChildMenuItem({ menuItem }: Props) {
         <ListItem disablePadding>
             <ListItemButton
                 selected={selectedIndex}
-                component={Link}
+                component={ConfirmLink}
                 href={url}
                 sx={{
                     minHeight: 48, px: 2.5,

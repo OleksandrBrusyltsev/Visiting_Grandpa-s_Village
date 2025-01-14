@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Collapse, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import {
@@ -24,6 +23,7 @@ import {
 } from '@mui/icons-material';
 
 import ChildMenuItem from './ChildMenuItem';
+import ConfirmLink from '../UI/ConfirmLink/ConfirmLink';
 
 type Props = {
     menuItem: MenuItem;
@@ -93,7 +93,7 @@ export default function ParentMenuItem({ menuItem, isDrawerOpen }: Props) {
                         },
                     }}
                     selected={selectedIndex}
-                    component={isComplexHouseRef.current ? Link : 'div'}
+                    component={isComplexHouseRef.current ? ConfirmLink : 'div'}
                     href={isComplexHouseRef.current ? menuItem.url : ''}
                 >
                     <ListItemIcon

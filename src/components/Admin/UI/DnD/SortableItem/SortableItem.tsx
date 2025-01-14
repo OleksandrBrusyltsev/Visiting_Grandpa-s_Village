@@ -112,7 +112,7 @@ export const Item = React.memo(
 
             return (
                 <li
-                    className={`touch-none flex box-border list-none origin-top-left [transform:translate3d(var(--translate-x,0),_var(--translate-y,0),0)_scaleX(var(--scale-x,1))_scaleY(var(--scale-y,1))] ${fadeIn && 'animate-fadeIn'} ${dragOverlay && `w-full h-full z-[999]`} group ${classNames}`}
+                    className={`touch-none flex box-border list-none origin-top-left [transform:translate3d(var(--translate-x,0),_var(--translate-y,0),0)_scaleX(var(--scale-x,1))_scaleY(var(--scale-y,1))] ${fadeIn && 'animate-fadeIn'} ${dragOverlay && 'w-full h-full z-[999]'} group ${classNames}`}
                     style={
                         {
                             '--translate-x': transform

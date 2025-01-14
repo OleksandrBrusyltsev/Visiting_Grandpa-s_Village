@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { UniqueIdentifier } from '@dnd-kit/core';
+import { useMainStore } from '@/stores/store-provider';
 
 type Props = {
     setItems: React.Dispatch<React.SetStateAction<{
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const FileUpload = memo(function FileUpload({ setItems }: Props) {
+    const setIsDirtyPage = useMainStore(state => state.setIsDirtyPage);
 
     const onAddFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
@@ -18,6 +20,7 @@ const FileUpload = memo(function FileUpload({ setItems }: Props) {
 
         const getNewItems = (startIndex: number) => Array.from(files).map((file, index) => ({ id: (startIndex + index) as UniqueIdentifier, src: URL.createObjectURL(file), raw: file }));
         setItems(items => [...items, ...getNewItems(items.length)]);
+        setIsDirtyPage(true);
     }
 
     return (

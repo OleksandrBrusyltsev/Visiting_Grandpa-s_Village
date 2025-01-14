@@ -1,5 +1,5 @@
 "use client";
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import { Box, Stack, Typography } from '@mui/material'
 
@@ -18,14 +18,20 @@ export default function AddNewHouse({ housesList }: { housesList: SingleHousesLi
     const [loading, setLoading] = React.useState(false);
 
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
-    const houseData = useMainStore((state) => state.houseAdding);
+    const { photo } = useMainStore((state) => state.houseAdding);
     const setHouseData = useMainStore((state) => state.setHouseAdding);
+    const setIsDirtyPage = useMainStore(state => state.setIsDirtyPage);
+
+    useLayoutEffect(() => {
+        setHouseData(initialAdminState.houseAdding, true);
+    }, [setHouseData, setIsDirtyPage]);
 
     const formRef = React.useRef<HTMLFormElement>(null);
 
     const handleResetForm = () => {
         formRef.current?.reset();
         setHouseData(initialAdminState.houseAdding);
+        setIsDirtyPage(false);
         window?.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -36,7 +42,7 @@ export default function AddNewHouse({ housesList }: { housesList: SingleHousesLi
         const formData = new FormData(e.target as HTMLFormElement);
 
         //вытягиваем файлы изображений со стейта компонента FileUploadWithPreview и добавляем их в FormData
-        houseData.photo.forEach((file, index) => {
+        photo.forEach((file, index) => {
             formData.append(`photo${index}`, file);
         });
 

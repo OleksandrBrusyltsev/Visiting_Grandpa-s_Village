@@ -1,10 +1,11 @@
+import { useMainStore } from '@/stores/store-provider';
 import React, { useEffect, useRef } from 'react';
 
 type Props = {
     defaultValue?: string;
     className?: string;
     name: string;
-    onFocus?: () => void; 
+    onFocus?: () => void;
     onBlur?: () => void;
     value?: string;
     onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -12,6 +13,13 @@ type Props = {
 
 export default function AutoResizeTextarea({ defaultValue, className, name, ...props }: Props) {
     const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+    const isDirtyPage = useMainStore((state) => state.isDirtyPage);
+    const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
+
+    const handleChange = () => {
+        if (!isDirtyPage && textareaRef.current && textareaRef.current.value !== defaultValue) setIsDirtyPage(true);
+    }
 
     useEffect(() => {
         const textarea = textareaRef.current;
@@ -26,14 +34,14 @@ export default function AutoResizeTextarea({ defaultValue, className, name, ...p
         };
 
         updateHeight();
-        
+
         textarea.addEventListener('input', updateHeight);
 
         const textareaResizeObserver = new ResizeObserver(() => {
             updateHeight();
         });
         textareaResizeObserver.observe(textarea);
-        
+
         return () => {
             textarea.removeEventListener('input', updateHeight);
             textareaResizeObserver.disconnect();
@@ -47,6 +55,7 @@ export default function AutoResizeTextarea({ defaultValue, className, name, ...p
             ref={textareaRef}
             className={className}
             defaultValue={defaultValue}
+            onChange={props.onChange || handleChange}
             required
             style={{ resize: 'none', overflow: 'hidden' }}
         />

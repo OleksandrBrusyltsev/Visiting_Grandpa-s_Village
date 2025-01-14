@@ -7,6 +7,7 @@ import { getData } from '@/actions/getData';
 import getMainMenu from '@/functions/getMainMenu';
 import { getHouses } from '@/actions/getHouses';
 import Modal from '@/components/Admin/UI/Dialog/Dialog';
+import NavigationEvents from '@/components/Admin/NavigationEvents/NavigationEvents';
 
 type Props = {
   children: React.ReactNode;
@@ -31,6 +32,7 @@ export default async function DashboardLayout({ children, params: { locale } }: 
       <div className="mx-auto flex max-w-full overflow-hidden">
         <MainMenu menu={menu} />
         <main className="grow min-w-0" style={{ minHeight: 'calc(100dvh - 96px)' }}>
+          <NavigationEvents />
           {children}
         </main>
         <Modal />

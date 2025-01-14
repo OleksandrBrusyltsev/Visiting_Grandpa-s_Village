@@ -54,15 +54,17 @@ const NumberFields = memo(function NumberFields({ children, as }: Props) {
                             focused={Boolean(warningText)}
                             error={error}
                             value={houseData?.[nameAttr]}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                setHouseData((houseData: any
-                                ) => {
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                const newValue = +e.target.value.replace(/\D/g, '');
+                                if (houseData && houseData[nameAttr] === newValue) return;
+                                setHouseData((houseData: any) => {
+                                    const newValue = +e.target.value.replace(/\D/g, '');
                                     if (houseData) {
-                                        (houseData[nameAttr]) = +e.target.value.replace(/\D/g, '');
+                                        houseData[nameAttr] = newValue;
                                     }
                                     return houseData
-                                }
-                                )}
+                                })
+                            }}
                             helperText={errorText || warningText}
                             slotProps={{
                                 formHelperText: {

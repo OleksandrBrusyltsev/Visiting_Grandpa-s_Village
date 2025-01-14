@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Box, Tab, Tabs } from '@mui/material';
@@ -36,7 +36,9 @@ export function CustomTabPanel(props: TabPanelProps) {
         </div>
     );
 }
+
 export default function HousesPage({ data }: Props) {
+
     const {
         id,
         title,
@@ -55,6 +57,12 @@ export default function HousesPage({ data }: Props) {
 
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
 
+    const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
+
+    useLayoutEffect(() => {
+        setIsDirtyPage(false);
+    }, [setIsDirtyPage]);
+
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
         setActiveTab(newValue);
     };
@@ -68,11 +76,13 @@ export default function HousesPage({ data }: Props) {
         } else {
             setPreview(photo[0]);
         }
+        setIsDirtyPage(true);
     }
 
     const handleResetForm = () => {
         formRef.current?.reset();
         setPreview(photo[0]);
+        setIsDirtyPage(false);
         window?.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -101,6 +111,7 @@ export default function HousesPage({ data }: Props) {
                 setLoading(false);
                 const data = await response.json();
                 setDialogOpen(true, 'success', data.description);
+                setIsDirtyPage(false);
                 refresh();
             } else {
                 const errorData = await response.json();
