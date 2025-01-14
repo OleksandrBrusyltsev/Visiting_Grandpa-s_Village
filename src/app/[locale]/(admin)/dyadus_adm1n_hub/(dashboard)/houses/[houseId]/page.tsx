@@ -5,7 +5,7 @@ import EditHouse from '@/components/Admin/Houses/EditHouse/EditHouse';
 import { housesData } from '@/data/houses/housesData';
 import { notFound } from 'next/navigation';
 
-type Props = { params: { houseId: string } }
+type Props = Readonly<{ params: { houseId: string } }>
 
 export default async function Page({ params }: Props) {
   const housesFromApi = await getHouses();

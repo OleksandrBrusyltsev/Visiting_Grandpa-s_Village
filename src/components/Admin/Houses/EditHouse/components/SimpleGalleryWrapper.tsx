@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { UniqueIdentifier } from '@dnd-kit/core';
 import { validateTransferImages } from '@/functions/validateTransferImages';
 
-type Props = {
+type Props = Readonly<{
     children: React.ReactNode;
     setItems: React.Dispatch<React.SetStateAction<{
         id: UniqueIdentifier;
         raw: string | File
         src: string;
     }[]>>
-}
+}>
 
 function SimpleGalleryWrapper({ children, setItems }: Props) {
     const [isDragOver, setIsDragOver] = useState<boolean>(false);
@@ -47,7 +47,6 @@ function SimpleGalleryWrapper({ children, setItems }: Props) {
             onDragOver={onDragOver}
             onDragLeave={onDragLeave}
             onDrop={onDrop}
-            role='listbox'
         >
             {children}
         </div>

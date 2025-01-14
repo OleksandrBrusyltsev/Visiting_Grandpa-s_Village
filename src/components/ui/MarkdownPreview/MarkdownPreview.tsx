@@ -21,10 +21,10 @@ function renderMarkdownToHTML(markdown: string) {
   return { __html: renderedHTML };
 }
 
-type MarkdownPreviewProps = {
+type MarkdownPreviewProps = Readonly<{
   markdown: string;
   className?: string
-}
+}>
 export default function MarkdownPreview({ markdown, className }: MarkdownPreviewProps) {
   const markup = renderMarkdownToHTML(markdown);
   return <div className={className} dangerouslySetInnerHTML={markup} />;

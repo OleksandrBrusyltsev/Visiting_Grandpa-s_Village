@@ -12,10 +12,10 @@ import Services from '@/components/House/Services/Services';
 
 import s from '@/components/House/House.module.scss';
 
-type Props = {
+type Props = Readonly<{
     locale: Language;
     rooms: number;
-};
+}>;
 
 const HousePage = memo(function HousePage({ locale, rooms }: Props) {
     const coordinates = useMainStore((state) => state.houseEditing?.coordinates);

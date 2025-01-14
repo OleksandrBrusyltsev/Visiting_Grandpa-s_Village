@@ -15,7 +15,7 @@ const ConfirmLink = forwardRef<HTMLAnchorElement, ConfirmLinkProps>(function Con
     children,
     href,
     ...props
-}: ConfirmLinkProps, ref) {
+}: Readonly<ConfirmLinkProps>, ref) {
     const router = useRouter();
     const isDirtyPage = useMainStore((state) => state.isDirtyPage);
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);

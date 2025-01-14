@@ -3,12 +3,12 @@ import { Stack, TextField, Typography } from '@mui/material';
 import { useMainStore } from '@/stores/store-provider';
 import { MultiLangFieldsType } from '@/data/admin/defaultsForHousesInputs';
 
-type Props = {
+type Props = Readonly<{
     legend: string;
     nameAttr: string;
     multiLang?: boolean;
     multiline?: boolean;
-}
+}>
 
 const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang, multiline }: Props) {
     const multiLangField = useMainStore((state) => state.houseAdding[nameAttr as MultiLangFieldsType]);

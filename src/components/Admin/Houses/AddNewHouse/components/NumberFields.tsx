@@ -6,10 +6,10 @@ import { validateField } from '@/functions/validateField';
 import { useMainStore } from '@/stores/store-provider';
 import { AdminSlice } from '@/stores/adminSlice';
 
-type Props = {
+type Props = Readonly<{
     children?: React.ReactNode;
     as: 'adding' | 'editing';
-}
+}>;
 
 const NumberFields = memo(function NumberFields({ children, as }: Props) {
     const houseData: Omit<HouseItem, "photo"> & { photo: (string | File)[] } | null =
@@ -27,11 +27,14 @@ const NumberFields = memo(function NumberFields({ children, as }: Props) {
             return state.setHouseAdding
         });
 
-    const lastItemIndex = children ? extraFieldsetData.length : extraFieldsetData.length - 1;
-    const isLastOdd = (lastItemIndex + 1) % 2;
 
-    const getGridItemSize = (index: number) => index === lastItemIndex ? `col-span-12 @[1024px]:col-span-${isLastOdd ? 12 : 6}` :
-        'col-span-12 @[1024px]:col-span-6';
+    const getGridItemSize = (index: number) => {
+        const lastItemIndex = children ? extraFieldsetData.length : extraFieldsetData.length - 1;
+        const isLastOdd = (lastItemIndex + 1) % 2;
+        if (index === lastItemIndex) {
+            return `col-span-12 @[1024px]:col-span-${isLastOdd ? 12 : 6}`
+        } else return 'col-span-12 @[1024px]:col-span-6';
+    };
 
     if (!houseData) return
 

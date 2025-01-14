@@ -7,11 +7,11 @@ import SouthOutlinedIcon from '@mui/icons-material/SouthOutlined';
 import { useMainStore } from '@/stores/store-provider';
 import { validateTransferImages } from '@/functions/validateTransferImages';
 
-type Props = {
+type Props = Readonly<{
     label: string;
     nameAttr: string;
     multiple?: boolean;
-};
+}>;
 
 const HiddenInput = styled('input')({
     opacity: 0,
@@ -111,7 +111,14 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
 
         setHouseData(houseData => {
             if (houseData) {
-                houseData.photo = houseData.photo.map((el, index) => index === targetIndex ? houseData.photo[targetIndex + direction] : index === targetIndex + direction ? houseData.photo[targetIndex] : el);
+
+                houseData.photo = houseData.photo.map((el, index) => {
+                    if (index === targetIndex) {
+                        return houseData.photo[targetIndex + direction];
+                    } else if (index === targetIndex + direction) {
+                        return houseData.photo[targetIndex];
+                    } else return el
+                });
             }
             return houseData
         })
@@ -132,7 +139,7 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
             {
                 [...photo, null].map((file, index) => (
                     <Stack
-                        key={index}
+                        key={typeof file === 'string' ? file : file?.name || 'null'}
                         onDrop={onDrop}
                         onDragOver={handleDragOver}
                         onDragLeave={handleDragLeave}

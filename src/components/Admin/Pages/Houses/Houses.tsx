@@ -13,7 +13,7 @@ import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContain
 
 import s from './Houses.module.scss';
 
-type Props = { data: HouseItem }
+type Props = Readonly<{ data: HouseItem }>;
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -22,7 +22,7 @@ interface TabPanelProps {
     className?: string
 }
 
-export function CustomTabPanel(props: TabPanelProps) {
+export function CustomTabPanel(props: Readonly<TabPanelProps>) {
     const { children, value, index, className = '', ...other } = props;
 
     return (

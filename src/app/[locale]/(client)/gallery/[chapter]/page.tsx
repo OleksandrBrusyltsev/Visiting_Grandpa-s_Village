@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { generateGalleryMetadata } from "@/functions/generateGalleryMetadata";
 
-type Props = { params: { chapter: string; locale: string } };
+type Props = Readonly<{ params: { chapter: string; locale: string } }>;
 
 export const dynamicParams = false;
 
@@ -15,7 +15,7 @@ export async function generateStaticParams({
   params: { locale },
 }: {
   params: { locale: string };
-  }) {
+}) {
   //сортировка нужна для удаления обектов с пустым названием name, которые используются для хранения hero блока в галерее
   const items = (await getData<GalleryItem[]>("gallery")).filter(gal => gal.name);
   return items.map((gal) => ({ locale, chapter: gal.name }));

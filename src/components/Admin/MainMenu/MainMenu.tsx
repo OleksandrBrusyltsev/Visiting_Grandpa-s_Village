@@ -9,7 +9,7 @@ import { useMainStore } from '@/stores/store-provider';
 import ParentMenuItem from './ParentMenuItem';
 import ChildMenuItem from './ChildMenuItem';
 
-type Props = { menu: AdminMenu }
+type Props = Readonly<{ menu: AdminMenu }>;
 
 const openedMixin = (theme: Theme): CSSObject => ({
     width: drawerWidth,

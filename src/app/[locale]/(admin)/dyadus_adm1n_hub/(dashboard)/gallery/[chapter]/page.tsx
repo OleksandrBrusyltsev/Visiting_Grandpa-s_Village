@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Props = { params: { chapter: string } }
+type Props = Readonly<{ params: { chapter: string } }>
 
 export default function Page({ params }: Props) {
     return (

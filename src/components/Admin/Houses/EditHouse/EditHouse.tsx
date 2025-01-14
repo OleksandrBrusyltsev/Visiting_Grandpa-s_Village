@@ -17,7 +17,7 @@ import NumberFields from '../AddNewHouse/components/NumberFields';
 
 import s from '@/components/Houses/Houses.module.scss';
 
-type Props = { data: HouseItem; housesList: SingleHousesListType; rooms: number }
+type Props = Readonly<{ data: HouseItem; housesList: SingleHousesListType; rooms: number }>;
 
 const MainTitleInput = memo(function MainTitleInput({ lang }: { lang: Language }) {
     const title = useMainStore((state) => state?.houseEditing?.title);
@@ -97,7 +97,7 @@ const HouseTypeSelect = memo(function HouseTypeSelect({ housesList }:
 const IsAvailableCheckbox = memo(function IsAvailableCheckbox() {
     const is_available = useMainStore((state) => state?.houseEditing?.is_available);
     const setHouseData = useMainStore((state) => state.setHouseEditing);
-    if (!is_available === undefined) return;
+    if (is_available === undefined) return;
     return (
         <FormControlLabel
             control={

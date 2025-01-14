@@ -37,8 +37,8 @@ export default function SwiperGalleryItem({ gallery, initialSlide, alt }: Props)
         modules={[Keyboard, Pagination, Navigation]}
         navigation={isMobile ? false : true}
       >
-        {gallery.map((item, index) => (
-          <SwiperSlide key={index}>
+        {gallery.map((item) => (
+          <SwiperSlide key={item}>
             <div className="imageWrapper">
               <Image
                 src={item}

@@ -6,11 +6,11 @@ import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
 import FloatButton from '../FloatButton/FloatButton';
 import Spinner from '../Spinner/Spinner';
 
-type Props = {
+type Props = Readonly<{
     loading: boolean
     onSubmit: () => void
     onReset: () => void
-}
+}>;
 
 const fabStyle = {
     save: {

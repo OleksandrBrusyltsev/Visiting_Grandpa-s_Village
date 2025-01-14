@@ -23,9 +23,9 @@ import {
 import ConfirmLink from '../UI/ConfirmLink/ConfirmLink';
 
 
-type Props = {
+type Props = Readonly<{
     menuItem: MenuItem;
-}
+}>;
 
 const iconMapping: { [key: string]: React.ElementType } = {
     CalendarMonthOutlined,

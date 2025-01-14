@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 
-type Props = {
+type Props = Readonly<{
     children: React.ReactNode;
-}
+}>;
 
 export function ResizableContainer({ children }: Props) {
     const [pageWidth, setPageWidth] = useState<number>(0);

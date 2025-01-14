@@ -6,7 +6,7 @@ import { generatePageMetadata } from "@/functions/generatePageMetadata";
 
 import { locales } from "@/data/locales";
 
-type Props = { params: { locale: string } }
+type Props = Readonly<{ params: { locale: string } }>
 
 export function generateMetadata({ params }: Props) {
   return generatePageMetadata(params.locale, "home");

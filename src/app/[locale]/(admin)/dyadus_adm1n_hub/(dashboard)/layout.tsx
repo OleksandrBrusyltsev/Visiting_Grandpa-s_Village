@@ -9,10 +9,10 @@ import { getHouses } from '@/actions/getHouses';
 import Modal from '@/components/Admin/UI/Dialog/Dialog';
 import NavigationEvents from '@/components/Admin/NavigationEvents/NavigationEvents';
 
-type Props = {
+type Props = Readonly<{
   children: React.ReactNode;
   params: { locale: string };
-}
+}>
 // export const dynamic = 'force-dynamic';
 export default async function DashboardLayout({ children, params: { locale } }: Props) {
 

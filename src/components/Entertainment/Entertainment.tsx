@@ -12,7 +12,7 @@ import MarkdownPreview from "@/components/ui/MarkdownPreview/MarkdownPreview";
 
 import s from "./Entertainment.module.scss";
 
-type Props = { items: EntertainmentItem[] };
+type Props = Readonly<{ items: EntertainmentItem[] }>;
 
 export default function Entertainment({ items }: Props) {
   const aniRef = useRef<Array<Array<HTMLDivElement>>>([[]]);

@@ -9,10 +9,10 @@ import { useMainStore } from "@/stores/store-provider";
 
 import s from "@/components/Houses/HouseCard.module.scss";
 
-type Props = {
+type Props = Readonly<{
     locale: Language;
     rooms: number
-};
+}>;
 
 export default function HouseCard({ locale, rooms }: Props) {
 
@@ -31,18 +31,19 @@ export default function HouseCard({ locale, rooms }: Props) {
         return `${main} ${str}`;
     };
 
+    const getImageUrl = (photo: string | File) => {
+        if (photo) {
+            return typeof photo === "string" ? photo : URL.createObjectURL(photo);
+        }
+        return 'https://via.placeholder.com/500x400?text=No+Image';
+    };
+
     return (
         <div className={s.houseWrapper} style={{ visibility: 'visible' }}>
             <div className={s.imageWrapper}>
                 <Image
                     fill
-                    src={
-                        photo[0] ?
-                            typeof photo[0] === "string" ?
-                                photo[0] :
-                                URL.createObjectURL(photo[0])
-                            : 'https://via.placeholder.com/500x400?text=No+Image'
-                    }
+                    src={getImageUrl(photo[0])}
                     alt={t('altText', { title })}
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 />

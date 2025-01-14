@@ -1,7 +1,7 @@
 import { Backdrop, CircularProgress } from '@mui/material'
 import React from 'react'
 
-type Props = { loading: boolean }
+type Props = Readonly<{ loading: boolean }>;
 
 export default function Spinner({ loading }: Props) {
     return (

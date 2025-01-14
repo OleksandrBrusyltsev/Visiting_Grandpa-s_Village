@@ -9,11 +9,11 @@ import Button from "@/components/ui/Button/Button";
 import s from "./Feedback.module.scss";
 import { messages } from "@/data/bookingStub";
 
-type Props = {
+type Props = Readonly<{
   isOpen: boolean;
   handleClose: (() => void) | undefined;
   handleRepeatFilling: () => void;
-};
+}>;
 
 export default function Error({
   handleClose,

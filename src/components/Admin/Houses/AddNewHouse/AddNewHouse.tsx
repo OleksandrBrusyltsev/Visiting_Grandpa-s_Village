@@ -12,7 +12,10 @@ import { initialAdminState } from '@/stores/adminSlice';
 import { fieldsetData } from '@/data/admin/defaultsForHousesInputs';
 import NumberFields from './components/NumberFields';
 
-export default function AddNewHouse({ housesList }: { housesList: SingleHousesListType }) {
+type Props = Readonly<{
+    housesList: SingleHousesListType
+}>
+export default function AddNewHouse({ housesList }: Props) {
     const { refresh } = useRouter();
 
     const [loading, setLoading] = React.useState(false);
@@ -102,7 +105,7 @@ export default function AddNewHouse({ housesList }: { housesList: SingleHousesLi
             {
                 fieldsetData.map(({ legend, nameAttr, multiLang, multiline }, index) => (
                     <HouseFieldset
-                        key={index}
+                        key={nameAttr}
                         legend={legend}
                         nameAttr={nameAttr}
                         multiLang={multiLang}

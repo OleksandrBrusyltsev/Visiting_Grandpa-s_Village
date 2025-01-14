@@ -1,12 +1,13 @@
 import React, { memo } from 'react'
 import { TextField } from '@mui/material'
 
-type Props = {
+type Props = Readonly<{
     housesList: SingleHousesListType
     defaultValue?: string;
     value?: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
+}>;
+
 const HouseSelect = memo(function HouseSelect({ housesList, ...rest }: Props) {
     return (
         <TextField

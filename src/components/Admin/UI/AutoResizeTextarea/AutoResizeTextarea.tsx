@@ -1,7 +1,7 @@
 import { useMainStore } from '@/stores/store-provider';
 import React, { useEffect, useRef } from 'react';
 
-type Props = {
+type Props = Readonly<{
     defaultValue?: string;
     className?: string;
     name: string;
@@ -9,7 +9,7 @@ type Props = {
     onBlur?: () => void;
     value?: string;
     onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-};
+}>;
 
 export default function AutoResizeTextarea({ defaultValue, className, name, ...props }: Props) {
     const textareaRef = useRef<HTMLTextAreaElement | null>(null);

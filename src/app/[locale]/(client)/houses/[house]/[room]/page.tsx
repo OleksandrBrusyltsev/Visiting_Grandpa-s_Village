@@ -6,6 +6,8 @@ import { getData } from "@/actions/getData";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { generateHouseMetadata } from "@/functions/generateHouseMetadata";
 
+type Props = Readonly<{ params: { house: string; room: string; locale: string } }>;
+
 export async function generateMetadata({ params }: Props) {
   return generateHouseMetadata({ params });
 }
@@ -22,11 +24,9 @@ export async function generateStaticParams({
   const routes = rooms.reduce((accu, cur) => {
     accu.push({ locale, house: cur.house_type!, room: cur.name })
     return accu
-  },[] as { locale: string; house: string; room: string }[])
+  }, [] as { locale: string; house: string; room: string }[])
   return routes;
 }
-
-type Props = { params: { house: string; room: string; locale: string } };
 
 export default async function Page({ params }: Props) {
   const { room, locale } = params;

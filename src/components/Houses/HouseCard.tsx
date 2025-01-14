@@ -10,7 +10,7 @@ import Button from "../ui/Button/Button";
 
 import s from "./HouseCard.module.scss";
 
-type Props = { data: HouseItem; rooms: number };
+type Props = Readonly<{ data: HouseItem; rooms: number }>;
 
 // const FavoriteIcon = ({ className }: { className: string }) => {
 //   return (
@@ -37,7 +37,7 @@ const HouseCard = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
   const locale = useLocale();
   const t = useTranslations("HouseItem");
 
-  const { push } = useRouter();
+  // const { push } = useRouter();
   // const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   const { name, photo, max_adults, extra_adults, house_type, rental_price } =

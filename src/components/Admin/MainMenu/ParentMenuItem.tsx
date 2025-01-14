@@ -25,10 +25,10 @@ import {
 import ChildMenuItem from './ChildMenuItem';
 import ConfirmLink from '../UI/ConfirmLink/ConfirmLink';
 
-type Props = {
+type Props = Readonly<{
     menuItem: MenuItem;
     isDrawerOpen: boolean;
-}
+}>;
 
 const iconMapping: { [key: string]: React.ElementType } = {
     CalendarMonthOutlined,

@@ -58,7 +58,6 @@ const SimpleGallery = memo(function SimpleGallery({ photo }: { photo: (string | 
         if (!shouldUpdateHouseData.current) {
             //блокируем обновление данных в сторе, вызванное изменением пропсов (избегаем цикличности) или после первого рендера
             shouldUpdateHouseData.current = true;
-            return;
         } else {
             setHouseData((houseData) => {
                 if (houseData) {
@@ -230,9 +229,7 @@ export default SimpleGallery;
 //хелпер для определения количества колонок
 export function getGridClasses(total: number, i: number) {
     if (total < 3) {
-        switch (i) {
-            default: return 'col-span-6 row-span-2';
-        }
+        return 'col-span-6 row-span-2';
     } else if (total === 3) {
         switch (i) {
             case 1: return 'col-span-7 row-span-2';

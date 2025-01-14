@@ -23,7 +23,7 @@ export default function SortableItem({
     onChange,
     animateLayoutChanges,
     dragOverlay
-}: SortableItemProps) {
+}: Readonly<SortableItemProps>) {
     const data = useSortable({
         id,
         animateLayoutChanges,
@@ -77,7 +77,7 @@ export interface ItemProps {
 }
 
 export const Item = React.memo(
-    React.forwardRef<HTMLLIElement, ItemProps>(
+    React.forwardRef<HTMLLIElement, Readonly<ItemProps>>(
         (
             {
                 classNames,
@@ -164,7 +164,7 @@ export const Item = React.memo(
 
 export interface ActionProps extends React.HTMLAttributes<HTMLButtonElement> { }
 
-export const Action = forwardRef<HTMLButtonElement, ActionProps>(
+export const Action = forwardRef<HTMLButtonElement, Readonly<ActionProps>>(
     function Action({ className, style, ...props }, ref) {
         return (
             <button
@@ -183,7 +183,7 @@ export const Action = forwardRef<HTMLButtonElement, ActionProps>(
 
 
 
-export function Remove(props: ActionProps) {
+export function Remove(props: Readonly<ActionProps>) {
     return (
         <Action
             {...props}
@@ -195,7 +195,7 @@ export function Remove(props: ActionProps) {
         </Action>
     );
 }
-export function Edit(props: ActionProps) {
+export function Edit(props: Readonly<ActionProps>) {
     return (
         <Action
             {...props}
