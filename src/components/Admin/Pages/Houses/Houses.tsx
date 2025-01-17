@@ -21,8 +21,9 @@ interface TabPanelProps {
     value: number;
     className?: string
 }
-
+  
 export const CustomTabPanel = forwardRef<HTMLDivElement | null, Readonly<TabPanelProps>>(function CustomTabPanel(props, ref) {
+
     const { children, value, index, className = '', ...other } = props;
 
     return (
