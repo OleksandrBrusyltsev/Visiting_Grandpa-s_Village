@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server';
 import { revalidateTag } from 'next/cache';
 
 import getCloudinaryUrl from '@/actions/admin/getCloudinaryUrl';
@@ -18,36 +18,34 @@ export async function POST(request: Request) {
     const data = Object.fromEntries(form);
 
     //получаем ссылки для фото Cloudinary
-    const photos = [data.cover_photo as File | string];
-    photos.push(...getPhotos(data, 'photo'));
+    const photos = getPhotos(data, 'photo');
 
-    const photosUrls = await getCloudinaryUrl(photos) as string | string[];
+    const photosUrls = (await getCloudinaryUrl(photos)) as string | string[];
     if (typeof photosUrls === 'string') {
         return NextResponse.json({ message: photosUrls }, { status: 500 });
     }
 
     //собираем и формируем данные для записи нового домика в БД
-    const baseCombinedData = {...combineProperty(data, [
-        'title',
-        'long_title',
-        'description',
-        'decor_text',
-    ])} as Pick<HouseItem, 'title' | 'long_title' | 'description' | 'decor_text'>;
-    
-    const combinedData: Omit<HouseItem, 'id' | 'photoDecor' | 'treesDecor' | 'coordinates'> = {
+    const baseCombinedData = {
+        ...combineProperty(data, ['title', 'long_title', 'description', 'decor_text']),
+    } as Pick<HouseItem, 'title' | 'long_title' | 'description' | 'decor_text'>;
+
+    const combinedData: Omit<HouseItem, 'id' | 'photoDecor' | 'treesDecor' | 'coordinates'> & {
+        cover_photo: string /* удалить потом!!!! сделано для совместимости с API */;
+    } = {
         ...baseCombinedData,
         rental_price: +data.rental_price,
-        cover_photo:  photosUrls![0],
-        photo:  photosUrls!.slice(1) || null,
-        name:  data.name as unknown as string,
+        cover_photo: '' /* удалить потом!!!! сделано для совместимости с API */,
+        photo: photosUrls,
+        name: data.name as unknown as string,
         max_adults: +data.max_adults,
-        extra_adults:  +data.extra_adults,
-        extra_adult_price:  +data.extra_adult_price,
-        extra_children:  +data.extra_children,
-        extra_children_price:  +data.extra_children_price,
-        discount_percent:  +data.discount_percent,
+        extra_adults: +data.extra_adults,
+        extra_adult_price: +data.extra_adult_price,
+        extra_children: +data.extra_children,
+        extra_children_price: +data.extra_children_price,
+        discount_percent: +data.discount_percent,
         is_available: true,
-        house_type: data.house_type === 'null' ? null : data.house_type as unknown as string,
+        house_type: data.house_type === 'null' ? null : (data.house_type as unknown as string),
     };
 
     const access_token = cookies().get('access_token')?.value;
@@ -56,7 +54,7 @@ export async function POST(request: Request) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${access_token}`
+                Authorization: `Bearer ${access_token}`,
             },
             body: JSON.stringify(combinedData),
         });

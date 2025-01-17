@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import { usePathname } from 'next/navigation';
+import { Collapse, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import {
     CalendarMonthOutlined,
     EmailOutlined,
@@ -19,14 +21,14 @@ import {
     PhotoOutlined,
     AddOutlined
 } from '@mui/icons-material';
-import { Collapse, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
 import ChildMenuItem from './ChildMenuItem';
+import ConfirmLink from '../UI/ConfirmLink/ConfirmLink';
 
-type Props = {
+type Props = Readonly<{
     menuItem: MenuItem;
     isDrawerOpen: boolean;
-}
+}>;
 
 const iconMapping: { [key: string]: React.ElementType } = {
     CalendarMonthOutlined,
@@ -48,10 +50,17 @@ const iconMapping: { [key: string]: React.ElementType } = {
 };
 
 export default function ParentMenuItem({ menuItem, isDrawerOpen }: Props) {
-    const { name, icon, children } = menuItem;
-    const [open, setOpen] = React.useState(false);
+    const { name, url, icon, children } = menuItem;
+
+    const isComplexHouseRef = React.useRef<boolean>(!["Будиночки", "Галерея", "Сторінки"].includes(menuItem.name));
+
+    const [open, setOpen] = React.useState(isComplexHouseRef.current);
+
+    const currPath = usePathname();
+    const selectedIndex = currPath === url;
 
     const handleClick = () => {
+        if (isComplexHouseRef.current) return
         isDrawerOpen && setOpen(!open);
     };
 
@@ -65,7 +74,7 @@ export default function ParentMenuItem({ menuItem, isDrawerOpen }: Props) {
 
     return (
         <>
-           {open && <Divider />}
+            {open && <Divider />}
 
             <ListItem
                 disablePadding
@@ -75,24 +84,35 @@ export default function ParentMenuItem({ menuItem, isDrawerOpen }: Props) {
                     sx={{
                         minHeight: 48, px: 2.5, '&:hover': {
                             backgroundColor: 'rgba(63, 85, 64, 0.5)',
-                        }, }}
+                        },
+                        '&.Mui-selected': {
+                            backgroundColor: 'rgba(63, 85, 64, 0.3)',
+                        },
+                        '&:hover, &.Mui-selected:hover': {
+                            backgroundColor: 'rgba(63, 85, 64, 0.5)',
+                        },
+                    }}
+                    selected={selectedIndex}
+                    component={isComplexHouseRef.current ? ConfirmLink : 'div'}
+                    href={isComplexHouseRef.current ? menuItem.url : ''}
                 >
                     <ListItemIcon
                         sx={{ minWidth: 0, justifyContent: 'center', mr: 3 }}
                     >
                         <IconComponent />
                     </ListItemIcon>
-                    <ListItemText
-                        primary={name}
-                       
-                    />
-                    {open ? <ExpandLess sx={{
-                        opacity: isDrawerOpen ? 1 : 0,
-                        transition: "opacity 500ms"
-                    }} /> : <ExpandMore sx={{
-                        opacity: isDrawerOpen ? 1 : 0,
-                        transition: "opacity 500ms"
-                    }} />}
+                    <ListItemText primary={name} />
+                    {!isComplexHouseRef.current && (
+                        <>
+                            {open ? <ExpandLess sx={{
+                                opacity: isDrawerOpen ? 1 : 0,
+                                transition: "opacity 500ms"
+                            }} /> : <ExpandMore sx={{
+                                opacity: isDrawerOpen ? 1 : 0,
+                                transition: "opacity 500ms"
+                            }} />}
+                        </>
+                    )}
                 </ListItemButton>
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>

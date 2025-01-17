@@ -1,7 +1,7 @@
-import React from 'react'
+import AdminCalendar from "@/components/Admin/Booking2/components/AdminCalendar/AdminCalendar";
 
-export default function Page() {
+export default function Admin() {
   return (
-    <div>Сторінка Бронювання</div>
-  )
+    <AdminCalendar />
+  );
 }

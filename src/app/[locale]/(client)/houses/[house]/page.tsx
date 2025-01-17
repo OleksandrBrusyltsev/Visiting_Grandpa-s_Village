@@ -18,7 +18,7 @@ export async function generateStaticParams({
   return items.filter(item => item.name && !item.house_type).map((item) => ({ locale, house: item.name }));
 }
 
-type Props = { params: { house: string; locale: string } };
+type Props = Readonly<{ params: { house: string; locale: string } }>;
 
 export async function generateMetadata({ params }: Props) {
   return generateHouseMetadata({ params });

@@ -1,5 +1,5 @@
 @use "@/styles/mixins" as mixins;
-@use "@/styles/variables";
+@use "@/styles/variables" as variables;
 
 .hero {
     margin-top: 130px;
@@ -36,7 +36,7 @@
     position: absolute;
     top: -105px;
     right: calc(-10px + (100cqw - 375px) / 3);
-  
+
     &:hover::before {
         content: '';
         position: absolute;
@@ -50,7 +50,7 @@
         z-index: -1;
     }
 
-    
+
     img {
         z-index: -1;
         object-fit: contain;
@@ -106,6 +106,7 @@
 .curve {
     display: none;
 }
+
 .textWrapper {
     width: 100%;
     display: flex;
@@ -117,9 +118,9 @@
     font-weight: 600;
     text-align: center;
     font-size: 16px;
-    margin-top: 50px;
+    margin-block: 50px;
 
-    @container houses (min-width: 768px) {
+    @include mixins.container-media-min(variables.$mobile) {
         font-size: var(--f-size-button-small);
     }
 
@@ -127,18 +128,18 @@
         width: 90%;
         text-align: center;
 
-        @container houses  (min-width: 768px) {
+        @include mixins.container-media-min(variables.$mobile) {
             width: 90%;
         }
 
-        @container houses  (min-width: 1000px) {
+        @include mixins.container-media-min(1000px) {
             font-size: 20px;
             width: 831px;
         }
     }
 }
 
-@container houses (min-width: 768px) {
+@include mixins.container-media-min(variables.$mobile) {
     .hero {
         margin-top: 16px;
     }
@@ -220,7 +221,7 @@
     }
 }
 
-@container houses  (min-width: 1280px) {
+@include mixins.container-media-min(variables.$breakpoint-laptop) {
     .descr1 {
         width: 85%;
         padding-left: calc((100cqw - 1180px) / 2 - 50px);
@@ -249,10 +250,6 @@
     }
 
     .cloudBackground {
-        top: -123px;
-        right: calc((100cqw - 1180px) / 2 + 141px);
-        bottom: -28px;
-        left: calc((100cqw - 1180px) / 2);
 
         &::after {
             width: 356px;
@@ -282,7 +279,7 @@
     }
 }
 
-@container houses  (min-width: 1440px) {
+@include mixins.container-media-min(variables.$pc) {
     .descr1 {
         padding-left: 0;
     }
@@ -295,5 +292,9 @@
         .curve {
             right: 116px;
         }
+    }
+
+    .mapWrapper {
+        left: 114px;
     }
 }

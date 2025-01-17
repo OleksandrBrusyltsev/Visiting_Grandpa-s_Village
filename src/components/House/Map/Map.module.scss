@@ -23,7 +23,6 @@
 .map {
   position: relative;
   width: 327px;
-  height: 100%;
   aspect-ratio: 1.795;
 
   @media (min-width: 376px) and (max-width: 767px) {
@@ -45,7 +44,6 @@
 }
 
 .cloudBackground {
-  // width: 375px;
   width: 300px;
   height: 233px;
   position: absolute;

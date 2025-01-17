@@ -1,14 +1,15 @@
 "use client";
 import { FC, forwardRef, ReactNode, useImperativeHandle, useRef } from "react";
-import {gsap} from "gsap";
-import {useGSAP} from "@gsap/react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 import s from "./Modal.module.scss";
 
-type ModalProps = {
+type ModalProps = Readonly<{
   visible: boolean;
   children: ReactNode;
-}
+}>;
+
 const handleSrollUp = (el: HTMLElement | null) => {
   if (window === undefined || !el) return
   const posY = el.getBoundingClientRect().top;
@@ -18,7 +19,7 @@ const handleSrollUp = (el: HTMLElement | null) => {
   if (freeSpace < blockHeight) window.scrollBy({ top: - diff, behavior: "smooth" });
 };
 
-const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal({children, visible}, ref) {
+const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal({ children, visible }, ref) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   useImperativeHandle(ref, () => containerRef.current!);
   useGSAP(() => {

@@ -14,12 +14,12 @@ import { OrderType } from '../BookingComponent';
 import s from "./Main.module.scss";
 import { messages } from '@/data/bookingStub';
 
-type Props = {
+type Props = Readonly<{
     order: OrderType;
     isOpen: boolean;
     handleClose: (() => void) | undefined;
     handleBotResponse: (status: boolean | null) => void
-}
+}>;
 declare global {
     interface Window {
         grecaptcha: {

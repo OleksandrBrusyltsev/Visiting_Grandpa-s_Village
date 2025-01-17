@@ -1,7 +1,7 @@
 import React from 'react'
 import { Fab, SxProps, Tooltip, Zoom } from '@mui/material'
 
-type Props = {
+type Props = Readonly<{
     showFab: boolean;
     title: string;
     type: 'submit' | 'button';
@@ -9,7 +9,7 @@ type Props = {
     loading: boolean;
     sx?: SxProps;
     cb: () => void;
-}
+}>;
 
 export default function FloatButton({
     showFab, title, type, icon, loading, sx, cb

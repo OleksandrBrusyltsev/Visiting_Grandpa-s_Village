@@ -10,10 +10,10 @@ import Button from "@/components/ui/Button/Button";
 import s from "./Feedback.module.scss";
 import { messages } from "@/data/bookingStub";
 
-type Props = {
+type Props = Readonly<{
   handleClose: (() => void) | undefined;
   isOpen: boolean;
-};
+}>;
 
 export default function Success({ handleClose, isOpen }: Props) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);

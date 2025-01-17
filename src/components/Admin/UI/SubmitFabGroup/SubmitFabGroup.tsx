@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { Stack, SxProps } from '@mui/material';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
 
 import FloatButton from '../FloatButton/FloatButton';
+import Spinner from '../Spinner/Spinner';
 
-type Props = {
+type Props = Readonly<{
     loading: boolean
     onSubmit: () => void
     onReset: () => void
-}
+}>;
 
 const fabStyle = {
     save: {
-        position: 'fixed',
-        bottom: 16,
-        right: 16,
         bgcolor: 'rgb(63, 85, 64)',
         color: 'white',
         '&:hover': {
@@ -23,9 +21,6 @@ const fabStyle = {
         }
     },
     reset: {
-        position: 'fixed',
-        bottom: 95,
-        right: 16,
         bgcolor: 'rgba(180, 133, 79, 0.6)',
         color: 'white',
         '&:hover': {
@@ -49,7 +44,7 @@ const fabs = [
     }
 ]
 
-export default function SubmitFabGroup({
+const SubmitFabGroup = memo(function SubmitFabGroup({
     loading, onSubmit, onReset
 }: Props) {
     const [showFab, setShowFab] = useState(false);
@@ -62,25 +57,32 @@ export default function SubmitFabGroup({
     }, []);
 
     return (
-        <Stack
-            // sx={{ display: 'flex', flexDirection: 'row', gap: 2, justifyContent: 'flex-end' }}
-
-        >
-            {
-                fabs.map((fab, index) => (
-                    <FloatButton
-                        key={fab.type}
-                        showFab={showFab}
-                        title={fab.label}
-                        type={fab.type}
-                        icon={fab.icon}
-                        loading={loading}
-                        sx={fab.sx}
-                        cb={fab.type === 'submit' ? onSubmit : onReset}
-                        
-                    />
-                ))
-            }
-        </Stack>
+        <>
+            <Stack sx={{
+                position: 'fixed',
+                bottom: 16,
+                right: 16,
+                display: 'flex',
+                flexDirection: 'column-reverse',
+                gap: '23px',
+            }}>
+                {
+                    fabs.map((fab, index) => (
+                        <FloatButton
+                            key={fab.type}
+                            showFab={showFab}
+                            title={fab.label}
+                            type={fab.type}
+                            icon={fab.icon}
+                            loading={loading}
+                            sx={fab.sx}
+                            cb={fab.type === 'submit' ? onSubmit : onReset}
+                        />
+                    ))
+                }
+            </Stack>
+            <Spinner loading={loading} />
+        </>
     )
-}
+});
+export default SubmitFabGroup;

@@ -1,0 +1,41 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/variables" as variables;
+
+.servicesWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 16px;
+    margin-top: calc(37px + 3 * (100cqw - 375px) / 392);
+
+    @include mixins.container-media-min(variables.$mobile) {
+        margin-top: calc(40px + 46 * (100cqw - 768px) / 511);
+        padding-right: 50px;
+        justify-content: flex-start;
+    }
+
+    @include mixins.container-media-min(1000px) {
+        justify-content: flex-end;
+    }
+
+    @include mixins.container-media-min(variables.$breakpoint-laptop) {
+        margin-top: 50px;
+        padding-right: 80px;
+    }
+
+    & .iconWrapper {
+        width: calc(63px + 23 * (100cqw - 375px) / 904);
+        height: calc(50px + 40 * (100cqw - 375px) / 904);
+        background-color: rgba(var(--color-nude), 0.3);
+        border-radius: 8px;
+
+        @include mixins.container-media-min(variables.$breakpoint-laptop) {
+            width: 86px;
+            height: 90px;
+        }
+    }
+
+    & .servicesIcon {
+        padding: 0px 8px;
+    }
+}

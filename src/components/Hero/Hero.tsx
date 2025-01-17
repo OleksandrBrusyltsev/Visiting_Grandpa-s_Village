@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/all";
 
 import BookingComponent from "../BookingComponent/BookingComponent";
 import { MatchMediaContext } from "@/context/MatchMediaContext";
-import MarkdownPreview from "@/functions/MarkdownPreview";
+import MarkdownPreview from "@/components/ui/MarkdownPreview/MarkdownPreview";
 import WelcomeBlock from "../WelcomeBlock/WelcomeBlock";
 
 import css from "./Hero.module.scss";

@@ -6,7 +6,7 @@ import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { locales } from "@/data/locales";
 import { generatePageMetadata } from "@/functions/generatePageMetadata";
 
-type Props = { params: { locale: string } }
+type Props = Readonly<{ params: { locale: string } }>
 
 export function generateMetadata({ params }: Props) {
   return generatePageMetadata(params.locale, "rules");

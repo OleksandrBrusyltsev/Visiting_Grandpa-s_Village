@@ -2,11 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 
-import s from './ResizableContainer.module.scss';
-
-type Props = {
+type Props = Readonly<{
     children: React.ReactNode;
-}
+}>;
 
 export function ResizableContainer({ children }: Props) {
     const [pageWidth, setPageWidth] = useState<number>(0);
@@ -39,7 +37,7 @@ export function ResizableContainer({ children }: Props) {
 
     const resizableBlockRef = React.useRef<HTMLDivElement>(null);
     const resizeHandleRef = React.useRef<HTMLDivElement>(null);
-    
+
     const handleResize = (e: React.MouseEvent) => {
         if (resizableBlockRef.current && resizeHandleRef.current) {
             e.preventDefault();
@@ -50,7 +48,7 @@ export function ResizableContainer({ children }: Props) {
 
             const onMouseMove = (e: MouseEvent) => {
                 if (resizableBlockRef.current && resizeHandleRef.current) {
-                    const newWidth = startWidth + (e.clientX - startX);
+                    const newWidth = startWidth + (e.clientX - startX) * 2;
                     setPageWidth(newWidth);
                     resizableBlockRef.current.style.width = `${newWidth}px`;
                 }
@@ -68,13 +66,13 @@ export function ResizableContainer({ children }: Props) {
 
     return (
         <div className="inline-block relative w-full">
-            <h2 className='text-xl mb-4'> Ширина блоку, в якому знаходиться превьюшка - {pageWidth} px</h2>
+            <h2 className='text-xl my-4'> Ширина блоку, в якому знаходиться превьюшка - {pageWidth} px</h2>
 
-            <div className={`${s.resizeContainer} w-full border rounded-lg border-base-green relative overflow-auto`}
+            <div className={`@container/resizeContainer w-full border rounded-lg border-base-green relative overflow-auto mx-auto`}
                 ref={resizableBlockRef}
             >
                 {children}
-            <div className="w-1 h-full hover:bg-blue-500 absolute bottom-0 right-0 cursor-col-resize rounded-full" onMouseDown={handleResize} ref={resizeHandleRef}></div>
+                <div className="w-1 h-full hover:bg-blue-500 absolute bottom-0 right-0 cursor-col-resize rounded-full" onMouseDown={handleResize} ref={resizeHandleRef}></div>
             </div>
         </div>
     )

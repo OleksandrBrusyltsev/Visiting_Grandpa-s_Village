@@ -10,7 +10,7 @@ import sFooter from "../../Footer/Footer.module.scss";
 import s from "./ContactsList.module.scss";
 
 import { useLocale, useTranslations } from "next-intl";
-import MarkdownPreview from "@/functions/MarkdownPreview";
+import MarkdownPreview from "@/components/ui/MarkdownPreview/MarkdownPreview";
 import { contacts } from "@/data/contacts";
 
 const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;

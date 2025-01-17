@@ -99,7 +99,7 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
       <div className={s.faqWrapper} ref={faqWrapperRef}>
         <ul className={s.faqList}>
           {contacts.faq[locale as keyof typeof contacts.faq].map((item, index) => (
-            <li key={index} className={s.faqItem}>
+            <li key={item.question} className={s.faqItem}>
               <div
                 className={s.questionWrapper}
                 onClick={() => toggleAnswer(index)}
