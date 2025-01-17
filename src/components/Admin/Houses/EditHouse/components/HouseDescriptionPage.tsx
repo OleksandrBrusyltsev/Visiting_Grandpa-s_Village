@@ -17,7 +17,7 @@ type Props = Readonly<{
     rooms: number;
 }>;
 
-const HousePage = memo(function HousePage({ locale, rooms }: Props) {
+const HouseDescriptionPage = memo(function HouseDescriptionPage({ locale, rooms }: Props) {
     const coordinates = useMainStore((state) => state.houseEditing?.coordinates);
     if (!coordinates) return;
 
@@ -191,4 +191,4 @@ const MultiRoomGalleryBlock = memo(function MultiRoomGalleryBlock({ locale, room
     );
 });
 
-export default HousePage;
+export default HouseDescriptionPage;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { forwardRef, useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Box, Tab, Tabs } from '@mui/material';
@@ -22,20 +22,21 @@ interface TabPanelProps {
     className?: string
 }
 
-export function CustomTabPanel(props: Readonly<TabPanelProps>) {
+export const CustomTabPanel = forwardRef<HTMLDivElement | null, Readonly<TabPanelProps>>(function CustomTabPanel(props, ref) {
     const { children, value, index, className = '', ...other } = props;
 
     return (
         <div
             role="tabpanel"
-            className={`${value !== index && 'opacity-0 invisible h-0 overflow-hidden'} ` + className}
+            ref={ref}
+            className={`${value !== index ? 'opacity-0 invisible h-0 overflow-hidden ' : ''}` + className}
             id={`simple-tabpanel-${index}`}
             {...other}
         >
             {children}
         </div>
     );
-}
+})
 
 export default function HousesPage({ data }: Props) {
 

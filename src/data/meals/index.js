@@ -24,12 +24,14 @@ export const meals = [
             uk: 'Мангали на території *[еко-садиби “На селі у Дідуся”](/)* **входять у вартість проживання.** Запалюй вогнище, готуй свої улюблені *страви в еко-стилі* та насолоджуйся смаком, знаходячись в обіймах зелені та цвіту, серед неймовірної природи і чистого лісового повітря.\n\n Атмосфера, що панує тут зробить їжу, ще смачнішою та подарує незабутні емоції.',
             ru: 'Мангалы на территории *[эко-усадьбы “На деревне у Дедушки”](/)* **входят в стоимость проживания.** Разжигай огонь, готовь свои любимые *блюда в эко-стиле* и наслаждайся вкусом, находясь в окружении зелени и цветов, среди невероятной природы и чистого лесного воздуха.\n\n Атмосфера, царящая здесь, сделает еду еще вкуснее и подарит незабываемые эмоции.',
             en: "The grills on the territory of the *[eco-estate “Grandpa's village”](/)* **are included in the accommodation price.** Light the fire, cook your favorite *eco-style dishes,* and enjoy the taste while surrounded by greenery and flowers, amidst incredible nature and fresh forest air.\n\n The atmosphere here will make the food even tastier and provide unforgettable emotions.",
-
         },
         photos: [
             '/images/meals/grill.png',
             '/images/meals/grill-s.png',
             '/images/meals/grill-m.png',
+            // 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1736939208/hbks7zzeq4yvegwheiqk.png',
+            // 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1736939209/kzoxgfgft1rr2uiswbe7.png',
+            // 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1736939209/iiu30sicgslnkrmhzwvm.png',
         ],
     },
     {
@@ -48,6 +50,9 @@ export const meals = [
             '/images/meals/kitchen.png',
             '/images/meals/kitchen-veg.png',
             '/images/meals/kitchen-pot.png',
+            // 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1736938851/tdln7jenomddlrsn37p1.png',
+            // 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1736938852/mbzuubti1q2ar0ptzidf.png',
+            // 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1736938852/ro8rqwi5vhnihxlojuoj.png',
         ],
     },
     {
@@ -66,6 +71,9 @@ export const meals = [
             '/images/meals/self-cooking.png',
             '/images/meals/self-cooking-borsch.png',
             '/images/meals/self-cooking-pelmeni.png',
+            // 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1736939207/icg5crlhugjfz5y8lisg.png',
+            // 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1736939207/ix4mgrzbp2ie6hm8d6lt.png',
+            // 'https://res.cloudinary.com/dzbm3urzv/image/upload/v1736939208/ztdhswwlnich5ctuc7wd.png',
         ],
     },
 ];
