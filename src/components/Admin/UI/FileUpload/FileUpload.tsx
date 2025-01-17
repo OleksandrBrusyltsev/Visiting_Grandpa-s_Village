@@ -2,13 +2,13 @@ import React, { memo } from 'react';
 import { UniqueIdentifier } from '@dnd-kit/core';
 import { useMainStore } from '@/stores/store-provider';
 
-type Props = {
+type Props = Readonly<{
     setItems: React.Dispatch<React.SetStateAction<{
         id: UniqueIdentifier;
         src: string;
         raw: string | File
     }[]>>;
-};
+}>;
 
 const FileUpload = memo(function FileUpload({ setItems }: Props) {
     const setIsDirtyPage = useMainStore(state => state.setIsDirtyPage);

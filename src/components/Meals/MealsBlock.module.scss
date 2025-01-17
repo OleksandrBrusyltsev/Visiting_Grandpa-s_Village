@@ -5,21 +5,22 @@
   font-family: var(--f-family-main);
   position: relative;
 }
+
 .mealsTitle {
   text-transform: uppercase;
   @include mixins.mak-green;
-  font-size: clamp(
-    var(--f-size-h3),
-    calc(24px * 100vw / 375px),
-    var(--f-size-large)
-  );
+  font-size: clamp(var(--f-size-h3),
+      calc(24px * 100cqw / 375px),
+      var(--f-size-large));
 }
+
 .mealsDescriptionWrapper {
   font-size: var(--f-size-body);
   font-weight: 300;
   position: relative;
   letter-spacing: 0.005em;
 }
+
 .mealsDescription {
   line-height: 1.16;
   font-size: 16px;
@@ -27,10 +28,12 @@
   & a {
     color: rgb(var(--color-base-green));
   }
+
   & p:last-child {
     padding-top: 25px;
   }
 }
+
 .mainPhoto,
 .topPhoto,
 .bottomPhoto {
@@ -38,6 +41,7 @@
     object-fit: contain;
   }
 }
+
 .mainPhoto {
   &:before {
     width: 68%;
@@ -54,54 +58,64 @@
     background-size: contain;
   }
 }
+
 .mealsBlockWrapper:nth-of-type(1) {
   .mealsDescriptionWrapper {
-    margin-top: min(calc(110px * 100vw / 375px), 150px);
+    margin-top: min(calc(110px * 100cqw / 375px), 150px);
     margin-inline: 24% auto;
   }
+
   .mainPhoto {
     position: absolute;
     width: clamp(172px, 52%, 275px);
     aspect-ratio: 1.12;
-    top: calc(-34px - 27 * (100vw - 375px) / 392);
+    top: calc(-34px - 27 * (100cqw - 375px) / 392);
     right: 0;
+
     &:before {
       width: clamp(97px, 68%, 173px);
     }
   }
+
   .topPhoto {
     position: absolute;
     width: clamp(67px, 20.5%, 100px);
     aspect-ratio: 0.88;
-    top: calc(28px * 100vw / 375px);
+    top: calc(28px * 100cqw / 375px);
     left: 26%;
   }
+
   .bottomPhoto {
     position: absolute;
     width: clamp(78px, 24%, 120px);
     aspect-ratio: 0.8;
-    top: calc(94px * 100vw / 375px);
+    top: calc(94px * 100cqw / 375px);
     left: 0;
   }
+
   .mealsCurve {
     position: absolute;
     color: rgb(var(--color-base-green));
     rotate: 19deg;
-    left: calc(210px - 150 * (767px - 100vw) / 392);
-    bottom: max(calc(-84px * 100vw / 375px), -138px);
+    left: calc(210px - 150 * (767px - 100cqw) / 392);
+    bottom: max(calc(-84px * 100cqw / 375px), -138px);
     width: min(42%, 204px);
-    height: min(calc(49px * 100vw / 375px), 73px);
+    height: min(calc(49px * 100cqw / 375px), 73px);
   }
 }
+
 .mealsBlockWrapper:nth-of-type(2) {
-  margin-top: min(calc(150px * 100vw / 375px), 250px);
+  margin-top: min(calc(150px * 100cqw / 375px), 250px);
+
   .mealsDescriptionWrapper {
-    margin-top: calc(40px * 100vw / 375px);
+    margin-top: calc(40px * 100cqw / 375px);
+
     .mainPhoto {
       float: right;
       position: relative;
       width: clamp(162px, 35%, 250px);
       aspect-ratio: 1;
+
       &:before {
         width: clamp(113px, 70%, 175px);
         right: unset;
@@ -109,46 +123,54 @@
       }
     }
   }
+
   .topPhoto {
     position: absolute;
     width: clamp(132px, 40%, 150px);
     aspect-ratio: 1.13;
-    top: calc(-72px * 100vw / 375px);
+    top: calc(-72px * 100cqw / 375px);
     top: -72px;
     right: 0;
   }
+
   .bottomPhoto {
     position: absolute;
     width: clamp(90px, 27.5%, 120px);
     aspect-ratio: 1.125;
     bottom: -80px;
-    bottom: calc(-80px - 27px * 100vw / 768px);
+    bottom: calc(-80px - 27px * 100cqw / 768px);
     left: 15%;
   }
+
   .mealsCurve {
     z-index: -1;
     position: absolute;
     color: rgb(var(--color-base-green));
     rotate: -18deg;
     width: min(46%, 214px);
-    bottom: max(calc(-120px * 100vw / 375px), -220px);
-    right: calc(180px - 160 * (767px - 100vw) / 392);
-    height: min(calc(88px * 100vw / 375px), 110px);
+    bottom: max(calc(-120px * 100cqw / 375px), -220px);
+    right: calc(180px - 160 * (767px - 100cqw) / 392);
+    height: min(calc(88px * 100cqw / 375px), 110px);
   }
 }
+
 .mealsBlockWrapper:nth-of-type(3) {
-  margin-top: min(calc(148px * 100vw / 375px), 270px);
+  margin-top: min(calc(148px * 100cqw / 375px), 270px);
+
   .mealsTitle {
     width: 72%;
     margin-left: auto;
   }
+
   .mealsDescriptionWrapper {
-    margin-top: calc(240px - 120 * (767px - 100vw) / 392);
+    margin-top: calc(240px - 120 * (767px - 100cqw) / 392);
+
     .mainPhoto {
       float: right;
       position: relative;
       width: clamp(188px, 35%, 255px);
       aspect-ratio: 1.02;
+
       &:before {
         width: clamp(139px, 73%, 186px);
         left: unset;
@@ -156,78 +178,91 @@
       }
     }
   }
+
   .topPhoto {
     position: absolute;
     width: clamp(113px, 35%, 223px);
     aspect-ratio: 1.36;
-    top: calc(72px * 100vw / 375px);
+    top: calc(72px * 100cqw / 375px);
     top: 72px;
     left: 15px;
   }
+
   .bottomPhoto {
     position: absolute;
     width: clamp(117px, 36%, 149px);
     aspect-ratio: 1.72;
-    bottom: calc(-100px - 30 * (100vw - 375px) / 392);
+    bottom: calc(-100px - 30 * (100cqw - 375px) / 392);
     left: 170px;
   }
 }
-@include mixins.media-min(variables.$mobile) {
+
+@include mixins.container-media-min(variables.$mobile) {
   .mealsDescription {
     line-height: 1.2;
     font-size: 18px;
   }
+
   .mealsBlockWrapper:nth-of-type(1) {
     .mealsTitle {
-      padding-left: min(calc(110px - 48 * (1279px - 100vw) / 511), 110px);
+      padding-left: min(calc(110px - 48 * (1279px - 100cqw) / 511), 110px);
     }
+
     .mealsDescriptionWrapper {
       width: 470px;
-      margin-top: min(calc(174px * 100vw / 768px), 212px);
-      margin-inline: min(calc(220px - 66 * (1279px - 100vw) / 511), 220px) auto;
+      margin-top: min(calc(174px * 100cqw / 768px), 212px);
+      margin-inline: min(calc(220px - 66 * (1279px - 100cqw) / 511), 220px) auto;
     }
+
     .mainPhoto {
       position: absolute;
       width: clamp(275px, 39%, 500px);
-      top: max(calc(-61px - 25 * (100vw - 768px) / 511), -86px);
-      right: min(calc(20px - 10 * (1279px - 100vw) / 511), 20px);
+      top: max(calc(-61px - 25 * (100cqw - 768px) / 511), -86px);
+      right: min(calc(20px - 10 * (1279px - 100cqw) / 511), 20px);
+
       &:before {
         width: 63%;
       }
     }
+
     .topPhoto {
       width: clamp(112px, 16%, 149px);
-      top: max(calc(58px - 17 * (100vw - 768px) / 511), 41px);
-      left: min(calc(440px - 220 * (1279px - 100vw) / 511), 440px);
+      top: max(calc(58px - 17 * (100cqw - 768px) / 511), 41px);
+      left: min(calc(440px - 220 * (1279px - 100cqw) / 511), 440px);
     }
+
     .bottomPhoto {
       width: clamp(141px, 20%, 191px);
-      top: min(calc(110px * 100vw / 768px), 126px);
+      top: min(calc(110px * 100cqw / 768px), 126px);
     }
+
     .mealsCurve {
       rotate: 19deg;
       left: 30%;
-      bottom: max(calc(-138px * 100vw / 768px), -165px);
+      bottom: max(calc(-138px * 100cqw / 768px), -165px);
       width: min(29%, 300px);
-      height: min(calc(73px * 100vw / 768px), 107px);
+      height: min(calc(73px * 100cqw / 768px), 107px);
     }
   }
+
   .mealsBlockWrapper:nth-of-type(2) {
     .mealsTitle {
-      padding-left: min(calc(550px - 260 * (1279px - 100vw) / 511), 550px);
+      padding-left: min(calc(550px - 260 * (1279px - 100cqw) / 511), 550px);
     }
+
     .mealsDescriptionWrapper {
-      margin-top: min(calc(59px * 100vw / 768px), 64px);
-      margin-inline: min(calc(550px - 260 * (1279px - 100vw) / 511), 550px)
-        min(calc(110px - 110 * (1279px - 100vw) / 511), 110px);
+      margin-top: min(calc(59px * 100cqw / 768px), 64px);
+      margin-inline: min(calc(550px - 260 * (1279px - 100cqw) / 511), 550px) min(calc(110px - 110 * (1279px - 100cqw) / 511), 110px);
     }
+
     .mainPhoto {
       position: absolute;
-      left: min((60px - 49 * (1279px - 100vw) / 511), 60px);
-      top: max((80px - 58 * (100vw - 768px) / 511), 12px);
+      left: min((60px - 49 * (1279px - 100cqw) / 511), 60px);
+      top: max((80px - 58 * (100cqw - 768px) / 511), 12px);
       width: clamp(250px, 35%, 475px);
-      width: min(calc(475px - 225 * (1279px - 100vw) / 511), 475px);
+      width: min(calc(475px - 225 * (1279px - 100cqw) / 511), 475px);
       aspect-ratio: 1;
+
       &:before {
         width: 70%;
         transform: unset;
@@ -235,72 +270,84 @@
         left: -15%;
       }
     }
+
     .topPhoto {
       position: absolute;
       width: clamp(161px, 23%, 213px);
-      top: min(calc(-132px - 15 * (1279px - 100vw) / 511), -132px);
+      top: min(calc(-132px - 15 * (1279px - 100cqw) / 511), -132px);
       right: 0;
     }
+
     .bottomPhoto {
       width: clamp(138px, 19.5%, 180px);
       aspect-ratio: 1.113;
-      bottom: max(calc(-138px * 100vw / 768px), -162px);
+      bottom: max(calc(-138px * 100cqw / 768px), -162px);
       left: unset;
-      right: min(calc(120px - 120 * (1279px - 100vw) / 511), 120px);
+      right: min(calc(120px - 120 * (1279px - 100cqw) / 511), 120px);
     }
+
     .mealsCurve {
       rotate: -24deg;
       width: 30%;
-      bottom: max(-295px, calc(-193px * 100vw / 768px));
-      right: min(calc(312px - 128 * (1279px - 100vw) / 511), 312px);
-      height: min(calc(110px * 100vw / 768px), 180px);
+      bottom: max(-295px, calc(-193px * 100cqw / 768px));
+      right: min(calc(312px - 128 * (1279px - 100cqw) / 511), 312px);
+      height: min(calc(110px * 100cqw / 768px), 180px);
     }
   }
+
   .mealsBlockWrapper:nth-of-type(3) {
-    margin-top: min(calc(286px * 100vw / 768px), 420px);
+    margin-top: min(calc(286px * 100cqw / 768px), 420px);
+
     .mealsTitle {
-      margin-left: min(calc(210px - 146 * (1279px - 100vw) / 511), 210px);
+      margin-left: min(calc(210px - 146 * (1279px - 100cqw) / 511), 210px);
       width: 500px;
     }
+
     .mealsDescriptionWrapper {
-      margin-top: min(calc(242px * 100vw / 768px), 283px);
+      margin-top: min(calc(242px * 100cqw / 768px), 283px);
       width: min(39%, 350px);
-      margin-inline: min(calc(354px - 206 * (1279px - 100vw) / 511), 354px) auto;
+      margin-inline: min(calc(354px - 206 * (1279px - 100cqw) / 511), 354px) auto;
     }
+
     .topPhoto {
       width: clamp(223px, 31.5%, 355px);
       aspect-ratio: 1.36;
-      top: clamp(142px, calc(142px * 100vw / 768px), 152px);
+      top: clamp(142px, calc(142px * 100cqw / 768px), 152px);
       left: 0;
     }
+
     .mainPhoto {
-      top: max(calc(206px - 135 * (100vw - 768px) / 511), 71px);
-      right: min(calc(65px - 31 * (1279px - 100vw) / 511), 65px);
+      top: max(calc(206px - 135 * (100cqw - 768px) / 511), 71px);
+      right: min(calc(65px - 31 * (1279px - 100cqw) / 511), 65px);
       position: absolute;
       width: clamp(254px, 36%, 483px);
       aspect-ratio: 1;
+
       &:before {
         width: clamp(186px, 73%, 354px);
         left: unset;
         right: 0;
       }
     }
+
     .bottomPhoto {
       width: clamp(149px, 21%, 246px);
       aspect-ratio: 1.72;
-      bottom: max(calc(-120px * 100vw / 768px), -142px);
-      left: min(calc(184px - 87 * (1279px - 100vw) / 511), 184px);
+      bottom: max(calc(-120px * 100cqw / 768px), -142px);
+      left: min(calc(184px - 87 * (1279px - 100cqw) / 511), 184px);
     }
   }
 }
-@include mixins.media-min(variables.$breakpoint-laptop) {
+
+@include mixins.container-media-min(variables.$breakpoint-laptop) {
   .mealsDescription {
     line-height: 1.3;
     font-size: 20px;
   }
+
   .mealsBlockWrapper:nth-of-type(3) {
     .mealsDescriptionWrapper {
-      margin-inline: min(calc(380px - 206 * (1439px - 100vw) / 671), 380px) auto;
+      margin-inline: min(calc(380px - 206 * (1439px - 100cqw) / 671), 380px) auto;
     }
   }
 }

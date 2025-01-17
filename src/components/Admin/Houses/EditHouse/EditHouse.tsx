@@ -5,7 +5,7 @@ import { Box, FormControlLabel, Grid2 as Grid, Stack, Switch, Tab, Tabs, TextFie
 import { useRouter } from 'next/navigation';
 
 import HouseCard from './components/HouseCard'
-import HousePage from './components/HousePage'
+import HouseDescriptionPage from './components/HouseDescriptionPage'
 import HouseSelect from '../../UI/HouseSelect/HouseSelect';
 import { CustomTabPanel } from '../../Pages/Houses/Houses';
 import { useMainStore } from '@/stores/store-provider';
@@ -274,7 +274,7 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
 
             {(['uk', 'ru', 'en'] as Language[]).map((lang, index) => (
                 <CustomTabPanel value={activeTab} index={index} key={lang} className='container-admin'>
-                    <HousePage locale={lang} rooms={rooms} />
+                    <HouseDescriptionPage locale={lang} rooms={rooms} />
                 </CustomTabPanel>
             ))}
 

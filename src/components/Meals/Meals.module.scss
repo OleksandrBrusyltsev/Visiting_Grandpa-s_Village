@@ -4,89 +4,104 @@
 .mealsWrapper {
     padding-bottom: 164px;
 }
+
 .heroWrapper {
     margin-top: 16px;
     @include mixins.mak-green;
     position: relative;
+
     .heroCurve {
         position: absolute;
-        width: min((295px - 101 * (767px - 100vw) / 392), 295px);
-        bottom: min((66px - 66 * (767px - 100vw) / 392), 66px);
+        width: min((295px - 101 * (767px - 100cqw) / 392), 295px);
+        bottom: min((66px - 66 * (767px - 100cqw) / 392), 66px);
         right: -23px;
-        height: min((167px - 57 * (767px - 100vw) / 392), 167px);
+        height: min((167px - 57 * (767px - 100cqw) / 392), 167px);
         rotate: -39deg;
     }
 }
+
 .title {
-    font-size: clamp(24px, calc(24px * 100vw / 375px), 48px);
+    font-size: clamp(24px, calc(24px * 100cqw / 375px), 48px);
     text-align: end;
     width: 92.7%;
     margin-inline: auto 0;
 }
+
 .heroImage {
     position: relative;
     width: 64%;
     aspect-ratio: 1.25;
 }
+
 .callToEatWrapper {
     position: absolute;
-    width: clamp(113px, calc(113px * 100vw / 375px), 202px);
+    width: clamp(113px, calc(113px * 100cqw / 375px), 202px);
     bottom: 36%;
     left: 79%;
     text-align: center;
 }
+
 .callToEat {
     display: inline-block;
-    font-size: clamp(var(--f-size-numbers-small), calc(14px * 100vw / 375px), var(--f-size-h3));
+    font-size: clamp(var(--f-size-numbers-small), calc(14px * 100cqw / 375px), var(--f-size-h3));
     line-height: 1.1;
-    padding: min(calc(12px * 100vw / 375px), 22px)
-            min(calc(8px * 100vw / 375px), 17px)
-            min(calc(9px * 100vw / 375px), 15px)
-            min(calc(18px * 100vw / 375px), 37px);
+    padding: min(calc(12px * 100cqw / 375px), 22px) min(calc(8px * 100cqw / 375px), 17px) min(calc(9px * 100cqw / 375px), 15px) min(calc(18px * 100cqw / 375px), 37px);
 }
+
 .callToEatOutline {
     position: absolute;
     top: 0;
     left: 0;
 }
+
 .main {
     margin-top: 100px;
 }
-@include mixins.media-min(variables.$mobile) {
+
+@include mixins.container-media-min(variables.$mobile) {
     .mealsWrapper {
         padding-bottom: 204px;
+
         .heroCurve {
-            width: min((447px - 182 * (1279px - 100vw) / 511), 447px);
-            bottom: min((96px - 30 * (1279px - 100vw) / 511), 96px);
+            width: min((447px - 182 * (1279px - 100cqw) / 511), 447px);
+            bottom: min((96px - 30 * (1279px - 100cqw) / 511), 96px);
             right: 0;
-            height: min((231px - 94 * (1279px - 100vw) / 511), 231px);
+            height: min((231px - 94 * (1279px - 100cqw) / 511), 231px);
             rotate: -39deg;
         }
     }
+
     .title {
         width: 650px;
     }
+
     .heroImage {
         width: 58%;
         aspect-ratio: 1.3;
+
         img {
             inset: -5% 0 0 !important;
         }
     }
+
     .title {
         text-transform: uppercase;
     }
+
     .callToEatWrapper {
         width: 202px;
         bottom: 50%;
     }
+
     .main {
         margin-top: 184px;
     }
 }
-@include mixins.media-min(variables.$breakpoint-laptop) {
+
+@include mixins.container-media-min(variables.$breakpoint-laptop) {
     .mealsWrapper {
         padding-bottom: 340px;
+
         .heroCurve {
             rotate: -24deg;
             right: -20px;
@@ -95,15 +110,19 @@
             width: 40%;
         }
     }
+
     .title {
         width: 804px;
     }
+
     .heroImage {
         width: 58%;
+
         img {
             inset: -10% 0 0 !important;
         }
     }
+
     .main {
         margin-top: 128px;
     }

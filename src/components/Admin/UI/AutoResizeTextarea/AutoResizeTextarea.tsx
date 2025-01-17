@@ -29,7 +29,7 @@ export default function AutoResizeTextarea({ defaultValue, className, name, ...p
         const updateHeight = () => {
             const lineHeight = parseInt(getComputedStyle(textarea).lineHeight, 10);
             //нарочно устанавливаем мин высоту, т.к. дефолтное значение высоты textarea - 2 строки
-            textarea.style.height = `${lineHeight}px`;
+            textarea.style.height = `1px`;
             textarea.style.height = `${Math.max(textarea.scrollHeight, lineHeight)}px`;
         };
 
@@ -53,7 +53,7 @@ export default function AutoResizeTextarea({ defaultValue, className, name, ...p
             {...props}
             name={name}
             ref={textareaRef}
-            className={className}
+            className={className + ' px-[4px]'}
             defaultValue={defaultValue}
             onChange={props.onChange || handleChange}
             required

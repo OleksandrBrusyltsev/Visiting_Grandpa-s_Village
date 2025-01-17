@@ -139,7 +139,7 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
             {
                 [...photo, null].map((file, index) => (
                     <Stack
-                        key={typeof file === 'string' ? file : file?.name || 'null'}
+                        key={typeof file === 'string' ? file : file?.name ?? 'null'}
                         onDrop={onDrop}
                         onDragOver={handleDragOver}
                         onDragLeave={handleDragLeave}
