@@ -14,83 +14,103 @@
     min-width: 150px;
     text-align: center;
 
-    h2 {
+    h2,
+    textarea,
+    p {
         text-transform: uppercase;
         @include mixins.mak-green;
         line-height: 1.1;
-        font-size: clamp(20px, calc(20px * 100vw / 375px), 40px);
+        font-size: clamp(20px, calc(20px * 100cqw / 375px), 40px);
         padding: 20px 20px 15px 25px;
     }
+
     &::before {
         position: absolute;
         content: '';
-        top: calc(-130px * 100vw / 375px);
+        top: calc(-130px * 100cqw / 375px);
         background-image: url('/images/backgrounds/christmasTrees.png');
-        width: calc(184px * 100vw / 375px);
+        width: calc(184px * 100cqw / 375px);
         aspect-ratio: 1.15;
         background-position: center top;
         background-repeat: no-repeat;
         background-size: contain;
         z-index: -1;
     }
-   .titleOutline {
+
+    .titleOutline {
         position: absolute;
         top: 0;
         left: 0;
     }
 }
+
 .quoteWrapper.left {
     .quoteTitle::before {
         left: -20px;
     }
 }
+
 .quoteWrapper.right {
     align-items: flex-end;
+
     .quoteTitle::before {
         right: 0;
     }
 }
 
-@include mixins.media-min(variables.$mobile) {
+@include mixins.container-media-min(variables.$mobile) {
     .quoteWrapper {
         gap: 40px;
     }
-    
+
     .quoteTitle {
         min-width: 270px;
-        h2 {
-            font-size: clamp(40px, calc(40px * 100vw / 768px), 48px);
+
+        h2,
+        textarea,
+        p {
+            font-size: clamp(40px, calc(40px * 100cqw / 768px), 48px);
             padding: 40px 25px 35px 50px;
         }
+
         &::before {
-            top: clamp(-237px, calc(-190px * 100vw / 768px), -190px);
-            width: clamp(280px, calc(280px * 100vw / 768px), 350px);
+            top: clamp(-237px, calc(-190px * 100cqw / 768px), -190px);
+            width: clamp(280px, calc(280px * 100cqw / 768px), 350px);
         }
     }
+
     .left {
         .quoteTitle::before {
             left: -40px;
         }
     }
+
     .right {
         align-items: flex-end;
+
         .quoteTitle::before {
             right: -20px;
         }
     }
 }
-@include mixins.media-min(variables.$breakpoint-laptop) {
+
+@include mixins.container-media-min(variables.$breakpoint-laptop) {
     .quoteTitle {
         min-width: 380px;
-        h2 {
+
+        h2,
+        textarea,
+        p {
             font-size: var(--f-size-large);
             padding: 50px 25px 50px 60px;
         }
+
         &::before {
             top: -190px;
             width: 350px;
         }
     }
+
     .quoteWrapper.left {
         margin-left: 110px;
 
@@ -98,8 +118,10 @@
             left: -120px;
         }
     }
+
     .quoteWrapper.right {
         align-items: flex-end;
+
         .quoteTitle::before {
             top: -240px;
             right: -20px;

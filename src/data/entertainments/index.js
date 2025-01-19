@@ -169,7 +169,7 @@ export const entertainments = [
         photos: ['/images/entertainment/11.png', '/images/entertainment/12.png'],
     },
     {
-        id: 6,
+        id: 7,
         title: {
             uk: '',
             ru: '',
