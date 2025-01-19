@@ -38,7 +38,7 @@ const MealsBlockAdmin = forwardRef<{ reset: () => void }, Props>(function MealsB
         reset() {
             setDescription(() => item.description[lang]);
         }
-    }), []);
+    }), [item.description, lang]);
     return (
         <div className={s.mealsBlockWrapper}>
             {lang === 'uk' && <input type="hidden" value={id} name={`id-${position + 1}`} />}

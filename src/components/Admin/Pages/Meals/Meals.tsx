@@ -21,11 +21,11 @@ export default function MealsPage({ data }: Props) {
 
     const [activeTab, setActiveTab] = useState(0);
     const [loading, setLoading] = useState(false);
-    const [changedBlocks, setChangedBlocks] = useState<number[]>([]);
 
     const formRef = useRef<HTMLFormElement | null>(null);
     const containerAdminRef = useRef<HTMLDivElement | null>(null);
     const mealsBlockRefs = useRef<Record<number, Record<Language, { reset: () => void } | null>>>({});
+    const changedBlocksRef = useRef(new Set<number>());
 
     const { isMobile } = useMatchContainerMedia(containerAdminRef);
 
@@ -47,8 +47,7 @@ export default function MealsPage({ data }: Props) {
 
     const handleFileChange = (blockIndex: number) => (event: React.ChangeEvent<HTMLInputElement>, imgIndex: number) => {
         const file = event.target.files?.[0];
-        setChangedBlocks(prevState => [
-            ...prevState, blockIndex]);
+        changedBlocksRef.current.add(blockIndex);
         if (file) {
             setPreview(prevState => {
                 const res = [...prevState];
@@ -66,25 +65,26 @@ export default function MealsPage({ data }: Props) {
     }
     const handleTextChange = (index: number) => {
         setIsDirtyPage(true);
-        if (changedBlocks.indexOf(index) === -1) setChangedBlocks(prevState => [...prevState, index]);
+        changedBlocksRef.current.add(index);
     }
     const handleResetForm = () => {
         formRef.current?.reset();
         setPreview(() => data.map((item) => [...item.photos]));
+        changedBlocksRef.current
         Object.entries(mealsBlockRefs.current).forEach(([index, langRefs]) => {
-            if (changedBlocks.indexOf(+index + 1) === -1) return;
-            Object.values(langRefs).forEach((ref) => {
-                ref?.reset();
-            });
+            if (changedBlocksRef.current.has(+index + 1))
+                Object.values(langRefs).forEach((ref) => {
+                    ref?.reset();
+                });
         });
-        setChangedBlocks([]);
+        changedBlocksRef.current.clear();
         setIsDirtyPage(false);
         window?.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!changedBlocks.length) {
+        if (!changedBlocksRef.current.size) {
             return;
         }
         setLoading(true);
@@ -93,13 +93,13 @@ export default function MealsPage({ data }: Props) {
         for (let key of Array.from(formData.keys())) {
             const keyPartsLength = key.split('-').length;
             const blockIndex = +key.split('-')[keyPartsLength - 1];
-            if (!changedBlocks.includes(blockIndex)) {
+            if (!changedBlocksRef.current.has(blockIndex)) {
                 formData.delete(key);
                 continue;
             }
         }
 
-        changedBlocks.forEach((blockIndex) => {
+        changedBlocksRef.current.forEach((blockIndex) => {
             preview[blockIndex].forEach((photo, photoIndex) => {
                 formData.append(`photo${photoIndex}-${blockIndex}`, photo);
             })
