@@ -148,7 +148,7 @@ export default function Entertainment({ items }: Props) {
       <section className={`${s.hero} container`}>
         <div className={s.grandpaWrapper}>
           <Image
-            src={"/images/grandpas/Grandpa1.png"}
+            src={items[0].photos[0]}
             alt="Grandpa photo"
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
             fill

@@ -41,6 +41,7 @@ const Quote = forwardRef<ResetType, Props>(function Quote({ item, imagePreviews,
     return (
         <li className={s.entertainmentGroup} key={id}>
             <hgroup className={`${q.quoteWrapper} ${position % 2 ? q.right : q.left}`}>
+                {lang === 'uk' && <input type="hidden" value={id} name={`id-${position + 1}`} />}
                 <div
                     className={`${q.quoteTitle} !text-start relative`}>
                     { /* МЕГАКОСТЫЛЬ с тегом <p></p>!!! Не работает, если в textarea более 1 строки*/}

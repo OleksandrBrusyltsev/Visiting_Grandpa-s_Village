@@ -2,11 +2,11 @@ import React from "react";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 import Entertainment from "@/components/Entertainment/Entertainment";
-import { getData } from "@/actions/getData";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { generatePageMetadata } from "@/functions/generatePageMetadata";
 
 import { locales } from "@/data/locales";
+import { getEntertainments } from "@/actions/getEntertainments";
 
 type Props = Readonly<{ params: { locale: string } }>
 
@@ -22,7 +22,8 @@ export default async function Page({
   params: { locale },
 }: Props) {
   unstable_setRequestLocale(locale);
-  const items = await getData<EntertainmentItem[]>("entertainments");
+  const items = await getEntertainments();
+
   return (
     <>
       <Entertainment items={items} />

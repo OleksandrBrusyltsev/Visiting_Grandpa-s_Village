@@ -15,9 +15,9 @@ export async function PUT(request: Request) {
 
     const formData = await request.formData();
 
-    const mealsDataObj = Array.from(formData.entries()).reduce((acc, [key, value]) => {
+    const entertainmentsDataObj = Array.from(formData.entries()).reduce((acc, [key, value]) => {
         const partsLength = key.split('-').length;
-        const fieldName = key.split('-')[0] as keyof MealsItem;
+        const fieldName = key.split('-')[0] as keyof EntertainmentItem;
         const index = +key.split('-')[partsLength - 1];
 
         const lang = partsLength === 3 ? (key.split('-')[1] as Language) : undefined;
@@ -26,6 +26,8 @@ export async function PUT(request: Request) {
             acc[index] = {
                 id: 0,
                 title: { en: '', uk: '', ru: '' },
+                subtitle: { en: '', uk: '', ru: '' },
+                quote: { en: '', uk: '', ru: '' },
                 description: { en: '', uk: '', ru: '' },
                 photos: [],
             };
@@ -34,27 +36,28 @@ export async function PUT(request: Request) {
         if (fieldName.startsWith('photo')) {
             (acc[index].photos as (string | File)[])[+fieldName.slice(5)] = value;
         } else if (fieldName.startsWith('id')) {
-            (acc[index] as MealsItem).id = +value;
+            (acc[index] as EntertainmentItem).id = +value;
         }
         if (lang && typeof value === 'string') {
             (acc[index][fieldName] as Record<Language, string>)[lang] = value;
         }
         return acc;
-    }, {} as { [key: number]: MealsItem });
+    }, {} as { [key: number]: EntertainmentItem });
+    console.log(entertainmentsDataObj);
 
-    let meals;
+    let entertainments;
 
     try {
         //добавляем ссылки на Cloudinary для новых фото
-        meals = await Promise.all(
-            Object.values(mealsDataObj).map(async (meal) => {
-                const photos = await getCloudinaryUrl(meal.photos);
-                if (typeof meal.photos === 'string') throw new Error(meal.photos);
-                return { ...meal, photos };
+        entertainments = await Promise.all(
+            Object.values(entertainmentsDataObj).map(async (entertainment) => {
+                const photos = await getCloudinaryUrl(entertainment.photos);
+                if (typeof entertainment.photos === 'string') throw new Error(entertainment.photos);
+                return { ...entertainment, photos };
             }),
         );
     } catch (error) {
-        console.error('Error processing photos for meals:', error);
+        console.error('Error processing photos for entertainments:', error);
         return NextResponse.json({ message: (error as Error).message }, { status: 500 });
     }
 
@@ -62,14 +65,14 @@ export async function PUT(request: Request) {
 
     try {
         const responses = await Promise.all(
-            meals.map((meal) =>
-                fetch(`${url}/api/v1/meal/${meal.id}`, {
+            entertainments.map((entertainment) =>
+                fetch(`${url}/api/v1/entertainment/${entertainment.id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${access_token}`,
                     },
-                    body: JSON.stringify(meal),
+                    body: JSON.stringify(entertainment),
                 }),
             ),
         );
@@ -88,7 +91,7 @@ export async function PUT(request: Request) {
             accu[index] = { location: '', message: '', blockTitle: '' };
             accu[index].location += curr.detail[0].loc.join(', ');
             accu[index].message += curr.detail[0].msg;
-            accu[index].blockTitle = meals[index].title.uk;
+            accu[index].blockTitle = entertainments[index].title.uk;
             return accu;
         }, [] as { location: string; message: string; blockTitle: string }[]);
 
@@ -104,10 +107,10 @@ export async function PUT(request: Request) {
             return NextResponse.json({ message });
         }
 
-        revalidateTag('meals');
+        revalidateTag('entertainments');
 
         return NextResponse.json(
-            { description: 'Сторінку ЇСТИ успішно збережено!' },
+            { description: 'Сторінку БАЙДИКУВАТИ успішно збережено!' },
             { status: 200 },
         );
     } catch (error) {

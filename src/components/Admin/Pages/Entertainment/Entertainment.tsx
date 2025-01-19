@@ -49,7 +49,7 @@ export default function EntertainmentPage({ data }: Props) {
     };
 
     const [preview, setPreview] = useState<(string | File)[][]>(data.map((item) => [...item.photos]));
-    console.log('render main component');
+
     const handleFileChange = (blockIndex: number) => (event: React.ChangeEvent<HTMLInputElement>, imgIndex: number) => {
         const file = event.target.files?.[0];
 
@@ -130,7 +130,7 @@ export default function EntertainmentPage({ data }: Props) {
         });
 
         try {
-            const response = await fetch('/api/admin/meals/edit', {
+            const response = await fetch('/api/admin/entertainments/edit', {
                 method: 'PUT',
                 body: formData
             });

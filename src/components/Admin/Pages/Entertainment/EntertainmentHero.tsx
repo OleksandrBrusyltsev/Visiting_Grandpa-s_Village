@@ -52,7 +52,7 @@ const EntertainmentHero = forwardRef<ResetType, Props>(function Quote({ item, im
                     onChange={(e) => handleFileChange(e, 0)}
                     tabIndex={0} />
             </div>
-
+            {lang === 'uk' && <input type="hidden" value={item.id} name='id-0' />}
             <Input name={`title-${lang}-0`}
                 className={`${s.heroTitle} !w-[70%] bg-transparent absolute @[768px]:relative @[768px]:!w-full z-10 `}
                 defaultValue={title[lang]}

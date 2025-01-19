@@ -36,6 +36,7 @@ const SeoBlock = forwardRef<ResetType, Props>(function Quote({ item, position, l
     return (
         <div className={`${s.textWrapper}`}>
             <div className={`${s.text} relative`}>
+                {lang === 'uk' && <input type="hidden" value={item.id} name={`id-${position}`} />}
                 <Input name={`description-${lang}-${position}`}
                     className={`w-full bg-transparent relative z-10 ${isDescriptionEditing
                         ? 'opacity-100 relative'
