@@ -7,28 +7,33 @@ import { Box, Tab, Tabs } from '@mui/material';
 import { useMainStore } from '@/stores/store-provider';
 import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContainer';
 import { CustomTabPanel } from '../Houses/Houses';
-import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
-import Icon from '@/components/ui/Icon/Icon';
-import MealsBlockAdmin from './MealsBlockAdmin';
 import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
-import { useMatchContainerMedia } from '@/hooks/useMatchContainerMedia';
+import Quote from './Quote';
+import SeoBlock from './SeoBlock';
+import EntertainmentHero from './EntertainmentHero';
 
-import s from "@/components/Meals/Meals.module.scss";
+import s from "@/components/Entertainment/Entertainment.module.scss";
 
-type Props = Readonly<{ data: MealsItem[] }>;
+type Props = Readonly<{ data: EntertainmentItem[] }>;
 
-export default function MealsPage({ data }: Props) {
-
+export default function EntertainmentPage({ data }: Props) {
     const [activeTab, setActiveTab] = useState(0);
     const [loading, setLoading] = useState(false);
 
+    const changedBlocksRef = useRef(new Set<number>());
     const formRef = useRef<HTMLFormElement | null>(null);
     const containerAdminRef = useRef<HTMLDivElement | null>(null);
-    const mealsBlockRefs = useRef<Record<number, Record<Language, { reset: () => void } | null>>>({});
-    const changedBlocksRef = useRef(new Set<number>());
-
-    const { isMobile } = useMatchContainerMedia(containerAdminRef);
-
+    const heroBlockResets = useRef<Record<Language, { reset: () => void } | null>>({
+        en: null,
+        uk: null,
+        ru: null
+    });
+    const entBlockResets = useRef<Record<number, Record<Language, { reset: () => void } | null>>>({});
+    const seoBlockResets = useRef<Record<Language, { reset: () => void } | null>>({
+        en: null,
+        uk: null,
+        ru: null
+    });
     const { refresh } = useRouter();
 
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
@@ -47,7 +52,9 @@ export default function MealsPage({ data }: Props) {
 
     const handleFileChange = (blockIndex: number) => (event: React.ChangeEvent<HTMLInputElement>, imgIndex: number) => {
         const file = event.target.files?.[0];
-        changedBlocksRef.current.add(blockIndex);
+
+        changedBlocksRef.current?.add(blockIndex);
+
         if (file) {
             setPreview(prevState => {
                 const res = [...prevState];
@@ -63,21 +70,38 @@ export default function MealsPage({ data }: Props) {
         }
         setIsDirtyPage(true);
     }
-    const handleTextChange = (index: number) => {
+    const handleTextChange = (blockIndex: number) => {
         setIsDirtyPage(true);
-        changedBlocksRef.current.add(index);
+        changedBlocksRef.current?.add(blockIndex);
     }
     const handleResetForm = () => {
         formRef.current?.reset();
         setPreview(() => data.map((item) => [...item.photos]));
-        changedBlocksRef.current
-        Object.entries(mealsBlockRefs.current).forEach(([index, langRefs]) => {
-            if (changedBlocksRef.current.has(+index + 1))
-                Object.values(langRefs).forEach((ref) => {
-                    ref?.reset();
-                });
+
+        // очищаем все блоки с контролируемыми инпутами
+        changedBlocksRef.current.forEach((blockIndex) => {
+            switch (blockIndex) {
+                // очищаем hero блок
+                case 0:
+                    Object.values(heroBlockResets.current).forEach((ref) => {
+                        ref?.reset();
+                    });
+                    break;
+                // очищаем seo блок
+                case data.length - 1:
+                    Object.values(seoBlockResets.current).forEach((ref) => {
+                        ref?.reset();
+                    });
+                    break;
+                // очищаем измененные блоки с фотографиями
+                default:
+                    Object.values(entBlockResets.current[blockIndex - 1]).forEach((ref) => {
+                        ref?.reset();
+                    });
+                    break;
+            }
         });
-        changedBlocksRef.current.clear();
+        changedBlocksRef.current?.clear();
         setIsDirtyPage(false);
         window?.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -106,7 +130,7 @@ export default function MealsPage({ data }: Props) {
         });
 
         try {
-            const response = await fetch('/api/admin/meals/edit', {
+            const response = await fetch('/api/admin/entertainments/edit', {
                 method: 'PUT',
                 body: formData
             });
@@ -144,55 +168,58 @@ export default function MealsPage({ data }: Props) {
                 {
                     (['uk', 'ru', 'en'] as Language[]).map((lang, index) => (
                         <CustomTabPanel value={activeTab} index={index} key={lang} className='container-admin overflow-hidden' ref={containerAdminRef}>
-                            <div className={`${s.mealsWrapper}`}>
-                                <div className={s.heroWrapper}>
-                                    {lang === 'uk' && <input type="hidden" value={data[0].id} name='id-0' />}
-                                    <Input name={`title-${lang}-0`}
-                                        className={`${s.title} bg-transparent relative z-10`}
-                                        defaultValue={data[0].title[lang]}
-                                        onChange={() => handleTextChange(0)} />
-                                    <div className={s.heroImage}>
-                                        <Image
-                                            src={"/images/meals/dog.png"}
-                                            alt=""
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
-                                            fill
-                                        />
-                                        <div className={s.callToEatWrapper}>
-                                            <Input name={`description-${lang}-0`}
-                                                className={`${s.callToEat} bg-transparent z-10 relative w-full`}
-                                                defaultValue={data[0].description[lang]}
-                                                onChange={() => handleTextChange(0)}
-                                            />
-                                            <Icon name="meals-outline" className={s.callToEatOutline} />
-                                        </div>
-                                    </div>
-                                    <Icon
-                                        name={isMobile ? "curve-meals-375" : "curve-meals-768"}
-                                        className={s.heroCurve}
-                                    />
-                                </div>
-                                <div className={s.main}>
-                                    {data.slice(1).map((item, i) => (
-                                        <MealsBlockAdmin
-                                            imagePreviews={preview[i + 1]}
-                                            item={item}
-                                            lang={lang}
+
+                            <EntertainmentHero
+                                item={data[0]}
+                                imagePreviews={preview[0]}
+                                lang={lang}
+                                handleTextChange={() => handleTextChange(0)}
+                                handleFileChange={handleFileChange(0)}
+                                ref={(el) => {
+                                    heroBlockResets.current[lang] = el;
+                                }}
+                            />
+
+                            <div className={`${s.main}`}>
+                                <ul className={s.entertainmentList}>
+                                    {data.slice(1, data.length - 1).map((item, i) => (
+                                        <Quote
                                             key={item.id}
+                                            item={item}
+                                            imagePreviews={preview[i + 1]}
                                             position={i}
-                                            handleFileChange={handleFileChange(i + 1)}
+                                            lang={lang}
                                             handleTextChange={() => handleTextChange(i + 1)}
-                                            isMobile={isMobile}
+                                            handleFileChange={handleFileChange(i + 1)}
                                             ref={(el) => {
-                                                if (!mealsBlockRefs.current[i]) {
-                                                    mealsBlockRefs.current[i] = {} as Record<Language, { reset: () => void }>;
+                                                if (!entBlockResets.current[i]) {
+                                                    entBlockResets.current[i] = {} as Record<Language, { reset: () => void }>;
                                                 }
-                                                mealsBlockRefs.current[i][lang] = el;
+                                                entBlockResets.current[i][lang] = el;
                                             }}
                                         />
                                     ))}
+                                </ul>
+                                <div className={s.treesWrapper}>
+                                    <Image
+                                        className={s.treesImage}
+                                        src={"/images/backgrounds/christmasTrees.png"}
+                                        alt=""
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                        fill
+                                    />
                                 </div>
+                                <div className={s.backgroundCurve}></div>
                             </div>
+                            <SeoBlock
+                                item={data[data.length - 1]}
+                                position={data.length - 1}
+                                lang={lang}
+                                handleTextChange={() => handleTextChange(data.length - 1)}
+                                ref={(el) => {
+                                    seoBlockResets.current[lang] = el;
+                                }}
+                            />
                         </CustomTabPanel>
                     ))
                 }
@@ -204,6 +231,5 @@ export default function MealsPage({ data }: Props) {
                 onSubmit={() => { }}
             />
         </Box>
-
     )
 }
