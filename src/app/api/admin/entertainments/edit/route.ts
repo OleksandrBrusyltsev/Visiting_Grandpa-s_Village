@@ -43,7 +43,6 @@ export async function PUT(request: Request) {
         }
         return acc;
     }, {} as { [key: number]: EntertainmentItem });
-    console.log(entertainmentsDataObj);
 
     let entertainments;
 

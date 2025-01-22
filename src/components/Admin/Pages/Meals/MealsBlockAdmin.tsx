@@ -7,20 +7,7 @@ import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
 
 import s from "@/components/Meals/MealsBlock.module.scss";
 
-type Props = Readonly<{
-    imagePreviews: (string | File)[];
-    item: MealsItem;
-    position: number;
-    lang: Language;
-    handleFileChange: (e: React.ChangeEvent<HTMLInputElement>, imgIndex: number) => void;
-    handleTextChange: () => void;
-    isMobile: boolean,
-    ref: React.ForwardedRef<{
-        reset: () => void
-    }>
-}>;
-
-const MealsBlockAdmin = forwardRef<{ reset: () => void }, Props>(function MealsBlockAdmin({
+const MealsBlockAdmin = forwardRef<ResetType, EditPageProps<MealsItem>>(function MealsBlockAdmin({
     imagePreviews,
     item,
     position,

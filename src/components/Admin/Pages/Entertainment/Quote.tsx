@@ -8,23 +8,14 @@ import MarkdownPreview from '@/components/ui/MarkdownPreview/MarkdownPreview';
 import q from '@/components/Entertainment/Quote/Quote.module.scss';
 import s from "@/components/Entertainment/Entertainment.module.scss";
 
-type Props = Readonly<{
-    item: EntertainmentItem,
-    imagePreviews: (string | File)[];
-    position: number,
-    lang: Language,
-    handleTextChange: () => void;
-    handleFileChange: (e: React.ChangeEvent<HTMLInputElement>, imgIndex: number) => void;
-    ref: React.ForwardedRef<{
-        reset: () => void
-    }>
-
-}>
-type ResetType = {
-    reset: () => void
-}
-
-const Quote = forwardRef<ResetType, Props>(function Quote({ item, imagePreviews, position, lang, handleTextChange, handleFileChange }, ref) {
+const Quote = forwardRef<ResetType, EditPageProps<EntertainmentItem>>(function Quote({
+    item,
+    imagePreviews,
+    position,
+    lang,
+    handleTextChange,
+    handleFileChange
+}, ref) {
     const [description, setDescription] = useState(() => item.description[lang]);
     const [title, setTitle] = useState(() => item.title[lang]);
 

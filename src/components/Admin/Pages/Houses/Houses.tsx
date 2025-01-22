@@ -21,7 +21,7 @@ interface TabPanelProps {
     value: number;
     className?: string
 }
-  
+
 export const CustomTabPanel = forwardRef<HTMLDivElement | null, Readonly<TabPanelProps>>(function CustomTabPanel(props, ref) {
 
     const { children, value, index, className = '', ...other } = props;
@@ -90,46 +90,65 @@ export default function HousesPage({ data }: Props) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setLoading(true);
-        const formData = new FormData(e.currentTarget);
-        formData.append('name', '');
-        formData.append('rental_price', '0');
-        formData.append('max_adults', '0');
-        formData.append('is_available', 'true');
-        formData.append('discount_percent', '0');
-        formData.append('extra_adults', '0');
-        formData.append('extra_children', '0');
-        formData.append('extra_adult_price', '0');
-        formData.append('extra_children_price', '0');
-        formData.append('house_type', 'null');
-        formData.append('photo1', preview);
-
-        try {
-            const response = await fetch('/api/admin/houses/edit?id=' + id, {
-                method: 'PUT',
-                body: formData
+        if (!formRef.current?.checkValidity()) {
+            const invalidInputs = formRef.current?.querySelectorAll(':invalid') as NodeListOf<HTMLInputElement>;
+            const errors: Record<Language, string> = { uk: '', ru: '', en: '' };
+            invalidInputs?.forEach((input: HTMLInputElement) => {
+                const name = input.name.split('-')[0];
+                const lang = input.name.split('-')[1] as Language;
+                errors[lang] += 'Поле ' + name + ', помилка: "' + input.validationMessage + '" \n';
             });
-            if (response.ok) {
-                setLoading(false);
-                const data = await response.json();
-                setDialogOpen(true, 'success', data.description);
-                setIsDirtyPage(false);
-                refresh();
-            } else {
-                const errorData = await response.json();
+            const message = Object.entries(errors)
+                .map(
+                    ([lang, error]) => error.trim().length
+                        ? `Мова ${lang.toUpperCase()}:\n${error}`
+                        : null
+                )
+                .filter(Boolean)
+                .join('\n');
+            setDialogOpen(true, 'error', `Помилки в формі! \n ${message}`);
+        } else {
+            setLoading(true);
+            const formData = new FormData(e.currentTarget);
+            formData.append('name', '');
+            formData.append('rental_price', '0');
+            formData.append('max_adults', '0');
+            formData.append('is_available', 'true');
+            formData.append('discount_percent', '0');
+            formData.append('extra_adults', '0');
+            formData.append('extra_children', '0');
+            formData.append('extra_adult_price', '0');
+            formData.append('extra_children_price', '0');
+            formData.append('house_type', 'null');
+            formData.append('photo1', preview);
+
+            try {
+                const response = await fetch('/api/admin/houses/edit?id=' + id, {
+                    method: 'PUT',
+                    body: formData
+                });
+                if (response.ok) {
+                    setLoading(false);
+                    const data = await response.json();
+                    setDialogOpen(true, 'success', data.description);
+                    setIsDirtyPage(false);
+                    refresh();
+                } else {
+                    const errorData = await response.json();
+                    window?.scrollTo({ top: 0, behavior: 'smooth' });
+                    setDialogOpen(true, 'error', errorData.message);
+                    setLoading(false);
+                }
+            } catch (error) {
                 window?.scrollTo({ top: 0, behavior: 'smooth' });
-                setDialogOpen(true, 'error', errorData.message);
+                setDialogOpen(true, 'error', `Щось пішло не так, як планувалось! Спробуйте ще раз!\n\n${(error as Error).message}`);
                 setLoading(false);
             }
-        } catch (error) {
-            window?.scrollTo({ top: 0, behavior: 'smooth' });
-            setDialogOpen(true, 'error', `Щось пішло не так, як планувалось! Спробуйте ще раз!\n\n${(error as Error).message}`);
-            setLoading(false);
         }
     }
 
     return (
-        <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative'>
+        <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative' noValidate>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">
                     {

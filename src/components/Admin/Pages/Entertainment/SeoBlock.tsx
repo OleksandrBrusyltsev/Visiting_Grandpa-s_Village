@@ -5,19 +5,7 @@ import MarkdownPreview from '@/components/ui/MarkdownPreview/MarkdownPreview';
 
 import s from "@/components/Entertainment/Entertainment.module.scss";
 
-type Props = Readonly<{
-    item: EntertainmentItem,
-    position: number,
-    lang: Language,
-    handleTextChange: () => void;
-    ref: React.ForwardedRef<{
-        reset: () => void
-    }>
-
-}>
-type ResetType = {
-    reset: () => void
-}
+type Props = Omit<EditPageProps<EntertainmentItem>, 'handleFileChange' | 'imagePreviews'>
 
 const SeoBlock = forwardRef<ResetType, Props>(function Quote({ item, position, lang, handleTextChange }, ref) {
     const [description, setDescription] = useState(() => item.description[lang]);

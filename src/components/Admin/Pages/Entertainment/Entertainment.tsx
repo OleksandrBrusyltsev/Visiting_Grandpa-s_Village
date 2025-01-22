@@ -111,50 +111,70 @@ export default function EntertainmentPage({ data }: Props) {
         if (!changedBlocksRef.current.size) {
             return;
         }
-        setLoading(true);
-        const formData = new FormData(e.currentTarget);
-
-        for (let key of Array.from(formData.keys())) {
-            const keyPartsLength = key.split('-').length;
-            const blockIndex = +key.split('-')[keyPartsLength - 1];
-            if (!changedBlocksRef.current.has(blockIndex)) {
-                formData.delete(key);
-                continue;
-            }
-        }
-
-        changedBlocksRef.current.forEach((blockIndex) => {
-            preview[blockIndex].forEach((photo, photoIndex) => {
-                formData.append(`photo${photoIndex}-${blockIndex}`, photo);
-            })
-        });
-
-        try {
-            const response = await fetch('/api/admin/entertainments/edit', {
-                method: 'PUT',
-                body: formData
+        if (!formRef.current?.checkValidity()) {
+            const invalidInputs = formRef.current?.querySelectorAll(':invalid') as NodeListOf<HTMLInputElement>;
+            const errors: Record<Language, string> = { uk: '', ru: '', en: '' };
+            invalidInputs?.forEach((input: HTMLInputElement) => {
+                const name = input.name.split('-')[0];
+                const lang = input.name.split('-')[1] as Language;
+                const blockPosition = +input.name.split('-')[2] + 1;
+                errors[lang] += 'Блок ' + blockPosition + ', поле ' + name + ', помилка: "' + input.validationMessage + '" \n';
             });
-            if (response.status === 200) {
-                setLoading(false);
-                const data = await response.json();
-                setDialogOpen(true, 'success', data.description);
-                setIsDirtyPage(false);
-                refresh();
-            } else {
-                const errorData = await response.json();
+            const message = Object.entries(errors)
+                .map(
+                    ([lang, error]) => error.trim().length
+                        ? `Мова ${lang.toUpperCase()}:\n${error}`
+                        : null
+                )
+                .filter(Boolean)
+                .join('\n');
+            setDialogOpen(true, 'error', `Помилки в формі! \n ${message}`);
+        } else {
+            setLoading(true);
+            const formData = new FormData(e.currentTarget);
+
+            for (let key of Array.from(formData.keys())) {
+                const keyPartsLength = key.split('-').length;
+                const blockIndex = +key.split('-')[keyPartsLength - 1];
+                if (!changedBlocksRef.current.has(blockIndex)) {
+                    formData.delete(key);
+                    continue;
+                }
+            }
+
+            changedBlocksRef.current.forEach((blockIndex) => {
+                preview[blockIndex].forEach((photo, photoIndex) => {
+                    formData.append(`photo${photoIndex}-${blockIndex}`, photo);
+                })
+            });
+
+            try {
+                const response = await fetch('/api/admin/entertainments/edit', {
+                    method: 'PUT',
+                    body: formData
+                });
+                if (response.status === 200) {
+                    setLoading(false);
+                    const data = await response.json();
+                    setDialogOpen(true, 'success', data.description);
+                    setIsDirtyPage(false);
+                    refresh();
+                } else {
+                    const errorData = await response.json();
+                    window?.scrollTo({ top: 0, behavior: 'smooth' });
+                    setDialogOpen(true, 'error', errorData.message);
+                    setLoading(false);
+                }
+            } catch (error) {
                 window?.scrollTo({ top: 0, behavior: 'smooth' });
-                setDialogOpen(true, 'error', errorData.message);
+                setDialogOpen(true, 'error', `Щось пішло не так, як планувалось! Спробуйте ще раз!\n\n${(error as Error).message}`);
                 setLoading(false);
             }
-        } catch (error) {
-            window?.scrollTo({ top: 0, behavior: 'smooth' });
-            setDialogOpen(true, 'error', `Щось пішло не так, як планувалось! Спробуйте ще раз!\n\n${(error as Error).message}`);
-            setLoading(false);
         }
     }
 
     return (
-        <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative'>
+        <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative' noValidate>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">
                     {
@@ -172,6 +192,7 @@ export default function EntertainmentPage({ data }: Props) {
                             <EntertainmentHero
                                 item={data[0]}
                                 imagePreviews={preview[0]}
+                                position={0}
                                 lang={lang}
                                 handleTextChange={() => handleTextChange(0)}
                                 handleFileChange={handleFileChange(0)}
