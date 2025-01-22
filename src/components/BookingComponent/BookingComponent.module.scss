@@ -5,11 +5,11 @@
   width: 276px;
   position: relative;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     width: 708px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 791px;
   }
 }
@@ -25,7 +25,7 @@
   font-family: var(--f-family-main);
   font-size: var(--f-size-body);
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     flex-direction: row;
     gap: unset;
     justify-content: space-between;
@@ -36,16 +36,20 @@
 .dateWrapper,
 .guestWrapper {
   width: 100%;
+
   &,
   & * {
     cursor: pointer;
   }
+
   transition: transform 0.3s;
   will-change: contents;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     @media (hover: hover) {
       &:hover {
         transform: translateY(-4px);
+
         .dateOpenButton,
         .guestOpenButton {
           scale: 1.3;
@@ -61,7 +65,8 @@
   justify-content: space-between;
   align-items: center;
   gap: 6px;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     width: auto;
     display: grid;
     grid-auto-columns: auto;
@@ -82,7 +87,8 @@
   grid-template-areas:
     "e d g"
     ". f g";
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     width: auto;
     grid-auto-columns: auto;
     grid-auto-rows: auto;
@@ -97,19 +103,23 @@
 .guestLegend {
   line-height: 1.16;
   font-weight: 300;
+
   @include mixins.media-max(variables.$mobile) {
     flex: 1 0;
   }
 }
+
 .dateLabel {
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     grid-area: a;
     text-align: end;
   }
 }
+
 .guestLegend {
   grid-area: e;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     text-align: center;
   }
 }
@@ -132,7 +142,8 @@
 .dateInput {
   text-align: start;
   max-width: 95px;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     max-width: 83px;
     text-align: end;
     grid-area: c;
@@ -146,15 +157,17 @@
   transition: scale 0.3s 0.15s;
   will-change: contents;
 }
+
 .dateOpenButton {
   align-self: end;
   color: rgb(var(--color-total-black));
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     grid-area: b;
     align-self: end;
   }
 }
+
 .guestOpenButton {
   grid-area: g;
   align-self: center;
@@ -169,6 +182,7 @@
 .upIcon {
   rotate: 180deg;
 }
+
 .guestOpenButton:has(>.upIcon),
 .dateOpenButton:has(>.upIcon) {
   color: rgb(var(--color-natural-orange));
@@ -180,11 +194,12 @@
   visibility: hidden;
 }
 
-.guestsLabel{
+.guestsLabel {
   line-height: 1.1;
   font-weight: 700;
   grid-area: d;
 }
+
 .guestsLabel:last-of-type {
   grid-area: f;
 }
@@ -195,8 +210,9 @@
 
 .buttonSearch {
   font-size: var(--f-size-button-small);
+
   // min-width: 7.375rem;
-  & > button {
+  &>button {
     max-width: unset;
     padding-block: unset;
     line-height: 44px;

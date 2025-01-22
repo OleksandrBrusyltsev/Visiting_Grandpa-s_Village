@@ -10,53 +10,54 @@
   padding: 0 24px;
   max-width: 650px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     max-width: 768px;
     align-items: normal;
     padding: 0 30px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     max-width: 1280px;
     align-items: normal;
     margin-top: 40px;
     padding: 0 50px;
   }
-  @include mixins.media-min(variables.$pc) {
+
+  @include mixins.container-media-min(variables.$pc) {
     max-width: 1440px;
     align-items: normal;
     padding: 0 130px;
   }
 }
 
-.section > .add1 {
+.section>.add1 {
   align-self: inspect($value: flex-start);
   margin-left: 24px;
 
-  width: 50vw;
+  width: 50cqw;
 }
 
 .grandbox1 {
   margin-bottom: 12px;
   margin-top: 63px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     justify-content: flex-start;
     padding: 0;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     margin-top: 40px;
     margin-bottom: 36px;
   }
 }
 
 .textBox1 {
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     width: 362px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 515px;
   }
 }
@@ -67,7 +68,8 @@
   font-size: var(--f-size-button-big);
   line-height: 21.48px;
   color: rgba(var(--color-base-green), 1);
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     width: 585px;
     font-size: 32px;
     line-height: 35.2px;
@@ -83,14 +85,15 @@
   color: rgb(var(--color-black));
   margin-bottom: 12px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     padding: 0;
     font-size: 18px;
     font-weight: 300;
     line-height: 1.2;
     margin-bottom: 32px;
   }
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     font-size: 20px;
   }
 }
@@ -108,7 +111,7 @@
 
   font-family: var(--f-family-main);
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     padding: 0;
     font-size: 18px;
     line-height: 1.2;
@@ -118,7 +121,7 @@
 .text3 {
   margin-bottom: 0px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     display: block;
     text-align: right;
     font-family: var(--f-family-headline);
@@ -134,31 +137,33 @@
 
 .imgBox {
   position: relative;
-  height: calc((100vw - 48px) / 327 * 273);
+  height: calc((100cqw - 48px) / 327 * 273);
   max-height: 480px;
 
   width: 100%;
   margin: 0 auto;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     margin-top: -50px;
     max-height: 423px;
   }
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     max-height: 500px;
     margin-top: unset;
   }
 }
 
 .grandpa1 {
-  margin-top: clamp(20px, calc(20px + 20 * (100vw - 375px) / 392), 40px);
+  margin-top: clamp(20px, calc(20px + 20 * (100cqw - 375px) / 392), 40px);
   margin-inline: -5px;
-  width: 26vw;
+  width: 26cqw;
   height: unset;
   aspect-ratio: 1;
   max-width: 150px;
   float: right;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     position: absolute;
     top: 25px;
     right: 41px;
@@ -170,7 +175,7 @@
     max-height: 100%;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     top: 150px;
     right: auto;
     left: 50%;
@@ -189,12 +194,12 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 51vw;
+  width: 51cqw;
   height: unset;
   aspect-ratio: 1.085;
   max-width: 302px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     top: 136px;
 
     width: 302px;
@@ -204,7 +209,7 @@
     max-height: unset;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     top: -300px;
     right: 0;
     left: auto;
@@ -220,14 +225,14 @@
   right: 0;
   // z-index: 49;
 
-  width: 55vw;
+  width: 55cqw;
   height: unset;
   aspect-ratio: 1.062;
   max-width: 354px;
 
   transform: scale(-1, 1);
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     top: 50px;
 
     width: 354px;
@@ -237,7 +242,7 @@
     max-height: 100%;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     z-index: 49;
     top: auto;
     bottom: -50px;
@@ -260,7 +265,7 @@
   line-height: 21.48px;
   color: rgba(var(--color-base-green), 1);
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     font-size: 48px;
     line-height: 52.8px;
     text-transform: uppercase;
@@ -273,11 +278,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     width: 484px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 551px;
     margin: 0 auto;
     align-items: flex-end;
@@ -287,7 +293,7 @@
 .marg {
   margin-bottom: 20px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     margin-bottom: 32px;
   }
 }
@@ -299,14 +305,14 @@
   margin-top: 24px;
   margin-bottom: -20px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     display: block;
     padding: 0;
     margin-bottom: 20px;
     margin-top: 40px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -315,7 +321,7 @@
 }
 
 .grandpa2 {
-  width: 30vw;
+  width: 30cqw;
   aspect-ratio: 1;
   height: unset;
 
@@ -323,7 +329,7 @@
   transform: scale(-1, 1);
   z-index: -1;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     position: absolute;
     right: 30px;
     left: auto;
@@ -335,7 +341,7 @@
     transform: none;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     top: 750px;
     right: 50px;
     width: 327px;
@@ -345,7 +351,7 @@
     max-height: 100%;
   }
 
-  @include mixins.media-min(variables.$pc) {
+  @include mixins.container-media-min(variables.$pc) {
     top: 750px;
     right: 160px;
     width: 327px;
@@ -359,10 +365,12 @@
 .imgBox2 {
   width: 100%;
   position: relative;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     margin-bottom: 30px;
   }
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     margin-top: -56px;
   }
 }
@@ -372,12 +380,12 @@
   top: 32%;
   left: 0;
   z-index: 55;
-  width: 46vw;
+  width: 46cqw;
   height: unset;
   aspect-ratio: 1.545;
   max-width: 299px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     width: 376px;
     height: 214px;
 
@@ -388,7 +396,7 @@
     bottom: 0;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 556px;
     height: 354px;
 
@@ -400,12 +408,13 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 57vw;
+  width: 57cqw;
   height: unset;
   aspect-ratio: 1.815;
   max-width: 370px;
   z-index: 20;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     width: 424px;
     height: 206px;
 
@@ -415,7 +424,7 @@
     left: 0;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 748px;
     height: 410px;
     top: 54px;
@@ -428,12 +437,12 @@
   bottom: -8%;
   z-index: 48;
 
-  width: 57vw;
+  width: 57cqw;
   height: unset;
   aspect-ratio: 1.277;
   max-width: 370px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     width: 402px;
     height: 348px;
     right: 0;
@@ -445,7 +454,7 @@
     top: 21%;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 606px;
     height: 526px;
     top: 326px;
@@ -457,7 +466,7 @@
   margin-bottom: 20px;
   margin-left: auto;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     text-align: left;
     padding: 0;
   }
@@ -465,7 +474,7 @@
 
 .imgBox3 {
   position: relative;
-  height: 110vw;
+  height: 110cqw;
 
   max-height: 635px;
   width: 100%;
@@ -478,13 +487,13 @@
   left: 0;
   z-index: 50;
 
-  width: 50vw;
+  width: 50cqw;
   height: unset;
   aspect-ratio: 1.039;
   max-width: 325px;
   transform: scale(-1, 1);
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     right: 0;
     left: auto;
     top: -60%;
@@ -498,7 +507,7 @@
     transform: none;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     right: 0;
     left: auto;
     top: -450px;
@@ -519,12 +528,12 @@
   right: 0;
   z-index: 49;
 
-  width: 42vw;
+  width: 42cqw;
   height: unset;
   aspect-ratio: 1;
   max-width: 273px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     width: 434px;
     height: 434px;
 
@@ -535,7 +544,7 @@
     right: auto;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 668px;
     height: 668px;
 
@@ -554,12 +563,12 @@
   left: 4%;
   z-index: 48;
 
-  width: 52vw;
+  width: 52cqw;
   height: unset;
   aspect-ratio: 1.155;
   max-width: 338px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     right: 0;
     left: auto;
     top: auto;
@@ -572,7 +581,7 @@
     max-height: 100%;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     right: 0;
     left: auto;
     top: auto;
@@ -588,18 +597,18 @@
 
 .illustration2 {
   position: absolute;
-  top: clamp(-239px, calc(-259px + 139 * (767px - 100vw) / 392), -120px);
-  right: clamp(-35px, calc(-35px + 35 * (767px - 100vw) / 392), 0px);
+  top: clamp(-239px, calc(-259px + 139 * (767px - 100cqw) / 392), -120px);
+  right: clamp(-35px, calc(-35px + 35 * (767px - 100cqw) / 392), 0px);
 
   z-index: -1;
 
-  width: 52vw;
+  width: 52cqw;
   height: unset;
   aspect-ratio: 0.97;
   max-width: 338px;
   transform: scale(-1, 1);
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     right: auto;
     left: -70%;
     top: -86px;
@@ -613,7 +622,7 @@
     transform: none;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     left: -70%;
     top: -137px;
 
@@ -625,12 +634,13 @@
 .imgMask {
   position: relative;
   z-index: -1;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     position: inherit;
     z-index: 0;
   }
-  @include mixins.media-min(variables.$breakpoint-laptop) {
-  }
+
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {}
 }
 
 .imgMask::after {
@@ -640,13 +650,12 @@
   bottom: 0;
   width: 100%;
   height: 40%;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.8) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.8) 100%);
   pointer-events: none;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     display: none;
   }
 }
@@ -655,13 +664,13 @@
   position: relative;
   margin-top: 40px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     width: 433px;
     margin-left: 40%;
     margin-top: 100px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 695px;
   }
 }
@@ -672,7 +681,7 @@
 
   margin-bottom: 20px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     max-width: 100%;
     margin-bottom: 36px;
   }
@@ -682,7 +691,7 @@
   position: relative;
   width: 100%;
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     height: 1000px;
     max-height: 100%;
   }
@@ -692,13 +701,13 @@
   position: absolute;
   top: -40px;
   left: -35px;
-  width: clamp(200px, calc(200px + 111 * (100vw - 375px) / 392), 311px);
+  width: clamp(200px, calc(200px + 111 * (100cqw - 375px) / 392), 311px);
   max-width: 280px;
   height: unset;
   aspect-ratio: 1;
   z-index: 48;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     width: 311px;
     max-width: 100%;
     max-height: 100%;
@@ -707,7 +716,7 @@
     left: auto;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 454px;
     top: 70px;
     right: 40px;
@@ -719,13 +728,13 @@
   right: 0;
   top: min(15%, 80px);
 
-  width: 54vw;
+  width: 54cqw;
   height: unset;
   aspect-ratio: 1.351;
   max-width: 351px;
   z-index: 49;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     right: auto;
     left: 0;
     top: 0;
@@ -737,7 +746,7 @@
     max-height: 100%;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     right: auto;
     left: 0;
     top: 74px;
@@ -755,13 +764,13 @@
   bottom: 7%;
   right: 0;
 
-  width: 77vw;
+  width: 77cqw;
   height: unset;
   aspect-ratio: 1.55;
   max-width: 500px;
   z-index: 50;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     width: 370px;
     height: 236px;
 
@@ -771,7 +780,7 @@
     bottom: 0;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 550px;
     height: 352px;
 
@@ -791,13 +800,13 @@
 .line1Box {
   padding-left: 33.6%;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     padding-left: unset;
     display: flex;
     justify-content: center;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     justify-content: flex-start;
   }
 }
@@ -807,13 +816,13 @@
   justify-content: center;
   margin-top: 20px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     margin-inline: 18.4% auto;
     padding-bottom: 75px;
     margin-top: -20px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     margin-inline: 17.8% auto;
     margin-top: unset;
   }
@@ -822,12 +831,13 @@
 .line2 {
   width: 81%;
   aspect-ratio: 1;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     height: 540px;
     width: 540px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 911px;
     height: 911px;
   }
@@ -836,19 +846,21 @@
 .line3Box {
   display: flex;
   justify-content: center;
-  height: 76vw;
+  height: 76cqw;
   max-height: 433px;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     transform: rotate(-13deg);
   }
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     margin-top: 200px;
   }
 }
 
 .line3 {
-  @include mixins.media-min(variables.$mobile) {
-    width: 94vw;
+  @include mixins.container-media-min(variables.$mobile) {
+    width: 94cqw;
     max-width: 975px;
     z-index: 46;
     overflow: hidden;
@@ -856,18 +868,18 @@
 }
 
 .line1 {
-  width: 51vw;
+  width: 51cqw;
   max-width: 320px;
   height: unset;
   aspect-ratio: 0.725;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     width: 198px;
     aspect-ratio: 0.825;
     margin-left: 170px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 291px;
     // height: 351px;
     aspect-ratio: 0.829;
@@ -878,10 +890,12 @@
 .line4Box {
   display: flex;
   justify-content: center;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     padding-top: 50px;
   }
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     padding-top: unset;
   }
 }
@@ -889,13 +903,15 @@
 .line4 {
   width: 72%;
   aspect-ratio: 0.634;
+
   // max-height: 433px;
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     width: 550px;
     height: auto;
     aspect-ratio: 0.96;
   }
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 799px;
     aspect-ratio: 1.11;
     margin-top: 200px;
@@ -907,7 +923,8 @@
   flex-direction: column;
   align-items: flex-start;
   margin-top: 40px;
-  @include mixins.media-min(variables.$mobile) {
+
+  @include mixins.container-media-min(variables.$mobile) {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -915,19 +932,20 @@
     width: 415px;
   }
 
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     width: 672px;
     margin-top: 100px;
   }
 }
 
 .calendarBox {
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     top: 600px;
     right: 50px;
     position: absolute;
   }
-  @include mixins.media-min(variables.$pc) {
+
+  @include mixins.container-media-min(variables.$pc) {
     right: 180px;
   }
 }
@@ -937,7 +955,7 @@
   // flex-direction: column;
   // align-items: center;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     display: block;
   }
 }

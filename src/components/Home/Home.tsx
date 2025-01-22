@@ -12,18 +12,21 @@ import { MatchMediaContext } from "@/context/MatchMediaContext";
 import MarkdownPreview from "@/components/ui/MarkdownPreview/MarkdownPreview";
 import WelcomeBlock from "../WelcomeBlock/WelcomeBlock";
 
-import css from "./Hero.module.scss";
-import { main } from "@/data/main";
+import css from "./Home.module.scss";
 
-const illustration1 =
+export const illustration1 =
   "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517246/kdb4jt6xrg0oihmxg9jo.png";
-const illustration2 =
+export const illustration2 =
   "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517248/rsyiks4v7smodddac55g.png";
-const illustration3 =
+export const illustration3 =
   "https://res.cloudinary.com/dzbm3urzv/image/upload/v1719517250/bsy7q5as5cqhbed5uu9v.png";
 
+type HomeProps = Readonly<{
+  data: MainPageBlock[];
+}>
 
-const Hero = () => {
+const Hero: React.FC<HomeProps> = ({ data }) => {
+
   const locale = useLocale();
   const box1Ref = useRef<HTMLDivElement>(null);
   const box99Ref = useRef<HTMLDivElement>(null);
@@ -689,7 +692,7 @@ const Hero = () => {
       <section className={css.section}>
         <div className={css.box1Ref}>
           <Image
-            src={main[0].photos[0]}
+            src={data[0].photos[0]}
             alt=""
             width={334}
             height={334}
@@ -699,27 +702,27 @@ const Hero = () => {
           <div className={css.grandbox1} ref={box1Ref}>
             <h1
               className={`${css.textBox1} ${css.mainTitle}`}
-              dangerouslySetInnerHTML={{ __html: main[0].title[locale as keyof typeof main[0]["title"]] }} />
+              dangerouslySetInnerHTML={{ __html: data[0].title[locale as Language] }} />
           </div>
 
           <div ref={box99Ref}>
             <div className={`${css.text1} ${css.textBox1}`}>
               <div>
                 <span className={css.text3}>
-                  <MarkdownPreview markdown={main[0].subtitle[locale as keyof typeof main[0]["subtitle"]]} />
+                  <MarkdownPreview markdown={data[0].subtitle[locale as Language]} />
                 </span>{" "}
-                <MarkdownPreview markdown={main[0].description[locale as keyof typeof main[0]["description"]]} />
+                <MarkdownPreview markdown={data[0].description[locale as Language]} />
               </div>
             </div>
             <div className={`${css.text2} ${css.textBox1}`}>
-              <MarkdownPreview markdown={main[0].quote[locale as keyof typeof main[0]["quote"]]} />
+              <MarkdownPreview markdown={data[0].quote[locale as Language]} />
             </div>
           </div>
         </div>
 
         <div className={css.imgBox}>
           <Image
-            src={main[0].photos[1]}
+            src={data[0].photos[1]}
             alt=""
             width={544}
             height={492}
@@ -771,7 +774,7 @@ const Hero = () => {
         <div className={`${css.grandbox2} `} ref={box2Ref}>
           <div className={`${css.imgMask}`}>
             <Image
-              src={main[1].photos[0]}
+              src={data[1].photos[0]}
               alt=""
               width={327}
               height={324}
@@ -780,21 +783,21 @@ const Hero = () => {
             />
           </div>
           <h2 className={`${css.title1} ${css.textContainer}`}>
-            <MarkdownPreview markdown={main[1].title[locale as keyof typeof main[1]["title"]]} />
+            <MarkdownPreview markdown={data[1].title[locale as Language]} />
 
           </h2>
         </div>
         <div className={`${css.textContainer}`} ref={box3Ref}>
           <div className={css.text1}>
-            <MarkdownPreview markdown={main[1].description[locale as keyof typeof main[1]["description"]]} />
+            <MarkdownPreview markdown={data[1].description[locale as Language]} />
           </div>
           <div className={`${css.text2} ${css.boxForAlign}`}>
-            <MarkdownPreview markdown={main[1].quote[locale as keyof typeof main[1]["quote"]]} />
+            <MarkdownPreview markdown={data[1].quote[locale as Language]} />
           </div>
         </div>
         <div className={css.imgBox2}>
           <Image
-            src={main[1].photos[1]}
+            src={data[1].photos[1]}
             alt=""
             width={748}
             height={410}
@@ -803,7 +806,7 @@ const Hero = () => {
           />
 
           <Image
-            src={main[1].photos[3]}
+            src={data[1].photos[3]}
             alt=""
             width={556}
             height={354}
@@ -812,7 +815,7 @@ const Hero = () => {
           />
 
           <Image
-            src={main[1].photos[2]}
+            src={data[1].photos[2]}
             alt=""
             width={606}
             height={526}
@@ -853,9 +856,9 @@ const Hero = () => {
 
         <div className={css.textContainer1} ref={box4Ref}>
           <h2 className={`${css.title1} ${css.add}`}
-            dangerouslySetInnerHTML={{ __html: main[2].title[locale as keyof typeof main[2]["title"]] }} />
+            dangerouslySetInnerHTML={{ __html: data[2].title[locale as Language] }} />
           <div className={css.text1}>
-            <MarkdownPreview markdown={main[2].description[locale as keyof typeof main[2]["description"]]} />
+            <MarkdownPreview markdown={data[2].description[locale as Language]} />
           </div>
         </div>
 
@@ -870,7 +873,7 @@ const Hero = () => {
           />
 
           <Image
-            src={main[2].photos[0]}
+            src={data[2].photos[0]}
             alt=""
             width={660}
             height={496}
@@ -879,7 +882,7 @@ const Hero = () => {
           />
 
           <Image
-            src={main[2].photos[1]}
+            src={data[2].photos[1]}
             alt=""
             width={499}
             height={430}
@@ -929,15 +932,15 @@ const Hero = () => {
           />
           <div ref={box7Ref}>
             <h2 className={`${css.title1} ${css.add1}`}
-              dangerouslySetInnerHTML={{ __html: main[3].title[locale as keyof typeof main[3]["title"]] }} />
+              dangerouslySetInnerHTML={{ __html: data[3].title[locale as Language] }} />
             <div className={css.text1}>
-              <MarkdownPreview markdown={main[3].description[locale as keyof typeof main[3]["description"]]} />
+              <MarkdownPreview markdown={data[3].description[locale as Language]} />
             </div>
           </div>
         </div>
         <div className={css.imgBox4}>
           <Image
-            src={main[3].photos[1]}
+            src={data[3].photos[1]}
             alt=""
             width={453}
             height={469}
@@ -945,7 +948,7 @@ const Hero = () => {
             ref={grandpa3Animation}
           />
           <Image
-            src={main[3].photos[0]}
+            src={data[3].photos[0]}
             alt=""
             width={668}
             height={668}
@@ -953,7 +956,7 @@ const Hero = () => {
             ref={photo7Animation}
           />
           <Image
-            src={main[3].photos[2]}
+            src={data[3].photos[2]}
             alt=""
             width={550}
             height={352}
@@ -991,7 +994,7 @@ const Hero = () => {
           </div>
         </div>
       </section>
-      <WelcomeBlock text={main[4].title[locale as keyof typeof main[4]["title"]]} />
+      <WelcomeBlock text={data[4].title[locale as Language]} />
     </>
   );
 };

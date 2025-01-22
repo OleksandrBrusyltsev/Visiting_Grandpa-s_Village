@@ -1,4 +1,4 @@
-export type MainPageBlock = {
+type MainPageBlock = {
     id: number;
     title: Record<Language, string>;
     subtitle: Record<Language, string>;

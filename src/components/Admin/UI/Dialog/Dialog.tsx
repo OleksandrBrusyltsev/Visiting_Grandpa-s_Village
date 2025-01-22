@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react'
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material'
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material'
 import { useMainStore } from '@/stores/store-provider';
 import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined';
@@ -15,6 +15,7 @@ const Modal = () => {
   const handleClose = () => {
     setDialogOpen(false, null, '');
   };
+  const string = text.split('\n');
 
   return (
     <Dialog
@@ -35,9 +36,15 @@ const Modal = () => {
           fontSize: 100,
           my: 2,
         }} />}
-        <Typography gutterBottom>
-          {text}
-        </Typography>
+        <Box>
+          <p>
+            <b>{string[0]}</b>
+          </p>
+          {string.slice(1).length ? <p style={{
+            textAlign: 'left'
+          }} dangerouslySetInnerHTML={{ __html: string.slice(1).join(`<br />`) }}>
+          </p> : null}
+        </Box>
       </DialogContent>
       <DialogActions>
         <Button autoFocus onClick={handleClose}>

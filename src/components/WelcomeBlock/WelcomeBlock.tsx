@@ -3,12 +3,10 @@ import Button from "../ui/Button/Button";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
-import WelcomeBlockType from "../../types/welcomeBlock";
-
 import style from "./WelcomeBlock.module.scss";
 import { main } from "@/data/main";
 
-const alt = "Landscape picture";
+const alt = "CTA picture";
 
 const WelcomeBlock: React.FC<WelcomeBlockType> = ({ text }) => {
   const locale = useLocale();

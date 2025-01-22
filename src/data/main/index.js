@@ -4,7 +4,7 @@ export const main = [
         title: {
             en: "Eco vacation “Grandpa's&nbsp;village”",
             ru: 'Эко отдых “На деревне у&nbsp;Дедушки”',
-            uk: 'Еко відпочинок "На&nbsp;селі&nbsp;у&nbsp;Дідуся"',
+            uk: 'Еко відпочинок “На&nbsp;селі&nbsp;у&nbsp;Дідуся”',
         },
         subtitle: {
             en: 'Hello, my future visitor.',
@@ -18,7 +18,7 @@ export const main = [
         },
         quote: {
             en: '“Follow me and experience the story of the creation of my life.”',
-            ru: '',
+            ru: '“Следуй за мной и почувствуй историю создания моей жизни.”',
             uk: '“Слідуй за мною та відчуй історію творіння мого життя.”',
         },
         photos: [
