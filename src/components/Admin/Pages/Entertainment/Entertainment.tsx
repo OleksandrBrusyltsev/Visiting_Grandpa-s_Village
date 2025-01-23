@@ -111,6 +111,7 @@ export default function EntertainmentPage({ data }: Props) {
         if (!changedBlocksRef.current.size) {
             return;
         }
+
         if (!formRef.current?.checkValidity()) {
             const invalidInputs = formRef.current?.querySelectorAll(':invalid') as NodeListOf<HTMLInputElement>;
             const errors: Record<Language, string> = { uk: '', ru: '', en: '' };
@@ -174,6 +175,7 @@ export default function EntertainmentPage({ data }: Props) {
     }
 
     return (
+
         <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative' noValidate>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">

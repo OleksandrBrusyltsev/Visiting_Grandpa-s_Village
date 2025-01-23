@@ -13,6 +13,7 @@ const EntertainmentHero = forwardRef<ResetType, EditPageProps<EntertainmentItem>
     handleTextChange,
     handleFileChange
 }, ref) {
+
     const [quote, setQuote] = useState(() => item.quote[lang]);
     const [isEditing, setIsEditing] = useState(false);
 

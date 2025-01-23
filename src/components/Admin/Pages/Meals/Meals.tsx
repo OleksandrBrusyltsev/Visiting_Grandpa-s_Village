@@ -87,6 +87,7 @@ export default function MealsPage({ data }: Props) {
         if (!changedBlocksRef.current.size) {
             return;
         }
+
         if (!formRef.current?.checkValidity()) {
             const invalidInputs = formRef.current?.querySelectorAll(':invalid') as NodeListOf<HTMLInputElement>;
             const errors: Record<Language, string> = { uk: '', ru: '', en: '' };
