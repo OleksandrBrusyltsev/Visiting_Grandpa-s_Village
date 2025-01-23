@@ -16,7 +16,7 @@ import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
 import css from "@/components/Home/Home.module.scss";
 import WelcomeBlock from './Blocks/WelcomeBlock';
 
-type Props = { data: MainPageBlock[] }
+type Props = Readonly<{ data: MainPageBlock[] }>
 
 export default function MainPage({ data }: Props) {
     const [activeTab, setActiveTab] = useState(0);
@@ -120,7 +120,6 @@ export default function MainPage({ data }: Props) {
                 const blockIndex = +key.split('-')[keyPartsLength - 1];
                 if (!changedBlocksRef.current.has(blockIndex)) {
                     formData.delete(key);
-                    continue;
                 }
             }
 
@@ -183,7 +182,7 @@ export default function MainPage({ data }: Props) {
                                     handleFileChange={handleFileChange(0)}
                                     ref={(el) => {
                                         if (!blockResets.current[0])
-                                            blockResets.current[0] = {} as Record<Language, { reset: () => void }>;;
+                                            blockResets.current[0] = {} as Record<Language, { reset: () => void }>;
                                         blockResets.current[0][lang] = el;
                                     }}
                                 />
@@ -196,7 +195,7 @@ export default function MainPage({ data }: Props) {
                                     handleFileChange={handleFileChange(1)}
                                     ref={(el) => {
                                         if (!blockResets.current[1])
-                                            blockResets.current[1] = {} as Record<Language, { reset: () => void }>;;
+                                            blockResets.current[1] = {} as Record<Language, { reset: () => void }>;
                                         blockResets.current[1][lang] = el;
                                     }}
                                 />
@@ -209,7 +208,7 @@ export default function MainPage({ data }: Props) {
                                     handleFileChange={handleFileChange(2)}
                                     ref={(el) => {
                                         if (!blockResets.current[2])
-                                            blockResets.current[2] = {} as Record<Language, { reset: () => void }>;;
+                                            blockResets.current[2] = {} as Record<Language, { reset: () => void }>;
                                         blockResets.current[2][lang] = el;
                                     }}
                                 />
@@ -223,7 +222,7 @@ export default function MainPage({ data }: Props) {
                                     handleFileChange={handleFileChange(3)}
                                     ref={(el) => {
                                         if (!blockResets.current[3])
-                                            blockResets.current[3] = {} as Record<Language, { reset: () => void }>;;
+                                            blockResets.current[3] = {} as Record<Language, { reset: () => void }>;
                                         blockResets.current[3][lang] = el;
                                     }}
                                 />
@@ -234,11 +233,6 @@ export default function MainPage({ data }: Props) {
                                 imagePreviews={preview[4]}
                                 handleTextChange={() => handleTextChange(4)}
                                 handleFileChange={handleFileChange(4)}
-                                ref={(el) => {
-                                    if (!blockResets.current[4])
-                                        blockResets.current[4] = {} as Record<Language, { reset: () => void }>;;
-                                    blockResets.current[4][lang] = el;
-                                }}
                             />
                         </CustomTabPanel>
                     ))

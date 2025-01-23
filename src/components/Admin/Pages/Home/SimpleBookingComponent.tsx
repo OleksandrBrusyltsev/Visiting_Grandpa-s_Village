@@ -66,8 +66,7 @@ export default function SimpleBookingComponent() {
                         <span
                             className={s.guestsInput}
                             id="adult_guests"
-                            tabIndex={-1}
-                        >0</span>
+                            tabIndex={-1}>0</span>
                         ,
                     </label>
                     <label htmlFor="children_guests" className={s.guestsLabel}>

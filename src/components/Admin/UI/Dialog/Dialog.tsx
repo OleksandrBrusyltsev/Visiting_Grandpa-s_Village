@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react'
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material'
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
 import { useMainStore } from '@/stores/store-provider';
 import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined';
