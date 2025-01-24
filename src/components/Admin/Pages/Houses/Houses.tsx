@@ -12,6 +12,7 @@ import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
 import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContainer';
 
 import s from './Houses.module.scss';
+import { locales } from '@/data/locales';
 
 type Props = Readonly<{ data: HouseItem }>;
 
@@ -38,6 +39,19 @@ export const CustomTabPanel = forwardRef<HTMLDivElement | null, Readonly<TabPane
         </div>
     );
 })
+
+const mockObj = {
+    name: '',
+    rental_price: '0',
+    max_adults: '0',
+    is_available: 'true',
+    discount_percent: '0',
+    extra_adults: '0',
+    extra_children: '0',
+    extra_adult_price: '0',
+    extra_children_price: '0',
+    house_type: 'null'
+};
 
 export default function HousesPage({ data }: Props) {
 
@@ -110,16 +124,11 @@ export default function HousesPage({ data }: Props) {
         } else {
             setLoading(true);
             const formData = new FormData(e.currentTarget);
-            formData.append('name', '');
-            formData.append('rental_price', '0');
-            formData.append('max_adults', '0');
-            formData.append('is_available', 'true');
-            formData.append('discount_percent', '0');
-            formData.append('extra_adults', '0');
-            formData.append('extra_children', '0');
-            formData.append('extra_adult_price', '0');
-            formData.append('extra_children_price', '0');
-            formData.append('house_type', 'null');
+
+            for (const [key, value] of Object.entries(mockObj)) {
+                formData.append(key, value);
+            }
+
             formData.append('photo1', preview);
 
             try {
@@ -152,7 +161,7 @@ export default function HousesPage({ data }: Props) {
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">
                     {
-                        ['uk', 'ru', 'en'].map((lang) => (
+                        locales.map((lang) => (
                             <Tab key={lang} label={lang} />
                         ))
                     }
@@ -160,7 +169,7 @@ export default function HousesPage({ data }: Props) {
             </Box>
             <ResizableContainer>
                 {
-                    ['uk', 'ru', 'en'].map((lang, index) => (
+                    locales.map((lang, index) => (
                         <CustomTabPanel value={activeTab} index={index} key={lang} className='container-admin'>
                             <section className={s.hero}>
                                 <div className={s.heroWrapper}>

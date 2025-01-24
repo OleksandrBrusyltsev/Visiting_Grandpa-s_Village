@@ -15,7 +15,8 @@ const Modal = () => {
   const handleClose = () => {
     setDialogOpen(false, null, '');
   };
-  const string = text.split('\n');
+
+  const string = text?.split('\n') ?? [];
 
   return (
     <Dialog

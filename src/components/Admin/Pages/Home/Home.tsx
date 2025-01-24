@@ -12,9 +12,10 @@ import Block1 from './Blocks/Block1';
 import Block2 from './Blocks/Block2';
 import Block3 from './Blocks/Block3';
 import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
+import WelcomeBlock from './Blocks/WelcomeBlock';
 
 import css from "@/components/Home/Home.module.scss";
-import WelcomeBlock from './Blocks/WelcomeBlock';
+import { locales } from '@/data/locales';
 
 type Props = Readonly<{ data: MainPageBlock[] }>
 
@@ -33,7 +34,7 @@ export default function MainPage({ data }: Props) {
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
 
-    const { isMobile } = useMatchContainerMedia(containerAdminRef);
+    const matchMedia = useMatchContainerMedia(containerAdminRef);
 
     useLayoutEffect(() => {
         setIsDirtyPage(false);
@@ -159,7 +160,7 @@ export default function MainPage({ data }: Props) {
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">
                     {
-                        ['uk', 'ru', 'en'].map((lang) => (
+                        locales.map((lang) => (
                             <Tab key={lang} label={lang} />
                         ))
                     }
@@ -167,7 +168,7 @@ export default function MainPage({ data }: Props) {
             </Box>
             <ResizableContainer>
                 {
-                    (['uk', 'ru', 'en'] as Language[]).map((lang, index) => (
+                    locales.map((lang, index) => (
                         <CustomTabPanel value={activeTab} index={index} key={lang} className='container-admin overflow-hidden' ref={containerAdminRef}>
                             <section
                                 // className="flex flex-col items-center @[768px]:items-stretch max-w-[650px] @[768px]:max-w-[768px] w-full mx-auto @[1280px]:max-w-[1280px] @[1440px]:max-w-[1440px]"
@@ -176,7 +177,7 @@ export default function MainPage({ data }: Props) {
                                 <HeroBlock
                                     item={data[0]}
                                     imagePreviews={preview[0]}
-                                    isMobile={isMobile}
+                                    matchMedia={matchMedia}
                                     lang={lang}
                                     handleTextChange={() => handleTextChange(0)}
                                     handleFileChange={handleFileChange(0)}
@@ -189,7 +190,7 @@ export default function MainPage({ data }: Props) {
                                 <Block1
                                     item={data[1]}
                                     lang={lang}
-                                    isMobile={isMobile}
+                                    matchMedia={matchMedia}
                                     imagePreviews={preview[1]}
                                     handleTextChange={() => handleTextChange(1)}
                                     handleFileChange={handleFileChange(1)}
@@ -202,7 +203,7 @@ export default function MainPage({ data }: Props) {
                                 <Block2
                                     item={data[2]}
                                     lang={lang}
-                                    isMobile={isMobile}
+                                    matchMedia={matchMedia}
                                     imagePreviews={preview[2]}
                                     handleTextChange={() => handleTextChange(2)}
                                     handleFileChange={handleFileChange(2)}
@@ -216,7 +217,7 @@ export default function MainPage({ data }: Props) {
                                 <Block3
                                     item={data[3]}
                                     lang={lang}
-                                    isMobile={isMobile}
+                                    matchMedia={matchMedia}
                                     imagePreviews={preview[3]}
                                     handleTextChange={() => handleTextChange(3)}
                                     handleFileChange={handleFileChange(3)}

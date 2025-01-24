@@ -14,9 +14,9 @@ const MealsBlockAdmin = forwardRef<ResetType, EditPageProps<MealsItem>>(function
     lang,
     handleFileChange,
     handleTextChange,
-    isMobile,
+    matchMedia,
 }, ref) {
-
+    const { isMobile } = matchMedia ?? {};
     const { title, id } = item;
     const [description, setDescription] = useState(() => item.description[lang]);
     const [isEditing, setIsEditing] = useState<boolean>(false);

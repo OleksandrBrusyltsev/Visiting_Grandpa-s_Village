@@ -37,7 +37,7 @@ const Quote = forwardRef<ResetType, EditPageProps<EntertainmentItem>>(function Q
                     className={`${q.quoteTitle} !text-start relative`}>
                     { /* МЕГАКОСТЫЛЬ с тегом <p></p>!!! Не работает, если в textarea более 1 строки*/}
                     <p className='opacity-0'>{title}</p>
-                    <Input name={`description-${lang}-${position + 1}`}
+                    <Input name={`title-${lang}-${position + 1}`}
                         className={`bg-transparent absolute top-0 z-10 w-full`}
                         value={title}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {

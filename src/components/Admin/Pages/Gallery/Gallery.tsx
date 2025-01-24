@@ -1,31 +1,31 @@
 "use client";
 import { useLayoutEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Box, Tab, Tabs } from '@mui/material';
 
 import { useMainStore } from '@/stores/store-provider';
 import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContainer';
 import { CustomTabPanel } from '../Houses/Houses';
-import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
-import Icon from '@/components/ui/Icon/Icon';
-import MealsBlockAdmin from './MealsBlockAdmin';
 import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
+import { useTranslations } from '@/hooks/useTranslations';
+import GalleryItemBlock from './Blocks/GalleryItemBlock';
 import { useMatchContainerMedia } from '@/hooks/useMatchContainerMedia';
+import GalleryHero from './Blocks/GalleryHeroBlock';
 
-import s from "@/components/Meals/Meals.module.scss";
+import s from "@/components/Gallery/Gallery.module.scss";
 import { locales } from '@/data/locales';
 
-type Props = Readonly<{ data: MealsItem[] }>;
+type Props = Readonly<{ data: GalleryItem[] }>;
 
-export default function MealsPage({ data }: Props) {
-
+export default function GalleryPage({ data }: Props) {
     const [activeTab, setActiveTab] = useState(0);
     const [loading, setLoading] = useState(false);
 
+    const t = useTranslations('Gallery', locales[activeTab], true);
+
     const formRef = useRef<HTMLFormElement | null>(null);
     const containerAdminRef = useRef<HTMLDivElement | null>(null);
-    const mealsBlockRefs = useRef<Record<number, Record<Language, { reset: () => void } | null>>>({});
+    const galleryBlockRefs = useRef<Record<number, Record<Language, ImperativeHandleObjType | null>>>({});
     const changedBlocksRef = useRef(new Set<number>());
 
     const matchMedia = useMatchContainerMedia(containerAdminRef);
@@ -44,24 +44,15 @@ export default function MealsPage({ data }: Props) {
         setActiveTab(newValue);
     };
 
-    const [preview, setPreview] = useState<(string | File)[][]>(data.map((item) => [...item.photos]));
+    const [preview, setPreview] = useState<(string | File)[]>(data.map((item) => item.cover));
+    const [name, setName] = useState<string[]>(data.map((item) => item.name));
 
-    const handleFileChange = (blockIndex: number) => (event: React.ChangeEvent<HTMLInputElement>, imgIndex: number) => {
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>, blockIndex: number) => {
         const file = event.target.files?.[0];
         changedBlocksRef.current.add(blockIndex);
-        if (file) {
-            setPreview(prevState => {
-                const res = [...prevState];
-                res[blockIndex][imgIndex] = file;
-                return res;
-            });
-        } else {
-            setPreview(prevState => {
-                const res = [...prevState];
-                res[blockIndex][imgIndex] = data[blockIndex].photos[imgIndex];
-                return res;
-            });
-        }
+        file
+            ? setPreview(prevState => prevState.with(blockIndex, file))
+            : setPreview(prevState => prevState.with(blockIndex, data[blockIndex].cover));
         setIsDirtyPage(true);
     }
     const handleTextChange = (index: number) => {
@@ -70,13 +61,17 @@ export default function MealsPage({ data }: Props) {
     }
     const handleResetForm = () => {
         formRef.current?.reset();
-        setPreview(() => data.map((item) => [...item.photos]));
+        setPreview(data.map((item) => item.cover));
         changedBlocksRef.current
-        Object.entries(mealsBlockRefs.current).forEach(([index, langRefs]) => {
+        Object.entries(galleryBlockRefs.current).forEach(([index, langRefs]) => {
             if (changedBlocksRef.current.has(+index + 1))
                 Object.values(langRefs).forEach((ref) => {
                     ref?.reset();
                 });
+            //разворачиваем перевернутые для редактирования блоки
+            Object.values(langRefs).forEach((ref) => {
+                ref?.reset();
+            });
         });
         changedBlocksRef.current.clear();
         setIsDirtyPage(false);
@@ -119,15 +114,16 @@ export default function MealsPage({ data }: Props) {
                     continue;
                 }
             }
-
             changedBlocksRef.current.forEach((blockIndex) => {
-                preview[blockIndex].forEach((photo, photoIndex) => {
-                    formData.append(`photo${photoIndex}-${blockIndex}`, photo);
+                formData.append(`cover-${blockIndex}`, preview[blockIndex]);
+                //паровозиком цепляем неизмененные фотки из data[i].photo_urls
+                data[blockIndex].photo_urls.forEach((url, index) => {
+                    formData.append(`photo${index}-${blockIndex}`, url);
                 })
             });
 
             try {
-                const response = await fetch('/api/admin/meals/edit', {
+                const response = await fetch('/api/admin/gallery/edit', {
                     method: 'PUT',
                     body: formData
                 });
@@ -166,53 +162,44 @@ export default function MealsPage({ data }: Props) {
                 {
                     locales.map((lang, index) => (
                         <CustomTabPanel value={activeTab} index={index} key={lang} className='container-admin overflow-hidden' ref={containerAdminRef}>
-                            <div className={`${s.mealsWrapper}`}>
-                                <div className={s.heroWrapper}>
-                                    {lang === 'uk' && <input type="hidden" value={data[0].id} name='id-0' />}
-                                    <Input name={`title-${lang}-0`}
-                                        className={`${s.title} bg-transparent relative z-10`}
-                                        defaultValue={data[0].title[lang]}
-                                        onChange={() => handleTextChange(0)} />
-                                    <div className={s.heroImage}>
-                                        <Image
-                                            src={"/images/meals/dog.png"}
-                                            alt=""
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 50vw"
-                                            fill
-                                        />
-                                        <div className={s.callToEatWrapper}>
-                                            <Input name={`description-${lang}-0`}
-                                                className={`${s.callToEat} bg-transparent z-10 relative w-full`}
-                                                defaultValue={data[0].description[lang]}
-                                                onChange={() => handleTextChange(0)}
-                                            />
-                                            <Icon name="meals-outline" className={s.callToEatOutline} />
-                                        </div>
-                                    </div>
-                                    <Icon
-                                        name={matchMedia.isMobile ? "curve-meals-375" : "curve-meals-768"}
-                                        className={s.heroCurve}
-                                    />
-                                </div>
+                            <div className={s.backgroundImages}>
+                                <GalleryHero
+                                    coverPreview={preview[0]}
+                                    item={data[0]}
+                                    lang={lang}
+                                    handleFileChange={handleFileChange}
+                                    handleTextChange={() => handleTextChange(0)}
+                                />
                                 <div className={s.main}>
-                                    {data.slice(1).map((item, i) => (
-                                        <MealsBlockAdmin
-                                            imagePreviews={preview[i + 1]}
-                                            item={item}
-                                            lang={lang}
-                                            key={item.id}
-                                            position={i}
-                                            handleFileChange={handleFileChange(i + 1)}
-                                            handleTextChange={() => handleTextChange(i + 1)}
-                                            matchMedia={matchMedia}
-                                            ref={(el) => {
-                                                if (!mealsBlockRefs.current[i]) {
-                                                    mealsBlockRefs.current[i] = {} as Record<Language, { reset: () => void }>;
-                                                }
-                                                mealsBlockRefs.current[i][lang] = el;
-                                            }}
-                                        />
-                                    ))}
+                                    <section className={`${s.memoriesGallery} mb-[150px]`}>
+                                        <p className={s.callToClick}>
+                                            <span className={s.desktopOnly}>{t('clickMode', { mode: 'desktop' })}</span>
+                                            <span className={s.mobileOnly}>{t('clickMode', { mode: 'mobile' })}</span>
+                                        </p>
+                                        <div className={s.galleryWrapper}>
+                                            {data.slice(1).map((item, i) => (
+                                                <GalleryItemBlock
+                                                    imagePreview={preview[i + 1]}
+                                                    item={item}
+                                                    name={name[i + 1]}
+                                                    setName={(newName: string) => setName(names => names.with(i + 1, newName))}
+                                                    lang={lang}
+                                                    key={item.id}
+                                                    position={i}
+                                                    handleFileChange={handleFileChange}
+                                                    handleTextChange={() => handleTextChange(i + 1)}
+                                                    matchMedia={matchMedia}
+                                                    ref={(el) => {
+                                                        if (!galleryBlockRefs.current[i]) {
+                                                            galleryBlockRefs.current[i] = {} as Record<Language, ImperativeHandleObjType>;
+                                                        }
+                                                        galleryBlockRefs.current[i][lang] = el;
+                                                    }}
+                                                />
+                                            ))}
+                                        </div>
+                                        <div className={s.backgroundCurve}></div>
+                                    </section>
                                 </div>
                             </div>
                         </CustomTabPanel>
@@ -229,3 +216,9 @@ export default function MealsPage({ data }: Props) {
 
     )
 }
+
+
+
+
+
+

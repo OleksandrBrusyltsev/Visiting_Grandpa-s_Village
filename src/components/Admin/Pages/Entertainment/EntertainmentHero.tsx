@@ -6,7 +6,7 @@ import MarkdownPreview from '@/components/ui/MarkdownPreview/MarkdownPreview';
 
 import s from "@/components/Entertainment/Entertainment.module.scss";
 
-const EntertainmentHero = forwardRef<ResetType, EditPageProps<EntertainmentItem>>(function Quote({
+const EntertainmentHero = forwardRef<ResetType, EditPageProps<EntertainmentItem>>(function EntertainmentHero({
     item,
     imagePreviews,
     lang,

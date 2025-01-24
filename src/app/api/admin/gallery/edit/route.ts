@@ -15,9 +15,9 @@ export async function PUT(request: Request) {
 
     const formData = await request.formData();
 
-    const mealsDataObj = Array.from(formData.entries()).reduce((acc, [key, value]) => {
+    const galleryDataObj = Array.from(formData.entries()).reduce((acc, [key, value]) => {
         const partsLength = key.split('-').length;
-        const fieldName = key.split('-')[0] as keyof MealsItem;
+        const fieldName = key.split('-')[0] as keyof GalleryItem;
         const index = +key.split('-')[partsLength - 1];
 
         const lang = partsLength === 3 ? (key.split('-')[1] as Language) : undefined;
@@ -25,14 +25,19 @@ export async function PUT(request: Request) {
         if (!acc[index]) {
             acc[index] = {
                 id: 0,
+                name: '',
                 title: { en: '', uk: '', ru: '' },
+                cover: '',
+                alt: { en: '', uk: '', ru: '' },
+                photo_urls: [],
                 description: { en: '', uk: '', ru: '' },
-                photos: [],
             };
         }
-
+        if (fieldName.startsWith('cover') || fieldName.startsWith('name')) {
+            acc[index][fieldName as 'cover' | 'name'] = value as string;
+        }
         if (fieldName.startsWith('photo')) {
-            (acc[index].photos as (string | File)[])[+fieldName.slice(5)] = value;
+            (acc[index].photo_urls as (string | File)[])[+fieldName.slice(5)] = value;
         } else if (fieldName.startsWith('id')) {
             acc[index].id = +value;
         }
@@ -40,21 +45,22 @@ export async function PUT(request: Request) {
             (acc[index][fieldName] as Record<Language, string>)[lang] = value;
         }
         return acc;
-    }, {} as { [key: number]: MealsItem });
+    }, {} as { [key: number]: GalleryItem });
 
-    let meals;
+    let galleryItems;
 
     try {
         //добавляем ссылки на Cloudinary для новых фото
-        meals = await Promise.all(
-            Object.values(mealsDataObj).map(async (meal) => {
-                const photos = await getCloudinaryUrl(meal.photos);
-                if (typeof meal.photos === 'string') throw new Error(meal.photos);
-                return { ...meal, photos };
+        galleryItems = await Promise.all(
+            Object.values(galleryDataObj).map(async (galleryItem) => {
+                const photo_urls = await getCloudinaryUrl(galleryItem.photo_urls);
+                if (typeof galleryItem.photo_urls === 'string')
+                    throw new Error(galleryItem.photo_urls);
+                return { ...galleryItem, photo_urls };
             }),
         );
     } catch (error) {
-        console.error('Error processing photos for meals:', error);
+        console.error('Error processing photos for gallery:', error);
         return NextResponse.json({ message: (error as Error).message }, { status: 500 });
     }
 
@@ -62,14 +68,14 @@ export async function PUT(request: Request) {
 
     try {
         const responses = await Promise.all(
-            meals.map((meal) =>
-                fetch(`${url}/api/v1/meal/${meal.id}`, {
+            galleryItems.map((galleryItem) =>
+                fetch(`${url}/api/v1/photos/${galleryItem.id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${access_token}`,
                     },
-                    body: JSON.stringify(meal),
+                    body: JSON.stringify(galleryItem),
                 }),
             ),
         );
@@ -88,7 +94,7 @@ export async function PUT(request: Request) {
             accu[index] = { location: '', message: '', blockTitle: '' };
             accu[index].location += curr.detail[0].loc.join(', ');
             accu[index].message += curr.detail[0].msg;
-            accu[index].blockTitle = meals[index].title.uk;
+            accu[index].blockTitle = galleryItems[index].title.uk;
             return accu;
         }, [] as { location: string; message: string; blockTitle: string }[]);
 
@@ -104,10 +110,10 @@ export async function PUT(request: Request) {
             return NextResponse.json({ message }, { status: 500 });
         }
 
-        revalidateTag('meals');
+        revalidateTag('gallery');
 
         return NextResponse.json(
-            { description: 'Сторінку ЇСТИ успішно збережено!' },
+            { description: 'Сторінку СПОГАДИ успішно збережено!' },
             { status: 200 },
         );
     } catch (error) {

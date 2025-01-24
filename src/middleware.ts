@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { decrypt, getSession, updateSession } from './actions/admin/auth';
 
+import { locales } from '@/data/locales';
+
 // Указываем защищенные и публичные маршруты
 const adminRoutes = ['/dyadus_adm1n_hub', '/dyadus_adm1n_hub/:path*'];
 const protectedClientRoutes = ['/booking/payment', '/booking/options', '/profile'];
@@ -23,7 +25,7 @@ const publicRoutes = [
 
 // Middleware для обработки локалей (создаем на основе next-intl/middleware)
 const localeMiddleware = createMiddleware({
-    locales: ['uk', 'en', 'ru'],
+    locales,
     defaultLocale: 'uk',
     localeDetection: false,
 });
@@ -62,7 +64,6 @@ export default async function middleware(req: NextRequest) {
         //если нет refresh-token, то редиректим на логин, в зависимости от роута, на который пытался перейти юзер
         if (!session.access_token || !session.refreshTokenCookie) {
             if (isAdminRoute) {
-                
                 return NextResponse.redirect(
                     new URL(`/${currentLocale}/dyadus_adm1n_hub/login`, req.nextUrl.origin),
                 );
@@ -125,6 +126,6 @@ export const config = {
     matcher: [
         '/',
         '/(uk|en|ru)/:path*',
-        '/((?!api|_next/static|_next/image|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|css|js|woff|woff2|ttf|eot)$).*)'
+        '/((?!api|_next/static|_next/image|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|css|js|woff|woff2|ttf|eot)$).*)',
     ],
 };

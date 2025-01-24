@@ -13,6 +13,7 @@ import SeoBlock from './SeoBlock';
 import EntertainmentHero from './EntertainmentHero';
 
 import s from "@/components/Entertainment/Entertainment.module.scss";
+import { locales } from '@/data/locales';
 
 type Props = Readonly<{ data: EntertainmentItem[] }>;
 
@@ -180,7 +181,7 @@ export default function EntertainmentPage({ data }: Props) {
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">
                     {
-                        ['uk', 'ru', 'en'].map((lang) => (
+                        locales.map((lang) => (
                             <Tab key={lang} label={lang} />
                         ))
                     }
@@ -188,7 +189,7 @@ export default function EntertainmentPage({ data }: Props) {
             </Box>
             <ResizableContainer>
                 {
-                    (['uk', 'ru', 'en'] as Language[]).map((lang, index) => (
+                    locales.map((lang, index) => (
                         <CustomTabPanel value={activeTab} index={index} key={lang} className='container-admin overflow-hidden' ref={containerAdminRef}>
 
                             <EntertainmentHero

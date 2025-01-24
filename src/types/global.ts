@@ -2,6 +2,10 @@ type ResetType = {
     reset: () => void;
 };
 
+type ImperativeHandleObjType = ResetType & {
+    turnOver: () => void;
+};
+
 type EditPageProps<T> = {
     item: T;
     imagePreviews: (string | File)[];
@@ -9,6 +13,6 @@ type EditPageProps<T> = {
     lang: Language;
     handleTextChange: () => void;
     handleFileChange: (e: React.ChangeEvent<HTMLInputElement>, imgIndex: number) => void;
-    isMobile?: boolean;
+    matchMedia?: MatchedMediaResult;
     ref: React.ForwardedRef<ResetType>;
 };

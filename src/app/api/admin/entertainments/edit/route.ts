@@ -103,7 +103,7 @@ export async function PUT(request: Request) {
                             `Блок із заголовком "${error.blockTitle}": Location: ${error.location}; message: ${error.message}`,
                     )
                     .join('\n');
-            return NextResponse.json({ message });
+            return NextResponse.json({ message }, { status: 500 });
         }
 
         revalidateTag('entertainments');

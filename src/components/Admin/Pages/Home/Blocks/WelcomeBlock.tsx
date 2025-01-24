@@ -21,8 +21,9 @@ export default function WelcomeBlock({
 
   return (
     <div className={style.blockWrapper}>
+      {lang === 'uk' && <input type="hidden" value={item.id} name='id-4' />}
       <div className={`${style.textWrapper} relative  z-20 `}>
-        <Input name={`title-${lang}-1`}
+        <Input name={`title-${lang}-4`}
           className={`bg-transparent relative`}
           defaultValue={title[lang]}
           onChange={handleTextChange} />

@@ -1,7 +1,7 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import React from "react";
 
-import { getData } from "@/actions/getData";
+import { getGallery } from "@/actions/getGallery";
 import Gallery from "@/components/Gallery/Gallery";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { generatePageMetadata } from "@/functions/generatePageMetadata";
@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 export default async function Page({ params: { locale } }: Props) {
   unstable_setRequestLocale(locale);
 
-  const items = await getData<GalleryItem[]>("gallery");
+  const items = await getGallery();
 
   return (
     <>

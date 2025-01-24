@@ -35,10 +35,17 @@ const config: Config = {
                         transform: 'scale(var(--scale))',
                     },
                 },
+                loading: {
+                    '0%': { opacity: '0' },
+                    '40%': { opacity: '1' },
+                    '80%': { opacity: '0' },
+                    '100%': { opacity: '0' },
+                },
             },
             animation: {
                 fadeIn: 'fadeIn 500ms ease',
                 pop: 'pop 500ms ease-in-out',
+                loading: 'loading 1.4s infinite ease-in-out',
             },
         },
     },

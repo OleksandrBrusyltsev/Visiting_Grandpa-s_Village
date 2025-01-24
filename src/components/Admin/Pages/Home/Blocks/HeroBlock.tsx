@@ -14,9 +14,11 @@ const HeroBlock = forwardRef<ResetType, Omit<EditPageProps<MainPageBlock>, 'posi
     lang,
     handleTextChange,
     handleFileChange,
-    isMobile
+    matchMedia
 },
     ref) {
+    const { isMobile } = matchMedia ?? {};
+
     const [description, setDescription] = useState(() => item.description[lang]);
 
     const [isEditing, setIsEditing] = useState(false);
