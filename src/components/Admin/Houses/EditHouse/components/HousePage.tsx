@@ -134,21 +134,21 @@ const HouseHeroSection = memo(function HouseHeroSection({ locale }: { locale: La
 const MultiRoomGalleryBlock = memo(function MultiRoomGalleryBlock({ locale, room }: { locale: Language, room: number }) {
     const t = useTranslations("HouseItem", locale, true);
 
-    const photo = useMainStore((state) => state.houseEditing?.photo[0]);
+    const photo = useMainStore((state) => state.photosEditing[0]);
     const long_title = useMainStore((state) => state.houseEditing?.long_title);
     const treesDecor = useMainStore((state) => state.houseEditing?.treesDecor);
     const photoDecor = useMainStore((state) => state.houseEditing?.photoDecor);
-    const setHouseData = useMainStore((state) => state.setHouseEditing);
+    const setPhotosEditing = useMainStore((state) => state.setPhotosEditing);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
-            setHouseData((houseData) => {
-                if (houseData) {
-                    houseData.photo[0] = file;
-                    return houseData;
+            setPhotosEditing((photoData) => {
+                if (photoData) {
+                    photoData[0].raw = file;
+                    return photoData;
                 }
-                return houseData;
+                return photoData;
             });
         }
     }
@@ -159,7 +159,7 @@ const MultiRoomGalleryBlock = memo(function MultiRoomGalleryBlock({ locale, room
                 <Image
                     fill
                     alt={t('altText', { title: long_title[locale] })}
-                    src={typeof photo === 'string' ? photo : URL.createObjectURL(photo)}
+                    src={photo.src}
                     sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <input type="file" title='' accept='image/*' className={`absolute inset-0 opacity-0 cursor-pointer`} onChange={handleFileChange} tabIndex={0} />
