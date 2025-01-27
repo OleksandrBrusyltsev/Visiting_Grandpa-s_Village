@@ -84,6 +84,10 @@
   color: rgb(var(--color-black));
   margin-bottom: 12px;
 
+  & p:not(:first-child) {
+    padding-top: 16px;
+  }
+
   @include mixins.container-media-min(variables.$mobile) {
     padding: 0;
     font-size: 18px;

@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
 import MarkdownPreview from '@/components/ui/MarkdownPreview/MarkdownPreview';
+import SimpleBookingComponent from '../SimpleBookingComponent';
 
 import css from "@/components/Home/Home.module.scss";
 import { illustration1 } from '@/components/Home/Home';
@@ -70,12 +71,12 @@ const HeroBlock = forwardRef<ResetType, Omit<EditPageProps<MainPageBlock>, 'posi
                             defaultValue={subtitle[lang]}
                             onChange={handleTextChange} />
                     </span>{" "}
-                    <div className={`relative`}>
+                    <div className={`relative flex`}>
 
                         <Input name={`description-${lang}-0`}
                             className={`w-full -ml-[4px] ${isEditing
-                                ? 'opacity-100'
-                                : 'opacity-0 absolute top-0 left-0 z-10'}`}
+                                ? 'opacity-100 relative z-10'
+                                : 'opacity-0 absolute top-0 left-0 z-20'}`}
                             value={description}
                             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                 handleTextChange();
@@ -155,6 +156,9 @@ const HeroBlock = forwardRef<ResetType, Omit<EditPageProps<MainPageBlock>, 'posi
                         </svg>
                     )}
                 </div>
+            </div>
+            <div className={css.calendarBox}>
+                <SimpleBookingComponent />
             </div>
         </>
     )

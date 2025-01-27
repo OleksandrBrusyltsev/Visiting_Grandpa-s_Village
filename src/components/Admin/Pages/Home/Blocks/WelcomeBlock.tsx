@@ -1,4 +1,3 @@
-import { forwardRef, useImperativeHandle, useState } from "react";
 import Image from "next/image";
 import Button from "@/components/ui/Button/Button";
 import Link from "next/link";

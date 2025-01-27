@@ -1,6 +1,7 @@
 import { StateCreator } from 'zustand';
 import { UserSlice } from './authSlice';
 import { extraFieldsetData } from '@/data/admin/defaultsForHousesInputs';
+import { UniqueIdentifier } from '@dnd-kit/core';
 
 export interface AdminSlice {
     adminMenuIsOpen: boolean;
@@ -10,8 +11,9 @@ export interface AdminSlice {
         type: 'error' | 'success' | null;
     };
     isDirtyPage: boolean;
-    houseEditing: (Omit<HouseItem, 'photo'> & { photo: (string | File)[] }) | null;
+    houseEditing: Omit<HouseItem, 'photo'> | null;
     houseAdding: Omit<HouseItem, 'photo'> & { photo: (string | File)[] };
+    photosEditing: Array<DnDItem<UniqueIdentifier>>;
 
     setAdminMenuOpen: () => void;
 
@@ -31,16 +33,23 @@ export interface AdminSlice {
             | AdminSlice['houseAdding'],
         resetDirtyPage?: boolean,
     ) => void;
+    setPhotosEditing: (
+        photosUpdate:
+            | ((photosData: AdminSlice['photosEditing']) => AdminSlice['photosEditing'])
+            | AdminSlice['photosEditing'],
+        resetDirtyPage?: boolean,
+    ) => void;
 }
 
 export const initialAdminState: Pick<
     AdminSlice,
-    | 'dialogMessage'
-    | 'dialogIsOpen'
     | 'adminMenuIsOpen'
+    | 'dialogIsOpen'
+    | 'dialogMessage'
+    | 'isDirtyPage'
     | 'houseEditing'
     | 'houseAdding'
-    | 'isDirtyPage'
+    | 'photosEditing'
 > = {
     adminMenuIsOpen: true,
     dialogIsOpen: false,
@@ -97,11 +106,13 @@ export const initialAdminState: Pick<
             left: 0,
         },
     },
+    photosEditing: [],
 };
 
 export const createAdminSlice: StateCreator<
     AdminSlice & UserSlice,
-    [['zustand/devtools', never], ['zustand/persist', unknown], ['zustand/immer', never]],
+    // [['zustand/devtools', never], ['zustand/persist', unknown], ['zustand/immer', never]]1,
+    [['zustand/devtools', never], ['zustand/immer', never]],
     [],
     AdminSlice
 > = (set, get) => ({
@@ -148,5 +159,17 @@ export const createAdminSlice: StateCreator<
                 typeof houseDataUpdate === 'function'
                     ? houseDataUpdate(state.houseAdding)
                     : houseDataUpdate;
+        }),
+    setPhotosEditing: (photosDataUpdate, resetDirtyPage) =>
+        set((state) => {
+            if (resetDirtyPage && state.isDirtyPage) {
+                state.isDirtyPage = false;
+            } else if (resetDirtyPage === undefined && !state.isDirtyPage) {
+                state.isDirtyPage = true;
+            }
+            state.photosEditing =
+                typeof photosDataUpdate === 'function'
+                    ? photosDataUpdate(state.photosEditing)
+                    : photosDataUpdate;
         }),
 });

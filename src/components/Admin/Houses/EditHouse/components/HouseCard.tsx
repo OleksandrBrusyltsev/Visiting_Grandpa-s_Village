@@ -18,11 +18,12 @@ export default function HouseCard({ locale, rooms }: Props) {
 
     const t = useTranslations("HouseItem", locale, true);
     const data = useMainStore((state) => state.houseEditing);
+    const photosEditing = useMainStore((state) => state.photosEditing);
+    if (!data || !photosEditing) return;
 
-    if (!data) return;
+    const { max_adults, extra_adults, rental_price } = data;
 
-    const { photo, max_adults, extra_adults, rental_price } =
-        data;
+    const photo = photosEditing[0]?.raw;
     const title = data.title[locale];
 
     const guestsString = (main: number, ad: number) => {
@@ -43,7 +44,7 @@ export default function HouseCard({ locale, rooms }: Props) {
             <div className={s.imageWrapper}>
                 <Image
                     fill
-                    src={getImageUrl(photo[0])}
+                    src={getImageUrl(photo)}
                     alt={t('altText', { title })}
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 />

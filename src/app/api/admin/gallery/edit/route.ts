@@ -53,10 +53,16 @@ export async function PUT(request: Request) {
         //добавляем ссылки на Cloudinary для новых фото
         galleryItems = await Promise.all(
             Object.values(galleryDataObj).map(async (galleryItem) => {
-                const photo_urls = await getCloudinaryUrl(galleryItem.photo_urls);
-                if (typeof galleryItem.photo_urls === 'string')
-                    throw new Error(galleryItem.photo_urls);
-                return { ...galleryItem, photo_urls };
+                const cloudinaryPhotoUrls = await getCloudinaryUrl([
+                    galleryItem.cover,
+                    ...galleryItem.photo_urls,
+                ]);
+                if (typeof cloudinaryPhotoUrls === 'string') throw new Error(cloudinaryPhotoUrls);
+                return {
+                    ...galleryItem,
+                    cover: cloudinaryPhotoUrls?.[0] ?? '',
+                    photo_urls: cloudinaryPhotoUrls?.slice(1) ?? [],
+                };
             }),
         );
     } catch (error) {

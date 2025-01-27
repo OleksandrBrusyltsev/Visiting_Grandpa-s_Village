@@ -1,18 +1,19 @@
 "use client";
 
-import React, { forwardRef, useLayoutEffect, useRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Box, Tab, Tabs } from '@mui/material';
 
-import Icon from '@/components/ui/Icon/Icon';
+import { ResizableContainer } from '@/components/Admin/UI/ResizableContainer/ResizableContainer';
+import SubmitFabGroup from '@/components/Admin/UI/SubmitFabGroup/SubmitFabGroup';
 import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
 import { useMainStore } from '@/stores/store-provider';
-import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
-import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContainer';
+import Icon from '@/components/ui/Icon/Icon';
 
 import s from './Houses.module.scss';
 import { locales } from '@/data/locales';
+import showErrors from '@/functions/showErrors';
 
 type Props = Readonly<{ data: HouseItem }>;
 
@@ -75,10 +76,6 @@ export default function HousesPage({ data }: Props) {
 
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
 
-    useLayoutEffect(() => {
-        setIsDirtyPage(false);
-    }, [setIsDirtyPage]);
-
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
         setActiveTab(newValue);
     };
@@ -104,23 +101,10 @@ export default function HousesPage({ data }: Props) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!formRef.current) return;
+
         if (!formRef.current?.checkValidity()) {
-            const invalidInputs = formRef.current?.querySelectorAll(':invalid') as NodeListOf<HTMLInputElement>;
-            const errors: Record<Language, string> = { uk: '', ru: '', en: '' };
-            invalidInputs?.forEach((input: HTMLInputElement) => {
-                const name = input.name.split('-')[0];
-                const lang = input.name.split('-')[1] as Language;
-                errors[lang] += 'Поле ' + name + ', помилка: "' + input.validationMessage + '" \n';
-            });
-            const message = Object.entries(errors)
-                .map(
-                    ([lang, error]) => error.trim().length
-                        ? `Мова ${lang.toUpperCase()}:\n${error}`
-                        : null
-                )
-                .filter(Boolean)
-                .join('\n');
-            setDialogOpen(true, 'error', `Помилки в формі! \n ${message}`);
+            showErrors(formRef.current, setDialogOpen, true);
         } else {
             setLoading(true);
             const formData = new FormData(e.currentTarget);
@@ -159,7 +143,7 @@ export default function HousesPage({ data }: Props) {
     return (
         <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative' noValidate>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">
+                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="tabs for editing page data">
                     {
                         locales.map((lang) => (
                             <Tab key={lang} label={lang} />
@@ -207,8 +191,8 @@ export default function HousesPage({ data }: Props) {
                                 </div>
                             </section>
                             <div className={s.textWrapper}>
-                                <Input name={`decor_text-${lang}`} className={s.text} defaultValue={decor_text[lang as keyof typeof decor_text]} />
-                                <Input name={`description-${lang}`} className={s.text} defaultValue={description[lang as keyof typeof description]} />
+                                <Input name={`decor_text-${lang}`} className={`${s.text} bg-transparent`} defaultValue={decor_text[lang as keyof typeof decor_text]} />
+                                <Input name={`description-${lang}`} className={`${s.text} bg-transparent`} defaultValue={description[lang as keyof typeof description]} />
                             </div>
                         </CustomTabPanel>
                     ))

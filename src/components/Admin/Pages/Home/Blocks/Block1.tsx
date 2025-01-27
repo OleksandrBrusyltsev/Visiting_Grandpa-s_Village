@@ -5,7 +5,6 @@ import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
 import MarkdownPreview from '@/components/ui/MarkdownPreview/MarkdownPreview';
 
 import css from "@/components/Home/Home.module.scss";
-import SimpleBookingComponent from '../SimpleBookingComponent';
 
 //все стили на костылях! ОСТОРОЖНО!!!
 const Block1 = forwardRef<ResetType, Omit<EditPageProps<MainPageBlock>, 'position'>>(function Block1({
@@ -62,11 +61,11 @@ const Block1 = forwardRef<ResetType, Omit<EditPageProps<MainPageBlock>, 'positio
                     onChange={handleTextChange} />
             </div>
             <div className={`${css.textContainer}`}>
-                <div className={`${css.text1} relative w-full`}>
+                <div className={`${css.text1} relative w-full flex`}>
                     <Input name={`description-${lang}-1`}
                         className={`w-full -ml-[4px] ${isEditing
-                            ? 'opacity-100'
-                            : 'opacity-0 absolute top-0 left-0 z-10'}`}
+                            ? 'opacity-100 relative z-10'
+                            : 'opacity-0 absolute top-0 left-0 z-20'}`}
                         value={description}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             handleTextChange();
@@ -178,10 +177,6 @@ const Block1 = forwardRef<ResetType, Omit<EditPageProps<MainPageBlock>, 'positio
                         </svg>
                     )}
                 </div>
-            </div>
-
-            <div className={css.calendarBox}>
-                <SimpleBookingComponent />
             </div>
         </>
     )

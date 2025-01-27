@@ -3,11 +3,11 @@ import React from 'react';
 import Header from '@/components/Admin/Header/Header'
 import MainMenu from '@/components/Admin/MainMenu/MainMenu';
 import { verifySession } from '@/functions/dal';
-import { getData } from '@/actions/getData';
 import getMainMenu from '@/functions/getMainMenu';
 import { getHouses } from '@/actions/getHouses';
 import Modal from '@/components/Admin/UI/Dialog/Dialog';
 import NavigationEvents from '@/components/Admin/NavigationEvents/NavigationEvents';
+import { getGallery } from '@/actions/getGallery';
 
 type Props = Readonly<{
   children: React.ReactNode;
@@ -19,9 +19,9 @@ export default async function DashboardLayout({ children, params: { locale } }: 
   const session = await verifySession();
   const houses = await getHouses();
 
-  const gallery = (await getData<GalleryItem[]>("gallery")).filter(gal => gal.name);
+  const gallery = await getGallery();
 
-  const menuAdmin = getMainMenu(houses, gallery, locale);
+  const menuAdmin = getMainMenu(houses, gallery.slice(1), locale);
 
   const menu = session?.role === 'superadmin' ? menuAdmin : menuAdmin.filter((item) => session?.role === item.admission);
 

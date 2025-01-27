@@ -38,7 +38,7 @@ const Quote = forwardRef<ResetType, EditPageProps<EntertainmentItem>>(function Q
                     { /* МЕГАКОСТЫЛЬ с тегом <p></p>!!! Не работает, если в textarea более 1 строки*/}
                     <p className='opacity-0'>{title}</p>
                     <Input name={`title-${lang}-${position + 1}`}
-                        className={`bg-transparent absolute top-0 z-10 w-full`}
+                        className={`bg-transparent absolute top-0 z-10 w-full text-center`}
                         value={title}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             handleTextChange();
@@ -46,10 +46,10 @@ const Quote = forwardRef<ResetType, EditPageProps<EntertainmentItem>>(function Q
                         }} />
                     <Icon name="ellipse" className={`${q.titleOutline} w-min`} />
                 </div>
-                <div className={`${s.quoteText} relative`} >
+                <div className={`${s.quoteText} relative flex`} >
                     <Input name={`description-${lang}-${position + 1}`}
                         className={`w-full -ml-[4px] ${isEditing
-                            ? 'opacity-100'
+                            ? `opacity-100 ${position % 2 ? '' : 'self-end text-right'}`
                             : 'opacity-0 absolute top-0 left-0 z-10'}`}
                         value={description}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {

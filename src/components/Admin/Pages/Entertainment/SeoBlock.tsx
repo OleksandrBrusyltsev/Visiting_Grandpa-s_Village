@@ -23,10 +23,10 @@ const SeoBlock = forwardRef<ResetType, Props>(function Quote({ item, position, l
 
     return (
         <div className={`${s.textWrapper}`}>
-            <div className={`${s.text} relative`}>
+            <div className={`${s.text} relative flex`}>
                 {lang === 'uk' && <input type="hidden" value={item.id} name={`id-${position}`} />}
                 <Input name={`description-${lang}-${position}`}
-                    className={`w-full bg-transparent relative z-10 ${isDescriptionEditing
+                    className={`w-full -ml-[4px] bg-transparent relative z-10 ${isDescriptionEditing
                         ? 'opacity-100 relative'
                         : 'opacity-0 !absolute top-0 left-0'}`}
                     value={description}
@@ -45,7 +45,7 @@ const SeoBlock = forwardRef<ResetType, Props>(function Quote({ item, position, l
             </div>
             <div className={`${s.text} relative`}>
                 <Input name={`quote-${lang}-${position}`}
-                    className={`w-full bg-transparent z-10 ${isQuoteEditing
+                    className={`w-full -ml-[4px] bg-transparent z-10 ${isQuoteEditing
                         ? 'opacity-100 relative'
                         : 'opacity-0 !absolute top-0 left-0'}`}
                     value={quote}

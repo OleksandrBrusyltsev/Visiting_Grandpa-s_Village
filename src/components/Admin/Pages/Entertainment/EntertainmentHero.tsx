@@ -51,11 +51,11 @@ const EntertainmentHero = forwardRef<ResetType, EditPageProps<EntertainmentItem>
                 onChange={handleTextChange} />
 
             <div className={s.topQuoteWrapper}>
-                <div className={`${s.topQuote} relative`}>
+                <div className={`${s.topQuote} relative flex`}>
                     <Input name={`quote-${lang}-0`}
                         className={`w-full -ml-[4px] !text-end @[768px]:!text-start ${isEditing
-                            ? 'opacity-100'
-                            : 'opacity-0 absolute top-0 left-0 z-10'}`}
+                            ? 'opacity-100 relative z-10'
+                            : 'opacity-0 absolute top-0 left-0 z-20'}`}
                         value={quote}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             handleTextChange();

@@ -190,7 +190,7 @@ export default function Entertainment({ items }: Props) {
                     aniRef.current[i][1] = el;
                   }}
                 >
-                  {description[locale as keyof typeof description]}
+                  <MarkdownPreview markdown={description[locale as keyof typeof description]} />
                 </div>
               </Quote>
               <div

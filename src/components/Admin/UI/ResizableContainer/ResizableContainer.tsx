@@ -15,6 +15,7 @@ export function ResizableContainer({ children }: Props) {
     }, []);
 
     useEffect(() => {
+        const localRef = resizableBlockRef.current;
         const handleResize = (entries: ResizeObserverEntry[]) => {
             const entry = entries[0];
             if (entry) {
@@ -24,13 +25,13 @@ export function ResizableContainer({ children }: Props) {
 
         const resizeObserver = new ResizeObserver(handleResize);
 
-        if (resizableBlockRef.current) {
-            resizeObserver.observe(resizableBlockRef.current);
+        if (localRef) {
+            resizeObserver.observe(localRef);
         }
 
         return () => {
-            if (resizableBlockRef.current) {
-                resizeObserver.unobserve(resizableBlockRef.current);
+            if (localRef) {
+                resizeObserver.unobserve(localRef);
             }
         };
     }, []);

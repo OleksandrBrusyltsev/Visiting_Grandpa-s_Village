@@ -1,18 +1,19 @@
 "use client";
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation';
 import { useMainStore } from '@/stores/store-provider';
 import { Box, Tab, Tabs } from '@mui/material';
 
-import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContainer';
-import { CustomTabPanel } from '../Houses/Houses';
+import { ResizableContainer } from '@/components/Admin/UI/ResizableContainer/ResizableContainer';
+import SubmitFabGroup from '@/components/Admin/UI/SubmitFabGroup/SubmitFabGroup';
 import { useMatchContainerMedia } from '@/hooks/useMatchContainerMedia';
+import { CustomTabPanel } from '../Houses/Houses';
+import WelcomeBlock from './Blocks/WelcomeBlock';
+import showErrors from '@/functions/showErrors';
 import HeroBlock from './Blocks/HeroBlock';
 import Block1 from './Blocks/Block1';
 import Block2 from './Blocks/Block2';
 import Block3 from './Blocks/Block3';
-import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
-import WelcomeBlock from './Blocks/WelcomeBlock';
 
 import css from "@/components/Home/Home.module.scss";
 import { locales } from '@/data/locales';
@@ -27,7 +28,7 @@ export default function MainPage({ data }: Props) {
     const formRef = useRef<HTMLFormElement | null>(null);
     const containerAdminRef = useRef<HTMLDivElement | null>(null);
 
-    const blockResets = useRef<Record<number, Record<Language, { reset: () => void } | null>>>({});
+    const blockResets = useRef<Record<number, Record<Language, ResetType | null>>>({});
 
     const { refresh } = useRouter();
 
@@ -35,10 +36,6 @@ export default function MainPage({ data }: Props) {
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
 
     const matchMedia = useMatchContainerMedia(containerAdminRef);
-
-    useLayoutEffect(() => {
-        setIsDirtyPage(false);
-    }, [setIsDirtyPage]);
 
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
         setActiveTab(newValue);
@@ -66,10 +63,12 @@ export default function MainPage({ data }: Props) {
         }
         setIsDirtyPage(true);
     }
+
     const handleTextChange = (blockIndex: number) => {
         setIsDirtyPage(true);
         changedBlocksRef.current?.add(blockIndex);
     }
+
     const handleResetForm = () => {
         formRef.current?.reset();
         setPreview(() => data.map((item) => [...item.photos]));
@@ -88,28 +87,12 @@ export default function MainPage({ data }: Props) {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (!changedBlocksRef.current.size) {
+        if (!changedBlocksRef.current.size || !formRef.current) {
             return;
         }
 
         if (!formRef.current?.checkValidity()) {
-            const invalidInputs = formRef.current?.querySelectorAll(':invalid') as NodeListOf<HTMLInputElement>;
-            const errors: Record<Language, string> = { uk: '', ru: '', en: '' };
-            invalidInputs?.forEach((input: HTMLInputElement) => {
-                const name = input.name.split('-')[0];
-                const lang = input.name.split('-')[1] as Language;
-                const blockPosition = +input.name.split('-')[2] + 1;
-                errors[lang] += 'Блок ' + blockPosition + ', поле ' + name + ', помилка: "' + input.validationMessage + '" \n';
-            });
-            const message = Object.entries(errors)
-                .map(
-                    ([lang, error]) => error.trim().length
-                        ? `Мова ${lang.toUpperCase()}:\n${error}`
-                        : null
-                )
-                .filter(Boolean)
-                .join('\n');
-            setDialogOpen(true, 'error', `Помилки в формі! \n ${message}`);
+            showErrors(formRef.current, setDialogOpen);
         } else {
 
             setLoading(true);
@@ -158,7 +141,7 @@ export default function MainPage({ data }: Props) {
     return (
         <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative' noValidate >
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">
+                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="tabs for editing page data">
                     {
                         locales.map((lang) => (
                             <Tab key={lang} label={lang} />
@@ -183,7 +166,7 @@ export default function MainPage({ data }: Props) {
                                     handleFileChange={handleFileChange(0)}
                                     ref={(el) => {
                                         if (!blockResets.current[0])
-                                            blockResets.current[0] = {} as Record<Language, { reset: () => void }>;
+                                            blockResets.current[0] = {} as Record<Language, ResetType>;
                                         blockResets.current[0][lang] = el;
                                     }}
                                 />
@@ -196,7 +179,7 @@ export default function MainPage({ data }: Props) {
                                     handleFileChange={handleFileChange(1)}
                                     ref={(el) => {
                                         if (!blockResets.current[1])
-                                            blockResets.current[1] = {} as Record<Language, { reset: () => void }>;
+                                            blockResets.current[1] = {} as Record<Language, ResetType>;
                                         blockResets.current[1][lang] = el;
                                     }}
                                 />
@@ -209,7 +192,7 @@ export default function MainPage({ data }: Props) {
                                     handleFileChange={handleFileChange(2)}
                                     ref={(el) => {
                                         if (!blockResets.current[2])
-                                            blockResets.current[2] = {} as Record<Language, { reset: () => void }>;
+                                            blockResets.current[2] = {} as Record<Language, ResetType>;
                                         blockResets.current[2][lang] = el;
                                     }}
                                 />
@@ -223,7 +206,7 @@ export default function MainPage({ data }: Props) {
                                     handleFileChange={handleFileChange(3)}
                                     ref={(el) => {
                                         if (!blockResets.current[3])
-                                            blockResets.current[3] = {} as Record<Language, { reset: () => void }>;
+                                            blockResets.current[3] = {} as Record<Language, ResetType>;
                                         blockResets.current[3][lang] = el;
                                     }}
                                 />

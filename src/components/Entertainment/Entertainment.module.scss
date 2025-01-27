@@ -213,6 +213,10 @@
 
   & .text {
     width: 85%;
+
+    & p:not(:first-child) {
+      padding-top: 16px;
+    }
   }
 
   & .text:first-child {
@@ -296,6 +300,10 @@
     font-size: var(--f-size-body);
     line-height: 1.1;
     width: 54%;
+
+    & p:not(:first-child) {
+      padding-top: 16px;
+    }
   }
 
   .entertainmentList {
@@ -387,6 +395,10 @@
     width: 65%;
     padding-bottom: 60px;
     padding-top: 0px;
+
+    & p:not(:first-child) {
+      padding-top: 16px;
+    }
   }
 
   .textWrapper {
@@ -448,7 +460,7 @@
 
   .quoteText {
     font-size: var(--f-size-body);
-    width: unset;
+    // width: unset;
   }
 
   .entertainmentList {

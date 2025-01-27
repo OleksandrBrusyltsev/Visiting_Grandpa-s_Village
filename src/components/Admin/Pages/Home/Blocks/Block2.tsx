@@ -41,11 +41,11 @@ const Block2 = forwardRef<ResetType, Omit<EditPageProps<MainPageBlock>, 'positio
                     defaultValue={title[lang]}
                     onChange={handleTextChange} />
 
-                <div className={`${css.text1} relative w-full`}>
+                <div className={`${css.text1} relative w-full flex`}>
                     <Input name={`description-${lang}-2`}
                         className={`w-full -ml-[4px] ${isEditing
-                            ? 'opacity-100'
-                            : 'opacity-0 absolute top-0 left-0 z-10'}`}
+                            ? 'opacity-100 relative z-10'
+                            : 'opacity-0 absolute top-0 left-0 z-20'}`}
                         value={description}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             handleTextChange();

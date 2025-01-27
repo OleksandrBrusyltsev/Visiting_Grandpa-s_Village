@@ -4,8 +4,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { IconButton, TextField } from "@mui/material";
 
 import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
-import Button from "@/components/ui/Button/Button";
 import { useTranslations } from "@/hooks/useTranslations";
+import Button from "@/components/ui/Button/Button";
 
 import s from "@/components/Gallery/GalleryItem.module.scss";
 
@@ -65,6 +65,7 @@ export default forwardRef<ImperativeHandleObjType, Props>(function GalleryItemBl
                         value={name}
                         label={"Шлях в адресному рядку"}
                         fullWidth
+                        autoComplete="off"
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             handleTextChange();
                             setName(e.target.value.replace(/[^a-z0-9-]/gi, ''));
@@ -75,6 +76,7 @@ export default forwardRef<ImperativeHandleObjType, Props>(function GalleryItemBl
                         value={title}
                         label={"Назва розділу"}
                         fullWidth
+                        autoComplete="off"
                         onChange={
                             (e: React.ChangeEvent<HTMLInputElement>) => {
                                 handleTextChange();
@@ -90,6 +92,7 @@ export default forwardRef<ImperativeHandleObjType, Props>(function GalleryItemBl
                         value={alt}
                         label={"Альтернативний текст для cover-зображення"}
                         fullWidth
+                        autoComplete="off"
                         onChange={
                             (e: React.ChangeEvent<HTMLInputElement>) => {
                                 handleTextChange();

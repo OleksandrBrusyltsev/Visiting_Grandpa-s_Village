@@ -1,17 +1,18 @@
 "use client";
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Box, Tab, Tabs } from '@mui/material';
 
-import { useMainStore } from '@/stores/store-provider';
-import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContainer';
-import { CustomTabPanel } from '../Houses/Houses';
+import { ResizableContainer } from '@/components/Admin/UI/ResizableContainer/ResizableContainer';
+import SubmitFabGroup from '@/components/Admin/UI/SubmitFabGroup/SubmitFabGroup';
 import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
-import Icon from '@/components/ui/Icon/Icon';
-import MealsBlockAdmin from './MealsBlockAdmin';
-import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
+import { CustomTabPanel } from '@/components/Admin/Pages/Houses/Houses';
 import { useMatchContainerMedia } from '@/hooks/useMatchContainerMedia';
+import { useMainStore } from '@/stores/store-provider';
+import showErrors from '@/functions/showErrors';
+import MealsBlockAdmin from './MealsBlockAdmin';
+import Icon from '@/components/ui/Icon/Icon';
 
 import s from "@/components/Meals/Meals.module.scss";
 import { locales } from '@/data/locales';
@@ -25,7 +26,7 @@ export default function MealsPage({ data }: Props) {
 
     const formRef = useRef<HTMLFormElement | null>(null);
     const containerAdminRef = useRef<HTMLDivElement | null>(null);
-    const mealsBlockRefs = useRef<Record<number, Record<Language, { reset: () => void } | null>>>({});
+    const mealsBlockRefs = useRef<Record<number, Record<Language, ResetType | null>>>({});
     const changedBlocksRef = useRef(new Set<number>());
 
     const matchMedia = useMatchContainerMedia(containerAdminRef);
@@ -33,12 +34,7 @@ export default function MealsPage({ data }: Props) {
     const { refresh } = useRouter();
 
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
-
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
-
-    useLayoutEffect(() => {
-        setIsDirtyPage(false);
-    }, [setIsDirtyPage]);
 
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
         setActiveTab(newValue);
@@ -64,10 +60,12 @@ export default function MealsPage({ data }: Props) {
         }
         setIsDirtyPage(true);
     }
+
     const handleTextChange = (index: number) => {
         setIsDirtyPage(true);
         changedBlocksRef.current.add(index);
     }
+
     const handleResetForm = () => {
         formRef.current?.reset();
         setPreview(() => data.map((item) => [...item.photos]));
@@ -85,28 +83,12 @@ export default function MealsPage({ data }: Props) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!changedBlocksRef.current.size) {
+        if (!changedBlocksRef.current.size || !formRef.current) {
             return;
         }
 
         if (!formRef.current?.checkValidity()) {
-            const invalidInputs = formRef.current?.querySelectorAll(':invalid') as NodeListOf<HTMLInputElement>;
-            const errors: Record<Language, string> = { uk: '', ru: '', en: '' };
-            invalidInputs?.forEach((input: HTMLInputElement) => {
-                const name = input.name.split('-')[0];
-                const lang = input.name.split('-')[1] as Language;
-                const blockPosition = +input.name.split('-')[2] + 1;
-                errors[lang] += 'Блок ' + blockPosition + ', поле ' + name + ', помилка: "' + input.validationMessage + '" \n';
-            });
-            const message = Object.entries(errors)
-                .map(
-                    ([lang, error]) => error.trim().length
-                        ? `Мова ${lang.toUpperCase()}:\n${error}`
-                        : null
-                )
-                .filter(Boolean)
-                .join('\n');
-            setDialogOpen(true, 'error', `Помилки в формі! \n ${message}`);
+            showErrors(formRef.current, setDialogOpen);
         } else {
             setLoading(true);
             const formData = new FormData(e.currentTarget);
@@ -154,7 +136,7 @@ export default function MealsPage({ data }: Props) {
     return (
         <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative' noValidate>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">
+                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="tabs for editing page data">
                     {
                         locales.map((lang) => (
                             <Tab key={lang} label={lang} />
@@ -207,7 +189,7 @@ export default function MealsPage({ data }: Props) {
                                             matchMedia={matchMedia}
                                             ref={(el) => {
                                                 if (!mealsBlockRefs.current[i]) {
-                                                    mealsBlockRefs.current[i] = {} as Record<Language, { reset: () => void }>;
+                                                    mealsBlockRefs.current[i] = {} as Record<Language, ResetType>;
                                                 }
                                                 mealsBlockRefs.current[i][lang] = el;
                                             }}

@@ -1,11 +1,11 @@
 import React from "react";
 import { unstable_setRequestLocale } from "next-intl/server";
 
-import { getData } from "@/actions/getData";
 import GalleryItemPage from "@/components/GalleryItemPage/GalleryItemPage";
 import { notFound } from "next/navigation";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { generateGalleryMetadata } from "@/functions/generateGalleryMetadata";
+import { getGallery } from "@/actions/getGallery";
 
 type Props = Readonly<{ params: { chapter: string; locale: string } }>;
 
@@ -17,7 +17,7 @@ export async function generateStaticParams({
   params: { locale: string };
 }) {
   //сортировка нужна для удаления обектов с пустым названием name, которые используются для хранения hero блока в галерее
-  const items = (await getData<GalleryItem[]>("gallery")).filter(gal => gal.name);
+  const items = (await getGallery()).filter(gal => gal.name);
   return items.map((gal) => ({ locale, chapter: gal.name }));
 }
 
@@ -28,8 +28,8 @@ export async function generateMetadata({ params }: Props) {
 export default async function Page({ params }: Props) {
   const { chapter, locale } = params;
   unstable_setRequestLocale(locale);
-  const galleryItem = await getData<GalleryItem[]>("gallery", chapter);
-
+  const gallery = await getGallery();
+  const galleryItem = gallery.filter((item) => item.name === chapter);
   if (!galleryItem.length) notFound();
 
   return (

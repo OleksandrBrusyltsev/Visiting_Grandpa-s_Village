@@ -16,3 +16,9 @@ type EditPageProps<T> = {
     matchMedia?: MatchedMediaResult;
     ref: React.ForwardedRef<ResetType>;
 };
+
+type DnDItem<T> = {
+    id: T;
+    raw: string | File;
+    src: string;
+};

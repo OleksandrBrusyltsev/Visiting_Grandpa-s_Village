@@ -47,11 +47,11 @@ const Block3 = forwardRef<ResetType, Omit<EditPageProps<MainPageBlock>, 'positio
                         className={`${css.title1} ${css.add1} bg-transparent relative z-10`}
                         defaultValue={title[lang]}
                         onChange={handleTextChange} />
-                    <div className={`${css.text1} relative`}>
+                    <div className={`${css.text1} relative flex`}>
                         <Input name={`description-${lang}-3`}
                             className={`w-full -ml-[4px] ${isEditing
-                                ? 'opacity-100'
-                                : 'opacity-0 absolute top-0 left-0 z-10'}`}
+                                ? 'opacity-100 relative z-10'
+                                : 'opacity-0 absolute top-0 left-0 z-20'}`}
                             value={description}
                             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                 handleTextChange();

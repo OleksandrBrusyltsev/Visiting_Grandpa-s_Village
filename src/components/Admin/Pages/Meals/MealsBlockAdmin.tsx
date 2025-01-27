@@ -56,13 +56,13 @@ const MealsBlockAdmin = forwardRef<ResetType, EditPageProps<MealsItem>>(function
                             tabIndex={0} />
                     </div>
                 ) : null}
-                <div className={s.mealsDescription}>
+                <div className={`${s.mealsDescription} flex`}>
                     <Input
                         name={`description-${lang}-${position + 1}`}
                         className={
-                            `w-full px-1 ${isEditing
-                                ? 'opacity-100 relative'
-                                : 'opacity-0 absolute top-0 left-0 z-10'}`
+                            `w-full -ml-[4px] ${isEditing
+                                ? 'opacity-100 relative z-10'
+                                : 'opacity-0 absolute top-0 left-0 z-20'}`
                         }
                         value={description}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
