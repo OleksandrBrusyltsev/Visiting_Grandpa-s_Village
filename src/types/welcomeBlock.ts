@@ -1,3 +1,3 @@
-export default interface WelcomeBlockType {
-  text: string;
+interface WelcomeBlockType {
+    text: string;
 }

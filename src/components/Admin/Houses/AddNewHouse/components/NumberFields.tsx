@@ -12,14 +12,14 @@ type Props = Readonly<{
 }>;
 
 const NumberFields = memo(function NumberFields({ children, as }: Props) {
-    const houseData: Omit<HouseItem, "photo"> & { photo: (string | File)[] } | null =
+    const houseData =
         useMainStore((state) => {
             if (as === 'editing') {
                 return state.houseEditing
             }
             return state.houseAdding
         });
-    const setHouseData: typeof houseData extends infer T ? AdminSlice['setHouseAdding'] | AdminSlice['setHouseEditing'] : never =
+    const setHouseData =
         useMainStore((state) => {
             if (as === 'editing') {
                 return state.setHouseEditing

@@ -8,23 +8,14 @@ import MarkdownPreview from '@/components/ui/MarkdownPreview/MarkdownPreview';
 import q from '@/components/Entertainment/Quote/Quote.module.scss';
 import s from "@/components/Entertainment/Entertainment.module.scss";
 
-type Props = Readonly<{
-    item: EntertainmentItem,
-    imagePreviews: (string | File)[];
-    position: number,
-    lang: Language,
-    handleTextChange: () => void;
-    handleFileChange: (e: React.ChangeEvent<HTMLInputElement>, imgIndex: number) => void;
-    ref: React.ForwardedRef<{
-        reset: () => void
-    }>
-
-}>
-type ResetType = {
-    reset: () => void
-}
-
-const Quote = forwardRef<ResetType, Props>(function Quote({ item, imagePreviews, position, lang, handleTextChange, handleFileChange }, ref) {
+const Quote = forwardRef<ResetType, EditPageProps<EntertainmentItem>>(function Quote({
+    item,
+    imagePreviews,
+    position,
+    lang,
+    handleTextChange,
+    handleFileChange
+}, ref) {
     const [description, setDescription] = useState(() => item.description[lang]);
     const [title, setTitle] = useState(() => item.title[lang]);
 
@@ -46,8 +37,8 @@ const Quote = forwardRef<ResetType, Props>(function Quote({ item, imagePreviews,
                     className={`${q.quoteTitle} !text-start relative`}>
                     { /* МЕГАКОСТЫЛЬ с тегом <p></p>!!! Не работает, если в textarea более 1 строки*/}
                     <p className='opacity-0'>{title}</p>
-                    <Input name={`description-${lang}-${position + 1}`}
-                        className={`bg-transparent absolute top-0 z-10 w-full`}
+                    <Input name={`title-${lang}-${position + 1}`}
+                        className={`bg-transparent absolute top-0 z-10 w-full text-center`}
                         value={title}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             handleTextChange();
@@ -55,10 +46,10 @@ const Quote = forwardRef<ResetType, Props>(function Quote({ item, imagePreviews,
                         }} />
                     <Icon name="ellipse" className={`${q.titleOutline} w-min`} />
                 </div>
-                <div className={`${s.quoteText} relative`} >
+                <div className={`${s.quoteText} relative flex`} >
                     <Input name={`description-${lang}-${position + 1}`}
                         className={`w-full -ml-[4px] ${isEditing
-                            ? 'opacity-100'
+                            ? `opacity-100 ${position % 2 ? '' : 'self-end text-right'}`
                             : 'opacity-0 absolute top-0 left-0 z-10'}`}
                         value={description}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {

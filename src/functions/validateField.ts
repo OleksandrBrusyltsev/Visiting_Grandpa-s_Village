@@ -5,7 +5,7 @@ import {
 
 export type ValidateFieldType = (
     nameAttr: keyof HouseItem,
-    houseData: Omit<HouseItem, 'photo'> & { photo: (string | File)[] },
+    houseData: Omit<HouseItem, 'photo'>,
     min?: number,
 ) => {
     error: boolean;
@@ -47,39 +47,31 @@ export const validateField: ValidateFieldType = (nameAttr, houseData, min = 0) =
         warningText,
     };
 };
-const isEmptyAdultPrice = (houseData: Omit<HouseItem, 'photo'> & { photo: (string | File)[] }) => {
+const isEmptyAdultPrice = (houseData: Omit<HouseItem, 'photo'>) => {
     if (houseData.max_adults > 0 && houseData.rental_price == 0) {
         return warningValidationMessages['rental_price'][0];
     }
     return '';
 };
 
-const isEmptyExtraChildrenPrice = (
-    houseData: Omit<HouseItem, 'photo'> & { photo: (string | File)[] },
-) => {
+const isEmptyExtraChildrenPrice = (houseData: Omit<HouseItem, 'photo'>) => {
     if (houseData.extra_children > 0 && houseData.extra_children_price == 0) {
         return warningValidationMessages['extra_children_price'][0];
     }
     return '';
 };
-const isEmptyExtraAdultPrice = (
-    houseData: Omit<HouseItem, 'photo'> & { photo: (string | File)[] },
-) => {
+const isEmptyExtraAdultPrice = (houseData: Omit<HouseItem, 'photo'>) => {
     if (houseData.extra_adults > 0 && houseData.extra_adult_price == 0) {
         return warningValidationMessages['extra_adult_price'][0];
     }
     return '';
 };
-const isExtraChildrenExhausted = (
-    houseData: Omit<HouseItem, 'photo'> & { photo: (string | File)[] },
-) => {
+const isExtraChildrenExhausted = (houseData: Omit<HouseItem, 'photo'>) => {
     if (houseData.extra_adults === 0 && houseData.extra_children > 0)
         return warningValidationMessages['extra_children'][0];
     return '';
 };
-const isExtraChildrenOutOfRange = (
-    houseData: Omit<HouseItem, 'photo'> & { photo: (string | File)[] },
-) => {
+const isExtraChildrenOutOfRange = (houseData: Omit<HouseItem, 'photo'>) => {
     if (
         houseData.extra_adults > 0 &&
         (houseData.extra_children === 1 || houseData.extra_children > 4)

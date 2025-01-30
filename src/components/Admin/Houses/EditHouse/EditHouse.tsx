@@ -4,18 +4,19 @@ import React, { memo, useEffect, useRef } from 'react'
 import { Box, FormControlLabel, Grid2 as Grid, Stack, Switch, Tab, Tabs, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
-import HouseCard from './components/HouseCard'
+import { ResizableContainer } from '@/components/Admin/UI/ResizableContainer/ResizableContainer';
+import SubmitFabGroup from '@/components/Admin/UI/SubmitFabGroup/SubmitFabGroup';
+import HouseSelect from '@/components/Admin/UI/HouseSelect/HouseSelect';
+import { CustomTabPanel } from '@/components/Admin/Pages/Houses/Houses';
 import HouseDescriptionPage from './components/HouseDescriptionPage'
-import HouseSelect from '../../UI/HouseSelect/HouseSelect';
-import { CustomTabPanel } from '../../Pages/Houses/Houses';
-import { useMainStore } from '@/stores/store-provider';
-import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
-import SimpleGallery from './components/SimpleGallery';
-import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContainer';
-import Button from '@/components/ui/Button/Button';
 import NumberFields from '../AddNewHouse/components/NumberFields';
+import SimpleGallery from './components/SimpleGallery';
+import { useMainStore } from '@/stores/store-provider';
+import Button from '@/components/ui/Button/Button';
+import HouseCard from './components/HouseCard'
 
 import s from '@/components/Houses/Houses.module.scss';
+import { locales } from '@/data/locales';
 
 type Props = Readonly<{ data: HouseItem; housesList: SingleHousesListType; rooms: number }>;
 
@@ -130,20 +131,18 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
     const [loading, setLoading] = React.useState(false);
 
     const formRef = useRef<HTMLFormElement | null>(null);
+    const resetGalleryRef = useRef<ResetType | null>(null);
     const { refresh, replace } = useRouter();
 
+    const photosEditing = useMainStore((state) => state?.photosEditing);
+
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
-
-    const { photo, id, name } = useMainStore((state) => state?.houseEditing) ?? {};
     const setHouseData = useMainStore((state) => state.setHouseEditing);
-
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
 
     useEffect(() => {
         setHouseData(data, true);
-    }, []);
-
-    if (!photo || !id || !name) return;
+    }, [data, setHouseData]);
 
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
         setActiveTab(newValue);
@@ -152,6 +151,8 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
     const handleResetForm = () => {
         formRef.current?.reset();
         setHouseData(data, true);
+        resetGalleryRef.current?.reset();
+        setIsDirtyPage(false);
         window?.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -160,15 +161,15 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
         setLoading(true);
         const formData = new FormData(e.currentTarget);
 
-        photo.forEach((image, index) => {
-            formData.append(`photo${index}`, image);
+        photosEditing.forEach((item, index) => {
+            formData.append(`photo${index}`, item.raw);
         });
 
-        formData.append('name', name);
+        formData.append('name', data.name);
         formData.has('is_available') ? formData.append('is_available', 'true') : formData.append('is_available', 'false');
 
         try {
-            const response = await fetch('/api/admin/houses/edit?id=' + id, {
+            const response = await fetch('/api/admin/houses/edit?id=' + data.id, {
                 method: 'PUT',
                 body: formData
             });
@@ -192,7 +193,7 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
 
     const handleRemoveHouse = async () => {
         try {
-            const response = await fetch('/api/admin/houses/remove?id=' + id, {
+            const response = await fetch('/api/admin/houses/remove?id=' + data.id, {
                 method: 'DELETE',
             });
             if (response.ok) {
@@ -213,9 +214,9 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
         <Box component='form' ref={formRef} onSubmit={handleSubmit} className='@container/resizeContainer'>
 
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">
+                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="tabs for editing page data">
                     {
-                        ['uk', 'ru', 'en'].map((lang) => (
+                        locales.map((lang) => (
                             <Tab key={lang} label={lang} />
                         ))
                     }
@@ -227,7 +228,7 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
                     </Stack>
                 </Tabs>
             </Box>
-            {(['uk', 'ru', 'en'] as Language[]).map((lang, index) => (
+            {locales.map((lang, index) => (
                 <CustomTabPanel value={activeTab} index={index} key={lang} >
                     <ResizableContainer>
                         <div className="container-admin">
@@ -248,7 +249,7 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
                         sx={{
                             maxWidth: '1180px',
                             mx: 'auto',
-                            mt: 2,
+                            my: 2,
                             border: '1px solid grey', p: 2, borderRadius: '8px',
                         }}
                     >
@@ -270,9 +271,9 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
                 </CustomTabPanel>
             ))}
 
-            {!rooms && <SimpleGallery photo={photo} />}
+            {!rooms && <SimpleGallery photo={data.photo} ref={resetGalleryRef} />}
 
-            {(['uk', 'ru', 'en'] as Language[]).map((lang, index) => (
+            {locales.map((lang, index) => (
                 <CustomTabPanel value={activeTab} index={index} key={lang} className='container-admin'>
                     <HouseDescriptionPage locale={lang} rooms={rooms} />
                 </CustomTabPanel>

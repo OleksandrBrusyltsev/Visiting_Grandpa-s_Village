@@ -36,14 +36,13 @@ export async function PUT(request: Request) {
         if (fieldName.startsWith('photo')) {
             (acc[index].photos as (string | File)[])[+fieldName.slice(5)] = value;
         } else if (fieldName.startsWith('id')) {
-            (acc[index] as EntertainmentItem).id = +value;
+            acc[index].id = +value;
         }
         if (lang && typeof value === 'string') {
             (acc[index][fieldName] as Record<Language, string>)[lang] = value;
         }
         return acc;
     }, {} as { [key: number]: EntertainmentItem });
-    console.log(entertainmentsDataObj);
 
     let entertainments;
 
@@ -104,7 +103,7 @@ export async function PUT(request: Request) {
                             `Блок із заголовком "${error.blockTitle}": Location: ${error.location}; message: ${error.message}`,
                     )
                     .join('\n');
-            return NextResponse.json({ message });
+            return NextResponse.json({ message }, { status: 500 });
         }
 
         revalidateTag('entertainments');

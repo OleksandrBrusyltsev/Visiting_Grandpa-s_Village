@@ -32,7 +32,7 @@
 }
 
 .hero {
-    margin-top: clamp(16px, calc(16px + 20 * (100vw - 375px) / 392), 36px);
+    margin-top: clamp(16px, calc(16px + 20 * (100cqw - 375px) / 392), 36px);
     position: relative;
 }
 
@@ -41,8 +41,8 @@
 }
 
 .heroTitle {
-    max-width: clamp(293px, calc(293px + 207 * (100vw - 375px) / 392), 500px);
-    padding-left: clamp(0px, calc(0px + 74 * (100vw - 375px) / 392), 74px);
+    max-width: clamp(293px, calc(293px + 207 * (100cqw - 375px) / 392), 500px);
+    padding-left: clamp(0px, calc(0px + 74 * (100cqw - 375px) / 392), 74px);
     font-size: var(--f-size-body-big);
     position: relative;
     letter-spacing: -0.005em;
@@ -50,8 +50,8 @@
 
 .grandpaWrapper {
     position: absolute;
-    right: clamp(-10px, calc(-10px + 64 * (100vw - 375px) / 392), 54px);
-    bottom: clamp(-100px, calc(-100px + 75 * (100vw - 375px) / 392), -25px);
+    right: clamp(-10px, calc(-10px + 64 * (100cqw - 375px) / 392), 54px);
+    bottom: clamp(-100px, calc(-100px + 75 * (100cqw - 375px) / 392), -25px);
     width: 142px;
     aspect-ratio: 1;
 
@@ -63,9 +63,9 @@
         position: absolute;
         content: '';
         top: -85px;
-        top: clamp(-85px, calc(-85px + 15 * (100vw - 375px) / 392), -70px);
+        top: clamp(-85px, calc(-85px + 15 * (100cqw - 375px) / 392), -70px);
         left: -40px;
-        left: clamp(-85px, calc(-85px + 45 * (767px - 100vw) / 392), -40px);
+        left: clamp(-85px, calc(-85px + 45 * (767px - 100cqw) / 392), -40px);
         width: 240px;
         height: 220px;
         ;
@@ -79,23 +79,23 @@
 .callToClick {
     font-size: 14px;
     line-height: 1.4;
-    padding-left: clamp(24px, calc(24px + 80 * (100vw - 375px) / 392), 104px);
+    padding-left: clamp(24px, calc(24px + 80 * (100cqw - 375px) / 392), 104px);
     padding-right: 0;
     margin-left: 0;
     position: relative;
-    width: clamp(200px, calc(200px + 320 * (100vw - 375px) / 55), 520px);
+    width: clamp(200px, calc(200px + 320 * (100cqw - 375px) / 55), 520px);
 
     .curve {
         display: block;
         position: absolute;
         bottom: 30%;
         transform: translateY(110%);
-        left: clamp(183px, calc(183px + 157 * (100vw - 375px) / 55), 340px);
+        left: clamp(183px, calc(183px + 157 * (100cqw - 375px) / 55), 340px);
         width: 10px;
         height: 30px;
 
         @media (min-width: 431px) {
-            left: clamp(340px, calc(340px + 100 * (100vw - 430px) / 337), 440px);
+            left: clamp(340px, calc(340px + 100 * (100cqw - 430px) / 337), 440px);
         }
     }
 }
@@ -129,14 +129,14 @@
     }
 }
 
-@include mixins.media-min(variables.$mobile) {
+@include mixins.container-media-min(variables.$mobile) {
     .galleryItemWrapper {
         margin-bottom: 112px;
     }
 
     .heroTitle {
         max-width: 90%;
-        padding-left: clamp(74px, calc(74px + 146 * (100vw - 768px) / 511), 220px);
+        padding-left: clamp(74px, calc(74px + 146 * (100cqw - 768px) / 511), 220px);
         font-size: var(--f-size-h2);
         line-height: 1.1;
 
@@ -159,9 +159,9 @@
         margin-right: -10px;
         shape-outside: padding-box;
         position: static;
-        margin-right: clamp(-10px, calc(-10px + 39 * (100vw - 768px) / 511), 29px);
-        margin-top: clamp(-86px, calc(-38px - 48 * (100vw - 768px) / 511), -38px);
-        width: clamp(172px, calc(252px - 80 * (100vw - 768px) / 511), 252px);
+        margin-right: clamp(-10px, calc(-10px + 39 * (100cqw - 768px) / 511), 29px);
+        margin-top: clamp(-86px, calc(-38px - 48 * (100cqw - 768px) / 511), -38px);
+        width: clamp(172px, calc(252px - 80 * (100cqw - 768px) / 511), 252px);
 
         &::before {
             position: unset;
@@ -172,7 +172,7 @@
         max-width: 470px;
         text-align: center;
         padding-left: 0;
-        margin-left: clamp(104px, calc(104px + 386 * (100vw - 768px) / 511), 490px);
+        margin-left: clamp(104px, calc(104px + 386 * (100cqw - 768px) / 511), 490px);
         font-size: 20px;
 
         .curve {
@@ -207,7 +207,7 @@
     }
 }
 
-@include mixins.media-min(variables.$breakpoint-laptop) {
+@include mixins.container-media-min(variables.$breakpoint-laptop) {
     .galleryItemWrapper {
         margin-bottom: 186px;
     }
@@ -224,7 +224,7 @@
     }
 
     .grandpaWrapper {
-        margin-right: clamp(29px, calc(29px + 51 * (100vw - 1280px) / 160), 80px);
+        margin-right: clamp(29px, calc(29px + 51 * (100cqw - 1280px) / 160), 80px);
     }
 
     .callToClick {
@@ -253,7 +253,7 @@
     }
 }
 
-@include mixins.media-min(variables.$pc) {
+@include mixins.container-media-min(variables.$pc) {
     .grandpaWrapper {
         margin-right: 0;
     }

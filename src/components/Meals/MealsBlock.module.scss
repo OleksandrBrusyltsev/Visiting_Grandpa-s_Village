@@ -29,7 +29,7 @@
     color: rgb(var(--color-base-green));
   }
 
-  & p:last-child {
+  & p:not(:first-child) {
     padding-top: 25px;
   }
 }

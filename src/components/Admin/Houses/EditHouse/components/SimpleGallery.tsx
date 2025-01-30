@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import React, { forwardRef, memo, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import {
@@ -13,7 +13,7 @@ import {
     DragStartEvent,
     TouchSensor,
 } from '@dnd-kit/core';
-import SortableItem, { Item } from '../../../UI/DnD/SortableItem/SortableItem';
+import SortableItem, { Item } from '@/components/Admin/UI/DnD/SortableItem/SortableItem';
 import {
     AnimateLayoutChanges,
     arrayMove,
@@ -23,59 +23,46 @@ import {
     sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable';
 
-import FileUpload from '../../../UI/FileUpload/FileUpload';
+import FileUpload from '@/components/Admin/UI/FileUpload/FileUpload';
 import { stubImage } from '@/data/stubs';
 import SimpleGalleryWrapper from './SimpleGalleryWrapper';
 import { useMainStore } from '@/stores/store-provider';
 
-const SimpleGallery = memo(function SimpleGallery({ photo }: { photo: (string | File)[] }) {
-    const setHouseData = useMainStore((state) => state.setHouseEditing);
+type SimpleGalleryProps = {
+    photo: (string | File)[];
+    classNames?: {
+        wrapper?: string;
+        item?: string;
+    },
+    ref: React.ForwardedRef<ResetType>;
+}
+
+const SimpleGallery = forwardRef<ResetType, SimpleGalleryProps>(function SimpleGallery({ photo, classNames }, ref) {
+    const photosEditing = useMainStore((state) => state.photosEditing);
+    const setPhotosEditing = useMainStore((state) => state.setPhotosEditing);
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
 
-    const shouldUpdateHouseData = useRef(true);
-
-    //храним одновременно и изображения, и локальную ссылку на него, т.к. динамическая генерация ссылок при рендере вызывает мерзание UI
-    const [items, setItems] = useState<
-        {
-            id: UniqueIdentifier;
-            raw: string | File;
-            src: string;
-        }[]
-    >([]);
-
-    useEffect(() => {
-        setItems(
-            photo.map((image, i) => ({
+    useImperativeHandle(ref, () => ({
+        reset: () => {
+            setPhotosEditing(photo.map((image, i) => ({
                 id: `${i}` as UniqueIdentifier,
                 raw: image,
                 src: typeof image === 'string' ? image : URL.createObjectURL(image),
-            })) ?? [],
-        );
-        shouldUpdateHouseData.current = false;
-    }, [photo]);
-
-    useEffect(() => {
-        if (!shouldUpdateHouseData.current) {
-            //блокируем обновление данных в сторе, вызванное изменением пропсов (избегаем цикличности) или после первого рендера
-            shouldUpdateHouseData.current = true;
-        } else {
-            setHouseData((houseData) => {
-                if (houseData) {
-                    houseData.photo = items.map((item) => item.raw);
-                }
-                return houseData;
-            }, false);
+            })))
         }
-    }, [items, setHouseData]);
+    }), [photo, setPhotosEditing]);
+
+    //храним одновременно и изображения, и локальную ссылку на него, т.к. динамическая генерация ссылок при рендере вызывает мерзание UI
+    useEffect(() => {
+        setPhotosEditing(photo.map((image, i) => ({
+            id: `${i}` as UniqueIdentifier,
+            raw: image,
+            src: typeof image === 'string' ? image : URL.createObjectURL(image),
+        })), true)
+    }, [photo, setPhotosEditing]);
 
     const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
 
-    //для блокирование ошибок во время пререндинга на сервере
-    // const [portalVisible, setPortalVisible] = useState(false);
-    // useLayoutEffect(() => {
-    //     if (!document.body) return;
-    //     setPortalVisible(true);
-    // }, []);
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(TouchSensor),
@@ -85,16 +72,16 @@ const SimpleGallery = memo(function SimpleGallery({ photo }: { photo: (string | 
     );
 
     const handleRemove = (id: UniqueIdentifier) => {
-        setItems((items) => items.filter((item) => item.id !== id));
+        setPhotosEditing((items) => items.filter((item) => item.id !== id));
         setIsDirtyPage(true);
     };
 
     const handleChange = (id: UniqueIdentifier) => {
-        const currentItemIndex = items.findIndex((item) => item.id === id);
+        const currentItemIndex = photosEditing.findIndex((item) => item.id === id);
         return (event: React.ChangeEvent<HTMLInputElement>) => {
             const file = event.target.files?.[0];
             if (file) {
-                setItems((items) => {
+                setPhotosEditing((items) => {
                     const newItems = [...items];
                     newItems[currentItemIndex] = { id, src: URL.createObjectURL(file), raw: file };
                     return newItems;
@@ -114,7 +101,7 @@ const SimpleGallery = memo(function SimpleGallery({ photo }: { photo: (string | 
         if (!over || !activeId) return;
 
         if (active.id !== over.id) {
-            setItems((items) => {
+            setPhotosEditing((items) => {
 
                 const oldIndex = getIndex(activeId, items);
                 const newIndex = getIndex(over?.id, items);
@@ -126,12 +113,12 @@ const SimpleGallery = memo(function SimpleGallery({ photo }: { photo: (string | 
         setActiveId(null);
     }
 
-    const sizeOfRow = items.length > 5 ? '@[1024px]:auto-rows-[225px]' : '@[1280px]:auto-rows-[265px]';
+    const sizeOfRow = photosEditing.length > 5 ? '@[1024px]:auto-rows-[225px]' : '@[1280px]:auto-rows-[265px]';
 
     return (
-        <SimpleGalleryWrapper setItems={setItems}>
+        <SimpleGalleryWrapper setItems={setPhotosEditing}>
             {
-                items.length ?
+                photosEditing.length ?
                     <DndContext
                         sensors={sensors}
                         collisionDetection={closestCenter}
@@ -140,19 +127,23 @@ const SimpleGallery = memo(function SimpleGallery({ photo }: { photo: (string | 
                         onDragCancel={() => setActiveId(null)}
                         measuring={{ droppable: { strategy: MeasuringStrategy.Always } }}
                     >
-                        <SortableContext items={items} strategy={rectSortingStrategy}>
+                        <SortableContext items={photosEditing} strategy={rectSortingStrategy}>
 
-                            <ul className={`max-w-[1180px] select-none mx-auto grid grid-cols-12 gap-4 auto-rows-[160px] ${sizeOfRow}`}>
+                            {/* <ul className={`max-w-[1180px] !auto-rows-auto select-none grid grid-cols-1 @[768px]:grid-cols-3 @[1280px]:grid-cols-4 gap-[9px] @[1280px]:gap-[24px] ${sizeOfRow}`}> */}
+                            <ul className={`${classNames
+                                ? classNames.wrapper
+                                : 'max-w-[1180px] select-none mx-auto grid grid-cols-12 gap-4 auto-rows-[160px]'} ${sizeOfRow}`}>
                                 {
-                                    (items.length ?
-                                        items :
+                                    (photosEditing.length ?
+                                        photosEditing :
                                         [{
                                             id: '0',
                                             src: stubImage
                                         }]
                                     ).map((value, index) => (
                                         <SortableItem
-                                            classNames={getGridClasses(items.length, index + 1)}
+                                            classNames={classNames ? classNames.item : getGridClasses(photosEditing.length, index + 1)}
+                                            // classNames='aspect-[1.16] @[768px]:aspect-[1.09] @[1280px]:aspect-[1.11]'
                                             key={value.id}
                                             id={value.id}
                                             index={index}
@@ -171,26 +162,6 @@ const SimpleGallery = memo(function SimpleGallery({ photo }: { photo: (string | 
                                 }
                             </ul>
                         </SortableContext>
-                        {/* {portalVisible && createPortal(
-                            <DragOverlay
-                                adjustScale={true}
-                                dropAnimation={dropAnimationConfig}
-                            >
-                                {activeId ? (
-                                    <Item
-                                        fadeIn
-                                        dragOverlay
-                                    >
-                                        <Image src={items[getIndex(activeId, items)].src}
-                                            alt="house image"
-                                            width={400}
-                                            height={400}
-                                            className={`w-full h-full object-cover`} />
-                                    </Item>
-                                ) : null}
-                            </DragOverlay>,
-                            document.body
-                        )} */}
                         {createPortal(
                             <DragOverlay
                                 adjustScale={true}
@@ -201,7 +172,7 @@ const SimpleGallery = memo(function SimpleGallery({ photo }: { photo: (string | 
                                         fadeIn
                                         dragOverlay
                                     >
-                                        <Image src={items[getIndex(activeId, items)].src}
+                                        <Image src={photosEditing[getIndex(activeId, photosEditing)].src}
                                             alt="house image"
                                             width={400}
                                             height={400}
@@ -219,12 +190,12 @@ const SimpleGallery = memo(function SimpleGallery({ photo }: { photo: (string | 
                         height={400}
                         className={`mx-auto`} />
             }
-            <FileUpload setItems={setItems} />
+            <FileUpload setItems={setPhotosEditing} />
         </SimpleGalleryWrapper>
     );
 });
 
-export default SimpleGallery;
+export default memo(SimpleGallery);
 
 //хелпер для определения количества колонок
 export function getGridClasses(total: number, i: number) {

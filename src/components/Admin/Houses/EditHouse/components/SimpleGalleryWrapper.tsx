@@ -43,7 +43,7 @@ function SimpleGalleryWrapper({ children, setItems }: Props) {
     const overlay = isDragOver ? 'after:bg-base-green/30  after:border-base-green' : 'after:border-transparent';
 
     return (
-        <div className={`mt-4 container-admin relative after:rounded-lg after:border after:border-dashed after:absolute after:inset-0 after:pointer-events-none ${overlay}`}
+        <div className={`relative after:rounded-lg after:border after:border-dashed after:absolute after:inset-0 after:pointer-events-none ${overlay}`}
             onDragOver={onDragOver}
             onDragLeave={onDragLeave}
             onDrop={onDrop}

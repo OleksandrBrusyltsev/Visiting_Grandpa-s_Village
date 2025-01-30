@@ -12,16 +12,17 @@
   margin: 0 auto;
   margin-block: 50px 64px;
 
-  @include mixins.media-min(variables.$mobile) {
+  @include mixins.container-media-min(variables.$mobile) {
     margin-block: 120px 78px;
   }
-  @include mixins.media-min(variables.$breakpoint-laptop) {
+
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
     margin-block: 130px 88px;
   }
 }
 
 .textWrapper {
-  width: calc(100vw - 40px);
+  width: calc(100cqw - 40px);
   padding: 0.75rem 1rem;
   background: rgba(194, 191, 183, 0.7);
   border: 1px solid rgb(var(--color-base-green));
@@ -31,30 +32,36 @@
   margin: 0 auto;
   transform: translateY(50%);
   max-width: 36rem;
-  @include mixins.media-min(variables.$mobile) {
-    width: calc(100vw - 190px);
-    padding: 0.6rem clamp(16px, calc(16px + 24 * (100vw - 768px) / 511), 40px);
+
+  @include mixins.container-media-min(variables.$mobile) {
+    width: calc(100cqw - 190px);
+    padding: 0.6rem clamp(16px, calc(16px + 24 * (100cqw - 768px) / 511), 40px);
     max-width: 60rem;
   }
-  @include mixins.media-min(variables.$breakpoint-laptop) {
-    width: calc(100vw - 320px);
+
+  @include mixins.container-media-min(variables.$breakpoint-laptop) {
+    width: calc(100cqw - 320px);
     padding: 0.6rem 2rem;
     max-width: 66rem;
   }
-  @include mixins.media-min(variables.$pc) {
-    width: calc(100vw - 380px);
+
+  @include mixins.container-media-min(variables.$pc) {
+    width: calc(100cqw - 380px);
   }
-  & p {
-    font-size: clamp(14px, calc(32px - 18 * (767px - 100vw) / 392), 32px);
+
+  & p,
+  & textarea {
+    font-size: clamp(14px, calc(32px - 18 * (767px - 100cqw) / 392), 32px);
     line-height: 100%;
 
-    @include mixins.media-min(variables.$mobile) {
+    @include mixins.container-media-min(variables.$mobile) {
       color: rgb(var(--color-white));
       line-height: 110%;
       letter-spacing: -0.005em;
-      font-size: clamp(32px, calc(48px - 16 * (1279px - 100vw) / 511), 48px);
+      font-size: clamp(32px, calc(48px - 16 * (1279px - 100cqw) / 511), 48px);
     }
-    @include mixins.media-min(variables.$breakpoint-laptop) {
+
+    @include mixins.container-media-min(variables.$breakpoint-laptop) {
       text-transform: uppercase;
     }
   }
@@ -64,11 +71,12 @@
   width: 100%;
   box-shadow: inset 0px -35px 35px 1px rgb(255, 255, 255);
   overflow: hidden;
-  height: clamp(193px, calc(567px - 374 * (767px - 100vw) / 392), 567px);
+  height: clamp(193px, calc(567px - 374 * (767px - 100cqw) / 392), 567px);
   display: flex;
   flex-direction: column-reverse;
-  @include mixins.media-min(variables.$mobile) {
-    height: clamp(567px, calc(635px - 68 * (1279px - 100vw) / 511), 635px);
+
+  @include mixins.container-media-min(variables.$mobile) {
+    height: clamp(567px, calc(635px - 68 * (1279px - 100cqw) / 511), 635px);
   }
 }
 
@@ -78,12 +86,13 @@
 }
 
 .buttonWrapper {
-  margin-bottom: clamp(5px, calc(5px + 105 * (100vw - 375px) / 392), 110px);
-  @include mixins.media-min(variables.$mobile) {
-    margin-bottom: clamp(110px, calc(110px + 15 * (100vw - 768px) / 511), 125px);
+  margin-bottom: clamp(5px, calc(5px + 105 * (100cqw - 375px) / 392), 110px);
+
+  @include mixins.container-media-min(variables.$mobile) {
+    margin-bottom: clamp(110px, calc(110px + 15 * (100cqw - 768px) / 511), 125px);
   }
- 
-  & > a {
+
+  &>a {
     width: 100%;
     display: block;
     text-align: center;
@@ -92,6 +101,6 @@
 
 .button {
   padding: 0.75rem;
-  font-size: clamp(16px, calc(16px + 6 * (100vw - 375px) / 392), 22px);
+  font-size: clamp(16px, calc(16px + 6 * (100cqw - 375px) / 392), 22px);
   z-index: 1;
 }

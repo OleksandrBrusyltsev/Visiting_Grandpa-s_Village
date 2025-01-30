@@ -56,8 +56,8 @@ export default function ChildMenuItem({ menuItem }: Props) {
         <ListItem disablePadding>
             <ListItemButton
                 selected={selectedIndex}
-                component={ConfirmLink}
-                href={url}
+                component={selectedIndex ? 'div' : ConfirmLink}
+                href={selectedIndex ? undefined : url}
                 sx={{
                     minHeight: 48, px: 2.5,
                     '&.Mui-selected': {

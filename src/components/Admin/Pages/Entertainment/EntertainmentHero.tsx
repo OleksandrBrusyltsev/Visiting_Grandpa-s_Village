@@ -6,22 +6,14 @@ import MarkdownPreview from '@/components/ui/MarkdownPreview/MarkdownPreview';
 
 import s from "@/components/Entertainment/Entertainment.module.scss";
 
-type Props = Readonly<{
-    item: EntertainmentItem,
-    imagePreviews: (string | File)[];
-    lang: Language,
-    handleTextChange: () => void;
-    handleFileChange: (e: React.ChangeEvent<HTMLInputElement>, imgIndex: number) => void;
-    ref: React.ForwardedRef<{
-        reset: () => void
-    }>
+const EntertainmentHero = forwardRef<ResetType, EditPageProps<EntertainmentItem>>(function EntertainmentHero({
+    item,
+    imagePreviews,
+    lang,
+    handleTextChange,
+    handleFileChange
+}, ref) {
 
-}>
-type ResetType = {
-    reset: () => void
-}
-
-const EntertainmentHero = forwardRef<ResetType, Props>(function Quote({ item, imagePreviews, lang, handleTextChange, handleFileChange }, ref) {
     const [quote, setQuote] = useState(() => item.quote[lang]);
     const [isEditing, setIsEditing] = useState(false);
 
@@ -59,11 +51,11 @@ const EntertainmentHero = forwardRef<ResetType, Props>(function Quote({ item, im
                 onChange={handleTextChange} />
 
             <div className={s.topQuoteWrapper}>
-                <div className={`${s.topQuote} relative`}>
+                <div className={`${s.topQuote} relative flex`}>
                     <Input name={`quote-${lang}-0`}
                         className={`w-full -ml-[4px] !text-end @[768px]:!text-start ${isEditing
-                            ? 'opacity-100'
-                            : 'opacity-0 absolute top-0 left-0 z-10'}`}
+                            ? 'opacity-100 relative z-10'
+                            : 'opacity-0 absolute top-0 left-0 z-20'}`}
                         value={quote}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             handleTextChange();

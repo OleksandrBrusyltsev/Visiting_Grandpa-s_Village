@@ -53,7 +53,7 @@ export default function AutoResizeTextarea({ defaultValue, className, name, ...p
             {...props}
             name={name}
             ref={textareaRef}
-            className={className + ' px-[4px]'}
+            className={className + ' px-[4px] focus:[outline:none] focus:[border:none] focus:bg-transparent focus:[box-shadow:inset_2px_2px_0px_0px_rgba(0,0,0,0.9),_inset_-2px_-2px_0px_0px_rgba(0,0,0,0.9)]'}
             defaultValue={defaultValue}
             onChange={props.onChange || handleChange}
             required

@@ -21,7 +21,8 @@ export const initialUserState: Pick<UserSlice, 'user'> = {
 
 export const createAuthSlice: StateCreator<
     UserSlice & AdminSlice,
-    [['zustand/devtools', never], ['zustand/persist', unknown]],
+    // [['zustand/devtools', never], ['zustand/persist', unknown]],
+    [['zustand/devtools', never]],
     [],
     UserSlice
 > = (set, get) => ({

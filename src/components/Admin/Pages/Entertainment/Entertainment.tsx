@@ -1,18 +1,20 @@
 "use client";
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Box, Tab, Tabs } from '@mui/material';
 
+import { ResizableContainer } from '@/components/Admin/UI/ResizableContainer/ResizableContainer';
+import SubmitFabGroup from '@/components/Admin/UI/SubmitFabGroup/SubmitFabGroup';
+import { CustomTabPanel } from '@/components/Admin/Pages/Houses/Houses';
 import { useMainStore } from '@/stores/store-provider';
-import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContainer';
-import { CustomTabPanel } from '../Houses/Houses';
-import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
-import Quote from './Quote';
-import SeoBlock from './SeoBlock';
 import EntertainmentHero from './EntertainmentHero';
+import showErrors from '@/functions/showErrors';
+import SeoBlock from './SeoBlock';
+import Quote from './Quote';
 
 import s from "@/components/Entertainment/Entertainment.module.scss";
+import { locales } from '@/data/locales';
 
 type Props = Readonly<{ data: EntertainmentItem[] }>;
 
@@ -23,13 +25,13 @@ export default function EntertainmentPage({ data }: Props) {
     const changedBlocksRef = useRef(new Set<number>());
     const formRef = useRef<HTMLFormElement | null>(null);
     const containerAdminRef = useRef<HTMLDivElement | null>(null);
-    const heroBlockResets = useRef<Record<Language, { reset: () => void } | null>>({
+    const heroBlockResets = useRef<Record<Language, ResetType | null>>({
         en: null,
         uk: null,
         ru: null
     });
-    const entBlockResets = useRef<Record<number, Record<Language, { reset: () => void } | null>>>({});
-    const seoBlockResets = useRef<Record<Language, { reset: () => void } | null>>({
+    const entBlockResets = useRef<Record<number, Record<Language, ResetType | null>>>({});
+    const seoBlockResets = useRef<Record<Language, ResetType | null>>({
         en: null,
         uk: null,
         ru: null
@@ -37,12 +39,7 @@ export default function EntertainmentPage({ data }: Props) {
     const { refresh } = useRouter();
 
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
-
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
-
-    useLayoutEffect(() => {
-        setIsDirtyPage(false);
-    }, [setIsDirtyPage]);
 
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
         setActiveTab(newValue);
@@ -70,10 +67,12 @@ export default function EntertainmentPage({ data }: Props) {
         }
         setIsDirtyPage(true);
     }
+
     const handleTextChange = (blockIndex: number) => {
         setIsDirtyPage(true);
         changedBlocksRef.current?.add(blockIndex);
     }
+
     const handleResetForm = () => {
         formRef.current?.reset();
         setPreview(() => data.map((item) => [...item.photos]));
@@ -108,57 +107,62 @@ export default function EntertainmentPage({ data }: Props) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!changedBlocksRef.current.size) {
+        if (!changedBlocksRef.current.size || !formRef.current) {
             return;
         }
-        setLoading(true);
-        const formData = new FormData(e.currentTarget);
 
-        for (let key of Array.from(formData.keys())) {
-            const keyPartsLength = key.split('-').length;
-            const blockIndex = +key.split('-')[keyPartsLength - 1];
-            if (!changedBlocksRef.current.has(blockIndex)) {
-                formData.delete(key);
-                continue;
+        if (!formRef.current?.checkValidity()) {
+            showErrors(formRef.current, setDialogOpen);
+        } else {
+            setLoading(true);
+            const formData = new FormData(e.currentTarget);
+
+            for (let key of Array.from(formData.keys())) {
+                const keyPartsLength = key.split('-').length;
+                const blockIndex = +key.split('-')[keyPartsLength - 1];
+                if (!changedBlocksRef.current.has(blockIndex)) {
+                    formData.delete(key);
+                    continue;
+                }
             }
-        }
 
-        changedBlocksRef.current.forEach((blockIndex) => {
-            preview[blockIndex].forEach((photo, photoIndex) => {
-                formData.append(`photo${photoIndex}-${blockIndex}`, photo);
-            })
-        });
-
-        try {
-            const response = await fetch('/api/admin/entertainments/edit', {
-                method: 'PUT',
-                body: formData
+            changedBlocksRef.current.forEach((blockIndex) => {
+                preview[blockIndex].forEach((photo, photoIndex) => {
+                    formData.append(`photo${photoIndex}-${blockIndex}`, photo);
+                })
             });
-            if (response.status === 200) {
-                setLoading(false);
-                const data = await response.json();
-                setDialogOpen(true, 'success', data.description);
-                setIsDirtyPage(false);
-                refresh();
-            } else {
-                const errorData = await response.json();
+
+            try {
+                const response = await fetch('/api/admin/entertainments/edit', {
+                    method: 'PUT',
+                    body: formData
+                });
+                if (response.status === 200) {
+                    setLoading(false);
+                    const data = await response.json();
+                    setDialogOpen(true, 'success', data.description);
+                    setIsDirtyPage(false);
+                    refresh();
+                } else {
+                    const errorData = await response.json();
+                    window?.scrollTo({ top: 0, behavior: 'smooth' });
+                    setDialogOpen(true, 'error', errorData.message);
+                    setLoading(false);
+                }
+            } catch (error) {
                 window?.scrollTo({ top: 0, behavior: 'smooth' });
-                setDialogOpen(true, 'error', errorData.message);
+                setDialogOpen(true, 'error', `Щось пішло не так, як планувалось! Спробуйте ще раз!\n\n${(error as Error).message}`);
                 setLoading(false);
             }
-        } catch (error) {
-            window?.scrollTo({ top: 0, behavior: 'smooth' });
-            setDialogOpen(true, 'error', `Щось пішло не так, як планувалось! Спробуйте ще раз!\n\n${(error as Error).message}`);
-            setLoading(false);
         }
     }
 
     return (
-        <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative'>
+        <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative' noValidate>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">
+                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="tabs for editing page data">
                     {
-                        ['uk', 'ru', 'en'].map((lang) => (
+                        locales.map((lang) => (
                             <Tab key={lang} label={lang} />
                         ))
                     }
@@ -166,12 +170,13 @@ export default function EntertainmentPage({ data }: Props) {
             </Box>
             <ResizableContainer>
                 {
-                    (['uk', 'ru', 'en'] as Language[]).map((lang, index) => (
+                    locales.map((lang, index) => (
                         <CustomTabPanel value={activeTab} index={index} key={lang} className='container-admin overflow-hidden' ref={containerAdminRef}>
 
                             <EntertainmentHero
                                 item={data[0]}
                                 imagePreviews={preview[0]}
+                                position={0}
                                 lang={lang}
                                 handleTextChange={() => handleTextChange(0)}
                                 handleFileChange={handleFileChange(0)}
@@ -193,7 +198,7 @@ export default function EntertainmentPage({ data }: Props) {
                                             handleFileChange={handleFileChange(i + 1)}
                                             ref={(el) => {
                                                 if (!entBlockResets.current[i]) {
-                                                    entBlockResets.current[i] = {} as Record<Language, { reset: () => void }>;
+                                                    entBlockResets.current[i] = {} as Record<Language, ResetType>;
                                                 }
                                                 entBlockResets.current[i][lang] = el;
                                             }}

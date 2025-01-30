@@ -1,17 +1,19 @@
 "use client";
 
-import React, { forwardRef, useLayoutEffect, useRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Box, Tab, Tabs } from '@mui/material';
 
-import Icon from '@/components/ui/Icon/Icon';
+import { ResizableContainer } from '@/components/Admin/UI/ResizableContainer/ResizableContainer';
+import SubmitFabGroup from '@/components/Admin/UI/SubmitFabGroup/SubmitFabGroup';
 import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
 import { useMainStore } from '@/stores/store-provider';
-import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
-import { ResizableContainer } from '../../UI/ResizableContainer/ResizableContainer';
+import Icon from '@/components/ui/Icon/Icon';
 
 import s from './Houses.module.scss';
+import { locales } from '@/data/locales';
+import showErrors from '@/functions/showErrors';
 
 type Props = Readonly<{ data: HouseItem }>;
 
@@ -21,7 +23,7 @@ interface TabPanelProps {
     value: number;
     className?: string
 }
-  
+
 export const CustomTabPanel = forwardRef<HTMLDivElement | null, Readonly<TabPanelProps>>(function CustomTabPanel(props, ref) {
 
     const { children, value, index, className = '', ...other } = props;
@@ -38,6 +40,19 @@ export const CustomTabPanel = forwardRef<HTMLDivElement | null, Readonly<TabPane
         </div>
     );
 })
+
+const mockObj = {
+    name: '',
+    rental_price: '0',
+    max_adults: '0',
+    is_available: 'true',
+    discount_percent: '0',
+    extra_adults: '0',
+    extra_children: '0',
+    extra_adult_price: '0',
+    extra_children_price: '0',
+    house_type: 'null'
+};
 
 export default function HousesPage({ data }: Props) {
 
@@ -60,10 +75,6 @@ export default function HousesPage({ data }: Props) {
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
 
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
-
-    useLayoutEffect(() => {
-        setIsDirtyPage(false);
-    }, [setIsDirtyPage]);
 
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
         setActiveTab(newValue);
@@ -90,50 +101,51 @@ export default function HousesPage({ data }: Props) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setLoading(true);
-        const formData = new FormData(e.currentTarget);
-        formData.append('name', '');
-        formData.append('rental_price', '0');
-        formData.append('max_adults', '0');
-        formData.append('is_available', 'true');
-        formData.append('discount_percent', '0');
-        formData.append('extra_adults', '0');
-        formData.append('extra_children', '0');
-        formData.append('extra_adult_price', '0');
-        formData.append('extra_children_price', '0');
-        formData.append('house_type', 'null');
-        formData.append('photo1', preview);
+        if (!formRef.current) return;
 
-        try {
-            const response = await fetch('/api/admin/houses/edit?id=' + id, {
-                method: 'PUT',
-                body: formData
-            });
-            if (response.ok) {
-                setLoading(false);
-                const data = await response.json();
-                setDialogOpen(true, 'success', data.description);
-                setIsDirtyPage(false);
-                refresh();
-            } else {
-                const errorData = await response.json();
+        if (!formRef.current?.checkValidity()) {
+            showErrors(formRef.current, setDialogOpen, true);
+        } else {
+            setLoading(true);
+            const formData = new FormData(e.currentTarget);
+
+            for (const [key, value] of Object.entries(mockObj)) {
+                formData.append(key, value);
+            }
+
+            formData.append('photo1', preview);
+
+            try {
+                const response = await fetch('/api/admin/houses/edit?id=' + id, {
+                    method: 'PUT',
+                    body: formData
+                });
+                if (response.ok) {
+                    setLoading(false);
+                    const data = await response.json();
+                    setDialogOpen(true, 'success', data.description);
+                    setIsDirtyPage(false);
+                    refresh();
+                } else {
+                    const errorData = await response.json();
+                    window?.scrollTo({ top: 0, behavior: 'smooth' });
+                    setDialogOpen(true, 'error', errorData.message);
+                    setLoading(false);
+                }
+            } catch (error) {
                 window?.scrollTo({ top: 0, behavior: 'smooth' });
-                setDialogOpen(true, 'error', errorData.message);
+                setDialogOpen(true, 'error', `Щось пішло не так, як планувалось! Спробуйте ще раз!\n\n${(error as Error).message}`);
                 setLoading(false);
             }
-        } catch (error) {
-            window?.scrollTo({ top: 0, behavior: 'smooth' });
-            setDialogOpen(true, 'error', `Щось пішло не так, як планувалось! Спробуйте ще раз!\n\n${(error as Error).message}`);
-            setLoading(false);
         }
     }
 
     return (
-        <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative'>
+        <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative' noValidate>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="basic tabs example">
+                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="tabs for editing page data">
                     {
-                        ['uk', 'ru', 'en'].map((lang) => (
+                        locales.map((lang) => (
                             <Tab key={lang} label={lang} />
                         ))
                     }
@@ -141,7 +153,7 @@ export default function HousesPage({ data }: Props) {
             </Box>
             <ResizableContainer>
                 {
-                    ['uk', 'ru', 'en'].map((lang, index) => (
+                    locales.map((lang, index) => (
                         <CustomTabPanel value={activeTab} index={index} key={lang} className='container-admin'>
                             <section className={s.hero}>
                                 <div className={s.heroWrapper}>
@@ -179,8 +191,8 @@ export default function HousesPage({ data }: Props) {
                                 </div>
                             </section>
                             <div className={s.textWrapper}>
-                                <Input name={`decor_text-${lang}`} className={s.text} defaultValue={decor_text[lang as keyof typeof decor_text]} />
-                                <Input name={`description-${lang}`} className={s.text} defaultValue={description[lang as keyof typeof description]} />
+                                <Input name={`decor_text-${lang}`} className={`${s.text} bg-transparent`} defaultValue={decor_text[lang as keyof typeof decor_text]} />
+                                <Input name={`description-${lang}`} className={`${s.text} bg-transparent`} defaultValue={description[lang as keyof typeof description]} />
                             </div>
                         </CustomTabPanel>
                     ))

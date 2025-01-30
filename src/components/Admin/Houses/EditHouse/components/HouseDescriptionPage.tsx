@@ -3,12 +3,12 @@ import Image from 'next/image';
 
 import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
 import MarkdownPreview from '@/components/ui/MarkdownPreview/MarkdownPreview';
-import Booking from '@/components/House/Booking/Booking';
 import HeroSection from '@/components/House/HeroSection/HeroSection';
-import Map from '@/components/House/Map/Map';
-import { useTranslations } from '@/hooks/useTranslations';
-import { useMainStore } from '@/stores/store-provider';
 import Services from '@/components/House/Services/Services';
+import { useTranslations } from '@/hooks/useTranslations';
+import Booking from '@/components/House/Booking/Booking';
+import { useMainStore } from '@/stores/store-provider';
+import Map from '@/components/House/Map/Map';
 
 import s from '@/components/House/House.module.scss';
 
@@ -71,7 +71,7 @@ const HouseDescription = memo(function MainTitle({ locale }: { locale: Language 
         <div className={`${s.text} relative`} >
             <Input
                 name={`description-${locale}`}
-                className={`w-full px-1 ${isEditing ? 'opacity-100 relative' : 'opacity-0 absolute top-0 left-0 z-10'}`}
+                className={`w-full -ml-[4px] ${isEditing ? 'opacity-100 relative z-10' : 'opacity-0 absolute top-0 left-0 z-20'}`}
                 value={description[locale]}
                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setHouseData((houseData) => {
                     if (houseData)
@@ -134,21 +134,18 @@ const HouseHeroSection = memo(function HouseHeroSection({ locale }: { locale: La
 const MultiRoomGalleryBlock = memo(function MultiRoomGalleryBlock({ locale, room }: { locale: Language, room: number }) {
     const t = useTranslations("HouseItem", locale, true);
 
-    const photo = useMainStore((state) => state.houseEditing?.photo[0]);
+    const photo = useMainStore((state) => state.photosEditing[0]);
     const long_title = useMainStore((state) => state.houseEditing?.long_title);
     const treesDecor = useMainStore((state) => state.houseEditing?.treesDecor);
     const photoDecor = useMainStore((state) => state.houseEditing?.photoDecor);
-    const setHouseData = useMainStore((state) => state.setHouseEditing);
+    const setPhotosEditing = useMainStore((state) => state.setPhotosEditing);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
-            setHouseData((houseData) => {
-                if (houseData) {
-                    houseData.photo[0] = file;
-                    return houseData;
-                }
-                return houseData;
+            setPhotosEditing((photosData) => {
+                photosData[0] = { id: 0, src: URL.createObjectURL(file), raw: file };
+                return photosData;
             });
         }
     }
@@ -159,7 +156,7 @@ const MultiRoomGalleryBlock = memo(function MultiRoomGalleryBlock({ locale, room
                 <Image
                     fill
                     alt={t('altText', { title: long_title[locale] })}
-                    src={typeof photo === 'string' ? photo : URL.createObjectURL(photo)}
+                    src={photo.src}
                     sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <input type="file" title='' accept='image/*' className={`absolute inset-0 opacity-0 cursor-pointer`} onChange={handleFileChange} tabIndex={0} />

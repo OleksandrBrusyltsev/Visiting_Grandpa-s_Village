@@ -7,29 +7,16 @@ import Input from '@/components/Admin/UI/AutoResizeTextarea/AutoResizeTextarea';
 
 import s from "@/components/Meals/MealsBlock.module.scss";
 
-type Props = Readonly<{
-    imagePreviews: (string | File)[];
-    item: MealsItem;
-    position: number;
-    lang: Language;
-    handleFileChange: (e: React.ChangeEvent<HTMLInputElement>, imgIndex: number) => void;
-    handleTextChange: () => void;
-    isMobile: boolean,
-    ref: React.ForwardedRef<{
-        reset: () => void
-    }>
-}>;
-
-const MealsBlockAdmin = forwardRef<{ reset: () => void }, Props>(function MealsBlockAdmin({
+const MealsBlockAdmin = forwardRef<ResetType, EditPageProps<MealsItem>>(function MealsBlockAdmin({
     imagePreviews,
     item,
     position,
     lang,
     handleFileChange,
     handleTextChange,
-    isMobile,
+    matchMedia,
 }, ref) {
-
+    const { isMobile } = matchMedia ?? {};
     const { title, id } = item;
     const [description, setDescription] = useState(() => item.description[lang]);
     const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -69,13 +56,13 @@ const MealsBlockAdmin = forwardRef<{ reset: () => void }, Props>(function MealsB
                             tabIndex={0} />
                     </div>
                 ) : null}
-                <div className={s.mealsDescription}>
+                <div className={`${s.mealsDescription} flex`}>
                     <Input
                         name={`description-${lang}-${position + 1}`}
                         className={
-                            `w-full px-1 ${isEditing
-                                ? 'opacity-100 relative'
-                                : 'opacity-0 absolute top-0 left-0 z-10'}`
+                            `w-full -ml-[4px] ${isEditing
+                                ? 'opacity-100 relative z-10'
+                                : 'opacity-0 absolute top-0 left-0 z-20'}`
                         }
                         value={description}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
