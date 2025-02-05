@@ -1,7 +1,6 @@
 import React, { memo } from 'react'
 import { Stack, TextField, Typography } from '@mui/material';
 import { useMainStore } from '@/stores/store-provider';
-import { MultiLangFieldsType } from '@/data/admin/defaultsForHousesInputs';
 
 type Props = Readonly<{
     legend: string;
@@ -11,10 +10,8 @@ type Props = Readonly<{
 }>
 
 const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang, multiline }: Props) {
-    const multiLangField = useMainStore((state) => state.houseAdding[nameAttr as MultiLangFieldsType]);
-    const field = useMainStore((state) => (state?.houseAdding[nameAttr as keyof typeof state.houseAdding]) as string)
-    const setHouseData = useMainStore((state) => state.setHouseAdding);
-
+    const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
+    
     if (!multiLang) return (
         <Stack component="fieldset" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Typography component={'legend'}>{legend}</Typography>
@@ -24,21 +21,10 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 name={nameAttr}
                 variant="outlined"
                 type='text'
-                value={field}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setHouseData(houseData => {
-                        if (houseData) {
-                            return {
-                                ...houseData,
-                                [nameAttr]: e.target.value.replace(/[^a-z0-9-]/gi, '')
-                            }
-                        }
-                        return houseData
-                    }
-                    )}
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
+                onChange={() => { setIsDirtyPage(true) }}
             />
         </Stack>
     )
@@ -77,21 +63,7 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
-                value={multiLangField['uk' as Language]}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setHouseData(houseData => {
-                        if (houseData) {
-                            return {
-                                ...houseData,
-                                [nameAttr]: {
-                                    ...houseData[nameAttr as MultiLangFieldsType],
-                                    'uk': e.target.value
-                                }
-                            }
-                        }
-                        return houseData
-                    }
-                    )}
+                onChange={() => { setIsDirtyPage(true) }}
             />
             <TextField
                 label="EN:"
@@ -101,21 +73,7 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
-                value={multiLangField['en' as Language]}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setHouseData(houseData => {
-                        if (houseData) {
-                            return {
-                                ...houseData,
-                                [nameAttr]: {
-                                    ...houseData[nameAttr as MultiLangFieldsType],
-                                    'en': e.target.value
-                                }
-                            }
-                        }
-                        return houseData
-                    }
-                    )}
+                onChange={() => { setIsDirtyPage(true) }}
             />
             <TextField
                 label="RU:"
@@ -125,21 +83,7 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
-                value={multiLangField['ru' as Language]}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setHouseData(houseData => {
-                        if (houseData) {
-                            return {
-                                ...houseData,
-                                [nameAttr]: {
-                                    ...houseData[nameAttr as MultiLangFieldsType],
-                                    'ru': e.target.value
-                                }
-                            }
-                        }
-                        return houseData
-                    }
-                    )}
+                onChange={() => { setIsDirtyPage(true) }}
             />
         </Stack>
     )

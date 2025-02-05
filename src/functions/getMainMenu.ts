@@ -61,7 +61,7 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
         const indexOfMenuItemHouses = menuAdmin[indexOfMenuItemPages].children!.findIndex(
             (item) => item.name === 'Будиночки',
         );
-        const indexOgMenuItemGallery = menuAdmin[indexOfMenuItemPages].children!.findIndex(
+        const indexOfMenuItemGallery = menuAdmin[indexOfMenuItemPages].children!.findIndex(
             (item) => item.name === 'Галерея',
         );
 
@@ -86,10 +86,19 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
         }
 
         //добавляем подменю для галереи
-        if (indexOgMenuItemGallery > 0) {
+        if (indexOfMenuItemGallery > 0) {
             (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
-                indexOgMenuItemGallery
+                indexOfMenuItemGallery
             ].children = getBaseMenu(locale, 'gallery', gallery);
+            (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
+                indexOfMenuItemGallery
+            ].children?.push({
+                id: 9234802973,
+                name: 'Додати розділ',
+                url: `/${locale}/dyadus_adm1n_hub/gallery/add-chapter`,
+                admission: 'superadmin',
+                icon: addNew,
+            });
         }
     }
     return menuAdmin;

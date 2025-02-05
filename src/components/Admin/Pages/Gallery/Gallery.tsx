@@ -67,7 +67,7 @@ export default function GalleryPage({ data }: Props) {
                 Object.values(langRefs).forEach((ref) => {
                     ref?.reset();
                 });
-            //разворачиваем перевернутые для редактирования блоки
+            //разворачиваем перевернутые для редактирования карточки разделов
             Object.values(langRefs).forEach((ref) => {
                 ref?.reset();
             });
