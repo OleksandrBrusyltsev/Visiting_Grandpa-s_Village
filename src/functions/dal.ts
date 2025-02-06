@@ -10,7 +10,7 @@ export const verifySession = cache(async () => {
     const session = await decrypt(cookie);
     
     if (!session?.user_type) {
-        redirect('/uk/dyadus_adm1n_hub/login');
+        redirect('/uk/admin_hub/login');
     }
     
     return { role: session?.user_type };

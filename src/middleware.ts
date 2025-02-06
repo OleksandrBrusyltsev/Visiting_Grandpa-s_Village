@@ -6,7 +6,7 @@ import { decrypt, getSession, updateSession } from './actions/admin/auth';
 import { locales } from '@/data/locales';
 
 // Указываем защищенные и публичные маршруты
-const adminRoutes = ['/dyadus_adm1n_hub', '/dyadus_adm1n_hub/:path*'];
+const adminRoutes = ['/admin_hub', '/admin_hub/:path*'];
 const protectedClientRoutes = ['/booking/payment', '/booking/options', '/profile'];
 const publicRoutes = [
     '/',
@@ -20,7 +20,7 @@ const publicRoutes = [
     '/houses/:path*',
     '/booking',
     '/booking/rules',
-    '/dyadus_adm1n_hub/login',
+    '/admin_hub/login',
 ];
 
 // Middleware для обработки локалей (создаем на основе next-intl/middleware)
@@ -42,7 +42,7 @@ export default async function middleware(req: NextRequest) {
     );
     const isPublicRoute = publicRoutes.includes(pathname.replace(`/${currentLocale}`, ''));
     const isLoginPage =
-        pathname === `/${currentLocale}/dyadus_adm1n_hub/login` ||
+        pathname === `/${currentLocale}/admin_hub/login` ||
         pathname === `/${currentLocale}/login`;
 
     let refreshTokenCookie: string = '',
@@ -65,7 +65,7 @@ export default async function middleware(req: NextRequest) {
         if (!session.access_token || !session.refreshTokenCookie) {
             if (isAdminRoute) {
                 return NextResponse.redirect(
-                    new URL(`/${currentLocale}/dyadus_adm1n_hub/login`, req.nextUrl.origin),
+                    new URL(`/${currentLocale}/admin_hub/login`, req.nextUrl.origin),
                 );
             } else if (isProtectedClientRoute) {
                 return NextResponse.redirect(
@@ -84,11 +84,11 @@ export default async function middleware(req: NextRequest) {
     // редиректим аутентифицированного юзера cо страницы логина
     // на соответствующую стартовую страницу
     if (
-        pathname.replace(`/${currentLocale}`, '') === '/dyadus_adm1n_hub/login' &&
+        pathname.replace(`/${currentLocale}`, '') === '/admin_hub/login' &&
         (user_role === 'admin' || user_role === 'superadmin')
     ) {
         return NextResponse.redirect(
-            new URL(`/${currentLocale}/dyadus_adm1n_hub`, req.nextUrl.origin),
+            new URL(`/${currentLocale}/admin_hub`, req.nextUrl.origin),
         );
     }
     if (pathname.replace(`/${currentLocale}`, '') === '/login' && user_role === 'client') {
@@ -98,7 +98,7 @@ export default async function middleware(req: NextRequest) {
     //если тип юзера не соответствует маршруту, то редиректим на логин
     if (isAdminRoute && userRole && userRole !== 'admin' && userRole !== 'superadmin') {
         return NextResponse.redirect(
-            new URL(`/${currentLocale}/dyadus_adm1n_hub/login`, req.nextUrl.origin),
+            new URL(`/${currentLocale}/admin_hub/login`, req.nextUrl.origin),
         );
     }
     if (isProtectedClientRoute && userRole && userRole !== 'client') {

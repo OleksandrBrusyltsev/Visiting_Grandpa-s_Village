@@ -104,7 +104,7 @@ export default function EditChapterPage({ data }: Props) {
             if (response.ok) {
                 const data = await response.json();
                 setDialogOpen(true, 'success', data.description);
-                replace('/dyadus_adm1n_hub');
+                replace('/admin_hub');
                 refresh();
             } else {
                 const errorData = await response.json();

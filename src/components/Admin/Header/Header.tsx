@@ -35,7 +35,7 @@ export default function Header() {
             >
                 {open ? <MenuOpenIcon /> : <MenuIcon />}
             </IconButton>
-            <Link href={`/${locale}/dyadus_adm1n_hub`} className='min-w-80 h-24 relative'>
+            <Link href={`/${locale}/admin_hub`} className='min-w-80 h-24 relative'>
                 <Image src="/images/logo-main-admin.svg" alt="" fill />
             </Link>
             <div className='grow'></div>

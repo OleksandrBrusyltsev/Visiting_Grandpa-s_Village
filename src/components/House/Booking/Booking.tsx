@@ -56,7 +56,7 @@ const Booking = forwardRef<HTMLElement, Props>(function Booking({
   //1) убрать обработку клика на [Забронювати] в версии для админки;
   //2) обеспечить поддержку перевода в админке 
   const pathName = usePathname();
-  const isAdmin = pathName.includes("dyadus_adm1n_hub");
+  const isAdmin = pathName.includes("admin_hub");
 
   const t = useTranslations("HouseItem", lang, isAdmin);
 

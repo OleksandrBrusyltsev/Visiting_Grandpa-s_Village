@@ -37,7 +37,7 @@ const getBaseMenu = (
         const menu: MenuItem = {
             id: el.id,
             name: el.title[locale as keyof typeof el.title],
-            url: `/${locale}/dyadus_adm1n_hub/${type}/${el.id}`,
+            url: `/${locale}/admin_hub/${type}/${el.id}`,
             admission: 'superadmin',
             icon: type === 'gallery' ? galleryChapterIcon : houseIcon,
         };
@@ -46,7 +46,7 @@ const getBaseMenu = (
             menu['children'] = housesWithRooms[el.name].map((room) => ({
                 id: room.id,
                 name: room.title[locale as keyof typeof room.title],
-                url: `/${locale}/dyadus_adm1n_hub/${type}/${room.id}`,
+                url: `/${locale}/admin_hub/${type}/${room.id}`,
                 admission: 'superadmin',
                 icon: houseIcon,
             }));
@@ -79,7 +79,7 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
             ].children?.push({
                 id: 5434234234,
                 name: 'Додати будинок',
-                url: `/${locale}/dyadus_adm1n_hub/houses/add-house`,
+                url: `/${locale}/admin_hub/houses/add-house`,
                 admission: 'superadmin',
                 icon: addNew,
             });
@@ -95,7 +95,7 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
             ].children?.push({
                 id: 9234802973,
                 name: 'Додати розділ',
-                url: `/${locale}/dyadus_adm1n_hub/gallery/add-chapter`,
+                url: `/${locale}/admin_hub/gallery/add-chapter`,
                 admission: 'superadmin',
                 icon: addNew,
             });
