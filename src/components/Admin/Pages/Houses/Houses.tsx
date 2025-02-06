@@ -30,7 +30,6 @@ export const CustomTabPanel = forwardRef<HTMLDivElement | null, Readonly<TabPane
 
     return (
         <div
-            role="tabpanel"
             ref={ref}
             className={`${value !== index ? 'opacity-0 invisible h-0 overflow-hidden ' : ''}` + className}
             id={`simple-tabpanel-${index}`}

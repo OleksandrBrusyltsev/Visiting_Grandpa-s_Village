@@ -12,6 +12,12 @@ type Props = Readonly<{
 const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang, multiline }: Props) {
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
     
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(nameAttr === 'name') {
+            e.target.setCustomValidity("");
+        }
+        setIsDirtyPage(true)};
+
     if (!multiLang) return (
         <Stack component="fieldset" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Typography component={'legend'}>{legend}</Typography>
@@ -21,10 +27,18 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 name={nameAttr}
                 variant="outlined"
                 type='text'
+                onInvalid={(e: any) => e.target.setCustomValidity("Тільки латинські символи, цифри або дефіс")}
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
-                onChange={() => { setIsDirtyPage(true) }}
+                slotProps={
+                    {
+                        htmlInput: {
+                            pattern: nameAttr === 'name' ? "[a-z0-9\\-]+" : undefined
+                        }
+                    }
+                }
+                onChange={handleChange}
             />
         </Stack>
     )
@@ -63,7 +77,7 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
-                onChange={() => { setIsDirtyPage(true) }}
+                onChange={handleChange}
             />
             <TextField
                 label="EN:"
@@ -73,7 +87,7 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
-                onChange={() => { setIsDirtyPage(true) }}
+                onChange={handleChange}
             />
             <TextField
                 label="RU:"
@@ -83,7 +97,7 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
-                onChange={() => { setIsDirtyPage(true) }}
+                onChange={handleChange}
             />
         </Stack>
     )

@@ -17,7 +17,7 @@ type Props = Readonly<{
 export default function HouseCard({ locale, rooms }: Props) {
 
     const t = useTranslations("HouseItem", locale, true);
-    const data = useMainStore((state) => state.houseEditing);
+    const data = useMainStore((state) => state.houseData);
     const photosEditing = useMainStore((state) => state.photosEditing);
     if (!data || !photosEditing) return;
 

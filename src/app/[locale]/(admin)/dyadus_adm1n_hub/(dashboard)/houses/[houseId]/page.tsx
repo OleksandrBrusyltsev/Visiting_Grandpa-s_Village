@@ -12,7 +12,9 @@ export default async function Page({ params }: Props) {
 
   //добавляем отсутствующие в апишке данные (2 картинки-декоры и координаты домика на карте)
   const houses = housesFromApi.map((house) => {
-    const rest = house.name in housesData ? { ...housesData[house.name as keyof typeof housesData] } : { ...housesData['default' as keyof typeof housesData] };
+    const rest = house.name in housesData 
+    ? { ...housesData[house.name as keyof typeof housesData] } 
+    : { ...housesData['default' as keyof typeof housesData] };
     return {
       ...house,
       ...rest
@@ -41,10 +43,10 @@ export default async function Page({ params }: Props) {
       name: item.name,
       title: item.title.uk
     }));
-
+    
   return (
     <div className='p-8'>
-      <h1 className='text-5xl text-center mb-10'>Редагування <span className='uppercase font-bold'>{house[0].long_title.uk}</span></h1>
+      <h1 className='text-5xl text-center mb-10'>Редагування <span className='uppercase font-bold'>{house[0].long_title.uk ?? ''}</span></h1>
       <EditHouse data={house[0]} rooms={rooms[house[0].name] || 0} housesList={housesList} />
     </div>
   )

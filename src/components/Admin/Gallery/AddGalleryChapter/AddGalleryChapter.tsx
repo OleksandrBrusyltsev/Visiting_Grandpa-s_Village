@@ -54,7 +54,7 @@ export default function AddGalleryChapter() {
             });
             
             formData.append('cover', coverRef.current?.photos[0]!);
-            console.log(Object.fromEntries(formData));
+            
             try {
                 const response = await fetch('/api/admin/gallery/add', {
                     method: 'POST',

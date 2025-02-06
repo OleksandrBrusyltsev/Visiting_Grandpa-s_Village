@@ -18,7 +18,7 @@ type Props = Readonly<{
 }>;
 
 const HouseDescriptionPage = memo(function HouseDescriptionPage({ locale, rooms }: Props) {
-    const coordinates = useMainStore((state) => state.houseEditing?.coordinates);
+    const coordinates = useMainStore((state) => state.houseData?.coordinates);
     if (!coordinates) return;
 
     return (
@@ -41,9 +41,9 @@ const HouseDescriptionPage = memo(function HouseDescriptionPage({ locale, rooms 
 });
 
 const MainTitle = memo(function MainTitle({ locale }: { locale: Language }) {
-    const setHouseData = useMainStore((state) => state.setHouseEditing);
+    const setHouseData = useMainStore((state) => state.setHouseData);
 
-    const long_title = useMainStore((state) => state.houseEditing?.long_title);
+    const long_title = useMainStore((state) => state.houseData?.long_title);
     if (long_title === undefined) return;
     return (
         <Input
@@ -62,8 +62,8 @@ const MainTitle = memo(function MainTitle({ locale }: { locale: Language }) {
 
 const HouseDescription = memo(function MainTitle({ locale }: { locale: Language }) {
     const [isEditing, setIsEditing] = useState<boolean>(false);
-    const setHouseData = useMainStore((state) => state.setHouseEditing);
-    const description = useMainStore((state) => state.houseEditing?.description);
+    const setHouseData = useMainStore((state) => state.setHouseData);
+    const description = useMainStore((state) => state.houseData?.description);
 
     if (description === undefined) return;
 
@@ -98,7 +98,7 @@ const BookingBlock = memo(function BookingBlock({ locale, rooms }: { locale: Lan
         extra_children,
         photoDecor,
         treesDecor,
-    } = useMainStore((state) => state.houseEditing) ?? {};
+    } = useMainStore((state) => state.houseData) ?? {};
 
     if (rental_price === undefined
         || max_adults === undefined
@@ -124,7 +124,7 @@ const BookingBlock = memo(function BookingBlock({ locale, rooms }: { locale: Lan
 });
 
 const HouseHeroSection = memo(function HouseHeroSection({ locale }: { locale: Language }) {
-    const decor_text = useMainStore((state) => state.houseEditing?.decor_text);
+    const decor_text = useMainStore((state) => state.houseData?.decor_text);
     if (!decor_text) return;
     return (
         <HeroSection text={decor_text[locale]} lang={locale} />
@@ -135,9 +135,9 @@ const MultiRoomGalleryBlock = memo(function MultiRoomGalleryBlock({ locale, room
     const t = useTranslations("HouseItem", locale, true);
 
     const photo = useMainStore((state) => state.photosEditing[0]);
-    const long_title = useMainStore((state) => state.houseEditing?.long_title);
-    const treesDecor = useMainStore((state) => state.houseEditing?.treesDecor);
-    const photoDecor = useMainStore((state) => state.houseEditing?.photoDecor);
+    const long_title = useMainStore((state) => state.houseData?.long_title);
+    const treesDecor = useMainStore((state) => state.houseData?.treesDecor);
+    const photoDecor = useMainStore((state) => state.houseData?.photoDecor);
     const setPhotosEditing = useMainStore((state) => state.setPhotosEditing);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

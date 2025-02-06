@@ -1,6 +1,6 @@
 "use client";
 
-import React, { memo, useEffect, useRef } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { Box, FormControlLabel, Grid2 as Grid, Stack, Switch, Tab, Tabs, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
@@ -21,8 +21,8 @@ import { locales } from '@/data/locales';
 type Props = Readonly<{ data: HouseItem; housesList: SingleHousesListType; rooms: number }>;
 
 const MainTitleInput = memo(function MainTitleInput({ lang }: { lang: Language }) {
-    const title = useMainStore((state) => state?.houseEditing?.title);
-    const setHouseData = useMainStore((state) => state.setHouseEditing);
+    const title = useMainStore((state) => state?.houseData?.title);
+    const setHouseData = useMainStore((state) => state.setHouseData);
     if (!title) return;
     return (
         <TextField
@@ -49,8 +49,8 @@ const MainTitleInput = memo(function MainTitleInput({ lang }: { lang: Language }
 });
 
 const DecorTextInput = memo(function DecorTextInput({ lang }: { lang: Language }) {
-    const decor_text = useMainStore((state) => state?.houseEditing?.decor_text);
-    const setHouseData = useMainStore((state) => state.setHouseEditing);
+    const decor_text = useMainStore((state) => state?.houseData?.decor_text);
+    const setHouseData = useMainStore((state) => state.setHouseData);
     if (!decor_text) return;
     return (
         <TextField
@@ -76,29 +76,18 @@ const DecorTextInput = memo(function DecorTextInput({ lang }: { lang: Language }
     )
 });
 
-const HouseTypeSelect = memo(function HouseTypeSelect({ housesList }:
-    { housesList: SingleHousesListType }) {
-    const house_type = useMainStore((state) => state?.houseEditing?.house_type);
-    const setHouseData = useMainStore((state) => state.setHouseEditing);
-    if (!house_type) return;
+const HouseTypeSelect = memo(function HouseTypeSelect({ housesList, house_type }:
+    { housesList: SingleHousesListType; 
+        house_type: string | null
+     }) {
     return (
-        <HouseSelect housesList={housesList} value={house_type ?? 'null'}
-            onChange={(e) => {
-                setHouseData((houseData) => {
-                    if (houseData) {
-                        houseData.house_type = e.target.value;
-                    }
-                    return houseData;
-                })
-            }}
-        />
+        <HouseSelect housesList={housesList} defaultValue={house_type ?? 'null'} />
     )
 });
 
 const IsAvailableCheckbox = memo(function IsAvailableCheckbox() {
-    const is_available = useMainStore((state) => state?.houseEditing?.is_available);
-    const setHouseData = useMainStore((state) => state.setHouseEditing);
-    if (is_available === undefined) return;
+    const is_available = useMainStore((state) => state?.houseData?.is_available);
+    const setHouseData = useMainStore((state) => state.setHouseData);
     return (
         <FormControlLabel
             control={
@@ -127,8 +116,8 @@ const IsAvailableCheckbox = memo(function IsAvailableCheckbox() {
 });
 
 export default function EditHouse({ data, housesList, rooms }: Props) {
-    const [activeTab, setActiveTab] = React.useState(0);
-    const [loading, setLoading] = React.useState(false);
+    const [activeTab, setActiveTab] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     const formRef = useRef<HTMLFormElement | null>(null);
     const resetGalleryRef = useRef<ResetType | null>(null);
@@ -137,7 +126,7 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
     const photosEditing = useMainStore((state) => state?.photosEditing);
 
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
-    const setHouseData = useMainStore((state) => state.setHouseEditing);
+    const setHouseData = useMainStore((state) => state.setHouseData);
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
 
     useEffect(() => {
@@ -166,7 +155,9 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
         });
 
         formData.append('name', data.name);
-        formData.has('is_available') ? formData.append('is_available', 'true') : formData.append('is_available', 'false');
+        formData.has('is_available') 
+            ? formData.append('is_available', 'true') 
+            : formData.append('is_available', 'false');
 
         try {
             const response = await fetch('/api/admin/houses/edit?id=' + data.id, {
@@ -213,19 +204,24 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
     return (
         <Box component='form' ref={formRef} onSubmit={handleSubmit} className='@container/resizeContainer'>
 
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={activeTab} onChange={handleChangeTab} aria-label="tabs for editing page data">
+            <Box sx={{ borderBottom: 1, borderColor: 'divider', position: 'relative' }}>
+                <Stack sx={{
+                    position: 'absolute',
+                    bottom: 0,
+                    right: 0,
+                    zIndex: 10
+                }}>
+                    <Button label='Видалити'
+                        className='hover:!bg-[#a80e0e] hover:!text-white'
+                        onClick={handleRemoveHouse}
+                    />
+                </Stack>
+                <Tabs value={activeTab} onChange={handleChangeTab} >
                     {
                         locales.map((lang) => (
                             <Tab key={lang} label={lang} />
                         ))
                     }
-                    <Stack direction='row' flexGrow={1} justifyContent='flex-end'>
-                        <Button label='Видалити'
-                            className='hover:!bg-[#a80e0e] hover:!text-white'
-                            onClick={() => handleRemoveHouse()}
-                        />
-                    </Stack>
                 </Tabs>
             </Box>
             {locales.map((lang, index) => (
@@ -254,16 +250,16 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
                         }}
                     >
                         <Grid size={{ xs: 12 }}>
-                            <MainTitleInput lang={lang} />
+                            <MainTitleInput lang={lang}/>
                         </Grid>
                         <Grid size={{ xs: 12 }}>
                             <DecorTextInput lang={lang} />
                         </Grid>
                         <Grid size={{ xs: 12 }}>
-                            <HouseTypeSelect housesList={housesList} />
+                            <HouseTypeSelect housesList={housesList} house_type={data.house_type} />
                         </Grid>
 
-                        <NumberFields as='editing'>
+                        <NumberFields>
                             <IsAvailableCheckbox />
                         </NumberFields>
 

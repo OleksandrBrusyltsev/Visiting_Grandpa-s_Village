@@ -1,81 +1,91 @@
 "use client";
-import React, { useLayoutEffect } from 'react'
+import React, { useRef } from 'react'
 import { useRouter } from 'next/navigation';
 import { Box, Stack, Typography } from '@mui/material'
 
 import { useMainStore } from '@/stores/store-provider';
-import FileUploadWithPreview from './components/FileUploadWithPreview'
 import HouseFieldset from './components/HouseFieldset';
 import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
 import HouseSelect from '../../UI/HouseSelect/HouseSelect';
 import { initialAdminState } from '@/stores/adminSlice';
 import { fieldsetData } from '@/data/admin/defaultsForHousesInputs';
 import NumberFields from './components/NumberFields';
+import SimpleGallery from '../EditHouse/components/SimpleGallery';
 
 type Props = Readonly<{
     housesList: SingleHousesListType
 }>
+
+const initialPhotos: File[] = [];
+
 export default function AddNewHouse({ housesList }: Props) {
     const { refresh } = useRouter();
 
     const [loading, setLoading] = React.useState(false);
 
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
-    const { photo } = useMainStore((state) => state.houseAdding);
-    const setHouseData = useMainStore((state) => state.setHouseAdding);
+    const photosEditing = useMainStore((state) => state?.photosEditing);
+    const setHouseData = useMainStore((state) => state.setHouseData);
     const setIsDirtyPage = useMainStore(state => state.setIsDirtyPage);
-
-    useLayoutEffect(() => {
-        setHouseData(initialAdminState.houseAdding, true);
-    }, [setHouseData, setIsDirtyPage]);
-
-    const formRef = React.useRef<HTMLFormElement>(null);
+    
+    const formRef = useRef<HTMLFormElement>(null);
+    const resetGalleryRef = useRef<ResetType | null>(null);
 
     const handleResetForm = () => {
         formRef.current?.reset();
-        setHouseData(initialAdminState.houseAdding);
+        resetGalleryRef.current?.reset();
+        setHouseData(initialAdminState.houseData, true);
         setIsDirtyPage(false);
         window?.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setLoading(true);
+        if (!formRef.current) return;
 
-        const formData = new FormData(e.target as HTMLFormElement);
+        if(photosEditing.length === 0) {
+            setDialogOpen(true, 'error', 'Ви не вибрали фото для галереї!');
+        } else {
+            setLoading(true);
 
-        //вытягиваем файлы изображений со стейта компонента FileUploadWithPreview и добавляем их в FormData
-        photo.forEach((file, index) => {
-            formData.append(`photo${index}`, file);
-        });
+            const formData = new FormData(e.target as HTMLFormElement);
 
-        try {
-            const response = await fetch('/api/admin/houses/add', {
-                method: 'POST',
-                headers: {
-                },
-                body: formData,
+            //вытягиваем файлы изображений со стейта компонента FileUploadWithPreview и добавляем их в FormData
+            photosEditing.forEach((file, index) => {
+                formData.append(`photo${index}`, file.raw);
             });
-            if (response.ok) {
-                setLoading(false);
-                const data = await response.json();
-                setDialogOpen(true, 'success', data.description);
-                handleResetForm();
-                refresh();
-            } else {
-                const error = await response.json();
+
+            console.log(Object.fromEntries(formData));
+
+            try {
+                const response = await fetch('/api/admin/houses/add', {
+                    method: 'POST',
+                    headers: {
+                    },
+                    body: formData,
+                });
+                if (response.ok) {
+                    setLoading(false);
+                    const data = await response.json();
+                    setDialogOpen(true, 'success', data.description);
+                    handleResetForm();
+                    refresh();
+                } else {
+                    const error = await response.json();
+                    window?.scrollTo({ top: 0, behavior: 'smooth' });
+                    setDialogOpen(true, 'error', error.message);
+                    setLoading(false);
+                    return
+                };
+            }
+            catch (error) {
                 window?.scrollTo({ top: 0, behavior: 'smooth' });
-                setDialogOpen(true, 'error', error.message);
+                setDialogOpen(true, 'error', 'Щось пішло не так, як планувалось! Спробуйте ще раз!');
                 setLoading(false);
                 return
-            };
+            }
         }
-        catch (error) {
-            window?.scrollTo({ top: 0, behavior: 'smooth' });
-            setDialogOpen(true, 'error', 'Щось пішло не так, як планувалось! Спробуйте ще раз!');
-            setLoading(false);
-            return
-        }
+        
     }
 
     return (
@@ -100,8 +110,8 @@ export default function AddNewHouse({ housesList }: Props) {
                 nameAttr="name"
             />
 
-            <FileUploadWithPreview label={'Фото для галереї на сторінці будинку'} nameAttr={"photo"} multiple />
-
+            <Typography>Фото для галереї на сторінці будинку</Typography>
+            <SimpleGallery photo={initialPhotos} ref={resetGalleryRef} />
             {
                 fieldsetData.map(({ legend, nameAttr, multiLang, multiline }, index) => (
                     <HouseFieldset
@@ -119,7 +129,7 @@ export default function AddNewHouse({ housesList }: Props) {
                 border: '1px solid grey', p: 2, borderRadius: '8px',
             }}>
                 <Typography component={'legend'}>Вартість проживання</Typography>
-                <NumberFields as='adding' />
+                <NumberFields />
             </Stack>
 
             <HouseSelect housesList={housesList} />
