@@ -158,6 +158,8 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
         formData.has('is_available') 
             ? formData.append('is_available', 'true') 
             : formData.append('is_available', 'false');
+        //костыль чтобы правильно обработать "null"
+        formData.set('house_type', formData.get('house_type') ?? 'null');
 
         try {
             const response = await fetch('/api/admin/houses/edit?id=' + data.id, {

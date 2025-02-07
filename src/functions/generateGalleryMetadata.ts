@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { getData } from '@/actions/getData';
+import { getGallery } from '@/actions/getGallery';
 import { metaData } from '@/data/meta';
 
 export async function generateGalleryMetadata({
@@ -10,7 +10,7 @@ export async function generateGalleryMetadata({
     params: { chapter: string; locale: string };
 }): Promise<Metadata> {
     const { chapter } = params;
-    const galleryItem = await getData<GalleryItem[]>('gallery', chapter);
+    const galleryItem = (await getGallery()).filter((item) => item.name === chapter);
 
     if (!galleryItem.length) notFound();
 

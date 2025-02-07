@@ -3,10 +3,10 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl';
 import { useParams, usePathname, useRouter } from 'next/navigation';
 
+import { getGallery } from '@/actions/getGallery';
+import { getHouses } from '@/actions/getHouses';
 import BreadcrumbItem from './BreadcrumbItem';
 import Icon from '../ui/Icon/Icon';
-import { getData } from '@/actions/getData';
-
 
 import s from './Breadcrumbs.module.scss';
 
@@ -48,10 +48,10 @@ export default function Breadcrumbs() {
         if (key !== 'locale') {
           let data: GalleryItem[] | HouseItem[] | undefined;
           if (key === 'chapter') {
-            data = await getData('gallery');
+            data = await getGallery();
 
           } else if (key === 'house' || key === 'room') {
-            data = await getData('houses');
+            data = await getHouses();
           }
 
           const value = params[key as keyof typeof params];

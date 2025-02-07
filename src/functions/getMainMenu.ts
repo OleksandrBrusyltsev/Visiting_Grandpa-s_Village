@@ -1,6 +1,7 @@
 import { menuAdmin } from '@/data/admin/menu';
 
-const houseIcon = 'HotelOutlined';
+const houseIcon = 'HouseOutlined';
+const roomIcon = 'HotelOutlined';
 const addNew = 'AddOutlined';
 const galleryChapterIcon = 'PhotoOutlined';
 
@@ -31,9 +32,9 @@ const getBaseMenu = (
         }, {} as Record<string, HouseItem[]>);
     }
 
-    const unfilteredMenu = type === 'gallery' ? arr : arr.filter((el) => el?.house_type === null);
+    const topLevelMenu = type === 'gallery' ? arr : arr.filter((el) => el?.house_type === null);
 
-    return unfilteredMenu.map((el) => {
+    return topLevelMenu.map((el) => {
         const menu: MenuItem = {
             id: el.id,
             name: el.title[locale as keyof typeof el.title],
@@ -48,7 +49,7 @@ const getBaseMenu = (
                 name: room.title[locale as keyof typeof room.title],
                 url: `/${locale}/admin_hub/${type}/${room.id}`,
                 admission: 'superadmin',
-                icon: houseIcon,
+                icon: roomIcon,
             }));
         }
         return menu;

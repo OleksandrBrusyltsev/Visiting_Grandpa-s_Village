@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getData } from "@/actions/getData";
+import { getHouses } from "@/actions/getHouses";
 import { metaData } from "@/data/meta";
 
 export async function generateHouseMetadata({
@@ -10,7 +10,7 @@ export async function generateHouseMetadata({
   params: { house: string; locale: string };
 }): Promise<Metadata> {
   const { house } = params;
-  const houseItem = await getData<HouseItem[]>("houses", house);
+  const houseItem = (await getHouses()).filter(item => item.name === house);
 
   if (!houseItem.length) notFound();
 

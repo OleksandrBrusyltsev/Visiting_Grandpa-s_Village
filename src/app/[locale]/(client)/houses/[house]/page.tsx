@@ -3,9 +3,9 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import House from "@/components/House/House";
-import { getData } from "@/actions/getData";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { generateHouseMetadata } from "@/functions/generateHouseMetadata";
+import { getHouses } from "@/actions/getHouses";
 
 export const dynamicParams = false;
 
@@ -14,8 +14,8 @@ export async function generateStaticParams({
 }: {
   params: { locale: string };
 }) {
-  const items = await getData<HouseItem[]>("houses");
-  return items.filter(item => item.name && !item.house_type).map((item) => ({ locale, house: item.name }));
+  const houses = await getHouses();
+  return houses.filter(house => house.name && !house.house_type).map((house) => ({ locale, house: house.name }));
 }
 
 type Props = Readonly<{ params: { house: string; locale: string } }>;
@@ -27,7 +27,8 @@ export async function generateMetadata({ params }: Props) {
 export default async function Page({ params }: Props) {
   const { house, locale } = params;
   unstable_setRequestLocale(locale);
-  const houses = await getData<HouseItem[]>("houses");
+
+  const houses = await getHouses();
 
   const houseItem = houses.filter((item) => item.name === house);
 

@@ -3,9 +3,9 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import Houses from "@/components/Houses/Houses";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { generatePageMetadata } from "@/functions/generatePageMetadata";
-import { getData } from "@/actions/getData";
 
 import { locales } from "@/data/locales";
+import { getHouses } from "@/actions/getHouses";
 
 type Props = Readonly<{ params: { locale: string } }>;
 
@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 export default async function Page({ params: { locale } }: Props) {
   unstable_setRequestLocale(locale);
 
-  const items = await getData<HouseItem[]>("houses");
+  const items = await getHouses();
 
   return (
     <>

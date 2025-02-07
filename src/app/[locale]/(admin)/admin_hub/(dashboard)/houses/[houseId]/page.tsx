@@ -1,25 +1,13 @@
 import React from 'react'
+import { notFound } from 'next/navigation';
+
 import { getHouses } from '@/actions/getHouses';
 import EditHouse from '@/components/Admin/Houses/EditHouse/EditHouse';
-
-import { housesData } from '@/data/houses/housesData';
-import { notFound } from 'next/navigation';
 
 type Props = Readonly<{ params: { houseId: string } }>
 
 export default async function Page({ params }: Props) {
-  const housesFromApi = await getHouses();
-
-  //добавляем отсутствующие в апишке данные (2 картинки-декоры и координаты домика на карте)
-  const houses = housesFromApi.map((house) => {
-    const rest = house.name in housesData 
-    ? { ...housesData[house.name as keyof typeof housesData] } 
-    : { ...housesData['default' as keyof typeof housesData] };
-    return {
-      ...house,
-      ...rest
-    }
-  })
+  const houses = await getHouses();
 
   const house = houses.filter((item) => item.id === +params.houseId);
 
