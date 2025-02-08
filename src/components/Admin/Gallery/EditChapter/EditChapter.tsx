@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Box, Tab, Tabs } from '@mui/material';
+import { Box, Stack, Tab, Tabs } from '@mui/material';
 
 import { ResizableContainer } from '@/components/Admin/UI/ResizableContainer/ResizableContainer';
 import SimpleGallery from '@/components/Admin/Houses/EditHouse/components/SimpleGallery';
@@ -17,6 +17,7 @@ import Icon from '@/components/ui/Icon/Icon';
 
 import s from '@/components/GalleryItemPage/GalleryItemPage.module.scss';
 import { locales } from '@/data/locales';
+import Button from '@/components/ui/Button/Button';
 
 
 type Props = Readonly<{ data: GalleryItem }>;
@@ -34,8 +35,8 @@ export default function EditChapterPage({ data }: Props) {
     const formRef = useRef<HTMLFormElement | null>(null);
     const resetGalleryRef = useRef<ResetType | null>(null);
 
-    const { refresh } = useRouter();
-
+    const { refresh, replace } = useRouter();
+    
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
     const photosEditing = useMainStore((state) => state?.photosEditing);
@@ -95,9 +96,39 @@ export default function EditChapterPage({ data }: Props) {
         }
     }
 
+    const handleRemoveGalleryChapter = async () => {
+        try {
+            const response = await fetch('/api/admin/gallery/remove?id=' + data.id, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setDialogOpen(true, 'success', data.description);
+                replace('/admin_hub');
+                refresh();
+            } else {
+                const errorData = await response.json();
+                setDialogOpen(true, 'error', errorData.message);
+            }
+        } catch (error) {
+            setDialogOpen(true, 'error', `Щось пішло не так, як планувалось! Спробуйте ще раз!\n\n${(error as Error).message}`);
+        }
+    }
+
     return (
         <Box component='form' ref={formRef} onSubmit={handleSubmit} className='relative' noValidate>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider', position: 'relative' }}>
+                <Stack sx={{
+                    position: 'absolute',
+                    bottom: 0,
+                    right: 0,
+                    zIndex: 10
+                }}>
+                    <Button label='Видалити'
+                        className='hover:!bg-[#a80e0e] hover:!text-white'
+                        onClick={handleRemoveGalleryChapter}
+                    />
+                </Stack>
                 <Tabs value={activeTab} onChange={handleChangeTab} aria-label="tabs for editing page data">
                     {
                         locales.map((lang) => (
@@ -138,7 +169,6 @@ export default function EditChapterPage({ data }: Props) {
                                     </p>
                                 </div>
                             </div>
-
                         </CustomTabPanel>
                     ))
                 }

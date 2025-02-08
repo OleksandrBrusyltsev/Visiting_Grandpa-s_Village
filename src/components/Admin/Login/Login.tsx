@@ -82,7 +82,7 @@ export default function SignIn() {
       if (user) {
         setUser(user);
         (e.target as HTMLFormElement).reset();
-        replace(`/${locale}/dyadus_adm1n_hub`);
+        replace(`/${locale}/admin_hub`);
       }
     }
   }

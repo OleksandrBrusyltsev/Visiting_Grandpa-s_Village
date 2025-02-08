@@ -13,7 +13,7 @@ const HeroSection: FC<Props> = ({ text, lang }) => {
   
   //допнастройки для того, чтобы обеспечить поддержку перевода в админке
   const pathName = usePathname();
-  const isAdmin = pathName.includes("dyadus_adm1n_hub");
+  const isAdmin = pathName.includes("admin_hub");
   const t = useTranslations("HouseItem", lang, isAdmin);
   
   return (

@@ -1,6 +1,7 @@
 import { menuAdmin } from '@/data/admin/menu';
 
-const houseIcon = 'HotelOutlined';
+const houseIcon = 'HouseOutlined';
+const roomIcon = 'HotelOutlined';
 const addNew = 'AddOutlined';
 const galleryChapterIcon = 'PhotoOutlined';
 
@@ -31,13 +32,13 @@ const getBaseMenu = (
         }, {} as Record<string, HouseItem[]>);
     }
 
-    const unfilteredMenu = type === 'gallery' ? arr : arr.filter((el) => el?.house_type === null);
+    const topLevelMenu = type === 'gallery' ? arr : arr.filter((el) => el?.house_type === null);
 
-    return unfilteredMenu.map((el) => {
+    return topLevelMenu.map((el) => {
         const menu: MenuItem = {
             id: el.id,
             name: el.title[locale as keyof typeof el.title],
-            url: `/${locale}/dyadus_adm1n_hub/${type}/${el.id}`,
+            url: `/${locale}/admin_hub/${type}/${el.id}`,
             admission: 'superadmin',
             icon: type === 'gallery' ? galleryChapterIcon : houseIcon,
         };
@@ -46,9 +47,9 @@ const getBaseMenu = (
             menu['children'] = housesWithRooms[el.name].map((room) => ({
                 id: room.id,
                 name: room.title[locale as keyof typeof room.title],
-                url: `/${locale}/dyadus_adm1n_hub/${type}/${room.id}`,
+                url: `/${locale}/admin_hub/${type}/${room.id}`,
                 admission: 'superadmin',
-                icon: houseIcon,
+                icon: roomIcon,
             }));
         }
         return menu;
@@ -61,7 +62,7 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
         const indexOfMenuItemHouses = menuAdmin[indexOfMenuItemPages].children!.findIndex(
             (item) => item.name === 'Будиночки',
         );
-        const indexOgMenuItemGallery = menuAdmin[indexOfMenuItemPages].children!.findIndex(
+        const indexOfMenuItemGallery = menuAdmin[indexOfMenuItemPages].children!.findIndex(
             (item) => item.name === 'Галерея',
         );
 
@@ -79,17 +80,26 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
             ].children?.push({
                 id: 5434234234,
                 name: 'Додати будинок',
-                url: `/${locale}/dyadus_adm1n_hub/houses/add-house`,
+                url: `/${locale}/admin_hub/houses/add-house`,
                 admission: 'superadmin',
                 icon: addNew,
             });
         }
 
         //добавляем подменю для галереи
-        if (indexOgMenuItemGallery > 0) {
+        if (indexOfMenuItemGallery > 0) {
             (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
-                indexOgMenuItemGallery
+                indexOfMenuItemGallery
             ].children = getBaseMenu(locale, 'gallery', gallery);
+            (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
+                indexOfMenuItemGallery
+            ].children?.push({
+                id: 9234802973,
+                name: 'Додати розділ',
+                url: `/${locale}/admin_hub/gallery/add-chapter`,
+                admission: 'superadmin',
+                icon: addNew,
+            });
         }
     }
     return menuAdmin;

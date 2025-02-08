@@ -1,4 +1,4 @@
-import React, { ChangeEvent, memo, useState } from 'react';
+import React, { ChangeEvent, forwardRef, memo, useImperativeHandle, useState } from 'react';
 import { Box, IconButton, Stack, styled, Typography } from '@mui/material';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
@@ -9,7 +9,6 @@ import { validateTransferImages } from '@/functions/validateTransferImages';
 
 type Props = Readonly<{
     label: string;
-    nameAttr: string;
     multiple?: boolean;
 }>;
 
@@ -21,50 +20,44 @@ const HiddenInput = styled('input')({
     cursor: 'pointer',
 });
 
-const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameAttr, multiple }: Props) {
+const FileUploadWithPreview = forwardRef<ResetType & {photos: File[]}, Props>(function FileUploadWithPreview({ label, multiple }, ref) {
 
-    const photo = useMainStore(state => state.houseAdding?.photo);
-    const setHouseData = useMainStore(state => state.setHouseAdding);
+    const setIsDirtyPage = useMainStore(state => state.setIsDirtyPage);
+    
+    const [photos, setPhotos] = useState<File[]>([]);
+    useImperativeHandle(ref, () => ({
+        reset: () => {
+            setPhotos([]);
+        },
+        photos
+    }), [photos]);
 
     const [isDragOver, setIsDragOver] = useState<number | null>(null);
 
     const handleAddFiles = (payload: FileList) => {
 
         const newFiles = Array.from(payload);
-
-        setHouseData(houseData => {
-            if (houseData) {
-                houseData.photo = multiple ?
-                    [...houseData.photo, ...newFiles] :
-                    [newFiles[0]]
-            }
-            return houseData
+        setIsDirtyPage(true);
+        setPhotos(photos => {
+            return multiple ?
+            [...photos, ...newFiles] :
+            [newFiles[0]]
         });
     }
 
     const handleChangeFile = (file: File, targetIndex: number) => {
-        setHouseData(houseData => {
-            if (houseData) {
-                houseData.photo = houseData.photo.map((el, index) => index === targetIndex ? file : el);
-            }
-            return houseData
-        })
+        setPhotos(photos => photos.map((el, index) => index === targetIndex ? file : el));
     }
 
     const handleRemoveFile = (targetIndex: number) => {
-        setHouseData(houseData => {
-            if (houseData) {
-                houseData.photo = houseData.photo.filter((el, index) => index !== targetIndex);
-            }
-            return houseData
-        })
+        setPhotos(photos => photos.filter((el, index) => index !== targetIndex));
     }
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         const targetIndex = getTargetIndex(event);
         if (targetIndex >= 0) {
-            const isInputFilled = Boolean(photo?.[targetIndex]);
+            const isInputFilled = Boolean(photos?.[targetIndex]);
 
             if (isInputFilled) {
                 files?.length && handleChangeFile(files[0], targetIndex);
@@ -87,7 +80,7 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
 
         const targetIndex = getTargetIndex(event);
         if (targetIndex >= 0) {
-            const isInputFilled = Boolean(photo?.[targetIndex]);
+            const isInputFilled = Boolean(photos?.[targetIndex]);
             isInputFilled ? handleChangeFile(filteredFileList[0], targetIndex) : handleAddFiles(filteredFileList);
         }
     };
@@ -107,22 +100,17 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
     };
 
     const handleMoveFile = (direction: -1 | 1, targetIndex: number) => {
-        if (targetIndex + direction < 0 || targetIndex + direction >= photo.length) return;
-
-        setHouseData(houseData => {
-            if (houseData) {
-
-                houseData.photo = houseData.photo.map((el, index) => {
-                    if (index === targetIndex) {
-                        return houseData.photo[targetIndex + direction];
-                    } else if (index === targetIndex + direction) {
-                        return houseData.photo[targetIndex];
-                    } else return el
-                });
-            }
-            return houseData
-        })
+        if (targetIndex + direction < 0 || targetIndex + direction >= photos.length) return;
+        setPhotos(photos => photos.map((el, index) => {
+            if (index === targetIndex) {
+                return photos[targetIndex + direction];
+            } else if (index === targetIndex + direction) {
+                return photos[targetIndex];
+            } else return el
+        }));
     }
+
+    const data = multiple ? [...photos, null] : [photos[0] || null];
 
     return (
         <Box
@@ -137,7 +125,7 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
             <Typography component={'legend'}>{label} (виберіть або перетащіть файл із зображенням.)</Typography>
 
             {
-                [...photo, null].map((file, index) => (
+                data.map((file, index) => (
                     <Stack
                         key={typeof file === 'string' ? file : file?.name ?? 'null'}
                         onDrop={onDrop}
@@ -174,7 +162,6 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
                                 value={''}
                                 multiple={multiple}
                                 data-index={index}
-                                required={!photo?.[0]}
                             />
                             <IconButton
                                 aria-label="add file"
@@ -182,13 +169,13 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
                             >
                                 <AddAPhotoOutlinedIcon fontSize="large" sx={{ color: 'rgb(63, 85, 64)' }} />
                             </IconButton>
-                            <Typography>{photo[index] ? 'Змінити фото' : 'Вибрати фото'}</Typography>
+                            <Typography>{photos[index] ? 'Змінити фото' : 'Вибрати фото'}</Typography>
                         </Stack>
 
-                        {photo[index] && (
+                        {photos[index] && (
                             <Box
                                 component="img"
-                                src={URL.createObjectURL(photo[index] as File)}
+                                src={URL.createObjectURL(photos[index] as File)}
                                 alt="Попередній перегляд"
                                 draggable={false}
                                 sx={{
@@ -199,7 +186,7 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
                                 }}
                             />
                         )}
-                        {photo[index] && (
+                        {photos[index] && (
                             <Stack
                                 sx={{
                                     display: 'flex',
@@ -216,8 +203,8 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
                                 <IconButton onClick={() => handleRemoveFile(index)} aria-label="delete" size="small">
                                     <ClearOutlinedIcon fontSize="small" sx={{ color: 'red' }} />
                                 </IconButton>
-                                <IconButton onClick={() => handleMoveFile(+1, index)} aria-label="move down" size="small" disabled={index === photo.length - 1} title='Перемістити фото вниз'>
-                                    <SouthOutlinedIcon fontSize="small" sx={[{ color: 'rgb(63, 85, 64)' }, index === photo.length - 1 && { visibility: 'hidden' }]} />
+                                <IconButton onClick={() => handleMoveFile(+1, index)} aria-label="move down" size="small" disabled={index === photos.length - 1} title='Перемістити фото вниз'>
+                                    <SouthOutlinedIcon fontSize="small" sx={[{ color: 'rgb(63, 85, 64)' }, index === photos.length - 1 && { visibility: 'hidden' }]} />
                                 </IconButton>
                             </Stack>
                         )}
@@ -228,7 +215,7 @@ const FileUploadWithPreview = memo(function FileUploadWithPreview({ label, nameA
     );
 });
 
-export default FileUploadWithPreview;
+export default memo(FileUploadWithPreview);
 
 function getTargetIndex(event: React.DragEvent | React.ChangeEvent) {
     const target = event.target as HTMLElement;

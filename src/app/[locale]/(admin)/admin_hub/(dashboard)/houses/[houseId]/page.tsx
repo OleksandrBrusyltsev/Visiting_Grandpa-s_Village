@@ -1,23 +1,13 @@
 import React from 'react'
+import { notFound } from 'next/navigation';
+
 import { getHouses } from '@/actions/getHouses';
 import EditHouse from '@/components/Admin/Houses/EditHouse/EditHouse';
-
-import { housesData } from '@/data/houses/housesData';
-import { notFound } from 'next/navigation';
 
 type Props = Readonly<{ params: { houseId: string } }>
 
 export default async function Page({ params }: Props) {
-  const housesFromApi = await getHouses();
-
-  //добавляем отсутствующие в апишке данные (2 картинки-декоры и координаты домика на карте)
-  const houses = housesFromApi.map((house) => {
-    const rest = house.name in housesData ? { ...housesData[house.name as keyof typeof housesData] } : { ...housesData['default' as keyof typeof housesData] };
-    return {
-      ...house,
-      ...rest
-    }
-  })
+  const houses = await getHouses();
 
   const house = houses.filter((item) => item.id === +params.houseId);
 
@@ -41,10 +31,10 @@ export default async function Page({ params }: Props) {
       name: item.name,
       title: item.title.uk
     }));
-
+    
   return (
     <div className='p-8'>
-      <h1 className='text-5xl text-center mb-10'>Редагування <span className='uppercase font-bold'>{house[0].long_title.uk}</span></h1>
+      <h1 className='text-5xl text-center mb-10'>Редагування <span className='uppercase font-bold'>{house[0].long_title.uk ?? ''}</span></h1>
       <EditHouse data={house[0]} rooms={rooms[house[0].name] || 0} housesList={housesList} />
     </div>
   )

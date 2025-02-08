@@ -7,7 +7,7 @@ function NotFound() {
             <h1 className='self-end'>
                 На жаль, такого будинку не існує...
             </h1>
-            <Link href="/dyadus_adm1n_hub" className='self-start hover:underline'>На головну</Link>
+            <Link href="/admin_hub" className='self-start hover:underline'>На головну</Link>
         </div>
     )
 }

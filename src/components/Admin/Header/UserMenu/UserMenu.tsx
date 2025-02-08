@@ -92,17 +92,17 @@ export default function UserMenu() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/profile' onClick={handleClose}>
+                <MenuItem component={Link} href='/uk/admin_hub/profile' onClick={handleClose}>
                     <Avatar src='/opengraph-image.jpg' /> Профіль користувача
                 </MenuItem>
                 <Divider />
-                <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/users' onClick={handleClose}>
+                <MenuItem component={Link} href='/uk/admin_hub/users' onClick={handleClose}>
                     <ListItemIcon>
                         <PersonAdd fontSize="small" />
                     </ListItemIcon>
                     Додати користувача
                 </MenuItem>
-                <MenuItem component={Link} href='/uk/dyadus_adm1n_hub/settings' onClick={handleClose}>
+                <MenuItem component={Link} href='/uk/admin_hub/settings' onClick={handleClose}>
                     <ListItemIcon>
                         <Settings fontSize="small" />
                     </ListItemIcon>

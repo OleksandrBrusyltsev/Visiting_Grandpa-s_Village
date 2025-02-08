@@ -8,25 +8,11 @@ import { AdminSlice } from '@/stores/adminSlice';
 
 type Props = Readonly<{
     children?: React.ReactNode;
-    as: 'adding' | 'editing';
 }>;
 
-const NumberFields = memo(function NumberFields({ children, as }: Props) {
-    const houseData =
-        useMainStore((state) => {
-            if (as === 'editing') {
-                return state.houseEditing
-            }
-            return state.houseAdding
-        });
-    const setHouseData =
-        useMainStore((state) => {
-            if (as === 'editing') {
-                return state.setHouseEditing
-            }
-            return state.setHouseAdding
-        });
-
+const NumberFields = memo(function NumberFields({ children }: Props) {
+    const houseData = useMainStore((state) => state.houseData);
+    const setHouseData = useMainStore((state) => state.setHouseData);
 
     const getGridItemSize = (index: number) => {
         const lastItemIndex = children ? extraFieldsetData.length : extraFieldsetData.length - 1;
