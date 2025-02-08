@@ -96,7 +96,10 @@ export default function AddGalleryChapter() {
                 mx: 'auto',
                 flexDirection: 'column',
                 gap: 5,
-                '& .MuiTextField-root': { m: 1, ml: 0, }
+                '& .MuiTextField-root': { m: 1, ml: 0, },
+                '@media (max-width: 1280px)': {
+                   maxWidth: 'initial',
+               }
             }}
             autoComplete="off"
             onSubmit={handleSubmit}

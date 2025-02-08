@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -17,7 +17,7 @@ import s from "./Gallery.module.scss";
 type Props = { items: GalleryItem[] };
 
 export default function Gallery({ items }: Props) {
-  const { locale } = useParams();
+  const locale = useLocale() as Language;
   const galleryRef = useRef<Array<HTMLAnchorElement>>([]);
   const t = useTranslations('Gallery');
 
@@ -139,17 +139,17 @@ export default function Gallery({ items }: Props) {
             <div className={s.heroWrapper}>
               <h1 className={s.descr1}
                 dangerouslySetInnerHTML={{
-                  __html: items[0].title[locale as keyof typeof items[0]["title"]],
+                  __html: items[0].title[locale],
                 }} />
               <div className={s.descr2}>
                 <MarkdownPreview markdown={
-                  items[0].description[locale as keyof typeof items[0]["description"]]
+                  items[0].description[locale]
                 } />
               </div>
               <div className={s.grandpa}>
                 <Image
                   fill
-                  alt={items[0].alt[locale as keyof typeof items[0]["alt"]]}
+                  alt={items[0].alt[locale]}
                   src={items[0].cover}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />

@@ -7,7 +7,7 @@ export default async function Page() {
     const meals = await getMeals();
     return (
         <div className='p-8'>
-            <h1 className='text-5xl text-center mb-10'>Редагування сторінки ЇСТИ</h1>
+            <h1 className='text-3xl text-center mb-10'>Редагування сторінки ЇСТИ</h1>
             {
                 meals.length
                     ? <MealsPage data={meals} />

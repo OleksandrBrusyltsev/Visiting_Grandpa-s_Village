@@ -23,7 +23,7 @@ import s from "./House.module.scss";
 type Props = { item: HouseItem; rooms: HouseItem[] };
 
 export default function House({ item, rooms }: Props) {
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const t = useTranslations("HouseItem");
 
   const {
@@ -42,9 +42,9 @@ export default function House({ item, rooms }: Props) {
     coordinates,
   } = item;
 
-  const titleText = long_title[locale as keyof typeof long_title];
+  const titleText = long_title[locale];
 
-  const decorText = decor_text[locale as keyof typeof decor_text];
+  const decorText = decor_text[locale];
 
   const gallerySimpleRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -335,7 +335,7 @@ export default function House({ item, rooms }: Props) {
         <div className={s.textWrapper} ref={houseTextRef}>
           <h1 className={s.headline}>{titleText}</h1>
           <div className={s.text}>
-            <MarkdownPreview markdown={description[locale as keyof typeof description]} />
+            <MarkdownPreview markdown={description[locale]} />
           </div>
           {/* services icons */}
           {rooms.length ? null : <Services />}

@@ -34,7 +34,7 @@ const HouseCard = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
   { data, rooms },
   ref
 ) {
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const t = useTranslations("HouseItem");
 
   // const { push } = useRouter();
@@ -42,7 +42,7 @@ const HouseCard = forwardRef<HTMLAnchorElement, Props>(function HouseItem(
 
   const { name, photo, max_adults, extra_adults, house_type, rental_price } =
     data;
-  const title = data.title[locale as keyof typeof data.title];
+  const title = data.title[locale];
 
   const guestsString = (main: number, ad: number) => {
     const str = ad ? t("guests", { guests: 5 }) : t("guests", { guests: main });

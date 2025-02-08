@@ -156,8 +156,8 @@ export default function HousesPage({ data }: Props) {
                         <CustomTabPanel value={activeTab} index={index} key={lang} className='container-admin'>
                             <section className={s.hero}>
                                 <div className={s.heroWrapper}>
-                                    <Input name={`title-${lang}`} className={`${s.descr1} bg-transparent`} defaultValue={title[lang as keyof typeof title]} />
-                                    <Input name={`long_title-${lang}`} className={`${s.descr2} bg-transparent`} defaultValue={long_title[lang as keyof typeof long_title]} />
+                                    <Input name={`title-${lang}`} className={`${s.descr1} bg-transparent`} defaultValue={title[lang]} />
+                                    <Input name={`long_title-${lang}`} className={`${s.descr2} bg-transparent`} defaultValue={long_title[lang]} />
                                     <div className={s.grandpa}>
                                         <Image
                                             fill
@@ -190,8 +190,8 @@ export default function HousesPage({ data }: Props) {
                                 </div>
                             </section>
                             <div className={s.textWrapper}>
-                                <Input name={`decor_text-${lang}`} className={`${s.text} bg-transparent`} defaultValue={decor_text[lang as keyof typeof decor_text]} />
-                                <Input name={`description-${lang}`} className={`${s.text} bg-transparent`} defaultValue={description[lang as keyof typeof description]} />
+                                <Input name={`decor_text-${lang}`} className={`${s.text} bg-transparent`} defaultValue={decor_text[lang]} />
+                                <Input name={`description-${lang}`} className={`${s.text} bg-transparent`} defaultValue={description[lang]} />
                             </div>
                         </CustomTabPanel>
                     ))

@@ -7,9 +7,18 @@ type Props = Readonly<{
     nameAttr: string;
     multiLang?: boolean;
     multiline?: boolean;
+    className?: string;
+    value?: string | Record<Language, string>
 }>
 
-const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang, multiline }: Props) {
+const HouseFieldset = memo(function HouseFieldset({ 
+    legend, 
+    nameAttr, 
+    multiLang, 
+    multiline, 
+    className,
+    value
+}: Props) {
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +28,7 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
         setIsDirtyPage(true)};
 
     if (!multiLang) return (
-        <Stack component="fieldset" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <Stack component="fieldset" className={className} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Typography component={'legend'}>{legend}</Typography>
             <TextField
                 label=""
@@ -27,10 +36,13 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 name={nameAttr}
                 variant="outlined"
                 type='text'
-                onInvalid={(e: any) => e.target.setCustomValidity("Тільки латинські символи, цифри або дефіс")}
+                onInvalid={(e: any) => {
+                    if(nameAttr === 'name') e.target.setCustomValidity("Тільки латинські символи, цифри або дефіс");
+                }}
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
+                defaultValue={value}
                 slotProps={
                     {
                         htmlInput: {
@@ -77,6 +89,7 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
+                defaultValue={value && typeof value !== 'string' ? value['uk'] : value}
                 onChange={handleChange}
             />
             <TextField
@@ -87,6 +100,7 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
+                defaultValue={value && typeof value !== 'string' ? value['en'] : value}
                 onChange={handleChange}
             />
             <TextField
@@ -97,6 +111,7 @@ const HouseFieldset = memo(function HouseFieldset({ legend, nameAttr, multiLang,
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
                 required
+                defaultValue={value && typeof value !== 'string' ? value['ru'] : value}
                 onChange={handleChange}
             />
         </Stack>

@@ -17,7 +17,7 @@ interface PopupMenuProps {
 
 const PopupMenu: React.FC<PopupMenuProps> = ({ handlePopup }) => {
   const menuRef = useRef<HTMLDivElement>(null);
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const pathname = usePathname();
 
   useEffect(() => {
@@ -45,10 +45,10 @@ const PopupMenu: React.FC<PopupMenuProps> = ({ handlePopup }) => {
                 }`}
             >
               {pathname === `/${locale}/${link}` ? (
-                <p className={css.itemLink}>{label[locale as keyof typeof label]}</p>
+                <p className={css.itemLink}>{label[locale]}</p>
               ) : (
                 <Link href={`/${locale}/${link}`} className={css.itemLink}>
-                  {label[locale as keyof typeof label]}
+                  {label[locale]}
                 </Link>
               )}
             </li>

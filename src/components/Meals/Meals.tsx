@@ -34,7 +34,7 @@ const curve = (n: number) =>
 
 export default function Meals({ items }: Props) {
   const { isMobile } = useContext(MatchMediaContext);
-  const locale = useLocale();
+  const locale = useLocale() as Language;
 
   useGSAP(() => {
     //meals blocks animation
@@ -213,7 +213,7 @@ export default function Meals({ items }: Props) {
     <div className={`${s.mealsWrapper} container`}>
       <div className={s.heroWrapper}>
         <h1 className={s.title}
-          dangerouslySetInnerHTML={{ __html: items[0].title[locale as keyof typeof items[0]['title']] }}
+          dangerouslySetInnerHTML={{ __html: items[0].title[locale] }}
         />
         <div className={s.heroImage}>
           <Image
@@ -224,7 +224,7 @@ export default function Meals({ items }: Props) {
           />
           <div className={s.callToEatWrapper}>
             <p className={s.callToEat}
-              dangerouslySetInnerHTML={{ __html: items[0].description[locale as keyof typeof items[0]['description']] }}
+              dangerouslySetInnerHTML={{ __html: items[0].description[locale] }}
             >
 
             </p>

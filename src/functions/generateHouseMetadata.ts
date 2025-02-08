@@ -14,7 +14,7 @@ export async function generateHouseMetadata({
 
   if (!houseItem.length) notFound();
 
-  const houseTitle = houseItem[0].long_title[params.locale as keyof typeof houseItem[0]['long_title']];
+  const houseTitle = houseItem[0].long_title[params.locale as Language];
   const title =
       metaData['houseItem'].title[
           params.locale as keyof (typeof metaData)['houseItem']['title']

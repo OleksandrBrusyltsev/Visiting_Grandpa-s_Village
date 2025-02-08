@@ -9,7 +9,7 @@ import s from "./Rules.module.scss";
 
 const Rules: FC = () => {
 
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const t = useTranslations('Rules');
 
   return (
@@ -37,10 +37,10 @@ const Rules: FC = () => {
       <ul className={s.rulesList}>
         {rules.map((rule) => (
           <li key={rule.id} className={s.rulesItem}>
-            <h2 className={s.ruleTitle}>{rule.title[locale as keyof typeof rule.title]}</h2>
+            <h2 className={s.ruleTitle}>{rule.title[locale]}</h2>
             <p
               className={s.ruleDescription}
-              dangerouslySetInnerHTML={{ __html: rule.description[locale as keyof typeof rule.description] }}
+              dangerouslySetInnerHTML={{ __html: rule.description[locale] }}
             ></p>
           </li>
         ))}

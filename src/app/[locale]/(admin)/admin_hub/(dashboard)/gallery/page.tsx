@@ -7,7 +7,7 @@ export default async function Page() {
   const gallery = await getGallery();
   return (
     <div className='p-8'>
-      <h1 className='text-5xl text-center mb-10'>Редагування сторінки СПОГАДИ</h1>
+      <h1 className='text-3xl text-center mb-10'>Редагування сторінки СПОГАДИ</h1>
       {
         gallery.length
           ? <GalleryPage data={gallery} />

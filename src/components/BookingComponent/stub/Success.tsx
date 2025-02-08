@@ -20,7 +20,7 @@ export default function Success({ handleClose, isOpen }: Props) {
   const { push } = useRouter();
   const { title, subtitle, message } = messages[1];
 
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const t = useTranslations("UI");
 
   useGSAP(
@@ -49,7 +49,7 @@ export default function Success({ handleClose, isOpen }: Props) {
         height={160}
       />
       <h1 className={s.title}>
-        {title[locale as keyof typeof title]}{" "}
+        {title[locale]}{" "}
         <svg
           width="28"
           height="26"
@@ -63,8 +63,8 @@ export default function Success({ handleClose, isOpen }: Props) {
           />
         </svg>
       </h1>
-      <h2 className={s.subTitle}>{subtitle[locale as keyof typeof subtitle]}</h2>
-      <p className={s.message}>{message[locale as keyof typeof message]}</p>
+      <h2 className={s.subTitle}>{subtitle[locale]}</h2>
+      <p className={s.message}>{message[locale]}</p>
       <button className={s.closeBtn} onClick={handleClose}>
         &times;
       </button>

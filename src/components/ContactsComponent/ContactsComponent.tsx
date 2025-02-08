@@ -12,7 +12,22 @@ import GoogleMap from "./GoogleMap/GoogleMap";
 
 import s from "./ContactsComponent.module.scss";
 
-const ContactsComponent: FC = () => {
+const ContactsComponent: FC<{contacts: ContactItem}> = ({contacts}) => {
+  const contactsList = {
+    phone: contacts.phone,
+    email: contacts.email,
+    address: contacts.address,
+    facebook_link: contacts.facebook_link,
+    instagram_link: contacts.instagram_link,
+    telegram_link: contacts.telegram_link,
+    linkedin_link: contacts.linkedin_link,
+  };
+  const faq = contacts.faq;
+  const routeInfo = {
+    directions_from_city: contacts.directions_from_city,
+    transit_options: contacts.transit_options,
+    route_change_notice: contacts.route_change_notice,
+  }
   // Create refs for TelegramBlock elements
   const telegramTitle = useRef<HTMLHeadingElement>(null);
   const telegramText = useRef<HTMLParagraphElement>(null);
@@ -186,9 +201,10 @@ const ContactsComponent: FC = () => {
         <ContactsList
           grandpaRef={grandpa}
           contactsListWrapperRef={contactsListWrapper}
+          contactsList={contactsList}
         />
-        <FAQ lakeRef={lake} faqTitleRef={faqTitle} faqWrapperRef={faqWrapper} />
-        <RouteInfo houseRef={house} routeInfoWrapperRef={routeInfoWrapper} />
+        <FAQ lakeRef={lake} faqTitleRef={faqTitle} faqWrapperRef={faqWrapper} faq={faq}/>
+        <RouteInfo houseRef={house} routeInfoWrapperRef={routeInfoWrapper} routeInfo={routeInfo}/>
       </div>
       <GoogleMap googleMapWrapperRef={googleMapWrapper} />
     </>

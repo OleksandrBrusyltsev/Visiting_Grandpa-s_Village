@@ -17,7 +17,7 @@ type Props = Readonly<{ items: EntertainmentItem[] }>;
 export default function Entertainment({ items }: Props) {
   const aniRef = useRef<Array<Array<HTMLDivElement>>>([[]]);
   const textWrapperRef = useRef<HTMLDivElement | null>(null);
-  const locale = useLocale();
+  const locale = useLocale() as Language;
 
   useEffect(() => {
     setTimeout(() => {
@@ -156,19 +156,19 @@ export default function Entertainment({ items }: Props) {
         </div>
         <h1 className={s.heroTitle}
           dangerouslySetInnerHTML={{
-            __html: items[0].title[locale as keyof typeof items[0]['title']],
+            __html: items[0].title[locale],
           }}
         />
         <div className={s.topQuoteWrapper}>
           <div className={s.topQuote}>
-            <MarkdownPreview markdown={items[0].quote[locale as keyof typeof items[0]['quote']]} />
+            <MarkdownPreview markdown={items[0].quote[locale]} />
           </div>
         </div>
         <div className={s.question}>
-          <MarkdownPreview markdown={items[0].subtitle[locale as keyof typeof items[0]['subtitle']]} />
+          <MarkdownPreview markdown={items[0].subtitle[locale]} />
         </div>
         <div className={s.answer}>
-          <MarkdownPreview markdown={items[0].description[locale as keyof typeof items[0]['description']]} />
+          <MarkdownPreview markdown={items[0].description[locale]} />
         </div>
       </section>
       <div className={`${s.main} container`}>
@@ -181,7 +181,7 @@ export default function Entertainment({ items }: Props) {
                   aniRef.current[i][0] = el;
                 }}
                 position={i % 2 ? "right" : "left"}
-                title={title[locale as keyof typeof title]}
+                title={title[locale]}
               >
                 <div
                   className={s.quoteText}
@@ -190,7 +190,7 @@ export default function Entertainment({ items }: Props) {
                     aniRef.current[i][1] = el;
                   }}
                 >
-                  <MarkdownPreview markdown={description[locale as keyof typeof description]} />
+                  <MarkdownPreview markdown={description[locale]} />
                 </div>
               </Quote>
               <div
@@ -239,10 +239,10 @@ export default function Entertainment({ items }: Props) {
       </div>
       <div className={`${s.textWrapper} container`} ref={textWrapperRef}>
         <div className={s.text}>
-          <MarkdownPreview markdown={items[items.length - 1].description[locale as keyof typeof items[0]['description']]} />
+          <MarkdownPreview markdown={items[items.length - 1].description[locale]} />
         </div>
         <div className={s.text}>
-          <MarkdownPreview markdown={items[items.length - 1].quote[locale as keyof typeof items[0]['quote']]} />
+          <MarkdownPreview markdown={items[items.length - 1].quote[locale]} />
         </div>
       </div>
     </>

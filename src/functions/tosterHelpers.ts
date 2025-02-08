@@ -30,7 +30,7 @@ export function getActivePromoData(
         return {
             isPromoActive: true,
             promoText:
-                activePromoObj.translations[locale as keyof typeof activePromoObj.translations],
+                activePromoObj.translations[locale as Language],
             //переводим минуты менеджера в миллисекунды
             timeout: activePromoObj?.timeout! * 60 * 1000,
         };

@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function Houses({ items }: Props) {
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const housesRef = useRef<Array<HTMLAnchorElement>>([]);
   const textWrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -256,11 +256,11 @@ export default function Houses({ items }: Props) {
       <section className={`${s.hero} container`}>
         <div className={s.heroWrapper}>
           <h1 className={s.descr1}>
-            {items[0].title[locale as keyof typeof items[0]['title']]}
+            {items[0].title[locale]}
           </h1>
           {/* eslint-disable-next-line react/no-unescaped-entities */}
           <p className={s.descr2}>
-            {items[0].long_title[locale as keyof typeof items[0]['long_title']]}
+            {items[0].long_title[locale]}
           </p>
           <div className={s.grandpa}>
             <Image
@@ -316,10 +316,10 @@ export default function Houses({ items }: Props) {
       </HousesList>
       <div className={s.textWrapper} ref={textWrapperRef}>
         <p className={s.text}>
-          {items[0].decor_text[locale as keyof typeof items[0]['decor_text']]}
+          {items[0].decor_text[locale]}
         </p>
         <p className={s.text}>
-          {items[0].description[locale as keyof typeof items[0]['description']]}
+          {items[0].description[locale]}
         </p>
       </div>
     </>

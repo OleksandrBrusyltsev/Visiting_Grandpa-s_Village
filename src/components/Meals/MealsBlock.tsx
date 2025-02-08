@@ -14,14 +14,14 @@ type Props = {
 };
 
 export default function MealsBlock({ item, position }: Props) {
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const { title, description, photos } = item;
   const { isMobile } = useContext(MatchMediaContext);
 
   return (
     <div className={s.mealsBlockWrapper}>
       <h2 className={s.mealsTitle}
-        dangerouslySetInnerHTML={{ __html: title[locale as keyof typeof title] }}
+        dangerouslySetInnerHTML={{ __html: title[locale] }}
       />
       <div className={s.mealsDescriptionWrapper}>
         {position !== 0 && isMobile ? (
@@ -35,7 +35,7 @@ export default function MealsBlock({ item, position }: Props) {
           </div>
         ) : null}
         <div className={s.mealsDescription}>
-          <MarkdownPreview markdown={description[locale as keyof typeof description]} />
+          <MarkdownPreview markdown={description[locale]} />
         </div>
       </div>
       {position === 0 || !isMobile ? (

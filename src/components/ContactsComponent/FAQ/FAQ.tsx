@@ -10,20 +10,20 @@ import Lake from "../../../../public/images/contacts/lake.png";
 import DownIcon from "../../../assets/icons/icon-down.svg";
 import UpIcon from "../../../assets/icons/icon-up.svg";
 import s from "./FAQ.module.scss";
-import { contacts } from "@/data/contacts";
 
 type FAQProps = {
   lakeRef: React.RefObject<HTMLImageElement>;
   faqTitleRef: React.RefObject<HTMLHeadingElement>;
   faqWrapperRef: React.RefObject<HTMLDivElement>;
+  faq: ContactItem["faq"];
 };
 
-const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
+const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef, faq }) => {
   const [openIndices, setOpenIndices] = useState<number[]>([]);
   const imgAndFaqWrapper = useRef<HTMLDivElement>(null);
   const answerRefs = useRef<(HTMLParagraphElement | null)[]>([]);
   const t = useTranslations("Contacts");
-  const locale = useLocale();
+  const locale = useLocale() as Language;
 
   const toggleAnswer = (index: number) => {
     if (openIndices.includes(index)) {
@@ -98,7 +98,7 @@ const FAQ: FC<FAQProps> = ({ lakeRef, faqTitleRef, faqWrapperRef }) => {
 
       <div className={s.faqWrapper} ref={faqWrapperRef}>
         <ul className={s.faqList}>
-          {contacts.faq[locale as keyof typeof contacts.faq].map((item, index) => (
+          {faq[locale].map((item, index) => (
             <li key={item.question} className={s.faqItem}>
               <div
                 className={s.questionWrapper}

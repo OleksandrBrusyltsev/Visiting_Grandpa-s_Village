@@ -34,7 +34,7 @@ export default async function Page({ params }: Props) {
     
   return (
     <div className='p-8'>
-      <h1 className='text-5xl text-center mb-10'>Редагування <span className='uppercase font-bold'>{house[0].long_title.uk ?? ''}</span></h1>
+      <h1 className='text-3xl text-center mb-10'>Редагування <span className='uppercase font-bold'>{house[0].long_title.uk ?? ''}</span></h1>
       <EditHouse data={house[0]} rooms={rooms[house[0].name] || 0} housesList={housesList} />
     </div>
   )

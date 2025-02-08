@@ -10,6 +10,7 @@ import Toaster from "@/components/ui/Toaster/Toaster";
 
 import { locales } from "@/data/locales";
 import './layout.css';
+import { getContacts } from "@/actions/getContacts";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -25,22 +26,11 @@ export const metadata: Metadata = {
   verification: {
     "google": "Yy2eWiERz4G340GcJ4J0ebWXu0GNzOaU-AQJVCYkv1s"
   },
-  // alternates: {
-  //   canonical: '/uk',
-  //   languages: {
-  //     // 'uk': '/uk',
-  //     'en': '/en',
-  //     'ru': '/ru',
-  //   },
-  // },
   openGraph: {
     images: '/opengraph-image.jpg',
   }
 };
 
-// async function getServerTime() {
-//   return Date.now();
-// }
 
 export default async function LocaleLayout({
   children,
@@ -50,6 +40,7 @@ export default async function LocaleLayout({
   params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
+  const contacts = await getContacts();
 
   return (
     <>
@@ -59,7 +50,7 @@ export default async function LocaleLayout({
       </header>
       <Breadcrumbs />
       <main>{children}</main>
-      <Footer />
+      <Footer contacts={contacts}/>
       <Toaster />
     </>
   );

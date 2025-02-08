@@ -43,7 +43,7 @@ export default function ContactForm({ order, isOpen, handleClose, handleBotRespo
     const formRef = useRef<HTMLFormElement | null>(null);
     const recaptchaId = useRef<string | null>(null);
 
-    const locale = useLocale();
+    const locale = useLocale() as Language;
     const t = useTranslations("BookingStub");
 
     const { title, subtitle, message } = messages[0];
@@ -135,7 +135,7 @@ export default function ContactForm({ order, isOpen, handleClose, handleBotRespo
     return (
         <>
             <div className={s.wrapper} ref={wrapperRef}>
-                <h1 className={s.title}>{title[locale as keyof typeof title]}</h1>
+                <h1 className={s.title}>{title[locale]}</h1>
                 <form className={s.form} onSubmit={onSubmit} ref={formRef}>
                     <label htmlFor="name" className={s.label}>
                         {isMobile ? null : <span>{t('name')}</span>}
@@ -198,7 +198,7 @@ export default function ContactForm({ order, isOpen, handleClose, handleBotRespo
                                 startDate: order.startDate,
                                 endDate: order.endDate
                             })}
-                            placeholder={message[locale as keyof typeof message]}
+                            placeholder={message[locale]}
                             rows={5}
                             required
                             title=''
@@ -211,7 +211,7 @@ export default function ContactForm({ order, isOpen, handleClose, handleBotRespo
                     </label>
                     <div className={`${s.recaptcha} g-recaptcha`} id='g-recaptcha' data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_TOKEN} />
                     <Button
-                        label={subtitle[locale as keyof typeof subtitle]}
+                        label={subtitle[locale]}
                         className={s.btn}
                         type='submit'
                         size='default'

@@ -9,7 +9,7 @@ export default async function Page() {
 
   return (
     <div className='p-8'>
-      <h1 className='text-5xl text-center mb-10'>Редагування сторінки ЖИТИ</h1>
+      <h1 className='text-3xl text-center mb-10'>Редагування сторінки ЖИТИ</h1>
       {
         heroData
           ? <HousesPage data={heroData} />

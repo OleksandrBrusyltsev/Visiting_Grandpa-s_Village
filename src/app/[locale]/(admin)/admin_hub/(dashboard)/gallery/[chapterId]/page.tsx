@@ -13,7 +13,7 @@ export default async function Page({ params }: Props) {
 
     return (
         <div className='p-8'>
-            <h1 className='text-5xl text-center mb-10'>
+            <h1 className='text-3xl text-center mb-10'>
                 Редагування розділу <span className='uppercase font-bold'>
                     {galleryChapter[0].title.uk}
                 </span>

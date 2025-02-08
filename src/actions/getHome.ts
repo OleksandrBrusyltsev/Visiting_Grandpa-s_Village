@@ -10,7 +10,7 @@ export const getHome = async (): Promise<MainPageBlock[]> => {
             // cache: 'no-store',
         });
         if (!resp.ok) {
-            const errorData = (await resp.json()) ?? { detail: { msg: 'Unknown error' } };
+            const errorData = (await resp.json()) ?? { detail: [{ msg: 'Unknown error' }]};
             throw new Error(errorData.detail[0].msg);
         }
 
