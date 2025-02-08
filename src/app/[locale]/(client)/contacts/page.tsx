@@ -3,6 +3,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import ContactsComponent from "@/components/ContactsComponent/ContactsComponent";
 import AskGrandpa from "@/components/AskGrandpa/AskGrandpa";
 import { generatePageMetadata } from "@/functions/generatePageMetadata";
+import { getContacts } from "@/actions/getContacts";
 
 import { locales } from "@/data/locales";
 
@@ -20,10 +21,11 @@ export default async function ContactsPage({
   params: { locale },
 }: Props) {
   unstable_setRequestLocale(locale);
+  const contacts = await getContacts();
 
   return (
     <>
-      <ContactsComponent />
+      <ContactsComponent contacts={contacts} />
       <AskGrandpa />
     </>
   );

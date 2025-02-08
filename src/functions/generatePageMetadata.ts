@@ -8,7 +8,7 @@ export function generatePageMetadata(
     const { title, description } = metaData[page];
 
     return {
-        title: title[locale as keyof typeof title] as Metadata['title'],
-        description: description[locale as keyof typeof description] as Metadata['description'],
+        title: title[locale as Language] as Metadata['title'],
+        description: description[locale as Language] as Metadata['description'],
     };
 }

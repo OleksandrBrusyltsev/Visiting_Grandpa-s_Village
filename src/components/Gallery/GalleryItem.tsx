@@ -16,12 +16,12 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
   { data },
   ref
 ) {
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const path = usePathname();
   const pathName = path.split('/')[2];
   const { isMobile, isTablet } = useContext(MatchMediaContext);
   const { name, cover, alt } = data;
-  const title = data.title[locale as keyof typeof data.title];
+  const title = data.title[locale];
   const t = useTranslations("UI");
 
   return (
@@ -35,7 +35,7 @@ const GalleryItem = forwardRef<HTMLAnchorElement, Props>(function GalleryItem(
         <Image
           className={s.itemImage}
           src={cover}
-          alt={alt[locale as keyof typeof alt]}
+          alt={alt[locale]}
           sizes="(max-width: 768px) 100vw, 50vw"
           fill
         />

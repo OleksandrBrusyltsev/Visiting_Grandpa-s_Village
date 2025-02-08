@@ -11,7 +11,7 @@ export const getGallery = async (slug?: string): Promise<GalleryItem[]> => {
             // cache: 'no-store'
         });
         if (!resp.ok) {
-            const errorData = (await resp.json()) ?? { detail: { msg: 'Unknown error' } };
+            const errorData = (await resp.json()) ?? { detail: [{ msg: 'Unknown error' }]};
             throw new Error(errorData.detail[0].msg);
         }
         const data = await resp.json();

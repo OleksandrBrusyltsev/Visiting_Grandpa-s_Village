@@ -37,7 +37,7 @@ const getBaseMenu = (
     return topLevelMenu.map((el) => {
         const menu: MenuItem = {
             id: el.id,
-            name: el.title[locale as keyof typeof el.title],
+            name: el.title[locale as Language],
             url: `/${locale}/admin_hub/${type}/${el.id}`,
             admission: 'superadmin',
             icon: type === 'gallery' ? galleryChapterIcon : houseIcon,
@@ -46,7 +46,7 @@ const getBaseMenu = (
         if (type === 'houses' && housesWithRooms[el.name]) {
             menu['children'] = housesWithRooms[el.name].map((room) => ({
                 id: room.id,
-                name: room.title[locale as keyof typeof room.title],
+                name: room.title[locale as Language],
                 url: `/${locale}/admin_hub/${type}/${room.id}`,
                 admission: 'superadmin',
                 icon: roomIcon,

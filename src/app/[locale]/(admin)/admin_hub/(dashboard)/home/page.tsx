@@ -6,7 +6,7 @@ export default async function Page() {
     const data = await getHome();
     return (
         <div className='p-8'>
-            <h1 className='text-5xl text-center mb-10'>Редагування Головної сторінки </h1>
+            <h1 className='text-3xl text-center mb-10'>Редагування Головної сторінки </h1>
             {
                 data.length
                     ? <MainPage data={data} />

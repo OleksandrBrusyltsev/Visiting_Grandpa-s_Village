@@ -23,7 +23,7 @@ export default function Error({
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { title, subtitle, message } = messages[2];
 
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const t = useTranslations("BookingStub");
 
   useGSAP(
@@ -55,9 +55,9 @@ export default function Error({
         width={186}
         height={210}
       />
-      <h1 className={s.title}>{title[locale as keyof typeof title]}</h1>
-      <h2 className={s.subTitle}>{subtitle[locale as keyof typeof subtitle]}</h2>
-      <p className={s.message}>{message[locale as keyof typeof message]}</p>
+      <h1 className={s.title}>{title[locale]}</h1>
+      <h2 className={s.subTitle}>{subtitle[locale]}</h2>
+      <p className={s.message}>{message[locale]}</p>
       <button className={s.closeBtn} onClick={handleClose}>
         &times;
       </button>

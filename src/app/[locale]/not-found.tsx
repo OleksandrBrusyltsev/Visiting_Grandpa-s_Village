@@ -1,8 +1,10 @@
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import NotFound from "../../components/NotFound/NotFound";
+import { getContacts } from "@/actions/getContacts";
 
-export default function NotFoundPage() {
+export default async function NotFoundPage() {
+  const contacts = await getContacts();
   return (
     <html lang="uk">
       <head>
@@ -18,7 +20,7 @@ export default function NotFoundPage() {
           <Header />
         </header>
         <NotFound />
-        <Footer />
+        <Footer  contacts={contacts}/>
       </body>
     </html>
   );

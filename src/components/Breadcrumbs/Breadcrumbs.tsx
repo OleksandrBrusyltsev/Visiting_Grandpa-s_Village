@@ -21,7 +21,7 @@ export default function Breadcrumbs() {
   const t = useTranslations('Breadcrumbs');
   const params: Routes = useParams();
   const pathname = usePathname();
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const { back } = useRouter();
 
   const [breadcrumbs, setBreadcrumbs] = useState<Array<{
@@ -60,7 +60,7 @@ export default function Breadcrumbs() {
             const currentItem = data.filter(item => item.name === value);
             
             if (!currentItem.length) return
-            const translation = currentItem[0].title[locale as keyof typeof currentItem[0]['title']];
+            const translation = currentItem[0].title[locale];
             
             if (!translation) return
             slugTranslation[value as string] = translation;

@@ -9,7 +9,7 @@ import { navLinks as navigationLinks } from "@/data/navigationMenu";
 import { usePathname } from "next/navigation";
 
 const Navigation = () => {
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const t = useTranslations("UI");
 
   const pathname = usePathname();
@@ -19,14 +19,14 @@ const Navigation = () => {
       {navigationLinks.map(({ id, link, label }) => (
         <li
           key={id}
-          data-text={label[locale as keyof typeof label]}
+          data-text={label[locale]}
           className={`${css.item} ${pathname.startsWith(`/${locale}/${link}`) ? css.active : ""
             }`}
         >
           {pathname === `/${locale}/${link}` ? (
-            <p title={t('currLink')}>{label[locale as keyof typeof label]}</p>
+            <p title={t('currLink')}>{label[locale]}</p>
           ) : (
-            <Link href={`/${locale}/${link}`}>{label[locale as keyof typeof label]}</Link>
+            <Link href={`/${locale}/${link}`}>{label[locale]}</Link>
           )}
         </li>
       ))}

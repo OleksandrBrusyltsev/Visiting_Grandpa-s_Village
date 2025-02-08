@@ -10,14 +10,17 @@ import MarkdownPreview from "@/components/ui/MarkdownPreview/MarkdownPreview";
 
 import s from "./Footer.module.scss";
 import { navLinks } from "@/data/navigationMenu";
-import { contacts } from "@/data/contacts";
 
 const image_uk = "/images/logo-main-uk.svg";
 const image_en = "/images/logo-main-en.svg";
 
-export default function Footer() {
+type Props = Readonly<{
+  contacts: ContactItem
+}>;
+
+export default function Footer({contacts}: Props) {
   const mapUrl = `https://maps.app.goo.gl/EdWyVY665TkeUjQh8`;
-  const locale = useLocale();
+  const locale = useLocale() as Language;
   const pathname = usePathname();
   const t = useTranslations("UI");
 
@@ -76,9 +79,9 @@ export default function Footer() {
           {navLinks.map(({ id, label, link }) => (
             <li key={id} className={s.navItem}>
               {pathname === `/${locale}/${link}` ? (
-                <p title={t('currLink')}>{label[locale as keyof typeof label]}</p>
+                <p title={t('currLink')}>{label[locale]}</p>
               ) : (
-                <Link href={`/${locale}/${link}`}>{label[locale as keyof typeof label]}</Link>
+                <Link href={`/${locale}/${link}`}>{label[locale]}</Link>
               )}
             </li>
           ))}
@@ -90,7 +93,7 @@ export default function Footer() {
           <Icon name="map" className={s.contactsIcon} />
           <Link href={mapUrl} target="_blank" className={s.contactsText}>
             <MarkdownPreview
-              markdown={contacts.address[locale as keyof typeof contacts.address]}
+              markdown={contacts.address[locale]}
             />
           </Link>
         </div>
