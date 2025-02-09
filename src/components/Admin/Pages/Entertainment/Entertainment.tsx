@@ -100,7 +100,7 @@ export default function EntertainmentPage({ data }: Props) {
                     break;
             }
         });
-        changedBlocksRef.current?.clear();
+        changedBlocksRef.current.clear();
         setIsDirtyPage(false);
         window?.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -142,6 +142,7 @@ export default function EntertainmentPage({ data }: Props) {
                     const data = await response.json();
                     setDialogOpen(true, 'success', data.description);
                     setIsDirtyPage(false);
+                    changedBlocksRef.current.clear();
                     refresh();
                 } else {
                     const errorData = await response.json();

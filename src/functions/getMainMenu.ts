@@ -5,7 +5,7 @@ const roomIcon = 'HotelOutlined';
 const addNew = 'AddOutlined';
 const galleryChapterIcon = 'PhotoOutlined';
 
-const getBaseMenu = (
+const getSubMenus = (
     locale: string,
     type: 'gallery' | 'houses',
     arr: {
@@ -70,7 +70,7 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
         if (indexOfMenuItemHouses >= 0) {
             (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
                 indexOfMenuItemHouses
-            ].children = getBaseMenu(
+            ].children = getSubMenus(
                 locale,
                 'houses',
                 houses.filter((house) => house.name),
@@ -90,7 +90,7 @@ export default function getMainMenu(houses: HouseItem[], gallery: GalleryItem[],
         if (indexOfMenuItemGallery > 0) {
             (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
                 indexOfMenuItemGallery
-            ].children = getBaseMenu(locale, 'gallery', gallery);
+            ].children = getSubMenus(locale, 'gallery', gallery);
             (menuAdmin[indexOfMenuItemPages].children as MenuItem[])[
                 indexOfMenuItemGallery
             ].children?.push({

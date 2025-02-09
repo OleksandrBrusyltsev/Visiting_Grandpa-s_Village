@@ -69,7 +69,6 @@ export default function MealsPage({ data }: Props) {
     const handleResetForm = () => {
         formRef.current?.reset();
         setPreview(() => data.map((item) => [...item.photos]));
-        changedBlocksRef.current
         Object.entries(mealsBlockRefs.current).forEach(([index, langRefs]) => {
             if (changedBlocksRef.current.has(+index + 1))
                 Object.values(langRefs).forEach((ref) => {
@@ -118,6 +117,7 @@ export default function MealsPage({ data }: Props) {
                     const data = await response.json();
                     setDialogOpen(true, 'success', data.description);
                     setIsDirtyPage(false);
+                    changedBlocksRef.current.clear();
                     refresh();
                 } else {
                     const errorData = await response.json();

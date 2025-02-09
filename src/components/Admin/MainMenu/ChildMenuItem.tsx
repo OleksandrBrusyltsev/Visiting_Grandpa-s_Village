@@ -19,7 +19,8 @@ import {
     PhotoLibraryOutlined,
     PhotoOutlined,
     AddOutlined,
-    HouseOutlined
+    HouseOutlined,
+    CommentOutlined
 } from '@mui/icons-material';
 import ConfirmLink from '../UI/ConfirmLink/ConfirmLink';
 
@@ -45,7 +46,8 @@ const iconMapping: { [key: string]: React.ElementType } = {
     PhotoLibraryOutlined,
     PhotoOutlined,
     AddOutlined,
-    HouseOutlined
+    HouseOutlined,
+    CommentOutlined
 };
 
 export default function ChildMenuItem({ menuItem }: Props) {
