@@ -20,11 +20,11 @@ export async function generateStaticParams() {
 export default async function Page({ params: { locale } }: Props) {
   unstable_setRequestLocale(locale);
 
-  const items = await getHouses();
-
+  const allHouses = await getHouses(undefined, {is_available: 'true'});
+  const availableHouses = allHouses.filter((house) => house.is_available);
   return (
     <>
-      <Houses items={items} />
+      <Houses items={availableHouses} />
       <AskGrandpa />
     </>
   );

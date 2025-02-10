@@ -56,7 +56,10 @@ const iconMapping: { [key: string]: React.ElementType } = {
 export default function ParentMenuItem({ menuItem, isDrawerOpen }: Props) {
     const { name, url, icon, children } = menuItem;
 
-    const isComplexMenuRef = React.useRef<boolean>(!menuItem.children);
+    /* Данное комплексное меню предназначено для домиков, имеющих подменю с комнатами. 
+    *  Оно отвечает за "кликабельность" основного домика (создает ссылку на страницу основного домика)
+    */
+    const isComplexMenuRef = React.useRef<boolean>(!["Будиночки", "Галерея", "Сторінки", 'Налаштування'].includes(menuItem.name));
 
     const [open, setOpen] = React.useState(isComplexMenuRef.current);
 

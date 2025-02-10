@@ -15,7 +15,7 @@ export const getGallery = async (slug?: string): Promise<GalleryItem[]> => {
             throw new Error(errorData.detail[0].msg);
         }
         const data = await resp.json();
-        return slug ? [data] : data;
+        return Array.isArray(data) ? data : [data];
     } catch (error) {
         console.error(error);
         throw error;
