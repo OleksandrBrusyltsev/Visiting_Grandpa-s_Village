@@ -12,7 +12,7 @@ type Props = Readonly<{
     handleDataChange?: () => void
 }>
 
-const HouseFieldset = memo(function HouseFieldset({ 
+const TextFieldset = memo(function TextFieldset({ 
     legend, 
     nameAttr, 
     multiLang, 
@@ -121,4 +121,4 @@ const HouseFieldset = memo(function HouseFieldset({
     )
 })
 
-export default HouseFieldset
+export default TextFieldset

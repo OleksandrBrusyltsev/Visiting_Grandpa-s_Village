@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { Box, Stack, Typography } from '@mui/material'
 
 import { useMainStore } from '@/stores/store-provider';
-import HouseFieldset from './components/HouseFieldset';
+import TextFieldset from '../../UI/TextFieldset/TextFieldset';
 import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
 import HouseSelect from '../../UI/HouseSelect/HouseSelect';
 import { initialAdminState } from '@/stores/adminSlice';
@@ -108,7 +108,7 @@ export default function AddNewHouse({ housesList }: Props) {
             className='@container'
         >
 
-            <HouseFieldset
+            <TextFieldset
                 legend={'Назва шляху в адресному рядку (формат запису через дефіс: hatynka-dida-moroza)'}
                 nameAttr="name"
             />
@@ -117,7 +117,7 @@ export default function AddNewHouse({ housesList }: Props) {
             <SimpleGallery photo={initialPhotos} ref={resetGalleryRef} />
             {
                 fieldsetData.map(({ legend, nameAttr, multiLang, multiline }, index) => (
-                    <HouseFieldset
+                    <TextFieldset
                         key={nameAttr}
                         legend={legend}
                         nameAttr={nameAttr}

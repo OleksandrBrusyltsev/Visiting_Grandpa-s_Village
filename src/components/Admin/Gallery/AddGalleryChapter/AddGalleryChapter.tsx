@@ -6,7 +6,7 @@ import { Box, Typography } from '@mui/material'
 import FileUploadWithPreview from '../../Houses/AddNewHouse/components/FileUploadWithPreview';
 import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
 import { useMainStore } from '@/stores/store-provider';
-import HouseFieldset from '../../Houses/AddNewHouse/components/HouseFieldset';
+import TextFieldset from '../../UI/TextFieldset/TextFieldset';
 import SimpleGallery from '../../Houses/EditHouse/components/SimpleGallery';
 
 const initialPhotos: File[] = [];
@@ -106,12 +106,12 @@ export default function AddGalleryChapter() {
             className='@container'
         >
 
-            <HouseFieldset
+            <TextFieldset
                 legend={'Назва шляху в адресному рядку (формат запису через дефіс: blue-lakes)'}
                 nameAttr="name"
             />
 
-            <HouseFieldset
+            <TextFieldset
                 legend={'Альтернативний текст для обкладинки розділу галереї'}
                 nameAttr="alt"
                 multiLang={true}
@@ -130,13 +130,13 @@ export default function AddGalleryChapter() {
             />
 
 
-            <HouseFieldset
+            <TextFieldset
                 key={'title'}
                 legend={"Назва розділу галереї"}
                 nameAttr={'title'}
                 multiLang={true}
             />
-            <HouseFieldset
+            <TextFieldset
                 key={'description'}
                 legend={"Текст на сторінці розділу галереї"}
                 nameAttr={'description'}

@@ -3,7 +3,7 @@ import { Paper, Radio, Stack, TextField } from '@mui/material'
 import { DateTimePicker } from '@mui/x-date-pickers'
 import dayjs, { Dayjs } from 'dayjs';
 
-import HouseFieldset from '../../Houses/AddNewHouse/components/HouseFieldset';
+import TextFieldset from '../../UI/TextFieldset/TextFieldset';
 import { useMainStore } from '@/stores/store-provider';
 
 type Props = Readonly<{
@@ -172,7 +172,7 @@ const ToasterItem = forwardRef<ResetType, Props>(function ToasterItem({
                 <Stack sx={{
                     gridArea: 'translations'
                 }}>
-                    <HouseFieldset
+                    <TextFieldset
                         legend="Текст повідомлення"
                         value={data.translations}
                         nameAttr={(lang: string) => `translations-${lang}-${position}`}
