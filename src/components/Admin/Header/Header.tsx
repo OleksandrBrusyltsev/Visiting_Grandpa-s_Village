@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useLocale } from 'next-intl'
 import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/MenuOutlined';
@@ -10,6 +9,7 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 import UserMenu from './UserMenu/UserMenu';
 import { useMainStore } from '@/stores/store-provider';
+import ConfirmLink from '../UI/ConfirmLink/ConfirmLink';
 
 export default function Header() {
     const locale = useLocale();
@@ -35,9 +35,9 @@ export default function Header() {
             >
                 {open ? <MenuOpenIcon /> : <MenuIcon />}
             </IconButton>
-            <Link href={`/${locale}`} className='min-w-80 h-24 relative'>
+            <ConfirmLink href={`/${locale}`} className='min-w-80 h-24 relative'>
                 <Image src="/images/logo-main-admin.svg" alt="" fill />
-            </Link>
+            </ConfirmLink>
             <div className='grow'></div>
 
             <UserMenu/>

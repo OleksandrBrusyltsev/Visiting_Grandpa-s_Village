@@ -8,12 +8,14 @@ import { useMainStore } from "@/stores/store-provider";
 interface ConfirmLinkProps extends LinkProps {
     confirmationMessage?: string; // Сообщение для подтверждения
     children: React.ReactNode;
+    className?: string; 
 }
 
 const ConfirmLink = forwardRef<HTMLAnchorElement, ConfirmLinkProps>(function ConfirmLink({
     confirmationMessage = "У вас есть несохраненные изменения. Вы уверены, что хотите покинуть эту страницу?",
     children,
     href,
+    className,
     ...props
 }: Readonly<ConfirmLinkProps>, ref) {
     const router = useRouter();
@@ -33,7 +35,7 @@ const ConfirmLink = forwardRef<HTMLAnchorElement, ConfirmLinkProps>(function Con
     };
 
     return (
-        <Link href={href} {...props} onClick={handleClick} ref={ref}>
+        <Link href={href} {...props} className={className} onClick={handleClick} ref={ref}>
             {children}
         </Link>
     );
