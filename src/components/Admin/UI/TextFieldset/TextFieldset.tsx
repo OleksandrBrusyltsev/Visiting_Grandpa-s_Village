@@ -4,20 +4,22 @@ import { useMainStore } from '@/stores/store-provider';
 
 type Props = Readonly<{
     legend: string;
-    nameAttr: string;
+    nameAttr: string | ((lang: string) => string);
     multiLang?: boolean;
     multiline?: boolean;
     className?: string;
-    value?: string | Record<Language, string>
+    value?: string | Record<Language, string>;
+    handleDataChange?: () => void
 }>
 
-const HouseFieldset = memo(function HouseFieldset({ 
+const TextFieldset = memo(function TextFieldset({ 
     legend, 
     nameAttr, 
     multiLang, 
     multiline, 
     className,
-    value
+    value,
+    handleDataChange
 }: Props) {
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
     
@@ -25,6 +27,7 @@ const HouseFieldset = memo(function HouseFieldset({
         if(nameAttr === 'name') {
             e.target.setCustomValidity("");
         }
+        handleDataChange?.();
         setIsDirtyPage(true)};
 
     if (!multiLang) return (
@@ -32,8 +35,8 @@ const HouseFieldset = memo(function HouseFieldset({
             <Typography component={'legend'}>{legend}</Typography>
             <TextField
                 label=""
-                id={nameAttr}
-                name={nameAttr}
+                id={nameAttr as string}
+                name={nameAttr as string}
                 variant="outlined"
                 type='text'
                 onInvalid={(e: any) => {
@@ -83,8 +86,8 @@ const HouseFieldset = memo(function HouseFieldset({
             <Typography component={'legend'}>{legend}</Typography>
             <TextField
                 label="UK:"
-                id={`${nameAttr}-uk`}
-                name={`${nameAttr}-uk`}
+                id={typeof nameAttr === 'string' ? `${nameAttr}-uk` : nameAttr('uk')}
+                name={typeof nameAttr === 'string' ? `${nameAttr}-uk` : nameAttr('uk')}
                 variant="outlined"
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
@@ -94,8 +97,8 @@ const HouseFieldset = memo(function HouseFieldset({
             />
             <TextField
                 label="EN:"
-                id={`${nameAttr}-en`}
-                name={`${nameAttr}-en`}
+                id={typeof nameAttr === 'string' ? `${nameAttr}-en` : nameAttr('en')}
+                name={typeof nameAttr === 'string' ? `${nameAttr}-en` : nameAttr('en')}
                 variant="outlined"
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
@@ -105,8 +108,8 @@ const HouseFieldset = memo(function HouseFieldset({
             />
             <TextField
                 label="RU:"
-                id={`${nameAttr}-ru`}
-                name={`${nameAttr}-ru`}
+                id={typeof nameAttr === 'string' ? `${nameAttr}-ru` : nameAttr('ru')}
+                name={typeof nameAttr === 'string' ? `${nameAttr}-ru` : nameAttr('ru')}
                 variant="outlined"
                 multiline={multiline}
                 rows={multiline ? 4 : undefined}
@@ -118,4 +121,4 @@ const HouseFieldset = memo(function HouseFieldset({
     )
 })
 
-export default HouseFieldset
+export default TextFieldset

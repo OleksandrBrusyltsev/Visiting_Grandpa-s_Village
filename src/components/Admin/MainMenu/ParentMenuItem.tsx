@@ -20,7 +20,8 @@ import {
     PhotoLibraryOutlined,
     PhotoOutlined,
     AddOutlined,
-    HouseOutlined
+    HouseOutlined,
+    CommentOutlined
 } from '@mui/icons-material';
 
 import ChildMenuItem from './ChildMenuItem';
@@ -48,21 +49,25 @@ const iconMapping: { [key: string]: React.ElementType } = {
     PhotoLibraryOutlined,
     PhotoOutlined,
     AddOutlined,
-    HouseOutlined
+    HouseOutlined,
+    CommentOutlined
 };
 
 export default function ParentMenuItem({ menuItem, isDrawerOpen }: Props) {
     const { name, url, icon, children } = menuItem;
 
-    const isComplexHouseRef = React.useRef<boolean>(!["Будиночки", "Галерея", "Сторінки"].includes(menuItem.name));
+    /* Данное комплексное меню предназначено для домиков, имеющих подменю с комнатами. 
+    *  Оно отвечает за "кликабельность" основного домика (создает ссылку на страницу основного домика)
+    */
+    const isComplexMenuRef = React.useRef<boolean>(!["Будиночки", "Галерея", "Сторінки", 'Налаштування'].includes(menuItem.name));
 
-    const [open, setOpen] = React.useState(isComplexHouseRef.current);
+    const [open, setOpen] = React.useState(isComplexMenuRef.current);
 
     const currPath = usePathname();
     const selectedIndex = currPath === url;
 
     const handleClick = () => {
-        if (isComplexHouseRef.current) return
+        if (isComplexMenuRef.current) return
         isDrawerOpen && setOpen(!open);
     };
 
@@ -95,8 +100,8 @@ export default function ParentMenuItem({ menuItem, isDrawerOpen }: Props) {
                         },
                     }}
                     selected={selectedIndex}
-                    component={isComplexHouseRef.current ? ConfirmLink : 'div'}
-                    href={isComplexHouseRef.current ? menuItem.url : ''}
+                    component={isComplexMenuRef.current ? ConfirmLink : 'div'}
+                    href={isComplexMenuRef.current ? menuItem.url : ''}
                 >
                     <ListItemIcon
                         sx={{ minWidth: 0, justifyContent: 'center', mr: 3 }}
@@ -104,7 +109,7 @@ export default function ParentMenuItem({ menuItem, isDrawerOpen }: Props) {
                         <IconComponent />
                     </ListItemIcon>
                     <ListItemText primary={name} />
-                    {!isComplexHouseRef.current && (
+                    {!isComplexMenuRef.current && (
                         <>
                             {open ? <ExpandLess sx={{
                                 opacity: isDrawerOpen ? 1 : 0,

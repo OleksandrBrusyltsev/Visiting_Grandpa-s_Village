@@ -2,9 +2,16 @@
 
 import { addHouseDecorData } from "@/functions/addHouseDecorData";
 
-export const getHouses = async (slug?: string): Promise<HouseItem[]> => {
+type QueryType = 'house_type' | 'is_available';
+
+export const getHouses = async (
+    houseId?: string, 
+    query?: { 
+        [key in QueryType]?: string;
+    }
+): Promise<HouseItem[]> => {
     const url =
-        process.env.SERV_URL + '/api/v1/houses' + (slug ? `/${slug}` : '/?skip=0&limit=100');
+        process.env.SERV_URL + '/api/v1/houses' + (houseId ? `/${houseId}` : '/?skip=0&limit=100&' + new URLSearchParams(query).toString());
     try {
         const resp = await fetch(url, {
             next: {
@@ -19,7 +26,7 @@ export const getHouses = async (slug?: string): Promise<HouseItem[]> => {
         const data = await resp.json();
         
         //добавляем отсутствующие в апишке данные (2 картинки-декоры и координаты домика на карте)
-        const houses = addHouseDecorData(data);
+        const houses = addHouseDecorData(Array.isArray(data) ? data : [data]);
         return houses;
     } catch (error) {
         console.error(error);

@@ -3,6 +3,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
 import { Box, FormControlLabel, Grid2 as Grid, Stack, Switch, Tab, Tabs, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import { UniqueIdentifier } from '@dnd-kit/core';
 
 import { ResizableContainer } from '@/components/Admin/UI/ResizableContainer/ResizableContainer';
 import SubmitFabGroup from '@/components/Admin/UI/SubmitFabGroup/SubmitFabGroup';
@@ -127,11 +128,17 @@ export default function EditHouse({ data, housesList, rooms }: Props) {
 
     const setDialogOpen = useMainStore((state) => state.setDialogOpen);
     const setHouseData = useMainStore((state) => state.setHouseData);
+    const setPhotosEditing = useMainStore((state) => state.setPhotosEditing);
     const setIsDirtyPage = useMainStore((state) => state.setIsDirtyPage);
-
+    
     useEffect(() => {
         setHouseData(data, true);
-    }, [data, setHouseData]);
+        rooms && setPhotosEditing([{
+                    id: '4343' as UniqueIdentifier,
+                    raw: data.photo[0],
+                    src: data.photo[0],
+                }], true);
+    }, [data, setHouseData, rooms, setPhotosEditing]);
 
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
         setActiveTab(newValue);

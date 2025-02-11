@@ -1,3 +1,4 @@
+//Все используемые иконки импортировать в компоненты ParentMenuItem и ChildMenuItem
 export const menuAdmin = [
     {
         id: 1,
@@ -87,5 +88,14 @@ export const menuAdmin = [
         url: '/uk/admin_hub/settings',
         admission: 'superadmin',
         icon: 'SettingsOutlined',
+        children: [
+            {
+                id: 101,
+                name: 'Оголошення',
+                url: '/uk/admin_hub/settings/toaster',
+                admission: 'admin',
+                icon: 'CommentOutlined',
+            }
+        ],
     },
 ];

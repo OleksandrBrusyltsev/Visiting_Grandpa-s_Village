@@ -1,7 +1,6 @@
 "use client"
 import React, { useState, MouseEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -16,6 +15,7 @@ import Logout from '@mui/icons-material/Logout';
 import { Login } from '@mui/icons-material';
 import { logout } from '@/actions/admin/auth';
 import { useMainStore } from '@/stores/store-provider';
+import ConfirmLink from '../../UI/ConfirmLink/ConfirmLink';
 
 export default function UserMenu() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -92,24 +92,24 @@ export default function UserMenu() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem component={Link} href='/uk/admin_hub/profile' onClick={handleClose}>
+                <MenuItem component={ConfirmLink} href='/uk/admin_hub/profile' onClick={handleClose}>
                     <Avatar src='/opengraph-image.jpg' /> Профіль користувача
                 </MenuItem>
                 <Divider />
-                <MenuItem component={Link} href='/uk/admin_hub/users' onClick={handleClose}>
+                <MenuItem component={ConfirmLink} href='/uk/admin_hub/users' onClick={handleClose}>
                     <ListItemIcon>
                         <PersonAdd fontSize="small" />
                     </ListItemIcon>
                     Додати користувача
                 </MenuItem>
-                <MenuItem component={Link} href='/uk/admin_hub/settings' onClick={handleClose}>
+                <MenuItem component={ConfirmLink} href='/uk/admin_hub/settings' onClick={handleClose}>
                     <ListItemIcon>
                         <Settings fontSize="small" />
                     </ListItemIcon>
                     Налаштування
                 </MenuItem>
 
-                <MenuItem onClick={handleLogout}>
+                <MenuItem onClick={handleLogout} >
                     <ListItemIcon>
                         {
                             user?.id_active ?

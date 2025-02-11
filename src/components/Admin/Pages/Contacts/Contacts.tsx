@@ -4,7 +4,7 @@ import { Box, Stack, Tab, Tabs, Typography } from '@mui/material';
 import React, { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation';
 
-import HouseFieldset from '../../Houses/AddNewHouse/components/HouseFieldset';
+import TextFieldset from '../../UI/TextFieldset/TextFieldset';
 import SubmitFabGroup from '../../UI/SubmitFabGroup/SubmitFabGroup';
 import { useMainStore } from '@/stores/store-provider';
 import { CustomTabPanel } from '../Houses/Houses';
@@ -137,7 +137,7 @@ export default function Contacts({ data }: Props) {
             }}>
                 {
                     singleFields.map((item, index) => (
-                        <HouseFieldset
+                        <TextFieldset
                             key={item.name}
                             className=' lg:w-[48%] w-full'
                             legend={item.label}
@@ -150,7 +150,7 @@ export default function Contacts({ data }: Props) {
 
             {
                 multiFields.map((item, index) => (
-                    <HouseFieldset
+                    <TextFieldset
                         key={item.name}
                         legend={item.label}
                         value={data[item.name as keyof ContactItem] as Record<Language, string>}
@@ -203,12 +203,12 @@ export default function Contacts({ data }: Props) {
                                         key={item.question}
                                     >
                                         <Typography component={'legend'}>{`Блок ${index + 1}`}</Typography>
-                                        <HouseFieldset
+                                        <TextFieldset
                                             legend="Питання"
                                             value={item.question}
                                             nameAttr={`question-${lang}-${index}`}
                                         />
-                                        <HouseFieldset
+                                        <TextFieldset
                                             legend="Відповідь"
                                             value={item.answer}
                                             nameAttr={`answer-${lang}-${index}`}

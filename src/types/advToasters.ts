@@ -6,3 +6,9 @@ type AdvToaster = {
     is_active: boolean;
     translations: Record<Language, string>;
 };
+
+type ActiveToaster = {
+        isPromoActive: boolean;
+        promoText: string;
+        timeout: number;
+    }

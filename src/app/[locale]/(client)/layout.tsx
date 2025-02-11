@@ -7,10 +7,12 @@ import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import Navigation from "@/components/Header/Navigation";
 import Toaster from "@/components/ui/Toaster/Toaster";
+import { getContacts } from "@/actions/getContacts";
+import { getToasters } from "@/actions/getToasters";
+import { getActivePromoData } from "@/functions/toasterHelpers";
 
 import { locales } from "@/data/locales";
 import './layout.css';
-import { getContacts } from "@/actions/getContacts";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -41,6 +43,8 @@ export default async function LocaleLayout({
 }) {
   unstable_setRequestLocale(locale);
   const contacts = await getContacts();
+  const toasters = await getToasters();
+  const toaster = getActivePromoData(toasters, locale);
 
   return (
     <>
@@ -51,7 +55,7 @@ export default async function LocaleLayout({
       <Breadcrumbs />
       <main>{children}</main>
       <Footer contacts={contacts}/>
-      <Toaster />
+      <Toaster data={toaster}/>
     </>
   );
 }

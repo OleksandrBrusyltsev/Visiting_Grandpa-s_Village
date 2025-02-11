@@ -5,11 +5,12 @@ export default function showErrors(
     cb: AdminSlice['setDialogOpen'],
     isSingleBlockPage?: boolean,
 ) {
-    const invalidInputs = form.querySelectorAll(':invalid') as NodeListOf<HTMLInputElement>;
+    const invalidInputs = form.querySelectorAll(':invalid:not(fieldset)') as NodeListOf<HTMLInputElement>;
     const errors: Record<Language, string> = { uk: '', ru: '', en: '' };
     invalidInputs?.forEach((input: HTMLInputElement) => {
+        const partsLength = input.name.split('-').length;
         const name = input.name.split('-')[0];
-        const lang = input.name.split('-')[1] as Language;
+        const lang = partsLength === 3 ? input.name.split('-')[1] as Language : 'uk';
         const blockPosition = isSingleBlockPage ? 0 : +input.name.split('-').at(-1)! + 1;
         errors[lang] += isSingleBlockPage
             ? 'Поле ' + name + ', помилка: "' + input.validationMessage + '" \n'
