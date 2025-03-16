@@ -5,7 +5,7 @@ import { revalidateTag } from 'next/cache';
 import getCloudinaryUrl from '@/actions/admin/getCloudinaryUrl';
 import { verifySession } from '@/functions/dal';
 
-const url = process.env.SERV_URL;
+const url = "https://grandpas-village.fly.dev";
 
 export async function PUT(request: Request) {
     const { role } = await verifySession();
