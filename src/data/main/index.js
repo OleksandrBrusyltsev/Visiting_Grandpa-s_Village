@@ -136,3 +136,36 @@ export const main = [
         photos: ['/images/home/welcomeBlock.jpg'],
     },
 ];
+
+
+export function generateJsonLd(locale) {
+    const firstBlock = main[0];
+    return {
+        "@context": "https://schema.org",
+        "@type": "LodgingBusiness",
+        "name": firstBlock.title[locale] || firstBlock.title.uk,
+        "description": firstBlock.description[locale] || firstBlock.description.uk,
+        "image": firstBlock.photos[0],
+        "url": `https://ecousadba.in.ua/${locale}`,
+        "telephone": "+38 (093) 191 96 63",
+        "email": "naseliudidusya@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "вул. Озерна, 5",
+            "addressLocality": "Олешня",
+            "addressRegion": "Чернігівська область",
+            "postalCode": "17022",
+            "addressCountry": "UA"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "51.51234",
+            "longitude": "31.12345"
+        },
+        "priceRange": "$$",
+        "openingHours": "Mo-Su 08:00-22:00",
+        "sameAs": [
+            "https://www.facebook.com/ecousadba.in.ua"
+        ]
+    };
+}

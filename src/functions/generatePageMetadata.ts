@@ -10,5 +10,12 @@ export function generatePageMetadata(
     return {
         title: title[locale as Language] as Metadata['title'],
         description: description[locale as Language] as Metadata['description'],
+        robots: {
+            index: true,
+            follow: true,
+        },
+          alternates: {
+            canonical: `https://ecousadba.in.ua/${locale}/${page}`
+        }
     };
 }
