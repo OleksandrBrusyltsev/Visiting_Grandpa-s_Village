@@ -14,8 +14,10 @@ export function generatePageMetadata(
             index: true,
             follow: true,
         },
-          alternates: {
-            canonical: `https://ecousadba.in.ua/${locale}/${page}`
+        alternates: {
+            canonical: page === "home"
+                ? `https://ecousadba.in.ua/${locale}`
+                : `https://ecousadba.in.ua/${locale}/${page}`,
         }
     };
 }
