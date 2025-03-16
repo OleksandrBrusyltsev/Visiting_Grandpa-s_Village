@@ -49,12 +49,21 @@ export async function PUT(request: Request) {
     try {
         //добавляем ссылки на Cloudinary для новых фото
         homeData = await Promise.all(
-            Object.values(mainDataObj).map(async (block) => {
-                const photos = await getCloudinaryUrl(block.photos);
-                if (typeof block.photos === 'string') throw new Error(block.photos);
-                return { ...block, photos };
-            }),
-        );
+        Object.values(mainDataObj).map(async (block) => {
+        if (!block.photos || block.photos.length === 0) {
+            console.warn(` NO PHOTOS: ${block.title.uk}`);
+            return { ...block, photos: [] };
+        }
+
+        try {
+            const photos = await getCloudinaryUrl(block.photos);
+            return { ...block, photos };
+        } catch (error) {
+            console.error(`ERROR FOR UPLOADS PHOTO "${block.title.uk}":`, error);
+            return { ...block, photos: [] };
+        }
+    }),
+);
     } catch (error) {
         console.error('Error processing photos for Home page:', error);
         return NextResponse.json({ message: (error as Error).message }, { status: 500 });
